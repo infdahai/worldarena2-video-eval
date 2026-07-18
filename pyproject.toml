@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "worldarena-track1-baseline"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+  "h5py>=3.10",
+  "imageio[pyav]>=2.34",
+  "numpy>=1.26",
+  "opencv-python-headless>=4.9",
+  "Pillow>=10",
+  "PyYAML>=6",
+  "yourdfpy>=0.0.58",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/worldarena_baseline"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+pythonpath = ["src"]
