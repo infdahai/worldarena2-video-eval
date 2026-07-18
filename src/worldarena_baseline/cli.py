@@ -5,7 +5,11 @@ import json
 from pathlib import Path
 
 from .manifest import discover_episodes
-from .pipeline import prepare_control_video, select_smoke_episode_ids
+from .pipeline import (
+    prepare_control_video,
+    select_length_stratified_episode_ids,
+    select_smoke_episode_ids,
+)
 from .skeleton import AlohaSkeletonRenderer
 from .submission import (
     build_submission_archive,
@@ -25,7 +29,8 @@ def command_inspect(args: argparse.Namespace) -> int:
     episodes = discover_episodes(args.dataset_root)
     payload = {
         "episode_count": len(episodes),
-        "smoke_episode_ids": select_smoke_episode_ids(episodes, count=3),
+        "smoke_episode_ids": select_smoke_episode_ids(episodes, count=args.smoke_count),
+        "gate_episode_ids": select_length_stratified_episode_ids(episodes, count=args.gate_count),
         "min_length": min(item.trajectory_length for item in episodes),
         "max_length": max(item.trajectory_length for item in episodes),
     }
@@ -100,6 +105,8 @@ def build_parser() -> argparse.ArgumentParser:
 
     inspect_parser = sub.add_parser("inspect")
     inspect_parser.add_argument("--dataset-root", type=Path, required=True)
+    inspect_parser.add_argument("--smoke-count", type=int, default=3)
+    inspect_parser.add_argument("--gate-count", type=int, default=20)
     inspect_parser.set_defaults(func=command_inspect)
 
     prepare = sub.add_parser("prepare")

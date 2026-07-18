@@ -3,13 +3,13 @@ set -euo pipefail
 
 ROOT="${ROOT:-/data/di/worldarena2_track1_baseline}"
 BASE_PYTHON="${BASE_PYTHON:-/data/zlj/pi0_training/envs/lerobot/bin/python}"
-VENV="$ROOT/venv"
-PYTHON="$VENV/bin/python"
+VENV="${VENV:-$ROOT/venv}"
+PYTHON="${PYTHON:-$VENV/bin/python}"
 PIP="$PYTHON -m pip"
-HF="$VENV/bin/hf"
-LOGS="$ROOT/logs"
-DOWNLOADS="$ROOT/downloads"
-OSCAR="$ROOT/oscar-public"
+HF="${HF:-$VENV/bin/hf}"
+LOGS="${LOGS:-$ROOT/logs}"
+DOWNLOADS="${DOWNLOADS:-$ROOT/downloads}"
+OSCAR="${OSCAR:-$ROOT/oscar-public}"
 OSCAR_COMMIT="4dea2f657e221b0ff24c895fcc8ab4d46d5a9adb"
 export HF_HOME="${HF_HOME:-/data/di/hf_cache}"
 
@@ -92,7 +92,20 @@ PY
 touch "$ROOT/SETUP_COMPLETE"
 echo "$(date -Is) bootstrap complete" | tee -a "$LOGS/bootstrap.log"
 
-if ! tmux has-session -t worldarena2-campaign 2>/dev/null; then
-  tmux new-session -d -s worldarena2-campaign \
-    "ROOT=$ROOT HF_HOME=$HF_HOME bash $ROOT/baseline/scripts/campaign.sh"
+CAMPAIGN_SCRIPT="${CAMPAIGN_SCRIPT:-$ROOT/baseline/scripts/campaign.sh}"
+CAMPAIGN_PID_FILE="${CAMPAIGN_PID_FILE:-$ROOT/campaign.pid}"
+CAMPAIGN_LAUNCH_LOG="${CAMPAIGN_LAUNCH_LOG:-$ROOT/campaign.launch.log}"
+
+if [ -s "$CAMPAIGN_PID_FILE" ]; then
+  CAMPAIGN_PID=$(cat "$CAMPAIGN_PID_FILE")
+  if kill -0 "$CAMPAIGN_PID" 2>/dev/null; then
+    echo "$(date -Is) campaign already running with PID $CAMPAIGN_PID" | tee -a "$LOGS/bootstrap.log"
+    exit 0
+  fi
+  rm -f "$CAMPAIGN_PID_FILE"
 fi
+
+ROOT="$ROOT" HF_HOME="$HF_HOME" nohup bash "$CAMPAIGN_SCRIPT" \
+  >>"$CAMPAIGN_LAUNCH_LOG" 2>&1 < /dev/null &
+echo "$!" >"$CAMPAIGN_PID_FILE"
+echo "$(date -Is) campaign launched with PID $(cat "$CAMPAIGN_PID_FILE")" | tee -a "$LOGS/bootstrap.log"

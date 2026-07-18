@@ -2,17 +2,45 @@
 set -euo pipefail
 
 ROOT="${ROOT:-/data/di/worldarena2_track1_baseline}"
-PYTHON="$ROOT/venv/bin/python"
-HF="$ROOT/venv/bin/hf"
-DATASET="$ROOT/data/dataset_track1"
-CONTROLS="$ROOT/controls"
-OSCAR="$ROOT/oscar-public"
-CHECKPOINT="$ROOT/checkpoints"
+PYTHON="${PYTHON:-$ROOT/venv/bin/python}"
+HF="${HF:-$ROOT/venv/bin/hf}"
+DATASET="${DATASET:-$ROOT/data/dataset_track1}"
+CONTROLS="${CONTROLS:-$ROOT/controls}"
+OSCAR="${OSCAR:-$ROOT/oscar-public}"
+CHECKPOINT="${CHECKPOINT:-$ROOT/checkpoints}"
 COSMOS_REASON_PATH="${COSMOS_REASON_PATH:-$ROOT/cosmos-reason1-7b}"
+STAGING="${STAGING:-$ROOT/submission}"
+LOGS="${LOGS:-$ROOT/logs}"
+SMOKE_DIR="${SMOKE_DIR:-$ROOT/smoke/videos}"
+GATE_DIR="${GATE_DIR:-$ROOT/gate/videos}"
+ARCHIVE="${ARCHIVE:-$ROOT/submission.tar.gz}"
+PUBLIC_VERIFY_DIR="${PUBLIC_VERIFY_DIR:-$ROOT/public_verify_cache}"
+PUBLISH_RESULT="${PUBLISH_RESULT:-$ROOT/publish-result.json}"
+GPU_INDICES="${GPU_INDICES:-0,1,2,3,4,5,6,7}"
+MIN_FREE_MIB="${MIN_FREE_MIB:-22000}"
+MAX_UTIL_PERCENT="${MAX_UTIL_PERCENT:-10}"
+GPU_POLL_SECONDS="${GPU_POLL_SECONDS:-60}"
+SMOKE_COUNT="${SMOKE_COUNT:-3}"
+GATE_COUNT="${GATE_COUNT:-20}"
+EXPECTED_COUNT="${EXPECTED_COUNT:-1000}"
+NO_PUBLISH="${NO_PUBLISH:-0}"
 export COSMOS_REASON_PATH
-STAGING="$ROOT/submission"
-LOGS="$ROOT/logs"
-mkdir -p "$LOGS" "$STAGING/videos" "$ROOT/smoke/videos"
+export HF_HOME="${HF_HOME:-/data/di/hf_cache}"
+
+GPU_LIST=("${GPU_INDICES//,/ }")
+if [ "${#GPU_LIST[@]}" -eq 0 ] || [ -z "${GPU_LIST[0]}" ]; then
+  echo "GPU_INDICES must contain at least one GPU index" >&2
+  exit 2
+fi
+for GPU in "${GPU_LIST[@]}"; do
+  if ! [[ "$GPU" =~ ^[0-9]+$ ]]; then
+    echo "invalid GPU index in GPU_INDICES: $GPU" >&2
+    exit 2
+  fi
+done
+WORKER_COUNT="${#GPU_LIST[@]}"
+
+mkdir -p "$LOGS" "$STAGING/videos" "$SMOKE_DIR" "$GATE_DIR"
 
 fail() {
   code=$?
@@ -23,51 +51,104 @@ fail() {
 trap fail ERR
 rm -f "$ROOT/CAMPAIGN_FAILED"
 
-echo "$(date -Is) waiting for all GPUs" | tee -a "$LOGS/campaign.log"
+gpu_ready() {
+  local gpu="$1"
+  nvidia-smi --id="$gpu" --query-gpu=memory.free,utilization.gpu \
+    --format=csv,noheader,nounits | awk \
+    -v min_free="$MIN_FREE_MIB" -v max_util="$MAX_UTIL_PERCENT" \
+    'NF == 2 && $1 >= min_free && $2 <= max_util { ready = 1 } END { exit !ready }'
+}
+
+echo "$(date -Is) waiting for selected GPUs: $GPU_INDICES" | tee -a "$LOGS/campaign.log"
 touch "$ROOT/WAITING_FOR_GPUS"
 while true; do
-  READY=$(nvidia-smi --query-gpu=memory.free,utilization.gpu --format=csv,noheader,nounits | awk '$1 >= 22000 && $2 <= 10 {n++} END {print n+0}')
-  if [ "$READY" -eq 8 ]; then
+  READY=1
+  for GPU in "${GPU_LIST[@]}"; do
+    if ! gpu_ready "$GPU"; then
+      READY=0
+      break
+    fi
+  done
+  if [ "$READY" -eq 1 ]; then
     break
   fi
-  sleep 60
+  sleep "$GPU_POLL_SECONDS"
 done
 rm -f "$ROOT/WAITING_FOR_GPUS"
 
-SMOKE_IDS=$($PYTHON -m worldarena_baseline.cli inspect --dataset-root "$DATASET" | $PYTHON -c 'import json,sys; print(",".join(map(str,json.load(sys.stdin)["smoke_episode_ids"])))')
-echo "$(date -Is) smoke=$SMOKE_IDS" | tee -a "$LOGS/campaign.log"
-PIDS=()
-for GPU in 0 1 2; do
-  "$PYTHON" -m worldarena_baseline.worker \
-    --dataset-root "$DATASET" --controls-dir "$CONTROLS" \
-    --output-dir "$ROOT/smoke/videos" --checkpoint "$CHECKPOINT" \
-    --oscar-repo "$OSCAR" --gpu-index "$GPU" --worker-index "$GPU" \
-    --worker-count 3 --episode-ids "$SMOKE_IDS" --num-steps 5 \
-    >"$LOGS/smoke-gpu${GPU}.log" 2>&1 &
-  PIDS+=("$!")
-done
-for PID in "${PIDS[@]}"; do wait "$PID"; done
+INSPECTION=$("$PYTHON" -m worldarena_baseline.cli inspect \
+  --dataset-root "$DATASET" --smoke-count "$SMOKE_COUNT" --gate-count "$GATE_COUNT")
+SMOKE_IDS=$(printf '%s' "$INSPECTION" | "$PYTHON" -c \
+  'import json,sys; print(",".join(map(str,json.load(sys.stdin)["smoke_episode_ids"])))')
+GATE_IDS=$(printf '%s' "$INSPECTION" | "$PYTHON" -c \
+  'import json,sys; print(",".join(map(str,json.load(sys.stdin)["gate_episode_ids"])))')
+echo "$(date -Is) smoke=$SMOKE_IDS gate=$GATE_IDS" | tee -a "$LOGS/campaign.log"
 
-$PYTHON -m worldarena_baseline.cli validate-videos \
-  --videos-dir "$ROOT/smoke/videos" --episode-ids "$SMOKE_IDS"
+run_workers() {
+  local episode_ids="$1"
+  local output_dir="$2"
+  local label="$3"
+  local WORKER_INDEX GPU
+
+  # Smoke and gate workers are deliberately serial, in selected-GPU order.
+  for WORKER_INDEX in "${!GPU_LIST[@]}"; do
+    GPU="${GPU_LIST[$WORKER_INDEX]}"
+    "$PYTHON" -m worldarena_baseline.worker \
+      --dataset-root "$DATASET" --controls-dir "$CONTROLS" \
+      --output-dir "$output_dir" --checkpoint "$CHECKPOINT" \
+      --oscar-repo "$OSCAR" --gpu-index "$GPU" \
+      --worker-index "$WORKER_INDEX" --worker-count "$WORKER_COUNT" \
+      --episode-ids "$episode_ids" --num-steps 5 \
+      >"$LOGS/${label}-gpu${GPU}.log" 2>&1
+  done
+}
+
+copy_validated_videos() {
+  local source_dir="$1"
+  local episode_ids="$2"
+  local episode_id filename
+  IFS=',' read -r -a _episode_ids <<< "$episode_ids"
+  for episode_id in "${_episode_ids[@]}"; do
+    printf -v filename 'episode_%06d.mp4' "$episode_id"
+    cp "$source_dir/$filename" "$STAGING/videos/$filename"
+  done
+}
+
+run_workers "$SMOKE_IDS" "$SMOKE_DIR" "smoke"
+"$PYTHON" -m worldarena_baseline.cli validate-videos --videos-dir "$SMOKE_DIR" --episode-ids "$SMOKE_IDS"
 touch "$ROOT/SMOKE_COMPLETE"
-cp "$ROOT"/smoke/videos/episode_*.mp4 "$STAGING/videos/"
+copy_validated_videos "$SMOKE_DIR" "$SMOKE_IDS"
+
+run_workers "$GATE_IDS" "$GATE_DIR" "gate"
+"$PYTHON" -m worldarena_baseline.cli validate-videos --videos-dir "$GATE_DIR" --episode-ids "$GATE_IDS"
+touch "$ROOT/GATE_COMPLETE"
+copy_validated_videos "$GATE_DIR" "$GATE_IDS"
 
 echo "$(date -Is) full generation" | tee -a "$LOGS/campaign.log"
 PIDS=()
-for GPU in 0 1 2 3 4 5 6 7; do
+for WORKER_INDEX in "${!GPU_LIST[@]}"; do
+  GPU="${GPU_LIST[$WORKER_INDEX]}"
   "$PYTHON" -m worldarena_baseline.worker \
     --dataset-root "$DATASET" --controls-dir "$CONTROLS" \
     --output-dir "$STAGING/videos" --checkpoint "$CHECKPOINT" \
-    --oscar-repo "$OSCAR" --gpu-index "$GPU" --worker-index "$GPU" \
-    --worker-count 8 --num-steps 5 >"$LOGS/full-gpu${GPU}.log" 2>&1 &
+    --oscar-repo "$OSCAR" --gpu-index "$GPU" \
+    --worker-index "$WORKER_INDEX" --worker-count "$WORKER_COUNT" \
+    --num-steps 5 >"$LOGS/full-gpu${GPU}.log" 2>&1 &
   PIDS+=("$!")
 done
 for PID in "${PIDS[@]}"; do wait "$PID"; done
 
-$PYTHON -m worldarena_baseline.cli validate-videos --videos-dir "$STAGING/videos" --expected-count 1000
-$PYTHON -m worldarena_baseline.cli write-readme --output "$STAGING/model_readme.md"
-$PYTHON -m worldarena_baseline.cli package --staging-dir "$STAGING" --archive "$ROOT/submission.tar.gz"
+"$PYTHON" -m worldarena_baseline.cli validate-videos \
+  --videos-dir "$STAGING/videos" --expected-count "$EXPECTED_COUNT"
+"$PYTHON" -m worldarena_baseline.cli write-readme --output "$STAGING/model_readme.md"
+"$PYTHON" -m worldarena_baseline.cli package \
+  --staging-dir "$STAGING" --archive "$ARCHIVE" --expected-count "$EXPECTED_COUNT"
+
+if [ "$NO_PUBLISH" = "1" ]; then
+  touch "$ROOT/PACKAGE_COMPLETE"
+  echo "$(date -Is) package complete; NO_PUBLISH=1" | tee -a "$LOGS/campaign.log"
+  exit 0
+fi
 
 echo "$(date -Is) waiting for Hugging Face authentication" | tee -a "$LOGS/campaign.log"
 touch "$ROOT/WAITING_FOR_HF_AUTH"
@@ -76,8 +157,8 @@ while ! "$HF" auth whoami >/dev/null 2>&1; do
 done
 rm -f "$ROOT/WAITING_FOR_HF_AUTH"
 
-$PYTHON -m worldarena_baseline.publish \
-  --archive "$ROOT/submission.tar.gz" \
-  --verify-dir "$ROOT/public_verify_cache" | tee "$ROOT/publish-result.json"
+"$PYTHON" -m worldarena_baseline.publish \
+  --archive "$ARCHIVE" \
+  --verify-dir "$PUBLIC_VERIFY_DIR" | tee "$PUBLISH_RESULT"
 touch "$ROOT/COMPLETE"
 echo "$(date -Is) complete" | tee -a "$LOGS/campaign.log"

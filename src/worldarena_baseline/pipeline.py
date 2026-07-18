@@ -12,13 +12,17 @@ from .skeleton import AlohaSkeletonRenderer
 from .video import probe_video, write_video
 
 
-def select_smoke_episode_ids(episodes: Sequence, count: int = 3) -> list[int]:
+def select_length_stratified_episode_ids(episodes: Sequence, count: int) -> list[int]:
     if count < 1 or not episodes:
         raise ValueError("episodes and a positive count are required")
     ordered = sorted(episodes, key=lambda item: (item.trajectory_length, item.episode_id))
     count = min(count, len(ordered))
     indices = np.linspace(0, len(ordered) - 1, count).astype(int)
     return [ordered[index].episode_id for index in indices]
+
+
+def select_smoke_episode_ids(episodes: Sequence, count: int = 3) -> list[int]:
+    return select_length_stratified_episode_ids(episodes, count)
 
 
 def load_joint_actions(episode: EpisodeSpec) -> np.ndarray:

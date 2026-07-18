@@ -9,6 +9,7 @@ import pytest
 
 from worldarena_baseline.manifest import discover_episodes
 from worldarena_baseline.naming import output_filename
+from worldarena_baseline import pipeline
 from worldarena_baseline.pipeline import select_smoke_episode_ids
 from worldarena_baseline.resample import resample_actions
 
@@ -90,3 +91,15 @@ def test_select_smoke_episodes_covers_short_median_and_long() -> None:
     episodes = [Episode(4, 40), Episode(1, 10), Episode(3, 30), Episode(2, 20)]
 
     assert select_smoke_episode_ids(episodes, count=3) == [1, 2, 4]
+
+
+def test_length_stratified_selection_is_deterministic_and_capped() -> None:
+    class Episode:
+        def __init__(self, episode_id: int, trajectory_length: int) -> None:
+            self.episode_id = episode_id
+            self.trajectory_length = trajectory_length
+
+    episodes = [Episode(4, 40), Episode(1, 10), Episode(3, 30), Episode(2, 20)]
+
+    assert pipeline.select_length_stratified_episode_ids(episodes, count=3) == [1, 2, 4]
+    assert pipeline.select_length_stratified_episode_ids(episodes, count=10) == [1, 2, 3, 4]
