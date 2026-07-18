@@ -103,6 +103,15 @@ def test_bootstrap_uses_local_transformer_engine_compatibility_layer() -> None:
     assert (ROOT / "compat" / "transformer_engine" / "pytorch" / "attention" / "rope.py").is_file()
 
 
+def test_bootstrap_uses_local_megatron_compatibility_layer() -> None:
+    text = (ROOT / "scripts" / "bootstrap.sh").read_text(encoding="utf-8")
+    assert "compat/megatron" in text
+    assert (ROOT / "compat" / "megatron" / "core" / "parallel_state.py").is_file()
+    assert "requirements_minimal.txt" in text
+    assert "grep -vE" in text
+    assert "megatron-core" in text
+
+
 def test_bootstrap_uses_pid_guarded_background_launcher_instead_of_tmux() -> None:
     text = (ROOT / "scripts" / "bootstrap.sh").read_text(encoding="utf-8")
     assert "tmux" not in text

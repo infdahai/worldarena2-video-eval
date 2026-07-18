@@ -10,6 +10,7 @@ HF="${HF:-$VENV/bin/hf}"
 LOGS="${LOGS:-$ROOT/logs}"
 DOWNLOADS="${DOWNLOADS:-$ROOT/downloads}"
 OSCAR="${OSCAR:-$ROOT/oscar-public}"
+OSCAR_REQUIREMENTS="${OSCAR_REQUIREMENTS:-$ROOT/oscar-requirements-runtime.txt}"
 OSCAR_COMMIT="4dea2f657e221b0ff24c895fcc8ab4d46d5a9adb"
 export HF_HOME="${HF_HOME:-/data/di/hf_cache}"
 
@@ -39,8 +40,11 @@ fi
 git -C "$OSCAR" fetch --depth 1 origin "$OSCAR_COMMIT"
 git -C "$OSCAR" checkout --detach "$OSCAR_COMMIT"
 cp -R "$ROOT/baseline/compat/transformer_engine" "$OSCAR/"
+cp -R "$ROOT/baseline/compat/megatron" "$OSCAR/"
 
-$PIP install -r "$OSCAR/requirements_minimal.txt"
+grep -vE '^[[:space:]]*megatron-core([[:space:]#<>=!~;]|$)' \
+  "$OSCAR/requirements_minimal.txt" > "$OSCAR_REQUIREMENTS"
+$PIP install -r "$OSCAR_REQUIREMENTS"
 $PIP install -e "$ROOT/baseline"
 
 if [ ! -f "$DOWNLOADS/dataset_track1.tar.gz" ]; then
