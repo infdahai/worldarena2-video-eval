@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import os
 import subprocess
 from pathlib import Path
+
+import pytest
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,12 +31,46 @@ def test_campaign_supports_selected_gpus_and_local_only_packaging() -> None:
     assert 'MAX_UTIL_PERCENT="${MAX_UTIL_PERCENT:-10}"' in text
     assert 'SMOKE_COUNT="${SMOKE_COUNT:-3}"' in text
     assert 'GATE_COUNT="${GATE_COUNT:-20}"' in text
-    assert 'GPU_LIST=("${GPU_INDICES//,/ }")' in text
     assert 'for GPU in "${GPU_LIST[@]}"; do' in text
     assert '--worker-index "$WORKER_INDEX" --worker-count "$WORKER_COUNT"' in text
     assert '--smoke-count "$SMOKE_COUNT" --gate-count "$GATE_COUNT"' in text
     assert 'NO_PUBLISH="${NO_PUBLISH:-0}"' in text
     assert 'if [ "$NO_PUBLISH" = "1" ]; then' in text
+
+
+@pytest.mark.parametrize(
+    ("gpu_indices", "expected"),
+    [
+        (
+            "0,1,2,3,4,5,6,7",
+            [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7)],
+        ),
+        ("0", [(0, 0)]),
+        ("0,2", [(0, 0), (1, 2)]),
+    ],
+)
+def test_campaign_gpu_indices_are_parsed_into_worker_assignments(
+    gpu_indices: str, expected: list[tuple[int, int]]
+) -> None:
+    helper = ROOT / "scripts" / "gpu_indices.sh"
+    command = (
+        'source "$1"; parse_gpu_indices "$2"; '
+        'for worker_index in "${!GPU_LIST[@]}"; do '
+        'printf "%s:%s\\n" "$worker_index" "${GPU_LIST[$worker_index]}"; '
+        "done"
+    )
+
+    result = subprocess.run(
+        ["bash", "-c", command, "--", str(helper), gpu_indices],
+        check=True,
+        capture_output=True,
+        text=True,
+        env=os.environ.copy(),
+    )
+
+    assert result.stdout.splitlines() == [
+        f"{worker_index}:{gpu_index}" for worker_index, gpu_index in expected
+    ]
 
 
 def test_campaign_runs_resumable_smoke_and_gate_before_full_generation() -> None:

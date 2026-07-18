@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import imageio.v3 as iio
 import numpy as np
 
+from worldarena_baseline import worker
 from worldarena_baseline.video import assigned_to_worker, probe_video, write_video
 
 
@@ -32,3 +35,27 @@ def test_assigned_to_worker_is_deterministic_and_complete() -> None:
     assert partitions[1] == [2, 5, 8]
     assert partitions[2] == [3, 6, 9]
     assert sorted(item for partition in partitions for item in partition) == episode_ids
+
+
+def test_worker_does_not_load_model_for_an_empty_shard(
+    monkeypatch, tmp_path: Path, capsys
+) -> None:
+    monkeypatch.setattr(worker, "discover_episodes", lambda _: [SimpleNamespace(episode_id=1)])
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "worker",
+            "--dataset-root", str(tmp_path),
+            "--controls-dir", str(tmp_path),
+            "--output-dir", str(tmp_path / "videos"),
+            "--checkpoint", str(tmp_path),
+            "--oscar-repo", str(tmp_path),
+            "--gpu-index", "0",
+            "--worker-index", "1",
+            "--worker-count", "2",
+        ],
+    )
+
+    assert worker.main() == 0
+    assert '"event": "empty_assignment"' in capsys.readouterr().out

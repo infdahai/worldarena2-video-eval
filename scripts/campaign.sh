@@ -27,17 +27,10 @@ NO_PUBLISH="${NO_PUBLISH:-0}"
 export COSMOS_REASON_PATH
 export HF_HOME="${HF_HOME:-/data/di/hf_cache}"
 
-GPU_LIST=("${GPU_INDICES//,/ }")
-if [ "${#GPU_LIST[@]}" -eq 0 ] || [ -z "${GPU_LIST[0]}" ]; then
-  echo "GPU_INDICES must contain at least one GPU index" >&2
+source "$(dirname "${BASH_SOURCE[0]}")/gpu_indices.sh"
+if ! parse_gpu_indices "$GPU_INDICES"; then
   exit 2
 fi
-for GPU in "${GPU_LIST[@]}"; do
-  if ! [[ "$GPU" =~ ^[0-9]+$ ]]; then
-    echo "invalid GPU index in GPU_INDICES: $GPU" >&2
-    exit 2
-  fi
-done
 WORKER_COUNT="${#GPU_LIST[@]}"
 
 mkdir -p "$LOGS" "$STAGING/videos" "$SMOKE_DIR" "$GATE_DIR"

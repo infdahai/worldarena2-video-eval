@@ -59,9 +59,6 @@ def main() -> int:
     os.environ.setdefault("LOCAL_RANK", "0")
     os.environ.setdefault("WORLD_SIZE", "1")
     os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
-    sys.path.insert(0, str(args.oscar_repo.resolve()))
-
-    from oscar_diffusers import OSCARDiffusersPipeline
 
     episodes = discover_episodes(args.dataset_root)
     selected = _selected_episode_ids(args.episode_ids)
@@ -73,7 +70,24 @@ def main() -> int:
         )
     )
     episodes = [item for item in episodes if item.episode_id in assigned_ids]
+    if not episodes:
+        print(
+            json.dumps(
+                {
+                    "event": "empty_assignment",
+                    "gpu": args.gpu_index,
+                    "worker_index": args.worker_index,
+                }
+            ),
+            flush=True,
+        )
+        return 0
+
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    sys.path.insert(0, str(args.oscar_repo.resolve()))
+
+    from oscar_diffusers import OSCARDiffusersPipeline
+
     print(json.dumps({"event": "loading_model", "gpu": args.gpu_index}), flush=True)
     pipeline = OSCARDiffusersPipeline.from_pretrained(str(args.checkpoint))
     print(json.dumps({"event": "model_loaded", "gpu": args.gpu_index}), flush=True)
