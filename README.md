@@ -18,7 +18,7 @@ is not logged into Hugging Face, the packaged campaign pauses at
 For a one-GPU, local-only run, use:
 
 ```bash
-ROOT=/data/di/worldarena2_track1_baseline
+export ROOT=/data/di/worldarena2_track1_baseline
 GPU_INDICES=0 SMOKE_COUNT=1 GATE_COUNT=20 NO_PUBLISH=1 \
 bash "$ROOT/baseline/scripts/campaign.sh"
 ```
