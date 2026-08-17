@@ -176,6 +176,13 @@ def _fake_rope(q: torch.Tensor, k: torch.Tensor, freqs: object) -> tuple[torch.T
     return q + 100, k + 200
 
 
+def _in_place_fake_rope(q: torch.Tensor, k: torch.Tensor, freqs: object) -> tuple[torch.Tensor, torch.Tensor]:
+    assert freqs == "rope"
+    q.add_(100)
+    k.add_(200)
+    return q, k
+
+
 def test_wrapper_forks_normalized_qkv_before_rope_and_zero_gate_is_bitwise_equal() -> None:
     base = _FakeWanAttention()
     observed: dict[str, torch.Tensor] = {}
@@ -231,3 +238,56 @@ def test_wrapper_only_gate_receives_gradients() -> None:
     assert wrapper.gate.grad is not None
     assert torch.count_nonzero(wrapper.gate.grad) > 0
     assert all(parameter.grad is None for parameter in base.parameters())
+
+
+def test_wrapper_keeps_geometry_qkv_pre_rope_when_rope_mutates_in_place() -> None:
+    base = _FakeWanAttention()
+    observed: dict[str, torch.Tensor] = {}
+
+    def geometry_attention(q: torch.Tensor, k: torch.Tensor, v: torch.Tensor, seq_lens: torch.Tensor) -> torch.Tensor:
+        observed["q"] = q.detach().clone()
+        observed["k"] = k.detach().clone()
+        observed["v"] = v.detach().clone()
+        return _mean_attention(q, k, v, seq_lens)
+
+    wrapper = SE3AugmentedSelfAttention(
+        base,
+        attention_fn=geometry_attention,
+        rope_apply_fn=_in_place_fake_rope,
+        num_heads=2,
+        head_dim=4,
+    )
+    x = torch.arange(24, dtype=torch.float32).reshape(1, 3, 8)
+    wrapper(
+        x,
+        seq_lens=torch.tensor([3]),
+        grid_sizes=torch.tensor([[1, 1, 3]]),
+        freqs="rope",
+        arm_transform=torch.eye(4).reshape(1, 1, 1, 4, 4).repeat(1, 2, 1, 1, 1),
+        arm_present=torch.ones(1, 2, 1, dtype=torch.bool),
+    )
+    torch.testing.assert_close(observed["q"], (x + 10).reshape(1, 3, 2, 4))
+    torch.testing.assert_close(observed["k"], (x + 20).reshape(1, 3, 2, 4))
+    torch.testing.assert_close(observed["v"], x.reshape(1, 3, 2, 4))
+
+
+def test_geometry_uses_cached_inverse_without_recomputing_per_block(monkeypatch: pytest.MonkeyPatch) -> None:
+    q, k, v = _qkv(tokens=21 * 15 * 20)
+    transform = _transforms()
+    cached_inverse = torch.linalg.inv(transform)
+
+    def unexpected_inverse(_: torch.Tensor) -> torch.Tensor:
+        raise AssertionError("geometry must use the supplied per-condition inverse")
+
+    monkeypatch.setattr(torch.linalg, "inv", unexpected_inverse)
+    result = _geometry()(
+        q,
+        k,
+        v,
+        grid_sizes=torch.tensor([[21, 15, 20]]),
+        arm_transform=transform,
+        arm_inverse=cached_inverse,
+        arm_present=torch.ones(1, 2, 21, dtype=torch.bool),
+        seq_lens=torch.tensor([21 * 15 * 20]),
+    )
+    assert torch.count_nonzero(result) > 0

@@ -49,6 +49,26 @@ def apply_group_action(value: Tensor, matrix: Tensor, *, transpose: bool = False
     return output.reshape_as(value).to(dtype=value.dtype)
 
 
+def invert_arm_transforms(arm_transform: Tensor) -> Tensor:
+    """Build the inverse action map once for a cached SE(3) condition.
+
+    Callers that install multiple v7 wrappers should invoke this once per batch
+    condition and pass the result as ``arm_inverse`` to every selected block.
+    """
+
+    if arm_transform.ndim != 5 or arm_transform.shape[1] != 2 or arm_transform.shape[-2:] != (4, 4):
+        raise ValueError("arm_transform must have shape (B, 2, T, 4, 4)")
+    if not torch.isfinite(arm_transform).all():
+        raise ValueError("arm_transform must be finite")
+    try:
+        inverse = torch.linalg.inv(arm_transform.float())
+    except RuntimeError as exc:
+        raise ValueError("arm_transform must be invertible") from exc
+    if not torch.isfinite(inverse).all():
+        raise ValueError("arm_transform must be invertible and finite")
+    return inverse
+
+
 class ArmGroupedSE3Geometry(nn.Module):
     """A parallel, fixed-ownership SE(3) attention branch.
 
@@ -86,20 +106,18 @@ class ArmGroupedSE3Geometry(nn.Module):
         *,
         grid_sizes: Tensor,
         arm_transform: Tensor,
+        arm_inverse: Tensor | None = None,
         arm_present: Tensor,
         seq_lens: Tensor,
     ) -> Tensor:
         """Return presence-masked geometry heads of shape ``(B,L,H,D)``."""
 
-        self._validate_inputs(q, k, v, grid_sizes, arm_transform, arm_present, seq_lens)
-        try:
-            # The cache owns 21 transforms per arm.  Invert that compact data
-            # once, then expand both direct and inverse maps over visual tokens.
-            arm_inverse = torch.linalg.inv(arm_transform.float())
-        except RuntimeError as exc:
-            raise ValueError("arm_transform must be invertible") from exc
-        if not torch.isfinite(arm_inverse).all():
-            raise ValueError("arm_transform must be invertible and finite")
+        self._validate_inputs(q, k, v, grid_sizes, arm_transform, arm_inverse, arm_present, seq_lens)
+        # The caller supplies this shared tensor when one condition is consumed
+        # by multiple selected blocks.  The fallback keeps the pure operator
+        # independently usable, while v7 integration must precompute it once.
+        if arm_inverse is None:
+            arm_inverse = invert_arm_transforms(arm_transform)
         token_transform, token_inverse, token_present, token_valid = self._expand_condition(
             q.shape[1], grid_sizes, arm_transform, arm_inverse, arm_present, seq_lens
         )
@@ -162,6 +180,7 @@ class ArmGroupedSE3Geometry(nn.Module):
         v: Tensor,
         grid_sizes: Tensor,
         arm_transform: Tensor,
+        arm_inverse: Tensor | None,
         arm_present: Tensor,
         seq_lens: Tensor,
     ) -> None:
@@ -178,10 +197,14 @@ class ArmGroupedSE3Geometry(nn.Module):
             raise ValueError("arm_transform must have shape (B, 2, T, 4, 4)")
         if arm_present.shape != arm_transform.shape[:3]:
             raise ValueError("arm_present must have shape (B, 2, T)")
+        if arm_inverse is not None and arm_inverse.shape != arm_transform.shape:
+            raise ValueError("arm_inverse must have the same shape as arm_transform")
         if seq_lens.shape != (batch,):
             raise ValueError("seq_lens must have shape (B,)")
         if not torch.isfinite(arm_transform).all():
             raise ValueError("arm_transform must be finite")
+        if arm_inverse is not None and not torch.isfinite(arm_inverse).all():
+            raise ValueError("arm_inverse must be finite")
         if not torch.isfinite(q).all() or not torch.isfinite(k).all() or not torch.isfinite(v).all():
             raise ValueError("q, k, and v must be finite")
         if not torch.all(grid_sizes > 0):
@@ -265,6 +288,7 @@ class SE3AugmentedSelfAttention(nn.Module):
         freqs: object,
         *,
         arm_transform: Tensor,
+        arm_inverse: Tensor | None = None,
         arm_present: Tensor,
     ) -> Tensor:
         if x.ndim != 3:
@@ -282,7 +306,11 @@ class SE3AugmentedSelfAttention(nn.Module):
         k = self._k_normalizer()(k)
         pre_rope_q, pre_rope_k, pre_rope_v = q, k, v
 
-        original_q, original_k = self.rope_apply_fn(pre_rope_q, pre_rope_k, freqs)
+        # RoPE implementations are allowed to mutate their Q/K arguments;
+        # geometry must always consume independent normalized pre-RoPE tensors.
+        original_q, original_k = self.rope_apply_fn(
+            pre_rope_q.clone(), pre_rope_k.clone(), freqs
+        )
         original_heads = self.geometry.attention_fn(original_q, original_k, pre_rope_v, seq_lens)
         if original_heads.shape != pre_rope_q.shape:
             raise ValueError("attention_fn must return the same shape as q")
@@ -294,6 +322,7 @@ class SE3AugmentedSelfAttention(nn.Module):
             pre_rope_v,
             grid_sizes=grid_sizes,
             arm_transform=arm_transform,
+            arm_inverse=arm_inverse,
             arm_present=arm_present,
             seq_lens=seq_lens,
         )
