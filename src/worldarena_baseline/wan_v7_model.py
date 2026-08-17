@@ -183,22 +183,37 @@ def install_v7_attention(
     """
 
     indices = _validate_installation_targets(backbone, block_indices)
-    wrappers: dict[int, SE3AugmentedSelfAttention] = {}
+    originals: dict[int, tuple[nn.Module, nn.Module]] = {}
     for index in indices:
         owner = _self_attention_owner(backbone.blocks[index])
-        base = owner.self_attn
-        base.requires_grad_(False)
-        wrapper = SE3AugmentedSelfAttention(
-            base,
-            attention_fn=attention_fn,
-            rope_apply_fn=rope_apply_fn,
-            num_heads=WAN_HEADS,
-            head_dim=WAN_HEAD_DIM,
-        )
-        _install_condition_hook(wrapper)
-        owner.self_attn = wrapper
-        wrappers[index] = wrapper
-    return wrappers
+        originals[index] = owner, owner.self_attn
+    trainability = [
+        (parameter, parameter.requires_grad)
+        for _owner, base in originals.values()
+        for parameter in base.parameters()
+    ]
+    wrappers: dict[int, SE3AugmentedSelfAttention] = {}
+    try:
+        for index in indices:
+            owner, base = originals[index]
+            base.requires_grad_(False)
+            wrapper = SE3AugmentedSelfAttention(
+                base,
+                attention_fn=attention_fn,
+                rope_apply_fn=rope_apply_fn,
+                num_heads=WAN_HEADS,
+                head_dim=WAN_HEAD_DIM,
+            )
+            _install_condition_hook(wrapper)
+            owner.self_attn = wrapper
+            wrappers[index] = wrapper
+        return wrappers
+    except Exception:
+        for owner, base in originals.values():
+            owner.self_attn = base
+        for parameter, requires_grad in trainability:
+            parameter.requires_grad_(requires_grad)
+        raise
 
 
 class ParentPlusSE3Wan(nn.Module):
@@ -323,15 +338,23 @@ class ParentPlusSE3Wan(nn.Module):
         )
 
     def _bind_condition(self, condition: _BoundSE3Condition) -> None:
-        for wrapper in self.geometry_wrappers.values():
-            if (
-                wrapper.bound_condition is not None  # type: ignore[attr-defined]
-                or wrapper._checkpoint_condition is not None  # type: ignore[attr-defined]
-            ):
-                raise RuntimeError("v7 geometry wrapper already has a bound condition")
-            wrapper.condition_use_count = 0  # type: ignore[attr-defined]
-            wrapper.bound_condition = condition  # type: ignore[attr-defined]
-            wrapper._checkpoint_condition = condition  # type: ignore[attr-defined]
+        bound: list[SE3AugmentedSelfAttention] = []
+        try:
+            for wrapper in self.geometry_wrappers.values():
+                if (
+                    wrapper.bound_condition is not None  # type: ignore[attr-defined]
+                    or wrapper._checkpoint_condition is not None  # type: ignore[attr-defined]
+                ):
+                    raise RuntimeError("v7 geometry wrapper already has a bound condition")
+                wrapper.condition_use_count = 0  # type: ignore[attr-defined]
+                wrapper.bound_condition = condition  # type: ignore[attr-defined]
+                wrapper._checkpoint_condition = condition  # type: ignore[attr-defined]
+                bound.append(wrapper)
+        except Exception:
+            for wrapper in bound:
+                wrapper.bound_condition = None  # type: ignore[attr-defined]
+                wrapper._checkpoint_condition = None  # type: ignore[attr-defined]
+            raise
 
     def _clear_condition(self, *, retain_for_checkpoint: bool) -> None:
         for wrapper in self.geometry_wrappers.values():
@@ -374,8 +397,8 @@ class ParentPlusSE3Wan(nn.Module):
 
         handles = []
         result: Tensor | None = None
-        self._bind_condition(condition)
         try:
+            self._bind_condition(condition)
             for point in self.parent_injection_points:
                 residual = parent[point]
                 if not isinstance(residual, Tensor):

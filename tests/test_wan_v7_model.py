@@ -40,10 +40,11 @@ class _WanAttention(nn.Module):
         self.o = nn.Identity()
         self.q_norm = nn.Identity()
         self.k_norm = nn.Identity()
+        self.scale = nn.Parameter(torch.ones(()))
 
     def forward(self, x, seq_lens, grid_sizes, freqs):
         del seq_lens, grid_sizes, freqs
-        return x
+        return x * self.scale
 
 
 class _Block(nn.Module):
@@ -214,3 +215,37 @@ def test_install_rejects_non_stage_a_or_invalid_backbone_shapes() -> None:
     install_v7_attention(backbone, BLOCKS, _rope, _attention)
     with pytest.raises(ValueError, match="already"):
         install_v7_attention(backbone, BLOCKS, _rope, _attention)
+
+
+def test_install_is_atomic_when_a_late_wrapper_construction_fails() -> None:
+    backbone = _Backbone()
+    originals = {index: backbone.blocks[index].self_attn for index in BLOCKS}
+    originals[16].o = nn.Linear(1, 1, bias=True)
+
+    with pytest.raises(ValueError, match="bias-free"):
+        install_v7_attention(backbone, BLOCKS, _rope, _attention)
+
+    assert {
+        index: backbone.blocks[index].self_attn for index in BLOCKS
+    } == originals
+    assert all(
+        parameter.requires_grad
+        for attention in originals.values()
+        for parameter in attention.parameters()
+    )
+
+
+def test_failed_condition_bind_clears_every_wrapper_and_allows_a_retry() -> None:
+    model, _parent = _model()
+    values = _inputs()
+    model.geometry_wrappers["16"]._checkpoint_condition = object()
+
+    with pytest.raises(RuntimeError, match="already has a bound condition"):
+        model(**values)
+
+    assert all(wrapper.bound_condition is None for wrapper in model.geometry_wrappers.values())
+    assert all(
+        wrapper._checkpoint_condition is None
+        for wrapper in model.geometry_wrappers.values()
+    )
+    model(**values)
