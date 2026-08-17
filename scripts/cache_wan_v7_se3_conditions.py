@@ -8,7 +8,9 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 from typing import Any
+from dataclasses import dataclass
 
 import h5py
 import numpy as np
@@ -28,6 +30,34 @@ from worldarena_baseline.wan_se3_condition import (
 
 
 FORMAL_ROOT = PROJECT_ARTIFACT_ROOT
+FORMAL_SOURCE_ROOT = Path("/home/huazhi/nlh/baseline")
+FORMAL_CLEAN1000_MANIFEST = (
+    FORMAL_ROOT / "data_selection/v4-clean-scale-20260817-r3/clean-1000.jsonl"
+)
+FORMAL_LEAKAGE_RECEIPT = (
+    FORMAL_ROOT / "data_selection/v4-clean-scale-20260817-r3/clean-data-scale-receipt.json"
+)
+FORMAL_DISCOVERY_MANIFEST = FORMAL_ROOT / "eval/v7-se3-discovery-8/discovery-8.jsonl"
+FORMAL_DEV_FAST20_MANIFEST = FORMAL_ROOT / "eval/dev-fast-20-v3/dev-fast-20.jsonl"
+FORMAL_OFFICIAL_TEST_MANIFEST = FORMAL_ROOT / "official_track1_eval/final-test/test-1000.jsonl"
+FORMAL_TRUSTED_LINEAGE_PINS = (
+    FORMAL_SOURCE_ROOT / "source_inputs/trusted-wan-v7-se3-lineage-pins.json"
+)
+_LINEAGE_PIN_SCHEMA = "wan-action-v7-se3-lineage-pins/1"
+_SHA256 = re.compile(r"[0-9a-f]{64}")
+
+
+@dataclass(frozen=True)
+class _LineageAuthority:
+    """Private seam for tests; production authority always uses fixed paths."""
+
+    clean1000_manifest: Path
+    data_leakage_receipt: Path
+    discovery_manifest: Path
+    dev_fast20_manifest: Path
+    official_test_manifest: Path
+    trusted_pins: Path
+    expected_pins_sha256: str
 
 
 def require_formal_cache_root(cache_root: Path | str) -> Path:
@@ -62,27 +92,79 @@ def _read_jsonl(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
-def validate_cache_input_contract(
-    *,
-    manifest: Path,
-    canonical_clean1000_manifest: Path,
-    data_leakage_receipt: Path,
-    discovery_manifest: Path,
-    dev_fast20_manifest: Path,
-    official_test_manifest: Path,
-) -> dict[str, object]:
-    """Fail closed unless this cache input is the legal clean-1000 lineage."""
+def _load_trusted_lineage_pins(authority: _LineageAuthority) -> dict[str, str]:
+    if _SHA256.fullmatch(authority.expected_pins_sha256) is None:
+        raise ValueError("trusted lineage pins hash must come from an independent upstream")
+    if _sha256_file(authority.trusted_pins) != authority.expected_pins_sha256:
+        raise ValueError("trusted lineage pins differ from independent upstream hash")
+    try:
+        payload = json.loads(authority.trusted_pins.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError("trusted lineage pins are unreadable") from exc
+    required = {
+        "schema",
+        "clean1000_manifest_sha256",
+        "data_leakage_receipt_sha256",
+        "discovery_manifest_sha256",
+        "dev_fast20_manifest_sha256",
+        "official_test_manifest_sha256",
+    }
+    if not isinstance(payload, dict) or set(payload) != required:
+        raise ValueError("trusted lineage pins have an invalid schema")
+    if payload["schema"] != _LINEAGE_PIN_SCHEMA:
+        raise ValueError("trusted lineage pins contract differs")
+    hashes = {key: payload[key] for key in required if key != "schema"}
+    if any(not isinstance(value, str) or _SHA256.fullmatch(value) is None for value in hashes.values()):
+        raise ValueError("trusted lineage pins must contain lowercase SHA-256 values")
+    return hashes
+
+
+def _validate_lineage(authority: _LineageAuthority) -> dict[str, object]:
+    """Validate fixed lineage files against an independently authenticated pin file."""
+    pins = _load_trusted_lineage_pins(authority)
+    artifacts = {
+        "clean1000_manifest_sha256": authority.clean1000_manifest,
+        "data_leakage_receipt_sha256": authority.data_leakage_receipt,
+        "discovery_manifest_sha256": authority.discovery_manifest,
+        "dev_fast20_manifest_sha256": authority.dev_fast20_manifest,
+        "official_test_manifest_sha256": authority.official_test_manifest,
+    }
+    for name, path in artifacts.items():
+        if _sha256_file(path) != pins[name]:
+            raise ValueError(f"trusted lineage pin differs for {name}")
     validate_cached_manifest_identity(
-        canonical_clean1000_manifest, manifest, expected_rows=1000
+        authority.clean1000_manifest, authority.clean1000_manifest, expected_rows=1000
     )
     return validate_training_manifest_receipt(
-        manifest,
-        data_leakage_receipt,
+        authority.clean1000_manifest,
+        authority.data_leakage_receipt,
         {
-            "discovery": _read_jsonl(discovery_manifest),
-            "dev-fast20": _read_jsonl(dev_fast20_manifest),
-            "official-test": _read_jsonl(official_test_manifest),
+            "discovery": _read_jsonl(authority.discovery_manifest),
+            "dev-fast20": _read_jsonl(authority.dev_fast20_manifest),
+            "official-test": _read_jsonl(authority.official_test_manifest),
         },
+    )
+
+
+def _validate_lineage_for_testing(authority: _LineageAuthority) -> dict[str, object]:
+    """Explicit private testing seam; production code never accepts this authority."""
+    return _validate_lineage(authority)
+
+
+def _production_lineage_authority() -> _LineageAuthority:
+    expected_pins_sha256 = os.environ.get("WAN_V7_SE3_TRUSTED_PINS_SHA256", "")
+    if _SHA256.fullmatch(expected_pins_sha256) is None:
+        raise ValueError(
+            "WAN_V7_SE3_TRUSTED_PINS_SHA256 must be supplied from an independent immutable upstream"
+        )
+    return _LineageAuthority(
+        clean1000_manifest=FORMAL_CLEAN1000_MANIFEST,
+        data_leakage_receipt=FORMAL_LEAKAGE_RECEIPT,
+        discovery_manifest=FORMAL_DISCOVERY_MANIFEST,
+        dev_fast20_manifest=FORMAL_DEV_FAST20_MANIFEST,
+        official_test_manifest=FORMAL_OFFICIAL_TEST_MANIFEST,
+        trusted_pins=FORMAL_TRUSTED_LINEAGE_PINS,
+        expected_pins_sha256=expected_pins_sha256,
     )
 
 
@@ -198,12 +280,6 @@ def _write_jsonl_atomic(path: Path, rows: list[dict[str, Any]]) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manifest", type=Path, required=True)
-    parser.add_argument("--canonical-clean1000-manifest", type=Path, required=True)
-    parser.add_argument("--data-leakage-receipt", type=Path, required=True)
-    parser.add_argument("--discovery-manifest", type=Path, required=True)
-    parser.add_argument("--dev-fast20-manifest", type=Path, required=True)
-    parser.add_argument("--official-test-manifest", type=Path, required=True)
     parser.add_argument("--dataset-root", type=Path, required=True)
     parser.add_argument("--cache-root", type=Path, required=True)
     parser.add_argument("--worker-index", type=int, default=0)
@@ -216,16 +292,10 @@ def main() -> None:
     if args.worker_count <= 0 or not 0 <= args.worker_index < args.worker_count:
         raise SystemExit("worker index must be in [0, worker-count) with a positive worker count")
     cache_root = require_formal_cache_root(args.cache_root)
-    validate_cache_input_contract(
-        manifest=args.manifest,
-        canonical_clean1000_manifest=args.canonical_clean1000_manifest,
-        data_leakage_receipt=args.data_leakage_receipt,
-        discovery_manifest=args.discovery_manifest,
-        dev_fast20_manifest=args.dev_fast20_manifest,
-        official_test_manifest=args.official_test_manifest,
-    )
-    manifest_bytes = args.manifest.read_bytes()
-    rows = _read_jsonl(args.manifest)
+    authority = _production_lineage_authority()
+    _validate_lineage(authority)
+    manifest_bytes = authority.clean1000_manifest.read_bytes()
+    rows = _read_jsonl(authority.clean1000_manifest)
     manifest_sha256 = hashlib.sha256(manifest_bytes).hexdigest()
     output_rows = [
         cache_manifest_row(

@@ -23,6 +23,7 @@ def _cache_script():
     spec = importlib.util.spec_from_file_location("cache_wan_v7_se3_conditions", path)
     assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
     spec.loader.exec_module(module)
     return module
 
@@ -211,22 +212,17 @@ def test_atomic_cache_round_trips_full_schema(tmp_path: Path) -> None:
     assert not list(tmp_path.glob("*.partial.npz"))
 
 
-def test_cache_input_contract_rejects_forbidden_overlap_even_with_1000_rows(
-    tmp_path: Path,
-) -> None:
-    """Catches treating a count of 1,000 as proof of clean-1000 lineage."""
-    module = _cache_script()
-    manifest = tmp_path / "manifest.jsonl"
-    rows = [{"sample": f"safe-{index}", "hdf5": f"safe-{index}.h5"} for index in range(999)]
-    rows.append({"sample": "forbidden", "hdf5": "forbidden.h5"})
+def _write_lineage_authority(module, root: Path):
+    manifest = root / "clean-1000.jsonl"
+    rows = [{"sample": f"safe-{index}", "hdf5": f"safe-{index}.h5"} for index in range(1000)]
     manifest.write_text("".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8")
-    discovery = tmp_path / "discovery.jsonl"
-    discovery.write_text('{"sample":"forbidden","hdf5":"forbidden.h5"}\n', encoding="utf-8")
-    dev_fast20 = tmp_path / "dev-fast20.jsonl"
-    dev_fast20.write_text("", encoding="utf-8")
-    official_test = tmp_path / "official-test.jsonl"
-    official_test.write_text("", encoding="utf-8")
-    receipt = tmp_path / "leakage-receipt.json"
+    discovery = root / "discovery.jsonl"
+    discovery.write_text('{"sample":"discovery"}\n', encoding="utf-8")
+    dev_fast20 = root / "dev-fast20.jsonl"
+    dev_fast20.write_text('{"sample":"dev"}\n', encoding="utf-8")
+    official_test = root / "official-test.jsonl"
+    official_test.write_text('{"sample":"official"}\n', encoding="utf-8")
+    receipt = root / "leakage-receipt.json"
     receipt.write_text(
         json.dumps(
             {
@@ -234,26 +230,117 @@ def test_cache_input_contract_rejects_forbidden_overlap_even_with_1000_rows(
                 "small_rows": 1000,
                 "small_manifest_sha256": hashlib.sha256(manifest.read_bytes()).hexdigest(),
                 "evaluation_identity_sha256": {
-                    "discovery": hashlib.sha256(
-                        b"hdf5:forbidden.h5\nsample:forbidden"
-                    ).hexdigest(),
-                    "dev-fast20": hashlib.sha256(b"").hexdigest(),
-                    "official-test": hashlib.sha256(b"").hexdigest(),
+                    "discovery": hashlib.sha256(b"sample:discovery").hexdigest(),
+                    "dev-fast20": hashlib.sha256(b"sample:dev").hexdigest(),
+                    "official-test": hashlib.sha256(b"sample:official").hexdigest(),
                 },
             }
         ),
         encoding="utf-8",
     )
+    pins = root / "trusted-lineage-pins.json"
+    pins.write_text(
+        json.dumps(
+            {
+                "schema": "wan-action-v7-se3-lineage-pins/1",
+                "clean1000_manifest_sha256": hashlib.sha256(manifest.read_bytes()).hexdigest(),
+                "data_leakage_receipt_sha256": hashlib.sha256(receipt.read_bytes()).hexdigest(),
+                "discovery_manifest_sha256": hashlib.sha256(discovery.read_bytes()).hexdigest(),
+                "dev_fast20_manifest_sha256": hashlib.sha256(dev_fast20.read_bytes()).hexdigest(),
+                "official_test_manifest_sha256": hashlib.sha256(official_test.read_bytes()).hexdigest(),
+            },
+            sort_keys=True,
+        ),
+        encoding="utf-8",
+    )
+    return module._LineageAuthority(
+        clean1000_manifest=manifest,
+        data_leakage_receipt=receipt,
+        discovery_manifest=discovery,
+        dev_fast20_manifest=dev_fast20,
+        official_test_manifest=official_test,
+        trusted_pins=pins,
+        expected_pins_sha256=hashlib.sha256(pins.read_bytes()).hexdigest(),
+    )
+
+
+def test_injected_immutable_lineage_pins_validate_exact_artifacts(tmp_path: Path) -> None:
+    """Catches accepting a clean-1000 artifact whose bytes differ from trusted pins."""
+    module = _cache_script()
+    authority = _write_lineage_authority(module, tmp_path)
+
+    report = module._validate_lineage_for_testing(authority)
+    assert report["manifest_sha256"] == hashlib.sha256(
+        authority.clean1000_manifest.read_bytes()
+    ).hexdigest()
+
+    authority.discovery_manifest.write_text('{"sample":"forged"}\n', encoding="utf-8")
+    with pytest.raises(ValueError, match="trusted lineage pin"):
+        module._validate_lineage_for_testing(authority)
+
+
+def test_injected_trusted_lineage_still_rejects_discovery_overlap(tmp_path: Path) -> None:
+    """Catches trusting hashes alone without replaying the zero-leakage receipt."""
+    module = _cache_script()
+    authority = _write_lineage_authority(module, tmp_path)
+    rows = [
+        {"sample": f"safe-{index}", "hdf5": f"safe-{index}.h5"}
+        for index in range(999)
+    ] + [{"sample": "discovery"}]
+    authority.clean1000_manifest.write_text(
+        "".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8"
+    )
+    receipt = json.loads(authority.data_leakage_receipt.read_text(encoding="utf-8"))
+    receipt["small_manifest_sha256"] = hashlib.sha256(
+        authority.clean1000_manifest.read_bytes()
+    ).hexdigest()
+    authority.data_leakage_receipt.write_text(json.dumps(receipt), encoding="utf-8")
+    pins = json.loads(authority.trusted_pins.read_text(encoding="utf-8"))
+    pins["clean1000_manifest_sha256"] = receipt["small_manifest_sha256"]
+    pins["data_leakage_receipt_sha256"] = hashlib.sha256(
+        authority.data_leakage_receipt.read_bytes()
+    ).hexdigest()
+    authority.trusted_pins.write_text(json.dumps(pins, sort_keys=True), encoding="utf-8")
+    authority = module._LineageAuthority(
+        clean1000_manifest=authority.clean1000_manifest,
+        data_leakage_receipt=authority.data_leakage_receipt,
+        discovery_manifest=authority.discovery_manifest,
+        dev_fast20_manifest=authority.dev_fast20_manifest,
+        official_test_manifest=authority.official_test_manifest,
+        trusted_pins=authority.trusted_pins,
+        expected_pins_sha256=hashlib.sha256(authority.trusted_pins.read_bytes()).hexdigest(),
+    )
 
     with pytest.raises(ValueError, match="dataset leakage"):
-        module.validate_cache_input_contract(
-            manifest=manifest,
-            canonical_clean1000_manifest=manifest,
-            data_leakage_receipt=receipt,
-            discovery_manifest=discovery,
-            dev_fast20_manifest=dev_fast20,
-            official_test_manifest=official_test,
-        )
+        module._validate_lineage_for_testing(authority)
+
+
+def test_fabricated_candidate_receipt_and_eval_files_are_not_cli_authority(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Catches restoring caller-selectable manifest, receipt, or evaluation authority flags."""
+    module = _cache_script()
+    fabricated = tmp_path / "fabricated.jsonl"
+    fabricated.write_text('{"sample":"forged"}\n', encoding="utf-8")
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "cache_wan_v7_se3_conditions.py",
+            "--manifest", str(fabricated),
+            "--canonical-clean1000-manifest", str(fabricated),
+            "--data-leakage-receipt", str(fabricated),
+            "--discovery-manifest", str(fabricated),
+            "--dev-fast20-manifest", str(fabricated),
+            "--official-test-manifest", str(fabricated),
+            "--dataset-root", "ignored-dataset",
+            "--cache-root", str(tmp_path),
+        ],
+    )
+
+    with pytest.raises(SystemExit) as error:
+        module.parse_args()
+    assert error.value.code == 2
 
 
 def test_cache_cli_rejects_persistent_output_outside_formal_root(
@@ -267,12 +354,6 @@ def test_cache_cli_rejects_persistent_output_outside_formal_root(
         "argv",
         [
             "cache_wan_v7_se3_conditions.py",
-            "--manifest", "ignored.jsonl",
-            "--canonical-clean1000-manifest", "ignored-canonical.jsonl",
-            "--data-leakage-receipt", "ignored-receipt.json",
-            "--discovery-manifest", "ignored-discovery.jsonl",
-            "--dev-fast20-manifest", "ignored-dev.jsonl",
-            "--official-test-manifest", "ignored-test.jsonl",
             "--dataset-root", "ignored-dataset",
             "--cache-root", str(tmp_path),
         ],
