@@ -43,8 +43,16 @@ FORMAL_OFFICIAL_TEST_MANIFEST = FORMAL_ROOT / "official_track1_eval/final-test/t
 FORMAL_TRUSTED_LINEAGE_PINS = (
     FORMAL_SOURCE_ROOT / "source_inputs/trusted-wan-v7-se3-lineage-pins.json"
 )
-_LINEAGE_PIN_SCHEMA = "wan-action-v7-se3-lineage-pins/1"
+_LINEAGE_PIN_SCHEMA = "wan-action-v7-se3-lineage-pins/2"
 _SHA256 = re.compile(r"[0-9a-f]{64}")
+TRUSTED_LINEAGE_PINS_SHA256 = "c9c0a4087b0381c105ee4caf4a378727c26144fc2e7bf3582a74fda0fea9bb00"
+_REQUIRED_LINEAGE_ARTIFACTS = (
+    "clean1000_manifest",
+    "data_leakage_receipt",
+    "discovery_manifest",
+    "dev_fast20_manifest",
+    "official_test_manifest",
+)
 
 
 @dataclass(frozen=True)
@@ -101,21 +109,26 @@ def _load_trusted_lineage_pins(authority: _LineageAuthority) -> dict[str, str]:
         payload = json.loads(authority.trusted_pins.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         raise ValueError("trusted lineage pins are unreadable") from exc
-    required = {
-        "schema",
-        "clean1000_manifest_sha256",
-        "data_leakage_receipt_sha256",
-        "discovery_manifest_sha256",
-        "dev_fast20_manifest_sha256",
-        "official_test_manifest_sha256",
-    }
-    if not isinstance(payload, dict) or set(payload) != required:
+    if not isinstance(payload, dict) or set(payload) != {"schema", "artifacts"}:
         raise ValueError("trusted lineage pins have an invalid schema")
     if payload["schema"] != _LINEAGE_PIN_SCHEMA:
         raise ValueError("trusted lineage pins contract differs")
-    hashes = {key: payload[key] for key in required if key != "schema"}
-    if any(not isinstance(value, str) or _SHA256.fullmatch(value) is None for value in hashes.values()):
-        raise ValueError("trusted lineage pins must contain lowercase SHA-256 values")
+    artifacts = payload["artifacts"]
+    if not isinstance(artifacts, dict) or set(artifacts) != set(_REQUIRED_LINEAGE_ARTIFACTS):
+        raise ValueError("trusted lineage pins have an invalid artifact schema")
+    hashes: dict[str, str] = {}
+    for name in _REQUIRED_LINEAGE_ARTIFACTS:
+        pin = artifacts[name]
+        if pin == {"status": "unavailable"}:
+            raise ValueError(f"trusted lineage artifact is unavailable: {name}")
+        if (
+            not isinstance(pin, dict)
+            or set(pin) != {"sha256"}
+            or not isinstance(pin["sha256"], str)
+            or _SHA256.fullmatch(pin["sha256"]) is None
+        ):
+            raise ValueError(f"trusted lineage {name} pin must contain a lowercase SHA-256 value")
+        hashes[name] = pin["sha256"]
     return hashes
 
 
@@ -123,11 +136,11 @@ def _validate_lineage(authority: _LineageAuthority) -> dict[str, object]:
     """Validate fixed lineage files against an independently authenticated pin file."""
     pins = _load_trusted_lineage_pins(authority)
     artifacts = {
-        "clean1000_manifest_sha256": authority.clean1000_manifest,
-        "data_leakage_receipt_sha256": authority.data_leakage_receipt,
-        "discovery_manifest_sha256": authority.discovery_manifest,
-        "dev_fast20_manifest_sha256": authority.dev_fast20_manifest,
-        "official_test_manifest_sha256": authority.official_test_manifest,
+        "clean1000_manifest": authority.clean1000_manifest,
+        "data_leakage_receipt": authority.data_leakage_receipt,
+        "discovery_manifest": authority.discovery_manifest,
+        "dev_fast20_manifest": authority.dev_fast20_manifest,
+        "official_test_manifest": authority.official_test_manifest,
     }
     for name, path in artifacts.items():
         if _sha256_file(path) != pins[name]:
@@ -152,11 +165,6 @@ def _validate_lineage_for_testing(authority: _LineageAuthority) -> dict[str, obj
 
 
 def _production_lineage_authority() -> _LineageAuthority:
-    expected_pins_sha256 = os.environ.get("WAN_V7_SE3_TRUSTED_PINS_SHA256", "")
-    if _SHA256.fullmatch(expected_pins_sha256) is None:
-        raise ValueError(
-            "WAN_V7_SE3_TRUSTED_PINS_SHA256 must be supplied from an independent immutable upstream"
-        )
     return _LineageAuthority(
         clean1000_manifest=FORMAL_CLEAN1000_MANIFEST,
         data_leakage_receipt=FORMAL_LEAKAGE_RECEIPT,
@@ -164,7 +172,7 @@ def _production_lineage_authority() -> _LineageAuthority:
         dev_fast20_manifest=FORMAL_DEV_FAST20_MANIFEST,
         official_test_manifest=FORMAL_OFFICIAL_TEST_MANIFEST,
         trusted_pins=FORMAL_TRUSTED_LINEAGE_PINS,
-        expected_pins_sha256=expected_pins_sha256,
+        expected_pins_sha256=TRUSTED_LINEAGE_PINS_SHA256,
     )
 
 

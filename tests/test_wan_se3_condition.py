@@ -242,12 +242,24 @@ def _write_lineage_authority(module, root: Path):
     pins.write_text(
         json.dumps(
             {
-                "schema": "wan-action-v7-se3-lineage-pins/1",
-                "clean1000_manifest_sha256": hashlib.sha256(manifest.read_bytes()).hexdigest(),
-                "data_leakage_receipt_sha256": hashlib.sha256(receipt.read_bytes()).hexdigest(),
-                "discovery_manifest_sha256": hashlib.sha256(discovery.read_bytes()).hexdigest(),
-                "dev_fast20_manifest_sha256": hashlib.sha256(dev_fast20.read_bytes()).hexdigest(),
-                "official_test_manifest_sha256": hashlib.sha256(official_test.read_bytes()).hexdigest(),
+                "schema": "wan-action-v7-se3-lineage-pins/2",
+                "artifacts": {
+                    "clean1000_manifest": {
+                        "sha256": hashlib.sha256(manifest.read_bytes()).hexdigest(),
+                    },
+                    "data_leakage_receipt": {
+                        "sha256": hashlib.sha256(receipt.read_bytes()).hexdigest(),
+                    },
+                    "discovery_manifest": {
+                        "sha256": hashlib.sha256(discovery.read_bytes()).hexdigest(),
+                    },
+                    "dev_fast20_manifest": {
+                        "sha256": hashlib.sha256(dev_fast20.read_bytes()).hexdigest(),
+                    },
+                    "official_test_manifest": {
+                        "sha256": hashlib.sha256(official_test.read_bytes()).hexdigest(),
+                    },
+                },
             },
             sort_keys=True,
         ),
@@ -296,8 +308,8 @@ def test_injected_trusted_lineage_still_rejects_discovery_overlap(tmp_path: Path
     ).hexdigest()
     authority.data_leakage_receipt.write_text(json.dumps(receipt), encoding="utf-8")
     pins = json.loads(authority.trusted_pins.read_text(encoding="utf-8"))
-    pins["clean1000_manifest_sha256"] = receipt["small_manifest_sha256"]
-    pins["data_leakage_receipt_sha256"] = hashlib.sha256(
+    pins["artifacts"]["clean1000_manifest"]["sha256"] = receipt["small_manifest_sha256"]
+    pins["artifacts"]["data_leakage_receipt"]["sha256"] = hashlib.sha256(
         authority.data_leakage_receipt.read_bytes()
     ).hexdigest()
     authority.trusted_pins.write_text(json.dumps(pins, sort_keys=True), encoding="utf-8")
@@ -313,6 +325,45 @@ def test_injected_trusted_lineage_still_rejects_discovery_overlap(tmp_path: Path
 
     with pytest.raises(ValueError, match="dataset leakage"):
         module._validate_lineage_for_testing(authority)
+
+
+def test_production_lineage_pins_use_compiled_digest_not_environment(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Catches letting a caller replace both the tracked pins bytes and an env digest."""
+    module = _cache_script()
+    tracked = (
+        Path(__file__).resolve().parents[1]
+        / "source_inputs/trusted-wan-v7-se3-lineage-pins.json"
+    )
+    assert module.TRUSTED_LINEAGE_PINS_SHA256 == hashlib.sha256(tracked.read_bytes()).hexdigest()
+
+    altered = tmp_path / "altered-pins.json"
+    altered.write_text(tracked.read_text(encoding="utf-8") + "\n", encoding="utf-8")
+    monkeypatch.setattr(module, "FORMAL_TRUSTED_LINEAGE_PINS", altered)
+    monkeypatch.setenv(
+        "WAN_V7_SE3_TRUSTED_PINS_SHA256", hashlib.sha256(altered.read_bytes()).hexdigest()
+    )
+
+    authority = module._production_lineage_authority()
+    with pytest.raises(ValueError, match="trusted lineage pins differ"):
+        module._load_trusted_lineage_pins(authority)
+
+
+def test_production_lineage_rejects_unavailable_required_artifacts(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Catches reading formal manifests or HDF5 when a required lineage pin is unavailable."""
+    module = _cache_script()
+    monkeypatch.setattr(
+        module,
+        "FORMAL_TRUSTED_LINEAGE_PINS",
+        Path(__file__).resolve().parents[1]
+        / "source_inputs/trusted-wan-v7-se3-lineage-pins.json",
+    )
+
+    with pytest.raises(ValueError, match="unavailable.*discovery_manifest"):
+        module._load_trusted_lineage_pins(module._production_lineage_authority())
 
 
 def test_fabricated_candidate_receipt_and_eval_files_are_not_cli_authority(
