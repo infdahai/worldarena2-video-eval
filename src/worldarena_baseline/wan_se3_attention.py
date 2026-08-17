@@ -212,17 +212,32 @@ class ArmGroupedSE3Geometry(nn.Module):
         if arm_inverse is not None and not torch.isfinite(arm_inverse).all():
             raise ValueError("arm_inverse must be finite")
         if arm_inverse is not None:
-            # The cached inverse is intentionally FP32.  Compose in FP64 to
-            # avoid a validation-only cancellation error, while allowing only
-            # the bounded FP32 inverse residual implied by large translations.
+            # The cached inverse is intentionally FP32.  Validate it against
+            # the analytic rigid inverse in FP64, per cached matrix.  A batch
+            # member with a large translation must not relax another member's
+            # mismatch tolerance.
             transform64 = arm_transform.double()
             inverse64 = arm_inverse.double()
-            identity = torch.eye(4, dtype=torch.float64, device=arm_transform.device)
-            magnitude = torch.maximum(transform64.abs().amax(), inverse64.abs().amax())
-            tolerance = max(1e-4, 2.0 * torch.finfo(torch.float32).eps * float(magnitude.item()))
-            forward_error = (transform64 @ inverse64 - identity).abs().amax()
-            reverse_error = (inverse64 @ transform64 - identity).abs().amax()
-            if float(torch.maximum(forward_error, reverse_error).item()) > tolerance:
+            rotation = transform64[..., :3, :3]
+            translation = transform64[..., :3, 3:4]
+            expected_inverse = torch.eye(
+                4, dtype=torch.float64, device=arm_transform.device
+            ).expand_as(transform64).clone()
+            expected_inverse[..., :3, :3] = rotation.transpose(-1, -2)
+            expected_inverse[..., :3, 3:4] = -(rotation.transpose(-1, -2) @ translation)
+            local_magnitude = torch.stack(
+                (
+                    transform64.abs().amax(dim=(-2, -1)),
+                    inverse64.abs().amax(dim=(-2, -1)),
+                    expected_inverse.abs().amax(dim=(-2, -1)),
+                )
+            ).amax(dim=0)
+            tolerance = torch.maximum(
+                torch.full_like(local_magnitude, 1e-4),
+                2.0 * torch.finfo(torch.float32).eps * local_magnitude,
+            )
+            residual = (inverse64 - expected_inverse).abs().amax(dim=(-2, -1))
+            if torch.any(residual > tolerance):
                 raise ValueError("arm_inverse does not match arm_transform")
         if not torch.isfinite(q).all() or not torch.isfinite(k).all() or not torch.isfinite(v).all():
             raise ValueError("q, k, and v must be finite")

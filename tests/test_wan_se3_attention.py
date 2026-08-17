@@ -329,3 +329,23 @@ def test_geometry_accepts_valid_cached_inverse_with_large_translation() -> None:
         seq_lens=torch.tensor([1]),
     )
     assert torch.count_nonzero(result) > 0
+
+
+def test_geometry_rejects_small_inverse_error_despite_another_large_batch_condition() -> None:
+    q, k, v = _qkv(batch=2, tokens=1)
+    transform = _transforms(batch=2, frames=1)
+    transform[1, :, :, 0, 3] = 1_000_000.0
+    transform[1, :, :, 1, 3] = -1_000_000.0
+    cached_inverse = torch.linalg.inv(transform)
+    cached_inverse[0, 0, 0, 0, 3] += 0.1
+    with pytest.raises(ValueError, match="inverse.*match"):
+        _geometry()(
+            q,
+            k,
+            v,
+            grid_sizes=torch.tensor([[1, 1, 1], [1, 1, 1]]),
+            arm_transform=transform,
+            arm_inverse=cached_inverse,
+            arm_present=torch.ones(2, 2, 1, dtype=torch.bool),
+            seq_lens=torch.tensor([1, 1]),
+        )
