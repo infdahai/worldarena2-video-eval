@@ -235,17 +235,38 @@ def test_install_is_atomic_when_a_late_wrapper_construction_fails() -> None:
     )
 
 
-def test_failed_condition_bind_clears_every_wrapper_and_allows_a_retry() -> None:
+def test_failed_condition_bind_preserves_an_older_pending_checkpoint_binding() -> None:
     model, _parent = _model()
     values = _inputs()
-    model.geometry_wrappers["16"]._checkpoint_condition = object()
+    sentinel = object()
+    model.geometry_wrappers["16"]._checkpoint_condition = sentinel
 
     with pytest.raises(RuntimeError, match="already has a bound condition"):
         model(**values)
 
-    assert all(wrapper.bound_condition is None for wrapper in model.geometry_wrappers.values())
+    assert model.geometry_wrappers["16"]._checkpoint_condition is sentinel
+    assert model.geometry_wrappers["8"].bound_condition is None
+    assert model.geometry_wrappers["8"]._checkpoint_condition is None
+    model.geometry_wrappers["16"]._checkpoint_condition = None
+    model(**values)
+
+
+def test_rejected_second_forward_preserves_first_checkpoint_until_backward() -> None:
+    model, _parent = _model(activation_checkpoint=True)
+    first = _inputs()
+    first["x"].requires_grad_()
+    first_output = model(**first)
+
+    with pytest.raises(RuntimeError, match="already has a bound condition"):
+        model(**_inputs())
+
+    assert all(
+        wrapper._checkpoint_condition is not None
+        for wrapper in model.geometry_wrappers.values()
+    )
+    first_output.sum().backward()
+    assert all(wrapper.condition_use_count == 2 for wrapper in model.geometry_wrappers.values())
     assert all(
         wrapper._checkpoint_condition is None
         for wrapper in model.geometry_wrappers.values()
     )
-    model(**values)

@@ -132,7 +132,9 @@ def _install_condition_hook(wrapper: SE3AugmentedSelfAttention) -> None:
     """
 
     wrapper.bound_condition = None  # type: ignore[attr-defined]
+    wrapper._condition_token = None  # type: ignore[attr-defined]
     wrapper._checkpoint_condition = None  # type: ignore[attr-defined]
+    wrapper._checkpoint_token = None  # type: ignore[attr-defined]
     wrapper.condition_use_count = 0  # type: ignore[attr-defined]
 
     def inject_condition(
@@ -337,34 +339,38 @@ class ParentPlusSE3Wan(nn.Module):
             arm_present=effective_present,
         )
 
-    def _bind_condition(self, condition: _BoundSE3Condition) -> None:
-        bound: list[SE3AugmentedSelfAttention] = []
-        try:
-            for wrapper in self.geometry_wrappers.values():
-                if (
-                    wrapper.bound_condition is not None  # type: ignore[attr-defined]
-                    or wrapper._checkpoint_condition is not None  # type: ignore[attr-defined]
-                ):
-                    raise RuntimeError("v7 geometry wrapper already has a bound condition")
-                wrapper.condition_use_count = 0  # type: ignore[attr-defined]
-                wrapper.bound_condition = condition  # type: ignore[attr-defined]
-                wrapper._checkpoint_condition = condition  # type: ignore[attr-defined]
-                bound.append(wrapper)
-        except Exception:
-            for wrapper in bound:
-                wrapper.bound_condition = None  # type: ignore[attr-defined]
-                wrapper._checkpoint_condition = None  # type: ignore[attr-defined]
-            raise
-
-    def _clear_condition(self, *, retain_for_checkpoint: bool) -> None:
+    def _bind_condition(self, condition: _BoundSE3Condition) -> object:
+        # Validate all wrappers before mutating any.  In particular, an
+        # attempted second forward must not erase a legitimate first forward's
+        # condition while that first graph is waiting for checkpoint replay.
         for wrapper in self.geometry_wrappers.values():
-            wrapper.bound_condition = None  # type: ignore[attr-defined]
-            if not retain_for_checkpoint:
+            if (
+                wrapper.bound_condition is not None  # type: ignore[attr-defined]
+                or wrapper._checkpoint_condition is not None  # type: ignore[attr-defined]
+            ):
+                raise RuntimeError("v7 geometry wrapper already has a bound condition")
+        token = object()
+        for wrapper in self.geometry_wrappers.values():
+            wrapper.condition_use_count = 0  # type: ignore[attr-defined]
+            wrapper.bound_condition = condition  # type: ignore[attr-defined]
+            wrapper._condition_token = token  # type: ignore[attr-defined]
+            wrapper._checkpoint_condition = condition  # type: ignore[attr-defined]
+            wrapper._checkpoint_token = token  # type: ignore[attr-defined]
+        return token
+
+    def _clear_condition(self, token: object, *, retain_for_checkpoint: bool) -> None:
+        for wrapper in self.geometry_wrappers.values():
+            if wrapper._condition_token is token:  # type: ignore[attr-defined]
+                wrapper.bound_condition = None  # type: ignore[attr-defined]
+                wrapper._condition_token = None  # type: ignore[attr-defined]
+            if not retain_for_checkpoint and wrapper._checkpoint_token is token:  # type: ignore[attr-defined]
                 wrapper._checkpoint_condition = None  # type: ignore[attr-defined]
+                wrapper._checkpoint_token = None  # type: ignore[attr-defined]
 
     def _clear_checkpoint_conditions_hook(self, _module, _grad_input, _grad_output):
         for wrapper in self.geometry_wrappers.values():
             wrapper._checkpoint_condition = None  # type: ignore[attr-defined]
+            wrapper._checkpoint_token = None  # type: ignore[attr-defined]
 
     def forward(
         self,
@@ -397,8 +403,9 @@ class ParentPlusSE3Wan(nn.Module):
 
         handles = []
         result: Tensor | None = None
+        binding_token: object | None = None
         try:
-            self._bind_condition(condition)
+            binding_token = self._bind_condition(condition)
             for point in self.parent_injection_points:
                 residual = parent[point]
                 if not isinstance(residual, Tensor):
@@ -415,11 +422,13 @@ class ParentPlusSE3Wan(nn.Module):
         finally:
             for handle in handles:
                 handle.remove()
-            self._clear_condition(
-                retain_for_checkpoint=bool(
-                    result is not None and result.requires_grad and torch.is_grad_enabled()
+            if binding_token is not None:
+                self._clear_condition(
+                    binding_token,
+                    retain_for_checkpoint=bool(
+                        result is not None and result.requires_grad and torch.is_grad_enabled()
+                    ),
                 )
-            )
 
 
 def v7_trainable_parameter_names(model: nn.Module) -> set[str]:
