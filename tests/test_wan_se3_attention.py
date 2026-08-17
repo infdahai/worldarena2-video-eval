@@ -310,3 +310,22 @@ def test_geometry_rejects_cached_inverse_from_a_different_condition() -> None:
             arm_present=torch.ones(1, 2, 21, dtype=torch.bool),
             seq_lens=torch.tensor([21 * 15 * 20]),
         )
+
+
+def test_geometry_accepts_valid_cached_inverse_with_large_translation() -> None:
+    q, k, v = _qkv(tokens=1)
+    transform = _transforms(frames=1)
+    transform[:, :, :, 0, 3] = 1_000_000.0
+    transform[:, :, :, 1, 3] = -1_000_000.0
+    cached_inverse = torch.linalg.inv(transform)
+    result = _geometry()(
+        q,
+        k,
+        v,
+        grid_sizes=torch.tensor([[1, 1, 1]]),
+        arm_transform=transform,
+        arm_inverse=cached_inverse,
+        arm_present=torch.ones(1, 2, 1, dtype=torch.bool),
+        seq_lens=torch.tensor([1]),
+    )
+    assert torch.count_nonzero(result) > 0

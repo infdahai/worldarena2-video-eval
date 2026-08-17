@@ -212,13 +212,17 @@ class ArmGroupedSE3Geometry(nn.Module):
         if arm_inverse is not None and not torch.isfinite(arm_inverse).all():
             raise ValueError("arm_inverse must be finite")
         if arm_inverse is not None:
-            identity = torch.eye(4, dtype=torch.float32, device=arm_transform.device)
-            forward = arm_transform @ arm_inverse
-            reverse = arm_inverse @ arm_transform
-            if not (
-                torch.allclose(forward, identity, atol=1e-4, rtol=1e-4)
-                and torch.allclose(reverse, identity, atol=1e-4, rtol=1e-4)
-            ):
+            # The cached inverse is intentionally FP32.  Compose in FP64 to
+            # avoid a validation-only cancellation error, while allowing only
+            # the bounded FP32 inverse residual implied by large translations.
+            transform64 = arm_transform.double()
+            inverse64 = arm_inverse.double()
+            identity = torch.eye(4, dtype=torch.float64, device=arm_transform.device)
+            magnitude = torch.maximum(transform64.abs().amax(), inverse64.abs().amax())
+            tolerance = max(1e-4, 2.0 * torch.finfo(torch.float32).eps * float(magnitude.item()))
+            forward_error = (transform64 @ inverse64 - identity).abs().amax()
+            reverse_error = (inverse64 @ transform64 - identity).abs().amax()
+            if float(torch.maximum(forward_error, reverse_error).item()) > tolerance:
                 raise ValueError("arm_inverse does not match arm_transform")
         if not torch.isfinite(q).all() or not torch.isfinite(k).all() or not torch.isfinite(v).all():
             raise ValueError("q, k, and v must be finite")
