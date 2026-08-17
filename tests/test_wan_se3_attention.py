@@ -291,3 +291,22 @@ def test_geometry_uses_cached_inverse_without_recomputing_per_block(monkeypatch:
         seq_lens=torch.tensor([21 * 15 * 20]),
     )
     assert torch.count_nonzero(result) > 0
+
+
+def test_geometry_rejects_cached_inverse_from_a_different_condition() -> None:
+    q, k, v = _qkv(tokens=21 * 15 * 20)
+    transform = _transforms()
+    other_condition = transform.clone()
+    other_condition[0, 0, 0, 0, 3] += 1.0
+    mismatched_inverse = torch.linalg.inv(other_condition)
+    with pytest.raises(ValueError, match="inverse.*match"):
+        _geometry()(
+            q,
+            k,
+            v,
+            grid_sizes=torch.tensor([[21, 15, 20]]),
+            arm_transform=transform,
+            arm_inverse=mismatched_inverse,
+            arm_present=torch.ones(1, 2, 21, dtype=torch.bool),
+            seq_lens=torch.tensor([21 * 15 * 20]),
+        )

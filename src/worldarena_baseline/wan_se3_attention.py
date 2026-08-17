@@ -199,12 +199,27 @@ class ArmGroupedSE3Geometry(nn.Module):
             raise ValueError("arm_present must have shape (B, 2, T)")
         if arm_inverse is not None and arm_inverse.shape != arm_transform.shape:
             raise ValueError("arm_inverse must have the same shape as arm_transform")
+        if arm_inverse is not None and arm_inverse.device != arm_transform.device:
+            raise ValueError("arm_inverse must be on the same device as arm_transform")
+        if arm_transform.dtype != torch.float32:
+            raise ValueError("arm_transform must remain float32 from the v7 condition cache")
+        if arm_inverse is not None and arm_inverse.dtype != torch.float32:
+            raise ValueError("arm_inverse must remain float32 from the v7 condition cache")
         if seq_lens.shape != (batch,):
             raise ValueError("seq_lens must have shape (B,)")
         if not torch.isfinite(arm_transform).all():
             raise ValueError("arm_transform must be finite")
         if arm_inverse is not None and not torch.isfinite(arm_inverse).all():
             raise ValueError("arm_inverse must be finite")
+        if arm_inverse is not None:
+            identity = torch.eye(4, dtype=torch.float32, device=arm_transform.device)
+            forward = arm_transform @ arm_inverse
+            reverse = arm_inverse @ arm_transform
+            if not (
+                torch.allclose(forward, identity, atol=1e-4, rtol=1e-4)
+                and torch.allclose(reverse, identity, atol=1e-4, rtol=1e-4)
+            ):
+                raise ValueError("arm_inverse does not match arm_transform")
         if not torch.isfinite(q).all() or not torch.isfinite(k).all() or not torch.isfinite(v).all():
             raise ValueError("q, k, and v must be finite")
         if not torch.all(grid_sizes > 0):
