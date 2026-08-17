@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import hashlib
+import importlib.util
+import json
 from pathlib import Path
+import sys
 
 import numpy as np
 import pytest
@@ -13,6 +16,15 @@ from worldarena_baseline.wan_se3_condition import (
     validate_se3_cache,
     write_se3_cache_atomic,
 )
+
+
+def _cache_script():
+    path = Path(__file__).resolve().parents[1] / "scripts" / "cache_wan_v7_se3_conditions.py"
+    spec = importlib.util.spec_from_file_location("cache_wan_v7_se3_conditions", path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def _timeline() -> EpisodeTimeline:
@@ -197,3 +209,96 @@ def test_atomic_cache_round_trips_full_schema(tmp_path: Path) -> None:
     }
     assert actual["anchor_arm"].item() == condition.anchor_arm
     assert not list(tmp_path.glob("*.partial.npz"))
+
+
+def test_cache_input_contract_rejects_forbidden_overlap_even_with_1000_rows(
+    tmp_path: Path,
+) -> None:
+    """Catches treating a count of 1,000 as proof of clean-1000 lineage."""
+    module = _cache_script()
+    manifest = tmp_path / "manifest.jsonl"
+    rows = [{"sample": f"safe-{index}", "hdf5": f"safe-{index}.h5"} for index in range(999)]
+    rows.append({"sample": "forbidden", "hdf5": "forbidden.h5"})
+    manifest.write_text("".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8")
+    discovery = tmp_path / "discovery.jsonl"
+    discovery.write_text('{"sample":"forbidden","hdf5":"forbidden.h5"}\n', encoding="utf-8")
+    dev_fast20 = tmp_path / "dev-fast20.jsonl"
+    dev_fast20.write_text("", encoding="utf-8")
+    official_test = tmp_path / "official-test.jsonl"
+    official_test.write_text("", encoding="utf-8")
+    receipt = tmp_path / "leakage-receipt.json"
+    receipt.write_text(
+        json.dumps(
+            {
+                "contract": "wan-action-clean-data-scale-split/1",
+                "small_rows": 1000,
+                "small_manifest_sha256": hashlib.sha256(manifest.read_bytes()).hexdigest(),
+                "evaluation_identity_sha256": {
+                    "discovery": hashlib.sha256(
+                        b"hdf5:forbidden.h5\nsample:forbidden"
+                    ).hexdigest(),
+                    "dev-fast20": hashlib.sha256(b"").hexdigest(),
+                    "official-test": hashlib.sha256(b"").hexdigest(),
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="dataset leakage"):
+        module.validate_cache_input_contract(
+            manifest=manifest,
+            canonical_clean1000_manifest=manifest,
+            data_leakage_receipt=receipt,
+            discovery_manifest=discovery,
+            dev_fast20_manifest=dev_fast20,
+            official_test_manifest=official_test,
+        )
+
+
+def test_cache_cli_rejects_persistent_output_outside_formal_root(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Catches publishing a sidecar beneath a caller-selected local cache directory."""
+    module = _cache_script()
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "cache_wan_v7_se3_conditions.py",
+            "--manifest", "ignored.jsonl",
+            "--canonical-clean1000-manifest", "ignored-canonical.jsonl",
+            "--data-leakage-receipt", "ignored-receipt.json",
+            "--discovery-manifest", "ignored-discovery.jsonl",
+            "--dev-fast20-manifest", "ignored-dev.jsonl",
+            "--official-test-manifest", "ignored-test.jsonl",
+            "--dataset-root", "ignored-dataset",
+            "--cache-root", str(tmp_path),
+        ],
+    )
+    with pytest.raises(ValueError, match="project artifact root"):
+        module.main()
+
+
+def test_corrupt_sidecar_quarantine_leaves_neighboring_sample_untouched(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Catches a cache repair that deletes or moves a whole cache directory."""
+    module = _cache_script()
+    monkeypatch.setattr(module, "require_formal_cache_root", lambda path: Path(path))
+    monkeypatch.setattr(module, "_formal_output_path", lambda path: Path(path))
+    cache_root = tmp_path / "cache"
+    corrupt = cache_root / "wan_v7_se3_conditions" / "broken.npz"
+    neighbor = cache_root / "wan_v7_se3_conditions" / "healthy.npz"
+    corrupt.parent.mkdir(parents=True)
+    corrupt.write_bytes(b"not an npz")
+    neighbor.write_bytes(b"healthy")
+
+    quarantine = module._quarantine_sidecar(
+        corrupt, cache_root=cache_root, sample="broken"
+    )
+
+    assert not corrupt.exists()
+    assert (quarantine / "broken.npz").read_bytes() == b"not an npz"
+    assert neighbor.read_bytes() == b"healthy"

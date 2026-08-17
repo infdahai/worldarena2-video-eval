@@ -14,11 +14,76 @@ import h5py
 import numpy as np
 
 from worldarena_baseline.action_condition import EpisodeTimeline
+from worldarena_baseline.dataset_leakage import validate_training_manifest_receipt
+from worldarena_baseline.wan_action_video_contract import (
+    PROJECT_ARTIFACT_ROOT,
+    resolve_project_video_output,
+)
+from worldarena_baseline.wan_data_scaling import validate_cached_manifest_identity
 from worldarena_baseline.wan_se3_condition import (
     build_se3_condition,
     validate_se3_cache,
     write_se3_cache_atomic,
 )
+
+
+FORMAL_ROOT = PROJECT_ARTIFACT_ROOT
+
+
+def require_formal_cache_root(cache_root: Path | str) -> Path:
+    """Return a symlink-safe cache root beneath the fixed project artifact root."""
+    requested = Path(os.path.abspath(os.fspath(cache_root)))
+    try:
+        sentinel, _ = resolve_project_video_output(
+            requested / ".wan-v7-se3-cache-root-boundary",
+            artifact_root=FORMAL_ROOT,
+        )
+    except ValueError as exc:
+        raise ValueError(
+            f"cache root must be beneath project artifact root: {FORMAL_ROOT}"
+        ) from exc
+    return sentinel.parent
+
+
+def _formal_output_path(path: Path) -> Path:
+    try:
+        output, _ = resolve_project_video_output(path, artifact_root=FORMAL_ROOT)
+    except ValueError as exc:
+        raise ValueError(
+            f"cache output must be beneath project artifact root: {FORMAL_ROOT}"
+        ) from exc
+    return output
+
+
+def _read_jsonl(path: Path) -> list[dict[str, Any]]:
+    rows = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line]
+    if not all(isinstance(row, dict) for row in rows):
+        raise ValueError(f"manifest rows must be JSON objects: {path}")
+    return rows
+
+
+def validate_cache_input_contract(
+    *,
+    manifest: Path,
+    canonical_clean1000_manifest: Path,
+    data_leakage_receipt: Path,
+    discovery_manifest: Path,
+    dev_fast20_manifest: Path,
+    official_test_manifest: Path,
+) -> dict[str, object]:
+    """Fail closed unless this cache input is the legal clean-1000 lineage."""
+    validate_cached_manifest_identity(
+        canonical_clean1000_manifest, manifest, expected_rows=1000
+    )
+    return validate_training_manifest_receipt(
+        manifest,
+        data_leakage_receipt,
+        {
+            "discovery": _read_jsonl(discovery_manifest),
+            "dev-fast20": _read_jsonl(dev_fast20_manifest),
+            "official-test": _read_jsonl(official_test_manifest),
+        },
+    )
 
 
 def _sha256_file(path: Path) -> str:
@@ -51,14 +116,18 @@ def _presence_from_row(row: dict[str, Any], name: str, source_length: int) -> np
 
 
 def _quarantine_sidecar(path: Path, *, cache_root: Path, sample: str) -> Path:
+    cache_root = require_formal_cache_root(cache_root)
+    path = _formal_output_path(path)
     digest = _sha256_file(path) if path.is_file() and not path.is_symlink() else "unreadable"
     root = cache_root / ".quarantine" / "v7-se3"
+    _formal_output_path(root / ".wan-v7-se3-quarantine-boundary")
     root.mkdir(parents=True, exist_ok=True)
     destination = root / f"{sample}-{digest[:16]}"
     suffix = 1
     while destination.exists():
         destination = root / f"{sample}-{digest[:16]}-{suffix}"
         suffix += 1
+    _formal_output_path(destination / path.name)
     destination.mkdir()
     os.replace(path, destination / path.name)
     return destination
@@ -72,13 +141,14 @@ def cache_manifest_row(
     source_manifest_sha256: str,
 ) -> dict[str, Any]:
     """Cache one raw HDF5 episode and rebuild only its corrupt sidecar."""
+    cache_root = require_formal_cache_root(cache_root)
     sample = row.get("sample")
     hdf5_relative = row.get("hdf5")
     if not isinstance(sample, str) or not sample or not isinstance(hdf5_relative, str):
         raise ValueError("clean-1000 row requires non-empty sample and hdf5 fields")
     hdf5_path = _resolve_relative(dataset_root, hdf5_relative)
     relative = f"wan_v7_se3_conditions/{sample}.npz"
-    sidecar = cache_root / relative
+    sidecar = _formal_output_path(cache_root / relative)
     episode_sha256 = _sha256_file(hdf5_path)
     if sidecar.exists() or sidecar.is_symlink():
         try:
@@ -115,6 +185,7 @@ def cache_manifest_row(
 
 
 def _write_jsonl_atomic(path: Path, rows: list[dict[str, Any]]) -> None:
+    path = _formal_output_path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     partial = path.with_name(f".{path.name}.partial")
     with partial.open("w", encoding="utf-8") as handle:
@@ -128,6 +199,11 @@ def _write_jsonl_atomic(path: Path, rows: list[dict[str, Any]]) -> None:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, required=True)
+    parser.add_argument("--canonical-clean1000-manifest", type=Path, required=True)
+    parser.add_argument("--data-leakage-receipt", type=Path, required=True)
+    parser.add_argument("--discovery-manifest", type=Path, required=True)
+    parser.add_argument("--dev-fast20-manifest", type=Path, required=True)
+    parser.add_argument("--official-test-manifest", type=Path, required=True)
     parser.add_argument("--dataset-root", type=Path, required=True)
     parser.add_argument("--cache-root", type=Path, required=True)
     parser.add_argument("--worker-index", type=int, default=0)
@@ -139,23 +215,28 @@ def main() -> None:
     args = parse_args()
     if args.worker_count <= 0 or not 0 <= args.worker_index < args.worker_count:
         raise SystemExit("worker index must be in [0, worker-count) with a positive worker count")
+    cache_root = require_formal_cache_root(args.cache_root)
+    validate_cache_input_contract(
+        manifest=args.manifest,
+        canonical_clean1000_manifest=args.canonical_clean1000_manifest,
+        data_leakage_receipt=args.data_leakage_receipt,
+        discovery_manifest=args.discovery_manifest,
+        dev_fast20_manifest=args.dev_fast20_manifest,
+        official_test_manifest=args.official_test_manifest,
+    )
     manifest_bytes = args.manifest.read_bytes()
-    rows = [json.loads(line) for line in manifest_bytes.decode("utf-8").splitlines() if line]
-    if len(rows) != 1000:
-        raise SystemExit("v7 SE(3) cache requires the exact clean-1000 manifest")
-    if not all(isinstance(row, dict) for row in rows):
-        raise SystemExit("manifest rows must be JSON objects")
+    rows = _read_jsonl(args.manifest)
     manifest_sha256 = hashlib.sha256(manifest_bytes).hexdigest()
     output_rows = [
         cache_manifest_row(
             row,
             dataset_root=args.dataset_root,
-            cache_root=args.cache_root,
+            cache_root=cache_root,
             source_manifest_sha256=manifest_sha256,
         )
         for row in rows[args.worker_index :: args.worker_count]
     ]
-    output = args.cache_root / "manifests" / f"wan-v7-se3-worker-{args.worker_index:02d}.jsonl"
+    output = cache_root / "manifests" / f"wan-v7-se3-worker-{args.worker_index:02d}.jsonl"
     _write_jsonl_atomic(output, output_rows)
     print(f"wrote={output} rows={len(output_rows)}", flush=True)
 
