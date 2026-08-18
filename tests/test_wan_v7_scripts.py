@@ -150,6 +150,7 @@ def test_v71_trainer_is_geometry_only_weighted_fm() -> None:
     assert "install_v71_attention" in source
     assert "v71_trainable_parameter_names" in source
     assert "weighted_flow_mse" in source
+    assert "wan-action-v71-geometry-lora-single-gpu-production-smoke/1" in source
     assert "trajectory_loss" not in source
     assert "counterfactual_loss" not in source
 

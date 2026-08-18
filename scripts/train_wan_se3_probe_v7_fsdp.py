@@ -1125,7 +1125,12 @@ def main(argv: Sequence[str] | None = None) -> None:
                 for item in gathered
             )
             if dist.get_rank() == 0:
-                _atomic_json(args.output_dir / "production-smoke.v7.json", {"contract": topology["smoke_contract"], "topology": args.topology, "passed": passed, "completed_steps": 3, "ranks": gathered})
+                smoke_contract = (
+                    "wan-action-v71-geometry-lora-single-gpu-production-smoke/1"
+                    if args.architecture == V71_ARCHITECTURE
+                    else topology["smoke_contract"]
+                )
+                _atomic_json(args.output_dir / "production-smoke.v7.json", {"contract": smoke_contract, "architecture": args.architecture, "topology": args.topology, "passed": passed, "completed_steps": 3, "ranks": gathered})
             if not passed:
                 raise RuntimeError("v7 production smoke hard gate failed")
     finally:
