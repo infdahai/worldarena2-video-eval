@@ -12,6 +12,7 @@ import copy
 import hashlib
 import json
 import math
+from pathlib import Path
 import re
 from collections.abc import Mapping
 from typing import Any
@@ -34,6 +35,14 @@ V7_GATE_NAMES = tuple(
     f"geometry_wrappers.{block}.gate" for block in (8, 16, 24)
 )
 _SHA256 = re.compile(r"[0-9a-f]{64}")
+
+# The clean-1000 hash is deliberately not supplied by a launcher, shell, or
+# replay input.  Its tracked pin file is independently hash-bound here; the
+# frozen parent is the user-approved clean-gated step-10 checkpoint.
+_TRAINING_ROOT = Path(__file__).resolve().parents[2]
+_TRUSTED_LINEAGE_PINS = _TRAINING_ROOT / "source_inputs/trusted-wan-v7-se3-lineage-pins.json"
+_TRUSTED_LINEAGE_PINS_SHA256 = "c9c0a4087b0381c105ee4caf4a378727c26144fc2e7bf3582a74fda0fea9bb00"
+FROZEN_V7_PARENT_SHA256 = "105fb760fd371885ba362d26ef2352c260755e47cd036f46711181edc3b30ca2"
 
 
 def v7_training_contract() -> dict[str, Any]:
@@ -68,6 +77,26 @@ def _canonical_sha256(payload: Mapping[str, Any], *, omit: str | None = None) ->
     except (TypeError, ValueError) as exc:
         raise ValueError("contract payload is not canonical JSON") from exc
     return hashlib.sha256(encoded.encode("utf-8")).hexdigest()
+
+
+def _trusted_clean1000_manifest_sha256() -> str:
+    """Read the source-controlled clean-1000 pin without accepting overrides."""
+
+    try:
+        pin_bytes = _TRUSTED_LINEAGE_PINS.read_bytes()
+    except OSError as exc:
+        raise ValueError("trusted v7 lineage pins are unreadable") from exc
+    if hashlib.sha256(pin_bytes).hexdigest() != _TRUSTED_LINEAGE_PINS_SHA256:
+        raise ValueError("trusted v7 lineage pins differ from source-controlled hash")
+    try:
+        pins = json.loads(pin_bytes)
+    except json.JSONDecodeError as exc:
+        raise ValueError("trusted v7 lineage pins are invalid JSON") from exc
+    try:
+        digest = pins["artifacts"]["clean1000_manifest"]["sha256"]
+    except (KeyError, TypeError) as exc:
+        raise ValueError("trusted v7 clean-1000 pin is missing") from exc
+    return _require_sha256(digest, label="trusted clean-1000 manifest SHA-256")
 
 
 def _validate_v6_replay(
@@ -113,12 +142,11 @@ def build_v7_replay_from_v6(
 ) -> dict[str, Any]:
     """Derive the exact first 50 seven-rank draws from immutable v6 replay."""
 
-    if clean1000_manifest_sha256 is None:
-        if not isinstance(v6_replay, Mapping):
-            raise ValueError("v6 replay must be a mapping")
-        clean1000_manifest_sha256 = v6_replay.get("dataset_manifest_sha256")
+    trusted_hash = _trusted_clean1000_manifest_sha256()
+    if clean1000_manifest_sha256 is not None and clean1000_manifest_sha256 != trusted_hash:
+        raise ValueError("v6 replay does not use the trusted clean-1000 manifest")
     source = _validate_v6_replay(
-        v6_replay, clean1000_manifest_sha256=clean1000_manifest_sha256
+        v6_replay, clean1000_manifest_sha256=trusted_hash
     )
     payload: dict[str, Any] = {
         "contract": V7_REPLAY_CONTRACT,
@@ -126,7 +154,7 @@ def build_v7_replay_from_v6(
         "world_size": V7_WORLD_SIZE,
         "rank_mapping": list(V7_RANK_MAPPING),
         "dataset_rows": 1000,
-        "dataset_manifest_sha256": clean1000_manifest_sha256,
+        "dataset_manifest_sha256": trusted_hash,
         "max_steps": V7_MAX_STEPS,
         "records": copy.deepcopy(source["records"][:V7_MAX_STEPS]),
     }
@@ -237,7 +265,7 @@ def _optimizer_state(optimizer: Any) -> dict[str, Any]:
     return copy.deepcopy(dict(raw))
 
 
-def _validate_optimizer_state(optimizer: Any) -> None:
+def _validate_optimizer_state(optimizer: Any, *, calibrated_lr: float) -> None:
     if not isinstance(optimizer, Mapping):
         raise ValueError("v7 checkpoint optimizer is missing")
     state, groups = optimizer.get("state"), optimizer.get("param_groups")
@@ -253,6 +281,9 @@ def _validate_optimizer_state(optimizer: Any) -> None:
         raise ValueError("v7 checkpoint optimizer must reference exactly three unique gates")
     if set(parameters) != set(state):
         raise ValueError("v7 checkpoint optimizer state must cover exactly the three gates")
+    group_rate = _require_calibrated_lr(group.get("lr"))
+    if group_rate != calibrated_lr:
+        raise ValueError("v7 checkpoint optimizer calibrated learning rate mismatch")
     for parameter in parameters:
         entry = state[parameter]
         if not isinstance(entry, Mapping) or not {"step", "exp_avg", "exp_avg_sq"} <= set(entry):
@@ -309,14 +340,17 @@ def build_v7_checkpoint(
     replay_payload = _validate_v7_replay(replay)
     state = _gate_state_from_model(model)
     optimizer_payload = _optimizer_state(optimizer)
-    _validate_optimizer_state(optimizer_payload)
+    _validate_optimizer_state(optimizer_payload, calibrated_lr=rate)
+    parent = _require_sha256(parent_sha256, label="parent SHA-256")
+    if parent != FROZEN_V7_PARENT_SHA256:
+        raise ValueError("v7 checkpoint does not use the frozen parent SHA-256")
     payload = {
         "contract": V7_CHECKPOINT_CONTRACT,
         "step": step,
         "config": v7_training_contract(),
         "world_size": V7_WORLD_SIZE,
         "rank_mapping": list(V7_RANK_MAPPING),
-        "parent_sha256": _require_sha256(parent_sha256, label="parent SHA-256"),
+        "parent_sha256": parent,
         "source_hashes": _source_hashes(source_hashes),
         "cache_sha256": _require_sha256(cache_sha256, label="cache SHA-256"),
         "replay_sha256": replay_payload["replay_sha256"],
@@ -353,8 +387,10 @@ def validate_v7_checkpoint(payload: Mapping[str, Any], *, expected: Mapping[str,
     if not isinstance(expected, Mapping):
         raise ValueError("v7 checkpoint expected lineage is missing")
     parent = _require_sha256(payload.get("parent_sha256"), label="parent SHA-256")
+    if parent != FROZEN_V7_PARENT_SHA256:
+        raise ValueError("v7 checkpoint does not use the frozen parent SHA-256")
     expected_parent = _require_sha256(expected.get("parent_sha256"), label="expected parent SHA-256")
-    if parent != expected_parent:
+    if expected_parent != FROZEN_V7_PARENT_SHA256 or parent != expected_parent:
         raise ValueError("v7 checkpoint parent SHA-256 mismatch")
     sources = _source_hashes(payload.get("source_hashes"))
     expected_sources = _source_hashes(expected.get("source_hashes"))
@@ -369,7 +405,6 @@ def validate_v7_checkpoint(payload: Mapping[str, Any], *, expected: Mapping[str,
     if replay != expected_replay:
         raise ValueError("v7 checkpoint replay SHA-256 mismatch")
     _gate_state_from_model(payload.get("model"))
-    _validate_optimizer_state(payload.get("optimizer"))
     scheduler = payload.get("scheduler")
     if not isinstance(scheduler, Mapping) or scheduler.get("completed_step") != step:
         raise ValueError("v7 checkpoint resume step is inconsistent")
@@ -381,6 +416,7 @@ def validate_v7_checkpoint(payload: Mapping[str, Any], *, expected: Mapping[str,
     expected_rate = _require_calibrated_lr(expected.get("calibrated_lr"))
     if scheduler_rate != preflight_rate or scheduler_rate != expected_rate:
         raise ValueError("v7 checkpoint calibrated learning rate mismatch")
+    _validate_optimizer_state(payload.get("optimizer"), calibrated_lr=expected_rate)
 
 
 def _finite_metric(metrics: Mapping[str, Any], name: str) -> float | None:

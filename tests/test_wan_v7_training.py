@@ -21,7 +21,8 @@ from worldarena_baseline.wan_v7_training import (  # noqa: E402
 )
 
 
-_SHA = "a" * 64
+_SHA = "fc54f851099ea213431efcb64a2fcbfd5c01335e18404f685768f00ece89b289"
+_FROZEN_PARENT_SHA = "105fb760fd371885ba362d26ef2352c260755e47cd036f46711181edc3b30ca2"
 
 
 class _Gate(nn.Module):
@@ -65,7 +66,7 @@ def _source_hashes() -> dict[str, str]:
 
 def _expected(replay: dict, *, lr: float = 2e-5) -> dict:
     return {
-        "parent_sha256": "d" * 64,
+        "parent_sha256": _FROZEN_PARENT_SHA,
         "source_hashes": _source_hashes(),
         "cache_sha256": "e" * 64,
         "replay_sha256": replay["replay_sha256"],
@@ -140,6 +141,18 @@ def test_v7_replay_rejects_changed_first_50_record() -> None:
         build_v7_replay_from_v6(source, clean1000_manifest_sha256=_SHA)
 
 
+def test_v7_replay_rejects_foreign_but_internally_consistent_manifest() -> None:
+    foreign = build_v6_replay_manifest(
+        dataset_size=1000, dataset_manifest_sha256="f" * 64, seed=20260818
+    )
+    with pytest.raises(ValueError, match="trusted clean-1000"):
+        build_v7_replay_from_v6(foreign)
+    with pytest.raises(ValueError, match="trusted clean-1000"):
+        build_v7_replay_from_v6(
+            foreign, clean1000_manifest_sha256="f" * 64
+        )
+
+
 def test_v7_optimizer_contains_exactly_the_three_float32_gates() -> None:
     model = _StageAModel()
     group = v7_optimizer_group(model, calibrated_lr=2e-5)
@@ -204,6 +217,26 @@ def test_checkpoint_rejects_mismatched_replay_parent_source_cache_or_lr() -> Non
     calibration["preflight"]["calibrated_lr"] = 1e-4
     with pytest.raises(ValueError, match="calibrated"):
         validate_v7_checkpoint(calibration, expected=expected)
+    optimizer_lr = copy.deepcopy(payload)
+    optimizer_lr["optimizer"]["param_groups"][0]["lr"] = 1e-3
+    with pytest.raises(ValueError, match="calibrated"):
+        validate_v7_checkpoint(optimizer_lr, expected=expected)
+
+
+def test_checkpoint_rejects_foreign_but_internally_consistent_parent() -> None:
+    model = _StageAModel()
+    replay = _replay()
+    with pytest.raises(ValueError, match="frozen parent"):
+        build_v7_checkpoint(
+            step=10,
+            model=model,
+            optimizer=_optimizer_payload(model),
+            replay=replay,
+            parent_sha256="f" * 64,
+            source_hashes=_source_hashes(),
+            cache_sha256="e" * 64,
+            preflight_receipt={"calibrated_lr": 2e-5},
+        )
 
 
 def test_discovery_gates_are_bounded_and_fail_closed() -> None:
@@ -251,20 +284,12 @@ def test_replay_builder_cli_round_trips_exact_contract(tmp_path) -> None:
     manifest = tmp_path / "clean-1000.jsonl"
     manifest.write_text("{}\n" * 1000, encoding="utf-8")
     manifest_hash = hashlib.sha256(manifest.read_bytes()).hexdigest()
-    source = build_v6_replay_manifest(
-        dataset_size=1000,
-        dataset_manifest_sha256=manifest_hash,
-        seed=20260818,
-    )
+    source = _v6_payload()
     replay = tmp_path / "v6-replay.json"
     replay.write_text(json.dumps(source), encoding="utf-8")
     output = tmp_path / "v7-replay.json"
     from scripts.build_wan_v7_replay import main
 
-    main(["--v6-replay", str(replay), "--clean-1000-manifest", str(manifest), "--output", str(output)])
-    actual = json.loads(output.read_text(encoding="utf-8"))
-    expected = build_v7_replay_from_v6(
-        source,
-        clean1000_manifest_sha256=manifest_hash,
-    )
-    assert actual == expected
+    with pytest.raises(ValueError, match="trusted clean-1000"):
+        main(["--v6-replay", str(replay), "--clean-1000-manifest", str(manifest), "--output", str(output)])
+    assert not output.exists()
