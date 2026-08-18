@@ -24,7 +24,14 @@ _PYTHON_ENTRYPOINTS = (
     "scripts/cache_wan_v7_se3_conditions.py",
     "scripts/train_wan_se3_probe_v7_fsdp.py",
 )
-_REQUIRED_ENTRYPOINTS = (*_PYTHON_ENTRYPOINTS, "scripts/run_wan_se3_probe_v7.sh")
+_STATIC_REQUIRED_FILES = (
+    *_PYTHON_ENTRYPOINTS,
+    "scripts/run_wan_se3_probe_v7.sh",
+    "scripts/validate_wan_v7_sync_closure.py",
+    "source_inputs/trusted-wan-v7-se3-lineage-pins.json",
+    CLOSURE_RELATIVE_PATH,
+    "src/worldarena_baseline/wan_v7_sync_closure.py",
+)
 
 
 def _sha256(path: Path) -> str:
@@ -52,26 +59,98 @@ def _load_file_list(repo_root: Path) -> tuple[str, ...]:
         raise RuntimeError("v7 sync closure file list must be sorted and unique")
     if CLOSURE_RELATIVE_PATH not in files:
         raise RuntimeError("v7 sync closure must include itself")
-    if any(entrypoint not in files for entrypoint in _REQUIRED_ENTRYPOINTS):
+    if any(entrypoint not in files for entrypoint in _STATIC_REQUIRED_FILES):
         raise RuntimeError("v7 sync closure is missing an entrypoint")
     return files
 
 
-def _direct_internal_imports(path: Path) -> set[str]:
+def _module_relative(module: str) -> str:
+    if not module.startswith("worldarena_baseline"):
+        raise RuntimeError(f"not a local v7 module: {module}")
+    suffix = module.split(".")[1:]
+    if not suffix:
+        return "src/worldarena_baseline/__init__.py"
+    return "src/worldarena_baseline/" + "/".join(suffix) + ".py"
+
+
+def _current_module(relative: str) -> str:
+    prefix = "src/worldarena_baseline/"
+    if not relative.startswith(prefix) or not relative.endswith(".py"):
+        raise RuntimeError(f"cannot resolve local module identity: {relative}")
+    stem = relative[len("src/") : -3].replace("/", ".")
+    if stem.endswith(".__init__"):
+        return stem[: -len(".__init__")]
+    return stem
+
+
+def _resolve_relative_import(*, current_module: str, level: int, module: str | None) -> str:
+    package = current_module.split(".")[:-1]
+    if level > len(package):
+        raise RuntimeError(f"v7 local import escapes package: {current_module}")
+    base = package[: len(package) - level + 1]
+    if module:
+        base.extend(module.split("."))
+    return ".".join(base)
+
+
+def _local_imports(path: Path, *, relative: str) -> set[str]:
+    """Resolve static local imports and reject unresolved/dynamic variants."""
+
     try:
         tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
     except (OSError, SyntaxError) as exc:
         raise RuntimeError(f"v7 sync entrypoint is unreadable: {path}") from exc
     imports: set[str] = set()
+    current_module = _current_module(relative) if relative.startswith("src/") else ""
     for node in ast.walk(tree):
-        if not isinstance(node, ast.ImportFrom) or node.module is None:
+        if isinstance(node, ast.Call):
+            name = node.func.id if isinstance(node.func, ast.Name) else ""
+            attr = node.func.attr if isinstance(node.func, ast.Attribute) else ""
+            if name == "__import__" or attr == "import_module":
+                first = node.args[0] if node.args else None
+                if isinstance(first, ast.Constant) and isinstance(first.value, str) and first.value.startswith("worldarena_baseline"):
+                    raise RuntimeError(f"v7 sync closure rejects dynamic local import: {path}")
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                if alias.name.startswith("worldarena_baseline"):
+                    imports.add(_module_relative(alias.name))
+            continue
+        if not isinstance(node, ast.ImportFrom):
+            continue
+        if node.level:
+            if not current_module:
+                raise RuntimeError(f"v7 sync entrypoint has ambiguous relative import: {path}")
+            module = _resolve_relative_import(
+                current_module=current_module, level=node.level, module=node.module
+            )
+            if module.startswith("worldarena_baseline"):
+                imports.add(_module_relative(module))
             continue
         if node.module == "worldarena_baseline":
             for alias in node.names:
-                imports.add(f"src/worldarena_baseline/{alias.name}.py")
-        elif node.module.startswith("worldarena_baseline."):
-            imports.add(f"src/{node.module.replace('.', '/')}.py")
+                imports.add(_module_relative(f"worldarena_baseline.{alias.name}"))
+        elif node.module and node.module.startswith("worldarena_baseline."):
+            imports.add(_module_relative(node.module))
     return imports
+
+
+def _transitive_local_imports(repo_root: Path) -> set[str]:
+    pending = list(_PYTHON_ENTRYPOINTS)
+    resolved: set[str] = set()
+    while pending:
+        relative = pending.pop()
+        if relative in resolved:
+            continue
+        path = repo_root / relative
+        if not path.is_file() or path.is_symlink():
+            raise RuntimeError(f"v7 sync closure source is missing or non-regular: {relative}")
+        resolved.add(relative)
+        for dependency in _local_imports(path, relative=relative):
+            dependency_path = repo_root / dependency
+            if not dependency_path.is_file() or dependency_path.is_symlink():
+                raise RuntimeError(f"v7 sync closure local import is unresolved: {dependency}")
+            pending.append(dependency)
+    return resolved
 
 
 def _run_git(repo_root: Path, *args: str) -> None:
@@ -97,13 +176,14 @@ def validate_sync_closure(repo_root: Path | str) -> dict[str, Any]:
 
     root = Path(repo_root).resolve()
     files = _load_file_list(root)
-    direct_imports: set[str] = set()
-    for entrypoint in _PYTHON_ENTRYPOINTS:
-        direct_imports.update(_direct_internal_imports(root / entrypoint))
-    missing_imports = sorted(direct_imports - set(files))
-    if missing_imports:
+    discovered = _transitive_local_imports(root)
+    expected_files = tuple(sorted(set(_STATIC_REQUIRED_FILES) | discovered))
+    if files != expected_files:
+        missing_imports = sorted(set(expected_files) - set(files))
+        extra_imports = sorted(set(files) - set(expected_files))
         raise RuntimeError(
-            "v7 sync closure omits direct internal imports: " + ", ".join(missing_imports)
+            "v7 sync closure does not match transitive local imports: "
+            + ", ".join([*(f"missing={item}" for item in missing_imports), *(f"extra={item}" for item in extra_imports)])
         )
     for relative in files:
         path = root / relative

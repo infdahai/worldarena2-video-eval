@@ -32,18 +32,21 @@ def _committed_closure_clone(tmp_path: Path) -> Path:
     return clone
 
 
-def test_sync_closure_is_sorted_and_covers_direct_cache_and_trainer_imports() -> None:
-    from worldarena_baseline.wan_v7_sync_closure import _direct_internal_imports
+def test_sync_closure_is_sorted_and_covers_transitive_cache_and_trainer_imports() -> None:
+    from worldarena_baseline.wan_v7_sync_closure import _STATIC_REQUIRED_FILES, _transitive_local_imports
 
     files = _closure_files(ROOT)
     assert files == sorted(files)
-    direct = set()
-    for entrypoint in (
-        "scripts/cache_wan_v7_se3_conditions.py",
-        "scripts/train_wan_se3_probe_v7_fsdp.py",
-    ):
-        direct.update(_direct_internal_imports(ROOT / entrypoint))
-    assert direct <= set(files)
+    expected = set(_STATIC_REQUIRED_FILES) | _transitive_local_imports(ROOT)
+    assert set(files) == expected
+    # These were absent from the first direct-only closure but are imported at
+    # runtime by cached-dataset/probe/replay dependencies.
+    assert {
+        "src/worldarena_baseline/robotwin_action_cache.py",
+        "src/worldarena_baseline/action_audit.py",
+        "src/worldarena_baseline/wan_v6_training.py",
+        "src/worldarena_baseline/environment_manifest.py",
+    } <= set(files)
 
 
 def test_sync_closure_rejects_missing_or_untracked_required_source_before_sync(tmp_path: Path) -> None:
@@ -55,11 +58,25 @@ def test_sync_closure_rejects_missing_or_untracked_required_source_before_sync(t
     assert len(receipt["files"]) == len(_closure_files(ROOT))
 
     (clone / "src/worldarena_baseline/wan_cached_dataset.py").unlink()
-    with pytest.raises(RuntimeError, match="missing or non-regular"):
+    with pytest.raises(RuntimeError, match="unresolved|missing or non-regular"):
         validate_sync_closure(clone)
 
     restored = clone / "src/worldarena_baseline/wan_cached_dataset.py"
     shutil.copyfile(ROOT / "src/worldarena_baseline/wan_cached_dataset.py", restored)
     subprocess.run(["git", "rm", "--cached", "src/worldarena_baseline/wan_cached_dataset.py"], cwd=clone, check=True)
     with pytest.raises(RuntimeError, match="git validation failed"):
+        validate_sync_closure(clone)
+
+
+def test_sync_closure_rejects_dynamic_or_unresolved_local_imports(tmp_path: Path) -> None:
+    from worldarena_baseline.wan_v7_sync_closure import validate_sync_closure
+
+    clone = _committed_closure_clone(tmp_path)
+    entrypoint = clone / "scripts/cache_wan_v7_se3_conditions.py"
+    entrypoint.write_text(
+        entrypoint.read_text(encoding="utf-8")
+        + '\n__import__("worldarena_baseline.unknown_runtime_module")\n',
+        encoding="utf-8",
+    )
+    with pytest.raises(RuntimeError, match="dynamic local import"):
         validate_sync_closure(clone)
