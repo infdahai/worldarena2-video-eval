@@ -80,3 +80,24 @@ def test_sync_closure_rejects_dynamic_or_unresolved_local_imports(tmp_path: Path
     )
     with pytest.raises(RuntimeError, match="dynamic local import"):
         validate_sync_closure(clone)
+
+
+def test_sync_closure_allows_only_the_source_pinned_legacy_skeleton_bytes(tmp_path: Path) -> None:
+    from worldarena_baseline.wan_v7_sync_closure import validate_sync_closure
+
+    clone = _committed_closure_clone(tmp_path)
+    skeleton = clone / "src/worldarena_baseline/skeleton.py"
+    pinned_bytes = skeleton.read_bytes()
+    # Make the index represent an older legacy dependency, then restore the
+    # exact source-pinned working-tree bytes as the authorized dirty exception.
+    skeleton.write_text("# older tracked legacy dependency\n", encoding="utf-8")
+    subprocess.run(["git", "add", "src/worldarena_baseline/skeleton.py"], cwd=clone, check=True)
+    subprocess.run(["git", "commit", "-m", "older skeleton"], cwd=clone, check=True, stdout=subprocess.PIPE)
+    skeleton.write_bytes(pinned_bytes)
+    receipt = validate_sync_closure(clone)
+    skeleton_entry = next(item for item in receipt["files"] if item["path"].endswith("skeleton.py"))
+    assert skeleton_entry["sha256"] == "93cb2aa340a725e7b0a7acd37450334bf46c6483c7baf3646bd14ca3e09a8143"
+
+    skeleton.write_bytes(pinned_bytes + b"# tampered\n")
+    with pytest.raises(RuntimeError, match="legacy dirty dependency hash mismatch"):
+        validate_sync_closure(clone)

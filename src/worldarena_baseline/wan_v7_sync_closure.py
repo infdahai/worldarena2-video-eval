@@ -42,15 +42,23 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _load_file_list(repo_root: Path) -> tuple[str, ...]:
+def _load_file_list(repo_root: Path) -> tuple[tuple[str, ...], dict[str, str]]:
     path = repo_root / CLOSURE_RELATIVE_PATH
     try:
         payload = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         raise RuntimeError("v7 sync closure manifest is unreadable") from exc
-    if not isinstance(payload, dict) or set(payload) != {"schema", "files"}:
+    if not isinstance(payload, dict) or set(payload) != {
+        "schema",
+        "files",
+        "legacy_dirty_exact_sha256",
+    }:
         raise RuntimeError("v7 sync closure manifest schema is invalid")
-    if payload["schema"] != _SCHEMA or not isinstance(payload["files"], list):
+    if (
+        payload["schema"] != _SCHEMA
+        or not isinstance(payload["files"], list)
+        or not isinstance(payload["legacy_dirty_exact_sha256"], dict)
+    ):
         raise RuntimeError("v7 sync closure manifest contract differs")
     files = tuple(payload["files"])
     if not files or any(not isinstance(item, str) or not item for item in files):
@@ -61,7 +69,15 @@ def _load_file_list(repo_root: Path) -> tuple[str, ...]:
         raise RuntimeError("v7 sync closure must include itself")
     if any(entrypoint not in files for entrypoint in _STATIC_REQUIRED_FILES):
         raise RuntimeError("v7 sync closure is missing an entrypoint")
-    return files
+    legacy = payload["legacy_dirty_exact_sha256"]
+    if set(legacy) != {"src/worldarena_baseline/skeleton.py"}:
+        raise RuntimeError("v7 sync closure legacy dirty allowlist differs")
+    if any(item not in files for item in legacy):
+        raise RuntimeError("v7 sync closure legacy dirty dependency is not a closure file")
+    for relative, digest in legacy.items():
+        if not isinstance(digest, str) or len(digest) != 64 or digest.lower() != digest:
+            raise RuntimeError("v7 sync closure legacy dirty dependency SHA is invalid")
+    return files, dict(legacy)
 
 
 def _module_relative(module: str) -> str:
@@ -175,7 +191,7 @@ def validate_sync_closure(repo_root: Path | str) -> dict[str, Any]:
     """
 
     root = Path(repo_root).resolve()
-    files = _load_file_list(root)
+    files, legacy_dirty_exact_sha256 = _load_file_list(root)
     discovered = _transitive_local_imports(root)
     expected_files = tuple(sorted(set(_STATIC_REQUIRED_FILES) | discovered))
     if files != expected_files:
@@ -190,8 +206,14 @@ def validate_sync_closure(repo_root: Path | str) -> dict[str, Any]:
         if not path.is_file() or path.is_symlink():
             raise RuntimeError(f"v7 sync closure source is missing or non-regular: {relative}")
         _run_git(root, "ls-files", "--error-unmatch", "--", relative)
-        _run_git(root, "diff", "--quiet", "--", relative)
         _run_git(root, "diff", "--cached", "--quiet", "--", relative)
+        if relative in legacy_dirty_exact_sha256:
+            if _sha256(path) != legacy_dirty_exact_sha256[relative]:
+                raise RuntimeError(
+                    f"v7 sync closure legacy dirty dependency hash mismatch: {relative}"
+                )
+        else:
+            _run_git(root, "diff", "--quiet", "--", relative)
     entries = [{"path": relative, "sha256": _sha256(root / relative)} for relative in files]
     canonical = json.dumps(entries, sort_keys=True, separators=(",", ":")).encode("utf-8")
     return {
