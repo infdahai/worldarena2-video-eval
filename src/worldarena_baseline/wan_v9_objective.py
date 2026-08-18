@@ -94,12 +94,17 @@ def interval_pairwise_ranking(
         raise ValueError("ranking temperature must be finite and positive")
     if not torch.isfinite(correct_energy).all() or not torch.isfinite(wrong_energy).all():
         raise ValueError("ranking energies must be finite")
-    mask = eligible.float()
+    reduction_dtype = (
+        torch.float64 if correct_energy.dtype == torch.float64 else torch.float32
+    )
+    mask = eligible.to(dtype=reduction_dtype)
     count = mask.sum()
     graph_zero = (correct_energy.sum() + wrong_energy.sum()) * 0.0
     if not bool(eligible.any()):
         return graph_zero, graph_zero.detach(), mask.mean()
-    difference = correct_energy.float() - wrong_energy.float()
+    difference = correct_energy.to(dtype=reduction_dtype) - wrong_energy.to(
+        dtype=reduction_dtype
+    )
     ranking = (F.softplus(difference / tau) * mask).sum() / count
     margin = ((wrong_energy.float() - correct_energy.float()) * mask).sum() / count
     return ranking, margin, mask.mean()
@@ -114,9 +119,15 @@ def _ranking_coefficients(
 ) -> tuple[Tensor, Tensor]:
     if correct_energy.shape != wrong_energy.shape or eligible.shape != correct_energy.shape:
         raise ValueError("preview interval shapes differ")
-    mask = eligible.float()
+    reduction_dtype = (
+        torch.float64 if correct_energy.dtype == torch.float64 else torch.float32
+    )
+    mask = eligible.to(dtype=reduction_dtype)
     count = mask.sum().clamp_min(1.0)
-    coefficient = torch.sigmoid((correct_energy.float() - wrong_energy.float()) / tau) * mask / (tau * count)
+    difference = correct_energy.to(dtype=reduction_dtype) - wrong_energy.to(
+        dtype=reduction_dtype
+    )
+    coefficient = torch.sigmoid(difference / tau) * mask / (tau * count)
     return coefficient.detach(), -coefficient.detach()
 
 
@@ -192,4 +203,3 @@ def calibrate_lambda_cf(
     if not bool((fm_norm > 0) & (cf_norm > 0)):
         raise ValueError("v9 calibration gradient norms must be nonzero")
     return float((float(target_ratio) * fm_norm / cf_norm).cpu())
-

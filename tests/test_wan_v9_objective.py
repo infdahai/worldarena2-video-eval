@@ -47,7 +47,10 @@ def test_interval_energy_uses_only_destination_latent_and_correct_active_support
     )
     assert energy.shape == (1, 20)
     assert eligible.shape == (1, 20)
-    assert energy[0, 0].item() == pytest.approx(4.0)
+    # The one low-resolution support cell expands to the full 2x2 latent
+    # region.  One of four pixels has squared error 4, so the support-region
+    # channel-normalized mean is exactly 1.
+    assert energy[0, 0].item() == pytest.approx(1.0)
     assert eligible.sum().item() == 1
     assert torch.count_nonzero(energy[:, 1:]).item() == 0
 
@@ -126,4 +129,3 @@ def test_lambda_calibration_targets_half_fm_gradient_norm() -> None:
     assert calibrate_lambda_cf(fm, cf, target_ratio=0.5) == pytest.approx(1.25)
     with pytest.raises(ValueError, match="nonzero"):
         calibrate_lambda_cf(fm, [torch.zeros(2)], target_ratio=0.5)
-
