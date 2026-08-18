@@ -46,6 +46,25 @@ def _read_jsonl(path: Path) -> list[dict[str, Any]]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line]
 
 
+def _relation_cache_sha(root: Path, samples) -> str:
+    identities = sorted(set(map(str, samples)))
+    if len(identities) != 2080:
+        raise RuntimeError("v10 relation cache requires exact optimizer2060+audit20")
+    directory = root / "relations"
+    if {path.stem for path in directory.glob("*.npz")} != set(identities):
+        raise RuntimeError("v10 relation cache identity set differs")
+    digest = hashlib.sha256()
+    for sample in identities:
+        path = directory / f"{sample}.npz"; sidecar = path.with_suffix(".npz.meta.json")
+        if not path.is_file() or path.is_symlink() or not sidecar.is_file() or sidecar.is_symlink():
+            raise RuntimeError(f"v10 relation cache pair unavailable: {sample}")
+        metadata = _read_json(sidecar)
+        if metadata.get("contract") != "wan-v10-relation-cache/1" or metadata.get("file_sha256") != _sha(path):
+            raise RuntimeError(f"v10 relation cache hash differs: {sample}")
+        digest.update(sample.encode()); digest.update(sidecar.read_bytes())
+    return digest.hexdigest()
+
+
 def _json_safe(value):
     if isinstance(value, float) and not math.isfinite(value):
         return None
@@ -152,6 +171,10 @@ def _validate_inputs(args: argparse.Namespace):
         raise RuntimeError("v10 replay optimizer steps differ")
     if {row["sample"] for row in optimizer_rows} & {row["sample"] for row in audit_rows}:
         raise RuntimeError("v10 optimizer leaks audit20")
+    _relation_cache_sha(
+        args.relation_root,
+        [row["sample"] for row in (*optimizer_rows, *audit_rows)],
+    )
     if args.mode == "train" and args.stop_step not in (50, 150, 300, 500):
         raise RuntimeError("v10 stop step is not approved")
     if args.mode == "audit" and args.audit_step not in (50, 150, 300, 500):
@@ -596,14 +619,13 @@ def _load_trainable(model, payload):
 
 
 def _lineage(args):
-    cache_digest = hashlib.sha256()
-    for sidecar in sorted((args.relation_root / "relations").glob("*.meta.json")):
-        cache_digest.update(sidecar.name.encode()); cache_digest.update(sidecar.read_bytes())
+    rows = [*_read_jsonl(args.optimizer_manifest), *_read_jsonl(args.audit_manifest)]
     config = json.dumps({"seed": SEED, "steps": 500, "blocks": list(range(6, 18))}, sort_keys=True).encode()
     return {
         "source_closure_sha256": _source_sha(), "config_sha256": hashlib.sha256(config).hexdigest(),
         "parent_sha256": _sha(args.parent_checkpoint), "data_sha256": _sha(args.data_receipt),
-        "cache_sha256": cache_digest.hexdigest(), "replay_sha256": _sha(args.replay),
+        "cache_sha256": _relation_cache_sha(args.relation_root, [row["sample"] for row in rows]),
+        "replay_sha256": _sha(args.replay),
         "audit_sha256": _sha(args.audit_manifest), "probe_sha256": _sha(args.probe_checkpoint),
         "calibration_sha256": _sha(args.trajectory_calibration),
     }
