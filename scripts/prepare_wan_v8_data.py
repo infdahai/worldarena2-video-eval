@@ -142,12 +142,13 @@ def prepare(
     probe_split_path: Path,
     dev_manifest: Path,
     strata_receipt: Path,
+    strata_manifest: Path,
     output_root: Path,
     world_size: int,
     steps: int,
 ) -> dict[str, Any]:
     """Complete only correct SE(3), then atomically freeze v8 inputs."""
-    for path in (dataset_root, cache_root, cached_manifest, probe_split_path, dev_manifest, strata_receipt, output_root):
+    for path in (dataset_root, cache_root, cached_manifest, probe_split_path, dev_manifest, strata_receipt, strata_manifest, output_root):
         _require_formal(path)
     rows = _read_jsonl(cached_manifest)
     if len(rows) != 1785:
@@ -166,7 +167,9 @@ def prepare(
     except (OSError, json.JSONDecodeError) as exc:
         raise ValueError("cannot read v6 probe split") from exc
     dev_rows = _read_jsonl(dev_manifest)
-    strata = validate_strata_receipt(strata_receipt, manifest_path=cached_manifest)
+    strata = validate_strata_receipt(strata_receipt, manifest_path=strata_manifest)
+    if set(strata["roles"]) != set(samples):
+        raise ValueError("v8 strata identities differ from cached clean-1785 identities")
     receipt = build_v8_data_receipt(
         cached_rows=rows,
         probe_split=probe_split,
@@ -187,6 +190,8 @@ def prepare(
         "dev_manifest_sha256": _sha256(dev_manifest),
         "strata_receipt": str(strata_receipt),
         "strata_receipt_sha256": _sha256(strata_receipt),
+        "strata_manifest": str(strata_manifest),
+        "strata_manifest_sha256": _sha256(strata_manifest),
         "audit_samples": list(receipt.audit_samples),
         "optimizer_sample_count": len(receipt.optimizer_samples),
         "replay_rows": len(receipt.replay),
@@ -206,6 +211,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--probe-split", type=Path, required=True)
     parser.add_argument("--dev-manifest", type=Path, required=True)
     parser.add_argument("--strata-receipt", type=Path, required=True)
+    parser.add_argument("--strata-manifest", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--world-size", type=int, required=True)
     parser.add_argument("--steps", type=int, default=250)
