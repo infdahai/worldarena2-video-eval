@@ -59,6 +59,11 @@ def _lineage():
 def _calibration():
     return {
         "contract": "wan-v10-loss-calibration/1",
+        "curriculum_contract": "wan-v10-loss-curriculum/1",
+        "target_ratios": {
+            "cf": 0.25, "phase": 0.45, "hidden": 0.2,
+            "position": 0.3, "velocity": 0.2,
+        },
         "lambdas": {"cf": 1.0, "phase": 1.0, "hidden": 0.5, "position": 0.5, "velocity": 0.5},
         "frozen": True,
     }
@@ -90,20 +95,20 @@ def test_checkpoint_requires_complete_optimizer_and_gated_phase_parent(monkeypat
     _patch_names(monkeypatch, model)
     optimizer = training.build_v10_optimizer(model)
     _populate_adam(optimizer, model)
-    training.set_v10_learning_rates(optimizer, 250)
+    training.set_v10_learning_rates(optimizer, 300)
     payload = training.build_v10_checkpoint(
-        step=250,
+        step=300,
         model=model,
         optimizer=optimizer,
         lineage=_lineage(),
         calibration=_calibration(),
         initialization_seed=19,
         topology={"world_size": 1, "physical_gpus": [6]},
-        gates={},
-        samples_seen=250,
-        realized_strata={"single_dominant": 100, "bimanual_heavy": 88, "mixed": 50, "quiet": 12},
+        gates={"step150": {"step": 150, "pass": True}},
+        samples_seen=300,
+        realized_strata={"single_dominant": 120, "bimanual_heavy": 105, "mixed": 60, "quiet": 15},
     )
-    with pytest.raises(ValueError, match="gated step250"):
+    with pytest.raises(ValueError, match="gated step300"):
         training.validate_v10_checkpoint(
             payload,
             expected_lineage=_lineage(),
@@ -112,7 +117,7 @@ def test_checkpoint_requires_complete_optimizer_and_gated_phase_parent(monkeypat
         )
     gated = training.promote_v10_checkpoint(
         payload,
-        {"step": 250, "pass": True, "reasons": []},
+        {"step": 300, "pass": True, "reasons": []},
     )
     training.validate_v10_checkpoint(
         gated,

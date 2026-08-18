@@ -12,6 +12,7 @@ import torch
 from torch import nn
 
 from .wan_v10_model import v10_trainable_parameter_names
+from .wan_v10_objective import CALIBRATION_TARGETS
 
 
 BASE_LRS = {
@@ -29,7 +30,7 @@ WEIGHT_DECAYS = {
 GROUP_ORDER = tuple(BASE_LRS)
 WARMUP_STEPS = 50
 MAX_STEPS = 500
-CHECKPOINT_STEPS = (50, 250, 500)
+CHECKPOINT_STEPS = (50, 150, 300, 500)
 CLIP_NORM = 1.0
 LINEAGE_KEYS = {
     "source_closure_sha256",
@@ -117,13 +118,19 @@ def _validate_lineage(lineage: Mapping[str, str]) -> None:
 
 
 def _validate_calibration(calibration: Mapping[str, Any]) -> None:
-    if calibration.get("contract") != "wan-v10-loss-calibration/1" or calibration.get("frozen") is not True:
+    if (
+        calibration.get("contract") != "wan-v10-loss-calibration/1"
+        or calibration.get("curriculum_contract") != "wan-v10-loss-curriculum/1"
+        or calibration.get("frozen") is not True
+    ):
         raise ValueError("v10 checkpoint calibration contract differs")
     lambdas = calibration.get("lambdas")
     if not isinstance(lambdas, Mapping) or set(lambdas) != {"cf", "phase", "hidden", "position", "velocity"}:
         raise ValueError("v10 checkpoint calibration lambdas differ")
     if any(not math.isfinite(float(value)) or not 1e-4 <= float(value) <= 100 for value in lambdas.values()):
         raise ValueError("v10 checkpoint calibration lambda is invalid")
+    if calibration.get("target_ratios") != CALIBRATION_TARGETS:
+        raise ValueError("v10 checkpoint calibration gradient targets differ")
 
 
 def _validate_optimizer(payload: Mapping[str, Any], *, step: int) -> None:
@@ -174,8 +181,9 @@ def build_v10_checkpoint(
         raise ValueError("v10 samples/strata are invalid")
     if any(type(value) is not int or value < 0 for value in realized_strata.values()) or sum(realized_strata.values()) != samples_seen:
         raise ValueError("v10 realized strata do not sum to samples seen")
-    if step == 500 and gates.get("step250", {}).get("pass") is not True:
-        raise ValueError("v10 step500 requires a passing gated step250")
+    prerequisite = {150: 50, 300: 150, 500: 300}.get(step)
+    if prerequisite is not None and gates.get(f"step{prerequisite}", {}).get("pass") is not True:
+        raise ValueError(f"v10 step{step} requires a passing gated step{prerequisite}")
     names = v10_trainable_parameter_names(model)
     named = dict(model.named_parameters())
     model_state = {name: named[name].detach().cpu() for name in names}
@@ -184,8 +192,12 @@ def build_v10_checkpoint(
     return {
         "contract": "wan-v10-relational-checkpoint/1",
         "step": step,
-        "completed_phase": "mechanism" if step <= 250 else "trajectory",
-        "resume_phase": "mechanism" if step <= 250 else "complete",
+        "completed_phase": (
+            "semantics" if step <= 150 else "timing" if step <= 300 else "trajectory"
+        ),
+        "resume_phase": (
+            "semantics" if step <= 150 else "timing" if step <= 300 else "complete"
+        ),
         "gated": False,
         "lineage": dict(lineage),
         "calibration": dict(calibration),
@@ -209,7 +221,9 @@ def promote_v10_checkpoint(payload: Mapping[str, Any], gate_receipt: Mapping[str
     result = copy.deepcopy(dict(payload))
     result["gated"] = True
     result["gates"][f"step{step}"] = copy.deepcopy(dict(gate_receipt))
-    if step == 250:
+    if step == 150:
+        result["resume_phase"] = "timing"
+    elif step == 300:
         result["resume_phase"] = "trajectory"
     return result
 
@@ -231,13 +245,17 @@ def validate_v10_checkpoint(
         raise ValueError("v10 checkpoint step differs")
     _validate_calibration(payload.get("calibration", {}))
     if payload.get("resume_phase") != expected_phase:
-        if expected_phase == "trajectory" and step == 250:
-            raise ValueError("v10 trajectory phase requires gated step250")
+        if expected_phase == "timing" and step == 150:
+            raise ValueError("v10 timing phase requires gated step150")
+        if expected_phase == "trajectory" and step == 300:
+            raise ValueError("v10 trajectory phase requires gated step300")
         raise ValueError("v10 checkpoint resume phase differs")
     if require_gated and payload.get("gated") is not True:
         raise ValueError("v10 continuation requires a gated checkpoint")
-    if expected_phase == "trajectory" and payload.get("gates", {}).get("step250", {}).get("pass") is not True:
-        raise ValueError("v10 trajectory phase requires gated step250")
+    if expected_phase == "timing" and payload.get("gates", {}).get("step150", {}).get("pass") is not True:
+        raise ValueError("v10 timing phase requires gated step150")
+    if expected_phase == "trajectory" and payload.get("gates", {}).get("step300", {}).get("pass") is not True:
+        raise ValueError("v10 trajectory phase requires gated step300")
     names, model = payload.get("trainable_names"), payload.get("model")
     if not isinstance(names, list) or not names or not isinstance(model, Mapping) or set(model) != set(names):
         raise ValueError("v10 checkpoint model inventory is incomplete")
@@ -248,4 +266,3 @@ def validate_v10_checkpoint(
     if not isinstance(strata, Mapping) or set(strata) != STRATA or sum(strata.values()) != payload.get("samples_seen"):
         raise ValueError("v10 checkpoint exposure is incomplete")
     _validate_optimizer(payload.get("optimizer", {}), step=step)
-

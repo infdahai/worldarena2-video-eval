@@ -174,6 +174,25 @@ def test_forward_returns_two_hidden_eef_predictions_and_clears_binding() -> None
     assert all(wrapper.bound_condition is None for wrapper in wrappers.values())
 
 
+def test_hidden_eef_head_can_train_without_backpropagating_to_wan() -> None:
+    model, wrappers = _install()
+    model.set_hidden_eef_backbone_scale(0.0)
+    model(**_inputs())
+    model.hidden_eef_predictions()[11].square().mean().backward()
+    head = wrappers[11].hidden_eef_head
+    assert head is not None and head.weight.grad is not None
+    assert torch.count_nonzero(head.weight.grad).item() > 0
+    base_gradient = wrappers[11].base.q.weight.grad
+    assert base_gradient is None or torch.count_nonzero(base_gradient).item() == 0
+
+    model.zero_grad(set_to_none=True)
+    model.set_hidden_eef_backbone_scale(1.0)
+    model(**_inputs())
+    model.hidden_eef_predictions()[11].square().mean().backward()
+    assert wrappers[11].base.q.weight.grad is not None
+    assert torch.count_nonzero(wrappers[11].base.q.weight.grad).item() > 0
+
+
 def test_installation_rolls_back_on_late_invalid_block() -> None:
     backbone = _Backbone()
     originals = {index: backbone.blocks[index].self_attn for index in V10_BLOCKS}
@@ -192,4 +211,3 @@ def test_installation_rolls_back_on_late_invalid_block() -> None:
             encoded_width=12,
         )
     assert {index: backbone.blocks[index].self_attn for index in V10_BLOCKS} == originals
-

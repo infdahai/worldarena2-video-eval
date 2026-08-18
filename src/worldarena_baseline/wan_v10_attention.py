@@ -133,6 +133,7 @@ class FactorizedRelationalSelfAttention(nn.Module):
         self.register_buffer("last_right_relation", torch.zeros(self.arm_head_count), persistent=False)
         self.register_buffer("last_global_relation", torch.zeros(self.arm_head_count), persistent=False)
         self.last_hidden_eef_prediction: Tensor | None = None
+        self.hidden_eef_backbone_scale = 0.0
         self.bound_condition: RelationCondition | None = None
         self._condition_token: object | None = None
         self._checkpoint_condition: RelationCondition | None = None
@@ -316,7 +317,11 @@ class FactorizedRelationalSelfAttention(nn.Module):
             native_heads = attended[..., : self.head_dim]
             output = self.base.o(native_heads.flatten(2).to(dtype=self.base.o.weight.dtype))
             if self.hidden_eef_head is not None:
-                logits = self.hidden_eef_head(output)
+                scale = float(self.hidden_eef_backbone_scale)
+                if not 0.0 <= scale <= 1.0:
+                    raise ValueError("hidden EEF backbone scale must be in [0,1]")
+                head_input = output.detach() + scale * (output - output.detach())
+                logits = self.hidden_eef_head(head_input)
                 height, width = relation_condition.support.shape[-2:]
                 if output.shape[1] != self.expected_latent_times * height * width:
                     raise ValueError("hidden EEF head requires an unpadded production token grid")

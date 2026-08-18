@@ -14,12 +14,51 @@ from .wan_v9_objective import interval_robot_fm_energy
 
 
 CALIBRATION_TARGETS = {
-    "cf": 1.0,
-    "phase": 1.0,
-    "hidden": 0.5,
-    "position": 0.5,
-    "velocity": 0.5,
+    "cf": 0.25,
+    "phase": 0.45,
+    "hidden": 0.20,
+    "position": 0.30,
+    "velocity": 0.20,
 }
+
+
+def v10_loss_schedule(step: int) -> dict[str, float | str]:
+    """Return the fixed three-stage curriculum multipliers for one update."""
+
+    if type(step) is not int or not 1 <= step <= 500:
+        raise ValueError("v10 curriculum step must be in [1,500]")
+    if step <= 150:
+        hidden_backbone = 0.0 if step <= 25 else min((step - 25) / 50, 1.0)
+        return {
+            "stage": "semantics",
+            "cf": 1.0,
+            "hidden": 1.0,
+            "hidden_backbone": hidden_backbone,
+            "phase": 0.0,
+            "position": 0.0,
+            "velocity": 0.0,
+        }
+    if step <= 300:
+        return {
+            "stage": "timing",
+            "cf": 0.6,
+            "hidden": 1.0,
+            "hidden_backbone": 1.0,
+            "phase": min((step - 150) / 50, 1.0),
+            "position": 0.0,
+            "velocity": 0.0,
+        }
+    trajectory_ramp = min((step - 300) / 50, 1.0)
+    hidden = max(1.0 - (step - 300) / 50, 0.0)
+    return {
+        "stage": "trajectory",
+        "cf": 0.4,
+        "hidden": hidden,
+        "hidden_backbone": hidden,
+        "phase": 1.0,
+        "position": trajectory_ramp,
+        "velocity": trajectory_ramp,
+    }
 
 
 def robot_region_energy(
@@ -242,10 +281,10 @@ def calibrate_v10_lambdas(
         raise ValueError("v10 calibrated lambda is outside [1e-4,100]")
     return {
         "contract": "wan-v10-loss-calibration/1",
+        "curriculum_contract": "wan-v10-loss-curriculum/1",
         "fm_gradient_norm": fm_norm,
         "objective_gradient_norms": objective_norms,
         "target_ratios": dict(CALIBRATION_TARGETS),
         "lambdas": lambdas,
         "frozen": True,
     }
-

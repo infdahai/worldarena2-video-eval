@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build and run the bounded v10 experiment that injects factorized, arm-specific SE(3) relations into Wan native self-attention, using a leakage-free clean-5k replay and direct temporal/trajectory supervision.
+**Goal:** Build and run the bounded v10 experiment that injects factorized, arm-specific SE(3) relations into Wan native self-attention, using the complete leakage-free full-action clean replay and direct temporal/trajectory supervision.
 
-**Architecture:** Blocks 6-17 keep Wan's native attention path while LEFT/RIGHT heads receive a rank-16 factorized relation through augmented Q/K and zero-padded V; GLOBAL heads remain native. The run starts from the frozen clean-gated-step10 raster parent, trains only native Q/K/V/O plus relation encoders/gates and two training-only EEF heads, and advances through step50, step250, and step500 gates.
+**Architecture:** Blocks 6-17 keep Wan's native attention path while LEFT/RIGHT heads receive a rank-16 factorized relation through augmented Q/K and zero-padded V; GLOBAL heads remain native. The run starts from the frozen clean-gated-step10 raster parent, trains only native Q/K/V/O plus relation encoders/gates and two training-only EEF heads, and advances through step50, step150, step300, and step500 gates with a staged semantics/timing/trajectory curriculum.
 
 **Tech Stack:** Python 3.11, PyTorch, Wan2.2 TI2V-5B, fused scaled-dot-product attention, NumPy, HDF5, pytest, Bash, single RTX 4090 GPU6.
 
@@ -23,7 +23,7 @@
 - The implementation must use fused attention with augmented head width 144 and native scale `1/sqrt(128)`; explicit quadratic pairwise action bias is forbidden.
 - Relation gates are signed FP32 scalars, exactly zero initialized; GLOBAL relation factors and absent-arm relation output are exactly zero.
 - Counterfactuals change only relational action state; the frozen parent raster/support always uses the correct action.
-- Mechanism phase is steps 1-250; position and velocity losses are forbidden before a passing gated step250 checkpoint.
+- Semantics is steps 1-150, timing is 151-300, and trajectory is 301-500; position and velocity are forbidden before a passing gated step300 checkpoint.
 - Formal base learning rates are `1e-6` native QKVO, `1e-4` relation encoders, `5e-5` gates, and `1e-4` hidden heads; warmup is 50 steps and cosine reaches 20% at step500.
 - Audit20 must be 20/20 finite and disjoint from optimizer and dev-fast20 before CUDA initialization.
 - Production smoke is three complete correct+wrong optimizer iterations and every rank must remain below 22 GiB allocated and reserved.
@@ -36,13 +36,13 @@
 
 - `src/worldarena_baseline/wan_v10_attention.py`: factorized relation state encoder and fused augmented native attention wrapper.
 - `src/worldarena_baseline/wan_v10_model.py`: install/rollback lifecycle, frozen parent wrapper, deterministic initialization, trainable whitelist, and gate-zero ablation.
-- `src/worldarena_baseline/wan_v10_data.py`: clean-5k/audit20 selection, leakage receipt, relation cache schema, and validators.
+- `src/worldarena_baseline/wan_v10_data.py`: full-action clean/audit20 selection, leakage receipt, relation cache schema, and validators.
 - `src/worldarena_baseline/wan_v10_objective.py`: robot-region counterfactual ranking, phase ranking, hidden EEF, position, and velocity losses plus calibration.
 - `src/worldarena_baseline/wan_v10_probe.py`: finite-only/failure-aware aggregation and gate-zero comparisons.
 - `src/worldarena_baseline/wan_v10_training.py`: optimizer, schedule, checkpoint, resume, replay, lineage, and phase gates.
 - `src/worldarena_baseline/wan_v10_sync_closure.py`: recursive source closure and exact source receipt.
 - `scripts/probe_wan_v10_augmented_attention.py`: actual Wan fused-kernel feasibility probe.
-- `scripts/build_wan_v10_data.py`: atomic clean-5k/audit20 manifests and zero-leakage receipt.
+- `scripts/build_wan_v10_data.py`: atomic full-action clean/audit20 manifests and zero-leakage receipt.
 - `scripts/cache_wan_v10_inputs.py`: resumable offline cache production and completeness receipt.
 - `scripts/build_wan_v10_replay.py`: deterministic sample/noise/timestep/dropout/counterfactual replay.
 - `scripts/train_wan_v10_relational.py`: preflight, smoke, train, audit, and bounded resume entry point.
@@ -195,7 +195,7 @@ git add src/worldarena_baseline/wan_v10_model.py tests/test_wan_v10_model.py tes
 git commit -m "feat: integrate v10 native attention band"
 ```
 
-### Task 3: Leakage-Free Clean-5k and Observable Audit20 Contract
+### Task 3: Leakage-Free Full-Action Clean and Observable Audit20 Contract
 
 **Files:**
 - Create: `src/worldarena_baseline/wan_v10_data.py`
@@ -205,22 +205,19 @@ git commit -m "feat: integrate v10 native attention band"
 - Modify: `tests/test_scripts.py`
 
 **Interfaces:**
-- Consumes: source-pinned 5,500-row training pool, dev-fast20 receipt, v6 RGB observability labels, v9 relation transition cache validators.
-- Produces: `V10Split`, `build_v10_split(...)`, `validate_v10_data_receipt(...)`, `V10CacheEntry`, `validate_v10_cache_entry(...)`, clean-5k/audit20 JSONL, normalization JSON, and cache receipt.
+- Consumes: source-pinned active full-action training pool, dev-fast20 receipt, v6 RGB observability labels, v9 relation transition cache validators.
+- Produces: `V10Split`, `build_v10_split(...)`, `validate_v10_data_receipt(...)`, `V10CacheEntry`, `validate_v10_cache_entry(...)`, full-action-clean/audit20 JSONL, normalization JSON, and cache receipt.
 
 - [ ] **Step 1: Write RED selection and leakage tests**
 
 ```python
 def test_split_is_exact_deterministic_balanced_and_zero_leakage():
     split = build_v10_split(source_rows(), dev_rows(), seed=20260819)
-    assert len(split.optimizer) == 5000
+    assert len(split.optimizer) == len(source_rows()) - 20 - len(dev_rows())
     assert len(split.audit) == 20
     assert ids(split.optimizer).isdisjoint(ids(split.audit) | ids(dev_rows()))
-    assert split.realized_counts == {
-        "single-dominant": 2000,
-        "bimanual-heavy": 1750,
-        "mixed": 1000,
-        "quiet": 250,
+    assert set(split.source_counts) == {
+        "single_dominant", "bimanual_heavy", "mixed", "quiet"
     }
     assert build_v10_split(reversed(source_rows()), dev_rows(), seed=20260819) == split
 ```
@@ -235,7 +232,7 @@ Expected: FAIL because v10 data contracts and CLIs do not exist.
 
 - [ ] **Step 3: Implement deterministic selection and atomic receipt**
 
-Use normalized identity keys and content hashes, sort before seeded selection, remove audit20 and dev-fast20 before optimizer selection, and select exact stratum quotas. The audit selector requires multi-task coverage, 20/20 finite probe observability, and explicit single/bimanual/crossing/sequential-role coverage. Write JSONL and receipts via temporary file, `fsync`, and `os.replace`.
+Use normalized identity keys and content hashes, reject `robot_only` and quarantined paths, sort before seeded selection, and remove audit20 and dev-fast20 before retaining every remaining optimizer identity. The replay, not the source manifest, realizes the 40/35/20/5 target mix. The audit selector requires multi-task coverage, 20/20 finite probe observability, and explicit single/bimanual/crossing/sequential-role coverage. Write JSONL and receipts via temporary file, `fsync`, and `os.replace`.
 
 - [ ] **Step 4: Implement cache schema and offline producer**
 
@@ -266,7 +263,7 @@ Expected: PASS, including corruption/recovery tests that rebuild only the invali
 
 ```bash
 git add src/worldarena_baseline/wan_v10_data.py scripts/build_wan_v10_data.py scripts/cache_wan_v10_inputs.py tests/test_wan_v10_data.py tests/test_scripts.py
-git commit -m "feat: add v10 clean5k data contract"
+git commit -m "feat: add v10 full-action data contract"
 ```
 
 ### Task 4: Direct Temporal and Trajectory Objectives
@@ -307,21 +304,19 @@ Expected: FAIL because objective/probe modules are missing.
 - [ ] **Step 3: Implement losses with unreduced finite masks**
 
 ```python
-loss = (
-    fm_correct
-    + lambdas.cf * cf_loss
-    + lambdas.phase * phase_loss
-    + lambdas.hidden * hidden_loss
-)
-if phase == "trajectory":
-    loss = loss + lambdas.position * position_loss + lambdas.velocity * velocity_loss
+schedule = v10_loss_schedule(step)
+loss = fm_correct + schedule.cf * lambdas.cf * cf_loss
+loss += schedule.hidden * lambdas.hidden * hidden_loss
+loss += schedule.phase * lambdas.phase * phase_loss
+loss += schedule.position * lambdas.position * position_loss
+loss += schedule.velocity * lambdas.velocity * velocity_loss
 ```
 
-Use `softplus((E_correct-E_wrong)/tau)` for CF; use separate `t-1` and `t+1` valid pairs for phase. Position/velocity call the frozen validated v6 probe and are impossible to request in mechanism phase.
+Use `softplus((E_correct-E_wrong)/tau)` for CF; use separate `t-1` and `t+1` valid pairs for phase. Hidden EEF is head-only through step25 and ramps its gradient into native attention through step75. Phase ramps at 151-200. Position/velocity call the frozen validated v6 probe, ramp at 301-350, and are impossible to request before trajectory stage.
 
 - [ ] **Step 4: Implement deterministic FP32 gradient calibration**
 
-Calibrate on the fixed batch/RNG state against the combined native-QKVO FP32 gradient norm. Target ratios are CF 1.0, phase 1.0, hidden 0.5, position 0.5, velocity 0.5. Reject zero/nonfinite source or target norms and lambda outside `[1e-4,100]`; return a canonical receipt with per-family raw norms and hashes.
+Calibrate on the fixed batch/RNG state against the combined native-QKVO FP32 gradient norm. Target ratios are CF 0.25, phase 0.45, hidden 0.20, position 0.30, velocity 0.20. Reject zero/nonfinite source or target norms and lambda outside `[1e-4,100]`; return a canonical receipt with per-family raw norms, curriculum version, and hashes.
 
 - [ ] **Step 5: Run GREEN tests**
 
@@ -345,7 +340,7 @@ git commit -m "feat: add v10 temporal trajectory objectives"
 - Modify: `tests/test_scripts.py`
 
 **Interfaces:**
-- Consumes: exact v10 model whitelist, clean-5k receipt, calibration receipt, deterministic replay rows, audit reports.
+- Consumes: exact v10 model whitelist, full-action-clean receipt, calibration receipt, deterministic replay rows, audit reports.
 - Produces: `build_v10_optimizer(...)`, `set_v10_learning_rates(...)`, `build_v10_checkpoint(...)`, `validate_v10_checkpoint(...)`, `evaluate_v10_gate(...)`, and replay contract `wan-v10-replay/1`.
 
 - [ ] **Step 1: Write RED optimizer and checkpoint tests**
@@ -359,12 +354,12 @@ def test_optimizer_has_four_disjoint_exact_groups():
     assert [g["lr"] for g in optimizer.param_groups] == [1e-6, 1e-4, 5e-5, 1e-4]
     assert optimizer.param_groups[2]["weight_decay"] == 0.0
 
-def test_raw_step250_cannot_start_trajectory_phase():
-    with pytest.raises(ValueError, match="gated step250"):
-        validate_v10_checkpoint(raw_step250, expected_phase="trajectory")
+def test_raw_step300_cannot_start_trajectory_phase():
+    with pytest.raises(ValueError, match="gated step300"):
+        validate_v10_checkpoint(raw_step300, expected_phase="trajectory")
 ```
 
-Add tests for warmup/cosine values, full AdamW state, parameter aliases, replay tamper, two identical preflights, topology/GPU mapping, cumulative samples/strata, forbidden position/velocity before step250, and incomplete lineage.
+Add tests for warmup/cosine values, full AdamW state, parameter aliases, replay tamper, two identical preflights, topology/GPU mapping, cumulative samples/strata, head-only hidden gradients, forbidden position/velocity before step300, and incomplete lineage.
 
 - [ ] **Step 2: Run tests and confirm RED**
 
@@ -378,7 +373,7 @@ Replay rows record global step, optimizer identity, sample identity, noise seed,
 
 - [ ] **Step 4: Implement checkpoint lineage and gate receipts**
 
-Checkpoint contract `wan-v10-relational-checkpoint/1` records every hash and state required by the spec. `evaluate_v10_gate` implements exact step50/250/500 thresholds, including relation-enabled versus gate-zero combined separation. Only `step-000250-gated.pt` may be the trajectory-phase parent.
+Checkpoint contract `wan-v10-relational-checkpoint/1` records every hash and state required by the spec. `evaluate_v10_gate` implements exact step50/150/300/500 thresholds, including relation-enabled versus gate-zero combined separation. Only `step-000300-gated.pt` may be the trajectory-stage parent.
 
 - [ ] **Step 5: Run GREEN tests and serialized resume continuation**
 
@@ -439,7 +434,8 @@ feasibility
 -> preflight-B byte comparison
 -> smoke
 -> train50 -> audit50
--> train250 -> audit250 -> gate250
+-> train150 -> audit150 -> gate150
+-> train300 -> audit300 -> gate300
 -> train500 -> audit500 -> gate500
 -> rgb8 only after gate500
 ```
@@ -477,7 +473,7 @@ git commit -m "feat: add guarded v10 gpu6 runner"
 
 **Interfaces:**
 - Consumes: committed clean recursive closure from Task 6 and explicit user authorization for scoped sync/execution.
-- Produces: remote zero-skip Torch verification, feasibility receipt, clean-5k/cache receipts, smoke receipt, gated checkpoints/audits, RGB8 results if eligible, and final report.
+- Produces: remote zero-skip Torch verification, feasibility receipt, full-action-clean/cache receipts, smoke receipt, gated checkpoints/audits, RGB8 results if eligible, and final report.
 
 - [ ] **Step 1: Verify local closure and sync only its exact files**
 
@@ -510,9 +506,9 @@ Expected: all selected tests PASS and `0 skipped`; any skip blocks execution.
 
 First confirm no foreign compute PID and GPU6 memory/utilization satisfy the ownership contract. Then run `probe_wan_v10_augmented_attention.py` with the formal Wan callable and production token count. Expected: width144 fused path PASS, explicit scale PASS, finite output, no quadratic fallback, receipt below formal root. Failure retires v10 exactly as designed.
 
-- [ ] **Step 4: Build clean-5k/audit20 and complete offline cache**
+- [ ] **Step 4: Build full-action-clean/audit20 and complete offline cache**
 
-Run the data CLI, validate zero leakage, then run resumable cache production. It may use only currently available GPUs without disturbing another process; cache work and training must not overlap on GPU6. Expected: exact 5000 optimizer rows, exact 20/20 finite audit rows, at least 60% supervised rows, all sidecar hashes valid, and at least 50 GiB disk reserve after completion.
+Run the data CLI, validate zero leakage, then run resumable cache production. It may use only currently available GPUs without disturbing another process; cache work and training must not overlap on GPU6. Expected for the current pinned source: 2,100 active full episodes, exact 2,060 optimizer rows after disjoint dev20/audit20 removal, exact 20/20 finite audit rows, at least 60% supervised rows, all sidecar hashes valid, and at least 50 GiB disk reserve after completion. Any different count must be explained and content-bound by the receipt rather than silently padded with `robot_only` or quarantined rows.
 
 - [ ] **Step 5: Run two preflights and compare bytes**
 
@@ -524,7 +520,7 @@ Run exactly three complete iterations at production geometry. Expected: allocate
 
 - [ ] **Step 7: Run bounded phase gates without skipping**
 
-Run step50 and audit. If it passes, run step250 and audit with enabled-versus-zero relation ablation. Only a passing `step-000250-gated.pt` may start trajectory phase. Run step500 and audit only after that. Decode exactly RGB8 only after the step500 hard gate.
+Run step50 and audit. If it passes, run step150 semantics audit, then step300 timing audit with enabled-versus-zero relation ablation. Only a passing `step-000300-gated.pt` may start trajectory. Run step500 and audit only after that. Decode exactly RGB8 only after the step500 hard gate.
 
 - [ ] **Step 8: Write the detailed experiment report**
 
@@ -543,7 +539,7 @@ git commit -m "docs: report v10 relational attention experiment"
 
 - [ ] `git diff --check` passes and unrelated dirty files remain untouched.
 - [ ] The focused local suite passes; the remote formal Torch suite passes with zero skips.
-- [ ] The actual Wan fused-kernel width144 feasibility receipt passes before clean-5k cache work.
+- [ ] The actual Wan fused-kernel width144 feasibility receipt passes before full-action-clean cache work.
 - [ ] Data receipt proves optimizer/audit20/dev-fast20 pairwise disjointness and official test unavailability.
 - [ ] Training hot path imports/constructs neither T5 nor VAE.
 - [ ] Two preflights produce byte-identical initialized state and calibration.

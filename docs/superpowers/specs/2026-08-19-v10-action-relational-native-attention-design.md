@@ -19,7 +19,8 @@ The experiment tests one principal hypothesis:
 
 This is an architectural experiment, not a continuation of v9. It starts from
 the immutable clean-gated-step10 parent with fresh optimizer state, fresh v10
-modules, a source-pinned global initialization seed, and a new clean-5k replay.
+modules, a source-pinned global initialization seed, and a new full-action
+clean replay.
 
 ## Evidence motivating the design
 
@@ -61,15 +62,20 @@ not adding another residual or action-token side branch.
 
 ### Current availability
 
-The formal server currently contains approximately 5,500 raw RoboTwin HDF5
-episodes and 1.1 TiB of available disk. Only 1,785 episodes currently have the
-complete provenance-bound cache used by v8/v9. A clean-5k optimizer dataset is
-therefore feasible but is not currently ready.
+The formal server contains 5,500 RoboTwin HDF5 files, not 5,500 independent
+action-video episodes. Exactly 2,750 are full episode files and 2,750 are
+paired `robot_only` RGB derivatives without action/end-pose supervision. Of
+the 2,750 full files, 650 are under `.quarantine` and are ineligible unless a
+separate reviewed recovery contract reinstates them. The active validated
+source therefore contains 2,100 full action-video episodes. Only 1,785
+episodes currently have the complete provenance-bound cache used by v8/v9.
 
-### Clean-5k construction
+### Full-action clean construction
 
-The source pool is the formal 5,500-episode RoboTwin extraction. Before any
-cache or optimizer replay is produced, every identity must be classified as
+The source pool is the 2,100 active, non-quarantined, full action-video
+episodes. `robot_only` companions and `.quarantine` trees are never optimizer
+identities. Before any cache or optimizer replay is produced, every identity
+must be classified as
 one of:
 
 1. optimizer eligible;
@@ -81,12 +87,14 @@ The fixed v10 audit20 is rebuilt from training-domain samples and must contain
 20 probe-observable, multi-task episodes. It is removed before optimizer
 selection. Dev-fast20 remains disjoint from both optimizer and audit.
 
-From the remaining source, exactly 5,000 identities are deterministically
-selected using task and action-role strata. Selection uses content-hashed
-inputs and a source-pinned algorithm version. It must not depend on filesystem
+All remaining eligible identities are retained. With the current pinned
+source, 20 dev identities and 20 newly selected audit identities, the expected
+optimizer count is exactly 2,060. The receipt derives and records the count
+from content-hashed inputs rather than trusting this prose constant. Selection
+uses a source-pinned algorithm version and must not depend on filesystem
 enumeration order.
 
-The target realized optimizer distribution is:
+The deterministic replay sampler targets:
 
 | Stratum | Target share |
 |---|---:|
@@ -95,8 +103,10 @@ The target realized optimizer distribution is:
 | mixed | 20% |
 | quiet | 5% |
 
-The receipt records configured and realized counts. Missing strata, identity
-overlap, or a changed selection hash fails before cache generation.
+The receipt records source-lane counts and every realized replay count. Missing
+strata, identity overlap, a quarantined/robot-only identity, or a changed
+selection hash fails before cache generation. The source manifest itself is
+not downsampled merely to fabricate the target mix.
 
 ### Cached inputs
 
@@ -260,7 +270,7 @@ latent padding.
 
 ### Counterfactual action ranking
 
-Each mechanism-phase optimizer step evaluates:
+Each semantics/timing optimizer step evaluates:
 
 - one correct forward;
 - one wrong relation-action forward.
@@ -297,18 +307,33 @@ visibility and validity masks.
 
 The architecture and optimizer lineage remain fixed, but supervision is staged:
 
-#### Mechanism phase, steps 1-250
+#### Semantics stage, steps 1-150
 
-`L = L_FM + lambda_cf L_cf + lambda_phase L_phase
-     + lambda_hidden L_hidden`.
+`L = L_FM + lambda_cf L_cf + lambda_hidden L_hidden`.
 
-#### Trajectory phase, steps 251-500
+For steps 1-25 the hidden EEF heads train on detached Wan hidden states. From
+steps 26-75 their gradient into native attention ramps linearly from zero to
+its calibrated target; the head itself remains trainable throughout.
 
-Only after the step250 gate passes:
+#### Timing stage, steps 151-300
 
-`L = L_FM + lambda_cf L_cf + lambda_phase L_phase
-     + lambda_hidden L_hidden
-     + lambda_pos L_pos + lambda_vel L_vel`.
+`L = L_FM + 0.6 lambda_cf L_cf + lambda_hidden L_hidden
+     + ramp_50 lambda_phase L_phase`.
+
+Phase supervision ramps from zero to target during steps 151-200. Position and
+velocity remain forbidden.
+
+#### Trajectory stage, steps 301-500
+
+Only after the step300 timing gate passes:
+
+`L = L_FM + 0.4 lambda_cf L_cf + lambda_phase L_phase
+     + ramp_50 (lambda_pos L_pos + lambda_vel L_vel)
+     + decay_50 lambda_hidden L_hidden`.
+
+Position/velocity ramp during steps 301-350 while hidden EEF decays to zero,
+preventing all auxiliary objectives from controlling native attention at full
+strength simultaneously.
 
 No loss is added at step500 or later without a new approved design.
 
@@ -316,11 +341,11 @@ All lambda values are calibrated once using FP32 native-Q/K/V/O gradient norms
 on a fixed source-pinned calibration batch and fixed RNG state. Target norms
 relative to correct FM are:
 
-- counterfactual ranking: `1.0 × FM`;
-- phase ranking: `1.0 × FM`;
-- combined block-11/17 hidden EEF loss: `0.5 × FM`;
-- position loss after step250: `0.5 × FM`;
-- velocity loss after step250: `0.5 × FM`.
+- counterfactual ranking: `0.25 × FM`;
+- phase ranking: `0.45 × FM`;
+- combined block-11/17 hidden EEF loss: `0.20 × FM`;
+- position loss after step300: `0.30 × FM`;
+- velocity loss after step300: `0.20 × FM`.
 
 Each calibrated lambda must be finite, positive, and within the source-pinned
 safety interval `[1e-4, 100]`; otherwise training stops. Calibration is stored
@@ -403,7 +428,7 @@ corresponding `-gated` checkpoint.
 ### Source and cache gates
 
 - recursive source closure is committed, clean, and hash matched;
-- clean-5k cache and label receipts validate completely;
+- full-action clean cache and label receipts validate completely;
 - audit20 is 20/20 finite and excluded from replay;
 - no training process starts if a persistent path escapes the formal root.
 
@@ -434,7 +459,14 @@ All iterations must satisfy:
 
 Failure stops the run.
 
-### Step250 mechanism gate
+### Step150 semantics gate
+
+On fixed audit20, reverse and swap must both have positive mean margins and at
+least 11/20 correct wins, hidden EEF supervision must be finite, routing
+retention must be at least 90%, and FM regression must be no more than 2%.
+Only a passing gated step150 may enter timing.
+
+### Step300 timing gate
 
 On fixed audit20:
 
@@ -448,7 +480,7 @@ On fixed audit20:
 - enabled relation is better than the exact gate-zero ablation on the combined
   action-separation score.
 
-Only a passing gated step250 may enter the trajectory phase.
+Only a passing gated step300 may enter the trajectory stage.
 
 ### Step500 hard gate
 
@@ -470,7 +502,7 @@ trajectory improvement in the same direction as the latent audit.
 ### Step1000 extension
 
 Step1000 is not automatic. It is allowed only if the step500 RGB proxy improves
-at least 5%, paired wins exceed 55%, visual guardrails pass, and the step250 to
+at least 5%, paired wins exceed 55%, visual guardrails pass, and the step300 to
 step500 mechanism curve is still improving. Otherwise step500 is final.
 
 ## Failure interpretation
@@ -492,11 +524,11 @@ step500 mechanism curve is still improving. Otherwise step500 is final.
 
 The implementation phase must produce:
 
-1. clean-5k manifest, zero-leakage receipt, and cache completeness report;
+1. full-action clean manifest, zero-leakage receipt, and cache completeness report;
 2. deterministic initialization and calibration receipt;
 3. fused factorized relational-attention module and exact gate-zero ablation;
 4. RGB-observable hidden EEF supervision with finite validity masks;
 5. guarded single-GPU launcher and checkpoint validator;
-6. step50, step250, and step500 audit reports;
+6. step50, step150, step300, and step500 audit reports;
 7. a final experiment report recording positive and negative results without
    silently excluding invalid samples.

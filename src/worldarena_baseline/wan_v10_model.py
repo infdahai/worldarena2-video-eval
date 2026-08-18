@@ -244,6 +244,13 @@ class ParentPlusRelationalWan(nn.Module):
             result[point] = value
         return result
 
+    def set_hidden_eef_backbone_scale(self, scale: float) -> None:
+        value = float(scale)
+        if not 0.0 <= value <= 1.0:
+            raise ValueError("hidden EEF backbone scale must be in [0,1]")
+        for point in HIDDEN_EEF_BLOCKS:
+            self.relation_wrappers[str(point)].hidden_eef_backbone_scale = value
+
     def forward(
         self,
         x: Tensor,
@@ -373,4 +380,3 @@ def relation_gates_enabled(model: ParentPlusRelationalWan, *, enabled: bool):
         with torch.no_grad():
             for key, wrapper in model.relation_wrappers.items():
                 wrapper.relation_gate.copy_(saved[key])
-

@@ -12,6 +12,7 @@ from worldarena_baseline.wan_v10_objective import (  # noqa: E402
     phase_ranking_loss,
     robot_region_energy,
     trajectory_losses,
+    v10_loss_schedule,
 )
 
 
@@ -119,10 +120,10 @@ def test_lambda_calibration_targets_exact_native_qkvo_ratios() -> None:
         },
     )
     assert result["lambdas"] == pytest.approx(
-        {"cf": 2.5, "phase": 1.0, "hidden": 2.5, "position": 1.0, "velocity": 0.25}
+        {"cf": 0.625, "phase": 0.45, "hidden": 1.0, "position": 0.6, "velocity": 0.1}
     )
     assert result["target_ratios"] == {
-        "cf": 1.0, "phase": 1.0, "hidden": 0.5, "position": 0.5, "velocity": 0.5,
+        "cf": 0.25, "phase": 0.45, "hidden": 0.2, "position": 0.3, "velocity": 0.2,
     }
     with pytest.raises(ValueError, match="positive finite"):
         calibrate_v10_lambdas(
@@ -130,3 +131,27 @@ def test_lambda_calibration_targets_exact_native_qkvo_ratios() -> None:
             objective_gradients={name: [torch.zeros(1)] for name in result["lambdas"]},
         )
 
+
+def test_loss_curriculum_stages_objectives_and_hidden_backbone_gradient() -> None:
+    assert v10_loss_schedule(1) == {
+        "stage": "semantics", "cf": 1.0, "hidden": 1.0,
+        "hidden_backbone": 0.0, "phase": 0.0, "position": 0.0, "velocity": 0.0,
+    }
+    assert v10_loss_schedule(25)["hidden_backbone"] == 0.0
+    assert v10_loss_schedule(50)["hidden_backbone"] == pytest.approx(0.5)
+    assert v10_loss_schedule(150)["hidden_backbone"] == 1.0
+    timing = v10_loss_schedule(175)
+    assert timing["stage"] == "timing"
+    assert timing["cf"] == pytest.approx(0.6)
+    assert timing["phase"] == pytest.approx(0.5)
+    assert timing["position"] == timing["velocity"] == 0.0
+    assert v10_loss_schedule(200)["phase"] == 1.0
+    trajectory = v10_loss_schedule(325)
+    assert trajectory["stage"] == "trajectory"
+    assert trajectory["cf"] == pytest.approx(0.4)
+    assert trajectory["phase"] == 1.0
+    assert trajectory["hidden"] == pytest.approx(0.5)
+    assert trajectory["position"] == trajectory["velocity"] == pytest.approx(0.5)
+    final = v10_loss_schedule(500)
+    assert final["hidden"] == final["hidden_backbone"] == 0.0
+    assert final["position"] == final["velocity"] == 1.0
