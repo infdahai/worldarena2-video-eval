@@ -10,7 +10,9 @@ import pytest
 from worldarena_baseline.wan_v10_data import (
     V10RelationFeatures,
     build_v10_data_receipt,
+    build_v10_cache_extension,
     build_v10_split,
+    fit_v10_relation_normalization,
     validate_v10_data_receipt,
     validate_v10_relation_cache,
     write_v10_relation_cache_atomic,
@@ -69,6 +71,16 @@ def test_split_retains_every_eligible_non_eval_identity_deterministically() -> N
     assert len({row["task"] for row in first.audit}) >= 8
     assert set(first.audit_tags) >= set(TAGS)
     assert sum(first.source_counts.values()) == len(rows)
+
+
+def test_cache_extension_contains_only_uncached_full_action_rows() -> None:
+    rows, _ = _rows()
+    extension = build_v10_cache_extension(rows, rows[:63])
+    assert [row["sample"] for row in extension] == sorted(
+        row["sample"] for row in rows[63:]
+    )
+    with pytest.raises(ValueError, match="foreign"):
+        build_v10_cache_extension(rows, [*rows[:2], {**rows[2], "sample": "foreign"}])
 
 
 def test_split_rejects_robot_only_quarantine_duplicates_and_invalid_audit() -> None:
@@ -168,3 +180,17 @@ def test_relation_cache_roundtrip_is_hash_bound_and_absent_is_exact_zero(tmp_pat
             expected_sample="sample",
             expected_normalization_sha256=hashlib.sha256(b"normalization").hexdigest(),
         )
+
+
+def test_relation_normalization_uses_only_explicit_optimizer_samples() -> None:
+    first = _features()
+    second = _features()
+    first.anchored_se3[..., 0] = 1
+    second.anchored_se3[..., 0] = 3
+    receipt = fit_v10_relation_normalization({"a": first, "b": second})
+    assert receipt["samples"] == ["a", "b"]
+    assert receipt["mean"][0] == pytest.approx(2.0)
+    assert receipt["scale"][0] == pytest.approx(1.0)
+    assert receipt["mean"][16:] == [0.0, 0.0, 0.0, 0.0]
+    assert receipt["scale"][16:] == [1.0, 1.0, 1.0, 1.0]
+    assert len(receipt["receipt_sha256"]) == 64

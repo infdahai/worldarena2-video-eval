@@ -51,6 +51,24 @@ class V10RelationFeatures:
     motion_active: np.ndarray
 
 
+def build_v10_cache_extension(
+    source_rows: Sequence[Mapping[str, Any]],
+    cached_rows: Sequence[Mapping[str, Any]],
+) -> tuple[dict[str, Any], ...]:
+    """Return the exact source rows missing from an independently valid cache."""
+
+    source = _validate_rows(source_rows, label="v10 source")
+    cached = _validate_rows(cached_rows, label="existing cache")
+    source_by_sample = {str(row["sample"]): row for row in source}
+    cached_samples = {str(row["sample"]) for row in cached}
+    if not cached_samples <= set(source_by_sample):
+        raise ValueError("existing cache contains a foreign v10 source identity")
+    return tuple(
+        source_by_sample[sample]
+        for sample in sorted(set(source_by_sample) - cached_samples)
+    )
+
+
 def build_v10_relation_features(
     states: np.ndarray,
     state_present: np.ndarray,
@@ -106,6 +124,44 @@ def build_v10_relation_features(
         arm_present=slot_present,
         motion_active=motion_active & slot_present,
     )
+
+
+def fit_v10_relation_normalization(
+    features_by_sample: Mapping[str, V10RelationFeatures],
+) -> dict[str, Any]:
+    """Fit correct-only state statistics from explicit optimizer identities."""
+
+    if not features_by_sample:
+        raise ValueError("v10 relation normalization requires optimizer samples")
+    samples = sorted(features_by_sample)
+    rows: list[np.ndarray] = []
+    for sample in samples:
+        arrays = _validate_features(features_by_sample[sample])
+        state = np.concatenate(
+            (
+                arrays["anchored_se3"], arrays["velocity"],
+                arrays["uv"], arrays["gripper"],
+            ),
+            axis=-1,
+        )
+        if arrays["arm_present"].any():
+            rows.append(state[arrays["arm_present"]].astype(np.float64))
+    if not rows:
+        raise ValueError("v10 relation normalization has no present arm states")
+    combined = np.concatenate(rows, axis=0)
+    mean = np.concatenate((combined.mean(axis=0), np.zeros(4, dtype=np.float64)))
+    scale = np.concatenate(
+        (np.maximum(combined.std(axis=0), 1e-6), np.ones(4, dtype=np.float64))
+    )
+    payload: dict[str, Any] = {
+        "contract": "wan-v10-relation-normalization/1",
+        "samples": samples,
+        "mean": mean.tolist(),
+        "scale": scale.tolist(),
+    }
+    encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+    payload["receipt_sha256"] = hashlib.sha256(encoded).hexdigest()
+    return payload
 
 
 def _sha256_file(path: Path) -> str:
