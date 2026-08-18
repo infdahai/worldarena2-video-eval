@@ -325,7 +325,7 @@ def _evaluate_audit(args,model,legacy,dataset,index_map,audit,device,*,gates_ena
     with geometry_gates_enabled(model,enabled=gates_enabled):
         for index,item in enumerate(audit):
             sample=str(item["sample"]); record=_audit_record(sample,index); batch=_batch(dataset,index_map[sample]); correct=_correct_condition(args,batch,sample,device)
-            result=_forward(model,legacy,batch,correct,record,device,grad=False); _release(model); result["sample"]=sample
+            result=_forward(model,legacy,batch,correct,record,device,grad=False); _release(model); result["sample"]=sample; result["target_raster"]=correct["action_raster"]
             probe=legacy._probe_metrics(result,probe_model,observability_root=args.observability_root)
             row={"sample":sample,"correct_energy":float(result["energy"].cpu()),"fm":float(result["fm"].cpu()),"position_error":probe["position_error"],"velocity_error":probe["velocity_error"],"routing_retention":1.0}
             for name in ("reverse","shift_plus","shift_minus","swap"):
