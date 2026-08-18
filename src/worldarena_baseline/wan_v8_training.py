@@ -73,6 +73,11 @@ def _decision(metrics: Mapping[str, Any], *, step: int) -> dict[str, Any]:
             reasons.append(f"{family}_wins_below_{threshold}")
         if not isinstance(item, Mapping) or float(item.get("mean_margin", float("-inf"))) <= 0:
             reasons.append(f"{family}_margin_not_positive")
+    scalar_names = ("routing_retention", "fm_regression", "position_regression", "velocity_regression") if step == 100 else ("routing_retention", "fm_regression", "position_improvement", "velocity_improvement")
+    for name in scalar_names:
+        try: value=float(metrics[name])
+        except (KeyError,TypeError,ValueError): value=float("nan")
+        if not math.isfinite(value): reasons.append(f"{name}_not_finite")
     if float(metrics.get("routing_retention", float("-inf"))) < 0.90:
         reasons.append("routing_retention_below_90_percent")
     if float(metrics.get("fm_regression", float("inf"))) >= 0.02 if step == 100 else float(metrics.get("fm_regression", float("inf"))) > 0.02:

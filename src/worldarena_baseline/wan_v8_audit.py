@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
+import math
 from typing import Any
 
 from .wan_v8_training import step100_gate, step250_gate
@@ -26,14 +27,15 @@ def aggregate_v8_audit(rows: Sequence[Mapping[str, Any]], *, step: int) -> dict[
     scalar_keys = ("routing_retention", "fm_regression")
     metrics: dict[str, Any] = {**families}
     for key in scalar_keys:
-        metrics[key] = sum(float(row[key]) for row in rows) / len(rows)
+        values=[float(row[key]) for row in rows]
+        metrics[key] = sum(values) / len(values) if all(math.isfinite(value) for value in values) else float("nan")
     if step == 100:
         for key in ("position_regression", "velocity_regression"):
-            metrics[key] = sum(float(row[key]) for row in rows) / len(rows)
+            values=[float(row[key]) for row in rows]; metrics[key] = sum(values) / len(values) if all(math.isfinite(value) for value in values) else float("nan")
         decision = step100_gate(metrics)
     elif step == 250:
         for key in ("position_improvement", "velocity_improvement"):
-            metrics[key] = sum(float(row[key]) for row in rows) / len(rows)
+            values=[float(row[key]) for row in rows]; metrics[key] = sum(values) / len(values) if all(math.isfinite(value) for value in values) else float("nan")
         decision = step250_gate(metrics)
     else:
         raise ValueError("v8 formal audit is only step100 or step250")
