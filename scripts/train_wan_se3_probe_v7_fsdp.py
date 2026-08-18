@@ -402,7 +402,7 @@ def _gradient_stats(model: ParentPlusSE3Wan) -> dict[str, Any]:
     }
 
 
-def _preflight(args: argparse.Namespace, model: ParentPlusSE3Wan, dataset: WanActionCachedDataset, replay: Mapping[str, Any], *, source_manifest_sha256: str, cache_sha256: str, device: torch.device) -> dict[str, Any]:
+def _preflight(args: argparse.Namespace, model: ParentPlusSE3Wan, dataset: WanActionCachedDataset, replay: Mapping[str, Any], *, source_manifest_sha256: str, source_code_sha256: str, cache_sha256: str, device: torch.device) -> dict[str, Any]:
     record = replay["records"][0][dist.get_rank()]
     metrics: dict[str, dict[str, float]] = {}
     model.zero_grad(set_to_none=True)
@@ -418,7 +418,7 @@ def _preflight(args: argparse.Namespace, model: ParentPlusSE3Wan, dataset: WanAc
         "passed": bool(gradients["finite_gate_gradients"] and gradients["nonzero_gate_gradients"] and not original_gradients),
         "calibrated_lr": CALIBRATED_LR,
         "parent_sha256": FROZEN_V7_PARENT_SHA256,
-        "source_hashes": {"source_manifest_sha256": source_manifest_sha256, "source_code_sha256": _source_code_sha256()},
+        "source_hashes": {"source_manifest_sha256": source_manifest_sha256, "source_code_sha256": source_code_sha256},
         "cache_sha256": cache_sha256,
         "replay_sha256": replay["replay_sha256"],
         "counterfactual_feature_metrics": metrics,
@@ -532,7 +532,22 @@ def _audit(args: argparse.Namespace, model: ParentPlusSE3Wan, probe: GripperTraj
     return {"contract": "wan-action-v7-discovery-audit/1", "step": step, "episodes": merged, "metrics": metrics, "gate": v7_discovery_gate(metrics)}
 
 
-def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], WanActionCachedDataset, str, str]:
+def _validate_preflight_source_hashes(receipt: Mapping[str, Any], *, source_manifest_sha256: str, source_code_sha256: str) -> None:
+    """Reject a preflight receipt from any other committed v7 source closure.
+
+    This executes before CUDA/NCCL setup, so a clean source change cannot reuse
+    a stale preflight receipt for smoke, train, or audit.
+    """
+
+    expected = {
+        "source_manifest_sha256": source_manifest_sha256,
+        "source_code_sha256": source_code_sha256,
+    }
+    if receipt.get("source_hashes") != expected:
+        raise RuntimeError("v7 preflight receipt source closure digest mismatch")
+
+
+def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], WanActionCachedDataset, str, str, str]:
     if os.environ.get("CUDA_VISIBLE_DEVICES") != CUDA_VISIBLE_DEVICES:
         raise RuntimeError("v7 requires exact CUDA visibility for ranks 0 through 6")
     paths = (
@@ -551,6 +566,10 @@ def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str
         _under_formal_root(args.resume)
     if shutil.disk_usage(FORMAL_ROOT).free < 50 * 1024**3:
         raise RuntimeError("v7 requires at least 50 GiB free space")
+    # This validates every direct v7 source file as committed and clean before
+    # any device/NCCL initialization.  It is deliberately before even cache
+    # sidecar traversal so a stale remote sync fails at the boundary.
+    source_code_sha = _source_code_sha256()
     pins, discovery_contract = _pins()
     named_paths = {
         "clean1000_manifest": args.data_source_manifest,
@@ -589,7 +608,7 @@ def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str
     if sha256_file(args.parent_checkpoint) != FROZEN_V7_PARENT_SHA256:
         raise RuntimeError("v7 parent checkpoint SHA differs from frozen clean parent")
     require_wan_backbone_checkpoint(args.checkpoint_dir)
-    return expected_replay, v6_replay, leakage, dataset, pins["clean1000_manifest"], cache_sha
+    return expected_replay, v6_replay, leakage, dataset, pins["clean1000_manifest"], cache_sha, source_code_sha
 
 
 def main(argv: Sequence[str] | None = None) -> None:
@@ -599,7 +618,27 @@ def main(argv: Sequence[str] | None = None) -> None:
         raise RuntimeError("v7 train mode requires an approved target step")
     if args.mode == "audit" and (args.resume is None or args.audit_output is None):
         raise RuntimeError("v7 audit mode requires resume and audit output")
-    replay, v6_replay, _leakage, dataset, source_manifest_sha, cache_sha = _validate_inputs(args)
+    replay, v6_replay, _leakage, dataset, source_manifest_sha, cache_sha, source_code_sha = _validate_inputs(args)
+    receipt_path = args.preflight_receipt or args.output_dir / "preflight-gradient-audit.json"
+    receipt: dict[str, Any] | None = None
+    expected: dict[str, Any] | None = None
+    if args.mode != "preflight":
+        receipt = _read_json(receipt_path)
+        _validate_preflight_source_hashes(
+            receipt,
+            source_manifest_sha256=source_manifest_sha,
+            source_code_sha256=source_code_sha,
+        )
+        expected = _checkpoint_expected(
+            args=args,
+            replay=replay,
+            v6_replay=v6_replay,
+            source_manifest_sha256=source_manifest_sha,
+            cache_sha256=cache_sha,
+            receipt=receipt,
+        )
+        if receipt.get("passed") is not True or expected["parent_sha256"] != FROZEN_V7_PARENT_SHA256:
+            raise RuntimeError("v7 preflight receipt did not pass")
     local_rank = int(os.environ["LOCAL_RANK"])
     torch.cuda.set_device(local_rank)
     device = torch.device("cuda", local_rank)
@@ -612,17 +651,14 @@ def main(argv: Sequence[str] | None = None) -> None:
         model, probe = _load_model(args, local_rank=local_rank, device=device, source_manifest_sha256=source_manifest_sha)
         validate_training_hot_path_components(__import__("gc").get_objects())
         optimizer = torch.optim.AdamW([v7_optimizer_group(model, CALIBRATED_LR)], weight_decay=0.0)
-        receipt_path = args.preflight_receipt or args.output_dir / "preflight-gradient-audit.json"
         if args.mode == "preflight":
-            receipt = _preflight(args, model, dataset, replay, source_manifest_sha256=source_manifest_sha, cache_sha256=cache_sha, device=device)
+            receipt = _preflight(args, model, dataset, replay, source_manifest_sha256=source_manifest_sha, source_code_sha256=source_code_sha, cache_sha256=cache_sha, device=device)
             if dist.get_rank() == 0:
                 _atomic_json(receipt_path, receipt)
             dist.barrier()
             return
-        receipt = _read_json(receipt_path)
-        expected = _checkpoint_expected(args=args, replay=replay, v6_replay=v6_replay, source_manifest_sha256=source_manifest_sha, cache_sha256=cache_sha, receipt=receipt)
-        if receipt.get("passed") is not True or expected["parent_sha256"] != FROZEN_V7_PARENT_SHA256:
-            raise RuntimeError("v7 preflight receipt did not pass")
+        if receipt is None or expected is None:
+            raise RuntimeError("v7 non-preflight launch has no validated preflight receipt")
         start_step = 0
         if args.resume is not None:
             payload = torch.load(args.resume, map_location="cpu", weights_only=True)

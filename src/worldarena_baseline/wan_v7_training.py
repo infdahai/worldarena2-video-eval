@@ -41,7 +41,7 @@ _SHA256 = re.compile(r"[0-9a-f]{64}")
 # frozen parent is the user-approved clean-gated step-10 checkpoint.
 _TRAINING_ROOT = Path(__file__).resolve().parents[2]
 _TRUSTED_LINEAGE_PINS = _TRAINING_ROOT / "source_inputs/trusted-wan-v7-se3-lineage-pins.json"
-_TRUSTED_LINEAGE_PINS_SHA256 = "d4f8e1e35b52cdbfcc69eef487f3bfe8e2be159afa81fdfb2b762cc9a0bee76b"
+_TRUSTED_LINEAGE_PINS_SHA256 = "50ba7efe44a6232962a55b90c9b3fca02aea839a1565e59cc7c9b396e420f6c8"
 FROZEN_V7_PARENT_SHA256 = "105fb760fd371885ba362d26ef2352c260755e47cd036f46711181edc3b30ca2"
 
 

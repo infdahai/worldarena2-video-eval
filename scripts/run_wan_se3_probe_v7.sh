@@ -56,31 +56,56 @@ run() {
     scripts/train_wan_se3_probe_v7_fsdp.py "${common[@]}" "$@"
 }
 
+validate_source_closure() {
+  local output_root=$1
+  local receipt=${2:-}
+  local closure_receipt=$output_root/source-sync-closure.v7.json
+  mkdir -p "$output_root"
+  "$PYTHON" scripts/validate_wan_v7_sync_closure.py \
+    --repo-root "$SOURCE" --output "$closure_receipt" >/dev/null
+  if [[ -n "$receipt" ]]; then
+    "$PYTHON" - "$receipt" "$closure_receipt" <<'PY'
+import json
+import sys
+
+preflight = json.load(open(sys.argv[1], encoding="utf-8"))
+closure = json.load(open(sys.argv[2], encoding="utf-8"))
+expected = preflight.get("source_hashes", {}).get("source_code_sha256")
+actual = closure.get("closure_sha256")
+if not isinstance(expected, str) or expected != actual:
+    raise SystemExit("v7 preflight receipt source closure digest mismatch")
+PY
+  fi
+}
+
 case "$PHASE" in
   preflight)
-    mkdir -p "$RUN"
+    validate_source_closure "$RUN"
     run --mode preflight --output-dir "$RUN"
     ;;
   smoke)
-    mkdir -p "$SMOKE"
+    validate_source_closure "$SMOKE"
     run --mode smoke --output-dir "$SMOKE"
     ;;
   train10)
-    mkdir -p "$RUN"
+    validate_source_closure "$RUN" "$PREFLIGHT"
     run --mode train --target-step 10 --output-dir "$RUN"
     ;;
   train25)
-    mkdir -p "$RUN"
+    validate_source_closure "$RUN" "$PREFLIGHT"
     run --mode train --target-step 25 --resume "$RUN/step-000010.pt" --output-dir "$RUN"
     ;;
   audit25)
+    validate_source_closure "$RUN" "$PREFLIGHT"
     run --mode audit --resume "$RUN/step-000025.pt" --audit-output "$RUN/audit-step-000025.json" --output-dir "$RUN"
     ;;
   train50)
+    validate_source_closure "$RUN" "$PREFLIGHT"
     "$PYTHON" -c 'import json,sys; from worldarena_baseline.wan_v7_training import v7_discovery_gate; p=json.load(open(sys.argv[1])); assert p.get("gate") == v7_discovery_gate(p.get("metrics", {})); assert p["gate"]["pass"] is True' "$RUN/audit-step-000025.json"
     run --mode train --target-step 50 --resume "$RUN/step-000025.pt" --output-dir "$RUN"
     ;;
   audit50)
+    validate_source_closure "$RUN" "$PREFLIGHT"
     run --mode audit --resume "$RUN/step-000050.pt" --audit-output "$RUN/audit-step-000050.json" --output-dir "$RUN"
     ;;
   *)

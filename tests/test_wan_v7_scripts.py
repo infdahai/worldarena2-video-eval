@@ -2,10 +2,23 @@ from __future__ import annotations
 
 import subprocess
 import sys
+import importlib.util
 from pathlib import Path
+
+import pytest
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _trainer_module():
+    path = ROOT / "scripts/train_wan_se3_probe_v7_fsdp.py"
+    spec = importlib.util.spec_from_file_location("wan_v7_trainer_script", path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
 
 
 def test_v7_launcher_excludes_gpu7_and_cannot_skip_audit25() -> None:
@@ -22,6 +35,29 @@ def test_v7_launcher_excludes_gpu7_and_cannot_skip_audit25() -> None:
     assert "audit25" in result.stdout
     assert "train50 requires audit25 pass" in result.stdout
     assert "GPU7" not in result.stdout
+
+
+def test_v7_launcher_validates_committed_closure_before_torchrun() -> None:
+    launcher = (ROOT / "scripts/run_wan_se3_probe_v7.sh").read_text()
+    for phase in ("preflight", "smoke", "train10", "train25", "audit25", "train50", "audit50"):
+        section = launcher.split(f"  {phase})", 1)[1].split("    ;;", 1)[0]
+        assert section.index("validate_source_closure") < section.index("run --mode")
+
+
+def test_v7_preflight_receipt_rejects_a_stale_source_closure_before_cuda() -> None:
+    module = _trainer_module()
+    current = {"source_manifest_sha256": "a" * 64, "source_code_sha256": "b" * 64}
+    module._validate_preflight_source_hashes(
+        {"source_hashes": current},
+        source_manifest_sha256=current["source_manifest_sha256"],
+        source_code_sha256=current["source_code_sha256"],
+    )
+    with pytest.raises(RuntimeError, match="source closure digest mismatch"):
+        module._validate_preflight_source_hashes(
+            {"source_hashes": {**current, "source_code_sha256": "c" * 64}},
+            source_manifest_sha256=current["source_manifest_sha256"],
+            source_code_sha256=current["source_code_sha256"],
+        )
 
 
 def test_v7_trainer_has_no_hot_path_encoder_or_stage_b_symbols() -> None:
