@@ -717,6 +717,8 @@ def main() -> None:
     target = int(args.stop_step)
     if start >= target:
         raise RuntimeError("v9 resume step must be below target")
+    if target > 25 and gates.get("step25", {}).get("continue") is not True:
+        raise RuntimeError("v9 step25 receipt does not allow continuation")
     if target > 100 and gates.get("step100", {}).get("continue") is not True:
         raise RuntimeError("v9 step100 receipt does not allow continuation")
     if target > 250 and gates.get("step250", {}).get("pass") is not True:

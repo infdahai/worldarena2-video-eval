@@ -106,7 +106,7 @@ case "$PHASE" in
   smoke) run_gpu --mode smoke ;;
   train25) run_gpu --mode train --stop-step 25 ;;
   audit25) run_gpu --mode audit --resume "$RUN/step-000025.pt" --audit-step 25 ;;
-  train100) run_gpu --mode train --resume "$RUN/step-000025.pt" --stop-step 100 ;;
+  train100) run_gpu --mode train --resume "$RUN/step-000025-gated.pt" --stop-step 100 ;;
   audit100) run_gpu --mode audit --resume "$RUN/step-000100.pt" --audit-step 100 ;;
   train250) run_gpu --mode train --resume "$RUN/step-000100-gated.pt" --stop-step 250 ;;
   audit250) run_gpu --mode audit --resume "$RUN/step-000250.pt" --audit-step 250 ;;

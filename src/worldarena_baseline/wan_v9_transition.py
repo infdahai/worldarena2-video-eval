@@ -47,6 +47,7 @@ _CACHE_KEYS: Final = {
     "normalization_receipt_sha256",
     "payload_sha256",
 }
+_ALL_VARIANTS: Final = ("correct", "reverse", "shift+1", "shift-1", "swap")
 
 
 @dataclass(frozen=True)
@@ -96,6 +97,18 @@ def validate_split_identities(
     if len(optimizer) != 1765 or set(optimizer) & (audit_set | dev_set):
         raise ValueError("v9 optimizer split is not clean-1785 minus audit20")
     return optimizer
+
+
+def transition_variant_requirements(
+    optimizer_samples: Sequence[str], audit_samples: Sequence[str]
+) -> dict[str, tuple[str, ...]]:
+    optimizer = tuple(optimizer_samples)
+    audit = tuple(audit_samples)
+    if not optimizer or not audit or len(set(optimizer)) != len(optimizer) or len(set(audit)) != len(audit):
+        raise ValueError("v9 variant identities must be unique and non-empty")
+    if set(optimizer) & set(audit):
+        raise ValueError("v9 optimizer and audit identities overlap")
+    return {sample: _ALL_VARIANTS for sample in (*optimizer, *audit)}
 
 
 def _require_sha256(value: str, *, label: str, allow_empty: bool = False) -> None:

@@ -61,6 +61,13 @@ def test_launcher_rechecks_gpu_ownership_before_every_gpu_phase() -> None:
     assert "source_inputs/arx5_description_isaac.urdf" in source
 
 
+def test_step100_training_can_only_resume_the_step25_gated_checkpoint() -> None:
+    launcher = (ROOT / "scripts/run_wan_v9_phase_locked_gpu6.sh").read_text(encoding="utf-8")
+    trainer = (ROOT / "scripts/train_wan_v9_phase_locked.py").read_text(encoding="utf-8")
+    assert 'train100) run_gpu --mode train --resume "$RUN/step-000025-gated.pt" --stop-step 100' in launcher
+    assert 'if target > 25 and gates.get("step25", {}).get("continue") is not True:' in trainer
+
+
 def test_phase_t_is_real_and_step250_audit_is_not_placeholder() -> None:
     source = (ROOT / "scripts/train_wan_v9_phase_locked.py").read_text(encoding="utf-8")
     assert "def _trajectory_terms(" in source

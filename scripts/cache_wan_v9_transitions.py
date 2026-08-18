@@ -18,6 +18,7 @@ from worldarena_baseline.wan_v9_transition import (
     build_transition_features,
     fit_normalization_statistics,
     physical_states_from_normalized_inverse,
+    transition_variant_requirements,
     validate_split_identities,
     validate_transition_cache,
     write_transition_cache_atomic,
@@ -150,6 +151,37 @@ def _write_json_atomic(path: Path, payload: dict[str, Any]) -> None:
             partial.unlink()
 
 
+def _cache_matches(
+    path: Path,
+    *,
+    sample: str,
+    variant: str,
+    clean_sha: str,
+    normalization_sha: str,
+    hdf5_sha: str,
+    action_sha: str,
+    counterfactual_sha: str,
+    urdf_sha: str,
+) -> bool:
+    try:
+        payload = validate_transition_cache(
+            path,
+            expected_sample=sample,
+            expected_variant=variant,
+            expected_clean_manifest_sha256=clean_sha,
+            expected_normalization_receipt_sha256=normalization_sha,
+        )
+    except ValueError:
+        return False
+    expected = {
+        "source_hdf5_sha256": hdf5_sha,
+        "source_action_sha256": action_sha,
+        "source_counterfactual_sha256": counterfactual_sha,
+        "urdf_sha256": urdf_sha,
+    }
+    return all(str(np.asarray(payload[key]).item()) == value for key, value in expected.items())
+
+
 def prepare(
     *,
     clean_manifest: Path,
@@ -166,6 +198,8 @@ def prepare(
     audit_rows = _read_jsonl(audit_manifest)
     dev_rows = _read_jsonl(dev_manifest)
     optimizer = validate_split_identities(clean_rows, audit_rows, dev_rows)
+    audit_samples = tuple(str(row["sample"]) for row in audit_rows)
+    requirements = transition_variant_requirements(optimizer, audit_samples)
     receipt: dict[str, Any] = {
         "contract": "wan-v9-transition-preparation/1",
         "clean_manifest_sha256": _sha(clean_manifest),
@@ -186,7 +220,7 @@ def prepare(
         raise ValueError("v9 URDF must be a regular file")
     row_by_sample = {str(row["sample"]): row for row in clean_rows}
     correct: dict[str, tuple[TransitionFeatures, Path, Path]] = {}
-    for sample in (*optimizer, *(str(row["sample"]) for row in audit_rows)):
+    for sample in requirements:
         correct[sample] = _load_correct(row_by_sample[sample], cache_root=cache_root, clean_sha=receipt["clean_manifest_sha256"])
     statistics = fit_normalization_statistics({sample: correct[sample][0] for sample in optimizer})
     _write_json_atomic(output_root / "normalization.json", statistics)
@@ -194,40 +228,62 @@ def prepare(
     from worldarena_baseline.skeleton import AlohaSkeletonRenderer
 
     renderer = AlohaSkeletonRenderer(urdf, width=80, height=60)
-    for sample in (*optimizer, *(str(row["sample"]) for row in audit_rows)):
+    normalization_sha = str(statistics["receipt_sha256"])
+    for sample, variants in requirements.items():
         row = row_by_sample[sample]
         hdf5 = (dataset_root / str(row["hdf5"])).resolve(strict=True)
         if dataset_root.resolve() not in hdf5.parents:
             raise ValueError("v9 HDF5 escapes dataset root")
         features, raster_path, _ = correct[sample]
-        write_transition_cache_atomic(
-            output_root / sample / "correct.npz", features,
-            sample=sample, variant="correct", source_hdf5_sha256=_sha(hdf5),
-            source_action_sha256=_sha(raster_path), source_counterfactual_sha256="",
-            urdf_sha256=urdf_sha, clean_manifest_sha256=receipt["clean_manifest_sha256"],
-            normalization_receipt_sha256=str(statistics["receipt_sha256"]),
-        )
-        if sample not in set(optimizer):
-            continue
+        hdf5_sha = _sha(hdf5)
+        action_sha = _sha(raster_path)
+        correct_path = output_root / sample / "correct.npz"
+        if not _cache_matches(
+            correct_path, sample=sample, variant="correct", clean_sha=receipt["clean_manifest_sha256"],
+            normalization_sha=normalization_sha, hdf5_sha=hdf5_sha, action_sha=action_sha,
+            counterfactual_sha="", urdf_sha=urdf_sha,
+        ):
+            write_transition_cache_atomic(
+                correct_path, features,
+                sample=sample, variant="correct", source_hdf5_sha256=hdf5_sha,
+                source_action_sha256=action_sha, source_counterfactual_sha256="",
+                urdf_sha256=urdf_sha, clean_manifest_sha256=receipt["clean_manifest_sha256"],
+                normalization_receipt_sha256=normalization_sha,
+            )
         negative_path = negative_root / f"{sample}.npz"
+        negative_sha = _sha(negative_path)
+        missing = [
+            variant for variant in variants if variant != "correct" and not _cache_matches(
+                output_root / sample / f"{variant}.npz", sample=sample, variant=variant,
+                clean_sha=receipt["clean_manifest_sha256"], normalization_sha=normalization_sha,
+                hdf5_sha=hdf5_sha, action_sha=action_sha, counterfactual_sha=negative_sha,
+                urdf_sha=urdf_sha,
+            )
+        ]
+        if not missing:
+            continue
         actions = _joint14(hdf5)
-        for variant in _VARIANTS:
+        for variant in missing:
             write_transition_cache_atomic(
                 output_root / sample / f"{variant}.npz",
                 _load_wrong(negative_path, variant, actions, renderer),
-                sample=sample, variant=variant, source_hdf5_sha256=_sha(hdf5),
-                source_action_sha256=_sha(raster_path), source_counterfactual_sha256=_sha(negative_path),
+                sample=sample, variant=variant, source_hdf5_sha256=hdf5_sha,
+                source_action_sha256=action_sha, source_counterfactual_sha256=negative_sha,
                 urdf_sha256=urdf_sha, clean_manifest_sha256=receipt["clean_manifest_sha256"],
-                normalization_receipt_sha256=str(statistics["receipt_sha256"]),
+                normalization_receipt_sha256=normalization_sha,
             )
-    for sample in optimizer:
-        for variant in ("correct", *_VARIANTS):
+    for sample, variants in requirements.items():
+        for variant in variants:
             validate_transition_cache(
                 output_root / sample / f"{variant}.npz", expected_sample=sample,
                 expected_variant=variant, expected_clean_manifest_sha256=receipt["clean_manifest_sha256"],
-                expected_normalization_receipt_sha256=str(statistics["receipt_sha256"]),
+                expected_normalization_receipt_sha256=normalization_sha,
             )
-    receipt.update({"normalization_receipt_sha256": statistics["receipt_sha256"], "complete_optimizer_variants": len(optimizer) * 5})
+    receipt.update({
+        "normalization_receipt_sha256": statistics["receipt_sha256"],
+        "complete_optimizer_variants": len(optimizer) * 5,
+        "complete_audit_variants": len(audit_samples) * 5,
+    })
     _write_json_atomic(output_root / "receipt.json", receipt)
     return receipt
 

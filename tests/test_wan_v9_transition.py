@@ -15,6 +15,7 @@ from worldarena_baseline.wan_v9_transition import (
     build_transition_features,
     fit_normalization_statistics,
     physical_states_from_normalized_inverse,
+    transition_variant_requirements,
     shift_transition_content,
     so3_log_map,
     validate_split_identities,
@@ -218,6 +219,18 @@ def test_split_contract_excludes_audit_and_rejects_dev_leakage() -> None:
     leaking_dev = [clean[-1], *dev[1:]]
     with pytest.raises(ValueError, match="dev-fast20 leaks"):
         validate_split_identities(clean, audit, leaking_dev)
+
+
+def test_audit_samples_receive_counterfactual_cache_without_entering_optimizer() -> None:
+    optimizer = ("train-a", "train-b")
+    audit = ("audit-a",)
+    requirements = transition_variant_requirements(optimizer, audit)
+    assert requirements == {
+        "train-a": ("correct", "reverse", "shift+1", "shift-1", "swap"),
+        "train-b": ("correct", "reverse", "shift+1", "shift-1", "swap"),
+        "audit-a": ("correct", "reverse", "shift+1", "shift-1", "swap"),
+    }
+    assert set(optimizer).isdisjoint(audit)
 
 
 def test_cache_cli_dry_run_is_side_effect_free(tmp_path: Path) -> None:
