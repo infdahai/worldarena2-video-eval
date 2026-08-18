@@ -235,3 +235,21 @@ def test_v9_transition_conversion_reconstructs_anchored_slots() -> None:
     })
     assert not absent.arm_present[:, 1].any()
     assert np.count_nonzero(absent.anchored_se3[:, 1]) == 0
+    present[0, 5] = False
+    with pytest.raises(ValueError, match="contiguous prefix"):
+        relation_features_from_v9_transition({
+            "translation": translation, "rotation": rotation, "image": image,
+            "gripper": gripper, "arm_present": present, "motion_active": active,
+        })
+    states = np.broadcast_to(np.eye(4), (2, 21, 4, 4)).copy()
+    states[0, :, 0, 3] = np.arange(21) * 0.1
+    exact = relation_features_from_v9_transition(
+        {
+            "translation": translation, "rotation": rotation, "image": image,
+            "gripper": gripper, "arm_present": present, "motion_active": active,
+        },
+        exact_states=states,
+        exact_state_present=np.ones((2, 21), dtype=bool),
+    )
+    assert exact.anchored_se3[20, 0, 0] == pytest.approx(2.0)
+    assert not exact.arm_present[6, 0]

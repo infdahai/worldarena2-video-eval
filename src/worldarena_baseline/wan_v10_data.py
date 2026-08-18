@@ -143,6 +143,9 @@ def _so3_exp_map(vector: np.ndarray) -> np.ndarray:
 
 def relation_features_from_v9_transition(
     payload: Mapping[str, np.ndarray],
+    *,
+    exact_states: np.ndarray | None = None,
+    exact_state_present: np.ndarray | None = None,
 ) -> V10RelationFeatures:
     """Lift a contiguous v9 transition cache into v10 slot features."""
 
@@ -169,30 +172,43 @@ def relation_features_from_v9_transition(
         raise ValueError("v9 transition payload has invalid relation arrays")
     if np.any(active & ~interval_present):
         raise ValueError("v9 transition activity exists for an absent arm")
-    states = np.broadcast_to(np.eye(4, dtype=np.float64), (2, 21, 4, 4)).copy()
-    state_present = np.zeros((2, 21), dtype=bool)
-    for arm in range(2):
-        present_indices = np.flatnonzero(interval_present[arm])
-        if len(present_indices) and not np.array_equal(
-            present_indices, np.arange(present_indices[-1] + 1)
-        ):
-            raise ValueError("v9 transition presence must be a contiguous prefix")
-        if not len(present_indices):
-            continue
-        state_present[arm, : present_indices[-1] + 2] = True
-        for interval in present_indices:
-            current = states[arm, interval]
-            states[arm, interval + 1, :3, :3] = (
-                current[:3, :3] @ _so3_exp_map(rotation[arm, interval, :3])
-            )
-            states[arm, interval + 1, :3, 3] = (
-                current[:3, 3] + current[:3, :3] @ translation[arm, interval, :3]
-            )
+    if exact_states is not None or exact_state_present is not None:
+        if exact_states is None or exact_state_present is None:
+            raise ValueError("exact v10 states and presence must be supplied together")
+        states = np.asarray(exact_states, dtype=np.float64)
+        state_present = np.asarray(exact_state_present)
+        if states.shape != (2, 21, 4, 4) or state_present.shape != (2, 21):
+            raise ValueError("exact v10 states/presence shape differs")
+        if state_present.dtype != np.dtype(bool) or not np.isfinite(states).all():
+            raise ValueError("exact v10 states/presence are invalid")
+    else:
+        states = np.broadcast_to(np.eye(4, dtype=np.float64), (2, 21, 4, 4)).copy()
+        state_present = np.zeros((2, 21), dtype=bool)
+        for arm in range(2):
+            present_indices = np.flatnonzero(interval_present[arm])
+            if len(present_indices) and not np.array_equal(
+                present_indices, np.arange(present_indices[-1] + 1)
+            ):
+                raise ValueError("v9 transition presence must be a contiguous prefix without exact states")
+            if not len(present_indices):
+                continue
+            state_present[arm, : present_indices[-1] + 2] = True
+            for interval in present_indices:
+                current = states[arm, interval]
+                states[arm, interval + 1, :3, :3] = (
+                    current[:3, :3] @ _so3_exp_map(rotation[arm, interval, :3])
+                )
+                states[arm, interval + 1, :3, 3] = (
+                    current[:3, 3] + current[:3, :3] @ translation[arm, interval, :3]
+                )
     anchored = np.zeros((21, 2, 6), dtype=np.float32)
     velocity = np.zeros_like(anchored)
     uv = np.zeros((21, 2, 2), dtype=np.float32)
     gripper = np.zeros((21, 2, 2), dtype=np.float32)
-    slot_present = state_present.T
+    slot_present = np.zeros((21, 2), dtype=bool)
+    slot_present[0] = interval_present[:, 0]
+    slot_present[1:] = interval_present.T
+    slot_present &= state_present.T
     motion_active = np.zeros((21, 2), dtype=bool)
     for arm in range(2):
         for time in np.flatnonzero(state_present[arm]):

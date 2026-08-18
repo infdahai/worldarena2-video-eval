@@ -80,7 +80,10 @@ def _sha(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _v9_features(path: Path, *, sample: str, variant: str, receipt: dict[str, Any]):
+def _v9_features(
+    path: Path, *, sample: str, variant: str, receipt: dict[str, Any],
+    exact_states: np.ndarray, exact_present: np.ndarray,
+):
     from worldarena_baseline.wan_v9_transition import validate_transition_cache
 
     payload = validate_transition_cache(
@@ -91,7 +94,9 @@ def _v9_features(path: Path, *, sample: str, variant: str, receipt: dict[str, An
     features = relation_features_from_v9_transition(
         {name: np.asarray(payload[name]) for name in (
             "translation", "rotation", "image", "gripper", "arm_present", "motion_active"
-        )}
+        )},
+        exact_states=exact_states,
+        exact_state_present=exact_present,
     )
     return features, {
         name: str(np.asarray(payload[name]).item())
@@ -137,6 +142,23 @@ def _fresh_features(actions, camera, renderer, raster=None):
     return build_v10_relation_features(states, condition.arm_present, raster)
 
 
+def _states_from_actions(actions, renderer):
+    from worldarena_baseline.action_condition import EpisodeTimeline
+    from worldarena_baseline.wan_se3_condition import build_se3_condition
+    from worldarena_baseline.wan_v9_transition import physical_states_from_normalized_inverse
+
+    left, right = renderer.fk_endposes(actions)
+    condition = build_se3_condition(
+        left, right, EpisodeTimeline.build(source_length=len(actions), num_frames=81)
+    )
+    return (
+        physical_states_from_normalized_inverse(
+            condition.arm_transform, condition.arm_present, condition.motion_scale
+        ),
+        condition.arm_present,
+    )
+
+
 def build_relations(args: argparse.Namespace) -> int:
     from worldarena_baseline.skeleton import AlohaSkeletonRenderer
     from worldarena_baseline.wan_v8_counterfactual import build_joint14_counterfactual
@@ -165,10 +187,20 @@ def build_relations(args: argparse.Namespace) -> int:
         }
         if all((legacy / f"{variant}.npz").is_file() for variant in ("correct", "reverse", "swap")):
             try:
+                action_variants = {
+                    "correct": actions,
+                    "reverse": build_joint14_counterfactual(actions, "reverse"),
+                    "swap": build_joint14_counterfactual(actions, "swap"),
+                }
+                exact = {
+                    variant: _states_from_actions(value, renderer)
+                    for variant, value in action_variants.items()
+                }
                 loaded = {
                     variant: _v9_features(
                         legacy / f"{variant}.npz", sample=sample, variant=variant,
-                        receipt=legacy_receipt,
+                        receipt=legacy_receipt, exact_states=exact[variant][0],
+                        exact_present=exact[variant][1],
                     ) for variant in ("correct", "reverse", "swap")
                 }
                 if any(provenance != current_provenance for _features, provenance in loaded.values()):
