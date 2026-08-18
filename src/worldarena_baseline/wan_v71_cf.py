@@ -71,8 +71,20 @@ def geometry_only_counterfactual(
             present, direction=shift_direction
         )
     elif variant == "swap":
-        result["se3_arm_transform"] = transform[:, [1, 0]]
-        result["se3_arm_present"] = present[:, [1, 0]]
+        left_anchor = transform[:, 0, :1]
+        right_anchor = transform[:, 1, :1]
+        left_relative = torch.linalg.solve(left_anchor, transform[:, 0])
+        right_relative = torch.linalg.solve(right_anchor, transform[:, 1])
+        result["se3_arm_transform"] = torch.stack(
+            (
+                left_anchor @ right_relative,
+                right_anchor @ left_relative,
+            ),
+            dim=1,
+        ).squeeze(2)
+        swapped_presence = present[:, [1, 0]].clone()
+        swapped_presence[:, :, 0] = present[:, :, 0]
+        result["se3_arm_present"] = swapped_presence
     else:
         raise ValueError(f"unsupported geometry counterfactual: {variant}")
     return result

@@ -44,6 +44,19 @@ def test_counterfactual_changes_only_geometry_branch(variant: str) -> None:
         assert wrong[name] is correct[name]
     assert not torch.equal(wrong["se3_arm_transform"], correct["se3_arm_transform"])
     assert torch.equal(correct["se3_arm_transform"][:, :, 0], wrong["se3_arm_transform"][:, :, 0])
+    if variant == "swap":
+        correct_left = correct["se3_arm_transform"][:, 0]
+        correct_right = correct["se3_arm_transform"][:, 1]
+        wrong_left = wrong["se3_arm_transform"][:, 0]
+        wrong_right = wrong["se3_arm_transform"][:, 1]
+        assert torch.allclose(
+            torch.linalg.solve(wrong_left[:, :1], wrong_left),
+            torch.linalg.solve(correct_right[:, :1], correct_right),
+        )
+        assert torch.allclose(
+            torch.linalg.solve(wrong_right[:, :1], wrong_right),
+            torch.linalg.solve(correct_left[:, :1], correct_left),
+        )
 
 
 def test_shift_uses_both_directions_without_moving_anchor() -> None:
