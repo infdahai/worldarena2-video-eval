@@ -191,7 +191,26 @@ def physical_states_from_normalized_inverse(
         raise ValueError("normalized inverse presence must have boolean shape (2,21)")
     if not np.isfinite(motion_scale) or motion_scale <= 0:
         raise ValueError("motion_scale must be positive finite")
-    _validate_states(inverse, present)
+    if not np.isfinite(inverse).all() or not np.allclose(
+        inverse[..., 3, :], [0.0, 0.0, 0.0, 1.0], atol=1e-6, rtol=0
+    ):
+        raise ValueError("normalized inverse transforms are non-finite or non-homogeneous")
+    raw_rotation = inverse[..., :3, :3]
+    gram = raw_rotation.swapaxes(-1, -2) @ raw_rotation
+    determinant = np.linalg.det(raw_rotation)
+    if not np.allclose(gram, np.eye(3), atol=1e-4, rtol=0) or not np.allclose(
+        determinant, 1.0, atol=1e-4, rtol=0
+    ):
+        raise ValueError("normalized inverse rotation exceeds cache tolerance")
+    left, _singular, right = np.linalg.svd(raw_rotation)
+    projected = left @ right
+    negative = np.linalg.det(projected) < 0
+    if np.any(negative):
+        left = left.copy()
+        left[negative, :, -1] *= -1
+        projected = left @ right
+    inverse = inverse.copy()
+    inverse[..., :3, :3] = projected
     states = np.broadcast_to(np.eye(4, dtype=np.float64), inverse.shape).copy()
     states[..., :3, :3] = inverse[..., :3, :3].swapaxes(-1, -2)
     states[..., :3, 3] = -np.einsum(

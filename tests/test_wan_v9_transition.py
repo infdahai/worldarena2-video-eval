@@ -108,6 +108,22 @@ def test_normalized_inverse_cache_recovers_physical_translation_scale() -> None:
     np.testing.assert_allclose(recovered, physical, atol=2e-8, rtol=0)
 
 
+def test_fp32_cache_rotation_is_projected_to_strict_so3() -> None:
+    inverse = np.broadcast_to(np.eye(4, dtype=np.float32), (2, 21, 4, 4)).copy()
+    inverse[0, 3, 0, 1] = np.float32(4e-6)
+    recovered = physical_states_from_normalized_inverse(
+        inverse, np.ones((2, 21), dtype=bool), 0.1
+    )
+    rotation = recovered[..., :3, :3]
+    np.testing.assert_allclose(
+        rotation.swapaxes(-1, -2) @ rotation,
+        np.broadcast_to(np.eye(3), rotation.shape),
+        atol=1e-12,
+        rtol=0,
+    )
+    np.testing.assert_allclose(np.linalg.det(rotation), 1.0, atol=1e-12, rtol=0)
+
+
 def test_presence_requires_both_state_and_image_endpoints() -> None:
     state_present = np.ones((2, 21), dtype=bool)
     state_present[0, 4] = False
