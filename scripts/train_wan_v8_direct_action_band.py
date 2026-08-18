@@ -222,6 +222,15 @@ def _gradient_norm(named: Mapping[str, Any]) -> float:
     return math.sqrt(total)
 
 
+def _validate_all_trainable_gradients(named: Mapping[str, Any]) -> None:
+    for name, parameter in named.items():
+        gradient = parameter.grad
+        if gradient is None or not torch.isfinite(gradient).all():
+            raise RuntimeError(f"v8 missing or nonfinite trainable gradient: {name}")
+        if name.endswith("channel_gate") and not bool(torch.count_nonzero(gradient).item()):
+            raise RuntimeError(f"v8 geometry gate gradient is zero: {name}")
+
+
 def _calibrate(args, model, legacy, dataset, index_map, record, device) -> dict[str,float]:
     sample=str(record["sample"]); batch=_batch(dataset,index_map[sample]); correct=_correct_condition(args,batch,sample,device); wrong=_wrong_condition(args,batch,sample,record,device)
     with torch.no_grad():
@@ -246,6 +255,7 @@ def _train_step(args,model,legacy,dataset,index_map,record,device,optimizer,lamb
     optimizer.zero_grad(set_to_none=True)
     result=_forward(model,legacy,batch,correct,record,device,grad=True); (result["fm"]+lambda_cf*cc*result["energy"]).backward(); _release(model); fm=float(result["fm"].detach().cpu())
     result=_forward(model,legacy,batch,wrong,record,device,grad=True); (lambda_cf*cw*result["energy"]).backward(); _release(model)
+    _validate_all_trainable_gradients({name:p for name,p in model.named_parameters() if p.requires_grad})
     norm=float(torch.nn.utils.clip_grad_norm_([p for p in model.parameters() if p.requires_grad],1.0).detach().cpu())
     optimizer.step(); optimizer.zero_grad(set_to_none=True)
     return {"fm":fm,"ranking":ranking,"margin":ew-ec,"grad_norm":norm,"negative":str(record["negative_family"])}
@@ -283,7 +293,9 @@ def main() -> None:
         allocated=torch.cuda.max_memory_allocated(device); reserved=torch.cuda.max_memory_reserved(device)
         output={"contract":"wan-v8-production-smoke/1","iterations":metrics,"peak_allocated":allocated,"peak_reserved":reserved,"limit":MEMORY_LIMIT,"pass":allocated<MEMORY_LIMIT and reserved<MEMORY_LIMIT}
         (args.output_dir/"production-smoke.json").write_text(json.dumps(output,indent=2,sort_keys=True)+"\n"); print(json.dumps(output,sort_keys=True))
-        if not output["pass"]: raise RuntimeError("v8 production smoke exceeded 22 GiB"); return
+        if not output["pass"]:
+            raise RuntimeError("v8 production smoke exceeded 22 GiB")
+        return
     if args.mode in ("audit100","audit250"):
         raise RuntimeError("v8 formal audit is only legal after the corresponding trained checkpoint")
     target=args.target_step
