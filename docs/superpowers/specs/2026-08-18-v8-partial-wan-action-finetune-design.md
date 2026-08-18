@@ -1,72 +1,80 @@
-# Wan-Action v8 Partial Wan Action Fine-Tune Design
+# Wan-Action v8 Direct Action Band Design
 
 ## Decision
 
-v8 ends the frozen-backbone small-branch program. The approved first experiment
-tests one remaining mechanism hypothesis:
+The approved experiment is `v8-direct-action-band`.
 
-> Can a continuous band of native Wan self-attention learn that a complete,
-> correct robot action must predict the future better than a physically
-> consistent reversed, shifted, or arm-swapped action?
+It ends the frozen-backbone small-branch program and directly adapts one
+continuous band of native Wan self-attention. It tests two ordered hypotheses
+in one immutable lineage:
 
-The experiment partially unfreezes native Wan attention while retaining the
-validated SE(3) geometry path as a structural prior. It does not enlarge the
-old frozen branch, increase its rank, or continue v7.1-CF from step 25.
+1. **Phase M:** complete-action counterfactual supervision can make native Wan
+   reliably prefer the correct action over reverse, shift, and swap.
+2. **Phase T:** once action separation exists, the validated v6 position and
+   velocity supervision can turn that separation into better image-space
+   gripper trajectory.
 
-The experiment is named `v8-partial-wan-action-finetune`. It starts from the
-immutable clean-gated-step10 parent and is initialized from scratch. A v7 or
-v7.1 checkpoint is not a legal parent.
+v8 starts from the immutable clean-gated-step10 parent. It does not warm-start
+from v7 or v7.1, and it does not reuse their optimizer states.
 
-## Evidence and scope
+## Why this design replaces the previous v8 draft
 
-v7.1-CF established all of the following:
+The previous draft combined native Q/K/O unfreezing, a six-window gradient
+scan, and four geometry-specific LoRA families. That was safer but left two
+learned representations and an ambiguous attribution path.
 
-- the geometry branch was connected and trainable;
-- Q/K/V/O geometry LoRA and the channel gates received gradients;
-- explicit counterfactual ranking produced small sampled energy margins;
-- correct global flow matching remained healthy;
-- fixed audit-20 action separation and position/velocity probes did not
-  improve.
+The direct-action-band design is more aggressive and simpler:
 
-Those results do not prove that every possible frozen-backbone adapter is
-mathematically incapable of action conditioning. They are sufficient for the
-deadline-driven engineering decision to stop spending experiments on small
-frozen-backbone branches.
+- blocks `8-13` are fixed before training;
+- native Q/K/V/O are fully trainable in those six blocks;
+- geometry-specific Q/K/V/O LoRA is removed;
+- deterministic SE(3) attention shares native Q/K/V/O;
+- one channel gate per block controls the geometry residual;
+- action separation and trajectory supervision are measured at a fixed phase
+  boundary rather than mixed from step 0.
 
-v8 changes only the representation capacity and counterfactual completeness
-needed to test partial native adaptation. It does not add trajectory loss in
-Stage A.
+The design deliberately unfreezes V. Q/K can change attention relations, but V
+is needed to change the motion and visual content carried through those
+relations. O allows the adapted result to be written back into Wan.
 
 ## Fixed boundaries
 
 - Formal artifacts live under `/data/di/worldarena2_track1_20260815`.
 - Remote source lives at `/home/huazhi/nlh/baseline`; Wan source lives at
   `/home/huazhi/nlh/Wan2.2`.
-- The parent is the clean-gated-step10 checkpoint with SHA256
+- The parent is clean-gated-step10 with SHA256
   `105fb760fd371885ba362d26ef2352c260755e47cd036f46711181edc3b30ca2`.
-- The existing support-gated raster parent remains frozen.
+- The existing support-gated raster parent is frozen.
+- The trainable native band is exactly blocks `8-13`.
+- All Wan blocks outside `8-13` remain frozen.
+- FFN/MLP, LayerNorm, QK normalization, text cross-attention, VAE, and T5
+  remain frozen everywhere.
 - T5 and VAE remain outside the training hot path. Training consumes cached
-  latents, cached text context, action conditioning, and SE(3) conditioning.
+  latents and cached text context.
 - The video contract remains 81 RGB frames at 480x640 and 21 latent frames.
-- Native attention V, FFN/MLP, LayerNorm, QK normalization, text
-  cross-attention, VAE, and T5 remain frozen in Stage A.
-- Stage A adds no position loss, velocity loss, trajectory loss, gripper bias,
-  Depth, V-JEPA, DMD, GAN, or coordination branch.
-- The training topology is selected once before smoke and remains immutable
-  through step 250. A running job never changes world size.
-- GPU ownership is checked before launch. v8 never stops or reuses another
-  user's process.
+- Phase M uses only weighted FM and complete-action counterfactual ranking.
+- Phase T adds only the already validated v6 position and velocity losses.
+- No geometry LoRA, block scan, trajectory auxiliary network, gripper bias,
+  Depth, V-JEPA, DMD, GAN, coordination branch, or MLP unfreezing is allowed.
+- The selected world size and physical rank mapping remain fixed from smoke
+  through step 250. No running job changes topology.
+- GPU ownership is checked before every launch. v8 never stops or occupies
+  another user's process.
 
 ## Data and zero-leakage contract
 
-### Stage A data
+### Eligible source and optimizer pool
 
-Stage A uses the already cached, provenance-bound `clean-1785` eligible source
-with the existing balanced sampler. It does not wait for clean-5k. The 20
-fixed audit episodes are removed from the optimizer-eligible rows before the
-balanced replay is built.
+v8 uses the already cached, provenance-bound `clean-1785` source. It does not
+wait for clean-5k.
 
-The balanced target mix remains:
+A deterministic 20-episode audit set is selected before replay construction
+from the frozen v6 probe's 177-row held-out split. It covers multiple tasks,
+both arm identities, single-dominant scenes, bimanual scenes, and valid
+position/velocity probe targets. Those 20 identities are removed from
+optimizer-eligible rows. They were never used to fit the frozen probe.
+
+The remaining rows use the existing balanced sampler:
 
 | stratum | target share |
 |---|---:|
@@ -75,133 +83,123 @@ The balanced target mix remains:
 | mixed | 15% |
 | quiet | 10% |
 
-The replay receipt records both configured and realized counts. A missing
-stratum, a changed sample identity, or a mismatch between configured and
-realized replay bytes fails closed.
+The replay receipt records configured and realized stratum counts. A changed
+sample identity, missing stratum, replay-order drift, or mismatch between
+configured and realized bytes fails closed.
 
-`clean-1000` is retained only for deterministic smoke/debug comparison. It is
-not the formal Stage A training pool.
+`clean-1000` is retained only as a smoke/debug reference. It is not the formal
+v8 optimizer pool.
 
-### Evaluation isolation
+### Isolation rules
 
-- `dev-fast20` has zero sample overlap with training, block scan, calibration,
-  and audit data.
-- The fixed audit-20 has zero sample overlap with optimizer replay. It is a
-  deterministic held-out subset of clean-1785 and remains identical at steps
-  0, 100, and 250.
-- Official test data remains unavailable and is never accessed by Stage A. If
-  an official frozen manifest later becomes available, its identities must be
-  checked before any test generation, not during training selection.
-- Block-scan discovery and audit-20 are disjoint from each other.
-- Block-scan discovery is train-only and is not used for checkpoint gates.
-- Audit-20 is fixed before training and is not used to select the six-block
-  band.
+- audit-20 has zero overlap with optimizer replay;
+- dev-fast20 has zero overlap with optimizer replay, calibration, and
+  audit-20;
+- official test data is unavailable and never accessed by training or
+  development selection;
+- all manifests and derived subsets are schema-versioned and content-hashed;
+- source-split provenance must prove that every optimizer row belongs to the
+  training partition;
+- every receipt is validated before CUDA initialization.
 
-Every manifest and derived subset is schema-versioned, content-hashed, and
-bound into the run receipt before CUDA initialization.
+clean-5k may be prepared in parallel, but it is not used in this experiment.
+Scale-up requires a separate approval after step250 passes and requires its own
+cache-completeness and zero-leakage receipts.
 
-### Later scale-up
+## Direct native action-control band
 
-clean-5k is a gated Stage B artifact, not a Stage A prerequisite. It may be
-prepared in parallel, but Stage B cannot launch until it has:
+### Fixed block selection
 
-- an immutable source manifest;
-- a zero-overlap receipt against dev-fast20 and an authoritative source-split
-  receipt proving that every row belongs to the train partition rather than an
-  official-test partition; if a frozen official-test manifest is available,
-  its identities are additionally checked explicitly;
-- complete action, SE(3), latent, and text-context caches;
-- the same balanced-stratum schema as Stage A;
-- explicit approval after the Stage A mechanism result.
+The action-control band is exactly blocks `8-13`.
 
-## Continuous action-control band
+There is no block-gradient scan. Fixing the band removes selection noise,
+avoids consuming another discovery set, and places the trainable sequence
+immediately after the validated block-8 action injection point.
 
-### Train-only block scan
+### Native trainability
 
-The band contains exactly six consecutive self-attention blocks. Selection
-uses a deterministic 32-episode train-only discovery set covering multiple
-tasks and all four sampler strata.
-
-For each Wan self-attention block, the scan measures normalized native Q/K/O
-counterfactual gradient RMS under complete correct-versus-wrong action pairs.
-It reports separate reverse, shift, and swap scores. It performs no optimizer
-step and writes no checkpoint.
-
-Each six-block window receives the median normalized score across episodes and
-the minimum score across the three negative families. The default window is
-blocks `8-13`. Another window is selected only if:
-
-1. its aggregate score is at least 25% greater than blocks `8-13`;
-2. it is greater for at least two of the three negative families; and
-3. its advantage is present in both halves of the discovery set.
-
-If no window meets all three conditions, blocks `8-13` are selected. The
-selection receipt records per-block scores, the exact decision, and all input
-hashes.
-
-### Native attention trainability
-
-Within the selected band:
+For each selected block:
 
 - native Q is trainable;
 - native K is trainable;
+- native V is trainable;
 - native O is trainable;
-- native V is frozen;
-- native attention execution and Wan 3D RoPE remain production-identical.
+- native Wan 3D RoPE and attention implementation remain unchanged.
 
-Outside the selected band all Wan parameters remain frozen.
+For width 3072, six full Q/K/V/O projection families contain approximately
+226.5 million weights before projection biases. The runtime records the exact
+parameter names, shapes, dtypes, and total count from the production model.
 
-For Wan width 3072, six blocks of full Q/K/O contain approximately 170 million
-trainable parameters before projection biases. The runtime records the exact
-parameter names, shapes, dtypes, and count. Any trainable parameter outside the
-approved whitelist blocks training.
+The trainable whitelist is exact. One missing Q/K/V/O family, one extra Wan
+parameter, or a trainable parent-adapter parameter blocks smoke and training.
 
-## SE(3) geometry path in the same band
+## Shared deterministic SE(3) path
 
-Every selected block contains the validated arm-grouped SE(3) geometry path:
+Each selected block evaluates two attention paths from one shared native
+representation:
 
 ```text
 raw hidden
   |
-  +-- shared native Q/K/V projections
-  |     -> native Q/K normalization
-  |     -> Wan 3D RoPE
-  |     -> native attention
-  |     -> shared native O
-  |
-  +-- shared native pre-RoPE Q/K/V
-        + geometry-specific rank16 Q/K/V LoRA
-        -> fixed left/right arm-grouped SE(3)
-        -> geometry attention
-        -> shared native O
-        + geometry-specific rank16 O LoRA
-        -> zero-initialized channel gate
-        -> residual
+  +-- trainable native Q/K/V
+        |
+        +-- native Q/K normalization
+        |     -> Wan 3D RoPE
+        |     -> native attention
+        |     -> trainable shared O
+        |
+        +-- pre-RoPE Q/K/V
+              -> fixed arm-grouped SE(3)
+              -> geometry attention
+              -> trainable shared O
+              -> zero-initialized channel gate
+              -> geometry residual
 ```
 
-There is no frozen duplicate of native Q/K/O. The geometry path shares the
-same native Q/K/O projections that the native path uses; its rank16 LoRA is the
-branch-specific delta. Native V stays frozen and shared. This avoids two
-diverging base representations and avoids a second full projection copy.
+There is no geometry-specific Q/K/V/O LoRA and no duplicate full projection
+copy. The native and geometry paths share the same trainable Q/K/V/O.
 
-The existing SE(3) mathematical contract remains unchanged:
+The shared O projection is evaluated separately on native-attention output and
+geometry-attention output. The channel-gated geometry projection is added to
+the native self-attention output at the same pre-modulation residual location
+validated by v7/v7.1; it does not bypass or duplicate the Wan block modulation
+contract.
 
-- the fork occurs after native Q/K normalization and before Wan 3D RoPE;
-- per-arm identity is kinematic and never derived from image half;
-- arm transforms are anchored relative to each arm's legal initial pose;
-- missing-arm geometry output is exactly zero;
-- motion-scale normalization remains episode-shared;
-- left/right support may overlap in bimanual and crossing scenes.
+The validated SE(3) mathematical contract remains unchanged:
 
-Each geometry channel gate is exactly zero initialized. Therefore geometry
-LoRA is allowed to have zero step-0 gradient. Native Q/K/O must receive finite,
-nonzero gradients at step 0.
+- geometry forks after native Q/K normalization and before Wan 3D RoPE;
+- head identity is kinematic, never inferred from image half;
+- left and right head groups are fixed;
+- each arm preserves its legal initial anchor;
+- `arm_present=false` makes that arm's geometry output exactly zero;
+- motion-scale normalization is shared within an episode;
+- left and right support may overlap in crossing and bimanual scenes.
+
+Each block owns one FP32 channel gate with width 3072. It is exactly zero
+initialized. Step 0 is therefore output-equivalent to the clean parent even
+though native Q/K/V/O are marked trainable. Native Q/K/V/O must receive finite,
+nonzero gradients at step 0; geometry contribution begins after its gate moves
+away from zero.
+
+For audit attribution, every checkpoint is evaluated twice without retraining:
+
+1. learned geometry gates enabled;
+2. all geometry gates forced to zero.
+
+This ablation determines whether the deterministic SE(3) prior contributes
+beyond native full-action adaptation.
 
 ## Complete-action counterfactual contract
 
-Each optimizer step uses one correct forward and one wrong forward with the
-same RGB latent, text context, diffusion noise, timestep, GT future, and fixed
-energy mask.
+Each optimizer step uses one correct forward and one wrong forward with
+identical:
+
+- RGB latent;
+- text context;
+- diffusion noise and timestep;
+- GT future;
+- valid-latent mask;
+- ranking energy mask.
 
 The wrong family cycles deterministically:
 
@@ -209,322 +207,344 @@ The wrong family cycles deterministically:
 reverse -> shift+1 -> swap -> reverse -> shift-1 -> swap -> ...
 ```
 
-Unlike v7.1-CF, the complete action changes coherently:
+The complete wrong action coherently changes:
 
-- action raster;
+- raster occupancy;
 - EEF heatmaps;
 - flow-x and flow-y;
-- arm occupancy/support used as model conditioning;
 - gripper opening;
-- SE(3) transforms and arm presence.
+- conditioning support;
+- SE(3) transforms;
+- arm presence.
 
-Transform semantics are:
+Transform rules are:
 
 - **reverse:** reverse relative motion while preserving legal initial anchors,
-  then recompute flow and all time-derived channels;
-- **shift:** shift the complete action by one latent step, alternate `+1/-1`,
-  and use hold padding at the exposed boundary;
+  then recompute every time-derived raster and flow channel;
+- **shift:** shift the full action by one latent step, alternate `+1/-1`, and
+  use hold padding at the exposed boundary;
 - **swap:** exchange left/right relative motion and arm-local channels while
   preserving each arm's own initial pose and kinematic identity.
 
-All transformed payloads pass the same finite, shape, temporal-packing, and
-SE(3)-inverse validation as correct inputs.
+Every wrong payload passes the same shape, finite, temporal-packing, SE(3)
+inverse, and arm-presence validation as a correct payload.
 
-## Conditioning support and ranking energy mask
+## Conditioning support and fixed ranking mask
 
-The implementation exposes two distinct tensors:
+The model interface exposes two different tensors:
 
-1. `conditioning_support` is part of the action input and changes with the
-   complete negative action.
-2. `ranking_energy_mask` is derived once from the correct action support and
-   correct valid-latent mask. It is identical in correct and wrong energy
-   evaluation.
+1. `conditioning_support` is action input and changes with the wrong action.
+2. `ranking_energy_mask` is derived from correct support and never changes
+   between correct and wrong energy evaluation.
 
-The two concepts must not share an overloaded argument. The wrong action never
-changes its comparison denominator.
+The wrong action cannot change its comparison denominator.
 
-For each sample, the ranking mask is:
+For each sample:
 
 ```text
-valid latent mask * union(correct left support, correct right support)
+ranking_energy_mask
+    = valid latent mask
+      * union(correct left support, correct right support)
 ```
 
-The existing correct `loss_weight` is applied inside that support. A sample
-with zero finite mask mass fails closed rather than falling back to global
-background energy.
+The existing correct `loss_weight` remains inside that region. A sample with
+zero or non-finite fixed mask mass fails closed rather than falling back to a
+global background average.
 
-The per-sample energy is unreduced robot/action-region flow-matching error,
-normalized by fixed correct-mask mass:
+The per-sample ranking energy is:
 
 ```text
-E(action) = sum(mask * correct_loss_weight * FM_error(action))
+E(action) = sum(mask * correct_loss_weight * unreduced_FM(action))
             / sum(mask * correct_loss_weight)
 ```
 
-## Stage A objective and calibration
+## Phase M: action-separation training
 
-Stage A uses:
+Phase M runs from step 0 through step 100:
 
 ```text
-L = weighted_FM(correct) + lambda_cf * L_cf
+L_M = weighted_FM(correct) + lambda_cf * L_cf
 
 L_cf = softplus((E_correct - E_wrong) / tau)
 tau = 0.1
 ```
 
-Only one wrong family is graph-bearing per optimizer step. The implementation
-may use the validated sequential two-forward analytic-VJP method to avoid
-holding two checkpoint graphs simultaneously, but its gradients must match a
-direct pairwise oracle on a small non-checkpoint fixture.
+Only one wrong family is graph-bearing per optimizer step. The sequential
+two-forward analytic-VJP implementation must match a direct pairwise oracle on
+a small non-checkpoint fixture.
 
-`lambda_cf` is calibrated once on a deterministic calibration batch so that:
+### Counterfactual calibration
+
+`lambda_cf` is calibrated once on a deterministic calibration batch over the
+common active native Q/K/V/O set:
 
 ```text
-RMS(lambda_cf * grad_native_QKO(L_cf))
-    = 0.5 * RMS(grad_native_QKO(weighted_FM))
+RMS(lambda_cf * grad_QKVO(L_cf))
+    = 0.5 * RMS(grad_QKVO(weighted_FM))
 ```
 
-The common active set is native Q/K/O only. Zero-gated geometry LoRA and gates
-are not included in the calibration denominator. Non-finite, zero, or
-disconnected calibration gradients block launch. The calibrated scalar is
-then frozen for the entire Stage A run; it is never dynamically adjusted from
-training metrics.
+Zero-gated geometry parameters are excluded from the calibration denominator.
+Non-finite, zero, or disconnected gradients block launch. `lambda_cf` is then
+frozen for Phase M and Phase T.
 
-## Optimizer and schedule
+### Step25 health gate
 
-Stage A uses one optimizer with explicit parameter groups:
+Step25 does not eliminate a run for weak action separation. It requires:
 
-| parameter family | initial LR | weight decay |
-|---|---:|---:|
-| native Q/K/O in selected band | `1e-6` | `0.01` |
-| geometry Q/K/V/O LoRA rank16 | `5e-5` | `0` |
-| geometry channel gates | `5e-5` | `0` |
-
-- optimizer: AdamW;
-- warmup: 25 optimizer steps;
-- schedule: cosine decay to 20% of each group's initial LR at step 250;
-- global gradient clipping: L2 norm `1.0`;
-- micro-batch: one per rank;
-- activation checkpointing: production Wan policy;
-- precision: production bfloat16 where supported, with FP32 optimizer states,
-  LoRA parameters, gates, SE(3) construction, and ranking reductions.
-
-The checkpoint stores all optimizer groups, scheduler state, calibrated
-`lambda_cf`, selected band, topology, replay cursor, source closure, parent
-hash, dataset hash, and update count. Resume rejects any mismatch.
-
-If the gated step-500 extension is approved, the same scheduler continues
-without reset from 20% at step 250 to 10% at step 500. It does not introduce a
-second warmup or restore a higher LR.
-
-## Checkpoints and gates
-
-### Step 25: health gate
-
-Step 25 is not an action-separation elimination point. It verifies:
-
-- every approved native Q/K/O family has finite, nonzero gradient history;
-- geometry LoRA and gates begin updating after the zero-gate boundary;
-- native V and all other frozen parameters have no gradients;
-- correct FM and ranking loss are finite;
-- attention, geometry residual, and block-output RMS remain within 10x of the
-  preflight reference and show no monotonic explosion;
+- every approved Q/K/V/O family has finite, nonzero gradient history;
+- channel gates receive finite gradients and begin updating;
+- every frozen family has zero gradients;
+- FM and ranking loss remain finite;
+- attention, geometry residual, and block-output RMS remain below 10x their
+  preflight references and show no monotonic explosion;
 - routing retention is at least 90%;
-- no NaN, Inf, OOM, or optimizer/scheduler mismatch occurred.
+- no NaN, Inf, OOM, optimizer drift, or scheduler drift occurs.
 
-Failure stops immediately. Weak counterfactual wins alone do not stop step 25.
+Failure stops immediately. A healthy run continues to step100.
 
-### Step 100: trend gate
+### Step100 mechanism gate
 
-Fixed audit-20 requires:
+The fixed held-out audit-20 requires:
 
 - reverse wins at least 11/20;
-- hard `shift(+1,-1)` wins at least 11/20;
+- hard shift, using the more competitive of `+1/-1`, wins at least 11/20;
 - swap wins at least 11/20;
-- all three average ranking margins are positive;
+- all three mean ranking margins are positive;
 - routing retention is at least 90%;
 - correct FM regression is below 2%;
 - position and velocity do not regress by more than 2% relative to the fresh
   parent.
 
-If any counterfactual family remains at or below 10/20, has non-positive mean
-margin, or the health gates fail, Stage A stops. A passing run continues to
-step 250.
+The report includes gate-enabled and gate-zero ablations. The promotion gate is
+evaluated with learned gates enabled.
 
-### Step 250: mechanism hard gate
+If any negative remains at or below 10/20, any mean margin is non-positive, or
+a health condition fails, v8 stops. It does not add trajectory loss, increase
+LR, widen the band, or continue to step250.
 
-Fixed audit-20 requires:
+## Phase T: trajectory-alignment training
+
+Phase T starts only from a passing step100 checkpoint and runs through step250.
+The architecture, data pool, replay lineage, topology, trainable whitelist,
+and counterfactual objective remain unchanged.
+
+It adds the validated frozen v6 gripper probe losses:
+
+```text
+L_T = weighted_FM(correct)
+      + lambda_cf * L_cf
+      + lambda_pos * L_position
+      + lambda_vel * L_velocity
+```
+
+The labels, frame-local probe, visibility masks, per-arm semantics, and
+held-out probe contract are reused without modification. The losses do not
+create a new trajectory network and do not use SAM3.
+
+At the Phase T boundary, `lambda_pos` and `lambda_vel` are calibrated once over
+native Q/K/V/O gradients:
+
+```text
+RMS(lambda_pos * grad_QKVO(L_position))
+    = 0.25 * RMS(grad_QKVO(weighted_FM))
+
+RMS(lambda_vel * grad_QKVO(L_velocity))
+    = 0.15 * RMS(grad_QKVO(weighted_FM))
+```
+
+The scalars are frozen through step250. Phase T does not reset optimizer state,
+warmup, or the counterfactual calibration.
+
+## Optimizer and schedule
+
+One AdamW optimizer uses two explicit groups:
+
+| parameter family | initial LR | weight decay |
+|---|---:|---:|
+| native Q/K/V/O in blocks 8-13 | `1e-6` | `0.01` |
+| six geometry channel gates | `5e-5` | `0` |
+
+- warmup: 25 optimizer steps;
+- schedule: cosine decay to 20% of each initial LR at step250;
+- global gradient clipping: L2 norm `1.0`;
+- micro-batch: one per rank;
+- activation checkpointing: production Wan policy;
+- production attention dtype: bfloat16 where supported;
+- optimizer states, gates, SE(3), ranking reductions, and calibration norms:
+  FP32.
+
+The checkpoint stores complete optimizer groups and state, scheduler state,
+all calibrated loss weights, phase identity, topology, replay cursor, source
+closure, parent hash, dataset hash, and exact update count. Resume rejects any
+mismatch and cannot resume Phase T from a Phase M checkpoint that failed its
+gate.
+
+## Step250 hard gate
+
+The fixed held-out audit-20 requires:
 
 - reverse wins at least 14/20;
 - hard shift wins at least 14/20;
 - swap wins at least 14/20;
-- all three average ranking margins are positive;
+- all three mean ranking margins are positive;
+- position error improves by more than 5% over the fresh parent;
+- velocity error improves by more than 5% over the fresh parent;
 - routing retention is at least 90%;
 - correct FM regression is at most 2%.
 
-This gate is intentionally separate from the trajectory-benefit gate.
+The report again includes gate-enabled and gate-zero ablations.
 
-If the mechanism hard gate fails, v8 partial Q/K/O Stage A stops. It does not
-continue to step 500, unfreeze V, increase rank, widen the band, or add
-trajectory loss.
+If any hard gate fails, training stops at step250. There is no default step500,
+rank increase, wider band, V-only follow-up, or additional loss sweep.
 
-### Trajectory-benefit decision
-
-After the mechanism gate passes, compare position and velocity probes with the
-fresh parent:
-
-- if both improve by more than 5%, decode 4-8 fixed RGB sanity samples;
-- if counterfactual separation passes but either trajectory probe improves by
-  5% or less, the mechanism is considered learned but incomplete, and the run
-  becomes eligible for a separately approved Stage B with v6 position and
-  velocity supervision;
-- if RGB shows black/broken output, severe arm disappearance, or obvious
-  quality collapse, do not run fast20.
-
-Step 500 is allowed only when step 250 passes the mechanism gate, both
-trajectory probes improve by more than 5%, RGB is healthy, and audit metrics
-are still improving from step 100 to step 250. It uses the same objective and
-does not change the trainable whitelist.
+If the hard gate passes, decode 4-8 fixed RGB sanity episodes. Black/broken
+video, severe arm disappearance, temporal-role collapse, or obvious visual
+quality failure blocks matched fast20.
 
 ## Production smoke and memory gate
 
-The selected topology runs a production-shape smoke before Stage A:
+Before Phase M, the selected immutable topology runs three production-shape
+iterations:
 
 ```text
 81 frames
 480x640
 cached latent and text context
-complete action conditioning
-six-block native Q/K/O plus geometry path
-one correct and one wrong forward
+complete correct and wrong action conditioning
+six blocks of trainable native Q/K/V/O
+six shared-projection SE(3) attention paths
+correct forward + wrong forward
 backward -> optimizer.step -> zero_grad
-three consecutive iterations
 ```
 
-After initialization and warmup, reset CUDA peak statistics. Every rank must
-record allocated/reserved peak memory and step time. Every rank must remain
-below 22 GiB allocated and 22 GiB reserved. Any OOM, unexplained memory growth,
-foreign trainable parameter, or inactive required parameter fails closed.
+CUDA peak statistics are reset after initialization and warmup. Every rank
+records peak allocated memory, peak reserved memory, and step time. Every rank
+must remain below 22 GiB allocated and 22 GiB reserved.
 
-Smoke also proves that T5 and VAE are not loaded in the training process.
+Smoke additionally proves:
 
-## Stage B boundary
+- exact Q/K/V/O and gate trainable whitelist;
+- nonzero gradients for all required native projection families;
+- no gradients outside the whitelist;
+- optimizer state exists for every trainable tensor;
+- correct/wrong sequential gradients match the direct oracle;
+- T5 and VAE are absent from the training process;
+- no unexplained memory growth occurs across three iterations.
 
-Stage B is not automatically launched by this specification. It requires the
-Stage A mechanism gate and a new explicit approval.
+If single-GPU smoke fails memory, the same architecture may move to a fixed
+FSDP topology after a separate smoke. The architecture or batch semantics are
+not silently reduced to make single-GPU execution pass.
 
-The allowed Stage B direction is:
+## RGB and matched fast20
 
-```text
-L = weighted_FM
-    + calibrated counterfactual ranking
-    + calibrated v6 position loss
-    + calibrated v6 velocity loss
-```
-
-Initial gradient budgets relative to native-Q/K/O FM gradient are:
-
-- counterfactual: 50-100%;
-- position: 20-30%;
-- velocity: 10-20%.
-
-Stage B may use clean-5k after its independent cache and zero-leakage contract
-passes. Native V may be unfrozen only if counterfactual separation is already
-stable but trajectory improvement plateaus. MLP, norms, cross-attention, VAE,
-and T5 remain frozen.
-
-## RGB and matched evaluation
-
-The first matched video comparison contains only:
+The first video comparison contains only:
 
 - clean S1A125;
 - clean-gated-step10;
-- v8 best-1;
-- v8 best-2, only if a second checkpoint has a distinct mechanism/quality
-  trade-off.
+- v8 step250;
+- one earlier v8 checkpoint only if it has a documented action/quality
+  trade-off distinct from step250.
 
-Generation conditions are identical across candidates. Promotion requires:
+Generation parameters are identical. Promotion requires:
 
 - failure-aware trajectory improvement of at least 5%;
 - paired wins of at least 12/20;
 - detector coverage drop no greater than 5 percentage points;
 - no detector-failure regression hidden by survivor-only averaging;
-- black/broken count equal to zero;
-- bimanual and temporal-leakage guardrails not worse than clean-gated-step10.
+- zero black/broken videos;
+- bimanual and temporal-leakage guardrails not worse than
+  clean-gated-step10.
 
 VLM and JEPA remain no-regression evaluators for later full development
-evaluation; they do not enter Stage A training.
+evaluation. They do not enter v8 training.
 
-## Provenance and artifact contract
+## Scale-up boundary
 
-The run records:
+Passing step250 and matched fast20 makes this exact architecture eligible for
+clean-5k preparation and longer exposure. Scale-up is a separate approved run;
+it does not alter Q/K/V/O scope or add new modules.
 
-- source commit and recursive source-closure SHA256;
+If v8 fails action separation at step100, or fails both action separation and
+trajectory improvement at step250, the next route is not another small branch.
+The project must reconsider a wider native-Wan fine-tune and larger
+action-video data under a new design.
+
+## Provenance and artifacts
+
+Every run records:
+
+- source commit and recursive source-closure hash;
 - parent path and SHA256;
 - Wan model-manifest and source hashes;
-- clean-1785 manifest/cache and sampler hashes;
-- block-scan discovery and decision hashes;
-- audit-20 hash;
-- replay hash and per-step negative identity;
-- exact trainable names/counts and optimizer groups;
-- calibrated `lambda_cf`, gradient norms, and calibration batch hash;
-- topology, physical GPU mapping, world size, dtype, and software environment;
-- checkpoint lineage, optimizer/scheduler state, and step count;
-- smoke, audit, RGB, and matched-evaluation reports.
+- clean-1785 source/cache and balanced-replay hashes;
+- audit-20 identities and hash;
+- per-step negative family and shift direction;
+- exact trainable names, shapes, dtypes, and parameter count;
+- optimizer groups and scheduler state;
+- `lambda_cf`, `lambda_pos`, `lambda_vel`, their calibration batches, and raw
+  gradient norms;
+- topology, rank mapping, dtype, environment, and GPU ownership receipt;
+- step25 health, step100 mechanism, step250 hard-gate, gate-ablation, RGB, and
+  matched-evaluation reports.
 
 Persistent outputs are written atomically under a dedicated v8 directory in
-`/data/di/worldarena2_track1_20260815`. Existing v7/v7.1 artifacts are
+`/data/di/worldarena2_track1_20260815`. Existing v7/v7.1 artifacts remain
 read-only provenance inputs and are never overwritten.
 
 ## Required tests
 
 Implementation must provide focused tests for:
 
-1. exact native trainable whitelist and frozen V/MLP/norm/cross-attention;
-2. six consecutive blocks and deterministic scan fallback to `8-13`;
-3. scan/audit/dev-fast20/official-test identity disjointness;
-4. shared native projections with no duplicate full Q/K/O copy;
-5. zero-gate parent equivalence before any optimizer step;
-6. complete reverse, shift+1, shift-1, and anchored swap transformations;
-7. fixed ranking-energy mask under changed conditioning support;
-8. direct pairwise versus sequential analytic-VJP gradient equivalence;
-9. calibration over native Q/K/O only and frozen `lambda_cf` thereafter;
-10. optimizer-group LR, weight decay, scheduler, and resume validation;
-11. step25/100/250 gate semantics and prohibition of premature step50/500;
-12. checkpoint rejection after source, data, band, topology, or replay drift;
-13. production smoke memory, gradient, T5/VAE-absence, and telemetry checks;
-14. zero persistent writes outside the authoritative `/data/di` root.
+1. exact blocks `8-13` and prohibition of block scanning;
+2. exact native Q/K/V/O plus six-gate trainable whitelist;
+3. frozen parent, V outside the band, MLP, norms, cross-attention, VAE, and T5;
+4. shared Q/K/V/O between native and geometry paths with no geometry LoRA or
+   duplicate full projection copy;
+5. zero-gate output equality with the clean parent;
+6. gate-enabled versus forced-zero checkpoint audit;
+7. anchored reverse, shift+1, shift-1, and swap complete-action transforms;
+8. fixed ranking mask under changed conditioning support;
+9. direct pairwise and sequential analytic-VJP gradient equality;
+10. counterfactual calibration over native Q/K/V/O only;
+11. v6 position/velocity calibration at the Phase T boundary;
+12. audit/replay/dev-fast20 isolation and source-train partition provenance;
+13. Phase M to Phase T gate and resume rejection after a failed step100;
+14. exact optimizer LR, weight decay, scheduler, clipping, and checkpoint state;
+15. step25/100/250 gate semantics and absence of an automatic step500;
+16. production memory, gradient, optimizer-state, and T5/VAE-absence smoke;
+17. checkpoint rejection after source, data, topology, phase, or replay drift;
+18. zero persistent writes outside the authoritative `/data/di` root.
 
 ## Final decision tree
 
 ```text
 clean-gated-step10
         |
-train-only six-block scan
+fixed blocks 8-13
+native Q/K/V/O trainable
++ shared deterministic SE(3) attention
         |
-continuous native Q/K/O band
-+ shared SE(3) geometry LoRA
+Phase M, steps 0-100
+FM + full-action CF
         |
-full-action counterfactual objective
-+ clean-1785 balanced
+        +-- step100 action separation fails
+        |      -> stop v8
         |
-step25 health
-        |
-step100 trend
-        |
-step250 mechanism gate
-        |
-        +-- CF separation fails
-        |      -> stop partial-Q/K/O Stage A
-        |
-        +-- CF separation passes, trajectory <=5%
-        |      -> eligible for approved trajectory-supervision Stage B
-        |
-        +-- CF separation passes, trajectory >5%
-               -> RGB sanity -> optional step500 -> matched fast20
+        +-- step100 passes
+               |
+          Phase T, steps 100-250
+          + position + velocity
+               |
+               +-- step250 fails
+               |      -> stop, report attribution
+               |
+               +-- step250 passes
+                      -> RGB sanity
+                      -> matched fast20
+                      -> separately approved clean-5k scale-up
 ```
 
-This experiment answers one question only: whether partial native Wan
-attention adaptation allows complete action semantics to influence the future
-video prediction. It does not attempt to solve data scale, trajectory
-supervision, and visual-quality optimization in the same first run.
+This design intentionally uses one architecture, one parent, one dataset, one
+replay lineage, and one ordered loss transition. It is bold in where it trains
+Wan and conservative in how many simultaneous hypotheses it asks the first run
+to resolve.
