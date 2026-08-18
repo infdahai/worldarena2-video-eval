@@ -247,9 +247,10 @@ def test_install_rejects_non_stage_a_or_invalid_backbone_shapes() -> None:
 def test_install_is_atomic_when_a_late_wrapper_construction_fails() -> None:
     backbone = _Backbone()
     originals = {index: backbone.blocks[index].self_attn for index in BLOCKS}
-    originals[16].o = nn.Linear(1, 1, bias=True)
+    del originals[16].q_norm
+    del originals[16].k_norm
 
-    with pytest.raises(ValueError, match="bias-free"):
+    with pytest.raises(TypeError, match="q_norm/k_norm"):
         install_v7_attention(backbone, BLOCKS, _rope, _attention)
 
     assert {
