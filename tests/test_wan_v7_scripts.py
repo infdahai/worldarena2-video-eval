@@ -37,6 +37,29 @@ def test_v7_launcher_excludes_gpu7_and_cannot_skip_audit25() -> None:
     assert "GPU7" not in result.stdout
 
 
+def test_v7_single_gpu_launcher_uses_only_gpu6() -> None:
+    result = subprocess.run(
+        ["bash", str(ROOT / "scripts/run_wan_se3_probe_v7_single_gpu.sh"), "dry-run"],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "CUDA_VISIBLE_DEVICES=6" in result.stdout
+    assert "nproc_per_node=1" in result.stdout
+    assert "v7-se3-single-gpu" in result.stdout
+    assert "CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6" not in result.stdout
+
+
+def test_v7_single_gpu_launcher_passes_the_isolated_topology() -> None:
+    launcher = (ROOT / "scripts/run_wan_se3_probe_v7_single_gpu.sh").read_text()
+    assert "--topology single-gpu" in launcher
+    assert "--nproc_per_node=1" in launcher
+    assert "runs/v7-se3-single-gpu" in launcher
+
+
 def test_v7_launcher_validates_committed_closure_before_torchrun() -> None:
     launcher = (ROOT / "scripts/run_wan_se3_probe_v7.sh").read_text()
     for phase in ("preflight", "smoke", "train10", "train25", "audit25", "train50", "audit50"):

@@ -25,11 +25,27 @@ FORMAL_ROOT = Path("/data/di/worldarena2_track1_20260815")
 SOURCE_ROOT = Path("/home/huazhi/nlh/baseline")
 WAN_SOURCE = Path("/home/huazhi/nlh/Wan2.2")
 CUDA_VISIBLE_DEVICES = "0,1,2,3,4,5,6"
+SINGLE_GPU_CUDA_VISIBLE_DEVICES = "6"
 CALIBRATED_LR = 2e-5
 MEMORY_LIMIT_BYTES = 22 * 1024**3
 FROZEN_V7_PARENT_SHA256 = "105fb760fd371885ba362d26ef2352c260755e47cd036f46711181edc3b30ca2"
 V7_CHECKPOINT_STEPS = (10, 25, 50)
 V7_WORLD_SIZE = 7
+V7_SINGLE_GPU_WORLD_SIZE = 1
+_TOPOLOGIES = {
+    "seven-rank": {
+        "cuda_visible_devices": CUDA_VISIBLE_DEVICES,
+        "world_size": V7_WORLD_SIZE,
+        "rank_mapping": list(range(V7_WORLD_SIZE)),
+        "smoke_contract": "wan-action-v7-seven-rank-production-smoke/1",
+    },
+    "single-gpu": {
+        "cuda_visible_devices": SINGLE_GPU_CUDA_VISIBLE_DEVICES,
+        "world_size": V7_SINGLE_GPU_WORLD_SIZE,
+        "rank_mapping": [6],
+        "smoke_contract": "wan-action-v7-single-gpu-production-smoke/1",
+    },
+}
 TRUSTED_PINS = SOURCE_ROOT / "source_inputs/trusted-wan-v7-se3-lineage-pins.json"
 TRUSTED_PINS_SHA256 = "50ba7efe44a6232962a55b90c9b3fca02aea839a1565e59cc7c9b396e420f6c8"
 def _load_runtime_dependencies() -> None:
@@ -43,8 +59,9 @@ def _load_runtime_dependencies() -> None:
     global require_wan_backbone_checkpoint, validate_training_hot_path_components
     global validate_se3_cache, install_wan_ti2v_package, validate_clean_gated_parent
     global ParentPlusSE3Wan, STAGE_A_BLOCKS, install_v7_attention, v7_trainable_parameter_names
-    global build_v7_checkpoint, build_v7_replay_from_v6, v7_discovery_gate
-    global v7_optimizer_group, validate_v7_checkpoint
+    global build_v7_checkpoint, build_v7_replay_from_v6, build_v7_single_gpu_checkpoint
+    global build_v7_single_gpu_replay, v7_discovery_gate, v7_optimizer_group
+    global validate_v7_checkpoint, validate_v7_single_gpu_checkpoint
     import numpy as np
     import torch
     import torch.distributed as dist
@@ -60,12 +77,22 @@ def _load_runtime_dependencies() -> None:
     from worldarena_baseline.wan_ti2v_import import install_wan_ti2v_package
     from worldarena_baseline.wan_v6_checkpoint import validate_clean_gated_parent
     from worldarena_baseline.wan_v7_model import ParentPlusSE3Wan, STAGE_A_BLOCKS, install_v7_attention, v7_trainable_parameter_names
-    from worldarena_baseline.wan_v7_training import build_v7_checkpoint, build_v7_replay_from_v6, v7_discovery_gate, v7_optimizer_group, validate_v7_checkpoint
+    from worldarena_baseline.wan_v7_training import (
+        build_v7_checkpoint,
+        build_v7_replay_from_v6,
+        build_v7_single_gpu_checkpoint,
+        build_v7_single_gpu_replay,
+        v7_discovery_gate,
+        v7_optimizer_group,
+        validate_v7_checkpoint,
+        validate_v7_single_gpu_checkpoint,
+    )
 
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", choices=("preflight", "smoke", "train", "audit"), required=True)
+    parser.add_argument("--topology", choices=tuple(_TOPOLOGIES), default="seven-rank")
     parser.add_argument("--checkpoint-dir", type=Path, required=True)
     parser.add_argument("--cache-root", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, required=True)
@@ -87,6 +114,31 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--target-step", type=int, choices=V7_CHECKPOINT_STEPS)
     parser.add_argument("--seed", type=int, default=20260818)
     return parser.parse_args(argv)
+
+
+def _topology(args: argparse.Namespace) -> Mapping[str, Any]:
+    try:
+        return _TOPOLOGIES[args.topology]
+    except (AttributeError, KeyError) as exc:
+        raise RuntimeError("v7 topology is unsupported") from exc
+
+
+def _expected_replay(v6_replay: Mapping[str, Any], *, topology: str) -> dict[str, Any]:
+    if topology == "seven-rank":
+        return build_v7_replay_from_v6(v6_replay)
+    if topology == "single-gpu":
+        return build_v7_single_gpu_replay(v6_replay)
+    raise RuntimeError("v7 topology is unsupported")
+
+
+def _validate_checkpoint(payload: Mapping[str, Any], *, expected: Mapping[str, Any], topology: str) -> None:
+    if topology == "seven-rank":
+        validate_v7_checkpoint(payload, expected=expected)
+        return
+    if topology == "single-gpu":
+        validate_v7_single_gpu_checkpoint(payload, expected=expected)
+        return
+    raise RuntimeError("v7 topology is unsupported")
 
 
 def _under_formal_root(path: Path, *, writable: bool = False) -> Path:
@@ -415,6 +467,9 @@ def _preflight(args: argparse.Namespace, model: ParentPlusSE3Wan, dataset: WanAc
     original_gradients = gradients["original_parameter_gradients"]
     receipt = {
         "contract": "wan-action-v7-preflight/1",
+        "topology": args.topology,
+        "world_size": _topology(args)["world_size"],
+        "rank_mapping": _topology(args)["rank_mapping"],
         "passed": bool(gradients["finite_gate_gradients"] and gradients["nonzero_gate_gradients"] and not original_gradients),
         "calibrated_lr": CALIBRATED_LR,
         "parent_sha256": FROZEN_V7_PARENT_SHA256,
@@ -461,7 +516,13 @@ def _checkpoint_expected(*, args: argparse.Namespace, replay: Mapping[str, Any],
 
 
 def _save_checkpoint(path: Path, *, step: int, model: ParentPlusSE3Wan, optimizer: torch.optim.Optimizer, replay: Mapping[str, Any], v6_replay: Mapping[str, Any], source_manifest_sha256: str, cache_sha256: str, receipt: Mapping[str, Any]) -> None:
-    payload = build_v7_checkpoint(
+    if receipt.get("topology") == "seven-rank":
+        builder = build_v7_checkpoint
+    elif receipt.get("topology") == "single-gpu":
+        builder = build_v7_single_gpu_checkpoint
+    else:
+        raise RuntimeError("v7 checkpoint has no supported topology")
+    payload = builder(
         step=step,
         model=model,
         optimizer=optimizer,
@@ -485,8 +546,9 @@ def _audit(args: argparse.Namespace, model: ParentPlusSE3Wan, probe: GripperTraj
         raise RuntimeError("v7 discovery audit requires exactly eight fixed rows")
     index_by_sample = {str(row["sample"]): index for index, row in enumerate(dataset.rows)}
     episodes: list[dict[str, Any]] = []
+    topology = _topology(args)
     for episode_index, row in enumerate(discovery):
-        if episode_index % V7_WORLD_SIZE != dist.get_rank():
+        if episode_index % int(topology["world_size"]) != dist.get_rank():
             continue
         sample = row.get("sample")
         if not isinstance(sample, str) or sample not in index_by_sample:
@@ -502,7 +564,7 @@ def _audit(args: argparse.Namespace, model: ParentPlusSE3Wan, probe: GripperTraj
                     observability_root=args.observability_root,
                 )
         episodes.append({"sample": sample, "record": record, "metrics": values})
-    gathered: list[list[dict[str, Any]] | None] = [None] * V7_WORLD_SIZE
+    gathered: list[list[dict[str, Any]] | None] = [None] * int(topology["world_size"])
     dist.all_gather_object(gathered, episodes)
     merged = [item for rank_values in gathered if rank_values for item in rank_values]
     if len(merged) != 8:
@@ -547,8 +609,20 @@ def _validate_preflight_source_hashes(receipt: Mapping[str, Any], *, source_mani
         raise RuntimeError("v7 preflight receipt source closure digest mismatch")
 
 
+def _validate_preflight_topology(receipt: Mapping[str, Any], *, topology: Mapping[str, Any], name: str) -> None:
+    if (
+        receipt.get("topology") != name
+        or receipt.get("world_size") != topology["world_size"]
+        or receipt.get("rank_mapping") != topology["rank_mapping"]
+    ):
+        raise RuntimeError("v7 preflight receipt topology mismatch")
+
+
 def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], WanActionCachedDataset, str, str, str]:
-    if os.environ.get("CUDA_VISIBLE_DEVICES") != CUDA_VISIBLE_DEVICES:
+    topology = _topology(args)
+    if os.environ.get("CUDA_VISIBLE_DEVICES") != topology["cuda_visible_devices"]:
+        if args.topology == "single-gpu":
+            raise RuntimeError("v7 single-gpu requires exact CUDA_VISIBLE_DEVICES=6")
         raise RuntimeError("v7 requires exact CUDA visibility for ranks 0 through 6")
     paths = (
         args.checkpoint_dir, args.cache_root, args.manifest, args.data_source_manifest,
@@ -601,10 +675,10 @@ def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str
         raise RuntimeError("v7 requires exactly clean-1000 cached rows")
     cache_sha = _cache_sha256(dataset, source_manifest_sha256=pins["clean1000_manifest"])
     v6_replay = _read_json(args.v6_replay)
-    expected_replay = build_v7_replay_from_v6(v6_replay)
+    expected_replay = _expected_replay(v6_replay, topology=args.topology)
     actual_replay = _read_json(args.v7_replay)
     if actual_replay != expected_replay:
-        raise RuntimeError("v7 replay differs from trusted v6 prefix")
+        raise RuntimeError(f"v7 {args.topology} replay differs from trusted v6 prefix")
     if sha256_file(args.parent_checkpoint) != FROZEN_V7_PARENT_SHA256:
         raise RuntimeError("v7 parent checkpoint SHA differs from frozen clean parent")
     require_wan_backbone_checkpoint(args.checkpoint_dir)
@@ -614,6 +688,7 @@ def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str
 def main(argv: Sequence[str] | None = None) -> None:
     args = parse_args(argv)
     _load_runtime_dependencies()
+    topology = _topology(args)
     if args.mode == "train" and args.target_step is None:
         raise RuntimeError("v7 train mode requires an approved target step")
     if args.mode == "audit" and (args.resume is None or args.audit_output is None):
@@ -629,6 +704,7 @@ def main(argv: Sequence[str] | None = None) -> None:
             source_manifest_sha256=source_manifest_sha,
             source_code_sha256=source_code_sha,
         )
+        _validate_preflight_topology(receipt, topology=topology, name=args.topology)
         expected = _checkpoint_expected(
             args=args,
             replay=replay,
@@ -644,7 +720,13 @@ def main(argv: Sequence[str] | None = None) -> None:
     device = torch.device("cuda", local_rank)
     dist.init_process_group("nccl", device_id=device)
     try:
-        if dist.get_world_size() != V7_WORLD_SIZE or dist.get_rank() != local_rank or local_rank not in range(V7_WORLD_SIZE):
+        if (
+            dist.get_world_size() != topology["world_size"]
+            or dist.get_rank() != local_rank
+            or local_rank not in range(int(topology["world_size"]))
+        ):
+            if args.topology == "single-gpu":
+                raise RuntimeError("v7 single-gpu requires one process on physical GPU6")
             raise RuntimeError("v7 requires exact seven-rank GPU0-6 topology")
         torch.manual_seed(args.seed)
         torch.set_float32_matmul_precision("high")
@@ -662,7 +744,7 @@ def main(argv: Sequence[str] | None = None) -> None:
         start_step = 0
         if args.resume is not None:
             payload = torch.load(args.resume, map_location="cpu", weights_only=True)
-            validate_v7_checkpoint(payload, expected=expected)
+            _validate_checkpoint(payload, expected=expected, topology=args.topology)
             _load_gate_state(model, payload["model"])
             optimizer.load_state_dict(payload["optimizer"])
             _move_optimizer_state(optimizer, device)
@@ -715,11 +797,11 @@ def main(argv: Sequence[str] | None = None) -> None:
                 "gate_gradient_seen": gate_grad_seen,
                 "original_gradient_seen": original_gradient_seen,
             }
-            gathered: list[dict[str, Any] | None] = [None] * V7_WORLD_SIZE
+            gathered: list[dict[str, Any] | None] = [None] * int(topology["world_size"])
             dist.all_gather_object(gathered, local)
             passed = all(item is not None and item["max_memory_allocated"] < MEMORY_LIMIT_BYTES and item["max_memory_reserved"] < MEMORY_LIMIT_BYTES and len(item["step_seconds"]) == 3 and item["gate_gradient_seen"] and not item["original_gradient_seen"] for item in gathered)
             if dist.get_rank() == 0:
-                _atomic_json(args.output_dir / "production-smoke.v7.json", {"contract": "wan-action-v7-seven-rank-production-smoke/1", "passed": passed, "completed_steps": 3, "ranks": gathered})
+                _atomic_json(args.output_dir / "production-smoke.v7.json", {"contract": topology["smoke_contract"], "topology": args.topology, "passed": passed, "completed_steps": 3, "ranks": gathered})
             if not passed:
                 raise RuntimeError("v7 production smoke hard gate failed")
     finally:
