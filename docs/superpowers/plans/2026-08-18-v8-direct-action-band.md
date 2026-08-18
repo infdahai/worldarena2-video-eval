@@ -35,7 +35,8 @@
 - `src/worldarena_baseline/wan_v8_training.py`: optimizer, scheduler, checkpoint, resume, phase transition, and gate contracts.
 - `src/worldarena_baseline/wan_v8_audit.py`: held-out audit20 metrics, gate-zero ablation, and step100/250 decisions.
 - `src/worldarena_baseline/wan_v8_sync_closure.py`: exact recursive v8 runtime-source closure and digest validation.
-- `scripts/prepare_wan_v8_data.py`: CPU-only completion of 1,785 SE(3) and complete-action negative caches plus replay/audit receipts.
+- `scripts/prepare_wan_v8_data.py`: CPU-only completion of 1,785 correct SE(3) caches plus audit/replay receipts.
+- `scripts/cache_wan_v8_counterfactuals.py`: CPU-only rendering and validation of four complete-action negative caches.
 - `scripts/train_wan_v8_direct_action_band.py`: preflight, smoke, Phase M, Phase T, audit, and checkpoint entrypoint.
 - `scripts/run_wan_v8_direct_action_band.sh`: guarded single-GPU-first launcher with fixed-topology FSDP fallback.
 - `tests/test_wan_v8_*.py`: focused pure, Torch, trainer, launcher, and lineage tests.
@@ -50,7 +51,7 @@
 
 **Interfaces:**
 - Consumes: clean-1785 cached manifest, v6 probe split, dev-fast20 manifest, role strata, HDF5/FK sources, existing correct action/SE(3) sidecars.
-- Produces: `select_v8_audit20(...)`, `build_v8_replay(...)`, `validate_v8_cache(...)`, a 20-row held-out audit manifest, a 250-step topology-bound replay, 1,785 valid SE(3) sidecars, and 1,785 complete-negative sidecars.
+- Produces: `select_v8_audit20(...)`, `build_v8_replay(...)`, `validate_v8_correct_cache(...)`, a 20-row held-out audit manifest, a 250-step topology-bound replay, and 1,785 valid SE(3) sidecars.
 
 - [ ] **Step 1: Write failing data-lineage tests**
 
@@ -64,9 +65,9 @@ def test_audit20_comes_from_probe_heldout_and_is_not_trainable():
     assert set(receipt.optimizer_samples).isdisjoint(dev_samples)
 
 
-def test_cache_requires_all_correct_and_four_negative_families(tmp_path):
+def test_correct_se3_cache_requires_all_1785_samples(tmp_path):
     with pytest.raises(ValueError, match="SE3 coverage 1000/1785"):
-        validate_v8_cache(tmp_path, expected_samples=sample_ids)
+        validate_v8_correct_cache(tmp_path, expected_samples=sample_ids)
 ```
 
 - [ ] **Step 2: Run the focused tests and confirm RED**
@@ -86,16 +87,15 @@ V8_TARGET = {
     "quiet": 0.10,
 }
 
-def select_v8_audit20(*, cached_rows, heldout_samples, dev_samples) -> tuple[str, ...]:
-    eligible = sorted(
-        set(row["sample"] for row in cached_rows)
-        & set(heldout_samples)
-        - set(dev_samples),
-        key=lambda sample: hashlib.sha256(
-            f"{V8_AUDIT_SEED}:{sample}".encode()
-        ).digest(),
+def select_v8_audit20(*, cached_rows, heldout_rows, dev_samples, sample_roles) -> tuple[str, ...]:
+    by_sample = {row["sample"]: row for row in cached_rows}
+    candidates = [
+        row for row in heldout_rows
+        if row["sample"] in by_sample and row["sample"] not in dev_samples
+    ]
+    selected = deterministic_task_stratum_take(
+        candidates, sample_roles=sample_roles, count=20, seed=V8_AUDIT_SEED
     )
-    selected = task_arm_stratified_take(eligible, count=20)
     if len(selected) != 20:
         raise ValueError("v8 audit20 cannot satisfy held-out coverage")
     return tuple(selected)
@@ -110,21 +110,13 @@ The preparation script must:
 1. validate the 1,785-row cached manifest and parent/source receipts;
 2. reuse a sidecar only after full schema/hash validation;
 3. generate the missing 785 correct SE(3) sidecars from raw HDF5/FK;
-4. render `reverse`, `shift_plus`, `shift_minus`, and anchored `swap` complete-action negatives for all 1,785 samples;
-5. publish each sample sidecar atomically and quarantine only an invalid sample pair;
-6. emit one canonical cache receipt and never load CUDA.
+4. publish each sample sidecar atomically and quarantine only an invalid SE(3) sidecar;
+5. emit one canonical correct-cache/audit/replay receipt and never load CUDA.
 
-The negative sidecar schema is:
+Task 2 owns all physical counterfactual rendering; Task 1 must not synthesize
+negative geometry or raster tensors.
 
-```python
-V8_NEGATIVE_KEYS = {
-    f"{family}_{field}"
-    for family in ("reverse", "shift_plus", "shift_minus", "swap")
-    for field in ("raster", "support", "se3", "arm_present")
-}
-```
-
-- [ ] **Step 5: Run pure tests and a 2-sample preparation fixture**
+- [ ] **Step 5: Run pure tests and a 2-sample correct-SE(3) preparation fixture**
 
 Run: `PYTHONPATH=src uv run pytest tests/test_wan_v8_data.py -q`
 
@@ -141,11 +133,12 @@ git commit -m "feat: add v8 data and replay contract"
 
 **Files:**
 - Create: `src/worldarena_baseline/wan_v8_counterfactual.py`
+- Create: `scripts/cache_wan_v8_counterfactuals.py`
 - Create: `tests/test_wan_v8_counterfactual.py`
 
 **Interfaces:**
 - Consumes: correct raw per-arm motion, raster channels, opening, support, SE(3), and arm presence.
-- Produces: `CompleteAction`, `build_complete_counterfactual(...)`, `negative_for_step(...)`, and `fixed_ranking_energy_mask(...)`.
+- Produces: `CompleteAction`, `build_complete_counterfactual(...)`, `negative_for_step(...)`, `fixed_ranking_energy_mask(...)`, and 1,785 atomic four-family negative sidecars.
 
 - [ ] **Step 1: Write failing physical-contract tests**
 
@@ -207,12 +200,31 @@ def fixed_ranking_energy_mask(correct_support: Tensor, valid: Tensor) -> Tensor:
 
 Correct and wrong energies must receive the same mask and correct `loss_weight` object.
 
-- [ ] **Step 5: Run tests and commit**
+- [ ] **Step 5: Implement and validate CPU-only negative-cache rendering**
+
+The script consumes Task 1's complete correct-SE(3) receipt and raw HDF5/FK
+sources. It renders all time-dependent raster channels from transformed
+physical motion, rather than reversing or swapping NPZ bytes. It writes one
+atomic sidecar per sample with exactly:
+
+```python
+V8_NEGATIVE_KEYS = {
+    f"{family}_{field}"
+    for family in ("reverse", "shift_plus", "shift_minus", "swap")
+    for field in ("raster", "support", "se3", "arm_present")
+}
+```
+
+The validator requires 1,785/1,785 valid sidecars for every family and proves
+a second run performs zero rewrites. A stale source/HDF5/URDF hash quarantines
+only the affected sample and regenerates it.
+
+- [ ] **Step 6: Run tests and commit**
 
 Run: `PYTHONPATH=src uv run pytest tests/test_wan_v8_counterfactual.py -q`
 
 ```bash
-git add src/worldarena_baseline/wan_v8_counterfactual.py tests/test_wan_v8_counterfactual.py
+git add src/worldarena_baseline/wan_v8_counterfactual.py scripts/cache_wan_v8_counterfactuals.py tests/test_wan_v8_counterfactual.py
 git commit -m "feat: add complete v8 counterfactual actions"
 ```
 
@@ -619,7 +631,7 @@ git commit -m "docs: record v8 direct action band run"
 ## Completion Criteria
 
 - The raw dataset is not expanded or downloaded for Stage A.
-- All 1,785 correct and negative derived conditions are complete and provenance-bound.
+- All 1,785 correct SE(3) and four-family negative derived conditions are complete and provenance-bound.
 - audit20 is held out from probe fitting, optimizer replay, and dev-fast20.
 - Remote focused tests pass with no unexpected Torch skips.
 - Production smoke passes the 22 GiB hard gate on the chosen fixed topology.
