@@ -89,16 +89,38 @@ def _states_from_joint14(actions: np.ndarray, renderer) -> tuple[np.ndarray, np.
     )
 
 
-def _load_wrong(path: Path, label: str, actions: np.ndarray, renderer) -> TransitionFeatures:
-    from worldarena_baseline.wan_v8_counterfactual import build_joint14_counterfactual
+def _joint_counterfactual(actions: np.ndarray, family: str, direction: int) -> np.ndarray:
+    correct = np.asarray(actions, dtype=np.float64)
+    if correct.ndim != 2 or correct.shape[1] != 14 or len(correct) < 2:
+        raise ValueError("v9 counterfactual requires joint14 actions")
+    anchor = correct[:1]
+    if family == "reverse":
+        result = anchor - (correct - anchor)
+    elif family == "swap":
+        result = np.repeat(anchor, len(correct), axis=0)
+        result[:, :7] += correct[:, 7:14] - correct[:1, 7:14]
+        result[:, 7:14] += correct[:, :7] - correct[:1, :7]
+    elif family == "shift" and direction == 1:
+        result = correct.copy()
+        result[1:] = correct[:-1]
+    elif family == "shift" and direction == -1:
+        result = correct.copy()
+        result[1:-1] = correct[2:]
+        result[-1] = correct[-1]
+    else:
+        raise ValueError("v9 counterfactual family/direction is invalid")
+    result[:, [6, 13]] = np.clip(result[:, [6, 13]], 0.0, 1.0)
+    if not np.array_equal(result[0], correct[0]) or not np.isfinite(result).all():
+        raise ValueError("v9 counterfactual changed anchor or became non-finite")
+    return result
 
+
+def _load_wrong(path: Path, label: str, actions: np.ndarray, renderer) -> TransitionFeatures:
     cache_label, family, direction = _VARIANTS[label]
     with np.load(path, allow_pickle=False) as archive:
         raster = np.asarray(archive[f"{cache_label}_raster"], dtype=np.float32)
         cached_present = np.asarray(archive[f"{cache_label}_arm_present"], dtype=bool)
-    counterfactual = build_joint14_counterfactual(
-        actions, family, shift_direction=direction
-    )
+    counterfactual = _joint_counterfactual(actions, family, direction)
     states, present = _states_from_joint14(counterfactual, renderer)
     if not np.array_equal(present, cached_present):
         raise ValueError("v9 FK presence differs from rendered counterfactual cache")

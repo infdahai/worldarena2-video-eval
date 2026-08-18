@@ -228,3 +228,20 @@ def test_cache_cli_dry_run_is_side_effect_free(tmp_path: Path) -> None:
     assert receipt["optimizer_sample_count"] == 1765
     assert receipt["starts_cache_work"] is False
     assert not output.exists()
+
+
+def test_cache_counterfactuals_preserve_anchor_and_shift_content() -> None:
+    script = Path(__file__).parents[1] / "scripts" / "cache_wan_v9_transitions.py"
+    spec = importlib.util.spec_from_file_location("cache_wan_v9_counterfactual_test", script)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    actions = np.arange(70, dtype=np.float64).reshape(5, 14) / 100
+    actions[:, [6, 13]] = 0.5
+    plus = module._joint_counterfactual(actions, "shift", 1)
+    minus = module._joint_counterfactual(actions, "shift", -1)
+    swap = module._joint_counterfactual(actions, "swap", 0)
+    for value in (plus, minus, swap):
+        np.testing.assert_array_equal(value[0], actions[0])
+    np.testing.assert_array_equal(plus[1:], actions[:-1])
+    np.testing.assert_array_equal(minus[1:-1], actions[2:])
