@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 
 import pytest
 
@@ -46,11 +47,11 @@ def _populate_adam(optimizer, model):
 
 def _lineage():
     return {
-        key: chr(97 + index) * 64
-        for index, key in enumerate(
-            ("source_closure_sha256", "config_sha256", "parent_sha256", "data_sha256",
-             "cache_sha256", "replay_sha256", "audit_sha256", "probe_sha256",
-             "calibration_sha256")
+        key: hashlib.sha256(key.encode("utf-8")).hexdigest()
+        for key in (
+            "source_closure_sha256", "config_sha256", "parent_sha256", "data_sha256",
+            "cache_sha256", "replay_sha256", "audit_sha256", "probe_sha256",
+            "calibration_sha256",
         )
     }
 
