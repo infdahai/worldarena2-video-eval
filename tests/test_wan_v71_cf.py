@@ -206,3 +206,24 @@ def test_preflight_calibration_uses_separate_correct_forward_per_vjp(monkeypatch
     assert calls == ["reverse", "shift", "swap", "correct", "correct"]
     assert model.releases == 5
     assert result["lambda_cf"] > 0
+
+
+def test_zero_gate_check_uses_v71_channel_gate() -> None:
+    path = Path(__file__).resolve().parents[1] / "scripts/train_wan_se3_probe_v7_fsdp.py"
+    spec = importlib.util.spec_from_file_location("wan_v71_cf_zero_gate", path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    module.torch = torch
+    module.V71_ARCHITECTURE = "v71-geometry-lora"
+    module.V71_CF_ARCHITECTURE = "v71-geometry-lora-cf"
+
+    wrapper = torch.nn.Module()
+    wrapper.channel_gate = torch.nn.Parameter(torch.zeros(3))
+    model = torch.nn.Module()
+    model.geometry_wrappers = torch.nn.ModuleDict({"8": wrapper})
+
+    assert module._zero_gate_is_exact(model, architecture="v71-geometry-lora-cf")
+    wrapper.channel_gate.data[0] = 1
+    assert not module._zero_gate_is_exact(model, architecture="v71-geometry-lora-cf")

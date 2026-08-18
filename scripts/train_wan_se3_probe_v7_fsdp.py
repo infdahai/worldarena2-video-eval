@@ -180,6 +180,14 @@ def _is_v71(architecture: str) -> bool:
     return architecture in (V71_ARCHITECTURE, V71_CF_ARCHITECTURE)
 
 
+def _zero_gate_is_exact(model: Any, *, architecture: str) -> bool:
+    attribute = "channel_gate" if _is_v71(architecture) else "gate"
+    return all(
+        not bool(torch.count_nonzero(getattr(wrapper, attribute)).item())
+        for wrapper in model.geometry_wrappers.values()
+    )
+
+
 def _expected_replay(v6_replay: Mapping[str, Any], *, topology: str) -> dict[str, Any]:
     if topology == "seven-rank":
         return build_v7_replay_from_v6(v6_replay)
@@ -1419,7 +1427,7 @@ def main(argv: Sequence[str] | None = None) -> None:
             _move_optimizer_state(optimizer, device)
             start_step = int(payload["step"])
         elif args.audit_zero_gate:
-            if any(bool(torch.count_nonzero(wrapper.gate).item()) for wrapper in model.geometry_wrappers.values()):
+            if not _zero_gate_is_exact(model, architecture=args.architecture):
                 raise RuntimeError("v7 zero-gate audit model is not exactly zero")
         if args.mode == "audit":
             model.eval()
