@@ -55,6 +55,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--base-parent-sha256", required=True)
     parser.add_argument("--probe-checkpoint", type=Path, required=True)
     parser.add_argument("--probe-split", type=Path, required=True)
+    parser.add_argument("--trajectory-calibration", type=Path, required=True)
     parser.add_argument("--observability-root", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--resume", type=Path)
@@ -82,7 +83,7 @@ def _read_jsonl(path: Path) -> list[dict[str, Any]]:
 def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], list[dict[str, Any]], list[dict[str, Any]]]:
     if os.environ.get("CUDA_VISIBLE_DEVICES") != "6":
         raise RuntimeError("v8 single-GPU lineage requires physical GPU6 only")
-    for path in (args.checkpoint_dir, args.cache_root, args.manifest, args.data_receipt, args.replay, args.audit_manifest, args.negative_root, args.parent_checkpoint, args.probe_checkpoint, args.probe_split, args.observability_root, args.output_dir):
+    for path in (args.checkpoint_dir, args.cache_root, args.manifest, args.data_receipt, args.replay, args.audit_manifest, args.negative_root, args.parent_checkpoint, args.probe_checkpoint, args.probe_split, args.trajectory_calibration, args.observability_root, args.output_dir):
         _under_root(path)
     if _sha(args.parent_checkpoint) != PARENT_SHA:
         raise RuntimeError("v8 immutable clean-gated parent SHA mismatch")
@@ -174,6 +175,13 @@ def _wrong_condition(args, batch, sample: str, record: Mapping[str, Any], device
     }
 
 
+def _wrong_condition_named(args, batch, sample: str, name: str, device):
+    if name == "shift_plus": record={"negative_family":"shift","shift_direction":1}
+    elif name == "shift_minus": record={"negative_family":"shift","shift_direction":-1}
+    else: record={"negative_family":name,"shift_direction":0}
+    return _wrong_condition(args,batch,sample,record,device)
+
+
 def _noise(record, shape, device, dtype):
     generator = torch.Generator(device="cpu"); generator.manual_seed(int(record["noise_seed"]))
     return torch.randn(shape, generator=generator, dtype=torch.float32).to(device=device, dtype=dtype)
@@ -231,6 +239,14 @@ def _validate_all_trainable_gradients(named: Mapping[str, Any]) -> None:
             raise RuntimeError(f"v8 geometry gate gradient is zero: {name}")
 
 
+def _trajectory_terms(args,legacy,batch,result,probe,sigma_contract,device):
+    from worldarena_baseline.wan_gripper_trajectory_loss import predicted_clean_latent,probe_trajectory_terms,sigma_weights
+    sigma=result["timestep"].float()/1000.0
+    predicted=predicted_clean_latent(result["noisy"].float(),result["prediction"].float(),sigma=sigma)
+    target=legacy.build_gripper_targets(batch["action_raster"].to(device=device,dtype=torch.float32),observability=legacy._observability(args.observability_root,str(batch["sample"]),device))
+    return probe_trajectory_terms(predicted,probe,target_position=target["position"],position_valid=target["position_valid"],target_velocity=target["velocity"],velocity_valid=target["velocity_valid"],sigma_weight=sigma_weights(sigma,sigma_contract))
+
+
 def _calibrate(args, model, legacy, dataset, index_map, record, device) -> dict[str,float]:
     sample=str(record["sample"]); batch=_batch(dataset,index_map[sample]); correct=_correct_condition(args,batch,sample,device); wrong=_wrong_condition(args,batch,sample,record,device)
     with torch.no_grad():
@@ -246,19 +262,39 @@ def _calibrate(args, model, legacy, dataset, index_map, record, device) -> dict[
     return {"lambda_cf":0.5*fm_norm/cf_norm,"tau":.1,"fm_qkvo_grad_rms":fm_norm,"cf_qkvo_grad_rms":cf_norm,"initial_ranking":ranking,"initial_margin":ew-ec}
 
 
-def _train_step(args,model,legacy,dataset,index_map,record,device,optimizer,lambda_cf):
+def _train_step(args,model,legacy,dataset,index_map,record,device,optimizer,lambda_cf,*,trajectory=None,probe=None,sigma_contract=None):
     sample=str(record["sample"]); batch=_batch(dataset,index_map[sample]); correct=_correct_condition(args,batch,sample,device); wrong=_wrong_condition(args,batch,sample,record,device)
     with torch.no_grad():
         ec=float(_forward(model,legacy,batch,correct,record,device,grad=False)["energy"].cpu()); _release(model)
         ew=float(_forward(model,legacy,batch,wrong,record,device,grad=False)["energy"].cpu()); _release(model)
     cc,cw,ranking=_coefficients(ec,ew)
     optimizer.zero_grad(set_to_none=True)
-    result=_forward(model,legacy,batch,correct,record,device,grad=True); (result["fm"]+lambda_cf*cc*result["energy"]).backward(); _release(model); fm=float(result["fm"].detach().cpu())
+    result=_forward(model,legacy,batch,correct,record,device,grad=True); total=result["fm"]+lambda_cf*cc*result["energy"]
+    terms=None
+    if trajectory is not None:
+        if probe is None or sigma_contract is None: raise RuntimeError("Phase T trajectory dependencies are missing")
+        terms=_trajectory_terms(args,legacy,batch,result,probe,sigma_contract,device); total=total+float(trajectory["lambda_position"])*terms["position_loss"]+float(trajectory["lambda_velocity"])*terms["velocity_loss"]
+    total.backward(); _release(model); fm=float(result["fm"].detach().cpu())
     result=_forward(model,legacy,batch,wrong,record,device,grad=True); (lambda_cf*cw*result["energy"]).backward(); _release(model)
     _validate_all_trainable_gradients({name:p for name,p in model.named_parameters() if p.requires_grad})
     norm=float(torch.nn.utils.clip_grad_norm_([p for p in model.parameters() if p.requires_grad],1.0).detach().cpu())
     optimizer.step(); optimizer.zero_grad(set_to_none=True)
-    return {"fm":fm,"ranking":ranking,"margin":ew-ec,"grad_norm":norm,"negative":str(record["negative_family"])}
+    output={"fm":fm,"ranking":ranking,"margin":ew-ec,"grad_norm":norm,"negative":str(record["negative_family"])}
+    if terms is not None: output.update(position_loss=float(terms["position_loss"].detach().cpu()),velocity_loss=float(terms["velocity_loss"].detach().cpu()))
+    return output
+
+
+def _calibrate_trajectory(args,model,legacy,dataset,index_map,record,device,probe,sigma_contract):
+    sample=str(record["sample"]); batch=_batch(dataset,index_map[sample]); correct=_correct_condition(args,batch,sample,device); named={name:p for name,p in model.named_parameters() if p.requires_grad}
+    norms=[]
+    for objective in ("fm","position_loss","velocity_loss"):
+        model.zero_grad(set_to_none=True); result=_forward(model,legacy,batch,correct,record,device,grad=True)
+        if objective=="fm": loss=result["fm"]
+        else: loss=_trajectory_terms(args,legacy,batch,result,probe,sigma_contract,device)[objective]
+        loss.backward(); _release(model); norms.append(_gradient_norm(named))
+    model.zero_grad(set_to_none=True); fm,pos,vel=norms
+    if min(norms)<=0: raise RuntimeError("v8 trajectory calibration has zero QKVO gradient")
+    return {"lambda_position":.25*fm/pos,"lambda_velocity":.15*fm/vel,"fm_qkvo_grad_rms":fm,"position_qkvo_grad_rms":pos,"velocity_qkvo_grad_rms":vel}
 
 
 def _atomic_torch_save(payload, path: Path):
@@ -272,17 +308,46 @@ def _load_trainable(model,payload):
         for name,value in payload["model"].items(): named[name].copy_(value.to(device=named[name].device,dtype=named[name].dtype))
 
 
+def _restore_trainable(model, state):
+    named=dict(model.named_parameters())
+    with torch.no_grad():
+        for name,value in state.items(): named[name].copy_(value.to(device=named[name].device,dtype=named[name].dtype))
+
+
+def _audit_record(sample: str, index: int) -> dict[str, Any]:
+    def seed(label: str) -> int: return int.from_bytes(hashlib.sha256(f"v8-audit:{label}:{sample}".encode()).digest()[:8],"big")
+    return {"sample":sample,"noise_seed":seed("noise"),"timestep_seed":seed("time"),"optimizer_step":index+1,"rank":0}
+
+
+def _evaluate_audit(args,model,legacy,dataset,index_map,audit,device,*,gates_enabled:bool):
+    from worldarena_baseline.wan_v8_model import geometry_gates_enabled
+    rows=[]; probe_model=legacy._load_probe(args,device)
+    with geometry_gates_enabled(model,enabled=gates_enabled):
+        for index,item in enumerate(audit):
+            sample=str(item["sample"]); record=_audit_record(sample,index); batch=_batch(dataset,index_map[sample]); correct=_correct_condition(args,batch,sample,device)
+            result=_forward(model,legacy,batch,correct,record,device,grad=False); _release(model); result["sample"]=sample
+            probe=legacy._probe_metrics(result,probe_model,observability_root=args.observability_root)
+            row={"sample":sample,"correct_energy":float(result["energy"].cpu()),"fm":float(result["fm"].cpu()),"position_error":probe["position_error"],"velocity_error":probe["velocity_error"],"routing_retention":1.0}
+            for name in ("reverse","shift_plus","shift_minus","swap"):
+                wrong=_wrong_condition_named(args,batch,sample,name,device); value=_forward(model,legacy,batch,wrong,record,device,grad=False); _release(model); row[f"{name}_energy"]=float(value["energy"].cpu())
+            rows.append(row); print(json.dumps({"audit":index+1,"sample":sample,"gates_enabled":gates_enabled},sort_keys=True),flush=True)
+    return rows
+
+
 def main() -> None:
     args=parse_args(); receipt,replay,audit=_validate_inputs(args); legacy=_load_runtime()
     torch.cuda.set_device(0); device=torch.device("cuda:0")
     from worldarena_baseline.wan_cached_dataset import WanActionCachedDataset
     from worldarena_baseline.wan_v8_training import build_v8_checkpoint,build_v8_optimizer,set_v8_learning_rates,validate_v8_checkpoint
     dataset=WanActionCachedDataset(args.manifest,args.cache_root); index_map=_sample_map(dataset)
-    model,names,count=_load_model(args,legacy,device); optimizer=build_v8_optimizer(model); lineage=_lineage(args); gates={}
+    model,names,count=_load_model(args,legacy,device); optimizer=build_v8_optimizer(model); lineage=_lineage(args); gates={}; trajectory=None
+    initial_state={name:parameter.detach().cpu().clone() for name,parameter in model.named_parameters() if parameter.requires_grad}
     calibration=_calibrate(args,model,legacy,dataset,index_map,replay[0],device)
     start=0
     if args.resume:
-        payload=torch.load(args.resume,map_location="cpu",weights_only=True); validate_v8_checkpoint(payload,lineage=lineage,expected_phase=str(payload["phase"])); _load_trainable(model,payload); optimizer.load_state_dict(payload["optimizer"]); calibration=dict(payload["calibration"]); gates=dict(payload["gates"]); start=int(payload["step"])
+        payload=torch.load(args.resume,map_location="cpu",weights_only=True); validate_v8_checkpoint(payload,lineage=lineage,expected_phase=str(payload["phase"])); _load_trainable(model,payload)
+        if args.mode in ("phase-m","phase-t"): optimizer.load_state_dict(payload["optimizer"])
+        calibration=dict(payload["calibration"]); gates=dict(payload["gates"]); trajectory=calibration.get("trajectory"); start=int(payload["step"])
     if args.mode=="preflight":
         output={"contract":"wan-v8-preflight/1","trainable_count":count,"trainable_names":sorted(names),"calibration":calibration,"lineage":lineage,"cuda_visible_devices":os.environ["CUDA_VISIBLE_DEVICES"]}
         (args.output_dir/"preflight.json").write_text(json.dumps(output,indent=2,sort_keys=True)+"\n"); print(json.dumps(output,sort_keys=True)); return
@@ -297,13 +362,39 @@ def main() -> None:
             raise RuntimeError("v8 production smoke exceeded 22 GiB")
         return
     if args.mode in ("audit100","audit250"):
-        raise RuntimeError("v8 formal audit is only legal after the corresponding trained checkpoint")
+        expected_step=100 if args.mode=="audit100" else 250
+        if start!=expected_step: raise RuntimeError("v8 audit checkpoint step mismatch")
+        enabled=_evaluate_audit(args,model,legacy,dataset,index_map,audit,device,gates_enabled=True)
+        zero=_evaluate_audit(args,model,legacy,dataset,index_map,audit,device,gates_enabled=False)
+        current={name:parameter.detach().cpu().clone() for name,parameter in model.named_parameters() if parameter.requires_grad}; _restore_trainable(model,initial_state)
+        parent=_evaluate_audit(args,model,legacy,dataset,index_map,audit,device,gates_enabled=False); _restore_trainable(model,current)
+        from worldarena_baseline.wan_v8_audit import aggregate_v8_audit
+        def enrich(rows):
+            for row,base in zip(rows,parent,strict=True):
+                row["fm_regression"]=(row["fm"]-base["fm"])/max(base["fm"],1e-8)
+                if expected_step==100:
+                    row["position_regression"]=(row["position_error"]-base["position_error"])/max(base["position_error"],1e-8); row["velocity_regression"]=(row["velocity_error"]-base["velocity_error"])/max(base["velocity_error"],1e-8)
+                else:
+                    row["position_improvement"]=(base["position_error"]-row["position_error"])/max(base["position_error"],1e-8); row["velocity_improvement"]=(base["velocity_error"]-row["velocity_error"])/max(base["velocity_error"],1e-8)
+            return aggregate_v8_audit(rows,step=expected_step)
+        report={"contract":"wan-v8-gate-attribution/1","step":expected_step,"enabled":enrich(enabled),"gate_zero":enrich(zero),"lineage":lineage}
+        output=args.output_dir/f"audit-{expected_step:03d}.json"; output.write_text(json.dumps(report,indent=2,sort_keys=True)+"\n")
+        payload["gates"][f"step{expected_step}"]=report["enabled"]["decision"]
+        _atomic_torch_save(payload,args.output_dir/f"step-{expected_step:06d}-gated.pt")
+        print(json.dumps(report,sort_keys=True)); return
     target=args.target_step
     if target not in ((25,50,100) if args.mode=="phase-m" else (150,200,250)): raise RuntimeError("v8 target step is invalid for phase")
     if args.mode=="phase-t" and not bool(gates.get("step100",{}).get("pass")): raise RuntimeError("Phase T requires passing step100")
+    probe_model=None; sigma_contract=None
+    if args.mode=="phase-t":
+        sigma_payload=_read_json(args.trajectory_calibration); sigma_contract=sigma_payload.get("sigma")
+        if sigma_payload.get("parent_sha256")!=PARENT_SHA or sigma_payload.get("probe_sha256")!=_sha(args.probe_checkpoint): raise RuntimeError("v8 trajectory calibration lineage mismatch")
+        probe_model=legacy._load_probe(args,device)
+        if trajectory is None:
+            trajectory=_calibrate_trajectory(args,model,legacy,dataset,index_map,replay[start],device,probe_model,sigma_contract); calibration["trajectory"]=trajectory
     log=args.output_dir/"training.jsonl"
     for step in range(start+1,target+1):
-        set_v8_learning_rates(optimizer,step); started=time.monotonic(); row=_train_step(args,model,legacy,dataset,index_map,replay[step-1],device,optimizer,float(calibration["lambda_cf"])); row.update(step=step,step_time=time.monotonic()-started)
+        set_v8_learning_rates(optimizer,step); started=time.monotonic(); row=_train_step(args,model,legacy,dataset,index_map,replay[step-1],device,optimizer,float(calibration["lambda_cf"]),trajectory=trajectory,probe=probe_model,sigma_contract=sigma_contract); row.update(step=step,step_time=time.monotonic()-started)
         with log.open("a",encoding="utf-8") as handle: handle.write(json.dumps(row,sort_keys=True)+"\n")
         if step in (10,25,50,100,150,200,250):
             payload=build_v8_checkpoint(step=step,model=model,optimizer=optimizer,lineage=lineage,calibration=calibration,gates=gates); _atomic_torch_save(payload,args.output_dir/f"step-{step:06d}.pt")

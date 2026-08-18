@@ -1,6 +1,7 @@
 """Installation and fail-closed trainable whitelist for Wan v8 direct band."""
 from __future__ import annotations
 from collections.abc import Sequence
+from contextlib import contextmanager
 from torch import nn
 from .wan_se3_attention import AttentionCallable, RopeApplyCallable
 from .wan_v8_attention import DirectActionBandAttention
@@ -57,3 +58,20 @@ def v8_trainable_parameter_names(model: nn.Module) -> set[str]:
     allowed={n for n in actual if any(n.endswith(s) for s in suffixes) and any(f".{i}." in n or f"blocks.{i}." in n for i in V8_BLOCKS)}
     if actual!=allowed or not actual: raise ValueError("v8 trainable parameters must be only Q/K/V/O and gates in blocks 8-13")
     return actual
+
+@contextmanager
+def geometry_gates_enabled(model: nn.Module, *, enabled: bool):
+    wrappers=getattr(model,"geometry_wrappers",None)
+    if not isinstance(wrappers,nn.ModuleDict) or tuple(int(key) for key in wrappers)!=V8_BLOCKS:
+        raise ValueError("v8 gate ablation requires exact blocks 8-13")
+    if enabled:
+        yield
+        return
+    saved={key:wrapper.channel_gate.detach().clone() for key,wrapper in wrappers.items()}
+    try:
+        with __import__("torch").no_grad():
+            for wrapper in wrappers.values(): wrapper.channel_gate.zero_()
+        yield
+    finally:
+        with __import__("torch").no_grad():
+            for key,wrapper in wrappers.items(): wrapper.channel_gate.copy_(saved[key])
