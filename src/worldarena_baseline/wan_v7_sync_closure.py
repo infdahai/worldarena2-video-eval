@@ -29,6 +29,7 @@ _STATIC_REQUIRED_FILES = (
     *_PYTHON_ENTRYPOINTS,
     "scripts/run_wan_se3_probe_v7.sh",
     "scripts/run_wan_se3_probe_v7_single_gpu.sh",
+    "scripts/run_wan_se3_geometry_lora_v71_single_gpu.sh",
     "scripts/validate_wan_v7_sync_closure.py",
     "source_inputs/trusted-wan-v7-se3-lineage-pins.json",
     CLOSURE_RELATIVE_PATH,

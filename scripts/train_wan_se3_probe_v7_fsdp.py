@@ -27,6 +27,7 @@ WAN_SOURCE = Path("/home/huazhi/nlh/Wan2.2")
 CUDA_VISIBLE_DEVICES = "0,1,2,3,4,5,6"
 SINGLE_GPU_CUDA_VISIBLE_DEVICES = "6"
 CALIBRATED_LR = 2e-5
+V71_ARCHITECTURE = "v71-geometry-lora"
 MEMORY_LIMIT_BYTES = 22 * 1024**3
 FROZEN_V7_PARENT_SHA256 = "105fb760fd371885ba362d26ef2352c260755e47cd036f46711181edc3b30ca2"
 V7_CHECKPOINT_STEPS = (10, 25, 50)
@@ -63,10 +64,12 @@ def _load_runtime_dependencies() -> None:
     global require_wan_backbone_checkpoint, validate_training_hot_path_components
     global validate_se3_cache, install_wan_ti2v_package, validate_clean_gated_parent
     global ParentPlusSE3Wan, STAGE_A_BLOCKS, install_v7_attention, v7_trainable_parameter_names
+    global install_v71_attention, v71_trainable_parameter_names
     global build_v7_checkpoint, build_v7_replay_from_v6, build_v7_single_gpu_checkpoint
     global build_v7_single_gpu_replay, v7_discovery_gate, v7_optimizer_group
     global validate_v7_checkpoint, validate_v7_single_gpu_checkpoint
     global aggregate_retirement_audit, select_retirement20
+    global V71_LR, V71_STEPS, build_v71_checkpoint, validate_v71_checkpoint, v71_optimizer_group
     import numpy as np
     import torch
     import torch.distributed as dist
@@ -81,7 +84,14 @@ def _load_runtime_dependencies() -> None:
     from worldarena_baseline.wan_se3_condition import validate_se3_cache
     from worldarena_baseline.wan_ti2v_import import install_wan_ti2v_package
     from worldarena_baseline.wan_v6_checkpoint import validate_clean_gated_parent
-    from worldarena_baseline.wan_v7_model import ParentPlusSE3Wan, STAGE_A_BLOCKS, install_v7_attention, v7_trainable_parameter_names
+    from worldarena_baseline.wan_v7_model import (
+        ParentPlusSE3Wan,
+        STAGE_A_BLOCKS,
+        install_v7_attention,
+        install_v71_attention,
+        v7_trainable_parameter_names,
+        v71_trainable_parameter_names,
+    )
     from worldarena_baseline.wan_v7_training import (
         build_v7_checkpoint,
         build_v7_replay_from_v6,
@@ -96,11 +106,19 @@ def _load_runtime_dependencies() -> None:
         aggregate_retirement_audit,
         select_retirement20,
     )
+    from worldarena_baseline.wan_v71_training import (
+        V71_LR,
+        V71_STEPS,
+        build_v71_checkpoint,
+        validate_v71_checkpoint,
+        v71_optimizer_group,
+    )
 
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", choices=("preflight", "smoke", "train", "audit"), required=True)
+    parser.add_argument("--architecture", choices=("v7-gate-only", V71_ARCHITECTURE), default="v7-gate-only")
     parser.add_argument("--topology", choices=tuple(_TOPOLOGIES), default="seven-rank")
     parser.add_argument("--checkpoint-dir", type=Path, required=True)
     parser.add_argument("--cache-root", type=Path, required=True)
@@ -122,7 +140,7 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--audit-set", choices=("discovery8", "retirement20"), default="discovery8")
     parser.add_argument("--audit-zero-gate", action="store_true")
     parser.add_argument("--resume", type=Path)
-    parser.add_argument("--target-step", type=int, choices=V7_CHECKPOINT_STEPS)
+    parser.add_argument("--target-step", type=int, choices=(10, 25, 50, 100))
     parser.add_argument("--seed", type=int, default=20260818)
     return parser.parse_args(argv)
 
@@ -142,7 +160,18 @@ def _expected_replay(v6_replay: Mapping[str, Any], *, topology: str) -> dict[str
     raise RuntimeError("v7 topology is unsupported")
 
 
-def _validate_checkpoint(payload: Mapping[str, Any], *, expected: Mapping[str, Any], topology: str) -> None:
+def _validate_checkpoint(
+    payload: Mapping[str, Any],
+    *,
+    expected: Mapping[str, Any],
+    topology: str,
+    architecture: str = "v7-gate-only",
+) -> None:
+    if architecture == V71_ARCHITECTURE:
+        if topology != "single-gpu":
+            raise RuntimeError("v7.1 mechanism probe currently requires single-gpu topology")
+        validate_v71_checkpoint(payload, expected=expected)
+        return
     if topology == "seven-rank":
         validate_v7_checkpoint(payload, expected=expected)
         return
@@ -179,7 +208,12 @@ def _validate_retirement_checkpoint(
         raise RuntimeError("v7 retirement checkpoint has no source lineage")
     legacy_expected = dict(expected)
     legacy_expected["source_hashes"] = dict(source_hashes)
-    _validate_checkpoint(payload, expected=legacy_expected, topology=topology)
+    _validate_checkpoint(
+        payload,
+        expected=legacy_expected,
+        topology=topology,
+        architecture="v7-gate-only",
+    )
 
 
 def _under_formal_root(path: Path, *, writable: bool = False) -> Path:
@@ -345,7 +379,12 @@ def _load_model(args: argparse.Namespace, *, local_rank: int, device: torch.devi
     backbone = WanModel.from_pretrained(args.checkpoint_dir, torch_dtype=torch.bfloat16, low_cpu_mem_usage=True)
     backbone.requires_grad_(False)
     enable_wan_block_checkpointing(backbone)
-    wrappers = install_v7_attention(backbone, STAGE_A_BLOCKS, rope_apply, attention)
+    if args.architecture == V71_ARCHITECTURE:
+        wrappers = install_v71_attention(
+            backbone, STAGE_A_BLOCKS, rope_apply, attention, rank=16
+        )
+    else:
+        wrappers = install_v7_attention(backbone, STAGE_A_BLOCKS, rope_apply, attention)
     if args.topology == "single-gpu":
         # FSDP switches to NO_SHARD at world_size=1 and then attempts to
         # flatten each wrapped attention's frozen BF16 weights together with
@@ -362,9 +401,16 @@ def _load_model(args: argparse.Namespace, *, local_rank: int, device: torch.devi
         )
     parent = _load_parent(args, device, source_manifest_sha256=source_manifest_sha256)
     model = ParentPlusSE3Wan(backbone, parent, wrappers).to(device)
-    names = v7_trainable_parameter_names(model)
-    if len(names) != 3 or sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad) != 9216:
-        raise RuntimeError("v7 gate-only trainable parameter whitelist failed")
+    if args.architecture == V71_ARCHITECTURE:
+        names = v71_trainable_parameter_names(model, rank=16)
+        if len(names) != 27 or sum(
+            parameter.numel() for parameter in model.parameters() if parameter.requires_grad
+        ) != 1_188_864:
+            raise RuntimeError("v7.1 geometry LoRA trainable parameter whitelist failed")
+    else:
+        names = v7_trainable_parameter_names(model)
+        if len(names) != 3 or sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad) != 9216:
+            raise RuntimeError("v7 gate-only trainable parameter whitelist failed")
     return model, _load_probe(args, device)
 
 
@@ -496,7 +542,44 @@ def _probe_metrics(result: Mapping[str, Any], probe: GripperTrajectoryProbe, *, 
     }
 
 
-def _gradient_stats(model: ParentPlusSE3Wan) -> dict[str, Any]:
+def _gradient_stats(
+    model: ParentPlusSE3Wan, *, architecture: str = "v7-gate-only"
+) -> dict[str, Any]:
+    if architecture == V71_ARCHITECTURE:
+        expected = v71_trainable_parameter_names(model, rank=16)
+        named = dict(model.named_parameters())
+        gradients = {name: named[name].grad for name in expected}
+        finite = all(
+            value is not None and torch.isfinite(value).all()
+            for value in gradients.values()
+        )
+        connected = all(value is not None for value in gradients.values())
+        families = {
+            "channel_gate": any(
+                value is not None and bool(torch.count_nonzero(value).item())
+                for name, value in gradients.items()
+                if name.endswith("channel_gate")
+            ),
+            **{
+                family: any(
+                    value is not None and bool(torch.count_nonzero(value).item())
+                    for name, value in gradients.items()
+                    if f".{family}_lora." in name
+                )
+                for family in ("q", "k", "v", "o")
+            },
+        }
+        unexpected = [
+            name
+            for name, parameter in model.named_parameters()
+            if name not in expected and parameter.grad is not None
+        ]
+        return {
+            "finite_trainable_gradients": finite,
+            "connected_trainable_gradients": connected,
+            "nonzero_trainable_families": families,
+            "original_parameter_gradients": unexpected,
+        }
     wrappers = model.geometry_wrappers
     values = {str(block): wrappers[str(block)].gate.grad for block in STAGE_A_BLOCKS}
     finite = all(value is not None and torch.isfinite(value).all() for value in values.values())
@@ -528,15 +611,31 @@ def _preflight(args: argparse.Namespace, model: ParentPlusSE3Wan, dataset: WanAc
         if variant == "correct":
             result["loss"].backward()
             model.release_completed_backward_conditions()
-    gradients = _gradient_stats(model)
+    gradients = _gradient_stats(model, architecture=args.architecture)
     original_gradients = gradients["original_parameter_gradients"]
+    if args.architecture == V71_ARCHITECTURE:
+        passed = bool(
+            gradients["finite_trainable_gradients"]
+            and gradients["connected_trainable_gradients"]
+            and gradients["nonzero_trainable_families"]["channel_gate"]
+            and not original_gradients
+        )
+        calibrated_lr = V71_LR
+    else:
+        passed = bool(
+            gradients["finite_gate_gradients"]
+            and gradients["nonzero_gate_gradients"]
+            and not original_gradients
+        )
+        calibrated_lr = CALIBRATED_LR
     receipt = {
-        "contract": "wan-action-v7-preflight/1",
+        "contract": "wan-action-v71-preflight/1" if args.architecture == V71_ARCHITECTURE else "wan-action-v7-preflight/1",
+        "architecture": args.architecture,
         "topology": args.topology,
         "world_size": _topology(args)["world_size"],
         "rank_mapping": _topology(args)["rank_mapping"],
-        "passed": bool(gradients["finite_gate_gradients"] and gradients["nonzero_gate_gradients"] and not original_gradients),
-        "calibrated_lr": CALIBRATED_LR,
+        "passed": passed,
+        "calibrated_lr": calibrated_lr,
         "parent_sha256": FROZEN_V7_PARENT_SHA256,
         "source_hashes": {"source_manifest_sha256": source_manifest_sha256, "source_code_sha256": source_code_sha256},
         "cache_sha256": cache_sha256,
@@ -565,11 +664,23 @@ def _load_gate_state(model: ParentPlusSE3Wan, state: Mapping[str, Any]) -> None:
         named[name].data.copy_(state[name].to(device=named[name].device, dtype=torch.float32))
 
 
+def _load_v71_state(model: ParentPlusSE3Wan, state: Mapping[str, Any]) -> None:
+    expected = v71_trainable_parameter_names(model, rank=16)
+    if set(state) != expected:
+        raise RuntimeError("v7.1 checkpoint parameter names differ")
+    named = dict(model.named_parameters())
+    for name in expected:
+        value = state[name]
+        if not isinstance(value, torch.Tensor) or value.shape != named[name].shape:
+            raise RuntimeError("v7.1 checkpoint parameter shape differs")
+        named[name].data.copy_(value.to(device=named[name].device, dtype=named[name].dtype))
+
+
 def _checkpoint_expected(*, args: argparse.Namespace, replay: Mapping[str, Any], v6_replay: Mapping[str, Any], source_manifest_sha256: str, cache_sha256: str, receipt: Mapping[str, Any]) -> dict[str, Any]:
     source_hashes = receipt.get("source_hashes")
     if not isinstance(source_hashes, Mapping):
         raise RuntimeError("v7 preflight has no source hashes")
-    return {
+    result = {
         "parent_sha256": FROZEN_V7_PARENT_SHA256,
         "source_hashes": dict(source_hashes),
         "cache_sha256": cache_sha256,
@@ -578,9 +689,30 @@ def _checkpoint_expected(*, args: argparse.Namespace, replay: Mapping[str, Any],
         "v6_replay": v6_replay,
         "replay": replay,
     }
+    if args.architecture == V71_ARCHITECTURE:
+        receipt_path = args.preflight_receipt or args.output_dir / "preflight-gradient-audit.json"
+        result["preflight_sha256"] = sha256_file(receipt_path)
+    return result
 
 
 def _save_checkpoint(path: Path, *, step: int, model: ParentPlusSE3Wan, optimizer: torch.optim.Optimizer, replay: Mapping[str, Any], v6_replay: Mapping[str, Any], source_manifest_sha256: str, cache_sha256: str, receipt: Mapping[str, Any]) -> None:
+    if receipt.get("architecture") == V71_ARCHITECTURE:
+        payload = build_v71_checkpoint(
+            step=step,
+            model=model,
+            optimizer=optimizer,
+            parent_sha256=FROZEN_V7_PARENT_SHA256,
+            source_hashes=receipt["source_hashes"],
+            cache_sha256=cache_sha256,
+            replay_sha256=replay["replay_sha256"],
+            preflight_sha256=sha256_file(path.parent / "preflight-gradient-audit.json"),
+        )
+        _under_formal_root(path.parent, writable=True)
+        partial = path.with_suffix(path.suffix + ".partial")
+        torch.save(payload, partial)
+        os.replace(partial, path)
+        _atomic_json(path.parent / "latest.json", {"step": step, "checkpoint": str(path), "sha256": sha256_file(path)})
+        return
     if receipt.get("topology") == "seven-rank":
         builder = build_v7_checkpoint
     elif receipt.get("topology") == "single-gpu":
@@ -605,7 +737,9 @@ def _save_checkpoint(path: Path, *, step: int, model: ParentPlusSE3Wan, optimize
     _atomic_json(path.parent / "latest.json", {"step": step, "checkpoint": str(path), "sha256": sha256_file(path)})
 
 
-def _retirement20_rows(args: argparse.Namespace) -> list[dict[str, object]]:
+def _retirement20_rows(
+    args: argparse.Namespace, dataset: WanActionCachedDataset
+) -> list[dict[str, object]]:
     clean1000 = _read_jsonl(args.data_source_manifest)
     observability: dict[str, tuple[bool, bool]] = {}
     for row in clean1000:
@@ -620,15 +754,36 @@ def _retirement20_rows(args: argparse.Namespace) -> list[dict[str, object]]:
         if value.shape != (2, 81) or value.dtype != np.dtype(bool):
             raise RuntimeError(f"v7 observability sidecar has invalid shape or dtype: {sample}")
         observability[sample] = (bool(value[0].any()), bool(value[1].any()))
-    try:
-        return select_retirement20(clean1000, observability)
-    except ValueError as exc:
-        raise RuntimeError("v7 retirement audit cannot derive its fixed observable set") from exc
+    index_by_sample = {str(row["sample"]): index for index, row in enumerate(dataset.rows)}
+    for _attempt in range(len(clean1000)):
+        try:
+            selected = select_retirement20(clean1000, observability)
+        except ValueError as exc:
+            raise RuntimeError("v7 retirement audit cannot derive its fixed observable set") from exc
+        invalid: list[str] = []
+        for row in selected:
+            sample = str(row["sample"])
+            cached = dataset[index_by_sample[sample]]
+            raster = cached["action_raster"].unsqueeze(0).float()
+            sidecar = np.load(args.observability_root / f"{sample}.npy", allow_pickle=False)
+            targets = build_gripper_targets(
+                raster,
+                observability=torch.from_numpy(sidecar).unsqueeze(0),
+            )
+            if not bool(targets["position_valid"].any()) or not bool(
+                targets["velocity_valid"].any()
+            ):
+                invalid.append(sample)
+        if not invalid:
+            return selected
+        for sample in invalid:
+            observability[sample] = (False, False)
+    raise RuntimeError("v7 retirement audit could not find 20 probe-observable rows")
 
 
 def _audit(args: argparse.Namespace, model: ParentPlusSE3Wan, probe: GripperTrajectoryProbe, dataset: WanActionCachedDataset, replay: Mapping[str, Any], *, source_manifest_sha256: str, device: torch.device, step: int) -> dict[str, Any]:
     if args.audit_set == "retirement20":
-        discovery = _retirement20_rows(args)
+        discovery = _retirement20_rows(args, dataset)
         expected_count = 20
     else:
         discovery = _read_jsonl(args.discovery_manifest)
@@ -802,6 +957,10 @@ def main(argv: Sequence[str] | None = None) -> None:
     topology = _topology(args)
     if args.mode == "train" and args.target_step is None:
         raise RuntimeError("v7 train mode requires an approved target step")
+    if args.architecture == "v7-gate-only" and args.target_step == 100:
+        raise RuntimeError("v7 gate-only has no step100 contract")
+    if args.architecture == V71_ARCHITECTURE and args.topology != "single-gpu":
+        raise RuntimeError("v7.1 first mechanism probe is single-gpu only")
     if args.mode == "audit" and args.audit_output is None:
         raise RuntimeError("v7 audit mode requires audit output")
     if args.mode == "audit" and (args.resume is None) == (not args.audit_zero_gate):
@@ -820,6 +979,8 @@ def main(argv: Sequence[str] | None = None) -> None:
             source_code_sha256=source_code_sha,
         )
         _validate_preflight_topology(receipt, topology=topology, name=args.topology)
+        if receipt.get("architecture") != args.architecture:
+            raise RuntimeError("v7 preflight receipt architecture mismatch")
         expected = _checkpoint_expected(
             args=args,
             replay=replay,
@@ -847,7 +1008,12 @@ def main(argv: Sequence[str] | None = None) -> None:
         torch.set_float32_matmul_precision("high")
         model, probe = _load_model(args, local_rank=local_rank, device=device, source_manifest_sha256=source_manifest_sha)
         validate_training_hot_path_components(__import__("gc").get_objects())
-        optimizer = torch.optim.AdamW([v7_optimizer_group(model, CALIBRATED_LR)], weight_decay=0.0)
+        optimizer_group = (
+            v71_optimizer_group(model)
+            if args.architecture == V71_ARCHITECTURE
+            else v7_optimizer_group(model, CALIBRATED_LR)
+        )
+        optimizer = torch.optim.AdamW([optimizer_group], weight_decay=0.0)
         if args.mode == "preflight":
             receipt = _preflight(args, model, dataset, replay, source_manifest_sha256=source_manifest_sha, source_code_sha256=source_code_sha, cache_sha256=cache_sha, device=device)
             if dist.get_rank() == 0:
@@ -859,7 +1025,14 @@ def main(argv: Sequence[str] | None = None) -> None:
         start_step = 0
         if args.resume is not None:
             payload = torch.load(args.resume, map_location="cpu", weights_only=True)
-            if args.mode == "audit" and args.audit_set == "retirement20":
+            if args.architecture == V71_ARCHITECTURE:
+                _validate_checkpoint(
+                    payload,
+                    expected=expected,
+                    topology=args.topology,
+                    architecture=args.architecture,
+                )
+            elif args.mode == "audit" and args.audit_set == "retirement20":
                 _validate_retirement_checkpoint(
                     payload,
                     expected=expected,
@@ -868,7 +1041,10 @@ def main(argv: Sequence[str] | None = None) -> None:
                 )
             else:
                 _validate_checkpoint(payload, expected=expected, topology=args.topology)
-            _load_gate_state(model, payload["model"])
+            if args.architecture == V71_ARCHITECTURE:
+                _load_v71_state(model, payload["model"])
+            else:
+                _load_gate_state(model, payload["model"])
             optimizer.load_state_dict(payload["optimizer"])
             _move_optimizer_state(optimizer, device)
             start_step = int(payload["step"])
@@ -890,6 +1066,7 @@ def main(argv: Sequence[str] | None = None) -> None:
             torch.cuda.reset_peak_memory_stats(device)
         step_times: list[float] = []
         gate_grad_seen = False
+        v71_family_grad_seen = {name: False for name in ("channel_gate", "q", "k", "v", "o")}
         original_gradient_seen = False
         model.train()
         model.parent_adapter.eval()
@@ -901,16 +1078,23 @@ def main(argv: Sequence[str] | None = None) -> None:
                 raise RuntimeError("v7 flow-matching loss is non-finite")
             result["loss"].backward()
             model.release_completed_backward_conditions()
-            stats = _gradient_stats(model)
-            gate_grad_seen |= bool(stats["nonzero_gate_gradients"])
+            stats = _gradient_stats(model, architecture=args.architecture)
+            if args.architecture == V71_ARCHITECTURE:
+                for name, present in stats["nonzero_trainable_families"].items():
+                    v71_family_grad_seen[name] |= bool(present)
+                gradients_finite = bool(stats["finite_trainable_gradients"])
+            else:
+                gate_grad_seen |= bool(stats["nonzero_gate_gradients"])
+                gradients_finite = bool(stats["finite_gate_gradients"])
             original_gradient_seen |= bool(stats["original_parameter_gradients"])
-            if not stats["finite_gate_gradients"] or original_gradient_seen:
+            if not gradients_finite or original_gradient_seen:
                 raise RuntimeError("v7 gradient whitelist or finite gate check failed")
             optimizer.step()
             if args.mode == "smoke":
                 torch.cuda.synchronize(device)
                 step_times.append(time.monotonic() - started)
-            if args.mode == "train" and step in V7_CHECKPOINT_STEPS:
+            approved_steps = V71_STEPS if args.architecture == V71_ARCHITECTURE else V7_CHECKPOINT_STEPS
+            if args.mode == "train" and step in approved_steps:
                 dist.barrier()
                 if dist.get_rank() == 0:
                     _save_checkpoint(args.output_dir / f"step-{step:06d}.pt", step=step, model=model, optimizer=optimizer, replay=replay, v6_replay=v6_replay, source_manifest_sha256=source_manifest_sha, cache_sha256=cache_sha, receipt=receipt)
@@ -922,11 +1106,24 @@ def main(argv: Sequence[str] | None = None) -> None:
                 "max_memory_reserved": torch.cuda.max_memory_reserved(device),
                 "step_seconds": step_times,
                 "gate_gradient_seen": gate_grad_seen,
+                "v71_family_grad_seen": v71_family_grad_seen,
                 "original_gradient_seen": original_gradient_seen,
             }
             gathered: list[dict[str, Any] | None] = [None] * int(topology["world_size"])
             dist.all_gather_object(gathered, local)
-            passed = all(item is not None and item["max_memory_allocated"] < MEMORY_LIMIT_BYTES and item["max_memory_reserved"] < MEMORY_LIMIT_BYTES and len(item["step_seconds"]) == 3 and item["gate_gradient_seen"] and not item["original_gradient_seen"] for item in gathered)
+            passed = all(
+                item is not None
+                and item["max_memory_allocated"] < MEMORY_LIMIT_BYTES
+                and item["max_memory_reserved"] < MEMORY_LIMIT_BYTES
+                and len(item["step_seconds"]) == 3
+                and (
+                    all(item["v71_family_grad_seen"].values())
+                    if args.architecture == V71_ARCHITECTURE
+                    else item["gate_gradient_seen"]
+                )
+                and not item["original_gradient_seen"]
+                for item in gathered
+            )
             if dist.get_rank() == 0:
                 _atomic_json(args.output_dir / "production-smoke.v7.json", {"contract": topology["smoke_contract"], "topology": args.topology, "passed": passed, "completed_steps": 3, "ranks": gathered})
             if not passed:

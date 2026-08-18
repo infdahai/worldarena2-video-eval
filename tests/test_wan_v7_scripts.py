@@ -65,6 +65,24 @@ def test_v7_single_gpu_launcher_passes_the_isolated_topology() -> None:
     assert "runs/v7-se3-single-gpu" in launcher
 
 
+def test_v71_launcher_is_single_gpu_geometry_only_and_bounded() -> None:
+    result = subprocess.run(
+        ["bash", str(ROOT / "scripts/run_wan_se3_geometry_lora_v71_single_gpu.sh"), "dry-run"],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "CUDA_VISIBLE_DEVICES=6" in result.stdout
+    assert "v71-geometry-lora" in result.stdout
+    assert "rank=16" in result.stdout
+    assert "weighted-fm-only" in result.stdout
+    assert "train50 requires positive audit25" in result.stdout
+    assert "step100 is not launched" in result.stdout
+
+
 def test_v7_launcher_validates_committed_closure_before_torchrun() -> None:
     launcher = (ROOT / "scripts/run_wan_se3_probe_v7.sh").read_text()
     for phase in ("preflight", "smoke", "train10", "train25", "audit25", "train50", "audit50"):
@@ -94,7 +112,9 @@ def test_retirement_audit_accepts_only_the_two_pinned_legacy_checkpoints(monkeyp
     monkeypatch.setattr(
         module,
         "_validate_checkpoint",
-        lambda payload, *, expected, topology: calls.append((payload, expected, topology)),
+        lambda payload, *, expected, topology, architecture="v7-gate-only": calls.append(
+            (payload, expected, topology, architecture)
+        ),
     )
     payload = {"step": 10, "source_hashes": {"source_code_sha256": "old"}}
     expected = {"source_hashes": {"source_code_sha256": "new"}}
@@ -121,8 +141,17 @@ def test_v7_trainer_has_no_hot_path_encoder_or_stage_b_symbols() -> None:
     assert "WanActionCachedDataset" in source
     assert "T5EncoderModel" not in source
     assert "WanVAE" not in source
-    assert "LoRA" not in source
     assert "gripper_bias" not in source
+
+
+def test_v71_trainer_is_geometry_only_weighted_fm() -> None:
+    source = (ROOT / "scripts/train_wan_se3_probe_v7_fsdp.py").read_text()
+    assert 'V71_ARCHITECTURE = "v71-geometry-lora"' in source
+    assert "install_v71_attention" in source
+    assert "v71_trainable_parameter_names" in source
+    assert "weighted_flow_mse" in source
+    assert "trajectory_loss" not in source
+    assert "counterfactual_loss" not in source
 
 
 def test_v7_entrypoint_help_has_bounded_modes() -> None:
