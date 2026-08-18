@@ -365,11 +365,13 @@ class SE3AugmentedSelfAttention(nn.Module):
 
         # This is the only projection / QK-normalization evaluation.  The
         # resulting tensors are forked before the original RoPE boundary.
-        q = self.base.q(x).reshape(*x.shape[:2], self.num_heads, self.head_dim)
-        k = self.base.k(x).reshape(*x.shape[:2], self.num_heads, self.head_dim)
+        q = self._q_normalizer()(self.base.q(x)).reshape(
+            *x.shape[:2], self.num_heads, self.head_dim
+        )
+        k = self._k_normalizer()(self.base.k(x)).reshape(
+            *x.shape[:2], self.num_heads, self.head_dim
+        )
         v = self.base.v(x).reshape(*x.shape[:2], self.num_heads, self.head_dim)
-        q = self._q_normalizer()(q)
-        k = self._k_normalizer()(k)
         pre_rope_q, pre_rope_k, pre_rope_v = q, k, v
 
         # RoPE implementations are allowed to mutate their Q/K arguments;
