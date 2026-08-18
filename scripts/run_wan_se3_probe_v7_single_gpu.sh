@@ -34,10 +34,8 @@ if [[ "$PHASE" == dry-run ]]; then
     "smoke -> $SMOKE/production-smoke.v7.json" \
     "train10 -> $RUN/step-000010.pt" \
     "train25 -> $RUN/step-000025.pt" \
-    "audit25 -> $RUN/audit-step-000025.json" \
-    "train50 requires audit25 pass" \
-    "train50 -> $RUN/step-000050.pt" \
-    "audit50 -> $RUN/audit-step-000050.json"
+    "retirement-audit20 -> zero-gate / step10 / step25" \
+    "gate-only step50 is retired and cannot be launched here"
   exit 0
 fi
 
@@ -110,21 +108,15 @@ case "$PHASE" in
     build_replay
     run --mode train --target-step 25 --resume "$RUN/step-000010.pt" --output-dir "$RUN"
     ;;
-  audit25)
+  audit20)
     validate_source_closure "$RUN" "$PREFLIGHT"
     build_replay
-    run --mode audit --resume "$RUN/step-000025.pt" --audit-output "$RUN/audit-step-000025.json" --output-dir "$RUN"
-    ;;
-  train50)
-    validate_source_closure "$RUN" "$PREFLIGHT"
-    build_replay
-    "$PYTHON" -c 'import json,sys; from worldarena_baseline.wan_v7_training import v7_discovery_gate; p=json.load(open(sys.argv[1])); assert p.get("gate") == v7_discovery_gate(p.get("metrics", {})); assert p["gate"]["pass"] is True' "$RUN/audit-step-000025.json"
-    run --mode train --target-step 50 --resume "$RUN/step-000025.pt" --output-dir "$RUN"
-    ;;
-  audit50)
-    validate_source_closure "$RUN" "$PREFLIGHT"
-    build_replay
-    run --mode audit --resume "$RUN/step-000050.pt" --audit-output "$RUN/audit-step-000050.json" --output-dir "$RUN"
+    run --mode audit --audit-set retirement20 --audit-zero-gate \
+      --audit-output "$RUN/retirement-audit20-zero-gate.json" --output-dir "$RUN"
+    run --mode audit --audit-set retirement20 --resume "$RUN/step-000010.pt" \
+      --audit-output "$RUN/retirement-audit20-step10.json" --output-dir "$RUN"
+    run --mode audit --audit-set retirement20 --resume "$RUN/step-000025.pt" \
+      --audit-output "$RUN/retirement-audit20-step25.json" --output-dir "$RUN"
     ;;
   *)
     echo "unknown v7 single-gpu phase: $PHASE" >&2

@@ -50,6 +50,11 @@ def test_v7_single_gpu_launcher_uses_only_gpu6() -> None:
     assert "CUDA_VISIBLE_DEVICES=6" in result.stdout
     assert "nproc_per_node=1" in result.stdout
     assert "v7-se3-single-gpu" in result.stdout
+    assert "retirement-audit20" in result.stdout
+    assert "zero-gate" in result.stdout
+    assert "step10" in result.stdout
+    assert "step25" in result.stdout
+    assert "train50" not in result.stdout
     assert "CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6" not in result.stdout
 
 
@@ -106,6 +111,8 @@ def test_v7_entrypoint_help_has_bounded_modes() -> None:
     assert "smoke" in result.stdout
     assert "train" in result.stdout
     assert "audit" in result.stdout
+    assert "--audit-set" in result.stdout
+    assert "--audit-zero-gate" in result.stdout
 
 
 def test_v7_stage_a_does_not_accept_the_frozen_official_test_as_input() -> None:

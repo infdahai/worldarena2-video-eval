@@ -62,6 +62,7 @@ def _load_runtime_dependencies() -> None:
     global build_v7_checkpoint, build_v7_replay_from_v6, build_v7_single_gpu_checkpoint
     global build_v7_single_gpu_replay, v7_discovery_gate, v7_optimizer_group
     global validate_v7_checkpoint, validate_v7_single_gpu_checkpoint
+    global aggregate_retirement_audit, select_retirement20
     import numpy as np
     import torch
     import torch.distributed as dist
@@ -87,6 +88,10 @@ def _load_runtime_dependencies() -> None:
         validate_v7_checkpoint,
         validate_v7_single_gpu_checkpoint,
     )
+    from worldarena_baseline.wan_v7_retirement_audit import (
+        aggregate_retirement_audit,
+        select_retirement20,
+    )
 
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
@@ -110,6 +115,8 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--preflight-receipt", type=Path)
     parser.add_argument("--audit-output", type=Path)
+    parser.add_argument("--audit-set", choices=("discovery8", "retirement20"), default="discovery8")
+    parser.add_argument("--audit-zero-gate", action="store_true")
     parser.add_argument("--resume", type=Path)
     parser.add_argument("--target-step", type=int, choices=V7_CHECKPOINT_STEPS)
     parser.add_argument("--seed", type=int, default=20260818)
@@ -564,10 +571,36 @@ def _save_checkpoint(path: Path, *, step: int, model: ParentPlusSE3Wan, optimize
     _atomic_json(path.parent / "latest.json", {"step": step, "checkpoint": str(path), "sha256": sha256_file(path)})
 
 
+def _retirement20_rows(args: argparse.Namespace) -> list[dict[str, object]]:
+    clean1000 = _read_jsonl(args.data_source_manifest)
+    observability: dict[str, tuple[bool, bool]] = {}
+    for row in clean1000:
+        sample = row.get("sample")
+        if not isinstance(sample, str) or not sample:
+            raise RuntimeError("v7 clean-1000 row has no sample identity")
+        path = args.observability_root / f"{sample}.npy"
+        try:
+            value = np.load(path, allow_pickle=False)
+        except (OSError, ValueError) as exc:
+            raise RuntimeError(f"v7 observability sidecar is unreadable: {sample}") from exc
+        if value.shape != (2, 81) or value.dtype != np.dtype(bool):
+            raise RuntimeError(f"v7 observability sidecar has invalid shape or dtype: {sample}")
+        observability[sample] = (bool(value[0].any()), bool(value[1].any()))
+    try:
+        return select_retirement20(clean1000, observability)
+    except ValueError as exc:
+        raise RuntimeError("v7 retirement audit cannot derive its fixed observable set") from exc
+
+
 def _audit(args: argparse.Namespace, model: ParentPlusSE3Wan, probe: GripperTrajectoryProbe, dataset: WanActionCachedDataset, replay: Mapping[str, Any], *, source_manifest_sha256: str, device: torch.device, step: int) -> dict[str, Any]:
-    discovery = _read_jsonl(args.discovery_manifest)
-    if len(discovery) != 8:
-        raise RuntimeError("v7 discovery audit requires exactly eight fixed rows")
+    if args.audit_set == "retirement20":
+        discovery = _retirement20_rows(args)
+        expected_count = 20
+    else:
+        discovery = _read_jsonl(args.discovery_manifest)
+        expected_count = 8
+    if len(discovery) != expected_count:
+        raise RuntimeError(f"v7 audit requires exactly {expected_count} fixed rows")
     index_by_sample = {str(row["sample"]): index for index, row in enumerate(dataset.rows)}
     episodes: list[dict[str, Any]] = []
     topology = _topology(args)
@@ -591,8 +624,25 @@ def _audit(args: argparse.Namespace, model: ParentPlusSE3Wan, probe: GripperTraj
     gathered: list[list[dict[str, Any]] | None] = [None] * int(topology["world_size"])
     dist.all_gather_object(gathered, episodes)
     merged = [item for rank_values in gathered if rank_values for item in rank_values]
-    if len(merged) != 8:
-        raise RuntimeError("v7 distributed discovery audit did not produce eight episodes")
+    if len(merged) != expected_count:
+        raise RuntimeError(f"v7 distributed audit did not produce {expected_count} episodes")
+    if args.audit_set == "retirement20":
+        metrics = aggregate_retirement_audit(merged)
+        return {
+            "contract": "wan-action-v7-gate-only-retirement-audit-report/1",
+            "checkpoint_step": step,
+            "checkpoint_kind": "zero-gate" if args.audit_zero_gate else f"step{step}",
+            "selection": [
+                {
+                    "sample": row["sample"],
+                    "task": row["task"],
+                    "observability_class": row["observability_class"],
+                }
+                for row in discovery
+            ],
+            "episodes": merged,
+            "metrics": metrics,
+        }
     correct = [item["metrics"]["correct"] for item in merged]
     variants = {name: [item["metrics"][name] for item in merged] for name in ("reverse", "shift", "swap")}
     counterfactual: dict[str, dict[str, Any]] = {}
@@ -718,8 +768,12 @@ def main(argv: Sequence[str] | None = None) -> None:
     topology = _topology(args)
     if args.mode == "train" and args.target_step is None:
         raise RuntimeError("v7 train mode requires an approved target step")
-    if args.mode == "audit" and (args.resume is None or args.audit_output is None):
-        raise RuntimeError("v7 audit mode requires resume and audit output")
+    if args.mode == "audit" and args.audit_output is None:
+        raise RuntimeError("v7 audit mode requires audit output")
+    if args.mode == "audit" and (args.resume is None) == (not args.audit_zero_gate):
+        raise RuntimeError("v7 audit requires exactly one of resume or audit-zero-gate")
+    if args.audit_zero_gate and (args.mode != "audit" or args.audit_set != "retirement20"):
+        raise RuntimeError("v7 zero-gate is only legal for the retirement20 audit")
     replay, v6_replay, _leakage, dataset, source_manifest_sha, cache_sha, source_code_sha = _validate_inputs(args)
     receipt_path = args.preflight_receipt or args.output_dir / "preflight-gradient-audit.json"
     receipt: dict[str, Any] | None = None
@@ -776,6 +830,9 @@ def main(argv: Sequence[str] | None = None) -> None:
             optimizer.load_state_dict(payload["optimizer"])
             _move_optimizer_state(optimizer, device)
             start_step = int(payload["step"])
+        elif args.audit_zero_gate:
+            if any(bool(torch.count_nonzero(wrapper.gate).item()) for wrapper in model.geometry_wrappers.values()):
+                raise RuntimeError("v7 zero-gate audit model is not exactly zero")
         if args.mode == "audit":
             model.eval()
             report = _audit(args, model, probe, dataset, replay, source_manifest_sha256=source_manifest_sha, device=device, step=start_step)
