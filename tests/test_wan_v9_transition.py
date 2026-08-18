@@ -14,6 +14,7 @@ from worldarena_baseline.wan_v9_transition import (
     TransitionFeatures,
     build_transition_features,
     fit_normalization_statistics,
+    physical_states_from_normalized_inverse,
     shift_transition_content,
     so3_log_map,
     validate_split_identities,
@@ -93,6 +94,18 @@ def test_transition_features_have_exact_modalities_and_activity() -> None:
     np.testing.assert_allclose(result.translation[0, :, 0], 0.002, atol=1e-12)
     np.testing.assert_allclose(result.translation[1, :, 1], 0.003, atol=1e-12)
     assert result.motion_active.all()
+
+
+def test_normalized_inverse_cache_recovers_physical_translation_scale() -> None:
+    physical = _states()
+    scale = 0.04
+    normalized = physical.copy()
+    normalized[..., :3, 3] /= scale
+    inverse = np.linalg.inv(normalized).astype(np.float32)
+    recovered = physical_states_from_normalized_inverse(
+        inverse, np.ones((2, 21), dtype=bool), scale
+    )
+    np.testing.assert_allclose(recovered, physical, atol=2e-8, rtol=0)
 
 
 def test_presence_requires_both_state_and_image_endpoints() -> None:

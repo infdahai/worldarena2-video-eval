@@ -177,6 +177,32 @@ def _validate_states(states: np.ndarray, present: np.ndarray) -> tuple[np.ndarra
     return transforms, valid
 
 
+def physical_states_from_normalized_inverse(
+    arm_transform: np.ndarray,
+    arm_present: np.ndarray,
+    motion_scale: float,
+) -> np.ndarray:
+    """Recover physical anchored poses from the v7 normalized inverse cache."""
+    inverse = np.asarray(arm_transform, dtype=np.float64)
+    present = np.asarray(arm_present)
+    if inverse.shape != (2, 21, 4, 4):
+        raise ValueError("normalized inverse transforms must have shape (2,21,4,4)")
+    if present.shape != (2, 21) or present.dtype != np.dtype(bool):
+        raise ValueError("normalized inverse presence must have boolean shape (2,21)")
+    if not np.isfinite(motion_scale) or motion_scale <= 0:
+        raise ValueError("motion_scale must be positive finite")
+    _validate_states(inverse, present)
+    states = np.broadcast_to(np.eye(4, dtype=np.float64), inverse.shape).copy()
+    states[..., :3, :3] = inverse[..., :3, :3].swapaxes(-1, -2)
+    states[..., :3, 3] = -np.einsum(
+        "...ij,...j->...i", states[..., :3, :3], inverse[..., :3, 3]
+    )
+    states[..., :3, 3] *= float(motion_scale)
+    states[~present] = np.eye(4, dtype=np.float64)
+    _validate_states(states, present)
+    return states
+
+
 def _endpoint_image_state(raster: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     value = np.asarray(raster, dtype=np.float64)
     if value.shape != (81, 10, 60, 80) or not np.isfinite(value).all():

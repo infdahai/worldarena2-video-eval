@@ -10,12 +10,14 @@ import os
 from pathlib import Path
 from typing import Any
 
+import h5py
 import numpy as np
 
 from worldarena_baseline.wan_v9_transition import (
     TransitionFeatures,
     build_transition_features,
     fit_normalization_statistics,
+    physical_states_from_normalized_inverse,
     validate_split_identities,
     validate_transition_cache,
     write_transition_cache_atomic,
@@ -24,10 +26,10 @@ from worldarena_baseline.wan_v9_transition import (
 
 FORMAL_ROOT = Path("/data/di/worldarena2_track1_20260815")
 _VARIANTS = {
-    "reverse": "reverse",
-    "shift+1": "shift_plus",
-    "shift-1": "shift_minus",
-    "swap": "swap",
+    "reverse": ("reverse", "reverse", 0),
+    "shift+1": ("shift_plus", "shift", 1),
+    "shift-1": ("shift_minus", "shift", -1),
+    "swap": ("swap", "swap", 0),
 }
 
 
@@ -56,14 +58,6 @@ def _require_formal(path: Path) -> Path:
     return resolved
 
 
-def _invert_rigid(values: np.ndarray) -> np.ndarray:
-    transforms = np.asarray(values, dtype=np.float64)
-    result = np.broadcast_to(np.eye(4), transforms.shape).copy()
-    result[..., :3, :3] = transforms[..., :3, :3].swapaxes(-1, -2)
-    result[..., :3, 3] = -np.einsum("...ij,...j->...i", result[..., :3, :3], transforms[..., :3, 3])
-    return result
-
-
 def _load_correct(row: dict[str, Any], *, cache_root: Path, clean_sha: str) -> tuple[TransitionFeatures, Path, Path]:
     from worldarena_baseline.wan_se3_condition import validate_se3_cache
 
@@ -73,16 +67,50 @@ def _load_correct(row: dict[str, Any], *, cache_root: Path, clean_sha: str) -> t
     with np.load(raster_path, allow_pickle=False) as archive:
         raster = np.asarray(archive["raster"], dtype=np.float32)
     se3 = validate_se3_cache(se3_path, clean_sha)
-    states = _invert_rigid(np.asarray(se3["arm_transform"], dtype=np.float64))
+    states = physical_states_from_normalized_inverse(
+        se3["arm_transform"], se3["arm_present"], float(se3["motion_scale"].item())
+    )
     return build_transition_features(states, np.asarray(se3["arm_present"], dtype=bool), raster), raster_path, se3_path
 
 
-def _load_wrong(path: Path, label: str) -> TransitionFeatures:
+def _states_from_joint14(actions: np.ndarray, renderer) -> tuple[np.ndarray, np.ndarray]:
+    from worldarena_baseline.action_condition import EpisodeTimeline
+    from worldarena_baseline.wan_se3_condition import build_se3_condition
+
+    left, right = renderer.fk_endposes(actions)
+    condition = build_se3_condition(
+        left, right, EpisodeTimeline.build(source_length=len(actions), num_frames=81)
+    )
+    return (
+        physical_states_from_normalized_inverse(
+            condition.arm_transform, condition.arm_present, condition.motion_scale
+        ),
+        condition.arm_present,
+    )
+
+
+def _load_wrong(path: Path, label: str, actions: np.ndarray, renderer) -> TransitionFeatures:
+    from worldarena_baseline.wan_v8_counterfactual import build_joint14_counterfactual
+
+    cache_label, family, direction = _VARIANTS[label]
     with np.load(path, allow_pickle=False) as archive:
-        raster = np.asarray(archive[f"{label}_raster"], dtype=np.float32)
-        states = _invert_rigid(np.asarray(archive[f"{label}_se3"], dtype=np.float64))
-        present = np.asarray(archive[f"{label}_arm_present"], dtype=bool)
+        raster = np.asarray(archive[f"{cache_label}_raster"], dtype=np.float32)
+        cached_present = np.asarray(archive[f"{cache_label}_arm_present"], dtype=bool)
+    counterfactual = build_joint14_counterfactual(
+        actions, family, shift_direction=direction
+    )
+    states, present = _states_from_joint14(counterfactual, renderer)
+    if not np.array_equal(present, cached_present):
+        raise ValueError("v9 FK presence differs from rendered counterfactual cache")
     return build_transition_features(states, present, raster)
+
+
+def _joint14(path: Path) -> np.ndarray:
+    with h5py.File(path, "r") as handle:
+        actions = np.asarray(handle["joint_action/vector"], dtype=np.float64)
+    if actions.ndim != 2 or actions.shape[1] != 14 or len(actions) < 2:
+        raise ValueError("v9 source joint action must have shape (T>=2,14)")
+    return actions
 
 
 def _write_json_atomic(path: Path, payload: dict[str, Any]) -> None:
@@ -141,6 +169,9 @@ def prepare(
     statistics = fit_normalization_statistics({sample: correct[sample][0] for sample in optimizer})
     _write_json_atomic(output_root / "normalization.json", statistics)
     urdf_sha = _sha(urdf)
+    from worldarena_baseline.skeleton import AlohaSkeletonRenderer
+
+    renderer = AlohaSkeletonRenderer(urdf, width=80, height=60)
     for sample in (*optimizer, *(str(row["sample"]) for row in audit_rows)):
         row = row_by_sample[sample]
         hdf5 = (dataset_root / str(row["hdf5"])).resolve(strict=True)
@@ -157,9 +188,11 @@ def prepare(
         if sample not in set(optimizer):
             continue
         negative_path = negative_root / f"{sample}.npz"
-        for variant, label in _VARIANTS.items():
+        actions = _joint14(hdf5)
+        for variant in _VARIANTS:
             write_transition_cache_atomic(
-                output_root / sample / f"{variant}.npz", _load_wrong(negative_path, label),
+                output_root / sample / f"{variant}.npz",
+                _load_wrong(negative_path, variant, actions, renderer),
                 sample=sample, variant=variant, source_hdf5_sha256=_sha(hdf5),
                 source_action_sha256=_sha(raster_path), source_counterfactual_sha256=_sha(negative_path),
                 urdf_sha256=urdf_sha, clean_manifest_sha256=receipt["clean_manifest_sha256"],
