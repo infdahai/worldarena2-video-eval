@@ -3,6 +3,7 @@ from __future__ import annotations
 import pytest
 import importlib.util
 import sys
+import warnings
 from pathlib import Path
 
 
@@ -10,6 +11,7 @@ torch = pytest.importorskip("torch")
 
 from worldarena_baseline.wan_v71_cf import (  # noqa: E402
     calibrate_cf_lambda,
+    detached_float,
     geometry_only_counterfactual,
     negative_for_step,
     ranking_gradient_coefficients,
@@ -134,6 +136,15 @@ def test_lambda_calibration_matches_gate_gradient_norms_one_to_one() -> None:
 
     with pytest.raises(ValueError, match="non-zero"):
         calibrate_cf_lambda(fm, (torch.zeros(2),))
+
+
+def test_metric_scalar_detaches_before_python_conversion() -> None:
+    value = torch.tensor([2.0], requires_grad=True)
+    with warnings.catch_warnings(record=True) as captured:
+        warnings.simplefilter("always")
+        result = detached_float(value)
+    assert not captured
+    assert result == 2.0
 
 
 def test_preflight_calibration_uses_separate_correct_forward_per_vjp(monkeypatch) -> None:

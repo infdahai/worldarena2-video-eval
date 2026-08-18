@@ -12,6 +12,14 @@ from torch.nn import functional as F
 V71_CF_TAU = 0.1
 
 
+def detached_float(value: Tensor) -> float:
+    """Convert a scalar tensor to Python without autograd conversion warnings."""
+
+    if value.numel() != 1:
+        raise ValueError("metric tensor must contain exactly one value")
+    return float(value.detach().float().cpu().item())
+
+
 def _reverse_after_anchor(value: Tensor) -> Tensor:
     if value.shape[2] < 2:
         raise ValueError("counterfactual time axis must contain at least two steps")

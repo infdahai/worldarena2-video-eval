@@ -71,7 +71,7 @@ def _load_runtime_dependencies() -> None:
     global validate_v7_checkpoint, validate_v7_single_gpu_checkpoint
     global aggregate_retirement_audit, select_retirement20
     global V71_LR, V71_STEPS, build_v71_checkpoint, validate_v71_checkpoint, v71_optimizer_group
-    global V71_CF_TAU, calibrate_cf_lambda, geometry_only_counterfactual
+    global V71_CF_TAU, calibrate_cf_lambda, detached_float, geometry_only_counterfactual
     global negative_for_step, ranking_gradient_coefficients, smooth_pairwise_ranking
     global support_weighted_fm_energy
     global V71_CF_STEPS, build_v71_cf_checkpoint, validate_v71_cf_checkpoint
@@ -121,6 +121,7 @@ def _load_runtime_dependencies() -> None:
     from worldarena_baseline.wan_v71_cf import (
         V71_CF_TAU,
         calibrate_cf_lambda,
+        detached_float,
         geometry_only_counterfactual,
         negative_for_step,
         ranking_gradient_coefficients,
@@ -1220,16 +1221,14 @@ def _v71_cf_training_step(
         "step": step,
         "negative": negative,
         "shift_direction": shift_direction,
-        "correct_fm": float(correct["loss"].detach().float().cpu()),
-        "correct_energy": float(correct_energy.mean().detach().float().cpu()),
-        "wrong_energy": float(wrong_energy.mean().detach().float().cpu()),
-        "ranking_margin": float(
-            (wrong_energy - correct_energy.detach()).mean().float().cpu()
-        ),
-        "ranking_loss": float(ranking.detach().float().cpu()),
+        "correct_fm": detached_float(correct["loss"]),
+        "correct_energy": detached_float(correct_energy.mean()),
+        "wrong_energy": detached_float(wrong_energy.mean()),
+        "ranking_margin": detached_float((wrong_energy - correct_energy).mean()),
+        "ranking_loss": detached_float(ranking),
         "lambda_cf": lambda_cf,
         "tau": tau,
-        "total_loss": float(total.detach().float().cpu()),
+        "total_loss": detached_float(total),
     }
 
 
