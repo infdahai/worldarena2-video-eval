@@ -36,7 +36,10 @@ def _transforms(
 
 
 def _materialized_reference(value: torch.Tensor, matrix: torch.Tensor, *, transpose: bool = False) -> torch.Tensor:
-    action = matrix.transpose(-1, -2) if transpose else matrix
+    # ``transpose`` deliberately produces a non-contiguous view.  Materializing
+    # the reference must not rely on reshape/kron accepting that layout: this
+    # helper is the independent correctness oracle for the broadcast operator.
+    action = (matrix.transpose(-1, -2) if transpose else matrix).contiguous()
     copies = value.shape[-1] // 4
     kron = torch.kron(torch.eye(copies, dtype=value.dtype), action.reshape(-1, 4, 4)[0])
     if action.numel() != 16:

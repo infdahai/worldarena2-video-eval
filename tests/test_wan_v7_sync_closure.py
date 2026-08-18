@@ -42,6 +42,7 @@ def test_sync_closure_is_sorted_and_covers_transitive_cache_and_trainer_imports(
     # These were absent from the first direct-only closure but are imported at
     # runtime by cached-dataset/probe/replay dependencies.
     assert {
+        "scripts/build_wan_v7_replay.py",
         "src/worldarena_baseline/robotwin_action_cache.py",
         "src/worldarena_baseline/action_audit.py",
         "src/worldarena_baseline/wan_v6_training.py",

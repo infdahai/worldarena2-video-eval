@@ -135,6 +135,7 @@ def _install_condition_hook(wrapper: SE3AugmentedSelfAttention) -> None:
     wrapper._condition_token = None  # type: ignore[attr-defined]
     wrapper._checkpoint_condition = None  # type: ignore[attr-defined]
     wrapper._checkpoint_token = None  # type: ignore[attr-defined]
+    wrapper._checkpoint_replay_token = None  # type: ignore[attr-defined]
     wrapper.condition_use_count = 0  # type: ignore[attr-defined]
 
     def inject_condition(
@@ -151,9 +152,14 @@ def _install_condition_hook(wrapper: SE3AugmentedSelfAttention) -> None:
         if condition is None:
             # Checkpointed Wan blocks replay after the public forward returns.
             # This private autograd-lifetime copy is cleared by the outer
-            # module's full-backward hook; it is never used for a new model
-            # forward because _bind_condition rejects an outstanding copy.
+            # module immediately after this checkpoint replay returns; it is
+            # never used for a new model forward because _bind_condition
+            # rejects an outstanding copy.
             condition = getattr(module, "_checkpoint_condition", None)
+            if condition is not None:
+                module._checkpoint_replay_token = getattr(  # type: ignore[attr-defined]
+                    module, "_checkpoint_token", None
+                )
         if condition is None:
             raise RuntimeError("v7 SE(3) attention executed without a bound condition")
         module.condition_use_count += 1  # type: ignore[attr-defined]
@@ -166,9 +172,25 @@ def _install_condition_hook(wrapper: SE3AugmentedSelfAttention) -> None:
 
     # Persistent by design: checkpoint recomputation can happen after
     # ParentPlusSE3Wan.forward returns.  The public binding is reset in the
-    # model's finally block; the private autograd-lifetime copy is cleared at
-    # the corresponding outer backward boundary and rejects a new forward.
+    # model's finally block.  Do not use an outer full-backward hook for the
+    # private copy: in the production Wan checkpoint topology it can run
+    # before a selected block is recomputed.  Instead clear exactly after the
+    # replayed attention call consumes its bound condition.
     wrapper.register_forward_pre_hook(inject_condition, with_kwargs=True)
+
+    def clear_replayed_condition(
+        module: nn.Module,
+        _args: tuple[object, ...],
+        _kwargs: dict[str, object],
+        _output: object,
+    ) -> None:
+        token = getattr(module, "_checkpoint_replay_token", None)
+        if token is not None and getattr(module, "_checkpoint_token", None) is token:
+            module._checkpoint_condition = None  # type: ignore[attr-defined]
+            module._checkpoint_token = None  # type: ignore[attr-defined]
+        module._checkpoint_replay_token = None  # type: ignore[attr-defined]
+
+    wrapper.register_forward_hook(clear_replayed_condition, with_kwargs=True)
 
 
 def install_v7_attention(
@@ -270,7 +292,6 @@ class ParentPlusSE3Wan(nn.Module):
             wrapper.base.requires_grad_(False)
             wrapper.geometry.requires_grad_(False)
             wrapper.gate.requires_grad_(True)
-        self.register_full_backward_hook(self._clear_checkpoint_conditions_hook)
 
     @staticmethod
     def _pre_hook(residual: Tensor):
@@ -339,6 +360,21 @@ class ParentPlusSE3Wan(nn.Module):
             arm_present=effective_present,
         )
 
+    def _uses_activation_checkpoint(self, point: int) -> bool:
+        """Recognize the repository's checkpoint wrapper without importing it.
+
+        ``enable_wan_block_checkpointing`` wraps a Wan block in a module with
+        a ``block`` attribute that owns the selected self-attention.  Stage A
+        must retain the private condition only for that topology; retaining it
+        for a normal forward would incorrectly reject the next batch.
+        """
+
+        block = self.backbone.blocks[point]
+        return (
+            isinstance(getattr(block, "block", None), nn.Module)
+            and _self_attention_owner(block).self_attn is self.geometry_wrappers[str(point)]
+        )
+
     def _bind_condition(self, condition: _BoundSE3Condition) -> object:
         # Validate all wrappers before mutating any.  In particular, an
         # attempted second forward must not erase a legitimate first forward's
@@ -350,12 +386,17 @@ class ParentPlusSE3Wan(nn.Module):
             ):
                 raise RuntimeError("v7 geometry wrapper already has a bound condition")
         token = object()
-        for wrapper in self.geometry_wrappers.values():
+        for point, wrapper in self.geometry_wrappers.items():
             wrapper.condition_use_count = 0  # type: ignore[attr-defined]
             wrapper.bound_condition = condition  # type: ignore[attr-defined]
             wrapper._condition_token = token  # type: ignore[attr-defined]
-            wrapper._checkpoint_condition = condition  # type: ignore[attr-defined]
-            wrapper._checkpoint_token = token  # type: ignore[attr-defined]
+            if self._uses_activation_checkpoint(int(point)):
+                wrapper._checkpoint_condition = condition  # type: ignore[attr-defined]
+                wrapper._checkpoint_token = token  # type: ignore[attr-defined]
+            else:
+                wrapper._checkpoint_condition = None  # type: ignore[attr-defined]
+                wrapper._checkpoint_token = None  # type: ignore[attr-defined]
+            wrapper._checkpoint_replay_token = None  # type: ignore[attr-defined]
         return token
 
     def _clear_condition(self, token: object, *, retain_for_checkpoint: bool) -> None:
@@ -366,11 +407,6 @@ class ParentPlusSE3Wan(nn.Module):
             if not retain_for_checkpoint and wrapper._checkpoint_token is token:  # type: ignore[attr-defined]
                 wrapper._checkpoint_condition = None  # type: ignore[attr-defined]
                 wrapper._checkpoint_token = None  # type: ignore[attr-defined]
-
-    def _clear_checkpoint_conditions_hook(self, _module, _grad_input, _grad_output):
-        for wrapper in self.geometry_wrappers.values():
-            wrapper._checkpoint_condition = None  # type: ignore[attr-defined]
-            wrapper._checkpoint_token = None  # type: ignore[attr-defined]
 
     def forward(
         self,

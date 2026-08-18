@@ -164,6 +164,24 @@ def test_conditions_are_cleared_after_success_and_exception() -> None:
     assert all(wrapper.bound_condition is None for wrapper in failing.geometry_wrappers.values())
 
 
+def test_noncheckpointed_forward_does_not_leave_a_private_condition_lease() -> None:
+    """A private condition lease is only legal for a checkpoint replay.
+
+    This regression distinguishes normal sequential batches from the pending
+    graph case below.  Retaining a non-checkpoint lease would make the second
+    production batch fail before it reaches Wan attention.
+    """
+
+    model, _parent = _model()
+    values = _inputs()
+    model(**values)
+    assert all(
+        wrapper._checkpoint_condition is None
+        for wrapper in model.geometry_wrappers.values()
+    )
+    model(**values)
+
+
 def test_bound_condition_survives_activation_checkpoint_recomputation() -> None:
     model, _parent = _model(activation_checkpoint=True)
     values = _inputs()

@@ -21,6 +21,7 @@ from typing import Any
 CLOSURE_RELATIVE_PATH = "source_inputs/wan-v7-stagea-sync-closure.json"
 _SCHEMA = "wan-action-v7-stagea-sync-closure/1"
 _PYTHON_ENTRYPOINTS = (
+    "scripts/build_wan_v7_replay.py",
     "scripts/cache_wan_v7_se3_conditions.py",
     "scripts/train_wan_se3_probe_v7_fsdp.py",
 )

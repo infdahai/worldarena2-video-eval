@@ -114,7 +114,11 @@ def _validate_v6_replay(
     if payload.get("dataset_size") != 1000:
         raise ValueError("v6 replay dataset size is not clean-1000")
     if payload.get("dataset_manifest_sha256") != clean_hash:
-        raise ValueError("v6 replay clean-1000 manifest hash mismatch")
+        # This is a provenance boundary, not a recoverable replay formatting
+        # error.  Keep the error anchored to the source-controlled trusted
+        # clean-1000 contract so callers cannot mistake a foreign but
+        # internally-consistent replay for a valid parent.
+        raise ValueError("v6 replay does not use the trusted clean-1000 manifest")
     if payload.get("world_size") != V7_WORLD_SIZE:
         raise ValueError("v6 replay world size mismatch")
     if payload.get("rank_mapping") != list(V7_RANK_MAPPING):
