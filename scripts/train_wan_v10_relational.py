@@ -405,21 +405,38 @@ def _calibrate(args, model, legacy, dataset, index_map, record, device, probe, s
         loss = result[name] if name in result else result["trajectory"][f"{name}_loss"]
         loss.backward(); _release(model)
         gradients[name] = _grad_snapshot(parameters)
-    model.zero_grad(set_to_none=True)
-    with torch.no_grad():
-        correct_preview = _forward(args, model, legacy, batch, record, "correct", device, grad=False, probe=probe, sigma_contract=sigma_contract); _release(model)
-        wrong_preview = _forward(args, model, legacy, batch, record, str(record["negative_family"]), device, grad=False, probe=probe, sigma_contract=sigma_contract); _release(model)
-    cc, cw = _coefficients(correct_preview["energy"], wrong_preview["energy"], correct_preview["eligible"])
-    model.zero_grad(set_to_none=True)
-    result = _forward(args, model, legacy, batch, record, "correct", device, grad=True, probe=probe, sigma_contract=sigma_contract)
-    (result["energy"] * cc).sum().backward(); _release(model)
-    result = _forward(args, model, legacy, batch, record, str(record["negative_family"]), device, grad=True, probe=probe, sigma_contract=sigma_contract)
-    (result["energy"] * cw).sum().backward(); _release(model)
-    gradients["cf"] = _grad_snapshot(parameters)
+    saved_gates = {
+        key: wrapper.relation_gate.detach().clone()
+        for key, wrapper in model.relation_wrappers.items()
+    }
+    try:
+        # At the exact zero-init point correct/wrong share the same native path,
+        # so their native-QKVO ranking gradients cancel.  Open only the relation
+        # score channel to a fixed calibration value, then restore exact zero.
+        with torch.no_grad():
+            for wrapper in model.relation_wrappers.values():
+                wrapper.relation_gate.fill_(0.1)
+        model.zero_grad(set_to_none=True)
+        with torch.no_grad():
+            correct_preview = _forward(args, model, legacy, batch, record, "correct", device, grad=False, probe=probe, sigma_contract=sigma_contract); _release(model)
+            wrong_preview = _forward(args, model, legacy, batch, record, str(record["negative_family"]), device, grad=False, probe=probe, sigma_contract=sigma_contract); _release(model)
+        cc, cw = _coefficients(correct_preview["energy"], wrong_preview["energy"], correct_preview["eligible"])
+        model.zero_grad(set_to_none=True)
+        result = _forward(args, model, legacy, batch, record, "correct", device, grad=True, probe=probe, sigma_contract=sigma_contract)
+        (result["energy"] * cc).sum().backward(); _release(model)
+        result = _forward(args, model, legacy, batch, record, str(record["negative_family"]), device, grad=True, probe=probe, sigma_contract=sigma_contract)
+        (result["energy"] * cw).sum().backward(); _release(model)
+        gradients["cf"] = _grad_snapshot(parameters)
+    finally:
+        with torch.no_grad():
+            for key, wrapper in model.relation_wrappers.items():
+                wrapper.relation_gate.copy_(saved_gates[key])
     model.zero_grad(set_to_none=True); model.set_hidden_eef_backbone_scale(0.0)
-    return calibrate_v10_lambdas(
+    calibrated = calibrate_v10_lambdas(
         fm_gradients=gradients.pop("fm"), objective_gradients=gradients
     )
+    calibrated["relation_gate_calibration_value"] = 0.1
+    return calibrated
 
 
 def _train_step(args, model, legacy, dataset, index_map, record, device, optimizer, calibration, probe, sigma_contract):
