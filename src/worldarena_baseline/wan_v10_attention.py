@@ -102,6 +102,7 @@ class FactorizedRelationalSelfAttention(nn.Module):
         head_dim: int = 128,
         relation_rank: int = 16,
         expected_latent_times: int = 21,
+        hidden_eef_head: nn.Module | None = None,
     ) -> None:
         super().__init__()
         if not all(hasattr(base, name) for name in ("q", "k", "v", "o")):
@@ -119,6 +120,7 @@ class FactorizedRelationalSelfAttention(nn.Module):
         self.head_dim = int(head_dim)
         self.relation_rank = int(relation_rank)
         self.expected_latent_times = int(expected_latent_times)
+        self.hidden_eef_head = hidden_eef_head
         self.arm_head_count = num_heads // 3
         relation_width = self.arm_head_count * relation_rank
         self.relation_q = nn.Linear(state_encoder.encoded_width, relation_width)
@@ -130,6 +132,12 @@ class FactorizedRelationalSelfAttention(nn.Module):
         self.register_buffer("last_left_relation", torch.zeros(self.arm_head_count), persistent=False)
         self.register_buffer("last_right_relation", torch.zeros(self.arm_head_count), persistent=False)
         self.register_buffer("last_global_relation", torch.zeros(self.arm_head_count), persistent=False)
+        self.last_hidden_eef_prediction: Tensor | None = None
+        self.bound_condition: RelationCondition | None = None
+        self._condition_token: object | None = None
+        self._checkpoint_condition: RelationCondition | None = None
+        self._checkpoint_token: object | None = None
+        self.condition_use_count = 0
 
     def _apply(self, fn, recurse: bool = True):  # type: ignore[override]
         result = super()._apply(fn, recurse=recurse)
@@ -303,8 +311,18 @@ class FactorizedRelationalSelfAttention(nn.Module):
             if attended.shape != v_aug.shape or not torch.isfinite(attended).all():
                 raise ValueError("fused attention returned invalid augmented heads")
             native_heads = attended[..., : self.head_dim]
-            return self.base.o(native_heads.flatten(2).to(dtype=self.base.o.weight.dtype))
+            output = self.base.o(native_heads.flatten(2).to(dtype=self.base.o.weight.dtype))
+            if self.hidden_eef_head is not None:
+                logits = self.hidden_eef_head(output)
+                height, width = relation_condition.support.shape[-2:]
+                if output.shape[1] != self.expected_latent_times * height * width:
+                    raise ValueError("hidden EEF head requires an unpadded production token grid")
+                self.last_hidden_eef_prediction = logits.reshape(
+                    output.shape[0], self.expected_latent_times, height, width, 2
+                ).permute(0, 1, 4, 2, 3)
+            else:
+                self.last_hidden_eef_prediction = None
+            return output
         finally:
             if checkpoint_replay_release is not None:
                 checkpoint_replay_release()
-
