@@ -1,4 +1,7 @@
 import hashlib
+import importlib.util
+from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 import pytest
@@ -121,3 +124,30 @@ def test_correct_se3_cache_rejects_wrong_source_and_accepts_complete_cache(tmp_p
         validate_v8_correct_cache(
             tmp_path, expected_samples=("a", "b"), source_manifest_sha256=_sha("other")
         )
+
+
+def test_prepare_cli_translates_argument_names_before_calling_prepare(monkeypatch, capsys):
+    script = Path(__file__).parents[1] / "scripts" / "prepare_wan_v8_data.py"
+    spec = importlib.util.spec_from_file_location("prepare_wan_v8_data_test", script)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    values = SimpleNamespace(
+        dataset_root=Path("/data/di/worldarena2_track1_20260815/dataset"),
+        cache_root=Path("/data/di/worldarena2_track1_20260815/cache"),
+        cached_manifest=Path("/data/di/worldarena2_track1_20260815/cached.jsonl"),
+        probe_split=Path("/data/di/worldarena2_track1_20260815/probe.json"),
+        dev_manifest=Path("/data/di/worldarena2_track1_20260815/dev.jsonl"),
+        strata_receipt=Path("/data/di/worldarena2_track1_20260815/strata.json"),
+        strata_manifest=Path("/data/di/worldarena2_track1_20260815/strata.jsonl"),
+        output_root=Path("/data/di/worldarena2_track1_20260815/output"),
+        world_size=1,
+        steps=250,
+    )
+    captured = {}
+    monkeypatch.setattr(module, "parse_args", lambda: values)
+    monkeypatch.setattr(module, "prepare", lambda **kwargs: captured.update(kwargs) or {"ok": True})
+    module.main()
+    assert captured["probe_split_path"] == values.probe_split
+    assert "probe_split" not in captured
+    assert '"ok": true' in capsys.readouterr().out

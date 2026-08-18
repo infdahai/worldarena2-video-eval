@@ -220,7 +220,18 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    payload = prepare(**vars(args))
+    payload = prepare(
+        dataset_root=args.dataset_root,
+        cache_root=args.cache_root,
+        cached_manifest=args.cached_manifest,
+        probe_split_path=args.probe_split,
+        dev_manifest=args.dev_manifest,
+        strata_receipt=args.strata_receipt,
+        strata_manifest=args.strata_manifest,
+        output_root=args.output_root,
+        world_size=args.world_size,
+        steps=args.steps,
+    )
     print(json.dumps(payload, sort_keys=True), flush=True)
 
 
