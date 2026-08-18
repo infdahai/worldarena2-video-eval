@@ -28,6 +28,7 @@ CUDA_VISIBLE_DEVICES = "0,1,2,3,4,5,6"
 SINGLE_GPU_CUDA_VISIBLE_DEVICES = "6"
 CALIBRATED_LR = 2e-5
 V71_ARCHITECTURE = "v71-geometry-lora"
+V71_CF_ARCHITECTURE = "v71-geometry-lora-cf"
 MEMORY_LIMIT_BYTES = 22 * 1024**3
 FROZEN_V7_PARENT_SHA256 = "105fb760fd371885ba362d26ef2352c260755e47cd036f46711181edc3b30ca2"
 V7_CHECKPOINT_STEPS = (10, 25, 50)
@@ -70,6 +71,10 @@ def _load_runtime_dependencies() -> None:
     global validate_v7_checkpoint, validate_v7_single_gpu_checkpoint
     global aggregate_retirement_audit, select_retirement20
     global V71_LR, V71_STEPS, build_v71_checkpoint, validate_v71_checkpoint, v71_optimizer_group
+    global V71_CF_TAU, calibrate_cf_lambda, geometry_only_counterfactual
+    global negative_for_step, ranking_gradient_coefficients, smooth_pairwise_ranking
+    global support_weighted_fm_energy
+    global V71_CF_STEPS, build_v71_cf_checkpoint, validate_v71_cf_checkpoint
     import numpy as np
     import torch
     import torch.distributed as dist
@@ -113,12 +118,30 @@ def _load_runtime_dependencies() -> None:
         validate_v71_checkpoint,
         v71_optimizer_group,
     )
+    from worldarena_baseline.wan_v71_cf import (
+        V71_CF_TAU,
+        calibrate_cf_lambda,
+        geometry_only_counterfactual,
+        negative_for_step,
+        ranking_gradient_coefficients,
+        smooth_pairwise_ranking,
+        support_weighted_fm_energy,
+    )
+    from worldarena_baseline.wan_v71_cf_training import (
+        V71_CF_STEPS,
+        build_v71_cf_checkpoint,
+        validate_v71_cf_checkpoint,
+    )
 
 
 def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", choices=("preflight", "smoke", "train", "audit"), required=True)
-    parser.add_argument("--architecture", choices=("v7-gate-only", V71_ARCHITECTURE), default="v7-gate-only")
+    parser.add_argument(
+        "--architecture",
+        choices=("v7-gate-only", V71_ARCHITECTURE, V71_CF_ARCHITECTURE),
+        default="v7-gate-only",
+    )
     parser.add_argument("--topology", choices=tuple(_TOPOLOGIES), default="seven-rank")
     parser.add_argument("--checkpoint-dir", type=Path, required=True)
     parser.add_argument("--cache-root", type=Path, required=True)
@@ -152,6 +175,10 @@ def _topology(args: argparse.Namespace) -> Mapping[str, Any]:
         raise RuntimeError("v7 topology is unsupported") from exc
 
 
+def _is_v71(architecture: str) -> bool:
+    return architecture in (V71_ARCHITECTURE, V71_CF_ARCHITECTURE)
+
+
 def _expected_replay(v6_replay: Mapping[str, Any], *, topology: str) -> dict[str, Any]:
     if topology == "seven-rank":
         return build_v7_replay_from_v6(v6_replay)
@@ -167,6 +194,11 @@ def _validate_checkpoint(
     topology: str,
     architecture: str = "v7-gate-only",
 ) -> None:
+    if architecture == V71_CF_ARCHITECTURE:
+        if topology != "single-gpu":
+            raise RuntimeError("v7.1-CF mechanism probe requires single-gpu topology")
+        validate_v71_cf_checkpoint(payload, expected=expected)
+        return
     if architecture == V71_ARCHITECTURE:
         if topology != "single-gpu":
             raise RuntimeError("v7.1 mechanism probe currently requires single-gpu topology")
@@ -379,7 +411,7 @@ def _load_model(args: argparse.Namespace, *, local_rank: int, device: torch.devi
     backbone = WanModel.from_pretrained(args.checkpoint_dir, torch_dtype=torch.bfloat16, low_cpu_mem_usage=True)
     backbone.requires_grad_(False)
     enable_wan_block_checkpointing(backbone)
-    if args.architecture == V71_ARCHITECTURE:
+    if _is_v71(args.architecture):
         wrappers = install_v71_attention(
             backbone, STAGE_A_BLOCKS, rope_apply, attention, rank=16
         )
@@ -401,7 +433,7 @@ def _load_model(args: argparse.Namespace, *, local_rank: int, device: torch.devi
         )
     parent = _load_parent(args, device, source_manifest_sha256=source_manifest_sha256)
     model = ParentPlusSE3Wan(backbone, parent, wrappers).to(device)
-    if args.architecture == V71_ARCHITECTURE:
+    if _is_v71(args.architecture):
         names = v71_trainable_parameter_names(model, rank=16)
         if len(names) != 27 or sum(
             parameter.numel() for parameter in model.parameters() if parameter.requires_grad
@@ -446,7 +478,12 @@ def _shift_time(value: torch.Tensor, *, dimension: int) -> torch.Tensor:
     return torch.cat((head, value.narrow(dimension, 0, value.shape[dimension] - 1)), dim=dimension)
 
 
-def _counterfactual(name: str, value: Mapping[str, torch.Tensor]) -> dict[str, torch.Tensor]:
+def _counterfactual(
+    name: str,
+    value: Mapping[str, torch.Tensor],
+    *,
+    shift_direction: int = 1,
+) -> dict[str, torch.Tensor]:
     if name == "correct":
         return dict(value)
     result = dict(value)
@@ -463,6 +500,8 @@ def _counterfactual(name: str, value: Mapping[str, torch.Tensor]) -> dict[str, t
         result["se3_arm_present"] = _reverse_time(value["se3_arm_present"])
         return result
     if name == "shift":
+        if shift_direction != 1:
+            raise ValueError("legacy v7 shift supports only +1")
         result["action_raster"] = _shift_time(value["action_raster"], dimension=2)
         result["condition_support"] = _shift_time(value["condition_support"], dimension=2)
         result["se3_arm_transform"] = _shift_time(value["se3_arm_transform"], dimension=2)
@@ -471,7 +510,17 @@ def _counterfactual(name: str, value: Mapping[str, torch.Tensor]) -> dict[str, t
     raise ValueError(f"unsupported v7 counterfactual: {name}")
 
 
-def _forward_record(model, dataset: WanActionCachedDataset, record: Mapping[str, Any], *, source_manifest_sha256: str, device: torch.device, variant: str = "correct") -> dict[str, Any]:
+def _forward_record(
+    model,
+    dataset: WanActionCachedDataset,
+    record: Mapping[str, Any],
+    *,
+    source_manifest_sha256: str,
+    device: torch.device,
+    variant: str = "correct",
+    architecture: str = "v7-gate-only",
+    shift_direction: int = 1,
+) -> dict[str, Any]:
     batch, transform, present = _record_batch(dataset, record, source_manifest_sha256=source_manifest_sha256, device=device)
     clean = batch["latent"].to(device=device, dtype=torch.bfloat16, non_blocking=True)
     context = batch["context"].to(device=device, dtype=torch.bfloat16, non_blocking=True)
@@ -483,7 +532,16 @@ def _forward_record(model, dataset: WanActionCachedDataset, record: Mapping[str,
         noise=replay_noise(record, shape=tuple(clean.shape), device=device, dtype=clean.dtype),
     )
     correct_condition = _condition(batch, transform, present, device=device)
-    model_condition = _counterfactual(variant, correct_condition)
+    if variant == "correct":
+        model_condition = correct_condition
+    elif architecture == V71_CF_ARCHITECTURE:
+        model_condition = geometry_only_counterfactual(
+            correct_condition, variant, shift_direction=shift_direction
+        )
+    else:
+        model_condition = _counterfactual(
+            variant, correct_condition, shift_direction=shift_direction
+        )
     with torch.autocast("cuda", dtype=torch.bfloat16):
         prediction = torch.stack(
             model(
@@ -495,6 +553,13 @@ def _forward_record(model, dataset: WanActionCachedDataset, record: Mapping[str,
             )
         )
         loss = weighted_flow_mse(prediction, target, loss_weight=loss_weight, valid_mask=valid_mask)
+        support_energy = support_weighted_fm_energy(
+            prediction,
+            target,
+            condition_support=correct_condition["condition_support"],
+            loss_weight=loss_weight,
+            valid_mask=valid_mask,
+        )
     return {
         "prediction": prediction,
         "target": target,
@@ -502,6 +567,7 @@ def _forward_record(model, dataset: WanActionCachedDataset, record: Mapping[str,
         "timestep": timestep,
         "valid_mask": valid_mask,
         "loss": loss,
+        "support_energy": support_energy,
         # Counterfactuals perturb only the condition.  The target is always
         # the original cached RGB-aligned command and its verified visibility.
         "target_raster": correct_condition["action_raster"],
@@ -539,13 +605,14 @@ def _probe_metrics(result: Mapping[str, Any], probe: GripperTrajectoryProbe, *, 
         "position_error": float(position_error.detach().cpu()),
         "velocity_error": float(velocity_mean.detach().cpu()),
         "fm_loss": float(result["loss"].detach().float().cpu()),
+        "support_energy": float(result["support_energy"].mean().detach().float().cpu()),
     }
 
 
 def _gradient_stats(
     model: ParentPlusSE3Wan, *, architecture: str = "v7-gate-only"
 ) -> dict[str, Any]:
-    if architecture == V71_ARCHITECTURE:
+    if _is_v71(architecture):
         expected = v71_trainable_parameter_names(model, rank=16)
         named = dict(model.named_parameters())
         gradients = {name: named[name].grad for name in expected}
@@ -592,9 +659,120 @@ def _gradient_stats(
     }
 
 
+def _trainable_parameters(model: ParentPlusSE3Wan) -> list[torch.nn.Parameter]:
+    return [parameter for parameter in model.parameters() if parameter.requires_grad]
+
+
+def _channel_gate_parameters(model: ParentPlusSE3Wan) -> list[torch.nn.Parameter]:
+    return [model.geometry_wrappers[str(block)].channel_gate for block in STAGE_A_BLOCKS]
+
+
+def _release_forward(model: ParentPlusSE3Wan) -> None:
+    model.release_completed_backward_conditions()
+
+
+def _calibrate_v71_cf(
+    args: argparse.Namespace,
+    model: ParentPlusSE3Wan,
+    dataset: WanActionCachedDataset,
+    record: Mapping[str, Any],
+    *,
+    source_manifest_sha256: str,
+    device: torch.device,
+) -> dict[str, Any]:
+    """Calibrate CF to FM at 1:1 channel-gate gradient norm at fresh step0."""
+
+    gates = _channel_gate_parameters(model)
+    wrong_values: list[tuple[str, int, torch.Tensor, tuple[torch.Tensor, ...]]] = []
+    for variant, direction in (("reverse", 0), ("shift", 1), ("swap", 0)):
+        result = _forward_record(
+            model,
+            dataset,
+            record,
+            source_manifest_sha256=source_manifest_sha256,
+            device=device,
+            variant=variant,
+            architecture=args.architecture,
+            shift_direction=direction or 1,
+        )
+        energy = result["support_energy"]
+        gradients = torch.autograd.grad(energy.mean(), gates)
+        _release_forward(model)
+        wrong_values.append((variant, direction, energy.detach(), gradients))
+
+    correct = _forward_record(
+        model,
+        dataset,
+        record,
+        source_manifest_sha256=source_manifest_sha256,
+        device=device,
+        architecture=args.architecture,
+    )
+    correct_energy = correct["support_energy"]
+    fm_gradients = torch.autograd.grad(correct["loss"], gates, retain_graph=True)
+    correct_energy_gradients = torch.autograd.grad(correct_energy.mean(), gates)
+    _release_forward(model)
+
+    cf_gradients = [torch.zeros_like(value) for value in correct_energy_gradients]
+    margins: dict[str, float] = {}
+    ranking_losses: dict[str, float] = {}
+    for variant, direction, wrong_energy, wrong_gradients in wrong_values:
+        correct_coefficient, wrong_coefficient = ranking_gradient_coefficients(
+            correct_energy.detach(), wrong_energy, tau=V71_CF_TAU
+        )
+        if correct_coefficient.numel() != 1:
+            raise RuntimeError("v7.1-CF calibration requires micro-batch one")
+        for index, (correct_gradient, wrong_gradient) in enumerate(
+            zip(correct_energy_gradients, wrong_gradients, strict=True)
+        ):
+            cf_gradients[index].add_(
+                correct_coefficient.item() * correct_gradient
+                + wrong_coefficient.item() * wrong_gradient
+            )
+        key = f"{variant}{direction:+d}" if variant == "shift" else variant
+        margins[key] = float((wrong_energy - correct_energy.detach()).mean().cpu())
+        ranking_losses[key] = float(
+            smooth_pairwise_ranking(
+                correct_energy.detach(), wrong_energy, tau=V71_CF_TAU
+            ).cpu()
+        )
+    cf_gradients = [value / len(wrong_values) for value in cf_gradients]
+    lambda_cf = calibrate_cf_lambda(fm_gradients, cf_gradients)
+    return {
+        "lambda_cf": lambda_cf,
+        "tau": V71_CF_TAU,
+        "ratio": "1:1",
+        "wrong_variants": ["reverse", "shift+1", "swap"],
+        "initial_margin": margins,
+        "initial_ranking_loss": ranking_losses,
+        "fm_gate_gradient_l2": float(
+            torch.stack([value.float().square().sum() for value in fm_gradients])
+            .sum()
+            .sqrt()
+            .cpu()
+        ),
+        "cf_gate_gradient_l2_before_lambda": float(
+            torch.stack([value.float().square().sum() for value in cf_gradients])
+            .sum()
+            .sqrt()
+            .cpu()
+        ),
+    }
+
+
 def _preflight(args: argparse.Namespace, model: ParentPlusSE3Wan, dataset: WanActionCachedDataset, replay: Mapping[str, Any], *, source_manifest_sha256: str, source_code_sha256: str, cache_sha256: str, device: torch.device) -> dict[str, Any]:
     record = replay["records"][0][dist.get_rank()]
     metrics: dict[str, dict[str, float]] = {}
+    calibration = None
+    if args.architecture == V71_CF_ARCHITECTURE:
+        calibration = _calibrate_v71_cf(
+            args,
+            model,
+            dataset,
+            record,
+            source_manifest_sha256=source_manifest_sha256,
+            device=device,
+        )
     model.zero_grad(set_to_none=True)
     for variant in ("correct", "reverse", "shift", "swap"):
         grad_context = torch.enable_grad() if variant == "correct" else torch.no_grad()
@@ -606,14 +784,15 @@ def _preflight(args: argparse.Namespace, model: ParentPlusSE3Wan, dataset: WanAc
                 source_manifest_sha256=source_manifest_sha256,
                 device=device,
                 variant=variant,
+                architecture=args.architecture,
             )
         metrics[variant] = {"fm_loss": float(result["loss"].detach().float().cpu())}
         if variant == "correct":
             result["loss"].backward()
-            model.release_completed_backward_conditions()
+            _release_forward(model)
     gradients = _gradient_stats(model, architecture=args.architecture)
     original_gradients = gradients["original_parameter_gradients"]
-    if args.architecture == V71_ARCHITECTURE:
+    if _is_v71(args.architecture):
         passed = bool(
             gradients["finite_trainable_gradients"]
             and gradients["connected_trainable_gradients"]
@@ -629,7 +808,13 @@ def _preflight(args: argparse.Namespace, model: ParentPlusSE3Wan, dataset: WanAc
         )
         calibrated_lr = CALIBRATED_LR
     receipt = {
-        "contract": "wan-action-v71-preflight/1" if args.architecture == V71_ARCHITECTURE else "wan-action-v7-preflight/1",
+        "contract": (
+            "wan-action-v71-cf-preflight/1"
+            if args.architecture == V71_CF_ARCHITECTURE
+            else "wan-action-v71-preflight/1"
+            if args.architecture == V71_ARCHITECTURE
+            else "wan-action-v7-preflight/1"
+        ),
         "architecture": args.architecture,
         "topology": args.topology,
         "world_size": _topology(args)["world_size"],
@@ -640,9 +825,12 @@ def _preflight(args: argparse.Namespace, model: ParentPlusSE3Wan, dataset: WanAc
         "source_hashes": {"source_manifest_sha256": source_manifest_sha256, "source_code_sha256": source_code_sha256},
         "cache_sha256": cache_sha256,
         "replay_sha256": replay["replay_sha256"],
+        "init_seed": args.seed,
         "counterfactual_feature_metrics": metrics,
         "gradient": gradients,
     }
+    if calibration is not None:
+        receipt["cf_calibration"] = calibration
     if not receipt["passed"]:
         raise RuntimeError("v7 preflight gate-gradient hard gate failed")
     return receipt
@@ -689,13 +877,47 @@ def _checkpoint_expected(*, args: argparse.Namespace, replay: Mapping[str, Any],
         "v6_replay": v6_replay,
         "replay": replay,
     }
-    if args.architecture == V71_ARCHITECTURE:
+    if _is_v71(args.architecture):
         receipt_path = args.preflight_receipt or args.output_dir / "preflight-gradient-audit.json"
         result["preflight_sha256"] = sha256_file(receipt_path)
+    if args.architecture == V71_CF_ARCHITECTURE:
+        calibration = receipt.get("cf_calibration")
+        if not isinstance(calibration, Mapping):
+            raise RuntimeError("v7.1-CF preflight has no frozen calibration")
+        result.update(
+            {
+                "lambda_cf": calibration.get("lambda_cf"),
+                "tau": calibration.get("tau"),
+                "init_seed": receipt.get("init_seed"),
+            }
+        )
     return result
 
 
 def _save_checkpoint(path: Path, *, step: int, model: ParentPlusSE3Wan, optimizer: torch.optim.Optimizer, replay: Mapping[str, Any], v6_replay: Mapping[str, Any], source_manifest_sha256: str, cache_sha256: str, receipt: Mapping[str, Any]) -> None:
+    if receipt.get("architecture") == V71_CF_ARCHITECTURE:
+        calibration = receipt.get("cf_calibration")
+        if not isinstance(calibration, Mapping):
+            raise RuntimeError("v7.1-CF checkpoint has no frozen calibration")
+        payload = build_v71_cf_checkpoint(
+            step=step,
+            model=model,
+            optimizer=optimizer,
+            lambda_cf=float(calibration["lambda_cf"]),
+            tau=float(calibration["tau"]),
+            init_seed=int(receipt["init_seed"]),
+            parent_sha256=FROZEN_V7_PARENT_SHA256,
+            source_hashes=receipt["source_hashes"],
+            cache_sha256=cache_sha256,
+            replay_sha256=replay["replay_sha256"],
+            preflight_sha256=sha256_file(path.parent / "preflight-gradient-audit.json"),
+        )
+        _under_formal_root(path.parent, writable=True)
+        partial = path.with_suffix(path.suffix + ".partial")
+        torch.save(payload, partial)
+        os.replace(partial, path)
+        _atomic_json(path.parent / "latest.json", {"step": step, "checkpoint": str(path), "sha256": sha256_file(path)})
+        return
     if receipt.get("architecture") == V71_ARCHITECTURE:
         payload = build_v71_checkpoint(
             step=step,
@@ -803,12 +1025,39 @@ def _audit(args: argparse.Namespace, model: ParentPlusSE3Wan, probe: GripperTraj
         record["sample_index"] = index_by_sample[sample]
         values: dict[str, dict[str, float]] = {}
         with torch.no_grad():
-            for variant in ("correct", "reverse", "shift", "swap"):
-                values[variant] = _probe_metrics(
-                    _forward_record(model, dataset, record, source_manifest_sha256=source_manifest_sha256, device=device, variant=variant),
+            variants = (
+                ("correct", "correct", 1),
+                ("reverse", "reverse", 1),
+                ("shift_plus", "shift", 1),
+                ("shift_minus", "shift", -1),
+                ("swap", "swap", 1),
+            ) if args.architecture == V71_CF_ARCHITECTURE else (
+                ("correct", "correct", 1),
+                ("reverse", "reverse", 1),
+                ("shift", "shift", 1),
+                ("swap", "swap", 1),
+            )
+            for output_name, variant, shift_direction in variants:
+                values[output_name] = _probe_metrics(
+                    _forward_record(
+                        model,
+                        dataset,
+                        record,
+                        source_manifest_sha256=source_manifest_sha256,
+                        device=device,
+                        variant=variant,
+                        architecture=args.architecture,
+                        shift_direction=shift_direction,
+                    ),
                     probe,
                     observability_root=args.observability_root,
                 )
+            if args.architecture == V71_CF_ARCHITECTURE:
+                # The harder temporal negative is the one with lower error.
+                values["shift"] = {
+                    name: min(values["shift_plus"][name], values["shift_minus"][name])
+                    for name in values["shift_plus"]
+                }
         episodes.append({"sample": sample, "record": record, "metrics": values})
     gathered: list[list[dict[str, Any]] | None] = [None] * int(topology["world_size"])
     dist.all_gather_object(gathered, episodes)
@@ -817,8 +1066,28 @@ def _audit(args: argparse.Namespace, model: ParentPlusSE3Wan, probe: GripperTraj
         raise RuntimeError(f"v7 distributed audit did not produce {expected_count} episodes")
     if args.audit_set == "retirement20":
         metrics = aggregate_retirement_audit(merged)
+        if args.architecture == V71_CF_ARCHITECTURE:
+            metrics["average_ranking_margin"] = {
+                name: float(
+                    sum(
+                        item["metrics"][name]["support_energy"]
+                        - item["metrics"]["correct"]["support_energy"]
+                        for item in merged
+                    )
+                    / len(merged)
+                )
+                for name in ("reverse", "shift", "swap")
+            }
+            metrics["routing_retention"] = sum(
+                wrapper.condition_use_count > 0
+                for wrapper in model.geometry_wrappers.values()
+            ) / len(model.geometry_wrappers)
         return {
-            "contract": "wan-action-v7-gate-only-retirement-audit-report/1",
+            "contract": (
+                "wan-action-v71-cf-mechanism-audit-report/1"
+                if args.architecture == V71_CF_ARCHITECTURE
+                else "wan-action-v7-gate-only-retirement-audit-report/1"
+            ),
             "checkpoint_step": step,
             "checkpoint_kind": "zero-gate" if args.audit_zero_gate else f"step{step}",
             "selection": [
@@ -879,6 +1148,97 @@ def _validate_preflight_topology(receipt: Mapping[str, Any], *, topology: Mappin
         or receipt.get("rank_mapping") != topology["rank_mapping"]
     ):
         raise RuntimeError("v7 preflight receipt topology mismatch")
+
+
+def _v71_cf_training_step(
+    args: argparse.Namespace,
+    model: ParentPlusSE3Wan,
+    dataset: WanActionCachedDataset,
+    record: Mapping[str, Any],
+    *,
+    step: int,
+    source_manifest_sha256: str,
+    device: torch.device,
+    lambda_cf: float,
+    tau: float,
+) -> dict[str, Any]:
+    """Accumulate the exact pairwise gradient with two graph-bearing forwards."""
+
+    negative, shift_direction = negative_for_step(step)
+    parameters = _trainable_parameters(model)
+    wrong = _forward_record(
+        model,
+        dataset,
+        record,
+        source_manifest_sha256=source_manifest_sha256,
+        device=device,
+        variant=negative,
+        architecture=args.architecture,
+        shift_direction=shift_direction or 1,
+    )
+    wrong_energy = wrong["support_energy"]
+    if wrong_energy.numel() != 1:
+        raise RuntimeError("v7.1-CF exact two-forward accumulation requires micro-batch one")
+    wrong_gradients = torch.autograd.grad(wrong_energy.mean(), parameters)
+    _release_forward(model)
+
+    correct = _forward_record(
+        model,
+        dataset,
+        record,
+        source_manifest_sha256=source_manifest_sha256,
+        device=device,
+        architecture=args.architecture,
+    )
+    correct_energy = correct["support_energy"]
+    ranking = smooth_pairwise_ranking(correct_energy, wrong_energy.detach(), tau=tau)
+    total = correct["loss"] + lambda_cf * ranking
+    if not all(torch.isfinite(value) for value in (correct["loss"], ranking, total)):
+        raise RuntimeError("v7.1-CF objective is non-finite")
+    total.backward()
+    _release_forward(model)
+
+    _, wrong_coefficient = ranking_gradient_coefficients(
+        correct_energy.detach(), wrong_energy.detach(), tau=tau
+    )
+    wrong_scale = lambda_cf * float(wrong_coefficient.item())
+    for parameter, gradient in zip(parameters, wrong_gradients, strict=True):
+        if parameter.grad is None:
+            parameter.grad = wrong_scale * gradient
+        else:
+            parameter.grad.add_(gradient, alpha=wrong_scale)
+    return {
+        "step": step,
+        "negative": negative,
+        "shift_direction": shift_direction,
+        "correct_fm": float(correct["loss"].detach().float().cpu()),
+        "correct_energy": float(correct_energy.mean().detach().float().cpu()),
+        "wrong_energy": float(wrong_energy.mean().detach().float().cpu()),
+        "ranking_margin": float(
+            (wrong_energy - correct_energy.detach()).mean().float().cpu()
+        ),
+        "ranking_loss": float(ranking.detach().float().cpu()),
+        "lambda_cf": lambda_cf,
+        "tau": tau,
+        "total_loss": float(total.detach().float().cpu()),
+    }
+
+
+def _training_metrics(path: Path, *, start_step: int) -> list[dict[str, Any]]:
+    if start_step == 0:
+        if path.exists():
+            raise RuntimeError("fresh v7.1-CF lineage refuses an existing training log")
+        return []
+    payload = _read_json(path)
+    records = payload.get("records")
+    if (
+        payload.get("contract") != "wan-action-v71-cf-training-metrics/1"
+        or not isinstance(records, list)
+        or len(records) != start_step
+        or records[-1].get("step") != start_step
+    ):
+        raise RuntimeError("v7.1-CF training metrics do not match resume step")
+    return [dict(value) for value in records]
 
 
 def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], WanActionCachedDataset, str, str, str]:
@@ -959,8 +1319,10 @@ def main(argv: Sequence[str] | None = None) -> None:
         raise RuntimeError("v7 train mode requires an approved target step")
     if args.architecture == "v7-gate-only" and args.target_step == 100:
         raise RuntimeError("v7 gate-only has no step100 contract")
-    if args.architecture == V71_ARCHITECTURE and args.topology != "single-gpu":
+    if _is_v71(args.architecture) and args.topology != "single-gpu":
         raise RuntimeError("v7.1 first mechanism probe is single-gpu only")
+    if args.architecture == V71_CF_ARCHITECTURE and args.target_step == 100:
+        raise RuntimeError("v7.1-CF has no step100 contract")
     if args.mode == "audit" and args.audit_output is None:
         raise RuntimeError("v7 audit mode requires audit output")
     if args.mode == "audit" and (args.resume is None) == (not args.audit_zero_gate):
@@ -1010,7 +1372,7 @@ def main(argv: Sequence[str] | None = None) -> None:
         validate_training_hot_path_components(__import__("gc").get_objects())
         optimizer_group = (
             v71_optimizer_group(model)
-            if args.architecture == V71_ARCHITECTURE
+            if _is_v71(args.architecture)
             else v7_optimizer_group(model, CALIBRATED_LR)
         )
         optimizer = torch.optim.AdamW([optimizer_group], weight_decay=0.0)
@@ -1025,7 +1387,7 @@ def main(argv: Sequence[str] | None = None) -> None:
         start_step = 0
         if args.resume is not None:
             payload = torch.load(args.resume, map_location="cpu", weights_only=True)
-            if args.architecture == V71_ARCHITECTURE:
+            if _is_v71(args.architecture):
                 _validate_checkpoint(
                     payload,
                     expected=expected,
@@ -1041,7 +1403,7 @@ def main(argv: Sequence[str] | None = None) -> None:
                 )
             else:
                 _validate_checkpoint(payload, expected=expected, topology=args.topology)
-            if args.architecture == V71_ARCHITECTURE:
+            if _is_v71(args.architecture):
                 _load_v71_state(model, payload["model"])
             else:
                 _load_gate_state(model, payload["model"])
@@ -1065,6 +1427,12 @@ def main(argv: Sequence[str] | None = None) -> None:
             torch.cuda.synchronize(device)
             torch.cuda.reset_peak_memory_stats(device)
         step_times: list[float] = []
+        training_metrics_path = args.output_dir / "training-metrics.json"
+        training_records = (
+            _training_metrics(training_metrics_path, start_step=start_step)
+            if args.architecture == V71_CF_ARCHITECTURE and args.mode == "train"
+            else []
+        )
         gate_grad_seen = False
         v71_family_grad_seen = {name: False for name in ("channel_gate", "q", "k", "v", "o")}
         original_gradient_seen = False
@@ -1073,13 +1441,37 @@ def main(argv: Sequence[str] | None = None) -> None:
         for step in range(start_step + 1, target + 1):
             started = time.monotonic()
             optimizer.zero_grad(set_to_none=True)
-            result = _forward_record(model, dataset, replay["records"][step - 1][dist.get_rank()], source_manifest_sha256=source_manifest_sha, device=device)
-            if not torch.isfinite(result["loss"]):
-                raise RuntimeError("v7 flow-matching loss is non-finite")
-            result["loss"].backward()
-            model.release_completed_backward_conditions()
+            if args.architecture == V71_CF_ARCHITECTURE:
+                calibration = receipt.get("cf_calibration")
+                if not isinstance(calibration, Mapping):
+                    raise RuntimeError("v7.1-CF launch has no frozen calibration")
+                step_metrics = _v71_cf_training_step(
+                    args,
+                    model,
+                    dataset,
+                    replay["records"][step - 1][dist.get_rank()],
+                    step=step,
+                    source_manifest_sha256=source_manifest_sha,
+                    device=device,
+                    lambda_cf=float(calibration["lambda_cf"]),
+                    tau=float(calibration["tau"]),
+                )
+            else:
+                result = _forward_record(
+                    model,
+                    dataset,
+                    replay["records"][step - 1][dist.get_rank()],
+                    source_manifest_sha256=source_manifest_sha,
+                    device=device,
+                    architecture=args.architecture,
+                )
+                if not torch.isfinite(result["loss"]):
+                    raise RuntimeError("v7 flow-matching loss is non-finite")
+                result["loss"].backward()
+                _release_forward(model)
+                step_metrics = None
             stats = _gradient_stats(model, architecture=args.architecture)
-            if args.architecture == V71_ARCHITECTURE:
+            if _is_v71(args.architecture):
                 for name, present in stats["nonzero_trainable_families"].items():
                     v71_family_grad_seen[name] |= bool(present)
                 gradients_finite = bool(stats["finite_trainable_gradients"])
@@ -1090,10 +1482,25 @@ def main(argv: Sequence[str] | None = None) -> None:
             if not gradients_finite or original_gradient_seen:
                 raise RuntimeError("v7 gradient whitelist or finite gate check failed")
             optimizer.step()
+            if step_metrics is not None and args.mode == "train" and dist.get_rank() == 0:
+                training_records.append(step_metrics)
+                _atomic_json(
+                    training_metrics_path,
+                    {
+                        "contract": "wan-action-v71-cf-training-metrics/1",
+                        "records": training_records,
+                    },
+                )
             if args.mode == "smoke":
                 torch.cuda.synchronize(device)
                 step_times.append(time.monotonic() - started)
-            approved_steps = V71_STEPS if args.architecture == V71_ARCHITECTURE else V7_CHECKPOINT_STEPS
+            approved_steps = (
+                V71_CF_STEPS
+                if args.architecture == V71_CF_ARCHITECTURE
+                else V71_STEPS
+                if args.architecture == V71_ARCHITECTURE
+                else V7_CHECKPOINT_STEPS
+            )
             if args.mode == "train" and step in approved_steps:
                 dist.barrier()
                 if dist.get_rank() == 0:
@@ -1118,7 +1525,7 @@ def main(argv: Sequence[str] | None = None) -> None:
                 and len(item["step_seconds"]) == 3
                 and (
                     all(item["v71_family_grad_seen"].values())
-                    if args.architecture == V71_ARCHITECTURE
+                    if _is_v71(args.architecture)
                     else item["gate_gradient_seen"]
                 )
                 and not item["original_gradient_seen"]
@@ -1126,7 +1533,9 @@ def main(argv: Sequence[str] | None = None) -> None:
             )
             if dist.get_rank() == 0:
                 smoke_contract = (
-                    "wan-action-v71-geometry-lora-single-gpu-production-smoke/1"
+                    "wan-action-v71-geometry-lora-cf-single-gpu-production-smoke/1"
+                    if args.architecture == V71_CF_ARCHITECTURE
+                    else "wan-action-v71-geometry-lora-single-gpu-production-smoke/1"
                     if args.architecture == V71_ARCHITECTURE
                     else topology["smoke_contract"]
                 )
