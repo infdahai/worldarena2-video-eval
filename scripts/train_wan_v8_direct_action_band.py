@@ -96,7 +96,7 @@ def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], list[dic
     if len(audit) != 20:
         raise RuntimeError("v8 audit manifest must contain exactly 20 rows")
     optimizer = {str(row["sample"]) for row in replay}; heldout = {str(row["sample"]) for row in audit}
-    if optimizer & heldout or tuple(receipt.get("audit_samples", ())) != tuple(row["sample"] for row in audit):
+    if optimizer & heldout or set(receipt.get("audit_samples", ())) != heldout:
         raise RuntimeError("v8 replay/audit isolation mismatch")
     if receipt.get("replay_rows") != 250 or receipt.get("steps") != 250 or receipt.get("world_size") != 1:
         raise RuntimeError("v8 replay dimensions differ from receipt")
