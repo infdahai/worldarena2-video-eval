@@ -117,17 +117,24 @@ def _metadata(raster: np.ndarray, observability: Path | None) -> dict[str, Any]:
         visible = np.load(observability, allow_pickle=False)
         if visible.shape != (2, 81) or visible.dtype != np.dtype(bool):
             raise ValueError(f"invalid RGB observability sidecar: {observability}")
-        target = build_gripper_targets(
+        observed_target = build_gripper_targets(
             tensor, observability=torch.from_numpy(visible)[None]
         )
-        valid = target["position_valid"][0].permute(1, 0)
-        position = target["position"][0].permute(1, 0, 2)
+        valid = observed_target["position_valid"][0].permute(1, 0)
         position_count = int(valid.sum())
-        velocity_count = int(target["velocity_valid"].sum())
-        both = valid[:, 0] & valid[:, 1]
+        velocity_count = int(observed_target["velocity_valid"].sum())
+        commanded_target = build_gripper_targets(
+            tensor,
+            observability=torch.ones(
+                (1, 2, 81), dtype=torch.bool, device=tensor.device
+            ),
+        )
+        commanded_valid = commanded_target["position_valid"][0].permute(1, 0)
+        commanded_position = commanded_target["position"][0].permute(1, 0, 2)
+        both = commanded_valid[:, 0] & commanded_valid[:, 1]
         if int(both.sum()) >= 2:
-            scale = position.new_tensor((79.0, 59.0))
-            delta = (position[:, 0] - position[:, 1]) * scale
+            scale = commanded_position.new_tensor((79.0, 59.0))
+            delta = (commanded_position[:, 0] - commanded_position[:, 1]) * scale
             x = delta[both, 0]
             if bool(((x[:-1] * x[1:]) < 0).any()) or bool(
                 (delta[both].square().sum(dim=-1).sqrt() <= 12).any()

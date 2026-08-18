@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import importlib.util
 import json
 from pathlib import Path
 
@@ -22,6 +23,15 @@ from worldarena_baseline.wan_v10_data import (
 
 STRATA = ("single_dominant", "bimanual_heavy", "mixed", "quiet")
 TAGS = ("single_arm", "bimanual", "sequential", "crossing_or_overlap")
+
+
+def _load_data_builder():
+    path = Path(__file__).parents[1] / "scripts" / "build_wan_v10_data.py"
+    spec = importlib.util.spec_from_file_location("build_wan_v10_data_test", path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def _rows(count: int = 80):
@@ -72,6 +82,26 @@ def test_split_retains_every_eligible_non_eval_identity_deterministically() -> N
     assert len({row["task"] for row in first.audit}) >= 8
     assert set(first.audit_tags) >= set(TAGS)
     assert sum(first.source_counts.values()) == len(rows)
+
+
+def test_crossing_tag_uses_commanded_geometry_not_detector_coobservability(tmp_path: Path) -> None:
+    builder = _load_data_builder()
+    raster = np.zeros((81, 10, 60, 80), dtype=np.float32)
+    for frame in range(81):
+        left_x = 20 + round(40 * frame / 80)
+        right_x = 60 - round(40 * frame / 80)
+        raster[frame, 1, 30, left_x] = 1.0
+        raster[frame, 6, 30, right_x] = 1.0
+    visible = np.zeros((2, 81), dtype=bool)
+    visible[0, 1:41] = True
+    visible[1, 41:] = True
+    observability = tmp_path / "sample.npy"
+    np.save(observability, visible, allow_pickle=False)
+
+    metadata = builder._metadata(raster, observability)
+
+    assert metadata["probe_observable"] is True
+    assert "crossing_or_overlap" in metadata["tags"]
 
 
 def test_cache_extension_contains_only_uncached_full_action_rows() -> None:
