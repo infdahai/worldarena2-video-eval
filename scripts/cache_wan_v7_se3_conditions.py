@@ -49,7 +49,7 @@ FORMAL_TRUSTED_LINEAGE_PINS = (
 )
 _LINEAGE_PIN_SCHEMA = "wan-action-v7-se3-lineage-pins/3"
 _SHA256 = re.compile(r"[0-9a-f]{64}")
-TRUSTED_LINEAGE_PINS_SHA256 = "d4f8e1e35b52cdbfcc69eef487f3bfe8e2be159afa81fdfb2b762cc9a0bee76b"
+TRUSTED_LINEAGE_PINS_SHA256 = "50ba7efe44a6232962a55b90c9b3fca02aea839a1565e59cc7c9b396e420f6c8"
 _REQUIRED_HASHED_LINEAGE_ARTIFACTS = (
     "clean1000_manifest",
     "data_leakage_receipt",
@@ -139,7 +139,7 @@ def _load_trusted_lineage_pins(
         raise ValueError("official test must remain unavailable and excluded from Stage-A")
     discovery_contract = discovery8_contract_from_pin(
         artifacts["discovery_manifest"],
-        dev_fast20_manifest_sha256=hashes["dev_fast20_manifest"],
+        clean1000_manifest_sha256=hashes["clean1000_manifest"],
     )
     return hashes, discovery_contract
 
@@ -158,8 +158,9 @@ def _validate_lineage(authority: _LineageAuthority) -> dict[str, object]:
     validate_cached_manifest_identity(
         authority.clean1000_manifest, authority.clean1000_manifest, expected_rows=1000
     )
+    clean1000_rows = _read_jsonl(authority.clean1000_manifest)
+    discovery_rows = derive_discovery8(clean1000_rows, discovery_contract)
     dev_fast20_rows = _read_jsonl(authority.dev_fast20_manifest)
-    discovery_rows = derive_discovery8(dev_fast20_rows, discovery_contract)
     report = validate_training_manifest_receipt(
         authority.clean1000_manifest,
         authority.data_leakage_receipt,

@@ -31,19 +31,7 @@ FROZEN_V7_PARENT_SHA256 = "105fb760fd371885ba362d26ef2352c260755e47cd036f4671118
 V7_CHECKPOINT_STEPS = (10, 25, 50)
 V7_WORLD_SIZE = 7
 TRUSTED_PINS = SOURCE_ROOT / "source_inputs/trusted-wan-v7-se3-lineage-pins.json"
-TRUSTED_PINS_SHA256 = "d4f8e1e35b52cdbfcc69eef487f3bfe8e2be159afa81fdfb2b762cc9a0bee76b"
-SOURCE_FILES = (
-    "src/worldarena_baseline/wan_se3_condition.py",
-    "src/worldarena_baseline/wan_v7_lineage.py",
-    "src/worldarena_baseline/wan_se3_attention.py",
-    "src/worldarena_baseline/wan_v7_model.py",
-    "src/worldarena_baseline/wan_v7_training.py",
-    "scripts/train_wan_se3_probe_v7_fsdp.py",
-    "scripts/run_wan_se3_probe_v7.sh",
-    "source_inputs/trusted-wan-v7-se3-lineage-pins.json",
-)
-
-
+TRUSTED_PINS_SHA256 = "50ba7efe44a6232962a55b90c9b3fca02aea839a1565e59cc7c9b396e420f6c8"
 def _load_runtime_dependencies() -> None:
     """Delay GPU-stack imports so ``--help`` remains a pure local operation."""
 
@@ -175,7 +163,7 @@ def _pins() -> tuple[dict[str, str], dict[str, object]]:
     try:
         discovery_contract = discovery8_contract_from_pin(
             artifacts.get("discovery_manifest"),
-            dev_fast20_manifest_sha256=result["dev_fast20_manifest"],
+            clean1000_manifest_sha256=result["clean1000_manifest"],
         )
     except ValueError as exc:
         raise RuntimeError("v7 discovery lineage pin is malformed") from exc
@@ -183,16 +171,11 @@ def _pins() -> tuple[dict[str, str], dict[str, object]]:
 
 
 def _source_code_sha256() -> str:
-    digest = hashlib.sha256()
-    for relative in SOURCE_FILES:
-        path = SOURCE_ROOT / relative
-        if not path.is_file():
-            raise RuntimeError(f"v7 source provenance file is missing: {relative}")
-        digest.update(relative.encode("utf-8"))
-        digest.update(b"\0")
-        digest.update(path.read_bytes())
-        digest.update(b"\0")
-    return digest.hexdigest()
+    # This also rejects absent, untracked, or locally modified dependencies
+    # before checkpoint/preflight receipts can claim source provenance.
+    from worldarena_baseline.wan_v7_sync_closure import validate_sync_closure
+
+    return str(validate_sync_closure(SOURCE_ROOT)["closure_sha256"])
 
 
 def _cache_sha256(dataset: WanActionCachedDataset, *, source_manifest_sha256: str) -> str:
@@ -577,12 +560,13 @@ def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str
     for name, path in named_paths.items():
         if sha256_file(path) != pins[name]:
             raise RuntimeError(f"v7 lineage pin mismatch: {name}")
+    clean1000_rows = _read_jsonl(args.data_source_manifest)
     dev_fast20_rows = _read_jsonl(args.dev_fast20_manifest)
     from worldarena_baseline.wan_v7_lineage import validate_discovery8_jsonl
 
     try:
         discovery_rows = validate_discovery8_jsonl(
-            args.discovery_manifest.read_bytes(), dev_fast20_rows, discovery_contract
+            args.discovery_manifest.read_bytes(), clean1000_rows, discovery_contract
         )
     except (OSError, ValueError) as exc:
         raise RuntimeError("v7 discovery-8 manifest is absent or differs from pinned derivation") from exc

@@ -261,8 +261,8 @@ def _write_lineage_authority(module, root: Path):
                         "contract": "wan-action-v7-discovery-derivation/1",
                         "rows": 8,
                         "selector": "sample-lexicographic-first-8/v1",
-                        "source_artifact": "dev_fast20_manifest",
-                        "source_sha256": hashlib.sha256(dev_fast20.read_bytes()).hexdigest(),
+                        "source_artifact": "clean1000_manifest",
+                        "source_sha256": hashlib.sha256(manifest.read_bytes()).hexdigest(),
                     },
                     "dev_fast20_manifest": {
                         "sha256": hashlib.sha256(dev_fast20.read_bytes()).hexdigest(),
@@ -319,6 +319,7 @@ def test_injected_trusted_lineage_still_rejects_discovery_overlap(tmp_path: Path
     authority.data_leakage_receipt.write_text(json.dumps(receipt), encoding="utf-8")
     pins = json.loads(authority.trusted_pins.read_text(encoding="utf-8"))
     pins["artifacts"]["clean1000_manifest"]["sha256"] = receipt["small_manifest_sha256"]
+    pins["artifacts"]["discovery_manifest"]["source_sha256"] = receipt["small_manifest_sha256"]
     pins["artifacts"]["data_leakage_receipt"]["sha256"] = hashlib.sha256(
         authority.data_leakage_receipt.read_bytes()
     ).hexdigest()
@@ -326,6 +327,7 @@ def test_injected_trusted_lineage_still_rejects_discovery_overlap(tmp_path: Path
     authority = module._LineageAuthority(
         clean1000_manifest=authority.clean1000_manifest,
         data_leakage_receipt=authority.data_leakage_receipt,
+        discovery_manifest=authority.discovery_manifest,
         dev_fast20_manifest=authority.dev_fast20_manifest,
         trusted_pins=authority.trusted_pins,
         expected_pins_sha256=hashlib.sha256(authority.trusted_pins.read_bytes()).hexdigest(),

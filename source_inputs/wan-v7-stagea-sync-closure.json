@@ -1,0 +1,29 @@
+{
+  "files": [
+    "scripts/cache_wan_v7_se3_conditions.py",
+    "scripts/run_wan_se3_probe_v7.sh",
+    "scripts/train_wan_se3_probe_v7_fsdp.py",
+    "scripts/validate_wan_v7_sync_closure.py",
+    "source_inputs/trusted-wan-v7-se3-lineage-pins.json",
+    "source_inputs/wan-v7-stagea-sync-closure.json",
+    "src/worldarena_baseline/action_condition.py",
+    "src/worldarena_baseline/dataset_leakage.py",
+    "src/worldarena_baseline/stage1_replay.py",
+    "src/worldarena_baseline/wan_action_adapter.py",
+    "src/worldarena_baseline/wan_action_loss.py",
+    "src/worldarena_baseline/wan_action_video_contract.py",
+    "src/worldarena_baseline/wan_cached_dataset.py",
+    "src/worldarena_baseline/wan_data_scaling.py",
+    "src/worldarena_baseline/wan_gripper_probe.py",
+    "src/worldarena_baseline/wan_probe.py",
+    "src/worldarena_baseline/wan_se3_attention.py",
+    "src/worldarena_baseline/wan_se3_condition.py",
+    "src/worldarena_baseline/wan_ti2v_import.py",
+    "src/worldarena_baseline/wan_v6_checkpoint.py",
+    "src/worldarena_baseline/wan_v7_lineage.py",
+    "src/worldarena_baseline/wan_v7_model.py",
+    "src/worldarena_baseline/wan_v7_sync_closure.py",
+    "src/worldarena_baseline/wan_v7_training.py"
+  ],
+  "schema": "wan-action-v7-stagea-sync-closure/1"
+}
