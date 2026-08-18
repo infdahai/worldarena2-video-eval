@@ -324,6 +324,40 @@ class SE3AugmentedSelfAttention(nn.Module):
         arm_transform: Tensor,
         arm_inverse: Tensor | None = None,
         arm_present: Tensor,
+        checkpoint_replay_release: Callable[[], None] | None = None,
+    ) -> Tensor:
+        """Run attention and release a checkpoint lease after consumption.
+
+        Non-reentrant activation checkpointing may terminate a replay early
+        with an internal exception after the tensors needed for backward have
+        been saved.  A module forward hook is not guaranteed to run on that
+        path, so the lease lives in this ``finally`` instead.
+        """
+
+        try:
+            return self._forward_with_condition(
+                x,
+                seq_lens,
+                grid_sizes,
+                freqs,
+                arm_transform=arm_transform,
+                arm_inverse=arm_inverse,
+                arm_present=arm_present,
+            )
+        finally:
+            if checkpoint_replay_release is not None:
+                checkpoint_replay_release()
+
+    def _forward_with_condition(
+        self,
+        x: Tensor,
+        seq_lens: Tensor,
+        grid_sizes: Tensor,
+        freqs: object,
+        *,
+        arm_transform: Tensor,
+        arm_inverse: Tensor | None,
+        arm_present: Tensor,
     ) -> Tensor:
         if x.ndim != 3:
             raise ValueError("x must have shape (B, L, width)")

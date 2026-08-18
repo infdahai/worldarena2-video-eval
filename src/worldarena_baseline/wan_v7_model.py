@@ -135,7 +135,6 @@ def _install_condition_hook(wrapper: SE3AugmentedSelfAttention) -> None:
     wrapper._condition_token = None  # type: ignore[attr-defined]
     wrapper._checkpoint_condition = None  # type: ignore[attr-defined]
     wrapper._checkpoint_token = None  # type: ignore[attr-defined]
-    wrapper._checkpoint_replay_token = None  # type: ignore[attr-defined]
     wrapper.condition_use_count = 0  # type: ignore[attr-defined]
 
     def inject_condition(
@@ -149,6 +148,7 @@ def _install_condition_hook(wrapper: SE3AugmentedSelfAttention) -> None:
         ):
             raise RuntimeError("v7 SE(3) attention condition must be model-bound")
         condition = getattr(module, "bound_condition", None)
+        replay_release = None
         if condition is None:
             # Checkpointed Wan blocks replay after the public forward returns.
             # This private autograd-lifetime copy is cleared by the outer
@@ -157,9 +157,12 @@ def _install_condition_hook(wrapper: SE3AugmentedSelfAttention) -> None:
             # rejects an outstanding copy.
             condition = getattr(module, "_checkpoint_condition", None)
             if condition is not None:
-                module._checkpoint_replay_token = getattr(  # type: ignore[attr-defined]
-                    module, "_checkpoint_token", None
-                )
+                token = getattr(module, "_checkpoint_token", None)
+
+                def replay_release() -> None:
+                    if getattr(module, "_checkpoint_token", None) is token:
+                        module._checkpoint_condition = None  # type: ignore[attr-defined]
+                        module._checkpoint_token = None  # type: ignore[attr-defined]
         if condition is None:
             raise RuntimeError("v7 SE(3) attention executed without a bound condition")
         module.condition_use_count += 1  # type: ignore[attr-defined]
@@ -168,29 +171,16 @@ def _install_condition_hook(wrapper: SE3AugmentedSelfAttention) -> None:
             "arm_transform": condition.arm_transform,
             "arm_inverse": condition.arm_inverse,
             "arm_present": condition.arm_present,
+            "checkpoint_replay_release": replay_release,
         }
 
     # Persistent by design: checkpoint recomputation can happen after
     # ParentPlusSE3Wan.forward returns.  The public binding is reset in the
     # model's finally block.  Do not use an outer full-backward hook for the
     # private copy: in the production Wan checkpoint topology it can run
-    # before a selected block is recomputed.  Instead clear exactly after the
-    # replayed attention call consumes its bound condition.
+    # before a selected block is recomputed.  The wrapper's forward-level
+    # finally releases it after replay instead.
     wrapper.register_forward_pre_hook(inject_condition, with_kwargs=True)
-
-    def clear_replayed_condition(
-        module: nn.Module,
-        _args: tuple[object, ...],
-        _kwargs: dict[str, object],
-        _output: object,
-    ) -> None:
-        token = getattr(module, "_checkpoint_replay_token", None)
-        if token is not None and getattr(module, "_checkpoint_token", None) is token:
-            module._checkpoint_condition = None  # type: ignore[attr-defined]
-            module._checkpoint_token = None  # type: ignore[attr-defined]
-        module._checkpoint_replay_token = None  # type: ignore[attr-defined]
-
-    wrapper.register_forward_hook(clear_replayed_condition, with_kwargs=True)
 
 
 def install_v7_attention(
@@ -396,7 +386,6 @@ class ParentPlusSE3Wan(nn.Module):
             else:
                 wrapper._checkpoint_condition = None  # type: ignore[attr-defined]
                 wrapper._checkpoint_token = None  # type: ignore[attr-defined]
-            wrapper._checkpoint_replay_token = None  # type: ignore[attr-defined]
         return token
 
     def _clear_condition(self, token: object, *, retain_for_checkpoint: bool) -> None:

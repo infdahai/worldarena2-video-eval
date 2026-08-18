@@ -243,6 +243,30 @@ def test_wrapper_only_gate_receives_gradients() -> None:
     assert all(parameter.grad is None for parameter in base.parameters())
 
 
+def test_wrapper_releases_checkpoint_lease_in_its_own_finally() -> None:
+    """Non-reentrant checkpoint early-stop can bypass module forward hooks."""
+
+    wrapper = SE3AugmentedSelfAttention(
+        _FakeWanAttention(),
+        attention_fn=_mean_attention,
+        rope_apply_fn=_fake_rope,
+        num_heads=2,
+        head_dim=4,
+    )
+    released: list[str] = []
+    with pytest.raises(ValueError, match="expected hidden width"):
+        wrapper(
+            torch.zeros(1, 3, 7),
+            seq_lens=torch.tensor([3]),
+            grid_sizes=torch.tensor([[1, 1, 3]]),
+            freqs="rope",
+            arm_transform=torch.eye(4).reshape(1, 1, 1, 4, 4).repeat(1, 2, 1, 1, 1),
+            arm_present=torch.ones(1, 2, 1, dtype=torch.bool),
+            checkpoint_replay_release=lambda: released.append("released"),
+        )
+    assert released == ["released"]
+
+
 def test_wrapper_keeps_geometry_qkv_pre_rope_when_rope_mutates_in_place() -> None:
     base = _FakeWanAttention()
     observed: dict[str, torch.Tensor] = {}
