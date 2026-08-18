@@ -47,3 +47,13 @@ def test_v7_entrypoint_help_has_bounded_modes() -> None:
     assert "smoke" in result.stdout
     assert "train" in result.stdout
     assert "audit" in result.stdout
+
+
+def test_v7_stage_a_does_not_accept_the_frozen_official_test_as_input() -> None:
+    """Official test remains unavailable until final checkpoint selection."""
+    launcher = (ROOT / "scripts/run_wan_se3_probe_v7.sh").read_text()
+    trainer = (ROOT / "scripts/train_wan_se3_probe_v7_fsdp.py").read_text()
+
+    assert "--official-test-manifest" not in launcher
+    assert "--official-test-manifest" not in trainer
+    assert '"official_test_manifest") != {"status": "unavailable"}' in trainer

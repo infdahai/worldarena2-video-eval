@@ -27,6 +27,11 @@ from worldarena_baseline.wan_se3_condition import (
     validate_se3_cache,
     write_se3_cache_atomic,
 )
+from worldarena_baseline.wan_v7_lineage import (
+    derive_discovery8,
+    discovery8_contract_from_pin,
+    render_discovery8_jsonl,
+)
 
 
 FORMAL_ROOT = PROJECT_ARTIFACT_ROOT
@@ -39,19 +44,16 @@ FORMAL_LEAKAGE_RECEIPT = (
 )
 FORMAL_DISCOVERY_MANIFEST = FORMAL_ROOT / "eval/v7-se3-discovery-8/discovery-8.jsonl"
 FORMAL_DEV_FAST20_MANIFEST = FORMAL_ROOT / "eval/dev-fast-20-v3/dev-fast-20.jsonl"
-FORMAL_OFFICIAL_TEST_MANIFEST = FORMAL_ROOT / "official_track1_eval/final-test/test-1000.jsonl"
 FORMAL_TRUSTED_LINEAGE_PINS = (
     FORMAL_SOURCE_ROOT / "source_inputs/trusted-wan-v7-se3-lineage-pins.json"
 )
-_LINEAGE_PIN_SCHEMA = "wan-action-v7-se3-lineage-pins/2"
+_LINEAGE_PIN_SCHEMA = "wan-action-v7-se3-lineage-pins/3"
 _SHA256 = re.compile(r"[0-9a-f]{64}")
-TRUSTED_LINEAGE_PINS_SHA256 = "c9c0a4087b0381c105ee4caf4a378727c26144fc2e7bf3582a74fda0fea9bb00"
-_REQUIRED_LINEAGE_ARTIFACTS = (
+TRUSTED_LINEAGE_PINS_SHA256 = "d4f8e1e35b52cdbfcc69eef487f3bfe8e2be159afa81fdfb2b762cc9a0bee76b"
+_REQUIRED_HASHED_LINEAGE_ARTIFACTS = (
     "clean1000_manifest",
     "data_leakage_receipt",
-    "discovery_manifest",
     "dev_fast20_manifest",
-    "official_test_manifest",
 )
 
 
@@ -63,7 +65,6 @@ class _LineageAuthority:
     data_leakage_receipt: Path
     discovery_manifest: Path
     dev_fast20_manifest: Path
-    official_test_manifest: Path
     trusted_pins: Path
     expected_pins_sha256: str
 
@@ -100,7 +101,9 @@ def _read_jsonl(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
-def _load_trusted_lineage_pins(authority: _LineageAuthority) -> dict[str, str]:
+def _load_trusted_lineage_pins(
+    authority: _LineageAuthority,
+) -> tuple[dict[str, str], dict[str, object]]:
     if _SHA256.fullmatch(authority.expected_pins_sha256) is None:
         raise ValueError("trusted lineage pins hash must come from an independent upstream")
     if _sha256_file(authority.trusted_pins) != authority.expected_pins_sha256:
@@ -114,13 +117,16 @@ def _load_trusted_lineage_pins(authority: _LineageAuthority) -> dict[str, str]:
     if payload["schema"] != _LINEAGE_PIN_SCHEMA:
         raise ValueError("trusted lineage pins contract differs")
     artifacts = payload["artifacts"]
-    if not isinstance(artifacts, dict) or set(artifacts) != set(_REQUIRED_LINEAGE_ARTIFACTS):
+    required = {
+        *_REQUIRED_HASHED_LINEAGE_ARTIFACTS,
+        "discovery_manifest",
+        "official_test_manifest",
+    }
+    if not isinstance(artifacts, dict) or set(artifacts) != required:
         raise ValueError("trusted lineage pins have an invalid artifact schema")
     hashes: dict[str, str] = {}
-    for name in _REQUIRED_LINEAGE_ARTIFACTS:
+    for name in _REQUIRED_HASHED_LINEAGE_ARTIFACTS:
         pin = artifacts[name]
-        if pin == {"status": "unavailable"}:
-            raise ValueError(f"trusted lineage artifact is unavailable: {name}")
         if (
             not isinstance(pin, dict)
             or set(pin) != {"sha256"}
@@ -129,18 +135,22 @@ def _load_trusted_lineage_pins(authority: _LineageAuthority) -> dict[str, str]:
         ):
             raise ValueError(f"trusted lineage {name} pin must contain a lowercase SHA-256 value")
         hashes[name] = pin["sha256"]
-    return hashes
+    if artifacts["official_test_manifest"] != {"status": "unavailable"}:
+        raise ValueError("official test must remain unavailable and excluded from Stage-A")
+    discovery_contract = discovery8_contract_from_pin(
+        artifacts["discovery_manifest"],
+        dev_fast20_manifest_sha256=hashes["dev_fast20_manifest"],
+    )
+    return hashes, discovery_contract
 
 
 def _validate_lineage(authority: _LineageAuthority) -> dict[str, object]:
     """Validate fixed lineage files against an independently authenticated pin file."""
-    pins = _load_trusted_lineage_pins(authority)
+    pins, discovery_contract = _load_trusted_lineage_pins(authority)
     artifacts = {
         "clean1000_manifest": authority.clean1000_manifest,
         "data_leakage_receipt": authority.data_leakage_receipt,
-        "discovery_manifest": authority.discovery_manifest,
         "dev_fast20_manifest": authority.dev_fast20_manifest,
-        "official_test_manifest": authority.official_test_manifest,
     }
     for name, path in artifacts.items():
         if _sha256_file(path) != pins[name]:
@@ -148,15 +158,16 @@ def _validate_lineage(authority: _LineageAuthority) -> dict[str, object]:
     validate_cached_manifest_identity(
         authority.clean1000_manifest, authority.clean1000_manifest, expected_rows=1000
     )
-    return validate_training_manifest_receipt(
+    dev_fast20_rows = _read_jsonl(authority.dev_fast20_manifest)
+    discovery_rows = derive_discovery8(dev_fast20_rows, discovery_contract)
+    report = validate_training_manifest_receipt(
         authority.clean1000_manifest,
         authority.data_leakage_receipt,
         {
-            "discovery": _read_jsonl(authority.discovery_manifest),
-            "dev-fast20": _read_jsonl(authority.dev_fast20_manifest),
-            "official-test": _read_jsonl(authority.official_test_manifest),
+            "dev-fast20": dev_fast20_rows,
         },
     )
+    return {**report, "discovery_rows": discovery_rows}
 
 
 def _validate_lineage_for_testing(authority: _LineageAuthority) -> dict[str, object]:
@@ -170,7 +181,6 @@ def _production_lineage_authority() -> _LineageAuthority:
         data_leakage_receipt=FORMAL_LEAKAGE_RECEIPT,
         discovery_manifest=FORMAL_DISCOVERY_MANIFEST,
         dev_fast20_manifest=FORMAL_DEV_FAST20_MANIFEST,
-        official_test_manifest=FORMAL_OFFICIAL_TEST_MANIFEST,
         trusted_pins=FORMAL_TRUSTED_LINEAGE_PINS,
         expected_pins_sha256=TRUSTED_LINEAGE_PINS_SHA256,
     )
@@ -286,6 +296,23 @@ def _write_jsonl_atomic(path: Path, rows: list[dict[str, Any]]) -> None:
     os.replace(partial, path)
 
 
+def _write_discovery_atomic(path: Path, rows: list[dict[str, object]]) -> None:
+    """Publish the exact source-pinned discovery-8 selection before caching."""
+
+    path = _formal_output_path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    partial = path.with_name(f".{path.name}.{os.getpid()}.partial")
+    try:
+        with partial.open("wb") as handle:
+            handle.write(render_discovery8_jsonl(rows))
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(partial, path)
+    finally:
+        if partial.exists():
+            partial.unlink()
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset-root", type=Path, required=True)
@@ -301,7 +328,11 @@ def main() -> None:
         raise SystemExit("worker index must be in [0, worker-count) with a positive worker count")
     cache_root = require_formal_cache_root(args.cache_root)
     authority = _production_lineage_authority()
-    _validate_lineage(authority)
+    lineage = _validate_lineage(authority)
+    _write_discovery_atomic(
+        authority.discovery_manifest,
+        list(lineage["discovery_rows"]),
+    )
     manifest_bytes = authority.clean1000_manifest.read_bytes()
     rows = _read_jsonl(authority.clean1000_manifest)
     manifest_sha256 = hashlib.sha256(manifest_bytes).hexdigest()

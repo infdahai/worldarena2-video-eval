@@ -216,12 +216,14 @@ def _write_lineage_authority(module, root: Path):
     manifest = root / "clean-1000.jsonl"
     rows = [{"sample": f"safe-{index}", "hdf5": f"safe-{index}.h5"} for index in range(1000)]
     manifest.write_text("".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8")
-    discovery = root / "discovery.jsonl"
-    discovery.write_text('{"sample":"discovery"}\n', encoding="utf-8")
     dev_fast20 = root / "dev-fast20.jsonl"
-    dev_fast20.write_text('{"sample":"dev"}\n', encoding="utf-8")
-    official_test = root / "official-test.jsonl"
-    official_test.write_text('{"sample":"official"}\n', encoding="utf-8")
+    dev_fast20.write_text(
+        "".join(
+            json.dumps({"sample": f"dev-{index:02d}", "hdf5": f"dev-{index:02d}.h5"}) + "\n"
+            for index in reversed(range(20))
+        ),
+        encoding="utf-8",
+    )
     receipt = root / "leakage-receipt.json"
     receipt.write_text(
         json.dumps(
@@ -230,9 +232,14 @@ def _write_lineage_authority(module, root: Path):
                 "small_rows": 1000,
                 "small_manifest_sha256": hashlib.sha256(manifest.read_bytes()).hexdigest(),
                 "evaluation_identity_sha256": {
-                    "discovery": hashlib.sha256(b"sample:discovery").hexdigest(),
-                    "dev-fast20": hashlib.sha256(b"sample:dev").hexdigest(),
-                    "official-test": hashlib.sha256(b"sample:official").hexdigest(),
+                    "dev-fast20": hashlib.sha256(
+                        "\n".join(
+                            sorted(
+                                [f"hdf5:dev-{index:02d}.h5" for index in range(20)]
+                                + [f"sample:dev-{index:02d}" for index in range(20)]
+                            )
+                        ).encode()
+                    ).hexdigest(),
                 },
             }
         ),
@@ -242,7 +249,7 @@ def _write_lineage_authority(module, root: Path):
     pins.write_text(
         json.dumps(
             {
-                "schema": "wan-action-v7-se3-lineage-pins/2",
+                "schema": "wan-action-v7-se3-lineage-pins/3",
                 "artifacts": {
                     "clean1000_manifest": {
                         "sha256": hashlib.sha256(manifest.read_bytes()).hexdigest(),
@@ -251,13 +258,17 @@ def _write_lineage_authority(module, root: Path):
                         "sha256": hashlib.sha256(receipt.read_bytes()).hexdigest(),
                     },
                     "discovery_manifest": {
-                        "sha256": hashlib.sha256(discovery.read_bytes()).hexdigest(),
+                        "contract": "wan-action-v7-discovery-derivation/1",
+                        "rows": 8,
+                        "selector": "sample-lexicographic-first-8/v1",
+                        "source_artifact": "dev_fast20_manifest",
+                        "source_sha256": hashlib.sha256(dev_fast20.read_bytes()).hexdigest(),
                     },
                     "dev_fast20_manifest": {
                         "sha256": hashlib.sha256(dev_fast20.read_bytes()).hexdigest(),
                     },
                     "official_test_manifest": {
-                        "sha256": hashlib.sha256(official_test.read_bytes()).hexdigest(),
+                        "status": "unavailable",
                     },
                 },
             },
@@ -268,9 +279,8 @@ def _write_lineage_authority(module, root: Path):
     return module._LineageAuthority(
         clean1000_manifest=manifest,
         data_leakage_receipt=receipt,
-        discovery_manifest=discovery,
+        discovery_manifest=root / "discovery-8.jsonl",
         dev_fast20_manifest=dev_fast20,
-        official_test_manifest=official_test,
         trusted_pins=pins,
         expected_pins_sha256=hashlib.sha256(pins.read_bytes()).hexdigest(),
     )
@@ -286,7 +296,7 @@ def test_injected_immutable_lineage_pins_validate_exact_artifacts(tmp_path: Path
         authority.clean1000_manifest.read_bytes()
     ).hexdigest()
 
-    authority.discovery_manifest.write_text('{"sample":"forged"}\n', encoding="utf-8")
+    authority.dev_fast20_manifest.write_text('{"sample":"forged"}\n', encoding="utf-8")
     with pytest.raises(ValueError, match="trusted lineage pin"):
         module._validate_lineage_for_testing(authority)
 
@@ -298,7 +308,7 @@ def test_injected_trusted_lineage_still_rejects_discovery_overlap(tmp_path: Path
     rows = [
         {"sample": f"safe-{index}", "hdf5": f"safe-{index}.h5"}
         for index in range(999)
-    ] + [{"sample": "discovery"}]
+    ] + [{"sample": "dev-00", "hdf5": "dev-00.h5"}]
     authority.clean1000_manifest.write_text(
         "".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8"
     )
@@ -316,9 +326,7 @@ def test_injected_trusted_lineage_still_rejects_discovery_overlap(tmp_path: Path
     authority = module._LineageAuthority(
         clean1000_manifest=authority.clean1000_manifest,
         data_leakage_receipt=authority.data_leakage_receipt,
-        discovery_manifest=authority.discovery_manifest,
         dev_fast20_manifest=authority.dev_fast20_manifest,
-        official_test_manifest=authority.official_test_manifest,
         trusted_pins=authority.trusted_pins,
         expected_pins_sha256=hashlib.sha256(authority.trusted_pins.read_bytes()).hexdigest(),
     )
@@ -350,7 +358,7 @@ def test_production_lineage_pins_use_compiled_digest_not_environment(
         module._load_trusted_lineage_pins(authority)
 
 
-def test_production_lineage_rejects_unavailable_required_artifacts(
+def test_production_stage_a_lineage_allows_frozen_official_test_unavailable(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     """Catches reading formal manifests or HDF5 when a required lineage pin is unavailable."""
@@ -362,8 +370,9 @@ def test_production_lineage_rejects_unavailable_required_artifacts(
         / "source_inputs/trusted-wan-v7-se3-lineage-pins.json",
     )
 
-    with pytest.raises(ValueError, match="unavailable.*discovery_manifest"):
-        module._load_trusted_lineage_pins(module._production_lineage_authority())
+    hashes, contract = module._load_trusted_lineage_pins(module._production_lineage_authority())
+    assert hashes["dev_fast20_manifest"]
+    assert contract["rows"] == 8
 
 
 def test_fabricated_candidate_receipt_and_eval_files_are_not_cli_authority(

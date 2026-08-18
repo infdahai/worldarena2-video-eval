@@ -31,9 +31,10 @@ FROZEN_V7_PARENT_SHA256 = "105fb760fd371885ba362d26ef2352c260755e47cd036f4671118
 V7_CHECKPOINT_STEPS = (10, 25, 50)
 V7_WORLD_SIZE = 7
 TRUSTED_PINS = SOURCE_ROOT / "source_inputs/trusted-wan-v7-se3-lineage-pins.json"
-TRUSTED_PINS_SHA256 = "c9c0a4087b0381c105ee4caf4a378727c26144fc2e7bf3582a74fda0fea9bb00"
+TRUSTED_PINS_SHA256 = "d4f8e1e35b52cdbfcc69eef487f3bfe8e2be159afa81fdfb2b762cc9a0bee76b"
 SOURCE_FILES = (
     "src/worldarena_baseline/wan_se3_condition.py",
+    "src/worldarena_baseline/wan_v7_lineage.py",
     "src/worldarena_baseline/wan_se3_attention.py",
     "src/worldarena_baseline/wan_v7_model.py",
     "src/worldarena_baseline/wan_v7_training.py",
@@ -84,7 +85,6 @@ def parse_args(argv: Sequence[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--data-leakage-receipt", type=Path, required=True)
     parser.add_argument("--discovery-manifest", type=Path, required=True)
     parser.add_argument("--dev-fast20-manifest", type=Path, required=True)
-    parser.add_argument("--official-test-manifest", type=Path, required=True)
     parser.add_argument("--v6-replay", type=Path, required=True)
     parser.add_argument("--v7-replay", type=Path, required=True)
     parser.add_argument("--parent-checkpoint", type=Path, required=True)
@@ -140,12 +140,8 @@ def _read_jsonl(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
-def _pins() -> dict[str, str]:
-    """Load the source-controlled complete lineage authority.
-
-    An unavailable pin is intentionally an error, rather than a reason to
-    silently run a reduced evaluation scope.
-    """
+def _pins() -> tuple[dict[str, str], dict[str, object]]:
+    """Load Stage-A lineage without widening it to the frozen official test."""
 
     try:
         raw = TRUSTED_PINS.read_bytes()
@@ -161,9 +157,7 @@ def _pins() -> dict[str, str]:
     names = (
         "clean1000_manifest",
         "data_leakage_receipt",
-        "discovery_manifest",
         "dev_fast20_manifest",
-        "official_test_manifest",
     )
     result: dict[str, str] = {}
     for name in names:
@@ -174,7 +168,18 @@ def _pins() -> dict[str, str]:
         if not isinstance(digest, str) or len(digest) != 64 or digest.lower() != digest:
             raise RuntimeError(f"v7 trusted lineage artifact SHA is invalid: {name}")
         result[name] = digest
-    return result
+    if artifacts.get("official_test_manifest") != {"status": "unavailable"}:
+        raise RuntimeError("official test must remain unavailable and excluded from Stage-A")
+    from worldarena_baseline.wan_v7_lineage import discovery8_contract_from_pin
+
+    try:
+        discovery_contract = discovery8_contract_from_pin(
+            artifacts.get("discovery_manifest"),
+            dev_fast20_manifest_sha256=result["dev_fast20_manifest"],
+        )
+    except ValueError as exc:
+        raise RuntimeError("v7 discovery lineage pin is malformed") from exc
+    return result, discovery_contract
 
 
 def _source_code_sha256() -> str:
@@ -550,7 +555,7 @@ def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str
     paths = (
         args.checkpoint_dir, args.cache_root, args.manifest, args.data_source_manifest,
         args.data_leakage_receipt, args.discovery_manifest, args.dev_fast20_manifest,
-        args.official_test_manifest, args.v6_replay, args.v7_replay, args.parent_checkpoint,
+        args.v6_replay, args.v7_replay, args.parent_checkpoint,
         args.probe_checkpoint, args.probe_split, args.observability_root,
     )
     for path in paths:
@@ -563,22 +568,27 @@ def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str
         _under_formal_root(args.resume)
     if shutil.disk_usage(FORMAL_ROOT).free < 50 * 1024**3:
         raise RuntimeError("v7 requires at least 50 GiB free space")
-    pins = _pins()
+    pins, discovery_contract = _pins()
     named_paths = {
         "clean1000_manifest": args.data_source_manifest,
         "data_leakage_receipt": args.data_leakage_receipt,
-        "discovery_manifest": args.discovery_manifest,
         "dev_fast20_manifest": args.dev_fast20_manifest,
-        "official_test_manifest": args.official_test_manifest,
     }
     for name, path in named_paths.items():
         if sha256_file(path) != pins[name]:
             raise RuntimeError(f"v7 lineage pin mismatch: {name}")
-    evaluation_rows = {
-        "discovery": _read_jsonl(args.discovery_manifest),
-        "dev-fast20": _read_jsonl(args.dev_fast20_manifest),
-        "official-test": _read_jsonl(args.official_test_manifest),
-    }
+    dev_fast20_rows = _read_jsonl(args.dev_fast20_manifest)
+    from worldarena_baseline.wan_v7_lineage import validate_discovery8_jsonl
+
+    try:
+        discovery_rows = validate_discovery8_jsonl(
+            args.discovery_manifest.read_bytes(), dev_fast20_rows, discovery_contract
+        )
+    except (OSError, ValueError) as exc:
+        raise RuntimeError("v7 discovery-8 manifest is absent or differs from pinned derivation") from exc
+    if len(discovery_rows) != 8:
+        raise RuntimeError("v7 discovery audit requires exactly eight fixed rows")
+    evaluation_rows = {"dev-fast20": dev_fast20_rows}
     leakage = validate_training_manifest_receipt(args.data_source_manifest, args.data_leakage_receipt, evaluation_rows)
     if leakage.get("passed") is not True or leakage.get("collision_count") != 0:
         raise RuntimeError("v7 zero-leakage receipt failed")

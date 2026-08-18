@@ -11,7 +11,6 @@ SOURCE_MANIFEST=$ROOT/data_selection/v4-clean-scale-20260817-r3/clean-1000.jsonl
 LEAKAGE=$ROOT/data_selection/v4-clean-scale-20260817-r3/clean-data-scale-receipt.json
 DISCOVERY=$ROOT/eval/v7-se3-discovery-8/discovery-8.jsonl
 DEV_FAST20=$ROOT/eval/dev-fast-20-v3/dev-fast-20.jsonl
-OFFICIAL_TEST=$ROOT/official_track1_eval/final-test/test-1000.jsonl
 V6_REPLAY=$ROOT/replay/v6-gripper-clean1000-ws7.json
 V7_REPLAY=$ROOT/replay/v7-se3-clean1000-ws7.json
 PARENT=$ROOT/runs/v6-clean-gated-parent/clean-gated-step10.pt
@@ -46,7 +45,7 @@ common=(
   --checkpoint-dir "$MODEL" --cache-root "$CACHE" --manifest "$MANIFEST"
   --data-source-manifest "$SOURCE_MANIFEST" --data-leakage-receipt "$LEAKAGE"
   --discovery-manifest "$DISCOVERY" --dev-fast20-manifest "$DEV_FAST20"
-  --official-test-manifest "$OFFICIAL_TEST" --v6-replay "$V6_REPLAY" --v7-replay "$V7_REPLAY"
+  --v6-replay "$V6_REPLAY" --v7-replay "$V7_REPLAY"
   --parent-checkpoint "$PARENT" --base-parent-sha256 "$(sha256sum "$BASE" | awk '{print $1}')"
   --probe-checkpoint "$PROBE" --probe-split "$SPLIT" --observability-root "$OBS"
   --preflight-receipt "$PREFLIGHT" --seed 20260818
