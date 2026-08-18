@@ -267,12 +267,17 @@ def _noise(record, shape, device, dtype):
 
 
 def _timestep(record, device):
+    if "timestep_value" in record:
+        return torch.full((1,), float(record["timestep_value"]), device=device)
     generator = torch.Generator(device="cpu"); generator.manual_seed(int(record["timestep_seed"]))
     return torch.randint(1, 1000, (1,), generator=generator).to(device=device, dtype=torch.float32)
 
 
 def _observability(args, sample, device):
-    value = np.load(args.observability_root / f"{sample}.npy", allow_pickle=False)
+    path = args.observability_root / f"{sample}.npy"
+    if not path.is_file():
+        return torch.zeros(1, 2, 81, dtype=torch.bool, device=device)
+    value = np.load(path, allow_pickle=False)
     if value.shape != (2, 81) or value.dtype != np.dtype(bool):
         raise RuntimeError("v10 observability sidecar differs")
     return torch.from_numpy(value).unsqueeze(0).to(device)
@@ -619,7 +624,31 @@ def main() -> None:
         raise RuntimeError("v10 trajectory calibration lineage differs")
     sigma_contract = sigma_payload["sigma"]
     optimizer = build_v10_optimizer(model); lineage = _lineage(args)
-    calibration = _calibrate(args, model, legacy, dataset, index_map, replay[0], device, probe, sigma_contract)
+    calibration_row = next(
+        (
+            row for row in audit_rows
+            if "sequential" in row.get("v10_audit", {}).get("tags", [])
+        ),
+        audit_rows[0],
+    )
+    calibration_record = _audit_record(str(calibration_row["sample"]), 0)
+    reliable_bucket = next(
+        (
+            bucket for bucket, weight in zip(
+                sigma_contract.get("buckets", []), sigma_contract.get("weights", [])
+            ) if float(weight) > 0
+        ),
+        None,
+    )
+    if reliable_bucket is None:
+        raise RuntimeError("v10 calibration has no reliable sigma bucket")
+    calibration_record["timestep_value"] = int(
+        1000 * (float(reliable_bucket["lower"]) + float(reliable_bucket["upper"])) / 2
+    )
+    calibration = _calibrate(
+        args, model, legacy, dataset, index_map, calibration_record, device,
+        probe, sigma_contract,
+    )
     start = 0; gates = {}; history = {}; payload = None
     if args.resume is not None:
         payload = torch.load(args.resume, map_location="cpu", weights_only=True)
