@@ -26,8 +26,13 @@ from .wan_v6_training import build_v6_replay_manifest
 V7_CONTRACT = "wan-action-v7-se3-mechanism/1"
 V7_REPLAY_CONTRACT = "wan-action-v7-se3-replay/1"
 V7_CHECKPOINT_CONTRACT = "wan-action-v7-se3-checkpoint/1"
+V7_SINGLE_GPU_CONTRACT = "wan-action-v7-se3-single-gpu/1"
+V7_SINGLE_GPU_REPLAY_CONTRACT = "wan-action-v7-se3-single-gpu-replay/1"
+V7_SINGLE_GPU_CHECKPOINT_CONTRACT = "wan-action-v7-se3-single-gpu-checkpoint/1"
 V7_WORLD_SIZE = 7
 V7_RANK_MAPPING = tuple(range(V7_WORLD_SIZE))
+V7_SINGLE_GPU_WORLD_SIZE = 1
+V7_SINGLE_GPU_RANK_MAPPING = (6,)
 V7_MAX_STEPS = 50
 V7_CHECKPOINT_STEPS = (10, 25, 50)
 V7_GATE_SHAPE = (24, 128)
@@ -164,6 +169,96 @@ def build_v7_replay_from_v6(
     }
     payload["replay_sha256"] = _canonical_sha256(payload)
     return payload
+
+
+def v7_single_gpu_training_contract() -> dict[str, Any]:
+    """Return the isolated GPU6 mechanism-probe contract.
+
+    This must remain separate from :func:`v7_training_contract`: a result
+    produced with one physical device is evidence only and cannot resume the
+    seven-rank Stage-A lineage.
+    """
+
+    return {
+        "contract": V7_SINGLE_GPU_CONTRACT,
+        "world_size": V7_SINGLE_GPU_WORLD_SIZE,
+        "rank_mapping": list(V7_SINGLE_GPU_RANK_MAPPING),
+        "dataset_rows": 1000,
+        "max_steps": V7_MAX_STEPS,
+        "checkpoint_steps": list(V7_CHECKPOINT_STEPS),
+        "injection_points": [8, 16, 24],
+        "head_groups": {"left": [0, 12], "right": [12, 24]},
+        "trainable_parameters": 9216,
+        "loss": "weighted_flow_matching_only",
+    }
+
+
+def build_v7_single_gpu_replay(v6_replay: Mapping[str, Any]) -> dict[str, Any]:
+    """Select physical rank six from the pinned seven-rank v6 prefix.
+
+    The input remains a full trusted v6 replay so the sample/noise/timestep
+    schedule is identical to the seven-rank experiment.  Only each step's
+    rank-six record enters this intentionally non-resumable single-GPU
+    lineage.
+    """
+
+    trusted_hash = _trusted_clean1000_manifest_sha256()
+    source = _validate_v6_replay(v6_replay, clean1000_manifest_sha256=trusted_hash)
+    payload: dict[str, Any] = {
+        "contract": V7_SINGLE_GPU_REPLAY_CONTRACT,
+        "source_v6_replay_sha256": _canonical_sha256(source),
+        "world_size": V7_SINGLE_GPU_WORLD_SIZE,
+        "rank_mapping": list(V7_SINGLE_GPU_RANK_MAPPING),
+        "dataset_rows": 1000,
+        "dataset_manifest_sha256": trusted_hash,
+        "max_steps": V7_MAX_STEPS,
+        "records": [[copy.deepcopy(step[6])] for step in source["records"][:V7_MAX_STEPS]],
+    }
+    payload["replay_sha256"] = _canonical_sha256(payload)
+    return payload
+
+
+def _validate_v7_single_gpu_replay(
+    payload: Mapping[str, Any], *, v6_replay: Mapping[str, Any]
+) -> dict[str, Any]:
+    """Fail closed unless a replay is exactly the isolated rank-six prefix."""
+
+    if not isinstance(payload, Mapping) or payload.get("contract") != V7_SINGLE_GPU_REPLAY_CONTRACT:
+        raise ValueError("v7 single-gpu replay contract mismatch")
+    required = {
+        "contract",
+        "source_v6_replay_sha256",
+        "world_size",
+        "rank_mapping",
+        "dataset_rows",
+        "dataset_manifest_sha256",
+        "max_steps",
+        "records",
+        "replay_sha256",
+    }
+    if set(payload) != required:
+        raise ValueError("v7 single-gpu replay schema mismatch")
+    _require_sha256(payload.get("source_v6_replay_sha256"), label="source v6 replay SHA-256")
+    _require_sha256(payload.get("dataset_manifest_sha256"), label="clean-1000 manifest SHA-256")
+    replay_hash = _require_sha256(payload.get("replay_sha256"), label="v7 single-gpu replay SHA-256")
+    if (
+        payload.get("world_size") != V7_SINGLE_GPU_WORLD_SIZE
+        or payload.get("rank_mapping") != list(V7_SINGLE_GPU_RANK_MAPPING)
+    ):
+        raise ValueError("v7 single-gpu replay topology mismatch")
+    if payload.get("dataset_rows") != 1000 or payload.get("max_steps") != V7_MAX_STEPS:
+        raise ValueError("v7 single-gpu replay data or step contract mismatch")
+    records = payload.get("records")
+    if not isinstance(records, list) or len(records) != V7_MAX_STEPS:
+        raise ValueError("v7 single-gpu replay record count mismatch")
+    if any(not isinstance(record, list) or len(record) != V7_SINGLE_GPU_WORLD_SIZE for record in records):
+        raise ValueError("v7 single-gpu replay rank record shape mismatch")
+    if replay_hash != _canonical_sha256(payload, omit="replay_sha256"):
+        raise ValueError("v7 single-gpu replay SHA-256 mismatch")
+    canonical = build_v7_single_gpu_replay(v6_replay)
+    if dict(payload) != canonical:
+        raise ValueError("v7 single-gpu replay differs from the trusted deterministic v6 rank-six prefix")
+    return canonical
 
 
 def _validate_v7_replay(
@@ -437,6 +532,137 @@ def validate_v7_checkpoint(payload: Mapping[str, Any], *, expected: Mapping[str,
     expected_rate = _require_calibrated_lr(expected.get("calibrated_lr"))
     if scheduler_rate != preflight_rate or scheduler_rate != expected_rate:
         raise ValueError("v7 checkpoint calibrated learning rate mismatch")
+    _validate_optimizer_state(payload.get("optimizer"), calibrated_lr=expected_rate)
+
+
+def build_v7_single_gpu_checkpoint(
+    *,
+    step: int,
+    model: nn.Module | Mapping[str, Any],
+    optimizer: Any,
+    replay: Mapping[str, Any],
+    v6_replay: Mapping[str, Any],
+    parent_sha256: str,
+    source_hashes: Mapping[str, Any],
+    cache_sha256: str,
+    preflight_receipt: Mapping[str, Any],
+    completed_step: int | None = None,
+) -> dict[str, Any]:
+    """Build a checkpoint usable only by the physical-GPU6 probe.
+
+    The implementation intentionally does not call the seven-rank checkpoint
+    builder: that would make an accidental topology conversion appear valid.
+    """
+
+    if type(step) is not int or step not in V7_CHECKPOINT_STEPS:
+        raise ValueError("v7 single-gpu checkpoint step is outside the approved schedule")
+    if completed_step is None:
+        completed_step = step
+    if type(completed_step) is not int or completed_step != step:
+        raise ValueError("v7 single-gpu checkpoint resume step must equal checkpoint step")
+    if not isinstance(preflight_receipt, Mapping):
+        raise ValueError("v7 single-gpu checkpoint preflight receipt is missing")
+    rate = _require_calibrated_lr(preflight_receipt.get("calibrated_lr"))
+    replay_payload = _validate_v7_single_gpu_replay(replay, v6_replay=v6_replay)
+    state = _gate_state_from_model(model)
+    optimizer_payload = _optimizer_state(optimizer)
+    _validate_optimizer_state(optimizer_payload, calibrated_lr=rate)
+    parent = _require_sha256(parent_sha256, label="parent SHA-256")
+    if parent != FROZEN_V7_PARENT_SHA256:
+        raise ValueError("v7 single-gpu checkpoint does not use the frozen parent SHA-256")
+    payload = {
+        "contract": V7_SINGLE_GPU_CHECKPOINT_CONTRACT,
+        "step": step,
+        "config": v7_single_gpu_training_contract(),
+        "world_size": V7_SINGLE_GPU_WORLD_SIZE,
+        "rank_mapping": list(V7_SINGLE_GPU_RANK_MAPPING),
+        "parent_sha256": parent,
+        "source_hashes": _source_hashes(source_hashes),
+        "cache_sha256": _require_sha256(cache_sha256, label="cache SHA-256"),
+        "replay_sha256": replay_payload["replay_sha256"],
+        "model": state,
+        "optimizer": optimizer_payload,
+        "scheduler": {"completed_step": completed_step, "calibrated_lr": rate},
+        "preflight": dict(preflight_receipt),
+    }
+    validate_v7_single_gpu_checkpoint(
+        payload,
+        expected={
+            "parent_sha256": parent_sha256,
+            "source_hashes": source_hashes,
+            "cache_sha256": cache_sha256,
+            "replay_sha256": replay_payload["replay_sha256"],
+            "calibrated_lr": rate,
+            "v6_replay": v6_replay,
+            "replay": replay_payload,
+        },
+    )
+    return payload
+
+
+def validate_v7_single_gpu_checkpoint(
+    payload: Mapping[str, Any], *, expected: Mapping[str, Any]
+) -> None:
+    """Reject a seven-rank artifact before any single-GPU resume can load it."""
+
+    if (
+        not isinstance(payload, Mapping)
+        or payload.get("contract") != V7_SINGLE_GPU_CHECKPOINT_CONTRACT
+    ):
+        raise ValueError("v7 single-gpu checkpoint contract mismatch")
+    if payload.get("config") != v7_single_gpu_training_contract():
+        raise ValueError("v7 single-gpu checkpoint config mismatch")
+    step = payload.get("step")
+    if type(step) is not int or step not in V7_CHECKPOINT_STEPS:
+        raise ValueError("v7 single-gpu checkpoint step is outside the approved schedule")
+    if (
+        payload.get("world_size") != V7_SINGLE_GPU_WORLD_SIZE
+        or payload.get("rank_mapping") != list(V7_SINGLE_GPU_RANK_MAPPING)
+    ):
+        raise ValueError("v7 single-gpu checkpoint topology mismatch")
+    if not isinstance(expected, Mapping):
+        raise ValueError("v7 single-gpu checkpoint expected lineage is missing")
+    parent = _require_sha256(payload.get("parent_sha256"), label="parent SHA-256")
+    expected_parent = _require_sha256(expected.get("parent_sha256"), label="expected parent SHA-256")
+    if (
+        parent != FROZEN_V7_PARENT_SHA256
+        or expected_parent != FROZEN_V7_PARENT_SHA256
+        or parent != expected_parent
+    ):
+        raise ValueError("v7 single-gpu checkpoint parent SHA-256 mismatch")
+    sources = _source_hashes(payload.get("source_hashes"))
+    expected_sources = _source_hashes(expected.get("source_hashes"))
+    if sources != expected_sources:
+        raise ValueError("v7 single-gpu checkpoint source hashes mismatch")
+    cache = _require_sha256(payload.get("cache_sha256"), label="cache SHA-256")
+    expected_cache = _require_sha256(expected.get("cache_sha256"), label="expected cache SHA-256")
+    if cache != expected_cache:
+        raise ValueError("v7 single-gpu checkpoint cache SHA-256 mismatch")
+    replay = _require_sha256(payload.get("replay_sha256"), label="single-gpu replay SHA-256")
+    expected_replay = _require_sha256(expected.get("replay_sha256"), label="expected single-gpu replay SHA-256")
+    if replay != expected_replay:
+        raise ValueError("v7 single-gpu checkpoint replay SHA-256 mismatch")
+    expected_replay_payload = expected.get("replay")
+    expected_v6_replay = expected.get("v6_replay")
+    if not isinstance(expected_replay_payload, Mapping) or not isinstance(expected_v6_replay, Mapping):
+        raise ValueError("v7 single-gpu checkpoint expected replay lineage is missing")
+    canonical_replay = _validate_v7_single_gpu_replay(
+        expected_replay_payload, v6_replay=expected_v6_replay
+    )
+    if canonical_replay["replay_sha256"] != replay:
+        raise ValueError("v7 single-gpu checkpoint replay differs from trusted rank-six prefix")
+    _gate_state_from_model(payload.get("model"))
+    scheduler = payload.get("scheduler")
+    if not isinstance(scheduler, Mapping) or scheduler.get("completed_step") != step:
+        raise ValueError("v7 single-gpu checkpoint resume step is inconsistent")
+    scheduler_rate = _require_calibrated_lr(scheduler.get("calibrated_lr"))
+    preflight = payload.get("preflight")
+    if not isinstance(preflight, Mapping):
+        raise ValueError("v7 single-gpu checkpoint preflight receipt is missing")
+    preflight_rate = _require_calibrated_lr(preflight.get("calibrated_lr"))
+    expected_rate = _require_calibrated_lr(expected.get("calibrated_lr"))
+    if scheduler_rate != preflight_rate or scheduler_rate != expected_rate:
+        raise ValueError("v7 single-gpu checkpoint calibrated learning rate mismatch")
     _validate_optimizer_state(payload.get("optimizer"), calibrated_lr=expected_rate)
 
 
