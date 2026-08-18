@@ -700,7 +700,7 @@ def _calibrate_v71_cf(
         _release_forward(model)
         wrong_values.append((variant, direction, energy.detach(), gradients))
 
-    correct = _forward_record(
+    correct_fm = _forward_record(
         model,
         dataset,
         record,
@@ -708,8 +708,17 @@ def _calibrate_v71_cf(
         device=device,
         architecture=args.architecture,
     )
-    correct_energy = correct["support_energy"]
-    fm_gradients = torch.autograd.grad(correct["loss"], gates, retain_graph=True)
+    fm_gradients = torch.autograd.grad(correct_fm["loss"], gates)
+    _release_forward(model)
+    correct_support = _forward_record(
+        model,
+        dataset,
+        record,
+        source_manifest_sha256=source_manifest_sha256,
+        device=device,
+        architecture=args.architecture,
+    )
+    correct_energy = correct_support["support_energy"]
     correct_energy_gradients = torch.autograd.grad(correct_energy.mean(), gates)
     _release_forward(model)
 

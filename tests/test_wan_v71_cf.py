@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import pytest
+import importlib.util
+import sys
+from pathlib import Path
 
 
 torch = pytest.importorskip("torch")
@@ -131,3 +134,64 @@ def test_lambda_calibration_matches_gate_gradient_norms_one_to_one() -> None:
 
     with pytest.raises(ValueError, match="non-zero"):
         calibrate_cf_lambda(fm, (torch.zeros(2),))
+
+
+def test_preflight_calibration_uses_separate_correct_forward_per_vjp(monkeypatch) -> None:
+    path = Path(__file__).resolve().parents[1] / "scripts/train_wan_se3_probe_v7_fsdp.py"
+    spec = importlib.util.spec_from_file_location("wan_v71_cf_trainer", path)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    module.torch = torch
+    module.V71_CF_ARCHITECTURE = "v71-geometry-lora-cf"
+    module.V71_CF_TAU = 0.1
+    module.STAGE_A_BLOCKS = (8, 16, 24)
+    module.calibrate_cf_lambda = calibrate_cf_lambda
+    module.ranking_gradient_coefficients = ranking_gradient_coefficients
+    module.smooth_pairwise_ranking = smooth_pairwise_ranking
+
+    class _Wrapper(torch.nn.Module):
+        def __init__(self) -> None:
+            super().__init__()
+            self.channel_gate = torch.nn.Parameter(torch.tensor([1.0]))
+
+    class _Model(torch.nn.Module):
+        def __init__(self) -> None:
+            super().__init__()
+            self.geometry_wrappers = torch.nn.ModuleDict(
+                {str(block): _Wrapper() for block in (8, 16, 24)}
+            )
+            self.releases = 0
+
+        def release_completed_backward_conditions(self) -> None:
+            self.releases += 1
+
+    model = _Model()
+    calls: list[str] = []
+
+    def fake_forward(_model, _dataset, _record, *, variant="correct", **_kwargs):
+        calls.append(variant)
+        total = sum(
+            wrapper.channel_gate.sum()
+            for wrapper in model.geometry_wrappers.values()
+        )
+        multiplier = {"correct": 1.0, "reverse": 2.0, "shift": 3.0, "swap": 4.0}[variant]
+        return {
+            "loss": total.square(),
+            "support_energy": (total * multiplier).reshape(1),
+        }
+
+    monkeypatch.setattr(module, "_forward_record", fake_forward)
+    result = module._calibrate_v71_cf(
+        type("Args", (), {"architecture": "v71-geometry-lora-cf"})(),
+        model,
+        object(),
+        {},
+        source_manifest_sha256="a" * 64,
+        device=torch.device("cpu"),
+    )
+
+    assert calls == ["reverse", "shift", "swap", "correct", "correct"]
+    assert model.releases == 5
+    assert result["lambda_cf"] > 0
