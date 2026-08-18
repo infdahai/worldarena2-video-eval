@@ -20,6 +20,7 @@ from .wan_se3_attention import (
     SE3AugmentedSelfAttention,
     invert_arm_transforms,
 )
+from .wan_v71_attention import SE3GeometryLoRAAttention
 
 
 STAGE_A_BLOCKS = (8, 16, 24)
@@ -104,7 +105,7 @@ def _validate_installation_targets(
         if index < 0 or index >= len(blocks):
             raise ValueError("selected attention block is missing from backbone")
         attention = _self_attention_owner(blocks[index]).self_attn
-        if isinstance(attention, SE3AugmentedSelfAttention):
+        if isinstance(attention, (SE3AugmentedSelfAttention, SE3GeometryLoRAAttention)):
             raise ValueError("selected Wan attention is already v7 wrapped")
         _infer_attention_dimensions(attention)
     return indices
@@ -121,7 +122,9 @@ def _self_attention_owner(block: nn.Module) -> nn.Module:
     raise ValueError("selected Wan block must expose self_attn")
 
 
-def _install_condition_hook(wrapper: SE3AugmentedSelfAttention) -> None:
+def _install_condition_hook(
+    wrapper: SE3AugmentedSelfAttention | SE3GeometryLoRAAttention,
+) -> None:
     """Install a persistent native-call adapter on a v7 self-attention module.
 
     Wan blocks invoke ``self_attn(x, seq_lens, grid_sizes, freqs)`` and cannot
@@ -230,6 +233,53 @@ def install_v7_attention(
         raise
 
 
+def install_v71_attention(
+    backbone: nn.Module,
+    block_indices: Sequence[int],
+    rope_apply_fn: RopeApplyCallable,
+    attention_fn: AttentionCallable,
+    *,
+    rank: int = 16,
+) -> dict[int, SE3GeometryLoRAAttention]:
+    """Install only rank-16 geometry Q/K/V/O LoRA at blocks 8/16/24."""
+
+    if rank != 16:
+        raise ValueError("v7.1 mechanism probe requires geometry LoRA rank 16")
+    indices = _validate_installation_targets(backbone, block_indices)
+    originals: dict[int, tuple[nn.Module, nn.Module]] = {}
+    for index in indices:
+        owner = _self_attention_owner(backbone.blocks[index])
+        originals[index] = owner, owner.self_attn
+    trainability = [
+        (parameter, parameter.requires_grad)
+        for _owner, base in originals.values()
+        for parameter in base.parameters()
+    ]
+    wrappers: dict[int, SE3GeometryLoRAAttention] = {}
+    try:
+        for index in indices:
+            owner, base = originals[index]
+            base.requires_grad_(False)
+            wrapper = SE3GeometryLoRAAttention(
+                base,
+                attention_fn=attention_fn,
+                rope_apply_fn=rope_apply_fn,
+                num_heads=WAN_HEADS,
+                head_dim=WAN_HEAD_DIM,
+                rank=rank,
+            )
+            _install_condition_hook(wrapper)
+            owner.self_attn = wrapper
+            wrappers[index] = wrapper
+        return wrappers
+    except Exception:
+        for owner, base in originals.values():
+            owner.self_attn = base
+        for parameter, requires_grad in trainability:
+            parameter.requires_grad_(requires_grad)
+        raise
+
+
 class ParentPlusSE3Wan(nn.Module):
     """Run an immutable support-gated parent plus three SE(3) channel gates."""
 
@@ -237,7 +287,9 @@ class ParentPlusSE3Wan(nn.Module):
         self,
         backbone: nn.Module,
         parent_adapter: nn.Module,
-        geometry_wrappers: Mapping[int, SE3AugmentedSelfAttention],
+        geometry_wrappers: Mapping[
+            int, SE3AugmentedSelfAttention | SE3GeometryLoRAAttention
+        ],
     ) -> None:
         super().__init__()
         if not hasattr(backbone, "blocks"):
@@ -245,7 +297,9 @@ class ParentPlusSE3Wan(nn.Module):
         if tuple(geometry_wrappers) != STAGE_A_BLOCKS:
             raise ValueError("geometry wrappers must be exactly blocks (8, 16, 24)")
         if any(
-            not isinstance(wrapper, SE3AugmentedSelfAttention)
+            not isinstance(
+                wrapper, (SE3AugmentedSelfAttention, SE3GeometryLoRAAttention)
+            )
             for wrapper in geometry_wrappers.values()
         ):
             raise TypeError("geometry wrappers must be SE3AugmentedSelfAttention")
@@ -281,7 +335,10 @@ class ParentPlusSE3Wan(nn.Module):
         for wrapper in self.geometry_wrappers.values():
             wrapper.base.requires_grad_(False)
             wrapper.geometry.requires_grad_(False)
-            wrapper.gate.requires_grad_(True)
+            if isinstance(wrapper, SE3AugmentedSelfAttention):
+                wrapper.gate.requires_grad_(True)
+            else:
+                wrapper.enable_geometry_training()
 
     @staticmethod
     def _pre_hook(residual: Tensor):
@@ -492,4 +549,31 @@ def v7_trainable_parameter_names(model: nn.Module) -> set[str]:
     actual = {name for name, parameter in model.named_parameters() if parameter.requires_grad}
     if actual != expected:
         raise ValueError("v7 trainable parameters must be exactly the three geometry gates")
+    return actual
+
+
+def v71_trainable_parameter_names(model: nn.Module, *, rank: int = 16) -> set[str]:
+    """Return the exact three-block geometry Q/K/V/O LoRA + gate whitelist."""
+
+    if rank != 16:
+        raise ValueError("v7.1 mechanism probe requires geometry LoRA rank 16")
+    suffixes = {
+        "channel_gate",
+        "q_lora.down",
+        "q_lora.up",
+        "k_lora.down",
+        "k_lora.up",
+        "v_lora.down",
+        "v_lora.up",
+        "o_lora.down",
+        "o_lora.up",
+    }
+    expected = {
+        f"geometry_wrappers.{point}.{suffix}"
+        for point in STAGE_A_BLOCKS
+        for suffix in suffixes
+    }
+    actual = {name for name, parameter in model.named_parameters() if parameter.requires_grad}
+    if actual != expected:
+        raise ValueError("v7.1 trainable parameters differ from geometry Q/K/V/O LoRA contract")
     return actual
