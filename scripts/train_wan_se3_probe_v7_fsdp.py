@@ -293,8 +293,8 @@ def _load_probe(args: argparse.Namespace, device: torch.device) -> GripperTrajec
 def _wan_runtime() -> tuple[type, Any, Any, Any]:
     install_wan_ti2v_package(WAN_SOURCE)
     from wan.distributed.fsdp import shard_model
-    from wan.modules.attention import attention, rope_apply
-    from wan.modules.model import WanModel
+    from wan.modules.attention import attention
+    from wan.modules.model import WanModel, rope_apply
 
     return WanModel, shard_model, rope_apply, attention
 
