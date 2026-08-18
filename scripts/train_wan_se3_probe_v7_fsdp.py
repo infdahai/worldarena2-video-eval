@@ -473,7 +473,16 @@ def _preflight(args: argparse.Namespace, model: ParentPlusSE3Wan, dataset: WanAc
     metrics: dict[str, dict[str, float]] = {}
     model.zero_grad(set_to_none=True)
     for variant in ("correct", "reverse", "shift", "swap"):
-        result = _forward_record(model, dataset, record, source_manifest_sha256=source_manifest_sha256, device=device, variant=variant)
+        grad_context = torch.enable_grad() if variant == "correct" else torch.no_grad()
+        with grad_context:
+            result = _forward_record(
+                model,
+                dataset,
+                record,
+                source_manifest_sha256=source_manifest_sha256,
+                device=device,
+                variant=variant,
+            )
         metrics[variant] = {"fm_loss": float(result["loss"].detach().float().cpu())}
         if variant == "correct":
             result["loss"].backward()
