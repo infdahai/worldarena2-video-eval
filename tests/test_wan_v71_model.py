@@ -95,11 +95,12 @@ def _inputs():
 
 def test_v71_installs_only_three_geometry_lora_branches_and_freezes_wan() -> None:
     backbone = _Backbone()
-    expected = backbone(**{k: v for k, v in _inputs().items() if k in {"x", "t", "context", "seq_len"}})
+    values = _inputs()
+    expected = backbone(**{k: v for k, v in values.items() if k in {"x", "t", "context", "seq_len"}})
     wrappers = install_v71_attention(backbone, BLOCKS, _rope, _attention, rank=16)
     model = ParentPlusSE3Wan(backbone, _Parent(), wrappers)
 
-    assert torch.equal(model(**_inputs()), expected)
+    assert torch.equal(model(**values), expected)
     names = v71_trainable_parameter_names(model, rank=16)
     assert len(names) == 27
     assert all("geometry_wrappers" in name for name in names)
