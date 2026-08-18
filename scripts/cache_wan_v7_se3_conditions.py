@@ -112,7 +112,8 @@ def _receipt_evaluation_rows(
     fail the zero-leakage receipt check.
     """
 
-    return {"dev-fast20": dev_fast20_rows}
+    # This key is part of the immutable clean-data-scale receipt contract.
+    return {"dev-fast-20": dev_fast20_rows}
 
 
 def _load_trusted_lineage_pins(
