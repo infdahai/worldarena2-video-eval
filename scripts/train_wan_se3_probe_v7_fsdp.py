@@ -328,8 +328,9 @@ def _load_model(args: argparse.Namespace, *, local_rank: int, device: torch.devi
 
 
 def _record_batch(dataset: WanActionCachedDataset, record: Mapping[str, Any], *, source_manifest_sha256: str, device: torch.device) -> tuple[dict[str, Any], torch.Tensor, torch.Tensor]:
-    rank = dist.get_rank()
-    if record.get("rank") != rank:
+    logical_rank = dist.get_rank()
+    expected_physical_rank = 6 if dist.get_world_size() == 1 else logical_rank
+    if record.get("rank") != expected_physical_rank:
         raise RuntimeError("v7 replay record rank differs from distributed rank")
     index = record.get("sample_index")
     if type(index) is not int or not 0 <= index < len(dataset):
