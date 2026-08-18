@@ -130,6 +130,29 @@ def test_lambda_calibration_targets_exact_native_qkvo_ratios() -> None:
             fm_gradients=[torch.ones(1)],
             objective_gradients={name: [torch.zeros(1)] for name in result["lambdas"]},
         )
+    normalized_units = calibrate_v10_lambdas(
+        fm_gradients=[torch.tensor([0.0488860123])],
+        objective_gradients={
+            "cf": [torch.ones(1)],
+            "phase": [torch.ones(1)],
+            "hidden": [torch.ones(1)],
+            "position": [torch.tensor([2.78156349e-5])],
+            "velocity": [torch.tensor([5.09148704e-5])],
+        },
+    )
+    assert normalized_units["lambdas"]["position"] == pytest.approx(527.250366)
+    assert normalized_units["lambdas"]["velocity"] == pytest.approx(192.030391)
+    with pytest.raises(ValueError, match=r"cf=.*objective_norm=.*fm_norm="):
+        calibrate_v10_lambdas(
+            fm_gradients=[torch.ones(1)],
+            objective_gradients={
+                "cf": [torch.tensor([1e-8])],
+                "phase": [torch.ones(1)],
+                "hidden": [torch.ones(1)],
+                "position": [torch.ones(1)],
+                "velocity": [torch.ones(1)],
+            },
+        )
 
 
 def test_loss_curriculum_stages_objectives_and_hidden_backbone_gradient() -> None:

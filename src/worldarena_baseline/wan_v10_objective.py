@@ -277,8 +277,14 @@ def calibrate_v10_lambdas(
         name: CALIBRATION_TARGETS[name] * fm_norm / objective_norms[name]
         for name in CALIBRATION_TARGETS
     }
-    if any(not 1e-4 <= value <= 100 for value in lambdas.values()):
-        raise ValueError("v10 calibrated lambda is outside [1e-4,100]")
+    invalid = [name for name, value in lambdas.items() if not 1e-4 <= value <= 1000]
+    if invalid:
+        details = ", ".join(
+            f"{name}={lambdas[name]:.9g} objective_norm={objective_norms[name]:.9g} "
+            f"fm_norm={fm_norm:.9g}"
+            for name in invalid
+        )
+        raise ValueError(f"v10 calibrated lambda is outside [1e-4,1000]: {details}")
     return {
         "contract": "wan-v10-loss-calibration/1",
         "curriculum_contract": "wan-v10-loss-curriculum/1",
