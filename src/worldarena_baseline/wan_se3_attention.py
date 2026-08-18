@@ -14,7 +14,7 @@ from torch import Tensor, nn
 
 
 AttentionCallable = Callable[[Tensor, Tensor, Tensor, Tensor], Tensor]
-RopeApplyCallable = Callable[[Tensor, Tensor, object], tuple[Tensor, Tensor]]
+RopeApplyCallable = Callable[[Tensor, Tensor, object], Tensor]
 
 
 def apply_group_action(value: Tensor, matrix: Tensor, *, transpose: bool = False) -> Tensor:
@@ -300,8 +300,6 @@ class SE3AugmentedSelfAttention(nn.Module):
             hasattr(base, "norm_q") and hasattr(base, "norm_k")
         ):
             raise TypeError("base attention must expose q_norm/k_norm or norm_q/norm_k")
-        if getattr(base.o, "bias", None) is not None:
-            raise ValueError("Wan output projection must be bias-free for zero-gate equality")
         self.base = base
         self.base.requires_grad_(False)
         self.geometry = ArmGroupedSE3Geometry(
@@ -376,9 +374,10 @@ class SE3AugmentedSelfAttention(nn.Module):
 
         # RoPE implementations are allowed to mutate their Q/K arguments;
         # geometry must always consume independent normalized pre-RoPE tensors.
-        original_q, original_k = self.rope_apply_fn(
-            pre_rope_q.clone(), pre_rope_k.clone(), freqs
-        )
+        # Official Wan applies RoPE to Q and K independently and requires the
+        # latent grid as its second argument.
+        original_q = self.rope_apply_fn(pre_rope_q.clone(), grid_sizes, freqs)
+        original_k = self.rope_apply_fn(pre_rope_k.clone(), grid_sizes, freqs)
         original_heads = self.geometry.attention_fn(original_q, original_k, pre_rope_v, seq_lens)
         if original_heads.shape != pre_rope_q.shape:
             raise ValueError("attention_fn must return the same shape as q")
@@ -395,7 +394,14 @@ class SE3AugmentedSelfAttention(nn.Module):
             seq_lens=seq_lens,
         )
         gated_heads = geometry_heads.float() * self.gate.unsqueeze(0).unsqueeze(0)
-        geometry_output = self.base.o(gated_heads.flatten(2).to(dtype=original_output.dtype))
+        # Reuse Wan's frozen output weight but not its bias.  The original
+        # path already contributes that bias once; adding it again would make
+        # a zero gate differ from the unwrapped Wan attention.
+        geometry_output = torch.nn.functional.linear(
+            gated_heads.flatten(2).to(dtype=original_output.dtype),
+            self.base.o.weight,
+            bias=None,
+        )
         return original_output + geometry_output
 
     def _q_normalizer(self) -> Callable[[Tensor], Tensor]:

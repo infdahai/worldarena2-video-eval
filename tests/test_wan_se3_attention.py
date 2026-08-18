@@ -155,10 +155,11 @@ class _FakeWanAttention(nn.Module):
         self.q = nn.Linear(8, 8, bias=False)
         self.k = nn.Linear(8, 8, bias=False)
         self.v = nn.Linear(8, 8, bias=False)
-        self.o = nn.Linear(8, 8, bias=False)
+        self.o = nn.Linear(8, 8, bias=True)
         with torch.no_grad():
             for layer in (self.q, self.k, self.v, self.o):
                 layer.weight.copy_(torch.eye(8))
+            self.o.bias.fill_(3.0)
 
     def q_norm(self, value: torch.Tensor) -> torch.Tensor:
         return value + 10
@@ -170,20 +171,22 @@ class _FakeWanAttention(nn.Module):
         q = self.q_norm(self.q(x).reshape(x.shape[0], x.shape[1], 2, 4))
         k = self.k_norm(self.k(x).reshape(x.shape[0], x.shape[1], 2, 4))
         v = self.v(x).reshape(x.shape[0], x.shape[1], 2, 4)
-        q, k = _fake_rope(q, k, freqs)
+        q = _fake_rope(q, grid_sizes, freqs)
+        k = _fake_rope(k, grid_sizes, freqs)
         return self.o(_mean_attention(q, k, v, seq_lens).flatten(2))
 
 
-def _fake_rope(q: torch.Tensor, k: torch.Tensor, freqs: object) -> tuple[torch.Tensor, torch.Tensor]:
+def _fake_rope(value: torch.Tensor, grid_sizes: torch.Tensor, freqs: object) -> torch.Tensor:
     assert freqs == "rope"
-    return q + 100, k + 200
+    assert grid_sizes.shape == (value.shape[0], 3)
+    return value + 100
 
 
-def _in_place_fake_rope(q: torch.Tensor, k: torch.Tensor, freqs: object) -> tuple[torch.Tensor, torch.Tensor]:
+def _in_place_fake_rope(value: torch.Tensor, grid_sizes: torch.Tensor, freqs: object) -> torch.Tensor:
     assert freqs == "rope"
-    q.add_(100)
-    k.add_(200)
-    return q, k
+    assert grid_sizes.shape == (value.shape[0], 3)
+    value.add_(100)
+    return value
 
 
 def test_wrapper_forks_normalized_qkv_before_rope_and_zero_gate_is_bitwise_equal() -> None:
