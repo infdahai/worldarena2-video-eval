@@ -40,6 +40,16 @@ def _rows(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
+def _read_json(path: Path) -> dict[str, Any]:
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"cannot read v10 JSON receipt: {path}") from exc
+    if not isinstance(value, dict):
+        raise ValueError(f"v10 JSON receipt must be an object: {path}")
+    return value
+
+
 def _write_jsonl_atomic(path: Path, rows: tuple[dict[str, Any], ...]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     partial = path.with_name(f".{path.name}.{os.getpid()}.partial")
@@ -70,13 +80,23 @@ def _sha(path: Path) -> str:
     return digest.hexdigest()
 
 
-def _v9_features(path: Path):
-    with np.load(path, allow_pickle=False) as archive:
-        return relation_features_from_v9_transition(
-            {name: np.asarray(archive[name]) for name in (
-                "translation", "rotation", "image", "gripper", "arm_present", "motion_active"
-            )}
-        )
+def _v9_features(path: Path, *, sample: str, variant: str, receipt: dict[str, Any]):
+    from worldarena_baseline.wan_v9_transition import validate_transition_cache
+
+    payload = validate_transition_cache(
+        path, expected_sample=sample, expected_variant=variant,
+        expected_clean_manifest_sha256=str(receipt["clean_manifest_sha256"]),
+        expected_normalization_receipt_sha256=str(receipt["normalization_receipt_sha256"]),
+    )
+    features = relation_features_from_v9_transition(
+        {name: np.asarray(payload[name]) for name in (
+            "translation", "rotation", "image", "gripper", "arm_present", "motion_active"
+        )}
+    )
+    return features, {
+        name: str(np.asarray(payload[name]).item())
+        for name in ("source_hdf5_sha256", "source_action_sha256", "urdf_sha256")
+    }
 
 
 def _source_actions(row: dict[str, Any], dataset_root: Path):
@@ -128,23 +148,34 @@ def build_relations(args: argparse.Namespace) -> int:
         raise ValueError("v10 optimizer/audit identities overlap")
     renderer = AlohaSkeletonRenderer(args.urdf, width=80, height=60)
     urdf_sha = _sha(args.urdf)
+    legacy_receipt = _read_json(args.v9_transition_root / "receipt.json")
     feature_sets: dict[str, dict[str, Any]] = {}
     provenance: dict[str, tuple[str, str]] = {}
     for index, row in enumerate(rows, start=1):
         sample = str(row["sample"])
         legacy = args.v9_transition_root / sample
         variants = None
-        if all((legacy / f"{variant}.npz").is_file() for variant in ("correct", "reverse", "swap")):
-            try:
-                variants = {
-                    variant: _v9_features(legacy / f"{variant}.npz")
-                    for variant in ("correct", "reverse", "swap")
-                }
-            except ValueError:
-                variants = None
         action_path = Path(str(row["action_raster_path"])).resolve(strict=True)
         _formal(action_path)
         actions, camera, hdf5_path = _source_actions(row, args.dataset_root)
+        current_provenance = {
+            "source_hdf5_sha256": _sha(hdf5_path),
+            "source_action_sha256": _sha(action_path),
+            "urdf_sha256": urdf_sha,
+        }
+        if all((legacy / f"{variant}.npz").is_file() for variant in ("correct", "reverse", "swap")):
+            try:
+                loaded = {
+                    variant: _v9_features(
+                        legacy / f"{variant}.npz", sample=sample, variant=variant,
+                        receipt=legacy_receipt,
+                    ) for variant in ("correct", "reverse", "swap")
+                }
+                if any(provenance != current_provenance for _features, provenance in loaded.values()):
+                    raise ValueError("v9 transition provenance differs from current v10 source")
+                variants = {variant: loaded[variant][0] for variant in loaded}
+            except ValueError:
+                variants = None
         if variants is None:
             with np.load(action_path, allow_pickle=False) as archive:
                 correct_raster = np.asarray(archive["raster"], dtype=np.float32)
@@ -158,7 +189,10 @@ def build_relations(args: argparse.Namespace) -> int:
                 ),
             }
         feature_sets[sample] = variants
-        provenance[sample] = (_sha(hdf5_path), _sha(action_path))
+        provenance[sample] = (
+            current_provenance["source_hdf5_sha256"],
+            current_provenance["source_action_sha256"],
+        )
         if index % 100 == 0:
             print(json.dumps({"event": "v10_relation_load", "completed": index, "total": len(rows)}), flush=True)
     normalization = fit_v10_relation_normalization(
