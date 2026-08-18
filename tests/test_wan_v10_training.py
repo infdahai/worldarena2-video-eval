@@ -28,7 +28,11 @@ def _patch_names(monkeypatch, model):
         "relation_wrappers.11.hidden_eef_head.weight": model.hidden,
     }
     monkeypatch.setattr(training, "v10_trainable_parameter_names", lambda _model: set(names))
-    monkeypatch.setattr(model, "named_parameters", lambda: iter(names.items()))
+    monkeypatch.setattr(
+        model,
+        "named_parameters",
+        lambda recurse=True: iter(names.items()),
+    )
     monkeypatch.setattr(model, "state_dict", lambda: names)
     return names
 

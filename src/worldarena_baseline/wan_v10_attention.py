@@ -256,6 +256,9 @@ class FactorizedRelationalSelfAttention(nn.Module):
             batch, length, 2, self.arm_head_count, self.relation_rank
         )
         k_arms = self.relation_k(encoded).reshape_as(q_arms)
+        arm_mask = present[..., None, None].to(dtype=q_arms.dtype)
+        q_arms = q_arms * arm_mask
+        k_arms = k_arms * arm_mask
         zeros = torch.zeros_like(q_arms[:, :, 0])
         q_relation = torch.cat((q_arms[:, :, 0], q_arms[:, :, 1], zeros), dim=2)
         k_relation = torch.cat((k_arms[:, :, 0], k_arms[:, :, 1], zeros), dim=2)
