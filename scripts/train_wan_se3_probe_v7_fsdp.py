@@ -477,6 +477,7 @@ def _preflight(args: argparse.Namespace, model: ParentPlusSE3Wan, dataset: WanAc
         metrics[variant] = {"fm_loss": float(result["loss"].detach().float().cpu())}
         if variant == "correct":
             result["loss"].backward()
+            model.release_completed_backward_conditions()
     gradients = _gradient_stats(model)
     original_gradients = gradients["original_parameter_gradients"]
     receipt = {
@@ -791,6 +792,7 @@ def main(argv: Sequence[str] | None = None) -> None:
             if not torch.isfinite(result["loss"]):
                 raise RuntimeError("v7 flow-matching loss is non-finite")
             result["loss"].backward()
+            model.release_completed_backward_conditions()
             stats = _gradient_stats(model)
             gate_grad_seen |= bool(stats["nonzero_gate_gradients"])
             original_gradient_seen |= bool(stats["original_parameter_gradients"])

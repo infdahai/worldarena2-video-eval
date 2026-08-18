@@ -397,6 +397,24 @@ class ParentPlusSE3Wan(nn.Module):
                 wrapper._checkpoint_condition = None  # type: ignore[attr-defined]
                 wrapper._checkpoint_token = None  # type: ignore[attr-defined]
 
+    def release_completed_backward_conditions(self) -> None:
+        """Release checkpoint leases after the caller completed backward.
+
+        PyTorch non-reentrant checkpoint early-stop may not replay every
+        selected block when only the zero-initialized gate needs gradients.
+        Once ``loss.backward()`` has returned, no graph can legally consume a
+        retained condition, so the training loop closes any remaining lease
+        before the next batch.  Calling this before backward does not weaken
+        the outstanding-forward guard because callers invoke it only after a
+        completed backward.
+        """
+
+        for wrapper in self.geometry_wrappers.values():
+            if wrapper.bound_condition is not None:  # type: ignore[attr-defined]
+                raise RuntimeError("cannot release v7 condition during an active forward")
+            wrapper._checkpoint_condition = None  # type: ignore[attr-defined]
+            wrapper._checkpoint_token = None  # type: ignore[attr-defined]
+
     def forward(
         self,
         x: Tensor,

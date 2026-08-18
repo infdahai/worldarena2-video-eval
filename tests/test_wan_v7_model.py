@@ -161,6 +161,19 @@ def test_official_wan_tensor_list_output_is_preserved() -> None:
     assert isinstance(actual[0], torch.Tensor)
 
 
+def test_completed_backward_condition_release_is_idempotent() -> None:
+    model, _ = _model(activation_checkpoint=True)
+    output = model(**_inputs())
+    output.sum().backward()
+    model.release_completed_backward_conditions()
+    model.release_completed_backward_conditions()
+    assert all(
+        wrapper._checkpoint_condition is None
+        and wrapper._checkpoint_token is None
+        for wrapper in model.geometry_wrappers.values()
+    )
+
+
 def test_conditions_are_cleared_after_success_and_exception() -> None:
     values = _inputs()
     model, _parent = _model()
