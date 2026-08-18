@@ -665,7 +665,10 @@ def _validate_inputs(args: argparse.Namespace) -> tuple[dict[str, Any], dict[str
         raise RuntimeError("v7 discovery-8 manifest is absent or differs from pinned derivation") from exc
     if len(discovery_rows) != 8:
         raise RuntimeError("v7 discovery audit requires exactly eight fixed rows")
-    evaluation_rows = {"dev-fast20": dev_fast20_rows}
+    # The leakage receipt uses the frozen split identifier verbatim.  Keep
+    # this aligned with the cache producer so preflight revalidates the same
+    # evaluator boundary instead of inventing a second alias.
+    evaluation_rows = {"dev-fast-20": dev_fast20_rows}
     leakage = validate_training_manifest_receipt(args.data_source_manifest, args.data_leakage_receipt, evaluation_rows)
     if leakage.get("passed") is not True or leakage.get("collision_count") != 0:
         raise RuntimeError("v7 zero-leakage receipt failed")
