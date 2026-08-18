@@ -101,6 +101,20 @@ def _read_jsonl(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
+def _receipt_evaluation_rows(
+    dev_fast20_rows: list[dict[str, Any]],
+) -> dict[str, list[dict[str, Any]]]:
+    """Return the only frozen evaluation boundary for the Stage-A cache.
+
+    ``discovery-8`` is derived from clean-1000 and deliberately overlaps the
+    training rows.  It is a training-internal mechanism audit, not an
+    evaluation split, so including it here would make every cache invocation
+    fail the zero-leakage receipt check.
+    """
+
+    return {"dev-fast20": dev_fast20_rows}
+
+
 def _load_trusted_lineage_pins(
     authority: _LineageAuthority,
 ) -> tuple[dict[str, str], dict[str, object]]:
@@ -164,9 +178,7 @@ def _validate_lineage(authority: _LineageAuthority) -> dict[str, object]:
     report = validate_training_manifest_receipt(
         authority.clean1000_manifest,
         authority.data_leakage_receipt,
-        {
-            "dev-fast20": dev_fast20_rows,
-        },
+        _receipt_evaluation_rows(dev_fast20_rows),
     )
     return {**report, "discovery_rows": discovery_rows}
 

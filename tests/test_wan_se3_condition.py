@@ -301,7 +301,41 @@ def test_injected_immutable_lineage_pins_validate_exact_artifacts(tmp_path: Path
         module._validate_lineage_for_testing(authority)
 
 
-def test_injected_trusted_lineage_still_rejects_discovery_overlap(tmp_path: Path) -> None:
+def test_cache_receipt_excludes_clean_derived_discovery8_from_evaluation(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Discovery-8 is a clean training subset, never a receipt evaluation split.
+
+    This is deliberately a cache-stage test: the mechanism-audit subset must
+    overlap clean-1000 exactly, while the data-leakage receipt is replayed only
+    against its frozen dev-fast20 boundary.  Passing discovery as an evaluator
+    would raise ``DatasetLeakageError`` for every cache worker.
+    """
+    module = _cache_script()
+    authority = _write_lineage_authority(module, tmp_path)
+    observed: dict[str, object] = {}
+    original = module.validate_training_manifest_receipt
+
+    def _observe(manifest, receipt, evaluation_rows):
+        observed["evaluation_rows"] = evaluation_rows
+        return original(manifest, receipt, evaluation_rows)
+
+    monkeypatch.setattr(module, "validate_training_manifest_receipt", _observe)
+    report = module._validate_lineage_for_testing(authority)
+
+    discovery_samples = {str(row["sample"]) for row in report["discovery_rows"]}
+    clean_samples = {
+        str(row["sample"])
+        for row in [json.loads(line) for line in authority.clean1000_manifest.read_text().splitlines()]
+    }
+    assert len(discovery_samples) == 8
+    assert discovery_samples <= clean_samples
+    assert observed["evaluation_rows"] == module._receipt_evaluation_rows(
+        module._read_jsonl(authority.dev_fast20_manifest)
+    )
+
+
+def test_injected_trusted_lineage_rejects_dev_fast20_overlap(tmp_path: Path) -> None:
     """Catches trusting hashes alone without replaying the zero-leakage receipt."""
     module = _cache_script()
     authority = _write_lineage_authority(module, tmp_path)
