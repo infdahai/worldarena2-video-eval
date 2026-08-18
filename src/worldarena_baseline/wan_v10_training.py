@@ -127,7 +127,7 @@ def _validate_calibration(calibration: Mapping[str, Any]) -> None:
     lambdas = calibration.get("lambdas")
     if not isinstance(lambdas, Mapping) or set(lambdas) != {"cf", "phase", "hidden", "position", "velocity"}:
         raise ValueError("v10 checkpoint calibration lambdas differ")
-    if any(not math.isfinite(float(value)) or not 1e-4 <= float(value) <= 100 for value in lambdas.values()):
+    if any(not math.isfinite(float(value)) or not 1e-4 <= float(value) <= 1000 for value in lambdas.values()):
         raise ValueError("v10 checkpoint calibration lambda is invalid")
     if calibration.get("target_ratios") != CALIBRATION_TARGETS:
         raise ValueError("v10 checkpoint calibration gradient targets differ")

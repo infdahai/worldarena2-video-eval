@@ -64,7 +64,13 @@ def _calibration():
             "cf": 0.25, "phase": 0.45, "hidden": 0.2,
             "position": 0.3, "velocity": 0.2,
         },
-        "lambdas": {"cf": 1.0, "phase": 1.0, "hidden": 0.5, "position": 0.5, "velocity": 0.5},
+        "lambdas": {
+            "cf": 0.535,
+            "phase": 17.15,
+            "hidden": 0.00138,
+            "position": 527.48,
+            "velocity": 192.09,
+        },
         "frozen": True,
     }
 
