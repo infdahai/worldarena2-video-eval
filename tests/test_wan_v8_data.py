@@ -139,7 +139,6 @@ def test_prepare_cli_translates_argument_names_before_calling_prepare(monkeypatc
         probe_split=Path("/data/di/worldarena2_track1_20260815/probe.json"),
         dev_manifest=Path("/data/di/worldarena2_track1_20260815/dev.jsonl"),
         strata_receipt=Path("/data/di/worldarena2_track1_20260815/strata.json"),
-        strata_manifest=Path("/data/di/worldarena2_track1_20260815/strata.jsonl"),
         output_root=Path("/data/di/worldarena2_track1_20260815/output"),
         world_size=1,
         steps=250,
@@ -149,5 +148,6 @@ def test_prepare_cli_translates_argument_names_before_calling_prepare(monkeypatc
     monkeypatch.setattr(module, "prepare", lambda **kwargs: captured.update(kwargs) or {"ok": True})
     module.main()
     assert captured["probe_split_path"] == values.probe_split
+    assert "strata_manifest" not in captured
     assert "probe_split" not in captured
     assert '"ok": true' in capsys.readouterr().out
