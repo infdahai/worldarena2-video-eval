@@ -32,6 +32,10 @@ FROZEN_V7_PARENT_SHA256 = "105fb760fd371885ba362d26ef2352c260755e47cd036f4671118
 V7_CHECKPOINT_STEPS = (10, 25, 50)
 V7_WORLD_SIZE = 7
 V7_SINGLE_GPU_WORLD_SIZE = 1
+V7_GATE_ONLY_RETIREMENT_CHECKPOINTS = {
+    10: "d77977f975f634eeb4e621c05c15647504afbf589de46ad5cbbb940ca1237bdb",
+    25: "760a866ded9cb659d0cef9bc07c279bd4d60fc2dd6e4c7121357ca3b1200b47d",
+}
 _TOPOLOGIES = {
     "seven-rank": {
         "cuda_visible_devices": CUDA_VISIBLE_DEVICES,
@@ -146,6 +150,36 @@ def _validate_checkpoint(payload: Mapping[str, Any], *, expected: Mapping[str, A
         validate_v7_single_gpu_checkpoint(payload, expected=expected)
         return
     raise RuntimeError("v7 topology is unsupported")
+
+
+def _validate_retirement_checkpoint(
+    payload: Mapping[str, Any],
+    *,
+    expected: Mapping[str, Any],
+    topology: str,
+    checkpoint_sha256: str,
+) -> None:
+    """Validate the two immutable gate-only artifacts for read-only audit.
+
+    Their training source closure predates this audit implementation.  The
+    exact file digest is source pinned, then the original checkpoint validator
+    checks its own recorded source closure and every other lineage field.
+    This exception is never used by train/smoke/preflight.
+    """
+
+    step = payload.get("step")
+    if (
+        topology != "single-gpu"
+        or type(step) is not int
+        or V7_GATE_ONLY_RETIREMENT_CHECKPOINTS.get(step) != checkpoint_sha256
+    ):
+        raise RuntimeError("v7 retirement checkpoint is not source-pinned")
+    source_hashes = payload.get("source_hashes")
+    if not isinstance(source_hashes, Mapping):
+        raise RuntimeError("v7 retirement checkpoint has no source lineage")
+    legacy_expected = dict(expected)
+    legacy_expected["source_hashes"] = dict(source_hashes)
+    _validate_checkpoint(payload, expected=legacy_expected, topology=topology)
 
 
 def _under_formal_root(path: Path, *, writable: bool = False) -> Path:
@@ -825,7 +859,15 @@ def main(argv: Sequence[str] | None = None) -> None:
         start_step = 0
         if args.resume is not None:
             payload = torch.load(args.resume, map_location="cpu", weights_only=True)
-            _validate_checkpoint(payload, expected=expected, topology=args.topology)
+            if args.mode == "audit" and args.audit_set == "retirement20":
+                _validate_retirement_checkpoint(
+                    payload,
+                    expected=expected,
+                    topology=args.topology,
+                    checkpoint_sha256=sha256_file(args.resume),
+                )
+            else:
+                _validate_checkpoint(payload, expected=expected, topology=args.topology)
             _load_gate_state(model, payload["model"])
             optimizer.load_state_dict(payload["optimizer"])
             _move_optimizer_state(optimizer, device)

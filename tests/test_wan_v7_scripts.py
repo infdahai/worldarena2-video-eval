@@ -88,6 +88,34 @@ def test_v7_preflight_receipt_rejects_a_stale_source_closure_before_cuda() -> No
         )
 
 
+def test_retirement_audit_accepts_only_the_two_pinned_legacy_checkpoints(monkeypatch) -> None:
+    module = _trainer_module()
+    calls = []
+    monkeypatch.setattr(
+        module,
+        "_validate_checkpoint",
+        lambda payload, *, expected, topology: calls.append((payload, expected, topology)),
+    )
+    payload = {"step": 10, "source_hashes": {"source_code_sha256": "old"}}
+    expected = {"source_hashes": {"source_code_sha256": "new"}}
+
+    module._validate_retirement_checkpoint(
+        payload,
+        expected=expected,
+        topology="single-gpu",
+        checkpoint_sha256=module.V7_GATE_ONLY_RETIREMENT_CHECKPOINTS[10],
+    )
+    assert calls[0][1]["source_hashes"] == payload["source_hashes"]
+
+    with pytest.raises(RuntimeError, match="not source-pinned"):
+        module._validate_retirement_checkpoint(
+            payload,
+            expected=expected,
+            topology="single-gpu",
+            checkpoint_sha256="0" * 64,
+        )
+
+
 def test_v7_trainer_has_no_hot_path_encoder_or_stage_b_symbols() -> None:
     source = (ROOT / "scripts/train_wan_se3_probe_v7_fsdp.py").read_text()
     assert "WanActionCachedDataset" in source
