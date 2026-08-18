@@ -305,7 +305,20 @@ def _load_model(args: argparse.Namespace, *, local_rank: int, device: torch.devi
     backbone.requires_grad_(False)
     enable_wan_block_checkpointing(backbone)
     wrappers = install_v7_attention(backbone, STAGE_A_BLOCKS, rope_apply, attention)
-    backbone = shard_model(backbone, device_id=local_rank, param_dtype=torch.bfloat16, use_lora=False)
+    if args.topology == "single-gpu":
+        # FSDP switches to NO_SHARD at world_size=1 and then attempts to
+        # flatten each wrapped attention's frozen BF16 weights together with
+        # its trainable FP32 gate.  That mixed-dtype flat parameter is illegal.
+        # The 5B BF16 backbone fits on one 24 GiB card, so keep it unsharded;
+        # the production seven-rank path remains unchanged.
+        backbone = backbone.to(device)
+    else:
+        backbone = shard_model(
+            backbone,
+            device_id=local_rank,
+            param_dtype=torch.bfloat16,
+            use_lora=False,
+        )
     parent = _load_parent(args, device, source_manifest_sha256=source_manifest_sha256)
     model = ParentPlusSE3Wan(backbone, parent, wrappers).to(device)
     names = v7_trainable_parameter_names(model)
