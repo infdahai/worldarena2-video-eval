@@ -23,9 +23,9 @@ def _attention(q, k, v, seq_lens):
     return v
 
 
-def _rope(q, k, freqs):
-    del freqs
-    return q, k
+def _rope(value, grid_sizes, freqs):
+    del grid_sizes, freqs
+    return value
 
 
 class _WanAttention(nn.Module):
@@ -57,10 +57,11 @@ class _Block(nn.Module):
 
 
 class _Backbone(nn.Module):
-    def __init__(self, *, raises: bool = False) -> None:
+    def __init__(self, *, raises: bool = False, returns_list: bool = False) -> None:
         super().__init__()
         self.blocks = nn.ModuleList(_Block() for _ in range(30))
         self.raises = raises
+        self.returns_list = returns_list
         self.block_calls = {index: 0 for index in range(30)}
         for index, block in enumerate(self.blocks):
             block.register_forward_hook(self._count(index))
@@ -80,7 +81,7 @@ class _Backbone(nn.Module):
             x = block(x, seq_lens, grid_sizes, freqs)
         if self.raises:
             raise RuntimeError("backbone failure")
-        return x
+        return [x] if self.returns_list else x
 
 
 class _Parent(nn.Module):
@@ -150,6 +151,14 @@ def test_zero_gate_is_exact_clean_parent_and_only_three_gates_trainable() -> Non
     ) == 9216
     assert parent.calls == 1
     assert all(wrapper.bound_condition is None for wrapper in model.geometry_wrappers.values())
+
+
+def test_official_wan_tensor_list_output_is_preserved() -> None:
+    backbone = _Backbone(returns_list=True)
+    model, _ = _model(backbone)
+    actual = model(**_inputs())
+    assert isinstance(actual, list) and len(actual) == 1
+    assert isinstance(actual[0], torch.Tensor)
 
 
 def test_conditions_are_cleared_after_success_and_exception() -> None:

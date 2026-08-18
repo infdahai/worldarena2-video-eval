@@ -427,7 +427,8 @@ class ParentPlusSE3Wan(nn.Module):
             raise RuntimeError("frozen parent residual keys do not match parent injection points")
 
         handles = []
-        result: Tensor | None = None
+        result: Tensor | list[Tensor] | None = None
+        result_tensors: tuple[Tensor, ...] = ()
         binding_token: object | None = None
         try:
             binding_token = self._bind_condition(condition)
@@ -441,8 +442,16 @@ class ParentPlusSE3Wan(nn.Module):
                     )
                 )
             result = self.backbone(x, t, context, seq_len, y=y)
-            if not isinstance(result, Tensor):
-                raise TypeError("Wan backbone must return a tensor")
+            if isinstance(result, Tensor):
+                result_tensors = (result,)
+            elif (
+                isinstance(result, list)
+                and result
+                and all(isinstance(value, Tensor) for value in result)
+            ):
+                result_tensors = tuple(result)
+            else:
+                raise TypeError("Wan backbone must return a tensor or non-empty tensor list")
             return result
         finally:
             for handle in handles:
@@ -451,7 +460,9 @@ class ParentPlusSE3Wan(nn.Module):
                 self._clear_condition(
                     binding_token,
                     retain_for_checkpoint=bool(
-                        result is not None and result.requires_grad and torch.is_grad_enabled()
+                        result_tensors
+                        and any(value.requires_grad for value in result_tensors)
+                        and torch.is_grad_enabled()
                     ),
                 )
 

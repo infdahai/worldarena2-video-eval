@@ -399,11 +399,15 @@ class SE3AugmentedSelfAttention(nn.Module):
         # Reuse Wan's frozen output weight but not its bias.  The original
         # path already contributes that bias once; adding it again would make
         # a zero gate differ from the unwrapped Wan attention.
-        geometry_output = torch.nn.functional.linear(
-            gated_heads.flatten(2).to(dtype=original_output.dtype),
-            self.base.o.weight,
-            bias=None,
-        )
+        gated_flat = gated_heads.flatten(2).to(dtype=original_output.dtype)
+        if getattr(self.base.o, "bias", None) is None:
+            geometry_output = self.base.o(gated_flat)
+        else:
+            geometry_output = torch.nn.functional.linear(
+                gated_flat,
+                self.base.o.weight,
+                bias=None,
+            )
         return original_output + geometry_output
 
     def _q_normalizer(self) -> Callable[[Tensor], Tensor]:
