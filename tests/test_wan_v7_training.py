@@ -71,6 +71,8 @@ def _expected(replay: dict, *, lr: float = 2e-5) -> dict:
         "cache_sha256": "e" * 64,
         "replay_sha256": replay["replay_sha256"],
         "calibrated_lr": lr,
+        "v6_replay": _v6_payload(),
+        "replay": replay,
     }
 
 
@@ -83,6 +85,7 @@ def _checkpoint(step: int = 25) -> tuple[dict, dict]:
         model=model,
         optimizer=_optimizer_payload(model),
         replay=replay,
+        v6_replay=expected["v6_replay"],
         parent_sha256=expected["parent_sha256"],
         source_hashes=expected["source_hashes"],
         cache_sha256=expected["cache_sha256"],
@@ -232,11 +235,43 @@ def test_checkpoint_rejects_foreign_but_internally_consistent_parent() -> None:
             model=model,
             optimizer=_optimizer_payload(model),
             replay=replay,
+            v6_replay=_v6_payload(),
             parent_sha256="f" * 64,
             source_hashes=_source_hashes(),
             cache_sha256="e" * 64,
             preflight_receipt={"calibrated_lr": 2e-5},
         )
+
+
+def test_checkpoint_rejects_forged_but_self_consistent_v7_replay() -> None:
+    model = _StageAModel()
+    replay = _replay()
+    expected = _expected(replay)
+    forged = copy.deepcopy(replay)
+    forged["dataset_manifest_sha256"] = "f" * 64
+    forged["source_v6_replay_sha256"] = "f" * 64
+    replay_without_digest = {key: value for key, value in forged.items() if key != "replay_sha256"}
+    forged["replay_sha256"] = hashlib.sha256(
+        json.dumps(replay_without_digest, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    with pytest.raises(ValueError, match="deterministic v6 prefix"):
+        build_v7_checkpoint(
+            step=10,
+            model=model,
+            optimizer=_optimizer_payload(model),
+            replay=forged,
+            v6_replay=expected["v6_replay"],
+            parent_sha256=expected["parent_sha256"],
+            source_hashes=expected["source_hashes"],
+            cache_sha256=expected["cache_sha256"],
+            preflight_receipt={"calibrated_lr": expected["calibrated_lr"]},
+        )
+
+    payload, _ = _checkpoint()
+    forged_expected = dict(expected, replay=forged, replay_sha256=forged["replay_sha256"])
+    payload["replay_sha256"] = forged["replay_sha256"]
+    with pytest.raises(ValueError, match="deterministic v6 prefix"):
+        validate_v7_checkpoint(payload, expected=forged_expected)
 
 
 def test_discovery_gates_are_bounded_and_fail_closed() -> None:

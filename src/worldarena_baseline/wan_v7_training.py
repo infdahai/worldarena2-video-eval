@@ -162,7 +162,9 @@ def build_v7_replay_from_v6(
     return payload
 
 
-def _validate_v7_replay(payload: Mapping[str, Any]) -> dict[str, Any]:
+def _validate_v7_replay(
+    payload: Mapping[str, Any], *, v6_replay: Mapping[str, Any]
+) -> dict[str, Any]:
     if not isinstance(payload, Mapping) or payload.get("contract") != V7_REPLAY_CONTRACT:
         raise ValueError("v7 replay contract mismatch")
     required = {
@@ -192,7 +194,10 @@ def _validate_v7_replay(payload: Mapping[str, Any]) -> dict[str, Any]:
         raise ValueError("v7 replay rank record shape mismatch")
     if replay_hash != _canonical_sha256(payload, omit="replay_sha256"):
         raise ValueError("v7 replay SHA-256 mismatch")
-    return dict(payload)
+    canonical = build_v7_replay_from_v6(v6_replay)
+    if dict(payload) != canonical:
+        raise ValueError("v7 replay differs from the trusted deterministic v6 prefix")
+    return canonical
 
 
 def _require_calibrated_lr(value: Any) -> float:
@@ -316,6 +321,7 @@ def build_v7_checkpoint(
     model: nn.Module | Mapping[str, Any],
     optimizer: Any,
     replay: Mapping[str, Any],
+    v6_replay: Mapping[str, Any],
     parent_sha256: str,
     source_hashes: Mapping[str, Any],
     cache_sha256: str,
@@ -337,7 +343,7 @@ def build_v7_checkpoint(
     if not isinstance(preflight_receipt, Mapping):
         raise ValueError("v7 checkpoint preflight receipt is missing")
     rate = _require_calibrated_lr(preflight_receipt.get("calibrated_lr"))
-    replay_payload = _validate_v7_replay(replay)
+    replay_payload = _validate_v7_replay(replay, v6_replay=v6_replay)
     state = _gate_state_from_model(model)
     optimizer_payload = _optimizer_state(optimizer)
     _validate_optimizer_state(optimizer_payload, calibrated_lr=rate)
@@ -367,6 +373,8 @@ def build_v7_checkpoint(
             "cache_sha256": cache_sha256,
             "replay_sha256": replay_payload["replay_sha256"],
             "calibrated_lr": rate,
+            "v6_replay": v6_replay,
+            "replay": replay_payload,
         },
     )
     return payload
@@ -404,6 +412,15 @@ def validate_v7_checkpoint(payload: Mapping[str, Any], *, expected: Mapping[str,
     expected_replay = _require_sha256(expected.get("replay_sha256"), label="expected replay SHA-256")
     if replay != expected_replay:
         raise ValueError("v7 checkpoint replay SHA-256 mismatch")
+    expected_replay_payload = expected.get("replay")
+    expected_v6_replay = expected.get("v6_replay")
+    if not isinstance(expected_replay_payload, Mapping) or not isinstance(expected_v6_replay, Mapping):
+        raise ValueError("v7 checkpoint expected replay lineage is missing")
+    canonical_replay = _validate_v7_replay(
+        expected_replay_payload, v6_replay=expected_v6_replay
+    )
+    if canonical_replay["replay_sha256"] != replay:
+        raise ValueError("v7 checkpoint replay differs from trusted deterministic v6 prefix")
     _gate_state_from_model(payload.get("model"))
     scheduler = payload.get("scheduler")
     if not isinstance(scheduler, Mapping) or scheduler.get("completed_step") != step:
