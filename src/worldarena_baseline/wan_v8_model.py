@@ -4,6 +4,7 @@ from collections.abc import Sequence
 from torch import nn
 from .wan_se3_attention import AttentionCallable, RopeApplyCallable
 from .wan_v8_attention import DirectActionBandAttention
+from .wan_v7_model import ParentPlusSE3Wan, _install_condition_hook, _self_attention_owner, _unwrap
 
 V8_BLOCKS = (8, 9, 10, 11, 12, 13)
 
@@ -29,11 +30,26 @@ def install_v8_action_band(backbone: nn.Module, block_indices: Sequence[int], ro
     try:
         for i,owner,base in originals:
             wrapper=DirectActionBandAttention(base,attention_fn=attention_fn,rope_apply_fn=rope_apply_fn)
+            _install_condition_hook(wrapper)
             wrapper.enable_direct_training(); owner.self_attn=wrapper; wrapped[i]=wrapper
     except Exception:
         for _,owner,base in originals: owner.self_attn=base
         raise
     return wrapped
+
+class ParentPlusDirectActionWan(ParentPlusSE3Wan):
+    """Frozen raster parent plus six shared native/geometry attention blocks."""
+    def __init__(self, backbone:nn.Module, parent_adapter:nn.Module, wrappers:dict[int,DirectActionBandAttention])->None:
+        nn.Module.__init__(self)
+        if tuple(wrappers)!=V8_BLOCKS: raise ValueError("v8 wrappers must be blocks 8-13")
+        parent=_unwrap(parent_adapter); points=tuple(getattr(parent,"injection_points",()))
+        if not points or not bool(getattr(parent,"raster_support_gating",False)): raise ValueError("v8 requires support-gated frozen parent")
+        for point,wrapper in wrappers.items():
+            if _self_attention_owner(backbone.blocks[point]).self_attn is not wrapper: raise ValueError("v8 wrapper is not installed")
+        self.geometry_wrappers=nn.ModuleDict({str(i):w for i,w in wrappers.items()}); self.backbone=backbone; self.parent_adapter=parent_adapter
+        self.selected_blocks=V8_BLOCKS; self.parent_injection_points=points
+        self.backbone.requires_grad_(False); self.parent_adapter.requires_grad_(False)
+        for wrapper in self.geometry_wrappers.values(): wrapper.enable_direct_training()
 
 def v8_trainable_parameter_names(model: nn.Module) -> set[str]:
     suffixes=("base.q.weight","base.q.bias","base.k.weight","base.k.bias","base.v.weight","base.v.bias","base.o.weight","base.o.bias","channel_gate")

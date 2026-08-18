@@ -28,15 +28,18 @@ class DirectActionBandAttention(nn.Module):
     def _qn(self): return self.base.q_norm if hasattr(self.base,"q_norm") else self.base.norm_q
     def _kn(self): return self.base.k_norm if hasattr(self.base,"k_norm") else self.base.norm_k
 
-    def forward(self,x:Tensor,seq_lens:Tensor,grid_sizes:Tensor,freqs:object,*,arm_transform:Tensor,arm_present:Tensor,arm_inverse:Tensor|None=None)->Tensor:
-        width=self.num_heads*self.head_dim
-        if x.ndim!=3 or x.shape[-1]!=width: raise ValueError("Wan token width differs")
-        q_raw,k_raw,v_raw=self.base.q(x),self.base.k(x),self.base.v(x)
-        q=self._qn()(q_raw).reshape(*x.shape[:2],self.num_heads,self.head_dim); k=self._kn()(k_raw).reshape_as(q); v=v_raw.reshape_as(q)
-        native=self.base.o(self.geometry.attention_fn(self.rope_apply_fn(q.clone(),grid_sizes,freqs),self.rope_apply_fn(k.clone(),grid_sizes,freqs),v,seq_lens).flatten(2))
-        geom=self.geometry(q,k,v,grid_sizes=grid_sizes,arm_transform=arm_transform,arm_inverse=arm_inverse,arm_present=arm_present,seq_lens=seq_lens).flatten(2)
-        geo_o=F.linear(geom,self.base.o.weight,None)
-        return native+(geo_o.float()*self.channel_gate.view(1,1,-1)).to(native.dtype)
+    def forward(self,x:Tensor,seq_lens:Tensor,grid_sizes:Tensor,freqs:object,*,arm_transform:Tensor,arm_present:Tensor,arm_inverse:Tensor|None=None,checkpoint_replay_release:Callable[[],None]|None=None)->Tensor:
+        try:
+            width=self.num_heads*self.head_dim
+            if x.ndim!=3 or x.shape[-1]!=width: raise ValueError("Wan token width differs")
+            q_raw,k_raw,v_raw=self.base.q(x),self.base.k(x),self.base.v(x)
+            q=self._qn()(q_raw).reshape(*x.shape[:2],self.num_heads,self.head_dim); k=self._kn()(k_raw).reshape_as(q); v=v_raw.reshape_as(q)
+            native=self.base.o(self.geometry.attention_fn(self.rope_apply_fn(q.clone(),grid_sizes,freqs),self.rope_apply_fn(k.clone(),grid_sizes,freqs),v,seq_lens).flatten(2))
+            geom=self.geometry(q,k,v,grid_sizes=grid_sizes,arm_transform=arm_transform,arm_inverse=arm_inverse,arm_present=arm_present,seq_lens=seq_lens).flatten(2)
+            geo_o=F.linear(geom,self.base.o.weight,None)
+            return native+(geo_o.float()*self.channel_gate.view(1,1,-1)).to(native.dtype)
+        finally:
+            if checkpoint_replay_release is not None: checkpoint_replay_release()
 
     def enable_direct_training(self)->None:
         self.geometry.requires_grad_(False)
