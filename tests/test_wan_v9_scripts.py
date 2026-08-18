@@ -57,6 +57,8 @@ def test_launcher_rechecks_gpu_ownership_before_every_gpu_phase() -> None:
     assert '"$0" train25' in source and '"$0" audit500' in source
     assert 'require_decision "$RUN/audit-100.json" continue' in source
     assert 'require_decision "$RUN/audit-250.json" pass' in source
+    assert "datasets/FlowWAM_RoboTwin_extracted" in source
+    assert "source_inputs/arx5_description_isaac.urdf" in source
 
 
 def test_phase_t_is_real_and_step250_audit_is_not_placeholder() -> None:
