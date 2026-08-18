@@ -13,6 +13,7 @@ from worldarena_baseline.wan_v10_data import (
     build_v10_cache_extension,
     build_v10_split,
     fit_v10_relation_normalization,
+    relation_features_from_v9_transition,
     validate_v10_data_receipt,
     validate_v10_relation_cache,
     write_v10_relation_cache_atomic,
@@ -163,6 +164,7 @@ def test_relation_cache_roundtrip_is_hash_bound_and_absent_is_exact_zero(tmp_pat
         variants={"correct": correct, "reverse": reverse, "swap": swap},
         source_hdf5_sha256=hashlib.sha256(b"hdf5").hexdigest(),
         source_action_sha256=hashlib.sha256(b"action").hexdigest(),
+        source_urdf_sha256=hashlib.sha256(b"urdf").hexdigest(),
         normalization_sha256=hashlib.sha256(b"normalization").hexdigest(),
     )
     loaded = validate_v10_relation_cache(
@@ -172,6 +174,7 @@ def test_relation_cache_roundtrip_is_hash_bound_and_absent_is_exact_zero(tmp_pat
     )
     assert loaded["correct_anchored_se3"].shape == (21, 2, 6)
     assert np.count_nonzero(loaded["correct_anchored_se3"][:, 1]) == 0
+    assert str(loaded["source_urdf_sha256"].item()) == hashlib.sha256(b"urdf").hexdigest()
     with path.open("ab") as handle:
         handle.write(b"corrupt")
     with pytest.raises(ValueError, match="payload|load|hash"):
@@ -194,3 +197,41 @@ def test_relation_normalization_uses_only_explicit_optimizer_samples() -> None:
     assert receipt["mean"][16:] == [0.0, 0.0, 0.0, 0.0]
     assert receipt["scale"][16:] == [1.0, 1.0, 1.0, 1.0]
     assert len(receipt["receipt_sha256"]) == 64
+
+
+def test_v9_transition_conversion_reconstructs_anchored_slots() -> None:
+    translation = np.zeros((2, 20, 4), dtype=np.float32)
+    rotation = np.zeros((2, 20, 4), dtype=np.float32)
+    image = np.zeros((2, 20, 6), dtype=np.float32)
+    gripper = np.zeros((2, 20, 3), dtype=np.float32)
+    present = np.ones((2, 20), dtype=bool)
+    active = np.zeros((2, 20), dtype=bool)
+    translation[0, :, 0] = 0.1
+    translation[0, :, 3] = 0.1
+    image[0, :, 2] = np.arange(20)
+    image[0, :, 3] = np.arange(20) + 1
+    image[0, :, 4] = 1
+    converted = relation_features_from_v9_transition({
+        "translation": translation,
+        "rotation": rotation,
+        "image": image,
+        "gripper": gripper,
+        "arm_present": present,
+        "motion_active": active,
+    })
+    assert converted.anchored_se3[0, 0].tolist() == [0.0] * 6
+    assert converted.anchored_se3[20, 0, 0] == pytest.approx(2.0)
+    assert converted.velocity[1, 0, 0] == pytest.approx(0.1)
+    assert converted.uv[1, 0].tolist() == [0.0, 1.0]
+    assert converted.arm_present[:, 0].all()
+    present[1] = False
+    absent = relation_features_from_v9_transition({
+        "translation": translation,
+        "rotation": rotation,
+        "image": image,
+        "gripper": gripper,
+        "arm_present": present,
+        "motion_active": active,
+    })
+    assert not absent.arm_present[:, 1].any()
+    assert np.count_nonzero(absent.anchored_se3[:, 1]) == 0

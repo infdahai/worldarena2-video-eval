@@ -126,6 +126,101 @@ def build_v10_relation_features(
     )
 
 
+def _so3_exp_map(vector: np.ndarray) -> np.ndarray:
+    value = np.asarray(vector, dtype=np.float64)
+    if value.shape != (3,) or not np.isfinite(value).all():
+        raise ValueError("v10 rotation vector must have finite shape (3,)")
+    angle = float(np.linalg.norm(value))
+    if angle < 1e-12:
+        return np.eye(3, dtype=np.float64)
+    axis = value / angle
+    skew = np.array(
+        [[0.0, -axis[2], axis[1]], [axis[2], 0.0, -axis[0]], [-axis[1], axis[0], 0.0]],
+        dtype=np.float64,
+    )
+    return np.eye(3) + np.sin(angle) * skew + (1.0 - np.cos(angle)) * (skew @ skew)
+
+
+def relation_features_from_v9_transition(
+    payload: Mapping[str, np.ndarray],
+) -> V10RelationFeatures:
+    """Lift a contiguous v9 transition cache into v10 slot features."""
+
+    required = {"translation", "rotation", "image", "gripper", "arm_present", "motion_active"}
+    if not required <= set(payload):
+        raise ValueError("v9 transition payload lacks relation feature arrays")
+    translation = np.asarray(payload["translation"], dtype=np.float64)
+    rotation = np.asarray(payload["rotation"], dtype=np.float64)
+    image = np.asarray(payload["image"], dtype=np.float64)
+    gripper_delta = np.asarray(payload["gripper"], dtype=np.float64)
+    interval_present = np.asarray(payload["arm_present"])
+    active = np.asarray(payload["motion_active"])
+    if (
+        translation.shape != (2, 20, 4)
+        or rotation.shape != (2, 20, 4)
+        or image.shape != (2, 20, 6)
+        or gripper_delta.shape != (2, 20, 3)
+        or interval_present.shape != (2, 20)
+        or interval_present.dtype != np.dtype(bool)
+        or active.shape != (2, 20)
+        or active.dtype != np.dtype(bool)
+        or not all(np.isfinite(value).all() for value in (translation, rotation, image, gripper_delta))
+    ):
+        raise ValueError("v9 transition payload has invalid relation arrays")
+    if np.any(active & ~interval_present):
+        raise ValueError("v9 transition activity exists for an absent arm")
+    states = np.broadcast_to(np.eye(4, dtype=np.float64), (2, 21, 4, 4)).copy()
+    state_present = np.zeros((2, 21), dtype=bool)
+    for arm in range(2):
+        present_indices = np.flatnonzero(interval_present[arm])
+        if len(present_indices) and not np.array_equal(
+            present_indices, np.arange(present_indices[-1] + 1)
+        ):
+            raise ValueError("v9 transition presence must be a contiguous prefix")
+        if not len(present_indices):
+            continue
+        state_present[arm, : present_indices[-1] + 2] = True
+        for interval in present_indices:
+            current = states[arm, interval]
+            states[arm, interval + 1, :3, :3] = (
+                current[:3, :3] @ _so3_exp_map(rotation[arm, interval, :3])
+            )
+            states[arm, interval + 1, :3, 3] = (
+                current[:3, 3] + current[:3, :3] @ translation[arm, interval, :3]
+            )
+    anchored = np.zeros((21, 2, 6), dtype=np.float32)
+    velocity = np.zeros_like(anchored)
+    uv = np.zeros((21, 2, 2), dtype=np.float32)
+    gripper = np.zeros((21, 2, 2), dtype=np.float32)
+    slot_present = state_present.T
+    motion_active = np.zeros((21, 2), dtype=bool)
+    for arm in range(2):
+        for time in np.flatnonzero(state_present[arm]):
+            anchored[time, arm, :3] = states[arm, time, :3, 3]
+            anchored[time, arm, 3:] = so3_log_map(states[arm, time, :3, :3])
+        for interval in np.flatnonzero(interval_present[arm]):
+            time = interval + 1
+            velocity[time, arm, :3] = translation[arm, interval, :3]
+            velocity[time, arm, 3:] = rotation[arm, interval, :3]
+            if interval == 0:
+                uv[0, arm] = image[arm, interval, :2]
+                gripper[0, arm, 0] = gripper_delta[arm, interval, 0]
+            uv[time, arm] = image[arm, interval, 2:4]
+            gripper[time, arm] = gripper_delta[arm, interval, 1:3]
+            motion_active[time, arm] = active[arm, interval]
+    absent = ~slot_present
+    for values in (anchored, velocity, uv, gripper):
+        values[absent] = 0
+    return V10RelationFeatures(
+        anchored_se3=anchored,
+        velocity=velocity,
+        uv=uv,
+        gripper=gripper,
+        arm_present=slot_present,
+        motion_active=motion_active & slot_present,
+    )
+
+
 def fit_v10_relation_normalization(
     features_by_sample: Mapping[str, V10RelationFeatures],
 ) -> dict[str, Any]:
@@ -455,6 +550,7 @@ def write_v10_relation_cache_atomic(
     variants: Mapping[str, V10RelationFeatures],
     source_hdf5_sha256: str,
     source_action_sha256: str,
+    source_urdf_sha256: str,
     normalization_sha256: str,
 ) -> Path:
     if set(variants) != set(VARIANTS) or not sample:
@@ -462,6 +558,7 @@ def write_v10_relation_cache_atomic(
     for label, value in (
         ("source HDF5", source_hdf5_sha256),
         ("source action", source_action_sha256),
+        ("source URDF", source_urdf_sha256),
         ("normalization", normalization_sha256),
     ):
         _require_sha(value, label=label)
@@ -470,6 +567,7 @@ def write_v10_relation_cache_atomic(
         "sample": np.asarray(sample),
         "source_hdf5_sha256": np.asarray(source_hdf5_sha256),
         "source_action_sha256": np.asarray(source_action_sha256),
+        "source_urdf_sha256": np.asarray(source_urdf_sha256),
         "normalization_sha256": np.asarray(normalization_sha256),
     }
     for variant in VARIANTS:
@@ -528,10 +626,14 @@ def validate_v10_relation_cache(
         raise ValueError("v10 relation cache contract/sample differs")
     if scalar("normalization_sha256") != expected_normalization_sha256:
         raise ValueError("v10 relation cache normalization differs")
-    for key in ("source_hdf5_sha256", "source_action_sha256", "normalization_sha256"):
+    for key in (
+        "source_hdf5_sha256", "source_action_sha256", "source_urdf_sha256",
+        "normalization_sha256",
+    ):
         _require_sha(scalar(key), label=f"cached {key}")
     expected_keys = {
         "contract", "sample", "source_hdf5_sha256", "source_action_sha256",
+        "source_urdf_sha256",
         "normalization_sha256", "payload_sha256",
         *(f"{variant}_{name}" for variant in VARIANTS for name in _FEATURE_SHAPES),
     }
