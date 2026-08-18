@@ -178,6 +178,10 @@ def finalize(args: argparse.Namespace) -> dict[str, Any]:
             "context_path": str(context),
             "observability_path": str(observability) if observability else None,
         }
+        with np.load(action, allow_pickle=False) as archive:
+            item["pose_statistics_sha256"] = str(
+                np.asarray(archive["pose_statistics_sha256"]).item()
+            )
         enriched.append(item)
         metadata[sample] = _metadata(_raster(action), observability)
         if index % 100 == 0:
