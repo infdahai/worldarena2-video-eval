@@ -2,7 +2,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from worldarena_baseline.wan_v11_sync_closure import discover_v11_source_files
+from worldarena_baseline.wan_v11_sync_closure import (
+    LEGACY_BYTE_PINS,
+    discover_v11_source_files,
+)
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -43,6 +46,14 @@ def test_recursive_source_closure_contains_runtime_dependencies() -> None:
         "src/worldarena_baseline/wan_cached_dataset.py",
     ):
         assert required in files
+
+
+def test_only_reviewed_legacy_skeleton_bytes_are_pinned() -> None:
+    assert LEGACY_BYTE_PINS == {
+        "src/worldarena_baseline/skeleton.py": (
+            "93cb2aa340a725e7b0a7acd37450334bf46c6483c7baf3646bd14ca3e09a8143"
+        )
+    }
 
 
 def test_dry_run_contract_names_all_bounded_phases() -> None:

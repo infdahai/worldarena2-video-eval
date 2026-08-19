@@ -21,6 +21,12 @@ V11_ROOTS = (
     "src/worldarena_baseline/wan_v11_training.py",
 )
 
+LEGACY_BYTE_PINS = {
+    "src/worldarena_baseline/skeleton.py": (
+        "93cb2aa340a725e7b0a7acd37450334bf46c6483c7baf3646bd14ca3e09a8143"
+    ),
+}
+
 
 def _module_file(root: Path, module: str) -> str | None:
     if module == "scripts" or module.startswith("scripts."):
@@ -103,16 +109,21 @@ def discover_v11_source_files(source_root: Path | str) -> tuple[str, ...]:
 
 
 def _git_clean(root: Path, relative: str) -> None:
-    for arguments in (
+    checks = [
         ("ls-files", "--error-unmatch", "--", relative),
         ("diff", "--cached", "--quiet", "--", relative),
-        ("diff", "--quiet", "--", relative),
-    ):
+    ]
+    if relative not in LEGACY_BYTE_PINS:
+        checks.append(("diff", "--quiet", "--", relative))
+    for arguments in checks:
         completed = subprocess.run(
             ["git", "-C", str(root), *arguments], capture_output=True, text=True
         )
         if completed.returncode:
             raise RuntimeError(f"v11 source is untracked or dirty: {relative}")
+    expected = LEGACY_BYTE_PINS.get(relative)
+    if expected is not None and hashlib.sha256((root / relative).read_bytes()).hexdigest() != expected:
+        raise RuntimeError(f"v11 legacy byte pin differs: {relative}")
 
 
 def build_v11_source_receipt(
