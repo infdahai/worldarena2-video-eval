@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable, Mapping
+from contextlib import nullcontext
 from dataclasses import dataclass, replace
 from typing import Any
 
@@ -102,8 +103,12 @@ def run_wan_backbone_loop(
 
     if t.dim() == 1:
         t = t.expand(t.size(0), seq_len)
-    autocast_device = "cuda" if device.type == "cuda" else "cpu"
-    with torch.amp.autocast(autocast_device, enabled=False):
+    time_context = (
+        torch.amp.autocast("cuda", dtype=torch.float32)
+        if device.type == "cuda"
+        else nullcontext()
+    )
+    with time_context:
         batch = t.size(0)
         flat_t = t.flatten()
         e = backbone.time_embedding(
@@ -112,7 +117,9 @@ def run_wan_backbone_loop(
             .float()
         )
         e0 = backbone.time_projection(e).unflatten(2, (6, backbone.dim))
-        if e.dtype != torch.float32 or e0.dtype != torch.float32:
+        if device.type == "cuda" and (
+            e.dtype != torch.float32 or e0.dtype != torch.float32
+        ):
             raise RuntimeError("Wan time embeddings must remain FP32")
 
     context_lens = None

@@ -178,3 +178,15 @@ def test_action_present_zero_removes_both_controller_streams() -> None:
     for logits in result.eef_logits.values():
         assert torch.count_nonzero(logits[0]).item() == 0
         assert torch.count_nonzero(logits[1]).item() == 0
+
+
+def test_bfloat16_backbone_uses_outer_autocast_for_time_embedding() -> None:
+    backbone = _Backbone().to(torch.bfloat16)
+    inputs = _inputs()
+    x = [item.to(torch.bfloat16) for item in inputs["x"]]
+    context = [item.to(torch.bfloat16) for item in inputs["context"]]
+
+    with torch.autocast("cpu", dtype=torch.bfloat16):
+        output = backbone(x, inputs["t"], context, inputs["seq_len"])
+
+    assert output[0].dtype == torch.float32
