@@ -47,6 +47,7 @@ class _ArmSlotTokenizer(nn.Module):
         self.rotation = self._mlp(4, width)
         self.image_motion = self._mlp(6, width)
         self.gripper = self._mlp(3, width)
+        self.anchor = self._mlp(6, width)
         self.token_type = nn.Parameter(torch.empty(4, width))
         nn.init.normal_(self.token_type, mean=0.0, std=0.02)
 
@@ -76,7 +77,8 @@ class _ArmSlotTokenizer(nn.Module):
             ),
             dim=2,
         )
-        interval_slots = interval_slots + self.token_type[None, None]
+        anchor = self.anchor(arm.anchor)[:, None, None]
+        interval_slots = interval_slots + self.token_type[None, None] + anchor
         interval_slots = interval_slots * arm.arm_present[:, 1:, None, None].to(
             interval_slots.dtype
         )

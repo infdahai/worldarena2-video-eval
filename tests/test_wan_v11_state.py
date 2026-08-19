@@ -81,6 +81,19 @@ def test_left_and_right_tokenizers_share_no_parameters() -> None:
     assert left.isdisjoint(right)
 
 
+def test_initial_anchor_changes_present_slots_without_changing_latent_zero() -> None:
+    condition = _condition()
+    tokenizer = BimanualSlotTokenizer(width=384)
+    first = pack_initial_slots(tokenizer, condition)
+    condition.left.anchor.add_(1.0)
+
+    second = pack_initial_slots(tokenizer, condition)
+
+    assert torch.count_nonzero(second.left[:, 0]).item() == 0
+    assert not torch.equal(first.left[:, 1:], second.left[:, 1:])
+    assert torch.equal(first.right, second.right)
+
+
 @pytest.mark.parametrize(
     ("kind", "changed", "unchanged"),
     (("wrong-left", "left", "right"), ("wrong-right", "right", "left")),
