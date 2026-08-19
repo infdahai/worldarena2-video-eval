@@ -70,6 +70,21 @@
 | v10 | relation action state + blocks 6–17 native Q/K/V/O + staged losses | 453.6M | E2 | phase +1 19/20、-1 20/20 | swap margin 仍负 | 保留 phase/relation 组件 |
 | v11 | 左右永久隔离 persistent closed-loop controller | 40.24M | E2 | EEF loss 0.693→0.070，读写稳定 | 双向 phase 13/20、8/20 | 保留 controller 骨架，不续训当前 ckpt |
 
+### 2.1 架构图索引
+
+| 图 | 覆盖内容 | 适合用来回答 |
+|---|---|---|
+| v1–v11 总演进图 | 所有版本与保留/淘汰状态 | 整体技术路线如何变化 |
+| v1–v3 基础设施图 | raster、pose、causal pack、support、weighted FM | 最稳定的 action-conditioning 地基是什么 |
+| v4 双臂 late-fusion 图 | 独立 arm stream、Pose-FiLM、coordination | 为什么身份隔离成立但 rollout 仍失败 |
+| v5–v6 监督链图 | causal correction、EEF probe、position/velocity | 哪些监督工具可保留、哪些 correction 应淘汰 |
+| v7 系列 SE(3) 图 | gate-only、geometry LoRA、CF ranking | frozen-small-branch 路线为何结束 |
+| v8 native band 图 | 部分解冻原生 Q/K/V/O | action semantics 从哪里真正出现 |
+| v9 phase-lock 图 | 四子 token、strict diagonal mask | 如何避免 shift counterfactual 作弊 |
+| v10 relation/curriculum 图 | relation attention、EEF head、三阶段 loss | timing 能力和未执行阶段如何区分 |
+| v11 persistent controller 图 | per-arm state、visual read/update/write | 可复用的长期双臂闭环骨架是什么 |
+| 三方案选型图 | 稳定基线、semantics、persistent binding | 下一轮应抽取哪套架构 |
+
 ---
 
 ## 3. 架构演进主线
@@ -122,6 +137,73 @@ v11 persistent left/right visual closed-loop controller
 -> phase-locked action relation
 -> persistent closed-loop arm state
 ```
+
+### 3.1 v1–v11 可视化演进图
+
+```mermaid
+flowchart LR
+    V1["v1<br/>8ch Raster<br/>Additive Adapter"] --> V2["v2<br/>真实 Wan<br/>Adapter / LoRA"]
+    V2 --> V3["v3<br/>10ch + Pose + Support<br/>因果与 Lineage"]
+    V3 --> G3["gated-step10<br/>唯一 matched RGB 正信号"]
+    G3 --> V4["v4<br/>双臂独立 Geometry<br/>Late Fusion"]
+    V4 --> V5["v5<br/>Causal Temporal<br/>Correction"]
+    V5 --> V6["v6<br/>Gripper Trajectory<br/>Supervision"]
+    V6 --> V7["v7<br/>Arm-grouped<br/>SE(3) Gate"]
+    V7 --> V71["v7.1<br/>Geometry QKVO LoRA"]
+    V71 --> V71CF["v7.1-CF<br/>显式 Counterfactual"]
+    V71CF --> V8["v8<br/>Native Attention<br/>Partial Unfreeze"]
+    V8 --> V9["v9<br/>Phase-locked<br/>Four Tokens"]
+    V9 --> V10["v10<br/>Action Relation<br/>Curriculum"]
+    V10 --> V11["v11<br/>Persistent Bimanual<br/>Closed Loop"]
+
+    classDef retained fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20,stroke-width:2px;
+    classDef mechanism fill:#fff8e1,stroke:#f9a825,color:#5d4037,stroke-width:1.5px;
+    classDef retired fill:#ffebee,stroke:#c62828,color:#7f0000,stroke-width:1.5px;
+    class V3,G3,V8,V10,V11 retained;
+    class V1,V2,V7,V71 mechanism;
+    class V4,V5,V6,V71CF,V9 retired;
+```
+
+图例：绿色表示存在可复用的实证组件；黄色表示机制或工程成立、但没有形成 RGB 晋级证据；红色表示该 checkpoint/训练 recipe 已被实验淘汰。颜色描述的是“能否复用当前实现或结论”，不是对研究价值的评价。
+
+### 3.2 v1–v3：从动作栅格到可训练基础设施
+
+```mermaid
+flowchart LR
+    J["joint14"] --> FK["Aloha FK"] --> CAM["Camera Projection"]
+
+    subgraph S1["v1 原型"]
+        R8["8ch Raster"] --> C3["对称 Conv3d"] --> Z1["Zero-init Projections<br/>0 / 8 / 16 / 24"]
+    end
+
+    subgraph S2["v2 真实训练"]
+        PA["Raster / Pose A-B"] --> RW["Real Wan2.2"]
+        LORA["Adapter + q/v LoRA"] --> RW
+    end
+
+    subgraph S3["v3 / v3.2 工程化"]
+        R10["10ch Per-arm Raster<br/>81 x 60 x 80"] --> PACK["Explicit Causal Pack<br/>81 -> 21"]
+        P11["Camera Pose 11D"] --> ARM["Left / Right Independent<br/>Projection"]
+        PACK --> SUP["Condition Support<br/>21 x 15 x 20"]
+        PACK --> WFM["Loss Weight<br/>21 x 30 x 40"]
+        ARM --> INJ["Support-gated Injection"]
+        SUP --> INJ
+    end
+
+    CAM --> R8
+    Z1 --> PA
+    RW --> R10
+    INJ --> WAN["Frozen Wan Visual Path"]
+    WFM --> LOSS["Weighted FM"]
+    WAN --> RGB["81-frame RGB Video"]
+
+    classDef keep fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20;
+    classDef old fill:#f5f5f5,stroke:#757575,color:#424242;
+    class R10,PACK,P11,ARM,SUP,WFM,INJ keep;
+    class R8,C3,Z1,PA,LORA old;
+```
+
+v3 不是另起炉灶，而是把 v1/v2 的动作栅格原型升级成具有明确空间、时间、左右臂和训练权重合同的生产路径。
 
 ---
 
@@ -481,6 +563,45 @@ state + routed motion
 
 left/right/coord 各自 zero-init projection，注入 blocks `0/8/16/24`，与 frozen gated parent residual 相加。
 
+```mermaid
+flowchart LR
+    subgraph LEFT["Left Arm Stream"]
+        LS["State Raster<br/>occupancy / EEF / opening"] --> LC2["Conv2d"]
+        LM["Motion Raster<br/>flow x/y"] --> LMC["Conv2d"]
+        LP["11D Pose"] --> LTCN["Causal Conv1d"] --> LFILM["Pose-FiLM"]
+        LMC --> LFILM
+        LC2 --> LF["Left Feature"]
+        LFILM --> LF
+    end
+
+    subgraph RIGHT["Right Arm Stream"]
+        RS["State Raster"] --> RC2["Conv2d"]
+        RM["Motion Raster"] --> RMC["Conv2d"]
+        RP["11D Pose"] --> RTCN["Causal Conv1d"] --> RFILM["Pose-FiLM"]
+        RMC --> RFILM
+        RC2 --> RF["Right Feature"]
+        RFILM --> RF
+    end
+
+    LF --> COORD["Coordination<br/>L / R / L-R / L*R"]
+    RF --> COORD
+    LF --> LPJ["Left Zero-init Projection"]
+    RF --> RPJ["Right Zero-init Projection"]
+    COORD --> CPJ["Coord Zero-init Projection"]
+    PARENT["Frozen v3 Gated Parent"] --> SUM["Residual Sum"]
+    LPJ --> SUM
+    RPJ --> SUM
+    CPJ --> SUM
+    SUM --> WAN4["Frozen Wan Blocks<br/>0 / 8 / 16 / 24"] --> OUT4["RGB Rollout"]
+
+    classDef separate fill:#e3f2fd,stroke:#1565c0,color:#0d47a1;
+    classDef failed fill:#ffebee,stroke:#c62828,color:#7f0000;
+    class LF,RF separate;
+    class COORD,CPJ failed;
+```
+
+结构上 v4 首次实现左右流参数隔离；实验上的问题集中在这些 feature 仍以 additive residual 方式写回 frozen Wan，coordination 分支还会放大双臂耦合。
+
 ### 7.3 训练规模
 
 - 7×4090，GPU0–6；
@@ -612,6 +733,38 @@ router 自己严格 causal，但进入 frozen Wan 后没有降低输出时序混
 - predicted clean latent 上计算 position/velocity；
 - weighted FM + calibrated position/velocity；
 - calibration lambda：position `107.750`，velocity `43.494`。
+
+### 9.2.1 v5–v6：从时序纠偏到直接轨迹监督
+
+```mermaid
+flowchart TB
+    P["Frozen v3 Gated Parent"] --> W["Frozen Wan Temporal Mixing"]
+
+    subgraph V5["v5 Temporal Correction"]
+        A5["Per-arm Flow + Opening Delta"] --> TCN["Independent Causal TCN"]
+        TCN --> ACT["Activity Gate"] --> ADD5["Additive Correction<br/>blocks 8 / 16 / 24"]
+    end
+    ADD5 --> W
+
+    subgraph V6["v6 Direct Trajectory Supervision"]
+        H6["Generated Hidden"] --> PROBE["Frozen Frame-local<br/>EEF Probe"]
+        GT6["Observable Gripper Labels"] --> POS["Position Loss"]
+        GT6 --> VEL["Velocity Loss"]
+        PROBE --> POS
+        PROBE --> VEL
+        POS --> CORR["Per-arm Rank-8<br/>Correction"]
+        VEL --> CORR
+    end
+    CORR --> W
+    W --> Y["Video Hidden / RGB"]
+
+    classDef keep fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20;
+    classDef retired fill:#ffebee,stroke:#c62828,color:#7f0000;
+    class PROBE,GT6 keep;
+    class TCN,ADD5,CORR retired;
+```
+
+v5 证明“纠偏器自身 causal”并不能改变 Wan 内部混合；v6 证明 EEF probe 和标签链可靠，但弱 correction 仍不足以把监督转成正确 rollout。因此后续保留 probe，停止 additive correction。
 
 ### 9.3 运行与结果
 
@@ -752,6 +905,34 @@ step0 按 channel-gate gradient 1:1 标定：
 - `lambda_cf=0.11880849`；
 - `tau=0.1`。
 
+### 12.1.1 v7 系列：同一 SE(3) 分支的三次容量/监督升级
+
+```mermaid
+flowchart LR
+    H["Wan Hidden"] --> QKV["Frozen Raw Wan Q/K/V<br/>RoPE 前分叉"]
+    SE3["Per-arm Anchored SE(3)<br/>Left / Right Presence"] --> GEO["Arm-grouped<br/>Geometry Attention"]
+    QKV --> GEO
+
+    GEO --> V7["v7<br/>仅 9,216 Channel Gates"]
+    GEO --> V71["v7.1<br/>Geometry-only<br/>Q/K/V/O LoRA rank16"]
+    GEO --> V71CF["v7.1-CF<br/>同一 LoRA +<br/>Correct vs Wrong Ranking"]
+
+    V7 --> SUM7["Add to Frozen Native Path"]
+    V71 --> SUM7
+    V71CF --> SUM7
+    SUM7 --> OUT7["Wan Hidden"]
+
+    WRONG["Reverse / Shift / Swap<br/>只扰动 Geometry Branch"] --> V71CF
+    SUPPORT["Robot / Action Support"] --> ENERGY["Unreduced FM Energy"] --> V71CF
+
+    classDef math fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20;
+    classDef fail fill:#ffebee,stroke:#c62828,color:#7f0000;
+    class SE3,GEO math;
+    class V7,V71,V71CF fail;
+```
+
+三版共同证明 SE(3) 数学、head ownership 和可训练容量均不是工程阻塞；失败的是 frozen native path 条件下，FM 或局部 CF energy 没有把几何分支变成可泛化的 action semantics。
+
 ### 12.2 训练与 audit
 
 - 25 steps：reverse 9、shift 8、swap 8；
@@ -803,6 +984,29 @@ frozen-native geometry LoRA
 - native LR `1e-6`，gate LR `5e-5`；
 - 25-step warmup + cosine；
 - `lambda_cf=0.1100865660`。
+
+```mermaid
+flowchart LR
+    TEXT["Text + First Frame"] --> WAN8["Wan2.2 Visual Stream"]
+    RASTER["Frozen v3<br/>Support-gated Raster Parent"] --> WAN8
+    ACTION["Correct / Reverse / Shift / Swap<br/>SE(3) Condition"] --> NATIVE
+
+    subgraph BAND["v8 Direct Action Band"]
+        B8["Block 8"] --> B9["9"] --> B10["10"] --> B11["11"] --> B12["12"] --> B13["13"]
+        NATIVE["Native Self-attn<br/>Q/K/V/O Trainable"] --> B8
+        GATE8["FP32 Channel Gates"] --> B8
+    end
+
+    WAN8 --> B8
+    B13 --> FROZEN8["Remaining Wan Blocks Frozen"] --> H8["Predicted Hidden"]
+    H8 --> FM8["Weighted FM"]
+    H8 --> CF8["Counterfactual Energy"]
+
+    classDef proven fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20;
+    class B8,B9,B10,B11,B12,B13,NATIVE proven;
+```
+
+v8 的关键变化不是再加一个 side branch，而是允许 action objective 直接更新原生 visual self-attention。reverse/swap 的显著分离由这条 native band 产生，gate-zero 对照表明 SE(3) gate 不是主要贡献者。
 
 ### 13.2 运行
 
@@ -872,6 +1076,44 @@ shift negative 只移动 action content，destination slot 不变，不允许通
 - weighted FM + rotating CF；
 - final `lambda_cf=2.4163222`，`tau=0.1`。
 
+```mermaid
+flowchart TB
+    subgraph ACT9["Per Arm / Per Interval Tokenizer"]
+        TR["Translation<br/>dx dy dz + magnitude"]
+        ROT["Rotation<br/>SO(3) log + angle"]
+        IMG["Image Motion<br/>uv start/end + du dv"]
+        GRIP["Gripper<br/>open start/end/delta"]
+    end
+
+    TR --> BANKL["Left 4-token Bank"]
+    ROT --> BANKL
+    IMG --> BANKL
+    GRIP --> BANKL
+    TR --> BANKR["Right 4-token Bank"]
+    ROT --> BANKR
+    IMG --> BANKR
+    GRIP --> BANKR
+
+    DEST["Visual Latent t"] --> MASK["Strict Diagonal Mask<br/>only interval t-1"]
+    MASK --> LH["Left Head Group"]
+    MASK --> RH["Right Head Group"]
+    BANKL --> LH
+    BANKR --> RH
+    LH --> XATTN["Action Cross-attention"]
+    RH --> XATTN
+    XATTN --> Z9["Zero-init O / Gate"] --> ADD9["Add to Native Wan Path"]
+
+    SHIFT["Shift Negative:<br/>move content only;<br/>destination slot fixed"] -.-> BANKL
+    SHIFT -.-> BANKR
+
+    classDef contract fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20;
+    classDef failed fill:#ffebee,stroke:#c62828,color:#7f0000;
+    class MASK,SHIFT contract;
+    class XATTN,Z9 failed;
+```
+
+这张图突出 v9 最重要的 anti-cheating 合同：shift 只替换动作内容，不能携带 source phase ID；但实验表明，严格 wiring 仍不能代替有效的 action objective。
+
 ### 14.3 结果
 
 - smoke 14.89 GiB allocated、15.52 GiB reserved；
@@ -914,6 +1156,35 @@ v10 不再把 action 作为旁路 token attention，而是把完整 action relat
 - left/right hidden EEF heads；
 - trainable params：453,560,260；
 - outside-whitelist gradient 必须为0。
+
+```mermaid
+flowchart LR
+    A10["Per-arm Action Intervals"] --> REL["Relation Action Encoder<br/>motion + temporal relation"]
+    REL --> RQK["Relation Q/K + Gate"]
+
+    H10["Wan Visual Hidden"] --> NATIVE10["Native Self-attention<br/>Blocks 6–17 Q/K/V/O"]
+    RQK --> NATIVE10
+    NATIVE10 --> HOUT10["Action-relational Hidden"]
+    HOUT10 --> EEF_L["Left Hidden EEF Head"]
+    HOUT10 --> EEF_R["Right Hidden EEF Head"]
+
+    subgraph CURR["Curriculum Objective"]
+        SA["Stage A 1–150<br/>FM + CF + head-first EEF"] --> SB["Stage B 151–300<br/>reduced CF + ramp Phase"]
+        SB --> SC["Stage C 301–500<br/>Phase + Position + Velocity"]
+    end
+
+    HOUT10 --> SA
+    EEF_L --> SA
+    EEF_R --> SA
+    CFNEG["Reverse / Swap / Phase +/-1"] --> SA
+
+    classDef proven fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20;
+    classDef pending fill:#f5f5f5,stroke:#757575,color:#424242;
+    class REL,RQK,NATIVE10 proven;
+    class SB,SC pending;
+```
+
+绿色部分表示 v10 实际证明过的结构能力：relation representation 进入原生 attention 后，phase `+1/-1` 分离显著。灰色 Stage B/C 是原计划但未执行，不能视为已有实验结果。
 
 ### 15.3 课程计划
 
@@ -1012,6 +1283,48 @@ action tokenize + anchor
 ```
 
 状态是 forward-local functional state，不保存在模块全局属性中，避免跨 batch 泄漏。
+
+```mermaid
+flowchart TB
+    HL["Wan Hidden at Stage<br/>blocks 6 / 16 / 24"]
+
+    subgraph LEFT11["Persistent Left Controller"]
+        AL["Left Action"] --> TL["Tokenizer + Anchor"] --> SL["Left Persistent Slots"]
+        ML["Left Support Tube"] --> RL["Sparse Visual Read"]
+        HL --> RL
+        RL --> UL["Gated State Update"]
+        SL --> UL
+        UL --> WL["Local Visual Write"]
+    end
+
+    subgraph RIGHT11["Persistent Right Controller"]
+        AR["Right Action"] --> TR11["Tokenizer + Anchor"] --> SR["Right Persistent Slots"]
+        MR["Right Support Tube"] --> RR["Sparse Visual Read"]
+        HL --> RR
+        RR --> UR["Gated State Update"]
+        SR --> UR
+        UR --> WR["Local Visual Write"]
+    end
+
+    WL --> GL["Left Zero-init Scalar Gate"]
+    WR --> GR["Right Zero-init Scalar Gate"]
+    HL --> SUM11["Visual Residual Sum"]
+    GL --> SUM11
+    GR --> SUM11
+    SUM11 --> NEXT11["Next Frozen Wan Stage"]
+
+    UL --> EEF11L["Left EEF Head"]
+    UR --> EEF11R["Right EEF Head"]
+    EEF11L --> EEFLOSS["Observable EEF Loss"]
+    EEF11R --> EEFLOSS
+
+    classDef retained fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20;
+    classDef warning fill:#fff8e1,stroke:#f9a825,color:#5d4037;
+    class TL,SL,RL,UL,WL,TR11,SR,RR,UR,WR,EEF11L,EEF11R retained;
+    class GL,GR warning;
+```
+
+左右状态在整个 forward 内永久隔离，只在对视觉流写回时相加；这使 v11 与 v4 的“先独立编码、再共享 additive coordination”有本质区别。当前 EEF state 学习成立，但 phase objective 不对称，因此现有 checkpoint 不能直接晋级 RGB。
 
 参数：
 
@@ -1238,6 +1551,32 @@ per-arm residual * per-arm support
 ---
 
 ## 20. 可使用的三套架构方案
+
+```mermaid
+flowchart TB
+    BASE["Shared Foundation<br/>v3 10ch Raster + Causal Pack<br/>Per-arm Support + Weighted FM<br/>Zero-leakage Replay / Lineage"]
+
+    BASE --> A["方案 A：稳定基线<br/>v3 Gated Raster"]
+    BASE --> B["方案 B：Action Semantics<br/>v8 Native Band + v10 Relation"]
+    BASE --> C["方案 C：Persistent Binding<br/>v11 Controller + Symmetric Phase"]
+
+    A --> GA["Matched RGB Fast20<br/>直接复现实证收益"]
+    B --> GB["Gate: Reverse / Swap >=14/20<br/>Phase +/-1 >=16/20<br/>FM Regression <=2%"]
+    C --> GC0["先做 Lag -3..+3<br/>No-train Alignment"]
+    GC0 --> GC["Gate: 双向 Phase + EEF<br/>再解码 4–8 RGB"]
+
+    GB --> RGBB["4–8 RGB Sanity"] --> FASTB["Matched Fast20"]
+    GC --> FASTC["Matched Fast20"]
+
+    classDef stable fill:#e8f5e9,stroke:#2e7d32,color:#1b5e20,stroke-width:2px;
+    classDef research fill:#e3f2fd,stroke:#1565c0,color:#0d47a1,stroke-width:1.5px;
+    classDef gate fill:#fff8e1,stroke:#f9a825,color:#5d4037;
+    class BASE,A,GA stable;
+    class B,C research;
+    class GB,GC0,GC,RGBB,FASTB,FASTC gate;
+```
+
+三套方案共享相同的数据、几何和 lineage 地基，但研究变量互斥：方案 B 只验证 native action semantics；方案 C 只验证 persistent state 与双向 phase。不要在第一轮把 B、C 合并，否则无法归因。
 
 ### 20.1 方案 A：最稳、最快——v3 Gated Raster Baseline
 
