@@ -120,7 +120,7 @@ PY
 import json,os,sys
 from pathlib import Path
 target=Path(sys.argv[1])
-payload={"model_name":"FlowWAM-Official-Stage1-Seed4","version":"2026-08-26-resource-constrained-r1","organization":"Huazhi AI","release_year":2026,"source_type":"closed_source","control_type":"hybrid"}
+payload={"model_name":"HZ-World","version":"Stage1-Seed4-v1","organization":"Huazhi AI","release_year":2026,"source_type":"open_source","control_type":"hybrid"}
 tmp=target.with_suffix(".partial"); tmp.write_text(json.dumps(payload,indent=2,sort_keys=True)+"\n"); os.replace(tmp,target)
 PY
 

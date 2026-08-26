@@ -2,8 +2,10 @@
 
 ## Status and boundary
 
-The frozen release is `FlowWAM-P0-PostGen-Selector`, version
-`2026-08-26-p0-r1`. The full release smoke is complete. It covers the immutable
+The public model name is frozen as `HZ-World`. The full P0 release version is
+`P0-DualSeed-Selector-v1`; the resource-constrained single-seed fallback uses
+`Stage1-Seed4-v1`. These versions distinguish materially different inference
+routes under the same public model name. The full release smoke is complete. It covers the immutable
 P0 gates, a deterministic 1,000-episode paired plan, exact selector replay, one
 official-input dual-seed generation, strict packaging, public Hugging Face
 upload, and an anonymous proxy download with an identical archive SHA.
