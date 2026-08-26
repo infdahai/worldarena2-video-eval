@@ -255,3 +255,15 @@ GPU capacity becomes available, remove the sentinel and resume the same script
 to package the validated seed4 fallback. If seed1 capacity becomes available,
 leave the sentinel in place, preserve the seed4 videos, complete seed1 and the
 frozen P0 selector, and publish only the selected 1,000-video package.
+
+The approved two-GPU upgrade keeps seed4 on physical GPU0 and runs the matched
+formal seed1 lineage on physical GPU2:
+
+```bash
+bash scripts/run_track1_formal_seed1_generate.sh 2
+```
+
+This generator has an independent release lock and output root, rejects an
+occupied GPU2, resumes only validated existing videos, and stops after the
+1,000-row seed1 generation receipt. It never stages, packages, or uploads by
+itself; those remain gated on the frozen P0 scorer and selector.
