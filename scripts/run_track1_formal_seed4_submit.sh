@@ -84,6 +84,17 @@ fi
 
 flock -u 8
 
+# The resource-constrained seed4 run is a reusable generation asset, but it is
+# not automatically the highest-scoring submission when seed1 capacity later
+# becomes available.  A release-scoped sentinel provides a fail-closed decision
+# gate between expensive generation and the externally visible HF upload.
+UPLOAD_HOLD="$RELEASE/HOLD_BEFORE_UPLOAD"
+if [[ -e "$UPLOAD_HOLD" ]]; then
+  printf 'generation complete; upload held by %s\n' "$UPLOAD_HOLD" >&2
+  printf 'remove the sentinel only after choosing seed4 fallback or frozen P0\n' >&2
+  exit 76
+fi
+
 "$ROOT/venv_reuse/bin/python" -B - "$RUN/stage1-only.receipt.json" "$VIDEO_DIR" "$RELEASE/seed4-predictions.jsonl" "$RELEASE/seed4-selection.complete.json" <<'PY'
 import hashlib,json,os,sys
 from pathlib import Path

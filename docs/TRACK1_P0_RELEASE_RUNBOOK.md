@@ -239,3 +239,17 @@ valid existing rows, stages exactly 1,000 videos, creates a deterministic
 archive, uploads only the complete archive with the project-isolated HF token,
 and anonymously downloads it again. Completion requires
 `final-submission.complete.json`; PID presence is not completion.
+
+Create this release-scoped sentinel when seed4 should finish generating but
+must not upload before the final seed4-versus-P0 decision:
+
+```bash
+touch /data/di/worldarena2_track1_20260815/submission/releases/seed4-resource-constrained-r1/HOLD_BEFORE_UPLOAD
+```
+
+With the sentinel present, the supervisor releases GPU0 after generation and
+exits before staging, packaging, repository creation, or upload. If no further
+GPU capacity becomes available, remove the sentinel and resume the same script
+to package the validated seed4 fallback. If seed1 capacity becomes available,
+leave the sentinel in place, preserve the seed4 videos, complete seed1 and the
+frozen P0 selector, and publish only the selected 1,000-video package.
