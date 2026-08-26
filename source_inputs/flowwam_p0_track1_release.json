@@ -1,0 +1,22 @@
+{
+  "contract": "worldarena-track1-p0-release-config/1",
+  "expected_count": 1000,
+  "p0": {
+    "final_decision": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/final-decision.complete.json",
+    "final_decision_sha256": "5eb9e43450bef05e24e8f8f600b5668f66971370b9c31e85422f63e272fad9cf",
+    "model": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/postgen/postgen-selector.model.json",
+    "model_sha256": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+    "policy": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/policy-selection.complete.json",
+    "policy_sha256": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7"
+  },
+  "dataset_receipt": "/data/di/worldarena2_track1_20260815/datasets/WorldArena2.0-official-track1/official-track1-dataset.complete.json",
+  "dataset_receipt_sha256": "d6f66953860abca36b2b495ac96879924fa965f08761f38521386bc817b73eb1",
+  "metadata": {
+    "model_name": "FlowWAM-P0-PostGen-Selector",
+    "version": "2026-08-26-p0-r1",
+    "organization": "Huazhi AI",
+    "release_year": 2026,
+    "source_type": "closed_source",
+    "control_type": "hybrid"
+  }
+}
