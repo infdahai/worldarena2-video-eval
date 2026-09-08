@@ -1,0 +1,30 @@
+{
+  "aggregate_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/scoring/selected-full15/package/receipts/aggregate.complete.json",
+  "aggregate_receipt_sha256": "e83213ff3eae0a5b97674143cb52ae9f01adf30e86cb69ba430ae92ab263c14c",
+  "candidate": "b2829-lr1e7-b1-train8-r2",
+  "capped_episode_counts": {
+    "Dynamic Degree": 1,
+    "Flow Score": 0,
+    "Motion Smoothness": 4
+  },
+  "completed": true,
+  "contract": "worldarena2-round3-gt-reference-motion-correction/1",
+  "corrected_15_metric_mean": 0.6716396565594548,
+  "corrected_columns": [
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ],
+  "corrected_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/scoring/selected-full15/package/csv_results/corrected15.csv",
+  "corrected_csv_sha256": "7c247a8153b3a4bdeac3714559f5de5539f4d6e8e5eecc87d4feadbdca1651b3",
+  "formula": "adjusted_score=min(original_score,matched_gt_reference_score)",
+  "gt_results_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/fresh40/latest-scorer/gt-motion-output/gt_reference_results.json",
+  "gt_results_json_sha256": "79c73e40198125f52d4c010a524892f8483459cde027c50d55fe0da411320548",
+  "nonmotion12_mean": 0.7466134199451933,
+  "raw_15_metric_mean": 0.675145996370689,
+  "raw_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/scoring/selected-full15/package/csv_results/aggregated_results.csv",
+  "raw_csv_sha256": "f40a6162477e66a3b0ee7c600d65907b2ffb7369ee02f118cd5437fbc66d3106",
+  "row_count": 4,
+  "selection_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/scoring/selection/selection.complete.json",
+  "selection_receipt_sha256": "9f667a6cb18cd2c4b80aeec38cb8b83d74ac16be8af737536d52fa21d6c1823c"
+}

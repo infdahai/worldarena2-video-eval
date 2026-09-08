@@ -1,0 +1,105 @@
+{
+  "checkpoint_lineage": null,
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "generated_this_run_count": 4,
+  "inference_sweep": {
+    "is_official_default": true,
+    "overrides": {
+      "flow_max_magnitude": 20.0,
+      "seed": 1
+    }
+  },
+  "instruction_variant": 0,
+  "lora_adapter": {
+    "alpha": 8.0,
+    "attention_scope": "all",
+    "checkpoint": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/inference/step-5.aslr3e7-self-plus-cross.safetensors",
+    "checkpoint_sha256": "5ce5cb58e851f93951adebd35a1ab90bc777281968195d7d6d56a58819aecb17",
+    "filtered_cross_attention_pairs": 0,
+    "hotload": true,
+    "loaded_pairs": 120,
+    "rank": 8,
+    "scale": 1.0,
+    "source_pairs": 120,
+    "target_modules": [
+      "q",
+      "v"
+    ]
+  },
+  "max_episodes": 4,
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "physical_gpu": 0,
+  "remap_contract": "native640-dev4-generated9-name-remap/1",
+  "requested_episode_names": [
+    "episode000000",
+    "episode000001",
+    "episode000002",
+    "episode000003"
+  ],
+  "resumed_valid_count": 0,
+  "robot_conditioning": {
+    "mode": "pre-generated",
+    "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/robot_only"
+  },
+  "sample_manifest": null,
+  "sample_manifest_sha256": null,
+  "source_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/eval-merged-selfcross-seed1/stage1-only.receipt.json",
+  "source_receipt_sha256": "f10b299d1e8cedb8c95861cb410653a1bbd93ef07b9ad2b684f8be9dcc24a53b",
+  "source_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/eval-merged-selfcross-seed1",
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 1,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode0.mp4",
+      "sha256": "fe7d996a05247946ec6a57de6c75249f5256aaa34a47b57b482fa21e41f30add",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode1.mp4",
+      "sha256": "b8c372c2e149988712c9472155c614e9703f72b1e7ba1722c157e7f7e3f0422d",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode2.mp4",
+      "sha256": "452efcee8214db50695f80716346a5420b7489cd4626da3a9395bd8e932359e2",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode3.mp4",
+      "sha256": "3c5290f5753d2aef49640f3a5c16a5f819590e4304244d7ed0dce09df9510c92",
+      "width": 640
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "algorithm": {
+    "metrics": [
+      "Instruction_Following",
+      "Interaction_Quality",
+      "Perspectivity"
+    ],
+    "rule": "select seed1 only when its equal-weight mean is strictly greater",
+    "source": "formal score_normalized values",
+    "tie_fallback": "seed4",
+    "video_source": "original generated FlowWAMOfficialStage1_test videos",
+    "weights": {
+      "Instruction_Following": 0.3333333333333333,
+      "Interaction_Quality": 0.3333333333333333,
+      "Perspectivity": 0.3333333333333333
+    }
+  },
+  "complete_p0_claimed": false,
+  "completed": true,
+  "contract": "worldarena-track1-vlm-only-selection/1",
+  "hidden_ground_truth_used": false,
+  "inputs": {
+    "seed1": [
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-920-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "e58a94ed42fc673b0d3915210d091abde5a9be2b7a77ef405c2963883fe0f2aa",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0920/dev-clean-50/output_VLM/HZ_World_seed1_shard0/HZ_World_seed1_shard0_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "ceb714e25567caef44a2a448bab1ba381ee6d5af3514c1f8739a324f073d3002",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0920/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "e645ed293f1bb9ac031aa571a83187c6b5b76b6ced52be0db76869d56ac5d607",
+        "step": "920"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-921-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "c51e3b0c1005b77dfd7cc48025e8aa79ba1ff91fa00b51d8d1df30e460412756",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0921/dev-clean-50/output_VLM/HZ_World_seed1_shard1/HZ_World_seed1_shard1_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "6ac46c9fdf3ac0694430907031b239810754b18f4c412d86d24351e83b8a2f86",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0921/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "2bf7f924d36ac88ef5aba2078489e83941ca8356c5dc3d429d085d7ed9545260",
+        "step": "921"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-922-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "cfca12ed730090f714f239492892828f9521cbc886f141910704f749eef74940",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0922/dev-clean-50/output_VLM/HZ_World_seed1_shard2/HZ_World_seed1_shard2_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "40d37a37e620d635798792a493bbfef9f99f64eec0e6424cbcba1f5f82af834a",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0922/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "66a101c6a062986e559c1ec404f6a2e6713a8ae6ed42652652fb654387694095",
+        "step": "922"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-923-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "3a84ad8fc63c11d80842d5ebba62b4782c83786ec17f4d6786f2185f85044621",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0923/dev-clean-50/output_VLM/HZ_World_seed1_shard3/HZ_World_seed1_shard3_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "2ddf4f9d14f444769c05a0f4b36ea86fbe29b01b3559b9f8c6688377316a2e1e",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0923/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "c9eb001aedd97f5b796f6a918e41045cb4afa6b2385cca48ddf3c6a3a2aca549",
+        "step": "923"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-924-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "126abfcc1880c36511466ec7d0a82516d912237392c6d7bffbeae971a13acd5d",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0924/dev-clean-50/output_VLM/HZ_World_seed1_shard4/HZ_World_seed1_shard4_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "3becc001e192ff3de9bd2dc68c15710709b264217ccc83b25237fc7c39e4a8c8",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0924/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "eac9b85a95a7454bc3d0d2321987594fa53bbe1f7d98c640d05fd07d0ad32fdd",
+        "step": "924"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-925-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "d0131dfb693eac29a8c26f533f8845813c2323765a9a3614c804ba462824f604",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0925/dev-clean-50/output_VLM/HZ_World_seed1_shard5/HZ_World_seed1_shard5_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "a42e748f06e7260af0291bdcf360e77014b5598d3cd5a4a8b911f20737328dc6",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0925/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "a2a4e3d6557ca179be167b5da8fcbfcb4878bdb8f1bb555d9c2b46cfb54b556e",
+        "step": "925"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-926-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "87d195fde84b5a0b7c3289dbb38765d6c48be5079d6224a22663af1ecaaaf1bf",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0926/dev-clean-50/output_VLM/HZ_World_seed1_shard6/HZ_World_seed1_shard6_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "6cdbffca728f426bf5215d8b711b713cad821c1211478cff35b79683b586427e",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0926/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "bf2a54611f90d76bfaca881b0640243cac0c0cfe76ec28e29de487417bbe41c8",
+        "step": "926"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-927-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "c12c742d20fe7714c28cfd750a52b3167f1b97abb4b718a1319ed8349f5a56a2",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0927/dev-clean-50/output_VLM/HZ_World_seed1_shard7/HZ_World_seed1_shard7_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "e116354a12d1e5dfbc119ccc410d4bad45f1985ca6e97579c2b40c3a72a748e8",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0927/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "cd2467527f4c52ae5f6c1bc3c63a2b582cce5aee0261098dfb06e3ba375e0ab5",
+        "step": "927"
+      }
+    ],
+    "seed4": [
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-928-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "9194fe51da937284a674919f5aa518043fe579eb40d8dcea9384e8611dfc24ca",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/output_VLM/HZ_World_seed4_shard0/HZ_World_seed4_shard0_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "f5e40a9dc8ca1ef3f4a8a8d0f29d01f8895a2832df044bec18ff6d546ec6eec1",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "87a32b037e4a62a7b0a0693d04ed6a9977ccbee78fd244a901fae778c86ae5fc",
+        "step": "928"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-929-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "e444496070d01989ea4d88063f8aa45dd93b5956cde16ab06515cf069b04b6d0",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0929/dev-clean-50/output_VLM/HZ_World_seed4_shard1/HZ_World_seed4_shard1_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "bd7b7da072655985e4c94cec4ceff97c58bfbbd596d28180cab4ca1d7d5d6d19",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0929/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "45d5dadb9d3dc65e88eac240b6592fbd0d201409d300944cad697944ec3c6508",
+        "step": "929"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-930-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "092848dff820d74f0993d6283c6a530ef568c1c7bb7c3b6b23b76b0d608c5af9",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0930/dev-clean-50/output_VLM/HZ_World_seed4_shard2/HZ_World_seed4_shard2_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "ee4e88bf5d438189a2693bcd893b1813ce2c65c4ae2b2ce23b2c8a7d376fbe82",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0930/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "b28cbf37f8ea3a0fb41049b6798643b201f30a3b6410482e042a5430195c5ee4",
+        "step": "930"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-931-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "9c70018414962e8b4f932c6920ec98b7035a10a82a020cb29eaabaa945a17caf",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0931/dev-clean-50/output_VLM/HZ_World_seed4_shard3/HZ_World_seed4_shard3_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "f5415353aa722442b0d9a2908ac38835ec3334192079151f42ba2b42c2e97e86",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0931/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "8818afa52d071477331aaafdc9c6ceb4c262766caf1a48a76ca5acab6de9b5a0",
+        "step": "931"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-932-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "7c19b8921bf81714c8021d593f5f0373b2ba7882193180ea457751a4e25cd09c",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0932/dev-clean-50/output_VLM/HZ_World_seed4_shard4/HZ_World_seed4_shard4_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "603e91f2bfed74e0e111e8d805e0ace97c64b3a02fd893c7726195f246268a02",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0932/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "529cfa0e3bd9d1f25059ecd430075646295e9c807ad7b74881698b2f1537c156",
+        "step": "932"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-933-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "93f9d5dbba23f32d303b587c80d8bce9ce9fbb144e6d292479e403d6a2681c12",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0933/dev-clean-50/output_VLM/HZ_World_seed4_shard5/HZ_World_seed4_shard5_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "d67ccf047287006d299e991d61eb71e6c42d4f6ad6d5746c4b508dabfda815a6",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0933/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "d098bcb86a815ff59a1c51f753f10547a6f4404d98b78d76bd47e4bee5beb532",
+        "step": "933"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-934-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "8ecba803ba589829efc2f2f9401e0354a956fc4975aef8138b870d22a0478dbb",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0934/dev-clean-50/output_VLM/HZ_World_seed4_shard6/HZ_World_seed4_shard6_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "02df8d4b25936cd0676c37ab5a90a018569b99967fbf6f41df8a88c732b3f273",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0934/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "b44ace203f0e7742d2fc6035c6b14c6b052827c17277041ab9c235066a578fb7",
+        "step": "934"
+      },
+      {
+        "durable_checkpoint_receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-935-vlm.checkpoint.receipt.json",
+        "durable_checkpoint_receipt_sha256": "68108a84b66f8abfa36b1755b5675653a25fef29f6cb53aafa1fee031dd7eb9e",
+        "formal_aggregate": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0935/dev-clean-50/output_VLM/HZ_World_seed4_shard7/HZ_World_seed4_shard7_summary_val_all_intern.json",
+        "formal_aggregate_sha256": "8e82c38d8ba6101344de793090e2f302280338551e048a90f5904730d6b0b523",
+        "formal_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0935/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "formal_receipt_sha256": "73f43a7b3881734e84e7a366c08e7bd17b8f51e2b9f44363846da3b49a5fbea5",
+        "step": "935"
+      }
+    ]
+  },
+  "predictions": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/vlm-only-r2/selection/vlm-only.predictions.jsonl",
+  "predictions_sha256": "b5f01e6e525c171be2c6825045647d00be26ce87120f6a0c368164a9254ee307",
+  "row_count": 1000,
+  "selection_counts": {
+    "seed1": 150,
+    "seed4": 850,
+    "ties_to_seed4": 701
+  },
+  "staged_release_only": true,
+  "terminal_state": "vlm_only_candidates_selected",
+  "training_or_test_tuning_used": false,
+  "version": "VLM-Only-Selector-v1"
+}

@@ -1,0 +1,46 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-sharded-seed-fallback-selection/1",
+  "deployment_sha_gate": true,
+  "generation_receipt_count": 8,
+  "generation_receipts": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/gpu0/seed4/stage1-only.receipt.json",
+      "sha256": "3594fc8c1cfc7e5a4bc437328beace68fae668b35b41e3227da6edc84debc11a"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/gpu1/seed4/stage1-only.receipt.json",
+      "sha256": "1643077396801e2fa79cd66dfde0c1737ec84adf8d3749412c15cd048d48ab06"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/gpu2/seed4/stage1-only.receipt.json",
+      "sha256": "26f4afed3a7d1ccd6c9ffff60e68058b39977de818c6e2a4ec6bf1bf70e56826"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/gpu3/seed4/stage1-only.receipt.json",
+      "sha256": "551b559ddf0a5af3d54a7a482b3e5ea8b5f8a95e0b568b045dc311b67d0a94c5"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/gpu4/seed4/stage1-only.receipt.json",
+      "sha256": "59e77695db5161deb7119d2fffca7bcc9515b7143c93b59028b567ac484f9967"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/gpu5/seed4/stage1-only.receipt.json",
+      "sha256": "ae68ea359761ebb672abc29a8905821d68a164afd6691345831e707179d9895f"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/gpu6/seed4/stage1-only.receipt.json",
+      "sha256": "370247d3a35b5368c9c41a6aef8ad19b21d6f3840c0d0619e2af029038d59efe"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/gpu7/seed4/stage1-only.receipt.json",
+      "sha256": "2e7773b070f10dda35dea4bfa24016146df6f127fd0de3886cf24f01cbf4f91d"
+    }
+  ],
+  "predictions": "/data/di/worldarena2_track1_20260815/submission/releases/hz-world-seed4-fallback-v1/seed4-predictions.jsonl",
+  "predictions_sha256": "fb782a779ca258aabcbecced2d42a8073d3f83f816652c697b1256d1991d8474",
+  "row_count": 1000,
+  "selected_seed": 4,
+  "selection_mode": "seed4_fallback",
+  "terminal_state": "seed4_fallback_selected"
+}

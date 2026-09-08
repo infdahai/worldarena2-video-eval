@@ -1,0 +1,67 @@
+{
+  "baseline": "p0_postgen_selector_breadth20",
+  "baseline_receipt_sha256": "5ca235eaab7cbd9d8f51a18799e55b26df3bea082e81ef69eb96ed9e1ba7f107",
+  "candidate": "winner_sft_step25_seed4_scale05",
+  "candidate_corrected_sha256": "0169db4321f352abc5a7087b1ae834a9bffa546e2debb350eddfc01cf72deff0",
+  "candidate_raw_sha256": "3a0a8a5b8931a352afc9221be3e39ee6e9d8cbb12f548163f35622631318503c",
+  "completed": true,
+  "contract": "flowwam-p2-vs-p0-breadth20-terminal/1",
+  "decision": {
+    "black_count": 0,
+    "candidate": {
+      "corrected_mean": 0.6793511866463067,
+      "image_mean": 0.5186851521774576,
+      "instruction_mean": 0.72,
+      "interaction_mean": 0.74,
+      "jepa_mean": 0.944902777671814,
+      "non_motion_mean": 0.7405986344204193,
+      "raw_mean": 0.6819049381656535,
+      "trajectory_mean": 0.6898076075782053
+    },
+    "checks": {
+      "all_rows_finite": true,
+      "black_zero": true,
+      "corrected_ge_p0_plus_0_003": true,
+      "jepa_ge_p0_minus_0_005": true,
+      "non_motion_ge_p0_plus_0_002": true,
+      "paired_wins_ge_12_of_20": true,
+      "raw_ge_p0": true,
+      "trajectory_ge_p0_minus_0_005": true
+    },
+    "contract": "flowwam-p2-vs-p0-breadth20-gate/1",
+    "deltas": {
+      "corrected_mean": 0.006361212948225892,
+      "image_mean": 0.0018348947277777583,
+      "instruction_mean": -0.020000000000000018,
+      "interaction_mean": -1.1102230246251565e-16,
+      "jepa_mean": -0.00032021403312687546,
+      "non_motion_mean": 0.007994697112742255,
+      "raw_mean": 0.006486952832657766,
+      "trajectory_mean": 0.08245092279825705
+    },
+    "p0": {
+      "corrected_mean": 0.6729899736980808,
+      "image_mean": 0.5168502574496798,
+      "instruction_mean": 0.74,
+      "interaction_mean": 0.7400000000000001,
+      "jepa_mean": 0.9452229917049408,
+      "non_motion_mean": 0.732603937307677,
+      "raw_mean": 0.6754179853329957,
+      "trajectory_mean": 0.6073566847799482
+    },
+    "paired_losses_or_ties": 7,
+    "paired_wins": 13,
+    "passed": true,
+    "row_count": 20,
+    "step50_checks": {
+      "corrected_ge_p0_plus_0_006": true,
+      "image_ge_p0": true,
+      "instruction_ge_p0": false,
+      "interaction_ge_p0": false
+    },
+    "step50_eligible": false
+  },
+  "eligible_for_unique_clean50": true,
+  "terminal_state": "pass",
+  "video_validation_sha256": "a649c05d30a090c0f0304abd0af5a96a529d8d55f5e8ffe0fdf1252e820f99f3"
+}

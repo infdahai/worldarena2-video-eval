@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.030940755208333334,
+    "mean_area_fraction": 0.019054221322016462,
+    "valid_frames": 80
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.153544921875,
+    "mean_area_fraction": 0.08496985918209878,
+    "valid_frames": 69
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.13958984375,
+    "mean_area_fraction": 0.07298261477623458,
+    "valid_frames": 62
+  },
+  "source_video_sha256": "9305db8e47d532dc0de1dcbb221f47eb9a6af862b43030c5e2ebc9be1c69530a",
+  "support_fraction": 0.6927671280221194,
+  "support_sha256": "1bb0c2967ca22a2ebf24566ee5d8698fe9a839702380e6fb2835a32de970b7c0",
+  "video_id": "move_stapler_pad_episode000027"
+}

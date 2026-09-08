@@ -1,0 +1,28 @@
+{
+  "archive_validation": {
+    "archive": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/final-p0-r3/anonymous-submission.tar.gz",
+    "archive_sha256": "b3a4a35ca1e4bffabc96f0f0a5b62437ec3936b67dabcb1c587e43704b89a677",
+    "completed": true,
+    "contract": "worldarena-track1-submission-validation/1",
+    "metadata": {
+      "control_type": "hybrid",
+      "model_name": "HZ-World",
+      "organization": "Huazhi AI",
+      "release_year": 2026,
+      "source_type": "closed_source",
+      "version": "P0-DualSeed-Selector-v1"
+    },
+    "video_count": 1000
+  },
+  "authorization_header_used": false,
+  "completed": true,
+  "contract": "worldarena-track1-hf-formal-anonymous/1",
+  "download": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/final-p0-r3/anonymous-submission.tar.gz",
+  "download_sha256": "b3a4a35ca1e4bffabc96f0f0a5b62437ec3936b67dabcb1c587e43704b89a677",
+  "filename": "submission.tar.gz",
+  "official_submission_not_triggered": false,
+  "repo_id": "clusternlh/worldarena-track1-hz-wam",
+  "revision": "f818e47e394967df050ee28ff090c5476d0b1600",
+  "terminal_state": "formal_hf_submission_anonymously_verified",
+  "url": "https://huggingface.co/datasets/clusternlh/worldarena-track1-hz-wam/resolve/f818e47e394967df050ee28ff090c5476d0b1600/submission.tar.gz?download=true"
+}

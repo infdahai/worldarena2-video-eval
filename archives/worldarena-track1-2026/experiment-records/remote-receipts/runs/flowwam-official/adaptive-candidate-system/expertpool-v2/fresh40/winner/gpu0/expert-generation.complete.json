@@ -1,0 +1,74 @@
+{
+  "black_count": 0,
+  "completed": true,
+  "contract": "flowwam-expertpool-v2-winner-scale05-generation/1",
+  "count": 7,
+  "expert": "winner_sft_step25_scale05",
+  "gpu_uuid": "GPU-66b5e202-9179-0f61-c0dd-34d5599ffde2",
+  "lora_scale": 0.5,
+  "lora_sha256": "fe9ed6fc61a0da9e85dbc661d07024e8ab7e3f743abb9003c0e35058a1bfbd34",
+  "physical_gpu": 0,
+  "seed": 4,
+  "source_shard_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/shard-input.complete.json",
+  "source_shard_receipt_sha256": "99a0ab4194687441b82f1a78f772cd609cf79d66162e896c19bba43a6477399b",
+  "stage_receipt_sha256": "5783cb128f2f4e09caf0d04582ae4be3cb30073ea8950aa28b8375369b897582",
+  "train_receipt_sha256": "0586df9004f4bc977fbeb568847ddb4bd309d7c7c242f23d22ea7762f8fda999",
+  "videos": [
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode000000.mp4",
+      "sha256": "b0430b0a4e2f8925d27c80cb9c7e2b02dd125565fb236282bf8e727a75e5a009",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode000001.mp4",
+      "sha256": "f3a668c09dd598aedc73365f72671fb2ca8e92cf7c26534f5322ffcd363779d1",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode000002.mp4",
+      "sha256": "f80220708c069443e58496ea327efd3277b9cb6c6dbfc920483ce3e45e743283",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode000003.mp4",
+      "sha256": "0532198b3534003f96131acd06ac433a4753ee07a4f38e1c527ffed1f616a1fc",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode000004.mp4",
+      "sha256": "c35b420256bb2413458a47e2f026de446cb28bc38d76e8a4af12efe92a9add88",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode000005.mp4",
+      "sha256": "0f33a8e6fa7199cb9211f9594e998aa659ec6d3ae0cc396c7486a1342f428252",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode000006.mp4",
+      "sha256": "62179f412db5a2f690cb6b0beb80237a1a15420dcee7e803f7fdb9851417c0b9",
+      "width": 640
+    }
+  ]
+}

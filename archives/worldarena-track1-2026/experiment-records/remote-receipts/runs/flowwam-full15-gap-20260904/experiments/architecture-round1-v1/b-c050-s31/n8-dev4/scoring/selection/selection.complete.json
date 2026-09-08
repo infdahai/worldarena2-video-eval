@@ -1,0 +1,84 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-b-c050-n8-generated9-selection/1",
+  "corrected15_used_for_selection": false,
+  "feature_policy": "generated_only_no_hidden_gt",
+  "generated9_csvs": {
+    "seed1": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/generated9/seed1/package/csv_results/generated-only.csv",
+      "sha256": "eee7ff1a0130212bc7f0235ad31c438c996679579d2686fae44ded38e13594dc"
+    },
+    "seed4": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/generated9/seed4/package/csv_results/generated-only.csv",
+      "sha256": "dae11988d341cc8e90f47d2c2214ce636230f1565b5b89a0a33f118e85f26490"
+    }
+  },
+  "generated9_package_receipts": {
+    "seed1": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/generated9/seed1/package/receipts/package.complete.json",
+      "sha256": "b55f04e663798ba76e8e4e024a4b6c2a7b43db37514ea022f86a39b7a75a78b3"
+    },
+    "seed4": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/generated9/seed4/package/receipts/package.complete.json",
+      "sha256": "fb0637990d5985aaa5c18bf56e4fb30085e312dab0f01b70349cad1149626cbb"
+    }
+  },
+  "hidden_gt_used": false,
+  "model": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/postgen/postgen-selector.model.json",
+  "model_sha256": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+  "policy": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/policy-selection.complete.json",
+  "policy_sha256": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7",
+  "row_count": 4,
+  "rows": [
+    {
+      "logical_episode_id": 0,
+      "score_video_id": "fixed_scene_task_episode_000000",
+      "seed1_probability": 0.5018947702985717,
+      "selected_seed": 1,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/seed1/FlowWAMOfficialStage1_test/episode000000.mp4",
+      "selected_video_sha256": "bc77adaea5ad1499d1eb040a3f040b2e95e56a867f30dcd4d7281fb6ce5637a0"
+    },
+    {
+      "logical_episode_id": 1,
+      "score_video_id": "fixed_scene_task_episode_000001",
+      "seed1_probability": 0.4883771342924899,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000001.mp4",
+      "selected_video_sha256": "ab4eb31faedcdc89a02fd7c835216a5a671f8d712d068370ae26734dc256e490"
+    },
+    {
+      "logical_episode_id": 2,
+      "score_video_id": "fixed_scene_task_episode_000002",
+      "seed1_probability": 0.43742971447378626,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000002.mp4",
+      "selected_video_sha256": "6fdad16fe421b446acc70b178dcf433586d23e979489904d3405aad259347c6d"
+    },
+    {
+      "logical_episode_id": 3,
+      "score_video_id": "fixed_scene_task_episode_000003",
+      "seed1_probability": 0.691834034092623,
+      "selected_seed": 1,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/seed1/FlowWAMOfficialStage1_test/episode000003.mp4",
+      "selected_video_sha256": "b4fda82e8ffa675ab6c673017251796f2738370d22f73bb74d2ecc995877e355"
+    }
+  ],
+  "selected_seed_counts": {
+    "seed1": 2,
+    "seed4": 2
+  },
+  "selection_jsonl": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/selection/selection.jsonl",
+  "selection_jsonl_sha256": "66eba94bde614e4d608702fc65fd058b4689fe169fb07e782a38d2a7ffbae7d1",
+  "source_metric_columns": [
+    "Instruction Following",
+    "Interaction Quality",
+    "Perspectivity",
+    "Image Quality",
+    "Aesthetic Quality",
+    "Photometric Consistency",
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ],
+  "terminal_state": "b-c050-generated9-selection-frozen"
+}

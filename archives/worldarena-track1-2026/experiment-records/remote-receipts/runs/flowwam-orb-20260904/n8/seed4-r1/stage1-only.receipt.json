@@ -1,0 +1,84 @@
+{
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "generated_this_run_count": 4,
+  "inference_sweep": {
+    "is_official_default": false,
+    "overrides": {
+      "flow_max_magnitude": 20.0,
+      "seed": 4
+    }
+  },
+  "instruction_variant": 0,
+  "max_episodes": null,
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "physical_gpu": 3,
+  "requested_episode_names": [
+    "episode1",
+    "episode10",
+    "episode100",
+    "episode1000"
+  ],
+  "resumed_valid_count": 0,
+  "robot_conditioning": {
+    "embodiment_dir": "/data/di/worldarena2_track1_20260815/sources/RoboTwin/assets",
+    "mode": "sapien"
+  },
+  "sample_manifest": null,
+  "sample_manifest_sha256": null,
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 4,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode1.mp4",
+      "sha256": "d1122f6d2773541c03aae11b0fe454b6ad40aaeeae6b8d3988b7543b624851ec",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode10.mp4",
+      "sha256": "261dcb1d8ff9da99a71d0add79b6e86c44e624b2338f7cea8f90f7f7f4c5e47d",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode100.mp4",
+      "sha256": "ca171f3a2a15218329bf789dfb0a86561e7ef2a9933f909ccdfd0f467f242f1a",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode1000.mp4",
+      "sha256": "0895a411230135787a328e973ecd18355d381900afc6fc2381933e7c060be03d",
+      "width": 640
+    }
+  ]
+}

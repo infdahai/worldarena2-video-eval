@@ -1,0 +1,34 @@
+{
+  "contract": "flowwam-orc-step25/1",
+  "completed_at": "2026-08-31T09:38:17+08:00",
+  "parent_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "implementation": {
+    "trainer_sha256": "d0fe923aa1dbd6f914c488f2623c3528492a2aaa9853552295e818543405b7f0",
+    "orc_module_sha256": "6566f85a3b1b5a8fbb87489b1f6d33e6969a34cb971449c42096e5a1c45401af",
+    "official_hook_sha256": "bddf7c55fd4536b205af5f8dc219080c32f225205b46f30545919049b95231cc"
+  },
+  "arms": {
+    "C1": {
+      "coefficient": 0.05,
+      "rows": 25,
+      "checkpoint": "c1-s31/bridge-step-000025.pt",
+      "checkpoint_sha256": "994b707c3dfd4915dec453c1ba1eb99e5498fcd38fe876d07cf3110c682555bb",
+      "peak_memory_bytes": 11751025664,
+      "final_fm": 0.2422492355108261,
+      "final_info_nce": 0.16750416159629822,
+      "last5_info_nce_mean": 1.2876854613423347
+    },
+    "C2": {
+      "coefficient": 0.1,
+      "rows": 25,
+      "checkpoint": "c2-s31/bridge-step-000025.pt",
+      "checkpoint_sha256": "7957f27c8bb6777a48ddfbbfb3b9163c86698387cfe6645fe40de866f3dd3c3d",
+      "peak_memory_bytes": 11751025664,
+      "final_fm": 0.24224962294101715,
+      "final_info_nce": 1.0819908380508423,
+      "last5_info_nce_mean": 0.6880440071225167
+    }
+  },
+  "checkpoint_metadata_verified": true,
+  "next_gate": "paired-n8-generated9-first"
+}

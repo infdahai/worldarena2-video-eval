@@ -1,0 +1,41 @@
+{
+  "allowed_usage": "mechanism-smoke-only",
+  "canonical_manifest_sha256": "610f3187a759a78d53e54f277b7bec1bece20f2ad71590418976f5f14fba2628",
+  "completed": true,
+  "contract": "flowwam-targeted15-smoke-task-bootstrap/1",
+  "episodes": [
+    {
+      "action_sha256": "a07a57266e38016a53b8500008686bc28ec23e398670f937c6d67da8dbd57a28",
+      "episode_index": 0,
+      "episode_name": "episode000000",
+      "first_frame_sha256": "a8ee21d0c8bcbca08a0ef8bec90c94f0b88fb26332d3935c2cad6980cf1ef911",
+      "instruction_file_sha256": "fbf78875115a90237c30047250b3fd645dbdcbb95af8a2f58e8a8a7a89df677a",
+      "robot_only_sha256": "cf9e27c7a36eb2286142998310eb001544a2c0571366770048deda5a2cd99e71",
+      "sample": "put_object_cabinet__aloha-agilex_clean_50__episode_000000"
+    },
+    {
+      "action_sha256": "1e66392427c503278e3858932e187ea6de8f4b99c9e6706756dbbd7655b4f05e",
+      "episode_index": 1,
+      "episode_name": "episode000001",
+      "first_frame_sha256": "d7ecd1866ab0ee1f92d1b1eed16458101f6845a8ac152b77829c62ca117a1b31",
+      "instruction_file_sha256": "21075e397d4fca9f36a2d00e0bf70adb0947cc8ce5728d999a2383c3b07c9b00",
+      "robot_only_sha256": "a2f0874069d4992cf6299bd07bda389fbecde4224c24cd489426c452e651a6d2",
+      "sample": "put_object_cabinet__aloha-agilex_clean_50__episode_000001"
+    }
+  ],
+  "extraction_receipt": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/put_object_cabinet/.worldarena_extracted.json",
+  "extraction_receipt_sha256": "c6e1d010ab4495dace13382d1f33724c211ae24728059415b76a6638d83e5136",
+  "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/manifests/gpu3-put_object_cabinet.jsonl",
+  "physical_gpu": 3,
+  "promotion_evidence": false,
+  "shard_input_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu3-put_object_cabinet/shard-input.complete.json",
+  "shard_input_receipt_sha256": "91460d4f39f3bc1920aee1fe619025d9880c2d26f202103e777aafde44ae58b6",
+  "shard_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu3-put_object_cabinet",
+  "source_archive": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/aloha-agilex_clean_50/put_object_cabinet.tar.gz",
+  "source_archive_sha256": "cd1c9aeba372881f4016314b73cab0c965078059850f3241216f077236c0e0a2",
+  "source_manifest": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/.worldarena_manifest.json",
+  "source_manifest_sha256": "c75870c5d9dad05170d1f9a54f5d95983b322d57bb496e11d3b3e6815b4b7634",
+  "source_repo": "YixiangChen/FlowWAM_RoboTwin",
+  "source_revision": "506c4e014f7dbd291e7d7683c79fc685dd3e2714",
+  "task": "put_object_cabinet"
+}

@@ -1,0 +1,76 @@
+{
+  "candidates": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/selection/candidates.jsonl",
+  "candidates_sha256": "2f98cb007de67b1f8db99510374a012502d5bd815d1adce7b559b5099be38ee7",
+  "completed": true,
+  "contract": "worldarena-track1-late-b2-n8-generated9-selection/1",
+  "corrected15_used_for_selection": false,
+  "feature_policy": "generated_only_no_hidden_gt",
+  "generated9_csvs": {
+    "seed1": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/generated9/seed1/package/csv_results/generated-only.csv",
+      "sha256": "3985e5b6a94a400b94c432357b357effc1c1a2f8372d74b2d05bdb9ba1a4478c"
+    },
+    "seed4": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/generated9/seed4/package/csv_results/generated-only.csv",
+      "sha256": "119e3bd97c6609f60b20bafe13e7245287988be5efd06dc685d0e386977a0ce5"
+    }
+  },
+  "model": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/postgen/postgen-selector.model.json",
+  "model_sha256": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+  "policy": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/policy-selection.complete.json",
+  "policy_sha256": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7",
+  "row_count": 4,
+  "rows": [
+    {
+      "logical_episode_id": 0,
+      "score_video_id": "fixed_scene_task_episode_000000",
+      "seed1_probability": 0.5131865472387899,
+      "selected_seed": 1,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/seed1/FlowWAMOfficialStage1_test/episode000000.mp4",
+      "selected_video_sha256": "039e2f3a3e19c994cf0a3e4809f924a9a99efd493ca6656da0275769bc6de131"
+    },
+    {
+      "logical_episode_id": 1,
+      "score_video_id": "fixed_scene_task_episode_000001",
+      "seed1_probability": 0.7239904452476105,
+      "selected_seed": 1,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/seed1/FlowWAMOfficialStage1_test/episode000001.mp4",
+      "selected_video_sha256": "dbb710806b0778b4ab7900a4966675227fe6f48aab29fcb6966871c47db20297"
+    },
+    {
+      "logical_episode_id": 2,
+      "score_video_id": "fixed_scene_task_episode_000002",
+      "seed1_probability": 0.2883869309485991,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000002.mp4",
+      "selected_video_sha256": "1840d86e795a8a0223e0ffdfa717a8d052106a76228d94ff61b148e46e319f89"
+    },
+    {
+      "logical_episode_id": 3,
+      "score_video_id": "fixed_scene_task_episode_000003",
+      "seed1_probability": 0.2144676566036616,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000003.mp4",
+      "selected_video_sha256": "4e1d6ccf3efd808f2b152a0bb96e1114e67a6d1edfaad9169e9416f0c09797a8"
+    }
+  ],
+  "selected_seed_counts": {
+    "seed1": 2,
+    "seed4": 2
+  },
+  "selection_jsonl": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/selection/selection.jsonl",
+  "selection_jsonl_sha256": "5952532aa33046cd65c3312357c81817c469f317a1db3054ddb615e1f8e5b34a",
+  "selector_episode_id_adapter": "logical_zero_based_plus_one_for_release_selector_only",
+  "source_metric_columns": [
+    "Instruction Following",
+    "Interaction Quality",
+    "Perspectivity",
+    "Image Quality",
+    "Aesthetic Quality",
+    "Photometric Consistency",
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ],
+  "terminal_state": "late-b2-generated9-selection-frozen"
+}

@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": false,
+    "maximum_area_fraction": 0.0,
+    "mean_area_fraction": 0.0,
+    "valid_frames": 0
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.2544140625,
+    "mean_area_fraction": 0.1496133937757202,
+    "valid_frames": 81
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.250556640625,
+    "mean_area_fraction": 0.14659649884259257,
+    "valid_frames": 76
+  },
+  "source_video_sha256": "0fcd6663902c388586a0f18395bdf9a9a4d3d16b05e0c29232178647e5e476c9",
+  "support_fraction": 0.7945595421810699,
+  "support_sha256": "06bb6c8f870cf32a471dc35eb7021ec562c0006475264e4d32625b209e59282f",
+  "video_id": "place_burger_fries_episode000002"
+}

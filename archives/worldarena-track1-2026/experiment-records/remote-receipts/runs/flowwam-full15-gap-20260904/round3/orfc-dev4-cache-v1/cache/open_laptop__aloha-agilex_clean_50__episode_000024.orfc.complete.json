@@ -1,0 +1,46 @@
+{
+  "completed": true,
+  "contact_definition": "residual-near-fb-consistent-robot-motion",
+  "contact_fraction": 0.0,
+  "contract": "flowwam-orfc-episode-cache/1",
+  "episode_id": "open_laptop__aloha-agilex_clean_50__episode_000024",
+  "flow_backend": "RAFTFlowExtractor",
+  "flow_threshold": 0.25,
+  "inconsistency_threshold": 0.5,
+  "manifest_sha256": "54ef7d937bb303699084b235d30146541a2d5f15f94a3564325bebdd636e0773",
+  "occlusion_fraction": 0.12999999523162842,
+  "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-dev4-cache-v1/cache/open_laptop__aloha-agilex_clean_50__episode_000024.orfc.pt",
+  "output_sha256": "f75fedf07b375704b50f2f0a914479fc6567e4f01c65e45a5b5f19442ffa0a56",
+  "residual_definition": "full_scene_flow-minus-robot_flow",
+  "residual_threshold": 0.25,
+  "robot_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/robot_only/episode000003.hdf5",
+  "robot_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/robot_only/episode000003.hdf5",
+  "robot_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/open_laptop/aloha-agilex_clean_50/robot_only/data/episode24.hdf5",
+  "robot_hdf5_resolved_sha256": "4cf57ca41b5639c8dabbee4965f1cd75ba40451c5ea01736e4faebbcac92027b",
+  "robot_hdf5_sha256": "4cf57ca41b5639c8dabbee4965f1cd75ba40451c5ea01736e4faebbcac92027b",
+  "sample": "open_laptop__aloha-agilex_clean_50__episode_000024",
+  "scene_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/input/data/fixed_scene_task/episode000003.hdf5",
+  "scene_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/input/data/fixed_scene_task/episode000003.hdf5",
+  "scene_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/open_laptop/aloha-agilex_clean_50/data/episode24.hdf5",
+  "scene_hdf5_resolved_sha256": "428c33dd19c0543e705736494e2592b545e95e69af11d6037c51e31518ba538e",
+  "scene_hdf5_sha256": "428c33dd19c0543e705736494e2592b545e95e69af11d6037c51e31518ba538e",
+  "source_frame_count": 230,
+  "source_shape": [
+    240,
+    320
+  ],
+  "split": "round3_dev4_orfc",
+  "target_shape": [
+    5,
+    15,
+    20
+  ],
+  "task": "open_laptop",
+  "temporal_indices": [
+    0,
+    57,
+    114,
+    171,
+    228
+  ]
+}

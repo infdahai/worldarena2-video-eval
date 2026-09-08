@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 1,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "275c66398e0d25fd30042621449f187eb26cb7fccd9fe8f92cd9251f52a14546",
+      "source_sha256": "4b3017be125886b9d1a6a67921c82bf487c993357c3800cd1499290f3b542faa",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round4/jepa-preserve-v1/as-lr3e7-r2/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "a8e0debfad43c7b0997b770177591fe6a6f7f79eca43c10e39b437945f2bdb3e",
+      "source_sha256": "26ff88e49220d1355c8574d4b894e8e734296b9f794c38564e768ccbe8e38562",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round4/jepa-preserve-v1/as-lr3e7-r2/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "cc99ac8d3427800a27506812a8eef69446ea7143b9e931b34727a6dd12c18461",
+      "source_sha256": "920a37c49ba8d5c19378f7a55d6a22e66a96f9ffccb8ab5ea136a02452447830",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round4/jepa-preserve-v1/as-lr3e7-r2/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "901522e3694288b0255201b3de5be4aa1c70dac37825c1515a42c9cda239804d",
+      "source_sha256": "c2d465308182c4742439d67915ac56c9a53ade52a037763d3cec04b4872b5358",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round4/jepa-preserve-v1/as-lr3e7-r2/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

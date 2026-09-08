@@ -1,0 +1,30 @@
+{
+  "aggregate_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-balanced-s1/n8-dev4/scoring/selected-full15/package/receipts/aggregate.complete.json",
+  "aggregate_receipt_sha256": "af2eae03566231d3333a38ea9f1309056cdf82355bb7987772dd50216533e8f2",
+  "candidate": "native640-train8-balanced-s1",
+  "capped_episode_counts": {
+    "Dynamic Degree": 1,
+    "Flow Score": 1,
+    "Motion Smoothness": 4
+  },
+  "completed": true,
+  "contract": "worldarena2-round3-gt-reference-motion-correction/1",
+  "corrected_15_metric_mean": 0.6742783964246224,
+  "corrected_columns": [
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ],
+  "corrected_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-balanced-s1/n8-dev4/scoring/selected-full15/package/csv_results/corrected15.csv",
+  "corrected_csv_sha256": "b279834057cf2b4b127769cd9256cd5e102a08ae1d22b678915ee49137a03870",
+  "formula": "adjusted_score=min(original_score,matched_gt_reference_score)",
+  "gt_results_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/fresh40/latest-scorer/gt-motion-output/gt_reference_results.json",
+  "gt_results_json_sha256": "79c73e40198125f52d4c010a524892f8483459cde027c50d55fe0da411320548",
+  "nonmotion12_mean": 0.7502644166332261,
+  "raw_15_metric_mean": 0.6764573924760784,
+  "raw_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-balanced-s1/n8-dev4/scoring/selected-full15/package/csv_results/aggregated_results.csv",
+  "raw_csv_sha256": "32a02149073518205ebf67039ddf13332e2ebe35a1f9c98ce77517bf5017b293",
+  "row_count": 4,
+  "selection_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-balanced-s1/n8-dev4/scoring/selection/selection.complete.json",
+  "selection_receipt_sha256": "937dae6881b5797adf930e4e7e7fce5679fe6d96f77e10bc16af6bcab0441f91"
+}

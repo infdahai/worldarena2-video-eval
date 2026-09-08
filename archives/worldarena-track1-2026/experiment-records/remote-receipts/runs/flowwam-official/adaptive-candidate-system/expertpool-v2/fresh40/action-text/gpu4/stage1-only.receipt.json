@@ -1,0 +1,66 @@
+{
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "inference_sweep": {
+    "is_official_default": false,
+    "overrides": {
+      "flow_max_magnitude": 20.0,
+      "seed": 4
+    }
+  },
+  "instruction_variant": 0,
+  "max_episodes": null,
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "physical_gpu": 4,
+  "robot_conditioning": {
+    "mode": "pre-generated",
+    "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu4/robot_only"
+  },
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 4,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "name": "episode000000.mp4",
+      "sha256": "309fa8c33fa25056c410b54c5d19288d47a43ededc316dbdf6cc6d1cc18d9ed8"
+    },
+    {
+      "name": "episode000001.mp4",
+      "sha256": "252006ecb3020fbdcb967a268202abd977e1f30a8844ecb838a7ff02ff16da91"
+    },
+    {
+      "name": "episode000002.mp4",
+      "sha256": "7735e860382df72a6bd0d44458ce723d736d825cd541e4dfbed05bb2ce5a288c"
+    },
+    {
+      "name": "episode000003.mp4",
+      "sha256": "210ac1caa8ea6938fb3cd104bb193441ee91898f698285617c76ccf42939bc3f"
+    },
+    {
+      "name": "episode000004.mp4",
+      "sha256": "68c5ba5509e210c61270aec6c5341c54f9b78b1c8acb68bd4ea3ee778a02dd10"
+    },
+    {
+      "name": "episode000005.mp4",
+      "sha256": "82ff4a51f79500b6d688024d58bf7afe3adcd87878ea57ab27cbeead1c97f805"
+    },
+    {
+      "name": "episode000006.mp4",
+      "sha256": "527fb393393b2dc21c3fea9432dfe1ba8366ac6dd7807dd95b26b031feb5c97e"
+    }
+  ]
+}

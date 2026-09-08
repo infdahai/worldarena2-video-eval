@@ -1,0 +1,30 @@
+{
+  "contract": "flowwam-orc-smoke/1",
+  "completed_at": "2026-08-31T09:21:29+08:00",
+  "parent_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "implementation": {
+    "trainer_sha256": "d0fe923aa1dbd6f914c488f2623c3528492a2aaa9853552295e818543405b7f0",
+    "orc_module_sha256": "6566f85a3b1b5a8fbb87489b1f6d33e6969a34cb971449c42096e5a1c45401af",
+    "official_hook_sha256": "bddf7c55fd4536b205af5f8dc219080c32f225205b46f30545919049b95231cc",
+    "tests": "110 passed plus focused block29 hook regression"
+  },
+  "arms": {
+    "C1": {
+      "gpu_uuid": "GPU-1770b48c-3b2b-6d7a-30c7-7a9b8b4e53a4",
+      "coefficient": 0.05,
+      "checkpoint": "c1-s31/bridge-step-000003.pt",
+      "checkpoint_sha256": "671a3e475022966ce871c652d8561e5a2315e70dfd1a15ccffab9b714e549a8d",
+      "peak_memory_bytes": 11749002240,
+      "step3_info_nce": 0.3778139650821686
+    },
+    "C2": {
+      "gpu_uuid": "GPU-b6761c44-aff9-92ed-40e9-fa5731af5cbf",
+      "coefficient": 0.1,
+      "checkpoint": "c2-s31/bridge-step-000003.pt",
+      "checkpoint_sha256": "8405dcf184a0cf48f11779d85970172901b7ebd77174aee443a29ddb035e1fd7",
+      "peak_memory_bytes": 11749002240,
+      "step3_info_nce": 0.3778139650821686
+    }
+  },
+  "passed": true
+}

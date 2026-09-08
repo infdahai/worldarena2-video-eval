@@ -1,0 +1,82 @@
+{
+  "completed": true,
+  "contract": "flowwam-adaptive-shard-input/1",
+  "episodes": [
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_phone_stand/aloha-agilex_clean_50/data/episode28.hdf5",
+      "action_sha256": "fc69e83b88db6726e412a3297600c305bdf274e3e799ec13e81f57ab9efb5d98",
+      "episode_name": "episode000000",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_phone_stand/aloha-agilex_clean_50/instructions/episode28.json",
+      "instruction_sha256": "0824265ee3bb52ca378cfb642c9b070b647f46a184c6ca7a31c83a6b7812593c",
+      "prompt_sha256": "370b04dc28e5ddab2d749139270e8e6d6dc012f98f5248edd354592bc512f181",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_phone_stand/aloha-agilex_clean_50/robot_only/data/episode28.hdf5",
+      "robot_only_sha256": "452a3965e9d3c7ca410c958e587a08b3628271237aea0f429b278e7bf2704882",
+      "sample": "place_phone_stand__aloha-agilex_clean_50__episode_000028",
+      "split": "fresh_holdout"
+    },
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_object_basket/aloha-agilex_clean_50/data/episode34.hdf5",
+      "action_sha256": "7a966bbd8017992ff50a5e0f0249d9a784d590f180727a3e566617ecccbf1f79",
+      "episode_name": "episode000001",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_object_basket/aloha-agilex_clean_50/instructions/episode34.json",
+      "instruction_sha256": "5b7a2c25ed98f416fb81acf02c684bb8d3131f623228babf5cbf8ef2874ae579",
+      "prompt_sha256": "496bca03c81aaacb73cd635a80130ea84008ca68751c84453ffacce9b0b0a26e",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_object_basket/aloha-agilex_clean_50/robot_only/data/episode34.hdf5",
+      "robot_only_sha256": "76d4b31f0564559a08774c5f65670eb0f7a98bf0f2927ada5f4c919688231162",
+      "sample": "place_object_basket__aloha-agilex_clean_50__episode_000034",
+      "split": "fresh_holdout"
+    },
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/pick_diverse_bottles/aloha-agilex_clean_50/data/episode13.hdf5",
+      "action_sha256": "d83e644e24a471c50e07f0ae059b7b1e3dd95a8d527cfa3e4a94ea08db9372e0",
+      "episode_name": "episode000002",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/pick_diverse_bottles/aloha-agilex_clean_50/instructions/episode13.json",
+      "instruction_sha256": "7863cb7fec92e978edc671868c001556b0267ff426832a2641e2c6fa6e65075d",
+      "prompt_sha256": "ecf1351703bf9d9217b9dc7c1c31a9a592a49b0f72feeaa2f30f48a5423749d2",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/pick_diverse_bottles/aloha-agilex_clean_50/robot_only/data/episode13.hdf5",
+      "robot_only_sha256": "ffa5b135db73e5eadbe1c6286fbb6b4123ad7644633627f49884a19cd2d85845",
+      "sample": "pick_diverse_bottles__aloha-agilex_clean_50__episode_000013",
+      "split": "fresh_holdout"
+    },
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_object_stand/aloha-agilex_clean_50/data/episode40.hdf5",
+      "action_sha256": "6ac26318f1c8178dfa0e48d3d92d58bf18282e240d9e70d04dc9160e3719d657",
+      "episode_name": "episode000003",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_object_stand/aloha-agilex_clean_50/instructions/episode40.json",
+      "instruction_sha256": "1e11a01926492e5c5deb8d15fb570354deec74f83b1142eb190b91e6676ed1e3",
+      "prompt_sha256": "39e2b915a857107e9112efa590cb803c4ad98497190b9149954bdb4b3b6a815f",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_object_stand/aloha-agilex_clean_50/robot_only/data/episode40.hdf5",
+      "robot_only_sha256": "c9411578fb879db5fc36ecd3cd5bbf5656daacb1f94fc2891bdddd050d0f2dc9",
+      "sample": "place_object_stand__aloha-agilex_clean_50__episode_000040",
+      "split": "fresh_holdout"
+    },
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/stack_bowls_two/aloha-agilex_clean_50/data/episode10.hdf5",
+      "action_sha256": "c553de93751a278338c53167020aad546e1de0c0027e48118e70d23dd8a93196",
+      "episode_name": "episode000004",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/stack_bowls_two/aloha-agilex_clean_50/instructions/episode10.json",
+      "instruction_sha256": "ece09659f17b4973c93d15a3168a7b18f61d187d29d20d21bb8ea641bd22c253",
+      "prompt_sha256": "5e03bd3309a2c2ab169ef9e5818429273f3213bb2c5cac027e648f9e268041fc",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/stack_bowls_two/aloha-agilex_clean_50/robot_only/data/episode10.hdf5",
+      "robot_only_sha256": "1d4c10c70ef36b6964e27ff90e1fe57a344035391f5d0ab0862f8bc2203111d3",
+      "sample": "stack_bowls_two__aloha-agilex_clean_50__episode_000010",
+      "split": "fresh_holdout"
+    },
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/shake_bottle_horizontally/aloha-agilex_clean_50/data/episode21.hdf5",
+      "action_sha256": "c8cbbdd20877074c005aa1fbddd48a05de047827c6197ff903dd3cf6fa148e4c",
+      "episode_name": "episode000005",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/shake_bottle_horizontally/aloha-agilex_clean_50/instructions/episode21.json",
+      "instruction_sha256": "6c8471daf12c274fa99f5ecb8c0b8ae4e193b7e1b265b6a68dde8665a50056f3",
+      "prompt_sha256": "9bfcd00fc4a487a79c0a53ccd76a82b02b9b41b6c8fd8aff5429fd9e5d47cd0e",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/shake_bottle_horizontally/aloha-agilex_clean_50/robot_only/data/episode21.hdf5",
+      "robot_only_sha256": "f4f3b063e62113e4ffe24d98ce66ea47b60ff403d853169a6fd9b6ff02187aa9",
+      "sample": "shake_bottle_horizontally__aloha-agilex_clean_50__episode_000021",
+      "split": "fresh_holdout"
+    }
+  ],
+  "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/manifests/fresh40/fresh40.jsonl",
+  "manifest_sha256": "49d89ac6c3450aff8e1705819f455b8fbab7eaff444f67bd0f55b92ede586908",
+  "physical_gpu": 6,
+  "rows": 6
+}

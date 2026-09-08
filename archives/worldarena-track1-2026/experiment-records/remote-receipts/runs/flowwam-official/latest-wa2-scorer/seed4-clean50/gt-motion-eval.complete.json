@@ -1,0 +1,15 @@
+{
+  "completed": true,
+  "config_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/latest-wa2-scorer/seed4-clean50/gt-motion-config.yaml",
+  "config_sha256": "290409848196097926d397df14dcab4b6d150ab68a93ff086e264158cccae5b7",
+  "contract": "worldarena2-latest-gt-reference-motion-eval/1",
+  "episode_count": 50,
+  "metric_episode_counts": {
+    "Dynamic Degree": 50,
+    "Flow Score": 50,
+    "Motion Smoothness": 50
+  },
+  "physical_gpu": 6,
+  "results_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/latest-wa2-scorer/seed4-clean50/output/gt_reference_results.json",
+  "results_json_sha256": "8a2c30287a584a80fc716c0a64c5bedfbc8811a4fda1ebe37d5be0e54dc64225"
+}

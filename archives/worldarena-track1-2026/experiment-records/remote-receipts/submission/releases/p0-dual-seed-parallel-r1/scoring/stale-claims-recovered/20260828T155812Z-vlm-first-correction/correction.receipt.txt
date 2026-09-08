@@ -1,0 +1,11 @@
+observed_utc=2026-08-28T15:58:12Z
+reason=stale_vlm_claim_directories_caused_six_workers_to_enter_base_early
+action=stop_only_exact_project_base_pids_preserve_claims_restart_vlm
+retained_vlm_workers=gpu0_step935,gpu2_step934
+stopped_base_lineages=gpu1:891188/893265,gpu3:891198/893393,gpu4:891203/893201,gpu5:891208/893329,gpu6:891213/893137,gpu7:891218/893394
+gpu1_parent=907083
+gpu3_parent=907088
+gpu4_parent=907093
+gpu5_parent=907098
+gpu6_parent=907103
+gpu7_parent=907108

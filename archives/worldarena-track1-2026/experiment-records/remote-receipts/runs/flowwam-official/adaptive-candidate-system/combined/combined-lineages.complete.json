@@ -1,0 +1,25 @@
+{
+  "artifact_root": "/data/di/worldarena2_track1_20260815",
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "completed": true,
+  "contract": "flowwam-adaptive-combined-lineages/1",
+  "episodes": 200,
+  "input_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/combined/input",
+  "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/manifests/selector-200.jsonl",
+  "manifest_sha256": "4b147c15ba6b9fad45d66cdc542e57bbe9a967c0cd8d05a5f267cad7c702a18e",
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "physical_gpus": [
+    0,
+    4,
+    5,
+    6
+  ],
+  "seed_counts": {
+    "1": 200,
+    "4": 200
+  },
+  "seed_roots": {
+    "1": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/combined/seed1",
+    "4": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/combined/seed4"
+  }
+}

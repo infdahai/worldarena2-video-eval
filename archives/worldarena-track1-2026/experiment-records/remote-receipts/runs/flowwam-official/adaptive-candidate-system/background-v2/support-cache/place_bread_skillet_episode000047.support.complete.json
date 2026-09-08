@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": false,
+    "maximum_area_fraction": 0.0,
+    "mean_area_fraction": 0.0,
+    "valid_frames": 0
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.34616536458333336,
+    "mean_area_fraction": 0.1758789866255144,
+    "valid_frames": 71
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.312451171875,
+    "mean_area_fraction": 0.16529533982767491,
+    "valid_frames": 71
+  },
+  "source_video_sha256": "587b04184308596c5b20794609d123dc89b7756f380997ee10e08c4e88772779",
+  "support_fraction": 0.7480831243569959,
+  "support_sha256": "7c8a56b214aa38ff1fdbd9aa6e2ceab03fdd4347dd565b90e6b0e2d2f2d44c02",
+  "video_id": "place_bread_skillet_episode000047"
+}

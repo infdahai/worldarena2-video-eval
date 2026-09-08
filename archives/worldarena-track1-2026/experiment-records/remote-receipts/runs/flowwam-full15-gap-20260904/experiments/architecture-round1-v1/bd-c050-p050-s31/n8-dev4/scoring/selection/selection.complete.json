@@ -1,0 +1,81 @@
+{
+  "candidates": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/scoring/selection/candidates.jsonl",
+  "candidates_sha256": "8c43c9b77980431fdd5f62b5aa076a34f9fbddeb65b0f8361441f7eb79476b61",
+  "completed": true,
+  "contract": "worldarena-track1-bd-c050-p050-n8-generated9-selection/1",
+  "corrected15_used_for_selection": false,
+  "feature_policy": "generated_only_no_hidden_gt",
+  "frozen_selector_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/scoring/selection/frozen-selector.complete.json",
+  "frozen_selector_receipt_sha256": "617151e5f5d89977de201402fbe2fed05fe434271d69d3278c2689ab9bf14c69",
+  "generated9_csvs": {
+    "seed1": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/scoring/generated9/seed1/package/csv_results/generated-only.csv",
+      "sha256": "ae244a81f0fa8981b7d62c775adf44f4ff1c5ecd4e5a6c7bc5dcb5dc37fef7ac"
+    },
+    "seed4": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/scoring/generated9/seed4/package/csv_results/generated-only.csv",
+      "sha256": "39de28954abcb2f7c48c4fecf6cfb3750e35fd02cf07e4b51ea8788228e97237"
+    }
+  },
+  "hidden_gt_used": false,
+  "model": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/postgen/postgen-selector.model.json",
+  "model_sha256": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+  "policy": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/policy-selection.complete.json",
+  "policy_sha256": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7",
+  "remap_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/scoring/remap/remap.complete.json",
+  "remap_receipt_sha256": "9dd4572d2a1f3beb5ecda7f54a2fd7f3715f8709f54a1debcc0264db008bfcab",
+  "row_count": 4,
+  "rows": [
+    {
+      "logical_episode_id": 0,
+      "score_video_id": "fixed_scene_task_episode_000000",
+      "seed1_probability": 0.23881809021676367,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000000.mp4",
+      "selected_video_sha256": "b52a805ba65c7067f16802e78c26a2f608d2352d0c219c2a693132b0e822ac94"
+    },
+    {
+      "logical_episode_id": 1,
+      "score_video_id": "fixed_scene_task_episode_000001",
+      "seed1_probability": 0.13075623818080556,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000001.mp4",
+      "selected_video_sha256": "e38f91e95f1437093d203a15b06dafa73729bd0af129c04a39bcdc171bbe3a11"
+    },
+    {
+      "logical_episode_id": 2,
+      "score_video_id": "fixed_scene_task_episode_000002",
+      "seed1_probability": 1.373476499601606e-12,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000002.mp4",
+      "selected_video_sha256": "c8a2b1e173249d446f497b13f4dfb02ad3fb8d2f75d4b8da0c6a9f8a97c277ff"
+    },
+    {
+      "logical_episode_id": 3,
+      "score_video_id": "fixed_scene_task_episode_000003",
+      "seed1_probability": 0.44408031078297167,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000003.mp4",
+      "selected_video_sha256": "a83136c64f85a522edafd425bec9d5a6db4d42999878362258a0c47ca2579fcd"
+    }
+  ],
+  "selected_seed_counts": {
+    "seed1": 0,
+    "seed4": 4
+  },
+  "selection_jsonl": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/scoring/selection/selection.jsonl",
+  "selection_jsonl_sha256": "f8ca9e012b58d26f34ae14c7ea66f1408cd594b4a48fbbc6f29de333f9b6e2aa",
+  "selector_episode_id_adapter": "logical_zero_based_plus_one_for_release_selector_only",
+  "source_metric_columns": [
+    "Instruction Following",
+    "Interaction Quality",
+    "Perspectivity",
+    "Image Quality",
+    "Aesthetic Quality",
+    "Photometric Consistency",
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ],
+  "terminal_state": "bd-c050-p050-generated9-selection-frozen"
+}

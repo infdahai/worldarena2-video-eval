@@ -1,0 +1,115 @@
+{
+  "checkpoint_lineage": null,
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "generated_this_run_count": 7,
+  "inference_sweep": {
+    "is_official_default": false,
+    "overrides": {
+      "flow_max_magnitude": 20.0,
+      "seed": 2
+    }
+  },
+  "instruction_variant": 0,
+  "max_episodes": 7,
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "physical_gpu": 2,
+  "requested_episode_names": [
+    "episode000000",
+    "episode000001",
+    "episode000002",
+    "episode000003",
+    "episode000004",
+    "episode000005",
+    "episode000006"
+  ],
+  "resumed_valid_count": 0,
+  "robot_conditioning": {
+    "mode": "pre-generated",
+    "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu3/robot_only"
+  },
+  "sample_manifest": null,
+  "sample_manifest_sha256": null,
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 2,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000000.mp4",
+      "sha256": "e058943989fe4278f4c4b1bd542327e775fc4770739b9ca5e1aeb06e7772ff46",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000001.mp4",
+      "sha256": "7b2ac1d1c6cf272f3a9bd380e5fae956fa75bab4465682852dac7838376d9a51",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000002.mp4",
+      "sha256": "c25b82221985279f698d8c6e5605a9969f37dd229908f3f7800a710af26b68f5",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000003.mp4",
+      "sha256": "66130af9e8d7c1eb6be068e379e720ea9fa4842a31428ee6a47401b5b5464a92",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000004.mp4",
+      "sha256": "501806c011502e1443c2638abab33dc689724c1aa5a15b516a3a02f94462cf26",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000005.mp4",
+      "sha256": "c79dbb1134965b9079aa030f71cc5d758af539c5e1e75107802e047dd9904161",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000006.mp4",
+      "sha256": "7cd621f73bcb1a474d229396dd671c0580af425b1b8658db346a1a1a223b7f35",
+      "width": 640
+    }
+  ]
+}

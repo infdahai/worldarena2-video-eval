@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "worldarena-seed1-seed4-oracle-upper-bound/1",
+  "decision": "no_invest_middle_band",
+  "metrics": [
+    "Subject Consistency",
+    "Aesthetic Quality",
+    "Image Quality",
+    "Background Consistency",
+    "Dynamic Degree",
+    "Interaction Quality",
+    "Perspectivity",
+    "Instruction Following",
+    "Semantic Alignment",
+    "Flow Score",
+    "Depth Accuracy",
+    "Trajectory Accuracy",
+    "Photometric Consistency",
+    "Motion Smoothness",
+    "JEPA Similarity"
+  ],
+  "oracle_mean": 0.6683917311343808,
+  "oracle_uplift_over_seed4": 0.009731974384132314,
+  "rows": 50,
+  "seed1_episode_wins": 25,
+  "seed1_mean": 0.656994890605413,
+  "seed4_episode_wins": 25,
+  "seed4_mean": 0.6586597567502485,
+  "ties": 0
+}

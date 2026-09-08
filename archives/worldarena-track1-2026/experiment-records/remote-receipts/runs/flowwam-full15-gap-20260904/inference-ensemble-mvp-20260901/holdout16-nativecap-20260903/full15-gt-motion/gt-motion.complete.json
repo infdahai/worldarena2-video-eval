@@ -1,0 +1,15 @@
+{
+  "completed": true,
+  "config_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/full15-gt-motion/gt-motion-config.yaml",
+  "config_sha256": "1736ecd35f5a1b6e4fb87c82411218e9d416ef575960a37c1aff97552bd61b9a",
+  "contract": "worldarena2-latest-gt-reference-motion-eval/1",
+  "episode_count": 16,
+  "metric_episode_counts": {
+    "Dynamic Degree": 16,
+    "Flow Score": 16,
+    "Motion Smoothness": 16
+  },
+  "physical_gpu": 1,
+  "results_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/full15-gt-motion/output/gt_reference_results.json",
+  "results_json_sha256": "bc19aceffaf70760700adb078e26e545f00203fe61c19e21318e0c50d68671d6"
+}

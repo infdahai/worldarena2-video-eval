@@ -1,0 +1,25 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-output-encoding-audit/1",
+  "decision": "no_reencode_ab_without_second_encode_evidence",
+  "deployment_gate": "returned or packaged MP4 SHA256 must equal the generator receipt SHA256",
+  "evaluator_reencode": "121-to-81 staging only; not a delivery artifact",
+  "generator_save": "single imageio.mimwrite call",
+  "generator_source": "/home/huazhi/nlh/FlowWAM_WorldArena/inference/world_model_inference.py",
+  "generator_source_sha256": "08313fb72ab6480debf21a95cb305b5f8e46f9a2c50b15db485d776ac19588d8",
+  "live_track1_service_present": false,
+  "package_behavior": "tarfile adds existing MP4 bytes without transcoding",
+  "package_source": "/home/huazhi/nlh/baseline/src/worldarena_baseline/submission.py",
+  "package_source_sha256": "20607a1c6dfd4295286f6c5b08a3e2367722105401002e44291cfa959ed85756",
+  "sample": {
+    "bitrate_kbps": 316,
+    "codec": "h264 High libx264",
+    "duration_seconds": 5.04,
+    "fps": 24,
+    "height": 480,
+    "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/stage1-dev-clean50-seed4/output/FlowWAMOfficialStage1_test/episode__open_microwave__aloha-agilex_clean_50__episode_000002.mp4",
+    "pixel_format": "yuv420p",
+    "sha256": "7526cec3207e5ef8bbfb03bfdc7c17539c94441f3c273fc803462bdd0fcc11b7",
+    "width": 640
+  }
+}

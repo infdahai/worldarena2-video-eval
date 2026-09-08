@@ -1,0 +1,114 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-p0-release-verification/1",
+  "evidence": {
+    "anonymous": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/hf-smoke.anonymous-download.complete.json",
+      "sha256": "9dd9b48fad2d2a5a413a65ae9bba10148c085ad1108b102d0a1c04595094f9ff"
+    },
+    "freeze": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/p0-release-frozen.complete.json",
+      "sha256": "30875c2735c41803234a96b9478ab4b7db142c5459c680bf1dc86090dfdfb20f"
+    },
+    "frozen_selector": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/clean50/selector-clean50.complete.json",
+      "sha256": "1d72aa6b1a6f260c963756309f3c74a57504381b929663b9361a8201248b187e"
+    },
+    "hf_upload": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/hf-smoke.upload.complete.json",
+      "sha256": "0988308a0362edacdbcc6cbb750133856b124fe2bcf5f957eec062edec79ce84"
+    },
+    "package": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/submission-smoke.package.complete.json",
+      "sha256": "0ab58239e96a301aa48dfa101d5ee269c45cdb354130bcd12fedacbd3689aff4"
+    },
+    "plan": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/test1000-paired-plan.complete.json",
+      "sha256": "19fdbf53eefcc5ff3fb98a902c09846c8a67b23faf0ce39808f0eeb279c60355"
+    },
+    "seed1_generation": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/formal-input-smoke/seed1/stage1-only.receipt.json",
+      "sha256": "181cbe45d3be43fba2625c52cb55f09b8287f7a1d1577196301e6cace3a7e9fe"
+    },
+    "seed4_generation": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/formal-input-smoke/seed4/stage1-only.receipt.json",
+      "sha256": "2e683e520c5a920881a7ce10c726054b41c8be9506ffdfe19548b542962faddb"
+    },
+    "selector_replay": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/selector-replay/selector-clean50.complete.json",
+      "sha256": "bfd1e76679a6b0e81d836b0e18873922502d4edb5f8be28972f3a86f0b297ff0"
+    }
+  },
+  "full_test1000_executed": false,
+  "generation": {
+    "seed1": {
+      "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+      "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+      "receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/formal-input-smoke/seed1/stage1-only.receipt.json",
+      "receipt_sha256": "181cbe45d3be43fba2625c52cb55f09b8287f7a1d1577196301e6cace3a7e9fe",
+      "seed": 1,
+      "video": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/formal-input-smoke/seed1/FlowWAMOfficialStage1_test/episode1.mp4",
+      "video_sha256": "4aca98f79f2a9323fe337ead03c9683449574c6df4337bf6cf0e7db0b6904849"
+    },
+    "seed4": {
+      "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+      "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+      "receipt": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/formal-input-smoke/seed4/stage1-only.receipt.json",
+      "receipt_sha256": "2e683e520c5a920881a7ce10c726054b41c8be9506ffdfe19548b542962faddb",
+      "seed": 4,
+      "video": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/formal-input-smoke/seed4/FlowWAMOfficialStage1_test/episode1.mp4",
+      "video_sha256": "51f725e96caacf744cf26c84e86bc0fa54f5921feda8174012396b6d6f15a09c"
+    }
+  },
+  "hf": {
+    "archive_sha256": "83873237aad18f353a542b722092c744e63146a65ffa717791b48d094b54d609",
+    "commit_sha": "8165ebbaa2a178e38d9e7e5fae8897236466c60c",
+    "repo_id": "clusternlh/worldarena-track1-p0-submission-smoke"
+  },
+  "official_submission_not_triggered": true,
+  "ready_for_full_test1000": true,
+  "selector": {
+    "gate": {
+      "champion_corrected_mean": 0.6549900090676842,
+      "champion_jepa_mean": 0.9567664861679077,
+      "champion_non_motion_mean": 0.7085442329060617,
+      "champion_raw_mean": 0.6586597567502485,
+      "champion_trajectory_mean": 0.6308826553091497,
+      "checks": {
+        "all_rows_finite": true,
+        "corrected_mean_gt_champion_plus_0_003": true,
+        "jepa_ge_champion_minus_0_01": true,
+        "non_motion_ge_champion_minus_0_001": true,
+        "raw15_ge_champion_minus_0_003": true,
+        "trajectory_ge_champion_minus_0_01": true
+      },
+      "contract": "flowwam-adaptive-selector-clean50-gate/1",
+      "corrected_uplift": 0.004216075078498971,
+      "jepa_delta": 0.0005757522583007546,
+      "non_motion_uplift": 0.005244083882822492,
+      "passed": true,
+      "raw_uplift": 0.00406053839763354,
+      "row_count": 50,
+      "selected_corrected_mean": 0.6592060841461832,
+      "selected_jepa_mean": 0.9573422384262085,
+      "selected_non_motion_mean": 0.7137883167888842,
+      "selected_raw_mean": 0.662720295147882,
+      "selected_trajectory_mean": 0.6349498213149264,
+      "trajectory_delta": 0.004067166005776723
+    },
+    "predictions_sha256": "102184cde847bcdf4d9fb7a4f47a43b5d6f1762b32af4b5490951da209655ea0",
+    "selection_counts": {
+      "seed1": 27,
+      "seed4": 23
+    }
+  },
+  "terminal_state": "release_pipeline_smoke_verified",
+  "verified_scope": {
+    "deterministic_package_smoke": true,
+    "deterministic_test1000_plan": true,
+    "frozen_p0": true,
+    "frozen_selector_exact_replay": true,
+    "hf_public_upload_and_anonymous_download_smoke": true,
+    "official_input_dual_seed_generation_smoke": true
+  }
+}

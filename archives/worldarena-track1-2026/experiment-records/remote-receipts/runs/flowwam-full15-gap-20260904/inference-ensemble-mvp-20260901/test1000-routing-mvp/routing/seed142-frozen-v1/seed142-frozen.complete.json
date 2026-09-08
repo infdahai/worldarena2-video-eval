@@ -1,0 +1,72 @@
+{
+  "code_sha256": "2e35d5c0e3bd9cbb119b8634845d048d7d764d3fe17f626b877e91eadae49c16",
+  "completed": true,
+  "contract": "worldarena-test1000-frozen-seed142-mvp/1",
+  "formal_submission_created": false,
+  "full15_used_for_selection": false,
+  "generated9_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/routing/seed142-frozen-v1/seed2-generated9.csv",
+  "generated9_csv_sha256": "2d284c9b94e26b1c0696d24c484eb47716a2b201a0a6d6a643d3a780cfa7da39",
+  "hidden_gt_used_for_selection": false,
+  "p0_candidates_sha256": "64aaeb9aede4f41db16c8f9661eadd59cd8a8907996a385c00594eb317459499",
+  "p0_predictions_sha256": "ae70bc87505ee10aad0138651283efe2cb07dcab35b2c65c83e29acc90671101",
+  "predictions": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/routing/seed142-frozen-v1/test1000-seed142-predictions.jsonl",
+  "predictions_sha256": "0e3bed24e98b2c696b37e22bbeb43bb69a72ea0be7e06f0d4017dbe046c08a5f",
+  "rows": 1000,
+  "seed2_inputs": [
+    {
+      "csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard0/package/csv_results/generated-only.csv",
+      "csv_sha256": "96bafb319d422219cef7ff3b2b3af61deba4bffcbbd3ee0d2f74fb729df72212",
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard0/package/receipts/test1000-generated9.complete.json",
+      "receipt_sha256": "867287aa57d4221223ad3675c9c93b61f31be3cbc58a28b3d58e77fdd7677fc6"
+    },
+    {
+      "csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard1/package/csv_results/generated-only.csv",
+      "csv_sha256": "42586348254e50494c1f384c59c7654a4e3c78baad4234c5e78f9b3042864e79",
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard1/package/receipts/test1000-generated9.complete.json",
+      "receipt_sha256": "a572f0f2306939093b1f676eb144d8b24e0ad775e251b8fa88ad5b201d01a70a"
+    },
+    {
+      "csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard2/package/csv_results/generated-only.csv",
+      "csv_sha256": "c9759629a2aeea83a2923b88589defd13469821660fb1e6ffeb6f96083130df0",
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard2/package/receipts/test1000-generated9.complete.json",
+      "receipt_sha256": "088ee77bbbd01cb2925d8cf64be307aaec753ea5e013c1aacc0037e27a702d7e"
+    },
+    {
+      "csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard3/package/csv_results/generated-only.csv",
+      "csv_sha256": "8b4b536cea5fa1f41a67d5dd8eb668cca6917f0e85437e39599bf91e59e55fa0",
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard3/package/receipts/test1000-generated9.complete.json",
+      "receipt_sha256": "0e37f65f000609a82db349e397eb22942cac2d4434dda46d012ba0cae669c629"
+    },
+    {
+      "csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard4/package/csv_results/generated-only.csv",
+      "csv_sha256": "378abb10ea7b20b35969c57303b000c20d49d3f4996e27f6f7145e5e6dcc3c19",
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard4/package/receipts/test1000-generated9.complete.json",
+      "receipt_sha256": "48c489d6f06ab79d5449f693fc5c89e1a600c74e092dc237f13323cff99d5739"
+    },
+    {
+      "csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard5/package/csv_results/generated-only.csv",
+      "csv_sha256": "fe940c245ed635fdd0586e49323a6aa6b7f7bc597a28a26855c0b98862e66bfc",
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard5/package/receipts/test1000-generated9.complete.json",
+      "receipt_sha256": "3fdf3417bdba682dc85aa3a1150265dae44123ff87073a32fd28071df9a4040a"
+    },
+    {
+      "csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard6/package/csv_results/generated-only.csv",
+      "csv_sha256": "631c5c7ee96933db1cdd1a4552c41e2104b91f55a7f1ea7436465d3fe11daebe",
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard6/package/receipts/test1000-generated9.complete.json",
+      "receipt_sha256": "d512c83fc0d5dc2cb8c1124d3298535391a3626b45e8e2ffe07691e5a7d851f0"
+    },
+    {
+      "csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard7/package/csv_results/generated-only.csv",
+      "csv_sha256": "e8612fd85f611885b779598ac0b7fa17bbef69a5da64d58510be0328ea57f4b4",
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed2/shard7/package/receipts/test1000-generated9.complete.json",
+      "receipt_sha256": "158543bffdee63f2acd764f9584ba6afd0606aaeb4686cac84d1876dfa308168"
+    }
+  ],
+  "seed3_used": false,
+  "selection_counts": {
+    "1": 320,
+    "2": 349,
+    "4": 331
+  },
+  "selection_rule": "keep P0 incumbent unless seed2_mean9 > max(seed1_mean9, seed4_mean9)"
+}

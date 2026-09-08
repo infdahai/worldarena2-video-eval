@@ -1,0 +1,67 @@
+{
+  "baseline": "p0_postgen_selector_breadth20",
+  "baseline_receipt_sha256": "5ca235eaab7cbd9d8f51a18799e55b26df3bea082e81ef69eb96ed9e1ba7f107",
+  "candidate": "winner-sft-step25-seed1",
+  "candidate_corrected_sha256": "e4d0d91f932531f60b28e7c4e8e997383b5821375f5200c638e55c2e755639ec",
+  "candidate_raw_sha256": "9eaedbc535cd0992c5b1f048a7f1c3a3f84748a6d1f0252dc18b7d917bf05430",
+  "completed": true,
+  "contract": "flowwam-p2-vs-p0-breadth20-terminal/1",
+  "decision": {
+    "black_count": 0,
+    "candidate": {
+      "corrected_mean": 0.6661127522277318,
+      "image_mean": 0.5216027379683507,
+      "instruction_mean": 0.7,
+      "interaction_mean": 0.72,
+      "jepa_mean": 0.9482133388519287,
+      "non_motion_mean": 0.7236962714150209,
+      "raw_mean": 0.6688535566806134,
+      "trajectory_mean": 0.639524893523278
+    },
+    "checks": {
+      "all_rows_finite": true,
+      "black_zero": true,
+      "corrected_ge_p0_plus_0_003": false,
+      "jepa_ge_p0_minus_0_005": true,
+      "non_motion_ge_p0_plus_0_002": false,
+      "paired_wins_ge_12_of_20": false,
+      "raw_ge_p0": false,
+      "trajectory_ge_p0_minus_0_005": true
+    },
+    "contract": "flowwam-p2-vs-p0-breadth20-gate/1",
+    "deltas": {
+      "corrected_mean": -0.006877221470348971,
+      "image_mean": 0.004752480518670832,
+      "instruction_mean": -0.040000000000000036,
+      "interaction_mean": -0.02000000000000013,
+      "jepa_mean": 0.0029903471469878706,
+      "non_motion_mean": -0.008907665892656125,
+      "raw_mean": -0.00656442865238227,
+      "trajectory_mean": 0.03216820874332982
+    },
+    "p0": {
+      "corrected_mean": 0.6729899736980808,
+      "image_mean": 0.5168502574496798,
+      "instruction_mean": 0.74,
+      "interaction_mean": 0.7400000000000001,
+      "jepa_mean": 0.9452229917049408,
+      "non_motion_mean": 0.732603937307677,
+      "raw_mean": 0.6754179853329957,
+      "trajectory_mean": 0.6073566847799482
+    },
+    "paired_losses_or_ties": 12,
+    "paired_wins": 8,
+    "passed": false,
+    "row_count": 20,
+    "step50_checks": {
+      "corrected_ge_p0_plus_0_006": false,
+      "image_ge_p0": true,
+      "instruction_ge_p0": false,
+      "interaction_ge_p0": false
+    },
+    "step50_eligible": false
+  },
+  "eligible_for_unique_clean50": false,
+  "terminal_state": "closed_quality_gate_failed",
+  "video_validation_sha256": "5a73e7f40c7b123375307eebc0edb9a8081cda348d10a8fc6fb31061aea45a8e"
+}

@@ -1,0 +1,151 @@
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+[W816 18:17:49.076764763 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.07s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.16s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.16s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.18s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.19s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.19s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.19s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.07s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.09s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.07s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.08s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.08s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.07s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.08s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.75s/it]
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 555, in <module>
+[rank1]:     main()
+[rank1]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 333, in main
+[rank1]:     inject_wan_attention_lora(
+[rank1]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 138, in inject_wan_attention_lora
+[rank1]:     parent, attribute = _resolve_parent(block, target)
+[rank1]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 111, in _resolve_parent
+[rank1]:     parent = getattr(parent, part)
+[rank1]:              ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1962, in __getattr__
+[rank1]:     raise AttributeError(
+[rank1]: AttributeError: 'CheckpointedWanBlock' object has no attribute 'self_attn'
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.75s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.75s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.75s/it]
+
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.75s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.75s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.75s/it]
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 555, in <module>
+[rank2]:     main()
+[rank2]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 333, in main
+[rank2]:     inject_wan_attention_lora(
+[rank2]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 138, in inject_wan_attention_lora
+[rank2]:     parent, attribute = _resolve_parent(block, target)
+[rank2]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 111, in _resolve_parent
+[rank2]:     parent = getattr(parent, part)
+[rank2]:              ^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1962, in __getattr__
+[rank2]:     raise AttributeError(
+[rank2]: AttributeError: 'CheckpointedWanBlock' object has no attribute 'self_attn'
+[rank5]: Traceback (most recent call last):
+[rank5]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 555, in <module>
+[rank5]:     main()
+[rank5]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 333, in main
+[rank5]:     inject_wan_attention_lora(
+[rank5]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 138, in inject_wan_attention_lora
+[rank5]:     parent, attribute = _resolve_parent(block, target)
+[rank5]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 111, in _resolve_parent
+[rank5]:     parent = getattr(parent, part)
+[rank5]:              ^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1962, in __getattr__
+[rank5]:     raise AttributeError(
+[rank5]: AttributeError: 'CheckpointedWanBlock' object has no attribute 'self_attn'
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 555, in <module>
+[rank3]:     main()
+[rank3]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 333, in main
+[rank3]:     inject_wan_attention_lora(
+[rank3]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 138, in inject_wan_attention_lora
+[rank3]:     parent, attribute = _resolve_parent(block, target)
+[rank3]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 111, in _resolve_parent
+[rank3]:     parent = getattr(parent, part)
+[rank3]:              ^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1962, in __getattr__
+[rank3]:     raise AttributeError(
+[rank3]: AttributeError: 'CheckpointedWanBlock' object has no attribute 'self_attn'
+[rank6]: Traceback (most recent call last):
+[rank6]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 555, in <module>
+[rank6]:     main()
+[rank6]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 333, in main
+[rank6]:     inject_wan_attention_lora(
+[rank6]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 138, in inject_wan_attention_lora
+[rank6]:     parent, attribute = _resolve_parent(block, target)
+[rank6]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 111, in _resolve_parent
+[rank6]:     parent = getattr(parent, part)
+[rank6]:              ^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1962, in __getattr__
+[rank6]:     raise AttributeError(
+[rank6]: AttributeError: 'CheckpointedWanBlock' object has no attribute 'self_attn'
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 555, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 333, in main
+[rank0]:     inject_wan_attention_lora(
+[rank0]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 138, in inject_wan_attention_lora
+[rank0]:     parent, attribute = _resolve_parent(block, target)
+[rank0]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 111, in _resolve_parent
+[rank0]:     parent = getattr(parent, part)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1962, in __getattr__
+[rank0]:     raise AttributeError(
+[rank0]: AttributeError: 'CheckpointedWanBlock' object has no attribute 'self_attn'
+[rank4]: Traceback (most recent call last):
+[rank4]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 555, in <module>
+[rank4]:     main()
+[rank4]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 333, in main
+[rank4]:     inject_wan_attention_lora(
+[rank4]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 138, in inject_wan_attention_lora
+[rank4]:     parent, attribute = _resolve_parent(block, target)
+[rank4]:                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py", line 111, in _resolve_parent
+[rank4]:     parent = getattr(parent, part)
+[rank4]:              ^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1962, in __getattr__
+[rank4]:     raise AttributeError(
+[rank4]: AttributeError: 'CheckpointedWanBlock' object has no attribute 'self_attn'
+[rank0]:[W816 18:17:59.168729751 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W0816 18:18:00.851000 48952 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 49019 closing signal SIGTERM
+W0816 18:18:00.853000 48952 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 49021 closing signal SIGTERM
+W0816 18:18:00.853000 48952 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 49022 closing signal SIGTERM
+W0816 18:18:00.854000 48952 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 49023 closing signal SIGTERM
+W0816 18:18:00.854000 48952 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 49024 closing signal SIGTERM
+W0816 18:18:00.855000 48952 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 49025 closing signal SIGTERM
+E0816 18:18:01.628000 48952 site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 1 (pid: 49020) of binary: /data/di/worldarena2_track1_20260815/venv_reuse/bin/python
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/run.py", line 905, in <module>
+    main()
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 143, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 277, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/audit_wan_action_causality_fsdp.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-08-16_18:18:00
+  host      : bm-heo4ph
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 49020)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

@@ -1,0 +1,424 @@
+{
+  "bootstrap": {
+    "jepa_excluded": true,
+    "one_sided90_quantile": 0.1,
+    "resamples": 10000,
+    "seed": 20260903,
+    "two_sided95_quantiles": [
+      0.025,
+      0.975
+    ],
+    "unit": "paired episodes within 4 fixed tasks; 4 per task"
+  },
+  "completed": true,
+  "decision": "GO",
+  "episodes": [
+    "open_microwave_episode000011",
+    "open_microwave_episode000028",
+    "open_microwave_episode000044",
+    "open_microwave_episode000048",
+    "press_stapler_episode000015",
+    "press_stapler_episode000035",
+    "press_stapler_episode000043",
+    "press_stapler_episode000049",
+    "put_object_cabinet_episode000010",
+    "put_object_cabinet_episode000011",
+    "put_object_cabinet_episode000031",
+    "put_object_cabinet_episode000035",
+    "stack_bowls_three_episode000021",
+    "stack_bowls_three_episode000027",
+    "stack_bowls_three_episode000030",
+    "stack_bowls_three_episode000043"
+  ],
+  "ewm15": {
+    "delta_points": 0.3512280912673802,
+    "p0_points": 61.961235280577895,
+    "ranker_points": 62.312463371845276
+  },
+  "finished_at": "2026-09-03T15:20:45.266192+00:00",
+  "gates": {
+    "ewm_gain_ge_0_3_points": true,
+    "jepa_delta_ge_minus_0_005": true,
+    "nonjepa14_mean_gain_gt_0": true,
+    "nonjepa14_one_sided90_lower_gt_0": true,
+    "trajectory_delta_ge_minus_0_005": true
+  },
+  "gtcap_receipts": {
+    "1232": {
+      "announcement_url": "https://v2.world-arena.ai/WorldArena-2.0/motion-quality-evaluation-update.html",
+      "capped_episode_counts": {
+        "Dynamic Degree": 16,
+        "Flow Score": 12,
+        "Motion Smoothness": 16
+      },
+      "completed": true,
+      "contract": "worldarena2-latest-gt-reference-motion-correction/1",
+      "corrected_15_metric_mean": 0.6196123528057791,
+      "corrected_columns": [
+        "Dynamic Degree",
+        "Flow Score",
+        "Motion Smoothness"
+      ],
+      "corrected_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/analysis/full15-final/step-1232.gtcap.csv",
+      "corrected_csv_sha256": "bac9ccea3f98f2d48a611f29aa95536a026525647bd580d28862146e3707c32d",
+      "difficulty_ood_adjustment": "not_publicly_reproducible",
+      "formula": "adjusted_score=min(original_score,matched_gt_reference_score)",
+      "gt_results_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/full15-gt-motion/output/gt_reference_results.json",
+      "gt_results_json_sha256": "e5297d409402e6e98a98dddcfc2acd2b88026bbbd9b410cd0bd687d5df7c97c5",
+      "raw_15_metric_mean": 0.6443341370467697,
+      "raw_csv": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1232/dev-clean-50/csv_results/aggregated_results.csv",
+      "raw_csv_sha256": "d8e5f3c2197440db224c119904c5b90c1a260dfdf800cf72142791e5f8600817",
+      "raw_metric_fp_tolerance": 0.001,
+      "row_count": 16
+    },
+    "1233": {
+      "announcement_url": "https://v2.world-arena.ai/WorldArena-2.0/motion-quality-evaluation-update.html",
+      "capped_episode_counts": {
+        "Dynamic Degree": 16,
+        "Flow Score": 12,
+        "Motion Smoothness": 16
+      },
+      "completed": true,
+      "contract": "worldarena2-latest-gt-reference-motion-correction/1",
+      "corrected_15_metric_mean": 0.6231246337184527,
+      "corrected_columns": [
+        "Dynamic Degree",
+        "Flow Score",
+        "Motion Smoothness"
+      ],
+      "corrected_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/analysis/full15-final/step-1233.gtcap.csv",
+      "corrected_csv_sha256": "50e6a6478aaafd9e876ba5963a217afa962cdf64894b1cfbc8ac6d13d921ccdf",
+      "difficulty_ood_adjustment": "not_publicly_reproducible",
+      "formula": "adjusted_score=min(original_score,matched_gt_reference_score)",
+      "gt_results_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/full15-gt-motion/output/gt_reference_results.json",
+      "gt_results_json_sha256": "e5297d409402e6e98a98dddcfc2acd2b88026bbbd9b410cd0bd687d5df7c97c5",
+      "raw_15_metric_mean": 0.6477215102371591,
+      "raw_csv": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1233/dev-clean-50/csv_results/aggregated_results.csv",
+      "raw_csv_sha256": "da37df538d70d1d4717521ed07fcc678a1c27836cafa45d05853afcd7fbf7e7e",
+      "raw_metric_fp_tolerance": 0.001,
+      "row_count": 16
+    }
+  },
+  "gtcap_scorer_sha256": "39067a25a59bd79d76fa724e8ef1db0d88466f8e30be3728304ac66a46538fcd",
+  "input_sha256": {
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1232/dev-clean-50/csv_results/aggregated_results.csv": "d8e5f3c2197440db224c119904c5b90c1a260dfdf800cf72142791e5f8600817",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1232/dev-clean-50/output/generated_results.json": "b3c60af4d529828c91644a2b298bbfa2bbaa163a1c5d9608f82aedd25a93827a",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1232/dev-clean-50/output_JEDi/results.json": "133acc68a2a3f2d5c629b394c0b8f45032090221df4198475695758679971a66",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1232/dev-clean-50/output_VLM/RankerFreshP0Native16/RankerFreshP0Native16_summary_val_all_intern.json": "397262f48b76ef39f2a1b04fd6e395780dacb82c502e1d709ea3c65eae85d2d6",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1232/dev-clean-50/receipts/aggregate.complete.json": "b366c80d73538dfc7e7b43cee9f10783aeaee4200d73c655b05d493f69d41aa3",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1232/dev-clean-50/receipts/base.complete.json": "8ba3af7364287a01ed290d0ad8e694803c5521b89a79c5aac2e93868399df62d",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1232/dev-clean-50/receipts/jepa.complete.json": "aec89d9f1b3b6f22e0a57cd4aea7e7a36d229a34e924dfa917965aa7b4c3a4cd",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1232/dev-clean-50/receipts/package.complete.json": "dcbc624a1eda099af583271dda2756daf6070e606d160fa069be6ead14e6c767",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1232/dev-clean-50/receipts/vlm.complete.json": "9b85ecf09ba2804593910f5ec9194a36cbf99c4e22f0044f43d4f8bb2451ba38",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1233/dev-clean-50/csv_results/aggregated_results.csv": "da37df538d70d1d4717521ed07fcc678a1c27836cafa45d05853afcd7fbf7e7e",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1233/dev-clean-50/output/generated_results.json": "e861833487e092ac6a3861450cbbd7ae3b690d322d06d732780ebd8fdbcc1bc4",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1233/dev-clean-50/output_JEDi/results.json": "6645508fe56beededa50626cccfb745ff3bc0445bbf218a5dd5083ff09c7fd90",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1233/dev-clean-50/output_VLM/RankerFreshPred14Native16/RankerFreshPred14Native16_summary_val_all_intern.json": "b58b684d0a0e14d1bc250e26423e4e78eff370b731bc3b17d410378774e8ad98",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1233/dev-clean-50/receipts/aggregate.complete.json": "85cfb49ffe97ba60d13aa8198fc581599d66e9207ae4b72b1db3cb898b769e92",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1233/dev-clean-50/receipts/base.complete.json": "3585ac172e5caedb0316a5f663e0a7087ea27d785a674e5d0e2640df44c76f1d",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1233/dev-clean-50/receipts/jepa.complete.json": "bd883140da80f659e222536be94fe6fa4406fefd5f6a2b4f2347cdd690d0722b",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1233/dev-clean-50/receipts/package.complete.json": "65e5602b0b86e77660f0ffeb468250283a1d8978e6190958d41186f10c1e7ddc",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1233/dev-clean-50/receipts/vlm.complete.json": "7aca7dd9420459621a666ed72e0b1821a681467ba46e346f9c33cec8d5f16ca2",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/full15-gt-motion/gt-motion.complete.json": "ef2b204e2ea2bd3b585bd0bee7998eb264de769a766c15466739ee25ba9caa5f",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/full15-gt-motion/output/gt_reference_results.json": "e5297d409402e6e98a98dddcfc2acd2b88026bbbd9b410cd0bd687d5df7c97c5",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/input-contract.json": "73167b152951501041073400edbf423589694004b65b249de4dd57532949f3cc",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/manifest.jsonl": "d661604840181036b5ddd8742654f8082c799012996344a38c790d8a394979d7",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/ranker-fit/fit.complete.json": "36937e59c7b8db59d40b8ba85af4936ca2a3952988d20864d5b0b770316b99d3",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/ranker-fit/model.json": "1409145a4efadfa7d274b2742a85318da6a56322472bc687e3f13844a7eb0fd5",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/route/p0-selected16.jsonl": "31690f1665e98bf9c96705035d0159a6845ad2d12ddd58a42b1d6cc48ad88c2d",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/route/ranker-selected16.jsonl": "85e8fd067858567ee2f16b32cf691c91624df1a4c15492472ae6d073620dc14f",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/route/route-decisions.json": "f9ff454e41ed5ef3b060e6532db128a45fb23eb14c52486120c554ca7661553f",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/route/route.complete.json": "035a1cbfb35727afa588a2cb91ba4f73a77b5aca439b599a4446e45e04d7a3da"
+  },
+  "jepa": {
+    "delta": -0.0004519820213317871,
+    "p0": 0.9360034465789795,
+    "ranker": 0.9355514645576477
+  },
+  "label": "local-public-protocol-not-official",
+  "limitations": "n=16, fixed tasks are not independent task-level replicates; episode-disjoint, not task-disjoint; parent pretraining exposure unknown; do not retune on these results; no official score/rank claim",
+  "matched_gt_counts": {
+    "Dynamic Degree": 16,
+    "Flow Score": 16,
+    "Motion Smoothness": 16
+  },
+  "metrics15": {
+    "Aesthetic Quality": {
+      "delta": 0.00018582865595817566,
+      "p0_corrected_mean": 0.39505900628864765,
+      "p0_raw_mean": 0.39505900628864765,
+      "paired": {
+        "losses": 2,
+        "mean_delta": 0.00018582865595817566,
+        "one_sided90_lower": -0.0011240318417549133,
+        "ties": 13,
+        "two_sided95": [
+          -0.0016365274786949158,
+          0.0023468974977731705
+        ],
+        "wins": 1
+      },
+      "ranker_corrected_mean": 0.3952448349446058,
+      "ranker_raw_mean": 0.3952448349446058
+    },
+    "Background Consistency": {
+      "delta": -0.0013581668879720033,
+      "p0_corrected_mean": 0.8117089960480875,
+      "p0_raw_mean": 0.8117089960480875,
+      "paired": {
+        "losses": 1,
+        "mean_delta": -0.0013581668879720033,
+        "one_sided90_lower": -0.0031395108592773297,
+        "ties": 13,
+        "two_sided95": [
+          -0.0046483357747395815,
+          0.0005236157683268221
+        ],
+        "wins": 2
+      },
+      "ranker_corrected_mean": 0.8103508291601155,
+      "ranker_raw_mean": 0.8103508291601155
+    },
+    "Depth Accuracy": {
+      "delta": 0.0015114642924134586,
+      "p0_corrected_mean": 0.9945230970696957,
+      "p0_raw_mean": 0.9945230970696957,
+      "paired": {
+        "losses": 0,
+        "mean_delta": 0.0015114642924134586,
+        "one_sided90_lower": 0.0006087625267805485,
+        "ties": 14,
+        "two_sided95": [
+          0.0,
+          0.00361080706253164
+        ],
+        "wins": 2
+      },
+      "ranker_corrected_mean": 0.9960345613621091,
+      "ranker_raw_mean": 0.9960345613621091
+    },
+    "Dynamic Degree": {
+      "delta": 0.0,
+      "p0_corrected_mean": 0.16239026343709984,
+      "p0_raw_mean": 0.30689856811797156,
+      "paired": {
+        "losses": 0,
+        "mean_delta": 0.0,
+        "one_sided90_lower": 0.0,
+        "ties": 16,
+        "two_sided95": [
+          0.0,
+          0.0
+        ],
+        "wins": 0
+      },
+      "ranker_corrected_mean": 0.16239026343709984,
+      "ranker_raw_mean": 0.3066773470075035
+    },
+    "Flow Score": {
+      "delta": 0.00012830214141116973,
+      "p0_corrected_mean": 0.07532912215621387,
+      "p0_raw_mean": 0.1778602031671977,
+      "paired": {
+        "losses": 0,
+        "mean_delta": 0.00012830214141116973,
+        "one_sided90_lower": 0.0,
+        "ties": 15,
+        "two_sided95": [
+          0.0,
+          0.0003849064242335092
+        ],
+        "wins": 1
+      },
+      "ranker_corrected_mean": 0.07545742429762504,
+      "ranker_raw_mean": 0.17899159941832676
+    },
+    "Image Quality": {
+      "delta": 0.0011018283273520925,
+      "p0_corrected_mean": 0.5141451731855371,
+      "p0_raw_mean": 0.5141451731855371,
+      "paired": {
+        "losses": 1,
+        "mean_delta": 0.0011018283273520925,
+        "one_sided90_lower": -9.001365723123114e-05,
+        "ties": 13,
+        "two_sided95": [
+          -0.00023083385702426032,
+          0.0032038718969326814
+        ],
+        "wins": 2
+      },
+      "ranker_corrected_mean": 0.5152470015128892,
+      "ranker_raw_mean": 0.5152470015128892
+    },
+    "Instruction Following": {
+      "delta": 0.0,
+      "p0_corrected_mean": 0.7,
+      "p0_raw_mean": 0.7,
+      "paired": {
+        "losses": 0,
+        "mean_delta": 0.0,
+        "one_sided90_lower": 0.0,
+        "ties": 16,
+        "two_sided95": [
+          0.0,
+          0.0
+        ],
+        "wins": 0
+      },
+      "ranker_corrected_mean": 0.7,
+      "ranker_raw_mean": 0.7
+    },
+    "Interaction Quality": {
+      "delta": 0.012500000000000004,
+      "p0_corrected_mean": 0.6375,
+      "p0_raw_mean": 0.6375,
+      "paired": {
+        "losses": 0,
+        "mean_delta": 0.012500000000000004,
+        "one_sided90_lower": 0.0,
+        "ties": 15,
+        "two_sided95": [
+          0.0,
+          0.03750000000000001
+        ],
+        "wins": 1
+      },
+      "ranker_corrected_mean": 0.65,
+      "ranker_raw_mean": 0.65
+    },
+    "JEPA Similarity": {
+      "delta": -0.0004519820213317871,
+      "p0_corrected_mean": 0.9360034465789795,
+      "p0_raw_mean": 0.9360034465789795,
+      "ranker_corrected_mean": 0.9355514645576477,
+      "ranker_raw_mean": 0.9355514645576477
+    },
+    "Motion Smoothness": {
+      "delta": 0.0,
+      "p0_corrected_mean": 0.5796007026226209,
+      "p0_raw_mean": 0.7033880805456312,
+      "paired": {
+        "losses": 0,
+        "mean_delta": 0.0,
+        "one_sided90_lower": 0.0,
+        "ties": 16,
+        "two_sided95": [
+          0.0,
+          0.0
+        ],
+        "wins": 0
+      },
+      "ranker_corrected_mean": 0.5796007026226209,
+      "ranker_raw_mean": 0.700732591712117
+    },
+    "Perspectivity": {
+      "delta": 0.012499999999999997,
+      "p0_corrected_mean": 0.8875,
+      "p0_raw_mean": 0.8875,
+      "paired": {
+        "losses": 0,
+        "mean_delta": 0.012499999999999997,
+        "one_sided90_lower": 0.0,
+        "ties": 15,
+        "two_sided95": [
+          0.0,
+          0.03749999999999999
+        ],
+        "wins": 1
+      },
+      "ranker_corrected_mean": 0.9,
+      "ranker_raw_mean": 0.9
+    },
+    "Photometric Consistency": {
+      "delta": 0.0031098954021583983,
+      "p0_corrected_mean": 0.26139403998622024,
+      "p0_raw_mean": 0.26139403998622024,
+      "paired": {
+        "losses": 2,
+        "mean_delta": 0.0031098954021583983,
+        "one_sided90_lower": -0.002696311946988505,
+        "ties": 13,
+        "two_sided95": [
+          -0.004126766003904644,
+          0.014089381155416022
+        ],
+        "wins": 1
+      },
+      "ranker_corrected_mean": 0.2645039353883787,
+      "ranker_raw_mean": 0.2645039353883787
+    },
+    "Semantic Alignment": {
+      "delta": 0.004150375000000005,
+      "p0_corrected_mean": 0.87796025,
+      "p0_raw_mean": 0.87796025,
+      "paired": {
+        "losses": 2,
+        "mean_delta": 0.004150375000000005,
+        "one_sided90_lower": -0.00024399999999999422,
+        "ties": 7,
+        "two_sided95": [
+          -0.002471937500000007,
+          0.0109861890625
+        ],
+        "wins": 7
+      },
+      "ranker_corrected_mean": 0.882110625,
+      "ranker_raw_mean": 0.882110625
+    },
+    "Subject Consistency": {
+      "delta": -0.0002064143941129309,
+      "p0_corrected_mean": 0.7484405465518348,
+      "p0_raw_mean": 0.7484405465518348,
+      "paired": {
+        "losses": 2,
+        "mean_delta": -0.0002064143941129309,
+        "one_sided90_lower": -0.0004406731730947841,
+        "ties": 13,
+        "two_sided95": [
+          -0.0005642514222934858,
+          0.00011951134595769748
+        ],
+        "wins": 1
+      },
+      "ranker_corrected_mean": 0.7482341321577218,
+      "ranker_raw_mean": 0.7482341321577218
+    },
+    "Trajectory Accuracy": {
+      "delta": 0.01951308317423018,
+      "p0_corrected_mean": 0.7126306481617467,
+      "p0_raw_mean": 0.7126306481617467,
+      "paired": {
+        "losses": 1,
+        "mean_delta": 0.01951308317423018,
+        "one_sided90_lower": 0.0,
+        "ties": 13,
+        "two_sided95": [
+          -0.002057632055612671,
+          0.05037603417046065
+        ],
+        "wins": 2
+      },
+      "ranker_corrected_mean": 0.7321437313359769,
+      "ranker_raw_mean": 0.7321437313359769
+    }
+  },
+  "nonjepa14": {
+    "losses": 2,
+    "mean_delta": 0.003795442550817048,
+    "one_sided90_lower": 0.0013851935259517104,
+    "ties": 7,
+    "two_sided95": [
+      6.103102678572444e-05,
+      0.008268028621186111
+    ],
+    "wins": 7
+  },
+  "script_sha256": "1086090a5999c08fe7a3deebef3576ab86b90c5dd79bafc0c7ff356ada10d336",
+  "task_counts": {
+    "open_microwave": 4,
+    "press_stapler": 4,
+    "put_object_cabinet": 4,
+    "stack_bowls_three": 4
+  }
+}

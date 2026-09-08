@@ -1,0 +1,28 @@
+{
+  "archive_validation": {
+    "archive": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/anonymous-download/submission-smoke.tar.gz",
+    "archive_sha256": "83873237aad18f353a542b722092c744e63146a65ffa717791b48d094b54d609",
+    "completed": true,
+    "contract": "worldarena-track1-submission-validation/1",
+    "metadata": {
+      "control_type": "hybrid",
+      "model_name": "FlowWAM-P0-PostGen-Selector-Smoke",
+      "organization": "Huazhi AI",
+      "release_year": 2026,
+      "source_type": "closed_source",
+      "version": "smoke-2026-08-26-r1"
+    },
+    "video_count": 1
+  },
+  "authorization_header_used": false,
+  "completed": true,
+  "contract": "worldarena-track1-hf-anonymous-smoke/1",
+  "download": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/anonymous-download/submission-smoke.tar.gz",
+  "download_sha256": "83873237aad18f353a542b722092c744e63146a65ffa717791b48d094b54d609",
+  "filename": "submission-smoke.tar.gz",
+  "official_submission_not_triggered": true,
+  "repo_id": "clusternlh/worldarena-track1-p0-submission-smoke",
+  "revision": "8165ebbaa2a178e38d9e7e5fae8897236466c60c",
+  "terminal_state": "hf_public_smoke_anonymously_verified",
+  "url": "https://huggingface.co/datasets/clusternlh/worldarena-track1-p0-submission-smoke/resolve/8165ebbaa2a178e38d9e7e5fae8897236466c60c/submission-smoke.tar.gz?download=true"
+}

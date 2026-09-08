@@ -1,0 +1,31 @@
+{
+  "contract": "worldarena-track1-external-stop-evidence/1",
+  "event_time": "2026-08-29T08:05:35.267841+08:00",
+  "gpu_index": 7,
+  "gpu_uuid": "GPU-c4f01096-8831-924c-df5c-7eb23ebecfc1",
+  "phase": "base",
+  "step": 923,
+  "prior_vlm_step": 927,
+  "prior_vlm_formal_complete": true,
+  "process_group": 1974219,
+  "worker_pid": 1974227,
+  "compute_pid": 1997806,
+  "compute_command": "detection_tracking.py --config_path .../step-0923/dev-clean-50/work/config.yaml",
+  "signal": "SIGTERM",
+  "signal_sender_pid": 2005262,
+  "signal_sender_uid": 1001,
+  "source_codex_pid": 1583292,
+  "source_cwd": "/data/fjy/worldarena",
+  "source_command": "kill -TERM -- -1974219",
+  "source_intent": "start SSE14 shards on GPU1 and GPU7",
+  "source_session": "/home/huazhi/.codex/sessions/2026/08/28/rollout-2026-08-28T09-07-56-01a045e8-bde3-7f31-86a4-6ff37b3e8214.jsonl",
+  "source_session_ordinals": [
+    23460,
+    23477
+  ],
+  "vlm_checkpoint_completed_count": 125,
+  "vlm_checkpoint_expected_count": 125,
+  "base_formal_complete": false,
+  "action": "vlm_checkpoint_refreshed_base_inventory_saved_and_yielded_no_signal_sent",
+  "cooldown_not_before": "2026-08-29T08:15:35+08:00"
+}

@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/scoring/selected-full15/package/output_VLM/BD_C050_P050_Selected/BD_C050_P050_Selected_summary_val_all_intern.json",
+  "output_sha256": "f0488bfe8d764e8433256da42629af93c6ed9212517654935ab2fc4a28dd0339",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/BD_C050_P050_Selected/click_bell_episode_000008_20260831_051428.json",
+      "sha256": "1b2bf04bceabf83883d77fe351f9f80dd8181822c335eecc4d81a95b736b6478",
+      "timestamp": "20260831_051428",
+      "video": "click_bell_episode_000008.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/BD_C050_P050_Selected/open_laptop_episode_000024_20260831_051701.json",
+      "sha256": "7bcc1b534a7e2b64445216feb4a73f261d72a49b4e82dcc6ad79a9086b700b21",
+      "timestamp": "20260831_051701",
+      "video": "open_laptop_episode_000024.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/BD_C050_P050_Selected/pick_dual_bottles_episode_000000_20260831_051935.json",
+      "sha256": "c91fe967fed759bcff638c2187ec40c4965451292e75a801dbf0dcb401b33f24",
+      "timestamp": "20260831_051935",
+      "video": "pick_dual_bottles_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/bd-c050-p050-s31/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/BD_C050_P050_Selected/place_container_plate_episode_000017_20260831_052208.json",
+      "sha256": "f14f4d52302053ff9c0f2b3e0b3bc6f29d4a77b8ad473472a5f4b2796ea9814c",
+      "timestamp": "20260831_052208",
+      "video": "place_container_plate_episode_000017.mp4"
+    }
+  ]
+}

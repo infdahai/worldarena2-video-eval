@@ -1,0 +1,56 @@
+{
+  "black": 0,
+  "completed": true,
+  "contract": "flowwam-adaptive-postgen-selector-clean50/1",
+  "deployment_sha_gate": true,
+  "eligible_final_candidate": true,
+  "gate": {
+    "champion_corrected_mean": 0.6549900090676842,
+    "champion_jepa_mean": 0.9567664861679077,
+    "champion_non_motion_mean": 0.7085442329060617,
+    "champion_raw_mean": 0.6586597567502485,
+    "champion_trajectory_mean": 0.6308826553091497,
+    "checks": {
+      "all_rows_finite": true,
+      "corrected_mean_gt_champion_plus_0_003": true,
+      "jepa_ge_champion_minus_0_01": true,
+      "non_motion_ge_champion_minus_0_001": true,
+      "raw15_ge_champion_minus_0_003": true,
+      "trajectory_ge_champion_minus_0_01": true
+    },
+    "contract": "flowwam-adaptive-selector-clean50-gate/1",
+    "corrected_uplift": 0.004216075078498971,
+    "jepa_delta": 0.0005757522583007546,
+    "non_motion_uplift": 0.005244083882822492,
+    "passed": true,
+    "raw_uplift": 0.00406053839763354,
+    "row_count": 50,
+    "selected_corrected_mean": 0.6592060841461832,
+    "selected_jepa_mean": 0.9573422384262085,
+    "selected_non_motion_mean": 0.7137883167888842,
+    "selected_raw_mean": 0.662720295147882,
+    "selected_trajectory_mean": 0.6349498213149264,
+    "trajectory_delta": 0.004067166005776723
+  },
+  "input_sha256s": {
+    "model": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+    "policy": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7",
+    "seed1_corrected": "311976c8f75bbbfd5d5d41d9dc0cf5281809bc577975b0250e707e5fe81a2a80",
+    "seed1_raw": "e04de337a926007e761b7274e8a4fb8d336e3f82edc7542de1edd61fba6764ad",
+    "seed1_stage_receipt": "0a987b06ee66a2e0b16876903ecba5b8622c6b4d39b263c34f9e076400f1b9cb",
+    "seed4_corrected": "29d2d27085dabdc8c6d7dc30e0111ab076738a6477708e79345c25946dc6bd3c",
+    "seed4_raw": "4304828918719322f622f06d61c8a7c0650d7b9597d407386c2f4366fabaa2e7",
+    "seed4_stage_receipt": "1455ee4b82726d29cad9cb1672c1bc7e56c5cfffffb02a253250f6fa42cf926e"
+  },
+  "one_time_frozen_policy": true,
+  "predictions": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/clean50/selector-clean50.predictions.jsonl",
+  "predictions_sha256": "102184cde847bcdf4d9fb7a4f47a43b5d6f1762b32af4b5490951da209655ea0",
+  "row_count": 50,
+  "selection_counts": {
+    "seed1": 27,
+    "seed4": 23
+  },
+  "terminal_state": "pass",
+  "video_validation": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/clean50/selector-clean50.video-validation.json",
+  "video_validation_sha256": "db631c9e61d866ae47e1997086ce6ec501aa2c1c391e7bc7cc2c7097f0d74b26"
+}

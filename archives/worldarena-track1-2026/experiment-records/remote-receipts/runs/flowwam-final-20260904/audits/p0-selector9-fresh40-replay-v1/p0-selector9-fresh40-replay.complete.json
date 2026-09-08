@@ -1,0 +1,208 @@
+{
+  "audit": {
+    "aggregation_reads_selected_seed_corrected15": true,
+    "corrected_motion_le_raw": true,
+    "existing_fresh40_p0_corrected_max_abs_diff": 0.0,
+    "existing_fresh40_p0_raw_max_abs_diff": 0.0,
+    "feature_shape": [
+      40,
+      27
+    ],
+    "fresh_vs_exclusion_intersections": {
+      "/data/di/worldarena2_track1_20260815/eval/dev-fast-20-v3/dev-fast-20.jsonl": 0,
+      "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/manifests/selector-200.jsonl": 0,
+      "/data/di/worldarena2_track1_20260815/runs/v13-scoreboost/data/dev-clean50.jsonl": 0
+    },
+    "fresh_vs_model_training_intersection": 0,
+    "motion_cap_formula_max_abs_diff": 0.0,
+    "nonmotion_raw_corrected_max_abs_diff": 0.0,
+    "selection_reads_only_raw9": true
+  },
+  "completed": true,
+  "contract": "p0-selector9-fresh40-readonly-replay-audit/1",
+  "corrected_columns_used_for_selection": [],
+  "fixed_seed_baselines": {
+    "1": {
+      "corrected15": 0.6700214358302617,
+      "corrected_metric_means": {
+        "Aesthetic Quality": 0.39833670631051066,
+        "Background Consistency": 0.9166719818115234,
+        "Depth Accuracy": 0.9944549174322915,
+        "Dynamic Degree": 0.336658082932184,
+        "Flow Score": 0.24137289294724978,
+        "Image Quality": 0.49584776922802865,
+        "Instruction Following": 0.7,
+        "Interaction Quality": 0.7350000000000001,
+        "JEPA Similarity": 0.872416514158249,
+        "Motion Smoothness": 0.6996960346446046,
+        "Perspectivity": 0.925,
+        "Photometric Consistency": 0.22146118391372208,
+        "Semantic Alignment": 0.9029541,
+        "Subject Consistency": 0.8479996969550848,
+        "Trajectory Accuracy": 0.7624516571204778
+      },
+      "nonmotion12": 0.731049543910824,
+      "raw15": 0.6726161639115679
+    },
+    "4": {
+      "corrected15": 0.6654975261698358,
+      "corrected_metric_means": {
+        "Aesthetic Quality": 0.39899678379297254,
+        "Background Consistency": 0.9157879638671875,
+        "Depth Accuracy": 0.9952056873730655,
+        "Dynamic Degree": 0.33649974111046055,
+        "Flow Score": 0.24103416034145425,
+        "Image Quality": 0.4941925017333325,
+        "Instruction Following": 0.72,
+        "Interaction Quality": 0.74,
+        "JEPA Similarity": 0.8658808216452598,
+        "Motion Smoothness": 0.6996353361514139,
+        "Perspectivity": 0.9199999999999999,
+        "Photometric Consistency": 0.22027165718662306,
+        "Semantic Alignment": 0.898461825,
+        "Subject Consistency": 0.84806566093117,
+        "Trajectory Accuracy": 0.6884307534145984
+      },
+      "nonmotion12": 0.7254411379120175,
+      "raw15": 0.6681536033078728
+    }
+  },
+  "formal_test_opened": false,
+  "inputs": {
+    "/data/di/worldarena2_track1_20260815/eval/dev-fast-20-v3/dev-fast-20.jsonl": {
+      "sha256": "aaf9f4268a78e3ed160908780809ba9c23f12946176072787048d21ed7f50864"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/audits/p0-selector9-fresh40-replay-v1/replay_p0_selector9_fresh40_audit.py": {
+      "sha256": "93cfafa3bff332695ad0fe1578ade8f3cf180f075a9349958bd6dc4c587d7860"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/manifests/fresh40/fresh40.complete.json": {
+      "sha256": "a86ceed7be985c3d8632c5a12b0011c1cf52a0710cbec4686e4fa0986b196a20"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/manifests/fresh40/fresh40.jsonl": {
+      "sha256": "49d89ac6c3450aff8e1705819f455b8fbab7eaff444f67bd0f55b92ede586908"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/fresh40_p0_seed1.corrected.csv": {
+      "sha256": "3ba5c3854c23a340ed1c105868c44978609d926367224b912482ed09e369cf13"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/fresh40_p0_seed1.correction.complete.json": {
+      "sha256": "d88ee4528207b0dcf636892d8f0b5f8ae808e079168a942483d6fc05b8e1a5b2"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/fresh40_p0_seed1.raw.csv": {
+      "sha256": "e5a225738a5c24a8f5135f802eb8a20d29bcaf540f8d36228a6a50ac49cdcf46"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/fresh40_p0_seed4.corrected.csv": {
+      "sha256": "68447148fa0acadc2d67547493c52fc0df22bd5a06b1d2702463b92da59b0f12"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/fresh40_p0_seed4.correction.complete.json": {
+      "sha256": "7812c0d9ec58d420d9fe06d3b77d0187d480c423b52cc44a5ac2f81967152db2"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/fresh40_p0_seed4.raw.csv": {
+      "sha256": "85462aab1ff42a6f332ad319d5b0431cfed0e7660e8040097fb771165c4219c3"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/fresh40/decision/expertpool-v2.fresh40.predictions.jsonl": {
+      "sha256": "562e6338e324873f75c6b83a7b20b54070ea7ba1cba3b5c69ae125a855aa160e"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/fresh40/latest-scorer/gt-motion-output/gt_reference_results.json": {
+      "sha256": "79c73e40198125f52d4c010a524892f8483459cde027c50d55fe0da411320548"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/manifests/selector-200.jsonl": {
+      "sha256": "4b147c15ba6b9fad45d66cdc542e57bbe9a967c0cd8d05a5f267cad7c702a18e"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/policy-selection.complete.json": {
+      "sha256": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/postgen/postgen-selector.model.json": {
+      "sha256": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/v13-scoreboost/data/dev-clean50.jsonl": {
+      "sha256": "2793a0cc1db33cb6885f36c7706f550702487aae381036571e9781c42e11ba17"
+    },
+    "/home/huazhi/nlh/baseline/scripts/finalize_flowwam_expertpool_fresh40.py": {
+      "sha256": "f321ca85ab0067545ea129f8b4979826aa18d62984d18efe4121be7928965c42"
+    },
+    "/home/huazhi/nlh/baseline/src/worldarena_baseline/adaptive_clean50.py": {
+      "sha256": "cd8b33b02b18087b38a1d9c0f6ce350b4bcef05381ae4780db301414d2f73b11"
+    },
+    "/home/huazhi/nlh/baseline/src/worldarena_baseline/adaptive_routing.py": {
+      "sha256": "b9104272b690271b36fd6fb9fa1b9eb6eab62e3970517305c0c5541c235a4839"
+    },
+    "/home/huazhi/nlh/baseline/src/worldarena_baseline/adaptive_selector.py": {
+      "sha256": "ea9431254660f1e7bd2d9ef547910816d3ad514b23f642b0ec41d0b711ec321a"
+    },
+    "/home/huazhi/nlh/baseline/src/worldarena_baseline/latest_wa2_scorer.py": {
+      "sha256": "39067a25a59bd79d76fa724e8ef1db0d88466f8e30be3728304ac66a46538fcd"
+    },
+    "/home/huazhi/nlh/baseline/src/worldarena_baseline/official_track1_eval.py": {
+      "sha256": "397a1d20b7c16096725633f0396150dda593c735129920cff675a72879404a22"
+    }
+  },
+  "rows": 40,
+  "rows_file": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/audits/p0-selector9-fresh40-replay-v1/p0-selector9-fresh40-replay.rows.jsonl",
+  "rows_file_sha256": "b46965bc126305842d3b73dc26f0b925a411bd50edb4727fb6ab1cb0ee829387",
+  "selected": {
+    "corrected15": 0.6710700069479606,
+    "corrected_metric_means": {
+      "Aesthetic Quality": 0.4003144308924675,
+      "Background Consistency": 0.9157691955566406,
+      "Depth Accuracy": 0.9955944620292498,
+      "Dynamic Degree": 0.33629130474504637,
+      "Flow Score": 0.2407952795741537,
+      "Image Quality": 0.4943092611866233,
+      "Instruction Following": 0.73,
+      "Interaction Quality": 0.75,
+      "JEPA Similarity": 0.8685844987630844,
+      "Motion Smoothness": 0.6998058539002143,
+      "Perspectivity": 0.9349999999999999,
+      "Photometric Consistency": 0.22276431425504759,
+      "Semantic Alignment": 0.8950317,
+      "Subject Consistency": 0.8482735013635828,
+      "Trajectory Accuracy": 0.7335163019532971
+    },
+    "nonmotion12": 0.7324298054999994,
+    "raw15": 0.6737402333705351,
+    "raw_metric_means": {
+      "Aesthetic Quality": 0.4003144308924675,
+      "Background Consistency": 0.9157691955566406,
+      "Depth Accuracy": 0.9955944620292498,
+      "Dynamic Degree": 0.3416755406448297,
+      "Flow Score": 0.245156722618976,
+      "Image Quality": 0.4943092611866233,
+      "Instruction Following": 0.73,
+      "Interaction Quality": 0.75,
+      "JEPA Similarity": 0.8685844987630844,
+      "Motion Smoothness": 0.730113571294227,
+      "Perspectivity": 0.9349999999999999,
+      "Photometric Consistency": 0.22276431425504759,
+      "Semantic Alignment": 0.8950317,
+      "Subject Consistency": 0.8482735013635828,
+      "Trajectory Accuracy": 0.7335163019532971
+    }
+  },
+  "selection_counts": {
+    "1": 20,
+    "4": 20
+  },
+  "selector_feature_policy": "generated_only_no_hidden_gt",
+  "source_metric_columns": [
+    "Instruction Following",
+    "Interaction Quality",
+    "Perspectivity",
+    "Image Quality",
+    "Aesthetic Quality",
+    "Photometric Consistency",
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ],
+  "split": "fresh_holdout_dev_baseline_not_final_task_disjoint",
+  "uplift_vs_seed1": {
+    "corrected15": 0.0010485711176988488,
+    "nonmotion12": 0.001380261589175369,
+    "raw15": 0.0011240694589672584
+  },
+  "uplift_vs_seed4": {
+    "corrected15": 0.005572480778124778,
+    "nonmotion12": 0.006988667587981889,
+    "raw15": 0.005586630062662357
+  }
+}

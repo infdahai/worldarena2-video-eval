@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 4,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "5b04eb6f5962c370903bb70d541900ad9ba9e90211dd978dc86faddd6082c3d8",
+      "source_sha256": "4667ab25f6a26e2ed21a2179147bf62f7979eafd707fabad9892a03efd355a4a",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/d-p025-s31/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "2cafa41a8372c1bbd2eb8a6d0f5522622d08748e4f73288fc469fc7170f8363a",
+      "source_sha256": "19f67b6d40e1756cefc5d86ddb30ab870e3707acf2f0daf1764d0466d0871b49",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/d-p025-s31/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "efb195f6fb9c439fd0db0dc7985b7d916445a2509268133c89674c0e30392b39",
+      "source_sha256": "bb4f0521114af07cba183446e3a08c2255b90e5b0c04dd760b0b224ff9d5aa66",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/d-p025-s31/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "c72bd4193c68a378429e70a9486f7f120642d26c45884b376fd0adce449fdd30",
+      "source_sha256": "4fe59f67e99f7d8c1f4024c717ff2e1daa0a6db5cf2cae74684bb4464791f982",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/d-p025-s31/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

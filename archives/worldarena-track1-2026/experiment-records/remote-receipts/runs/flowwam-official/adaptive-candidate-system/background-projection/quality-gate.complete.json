@@ -1,0 +1,48 @@
+{
+  "completed": true,
+  "contract": "flowwam-action-support-background-projection/1",
+  "decision": "closed_prerequisite_failed",
+  "gate_passed": false,
+  "closed_at": "2026-08-25T16:17:31+08:00",
+  "reason": "The frozen protected-support union cannot be constructed from the retained existing Breadth20 artifacts: no renderer/expected-flow support masks, generated-RAFT active-flow tensors, or generated-video SAM3 robot/object masks were persisted. Reconstructing a partial union from SAM3 centroid trajectories or changing the support contract is forbidden.",
+  "scope": {
+    "candidate": "Official FlowWAM Stage-1 flow20 seed4 Breadth20",
+    "expected_rows": 20,
+    "new_generation_performed": false,
+    "projected_videos_written": 0
+  },
+  "available_prerequisites": {
+    "seed4_videos": 20,
+    "first_frames": 20,
+    "robot_only_hdf5": 20,
+    "sam3_centroid_trajectories": 20
+  },
+  "missing_prerequisites": {
+    "renderer_support_mask_artifacts": 20,
+    "expected_flow_support_artifacts": 20,
+    "generated_raft_active_flow_support_artifacts": 20,
+    "generated_video_sam3_robot_object_mask_artifacts": 20
+  },
+  "audit_counts": {
+    "mask_or_support_artifacts_found": 0,
+    "raft_or_flow_tensor_artifacts_found": 0
+  },
+  "evidence": {
+    "stage1_breadth20_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/stage1-breadth20",
+    "adaptive_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system",
+    "input_receipt_sha256": "59daf51f00cbebb2a982cdc674371ad43e322d8168ce738c04db18a828e91361",
+    "stage1_output_receipt_sha256": "fbe28b898225ce6f178c7d15f77b247717e423454f3a77e803862a73d6cf2b7f",
+    "sam3_trajectory_inventory_sha256": "d5484ed0cfdc5c2e6a4dcf8b14b6175091044db0c13e104b94b3ef9f6c1eac04",
+    "plan_sha256": "3aaa2842e6b28dc84a2fbf7c234eb72156d58174e37e84c707e9740ed63694f8",
+    "design_sha256": "e014449854259df4dd569fe3aa8b91ce5ce7f0988e3ad9852e41f3355f9a9c1c"
+  },
+  "forbidden_fallbacks_not_used": [
+    "centroid-only pseudo-mask",
+    "partial support union",
+    "threshold or dilation grid",
+    "new flow scan",
+    "new video generation",
+    "gate weakening"
+  ],
+  "terminal": true
+}

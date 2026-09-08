@@ -1,0 +1,90 @@
+{
+  "completed": true,
+  "contract": "b-c050-dev4-full15-input/1",
+  "formal_test_opened": false,
+  "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/full15-input/dev4-manifest.jsonl",
+  "manifest_sha256": "dcf1b56739b661e0b0bef87cc9eeafe4bd32f8959fb6ae83fae9dcac9a72c7d1",
+  "rows": 4,
+  "source_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/manifests/fresh40/fresh40.jsonl",
+  "source_manifest_sha256": "49d89ac6c3450aff8e1705819f455b8fbab7eaff444f67bd0f55b92ede586908",
+  "source_rows": [
+    {
+      "episode_index": 0,
+      "sample": "pick_dual_bottles__aloha-agilex_clean_50__episode_000000",
+      "sources": {
+        "input/data/fixed_scene_task/episode__pick_dual_bottles__aloha-agilex_clean_50__episode_000000.hdf5": {
+          "sha256": "a57f7fb488acc6a88f53c0cb3289898663c43043f7fb8bf017021b58574ce136",
+          "source": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/pick_dual_bottles/aloha-agilex_clean_50/data/episode0.hdf5"
+        },
+        "input/first_frame/fixed_scene_task/episode__pick_dual_bottles__aloha-agilex_clean_50__episode_000000.png": {
+          "sha256": "362842aa0f9d5d2b702b02be373393a5b1c917351773429737d245ceac4e1283",
+          "source": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/input/first_frame/fixed_scene_task/episode000000.png"
+        },
+        "input/instructions/fixed_scene_task/episode__pick_dual_bottles__aloha-agilex_clean_50__episode_000000.json": {
+          "sha256": "a3c11582bc9b670529dea29e4884537161e0d807c3d6a4bae1b86fe8324a9eec",
+          "source": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/pick_dual_bottles/aloha-agilex_clean_50/instructions/episode0.json"
+        }
+      },
+      "task": "pick_dual_bottles"
+    },
+    {
+      "episode_index": 8,
+      "sample": "click_bell__aloha-agilex_clean_50__episode_000008",
+      "sources": {
+        "input/data/fixed_scene_task/episode__click_bell__aloha-agilex_clean_50__episode_000008.hdf5": {
+          "sha256": "655456c02b6532e6acfbbcd45ecf837d78f1a6308f21eacc12bb48dc31172751",
+          "source": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/click_bell/aloha-agilex_clean_50/data/episode8.hdf5"
+        },
+        "input/first_frame/fixed_scene_task/episode__click_bell__aloha-agilex_clean_50__episode_000008.png": {
+          "sha256": "9403b660ce138f8ee70e49c774bd25df2b88a30933f44079eecc8b45687e6d9e",
+          "source": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/input/first_frame/fixed_scene_task/episode000001.png"
+        },
+        "input/instructions/fixed_scene_task/episode__click_bell__aloha-agilex_clean_50__episode_000008.json": {
+          "sha256": "352d5ace17a5c6b73404de2dad2ab8725325974d66396b43d2cf518aa0a062e4",
+          "source": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/click_bell/aloha-agilex_clean_50/instructions/episode8.json"
+        }
+      },
+      "task": "click_bell"
+    },
+    {
+      "episode_index": 17,
+      "sample": "place_container_plate__aloha-agilex_clean_50__episode_000017",
+      "sources": {
+        "input/data/fixed_scene_task/episode__place_container_plate__aloha-agilex_clean_50__episode_000017.hdf5": {
+          "sha256": "947528ada717e28f245a4f21a773e4093fffe3bf4a271efaef50b3dc2cc00e0b",
+          "source": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_container_plate/aloha-agilex_clean_50/data/episode17.hdf5"
+        },
+        "input/first_frame/fixed_scene_task/episode__place_container_plate__aloha-agilex_clean_50__episode_000017.png": {
+          "sha256": "2587be22cff6716ef130dc1d44f0ed7b5ed78a16f175943bcd31da7fd7d5e9f4",
+          "source": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/input/first_frame/fixed_scene_task/episode000002.png"
+        },
+        "input/instructions/fixed_scene_task/episode__place_container_plate__aloha-agilex_clean_50__episode_000017.json": {
+          "sha256": "7fc1786d70faba9f91bf4687e62bcff52378422f9eda89e6dc975e357b797542",
+          "source": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_container_plate/aloha-agilex_clean_50/instructions/episode17.json"
+        }
+      },
+      "task": "place_container_plate"
+    },
+    {
+      "episode_index": 24,
+      "sample": "open_laptop__aloha-agilex_clean_50__episode_000024",
+      "sources": {
+        "input/data/fixed_scene_task/episode__open_laptop__aloha-agilex_clean_50__episode_000024.hdf5": {
+          "sha256": "428c33dd19c0543e705736494e2592b545e95e69af11d6037c51e31518ba538e",
+          "source": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/open_laptop/aloha-agilex_clean_50/data/episode24.hdf5"
+        },
+        "input/first_frame/fixed_scene_task/episode__open_laptop__aloha-agilex_clean_50__episode_000024.png": {
+          "sha256": "c4d236a6d5652bc7de9f1d87a3fa0dfd43c9fd5f7ddeec57cd3420b3d0ba9042",
+          "source": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/input/first_frame/fixed_scene_task/episode000003.png"
+        },
+        "input/instructions/fixed_scene_task/episode__open_laptop__aloha-agilex_clean_50__episode_000024.json": {
+          "sha256": "9f8a805ffde9eeff31c3fe3ec06288a0ec12317e500cbabcdf98dcd6066e0adf",
+          "source": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/open_laptop/aloha-agilex_clean_50/instructions/episode24.json"
+        }
+      },
+      "task": "open_laptop"
+    }
+  ],
+  "source_shard_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/shard-input.complete.json",
+  "source_shard_receipt_sha256": "99a0ab4194687441b82f1a78f772cd609cf79d66162e896c19bba43a6477399b"
+}

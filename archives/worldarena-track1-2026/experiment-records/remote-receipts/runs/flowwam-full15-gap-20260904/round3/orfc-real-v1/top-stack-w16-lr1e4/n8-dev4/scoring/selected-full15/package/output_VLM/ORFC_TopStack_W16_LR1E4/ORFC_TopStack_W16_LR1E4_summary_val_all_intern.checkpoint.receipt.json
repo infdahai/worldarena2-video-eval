@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-stack-w16-lr1e4/n8-dev4/scoring/selected-full15/package/output_VLM/ORFC_TopStack_W16_LR1E4/ORFC_TopStack_W16_LR1E4_summary_val_all_intern.json",
+  "output_sha256": "667c02332a07e247653cc26a6a62e0f984044358208f22f17d997f788f0f4d38",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-stack-w16-lr1e4/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/ORFC_TopStack_W16_LR1E4/click_bell_episode_000008_20260831_181710.json",
+      "sha256": "9effba2ca2377f321e151cf07b0e865d6a71c6f809ec7b489a9f27fd5ec243a2",
+      "timestamp": "20260831_181710",
+      "video": "click_bell_episode_000008.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-stack-w16-lr1e4/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/ORFC_TopStack_W16_LR1E4/open_laptop_episode_000024_20260831_181918.json",
+      "sha256": "21cc4972c310eb88584fb5679313109bfb4d103e542802890e7fd7eedd6e45c0",
+      "timestamp": "20260831_181918",
+      "video": "open_laptop_episode_000024.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-stack-w16-lr1e4/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/ORFC_TopStack_W16_LR1E4/pick_dual_bottles_episode_000000_20260831_182125.json",
+      "sha256": "8d5236530e65e10d3363d21d6a7c56b63cf497ede1b6eeea00dbbaaf6aefe63d",
+      "timestamp": "20260831_182125",
+      "video": "pick_dual_bottles_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-stack-w16-lr1e4/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/ORFC_TopStack_W16_LR1E4/place_container_plate_episode_000017_20260831_182333.json",
+      "sha256": "cb61cd8452ddf04a42cfe2ba61c7c19fb2ef620aabab441735a9c4e88a4f939c",
+      "timestamp": "20260831_182333",
+      "video": "place_container_plate_episode_000017.mp4"
+    }
+  ]
+}

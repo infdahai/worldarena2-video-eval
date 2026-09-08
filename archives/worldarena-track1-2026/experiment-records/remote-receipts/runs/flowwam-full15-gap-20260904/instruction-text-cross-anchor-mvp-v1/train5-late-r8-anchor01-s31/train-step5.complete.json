@@ -1,0 +1,75 @@
+{
+  "anchor_weight": 0.1,
+  "artifacts": {
+    "step5": {
+      "lora": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/train5-late-r8-anchor01-s31/checkpoints/step-5.safetensors",
+      "lora_sha256": "dcf7853f9f57937da05cc8ca2da18aebaddef7abd8633974793b2f4a9a0f99c3",
+      "optimizer": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/train5-late-r8-anchor01-s31/checkpoints/optimizer-step-5.pt",
+      "optimizer_sha256": "8c1a7a07bab10211e385d708bef419070d39b769f366cfb4456a83e9564c8b98"
+    }
+  },
+  "attention_scope": "cross",
+  "block_range": "late",
+  "checkpoints": [
+    "step-5.safetensors"
+  ],
+  "contract": "flowwam-randomized500-run-receipt/1",
+  "dataset_manifest_sha256": "dfdfa6843f26ae13232db77ac0a76f8e64b599f9f252e3583150582666a3a200",
+  "dataset_source_repo": "YixiangChen/FlowWAM_WorldArena",
+  "dataset_source_revision": "a3c1c335f90958258a68e26f674e90ade24ce0ae",
+  "elapsed_seconds": 361.5042214393616,
+  "episode_allowlist_sha256": "0c060892a084d74002f99291930a34a605b7e8cf594492a4eaf02834371f18eb",
+  "evaluation_evidence_used": false,
+  "flowwam_source_revision": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "learning_rate": 1e-06,
+  "lora_rank": 8,
+  "losses": [
+    "official_rgb_diffusion",
+    "frozen_parent_shared_noise_anchor"
+  ],
+  "mode": "train",
+  "mvp_dataset_variant": "aloha-agilex_clean_50",
+  "parent_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "passed": true,
+  "peak_allocated_gib": 14.633082866668701,
+  "peak_reserved_gib": 15.171875,
+  "selected_rows": 8,
+  "selected_rows_sha256": "e9d78db5e34da9d247c79c7beecc3034cbc933ccf352831d11dbfc66ff435870",
+  "steps": 5,
+  "task_allowlist_sha256": "c23a1e991ba385240f7d0595beb3549000e00448a5bad6cb488058369fa22970",
+  "trainable_whitelist": {
+    "attention_scope": "cross",
+    "block_range": "late",
+    "passed": true,
+    "targets": "cross_attn.q,cross_attn.v",
+    "trainable_count": 24,
+    "trainable_names": [
+      "pipe.dit.blocks.24.cross_attn.q.lora_A.default.weight",
+      "pipe.dit.blocks.24.cross_attn.q.lora_B.default.weight",
+      "pipe.dit.blocks.24.cross_attn.v.lora_A.default.weight",
+      "pipe.dit.blocks.24.cross_attn.v.lora_B.default.weight",
+      "pipe.dit.blocks.25.cross_attn.q.lora_A.default.weight",
+      "pipe.dit.blocks.25.cross_attn.q.lora_B.default.weight",
+      "pipe.dit.blocks.25.cross_attn.v.lora_A.default.weight",
+      "pipe.dit.blocks.25.cross_attn.v.lora_B.default.weight",
+      "pipe.dit.blocks.26.cross_attn.q.lora_A.default.weight",
+      "pipe.dit.blocks.26.cross_attn.q.lora_B.default.weight",
+      "pipe.dit.blocks.26.cross_attn.v.lora_A.default.weight",
+      "pipe.dit.blocks.26.cross_attn.v.lora_B.default.weight",
+      "pipe.dit.blocks.27.cross_attn.q.lora_A.default.weight",
+      "pipe.dit.blocks.27.cross_attn.q.lora_B.default.weight",
+      "pipe.dit.blocks.27.cross_attn.v.lora_A.default.weight",
+      "pipe.dit.blocks.27.cross_attn.v.lora_B.default.weight",
+      "pipe.dit.blocks.28.cross_attn.q.lora_A.default.weight",
+      "pipe.dit.blocks.28.cross_attn.q.lora_B.default.weight",
+      "pipe.dit.blocks.28.cross_attn.v.lora_A.default.weight",
+      "pipe.dit.blocks.28.cross_attn.v.lora_B.default.weight",
+      "pipe.dit.blocks.29.cross_attn.q.lora_A.default.weight",
+      "pipe.dit.blocks.29.cross_attn.q.lora_B.default.weight",
+      "pipe.dit.blocks.29.cross_attn.v.lora_A.default.weight",
+      "pipe.dit.blocks.29.cross_attn.v.lora_B.default.weight"
+    ]
+  },
+  "trainer_sha256": "d4af3f6c84ecf371e9e4e8a7672cd21e1c3dca1b42f103a7b150b365ed71f857",
+  "variant": "aloha-agilex_clean_50"
+}

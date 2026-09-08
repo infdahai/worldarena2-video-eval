@@ -1,0 +1,30 @@
+{
+  "aggregate_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4/scoring/selected-full15/package/receipts/aggregate.complete.json",
+  "aggregate_receipt_sha256": "647d89f77b718064a1b8aa26368a2c78c4e001e17845db00ec9602dee868da9a",
+  "candidate": "interaction-balanced-step4",
+  "capped_episode_counts": {
+    "Dynamic Degree": 0,
+    "Flow Score": 0,
+    "Motion Smoothness": 0
+  },
+  "completed": true,
+  "contract": "worldarena2-round3-gt-reference-motion-correction/1",
+  "corrected_15_metric_mean": 0.6901843489441447,
+  "corrected_columns": [
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ],
+  "corrected_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4/scoring/selected-full15/package/csv_results/corrected15.csv",
+  "corrected_csv_sha256": "1bebbb7e542fece9a68fea78ecc45c55463150ca154a2d6534c2f4b2cc6a9c63",
+  "formula": "adjusted_score=min(original_score,matched_gt_reference_score)",
+  "gt_results_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4/scoring/selected-full15/package/output/generated_results.json",
+  "gt_results_json_sha256": "be8fd24528b396effbe802e62cb4d51d59afa6f913d821dc31b3332c203a0ce6",
+  "nonmotion12_mean": 0.7660797558186739,
+  "raw_15_metric_mean": 0.6901843489441447,
+  "raw_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4/scoring/selected-full15/package/csv_results/aggregated_results.csv",
+  "raw_csv_sha256": "1bebbb7e542fece9a68fea78ecc45c55463150ca154a2d6534c2f4b2cc6a9c63",
+  "row_count": 4,
+  "selection_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4/scoring/selection/selection.complete.json",
+  "selection_receipt_sha256": "8da672f56838929cf8a4f042a785c3b367bc714d4dbc16931a87497d73b03b29"
+}

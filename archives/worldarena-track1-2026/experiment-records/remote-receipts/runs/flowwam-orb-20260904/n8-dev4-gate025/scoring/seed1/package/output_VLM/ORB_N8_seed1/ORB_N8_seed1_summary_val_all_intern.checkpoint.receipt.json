@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-orb-20260904/n8-dev4-gate025/scoring/seed1/package/output_VLM/ORB_N8_seed1/ORB_N8_seed1_summary_val_all_intern.json",
+  "output_sha256": "44a49e992c88eeb0a7ced58e500472d1fddac88ca6e7ecfc12f913e14c772fef",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-orb-20260904/n8-dev4-gate025/scoring/seed1/package/work/tmp/vlm/ORB_N8_seed1/fixed_scene_task_episode_000001_20260831_003246.json",
+      "sha256": "5ddaab33db51b024e2cf3975bb4c6855f17d69e319116dd6aa408e8eaae91e3a",
+      "timestamp": "20260831_003246",
+      "video": "fixed_scene_task_episode_000001.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-orb-20260904/n8-dev4-gate025/scoring/seed1/package/work/tmp/vlm/ORB_N8_seed1/fixed_scene_task_episode_000010_20260831_003453.json",
+      "sha256": "7bd9186165e76f0be9aa0ebf03b2519eca6016cb9e90ce9d66ce5399517e771f",
+      "timestamp": "20260831_003453",
+      "video": "fixed_scene_task_episode_000010.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-orb-20260904/n8-dev4-gate025/scoring/seed1/package/work/tmp/vlm/ORB_N8_seed1/fixed_scene_task_episode_000100_20260831_003702.json",
+      "sha256": "02f951158e9a63056fbf082506a6c2bc8b842be01465c90164f38c8cf16e084e",
+      "timestamp": "20260831_003702",
+      "video": "fixed_scene_task_episode_000100.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-orb-20260904/n8-dev4-gate025/scoring/seed1/package/work/tmp/vlm/ORB_N8_seed1/fixed_scene_task_episode_001000_20260831_003909.json",
+      "sha256": "cf12cf9a9e26ad9f2b0caef7f1e3438c8993a63aaa10e6383c7b45e91a8899bf",
+      "timestamp": "20260831_003909",
+      "video": "fixed_scene_task_episode_001000.mp4"
+    }
+  ]
+}

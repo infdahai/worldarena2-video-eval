@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 4,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "0c675f64c82d5be645c3dc7bec652ecae52e5aecad80a02728fa5af22a4b8791",
+      "source_sha256": "ff22ce7e4f4a0a5e439bbe440af5a58d0f2a91b2fb962376aecab4baf0624466",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4-low-lr/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "a1c2d47436468fd210411c974a89d8beb4531ebccd8a21af404408b6693b0888",
+      "source_sha256": "daf48d7aa78c26787944897db80cbf8dd3d422aa42fbc558a593f7173d054533",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4-low-lr/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "8fc31a82f3d418a609a8262e209c4ca53380bb55a3e6a5d67485c9445e120d69",
+      "source_sha256": "3c8328d472cc4631b5bfb63c948b3263d83e43d1ca958b1522f48c3f33cf549c",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4-low-lr/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "b20bb573aeaeb53bfd54fa0115e69d45d1f6ab70fd64fd4a7532550d80d0bb9e",
+      "source_sha256": "020db8dca11ff6372c20cee3b534c4acc5d2fd2461312805013bdd70f3613cdd",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4-low-lr/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

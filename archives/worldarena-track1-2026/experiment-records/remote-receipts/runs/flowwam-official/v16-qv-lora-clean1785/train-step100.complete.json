@@ -1,0 +1,15 @@
+{
+  "checkpoints": [
+    "step-100.safetensors",
+    "step-50.safetensors"
+  ],
+  "contract": "flowwam-official-v16-run-receipt/1",
+  "elapsed_seconds": 2393.4034349918365,
+  "mode": "train",
+  "passed": true,
+  "peak_allocated_gib": 14.66590929031372,
+  "peak_reserved_gib": 15.185546875,
+  "resumed_lora_pairs": 120,
+  "start_step": 50,
+  "steps": 100
+}

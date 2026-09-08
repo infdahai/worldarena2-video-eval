@@ -1,0 +1,191 @@
+{
+  "completed": true,
+  "contract": "flowwam-action-to-text-input/1",
+  "episodes": 26,
+  "output_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/train160/action-text/gpu5/input",
+  "rows": [
+    {
+      "action_sha256": "ec632fee23130169a8aacc0f691c9cd9d70e4238176893efde4c2b1f73b5d12e",
+      "augmented_prompt_sha256": "14bd681a1d91d825ce9f054ef09b2d0caee1d3e8bcc63d563cfaad8b0f31c23e",
+      "episode": "episode000000",
+      "first_frame_sha256": "795a5aead7d4066f3bb118167ada8ca3e4179c46f9ada0d873a5152b731badbf",
+      "source_prompt_sha256": "5340a5677ce8369ec9fb541770b60aac103860df4fd1b7d4415a4dcdefd1c8b5"
+    },
+    {
+      "action_sha256": "a0ba8675d012b751c8b969e0d2586ba867bd47f33cf36a7863967201f8573f49",
+      "augmented_prompt_sha256": "e76233b9ee35d9f9dca749f9a967bbb9f956d7eeaa12b78cac7354b45d66d8d9",
+      "episode": "episode000001",
+      "first_frame_sha256": "b2a9a97d3603a413da0bd2f259932832f2d0f5bf7eb8c1b81d55e796844b7e7e",
+      "source_prompt_sha256": "e5eb8171b281e41bccbff281747bbe50f3cd912d01e2895ade44283c0d980e26"
+    },
+    {
+      "action_sha256": "5daf94ab54a1c0689dab3048af7d408897668ef10f669fe990109a642625f0a7",
+      "augmented_prompt_sha256": "18299a9005c9938888c0cf383e0efb64d7373afb5903f2a4ab203e4a2bc62f34",
+      "episode": "episode000002",
+      "first_frame_sha256": "5083d5e7f2b24864b4e3e547a3cd8211fd8af6630af09c6f48b6ae768bc9ae49",
+      "source_prompt_sha256": "23e06ef046849e32db2578b08f40621d7c809d76301b21ec4c7619aae5d019db"
+    },
+    {
+      "action_sha256": "0db6ced06cbe6db16d006f85259ccd80bb875de3539e030addf606472ed05aca",
+      "augmented_prompt_sha256": "a0a7e90748a6acd24c0ea259f1b7cb0239ce9b2b0e723ff1fe7be36d8a073d47",
+      "episode": "episode000003",
+      "first_frame_sha256": "ffcf6e933d5dba207ac22198f14ef67bf9e1f1ba84c11f426715486e30afbffc",
+      "source_prompt_sha256": "d197f371648d8a0a0019a65efef849ab67be6808fb32d431a5a2fe8da297aa83"
+    },
+    {
+      "action_sha256": "616c8fd65032a515c73b5bb9a32c9d6ee6ee0a688b9f7dc7938740945012994b",
+      "augmented_prompt_sha256": "f6a18fd4c0135c70c367042650a9487da30561b55264f002e1bd8eb4f0d7f424",
+      "episode": "episode000004",
+      "first_frame_sha256": "e41dc79d7f6ca2d375dcb6b8ff5d7b90aed4f91ab084538755fcbbfd37a493dd",
+      "source_prompt_sha256": "ba4245fe42bda520059ca05e79e9fe27c1a98ed77c51d10da0c8be44f1ce4703"
+    },
+    {
+      "action_sha256": "b21556f0f02b2af28df3af238206f069eea8e242cdb49fdb8493ddcf02c2b9ba",
+      "augmented_prompt_sha256": "2336643b8bb396a7f8f998805ed1215d822c82c719525216ff8af55c4f3a2b72",
+      "episode": "episode000005",
+      "first_frame_sha256": "e8bc2ccec6cfeccfb898623d79c2945fc0382adb5746a1f3ccd6a71fa4ff3d94",
+      "source_prompt_sha256": "a6076b1f6f6ca1a320d8533a5faa681adc26797ddc523a193c17840a189a7900"
+    },
+    {
+      "action_sha256": "dba44d46ac3f8fe7af9e5ce705655731cae7333823750600b17e59b0059bd7a2",
+      "augmented_prompt_sha256": "f4b1074cf57c3c0bf48b3dccce65e5ffff20247ad0ad1584fff669c15807e84f",
+      "episode": "episode000006",
+      "first_frame_sha256": "a0b40cec4eabd62b90835541d1ca27629011fb2e477e23f4a2e28b0baf48d957",
+      "source_prompt_sha256": "04c2597cd96cfd4d458e083925104ec1cfc1b36fe1fc90e90692d3389b59bad8"
+    },
+    {
+      "action_sha256": "d541d4698127a7dc3c1a31e26ac2854f97650ecb78b94e6d5ef3c913b2f672f4",
+      "augmented_prompt_sha256": "0353b3bf26ad6b6e74971d85f4e29e5fd823529f5237383372d16427077cdc8f",
+      "episode": "episode000007",
+      "first_frame_sha256": "431fc0dd271d35fa603f195e2651add513fe6085891e307606432b9258736072",
+      "source_prompt_sha256": "221735cb269ac12c002e1d14c69e87c8dc2db9a27a8bdf60a1e09e400ed5072c"
+    },
+    {
+      "action_sha256": "be745ac416ae6309d2fae0a85317540a787069abb90c5fffbf714e88faa77e90",
+      "augmented_prompt_sha256": "ed87bd97a5a1835c0edcfeebaeda29ab4b64c492c5e3733bd16c0fddb3d3a8bb",
+      "episode": "episode000008",
+      "first_frame_sha256": "76d63bf575f72ffb4db2e758d8a98433217c30f94bc7530cf24ae165a12601b2",
+      "source_prompt_sha256": "24e4b3679a5e3687906115e3a1dd1d885d364058b3feadbdf897964c29f86142"
+    },
+    {
+      "action_sha256": "0c97657390573e79167b6d2787d1b07261fc91e9b8eaf685bd129b576c902b7a",
+      "augmented_prompt_sha256": "3102c430a4438991cd4dc2345f6f4570ba6b0e49cac45891ef70bf7017da350c",
+      "episode": "episode000009",
+      "first_frame_sha256": "fb9a292baf9f25ab53e519f41e88aa48f13eaa3fda6fae77e5c82185d23630e3",
+      "source_prompt_sha256": "970dfed38c50f4f2aa4b514c5dd38b91eb62ee0b8a987bd0000538cb2f9f4b6d"
+    },
+    {
+      "action_sha256": "5b544333766a41a2e05a28803f4c96a8e455a8c1394fe3ea133a4e286a5d07cd",
+      "augmented_prompt_sha256": "be6a7935de458dd7802ff09bfe2082010cb2eb42a395bf9f48680a86830133a3",
+      "episode": "episode000010",
+      "first_frame_sha256": "ce87567f52c6ceeab3b3c3fc7f0b9a95da5e5c5988ab344b934b5148309239e3",
+      "source_prompt_sha256": "8a91006811705907ba41fd0e454b8637aba963e155ca0b5ee9a3c48513fa3c83"
+    },
+    {
+      "action_sha256": "6b14ff87aa3bf2cbaa89066edd94645fc32e06c0cbfb9baac32d207672daedee",
+      "augmented_prompt_sha256": "6353abf6a08fca7f385390a1cd60cb608fd62112082fb21bc697a566b99244fb",
+      "episode": "episode000011",
+      "first_frame_sha256": "768d6bce91baf7016f6761fd1c29451a56b8ae27966486072d992bc47ab8bb1e",
+      "source_prompt_sha256": "32cd79ea0f7494513872d13c60471609103ab97106c2201498f18ec9cd26e1dd"
+    },
+    {
+      "action_sha256": "c1d8a925d1f8bd031f769f1a31ee92989621c11d8208d5f1dd05354f0a60d2ee",
+      "augmented_prompt_sha256": "edad03e7f33fac82907e28da1c6e3108296ddea35940edaa471208702aab63da",
+      "episode": "episode000012",
+      "first_frame_sha256": "1308e9be0be232fa9d459f7c416873dc3a978c04353faa0d2b113e4d6fc70670",
+      "source_prompt_sha256": "31858e9e219d63751854f3d20cfe86028b6c9f8944a585df6e6b8499e495e3a5"
+    },
+    {
+      "action_sha256": "cb32dba02adbefd98c9f4cfb1039321ee11e8b7cbe2face22b4e6248a4976332",
+      "augmented_prompt_sha256": "1672f830068ee5c2ef0f22bb1f337122e9a7f05be0996753df4f701e344a8e9b",
+      "episode": "episode000013",
+      "first_frame_sha256": "27962467d62e591d2543e5d266feea889abae41b29a12ffb9af3eda34aaf899d",
+      "source_prompt_sha256": "1217708e7e652a8a149d4dad94927004d99884c9d9af6f903cf1530eb049fb09"
+    },
+    {
+      "action_sha256": "9ad4719cf72b94efef9c1497ce16d5fe03161b4a16fdb06cb733ba2880e2e8f4",
+      "augmented_prompt_sha256": "ec0b0e048adc8e91804299c6703cd032e3170949047e4305aa3e22dd8c2c2ead",
+      "episode": "episode000014",
+      "first_frame_sha256": "133300a463f7e9f24f499140f6025ecc3f5997b1477aabe2408b99f3edfab208",
+      "source_prompt_sha256": "8ca2c0c52a1fe87331b89a48ea7bdb2231628e7277713b30438022bd6adbaedc"
+    },
+    {
+      "action_sha256": "0448449cf66fd61ead1cd7aa5de7bf207cd95d3f07c2e6f7f28375c8d5b00fb1",
+      "augmented_prompt_sha256": "20e88292e387a08234e782eec2542b9297fe56ed4d593100f65da573397248d7",
+      "episode": "episode000015",
+      "first_frame_sha256": "cf45bd5eab279efbd6496a8a102066cbb224d0e1182199dd4ca5aa5f07cbc4fe",
+      "source_prompt_sha256": "66ceb057ee65894e4bef3aca46b872552860c920e67e1dc97ea80e2536ea3c95"
+    },
+    {
+      "action_sha256": "65c7406925a58b6a4b92d0ab284381611d68ad6637ca3dc3e8331f8fd1ffe141",
+      "augmented_prompt_sha256": "2392d2caa4363b75b0ad4e79d2ac96c1e8bb8e86880f91336f46ab7a7b892186",
+      "episode": "episode000016",
+      "first_frame_sha256": "08d307dc80e4fe8fdb38af4f15b0a846604a7fe0cff45f9afdf4f3c366585e37",
+      "source_prompt_sha256": "487c7bc341f94ce05f29089e5af4c1839068802976628949f85e6b93cd209dd6"
+    },
+    {
+      "action_sha256": "b50db200e158fdf2caa21e2987dc0cdd4afcb0b9a0cf35074492d4f42f8533fa",
+      "augmented_prompt_sha256": "fa141e5bded2d2d1c2c59d5cd530a5567222214bd95cad83507c1f7d083855b1",
+      "episode": "episode000017",
+      "first_frame_sha256": "3be82ed4dbb8ad98e0f97460a6a1389c3d6cac22a029b5fad070147d495c77e1",
+      "source_prompt_sha256": "6df149f1299dc84be12d288a93d064f3f2fdcb7a7b4c0ab3d19e2dcb507975a2"
+    },
+    {
+      "action_sha256": "dcb494cea02cb8ebe925879fc74533e53b4dfe85540cf316fb9c18a4555affa1",
+      "augmented_prompt_sha256": "17fef22aea176cfb245d11fa4372c59bdb8f5bc5d509cd2801614ea17070ef00",
+      "episode": "episode000018",
+      "first_frame_sha256": "3232c96a831ee6a49ce84474088892d63a3d24902be6fcf94b2db271bcead98d",
+      "source_prompt_sha256": "9b979e7dff69d799b1686b5fe62db46ca76a30ad6fadcb0d84466ff0675c74cb"
+    },
+    {
+      "action_sha256": "180726473cdc0cf333aeb6cfe36fc5b9ae37e98ac1f878718a62a7c30bfd9999",
+      "augmented_prompt_sha256": "fce858b576b8c7f5c907df5f70c16e23e084cd8d5e49685cc58a5774b2e3b9cf",
+      "episode": "episode000019",
+      "first_frame_sha256": "58433135330d3398881152413403da760dac27898438fa44c2f325b0a1092605",
+      "source_prompt_sha256": "2e1e6351d7e898e99941ada6cb834d5158595c7da20ba50c732598821f74c94e"
+    },
+    {
+      "action_sha256": "f855c3ba6a555f2d1d5314d2c07ac05e1d606884ef32e4082570b90e9ebb08fa",
+      "augmented_prompt_sha256": "a8b7cc0e16cf325599766a9cbc16fbb53f687990bfb7ed8dbaf509fe417b98e7",
+      "episode": "episode000020",
+      "first_frame_sha256": "5e5af70440697e16f2a6dcf933bb734e10319a5b8fb3f26c339873b5b6efa48a",
+      "source_prompt_sha256": "bd6d53e14df417bb3f9f0d08d671d12c7ba6ec829b036c2c250d96116c86b2ff"
+    },
+    {
+      "action_sha256": "9e84b0f851f6e44502a90393803c130ad5444694a3344d8b420c5946866cce19",
+      "augmented_prompt_sha256": "49c867b85087ecc5cbe1cb9150f1418149fdd87fe2f7d2acb65df919871fb5cd",
+      "episode": "episode000021",
+      "first_frame_sha256": "6af2e138faa8dad94bccaae365e8299b817772f873a3adce346946f26fb19774",
+      "source_prompt_sha256": "3c39fc2af11fe7a6f445ea78f0369b2275d7bbe2fd44fc779de06390f72416cb"
+    },
+    {
+      "action_sha256": "e90d66425974b181034e0708e1c134b992d57d35857e2409f8fb4a9333bbaafc",
+      "augmented_prompt_sha256": "aa48d7fa0962270f0135a0ff20300df5518dac389638f4be1455730ee392beb0",
+      "episode": "episode000022",
+      "first_frame_sha256": "75a09d20a168c67ceb31ca35534441a51a4aa891850677eae8c8b1512efc74c5",
+      "source_prompt_sha256": "729126008575eb10d3b111bfdec59cdcc2da9174e310fefb12f6151679cb6835"
+    },
+    {
+      "action_sha256": "7b4a379dcb42a2717be9287a87a39fa980f7a51cb7da8d34eadd3c9cdfd4e551",
+      "augmented_prompt_sha256": "bb62f12d2596ada59cfcab633f2011a1ecff253ca0879546d4dc37351cadf618",
+      "episode": "episode000023",
+      "first_frame_sha256": "68d181610139bea22d115844bfe2cf87365cdc09ea239aaa002223fad4254d7e",
+      "source_prompt_sha256": "10ff1ebcc4023ecf2a346815f34bfbbdeb3525fc963f8db0485de4696ee0feab"
+    },
+    {
+      "action_sha256": "a8d714fb0cf34ec03df9f927b530e7f5520369fe33e543ee7be717f4b70a3eb5",
+      "augmented_prompt_sha256": "a48bdffc1b3718d7291e11b025a52fbaaa4ad12b8be5d8e49913fcb7f0b2ea7e",
+      "episode": "episode000024",
+      "first_frame_sha256": "3d2ff9997c4802cda0970433305bdeba8345c256b1217af8dadae3a251eb094c",
+      "source_prompt_sha256": "038f6efef0922b63480d50aee232b768c3cb18c15de4a401d00dacc14797b8b9"
+    },
+    {
+      "action_sha256": "4e7b7f72eea8a756f050605cba76ab99afa2ba3b5b7f37f9b723ffb91a8fdb91",
+      "augmented_prompt_sha256": "db0f9f7e6f8a27d0b70d2162ab5dd1181a9f47579dfc2544ffcec412999ac33b",
+      "episode": "episode000025",
+      "first_frame_sha256": "164ff96d0f647cb07e1dda826c0be0e61fe8b81c6a424a4da5e686a90c13bcce",
+      "source_prompt_sha256": "11b7106232917ef6fd3e3904259cc866b389e68b5f01555e57661df3c1039552"
+    }
+  ],
+  "source_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/train160/shards/gpu5/input"
+}

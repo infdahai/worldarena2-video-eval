@@ -1,0 +1,36 @@
+{
+  "arm": "D-p050",
+  "completed": true,
+  "contract": "worldarena-track1-d-p050-n8-cheap-gate-closed/1",
+  "full15_spent": false,
+  "generated9_csv_sha256": {
+    "seed1": "31b99847eb0a86e1307f11e034084320e019d32abdaa782fc0f20cc6203b6f38",
+    "seed4": "d3d5fb6f2510c9b06dfa96f37749978c901ea969bad063804df54a8e390826a5"
+  },
+  "generated9_metric_delta_vs_p0": {
+    "Aesthetic Quality": -0.0057975128293037415,
+    "Dynamic Degree": 0.003995841946753176,
+    "Flow Score": 0.0028924774266737008,
+    "Image Quality": -0.004051270131711582,
+    "Instruction Following": 0.0,
+    "Interaction Quality": 0.0,
+    "Motion Smoothness": 0.005341082220439386,
+    "Perspectivity": 0.0,
+    "Photometric Consistency": -0.00744397716296763
+  },
+  "primary_target_delta": {
+    "Aesthetic Quality": -0.0057975128293037415,
+    "Image Quality": -0.004051270131711582,
+    "Photometric Consistency": -0.00744397716296763
+  },
+  "promotion_allowed": false,
+  "reason": "all_primary_visual_targets_negative_after_frozen_generated9_selection",
+  "selected_seed_counts": {
+    "seed1": 1,
+    "seed4": 3
+  },
+  "selection_before_full15": true,
+  "selection_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/d-p050-s31/n8-dev4/scoring/selection/selection.complete.json",
+  "selection_receipt_sha256": "079c68b1dbd688b15cfe406ca8cc112210dca245d5c05f11a4d9df896e40977d",
+  "terminal_state": "closed_generated9_cheap_gate"
+}

@@ -1,0 +1,123 @@
+{
+  "comparison": {
+    "decision": {
+      "confidence_interval_computed": false,
+      "criterion": "GO iff same-scope full40 corrected15 delta vs seed142 route is strictly positive",
+      "go_no_go": "GO"
+    },
+    "delta": {
+      "corrected15": 0.001788006246282392,
+      "metric_means": {
+        "Aesthetic Quality": 0.00028014034032819435,
+        "Background Consistency": 0.0008780670166013138,
+        "Depth Accuracy": -0.0005080829891911387,
+        "Dynamic Degree": -0.0005116502491529507,
+        "Flow Score": 0.000507878460021427,
+        "Image Quality": 0.003306962572497796,
+        "Instruction Following": 0.015000000000000013,
+        "Interaction Quality": 0.0050000000000000044,
+        "JEPA Similarity": 0.00020182132720947266,
+        "Motion Smoothness": 0.0002019919848056384,
+        "Perspectivity": 0.010000000000000009,
+        "Photometric Consistency": 0.001988729126394112,
+        "Semantic Alignment": -0.0004150250000000133,
+        "Subject Consistency": -0.00014160490594827824,
+        "Trajectory Accuracy": -0.008969133989327971
+      },
+      "nonmotion12": 0.0022184894582134573
+    },
+    "new_seed1423_route": {
+      "corrected15": 0.6805080600464587,
+      "metric_means": {
+        "Aesthetic Quality": 0.39925002232193946,
+        "Background Consistency": 0.9161470031738277,
+        "Depth Accuracy": 0.9955573350924627,
+        "Dynamic Degree": 0.3359924694731428,
+        "Flow Score": 0.24301586163854744,
+        "Image Quality": 0.49917501158773153,
+        "Instruction Following": 0.7500000000000002,
+        "Interaction Quality": 0.7550000000000004,
+        "JEPA Similarity": 0.9606167078018188,
+        "Motion Smoothness": 0.7001644036126667,
+        "Perspectivity": 0.945,
+        "Photometric Consistency": 0.2249415703592935,
+        "Semantic Alignment": 0.8985107750000003,
+        "Subject Consistency": 0.8480617296695708,
+        "Trajectory Accuracy": 0.7361880109658786
+      },
+      "nonmotion12": 0.7440373471643769,
+      "rows": 40
+    },
+    "paired_rows": {
+      "new_wins": 30,
+      "prior_wins": 10,
+      "ties": 0
+    },
+    "prior_seed142_route": {
+      "corrected15": 0.6787200538001763,
+      "metric_means": {
+        "Aesthetic Quality": 0.39896988198161126,
+        "Background Consistency": 0.9152689361572264,
+        "Depth Accuracy": 0.9960654180816538,
+        "Dynamic Degree": 0.33650411972229577,
+        "Flow Score": 0.242507983178526,
+        "Image Quality": 0.49586804901523374,
+        "Instruction Following": 0.7350000000000002,
+        "Interaction Quality": 0.7500000000000004,
+        "JEPA Similarity": 0.9604148864746094,
+        "Motion Smoothness": 0.6999624116278611,
+        "Perspectivity": 0.9349999999999999,
+        "Photometric Consistency": 0.22295284123289938,
+        "Semantic Alignment": 0.8989258000000003,
+        "Subject Consistency": 0.8482033345755191,
+        "Trajectory Accuracy": 0.7451571449552066
+      },
+      "nonmotion12": 0.7418188577061634,
+      "rows": 40
+    }
+  },
+  "completed": true,
+  "contract": "worldarena-routing-seed1423-full40-same-scope-jepa-compare/1",
+  "full15_used_for_selection": false,
+  "inputs": {
+    "new_jepa_json": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1205/dev-clean-50/output_JEDi/results.json",
+      "sha256": "aecb5085d79468ee9b82dfa1e53b78276b6bb24fe248aafd20712a0cc5f7d896"
+    },
+    "new_package_receipt": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1205/dev-clean-50/receipts/package.complete.json",
+      "sha256": "5925ae5c1cb7adfc45705c2e845684b01ac7eeaeb94f3f9ae0a6a5ba5b28987d"
+    },
+    "prior_jepa_json": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1199/dev-clean-50/output_JEDi/results.json",
+      "sha256": "591b927d9ad5c4c1ec547610e1002b2ed1489f67ac35df2c89cb5435ece034c1"
+    },
+    "prior_package_receipt": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1199/dev-clean-50/receipts/package.complete.json",
+      "sha256": "e5f01663b83ff008d05ea45aa24d93aff6561bed3cab5ad6329943c606538c3e"
+    },
+    "prior_paired_rows": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/route40-final-compare/paired40.rows.jsonl",
+      "sha256": "2fb77978b6cacb69c15cf6e6f5aa9b797141e76f59bca2d112f0c9b2f42784cd"
+    },
+    "seed3_selected_rows": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/seed3-new14/merged-corrected15/seed3-new14.rows.jsonl",
+      "sha256": "f356a480002ff1ea7785c8d3e2c78b98d960661e2a4d2236317ae997ea6db635"
+    },
+    "seed3_selected_rows_extra": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/seed3-frozen-extra3/merged-corrected15/seed3-new14.rows.jsonl",
+      "sha256": "09affa619f6f536fd23c4576ccc865e39359e35af57d2c46cb6f5f4f34704b73"
+    }
+  },
+  "outputs": {
+    "paired40_rows": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/route40-seed142-frozen-plus3-final-compare/paired40.rows.jsonl",
+      "sha256": "7fc4206eea25fddf258ac1014421093071691959f4db9169a0b42237741dbe5b"
+    },
+    "summary": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/route40-seed142-frozen-plus3-final-compare/comparison.summary.json",
+      "sha256": "2378bb79d690cda70f25c0ba9c111b164e6893ab43fd5dd03c409113450db1e2"
+    }
+  },
+  "selection_used_generated9_only": true
+}

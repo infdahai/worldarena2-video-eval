@@ -1,0 +1,142 @@
+{
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "inference_sweep": {
+    "is_official_default": false,
+    "overrides": {
+      "flow_max_magnitude": 20.0,
+      "seed": 4
+    }
+  },
+  "instruction_variant": 0,
+  "max_episodes": null,
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "physical_gpu": 6,
+  "robot_conditioning": {
+    "mode": "pre-generated",
+    "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/train160/shards/gpu6/robot_only"
+  },
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 4,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "name": "episode000000.mp4",
+      "sha256": "83f4d3df22b1a41c0e340f80ebe5921b5f022e7f7078b8ace493fc517d1e0aa7"
+    },
+    {
+      "name": "episode000001.mp4",
+      "sha256": "29df3880dc797f428866813cfbf4fd3e9c812b8abc398dd2a0be5c9ffed7c145"
+    },
+    {
+      "name": "episode000002.mp4",
+      "sha256": "42ae357549fa4344facca4ada89d22758dbc05f4bdb561ed300002ed07c96bf0"
+    },
+    {
+      "name": "episode000003.mp4",
+      "sha256": "b5fb93eb562b1b3f976b49d5bd0c3bdc75c0bd9cf0652b6f6a3240474b16d817"
+    },
+    {
+      "name": "episode000004.mp4",
+      "sha256": "2571e7e742df098f103a71e62d62dbaae8ac1c17bf6d92ca5be1e29d07cc8d76"
+    },
+    {
+      "name": "episode000005.mp4",
+      "sha256": "a864bcb35cf1d1f32d967ec9971627be10d4008226f3756b460bd458d72d5985"
+    },
+    {
+      "name": "episode000006.mp4",
+      "sha256": "1f1c8f956e3cf3b7d7417fa9d4441d32dd8564c3a0ffe141a92e209cfb081f44"
+    },
+    {
+      "name": "episode000007.mp4",
+      "sha256": "7ebd5b7af76004668a279ac327e4f0919dcfb247401a494cb9dab31685ed86a8"
+    },
+    {
+      "name": "episode000008.mp4",
+      "sha256": "8f07a18395c2ef0e1eeeeff1c357dbf4d9330e0b78d8db5f702acd0d7673d39d"
+    },
+    {
+      "name": "episode000009.mp4",
+      "sha256": "e73919784b59434c6d69ca0fb7fb8d96c329880ac8797f16ab7d669820b31483"
+    },
+    {
+      "name": "episode000010.mp4",
+      "sha256": "ad0309ef1eda36992feb5a51d8cbacdcd083ab4cd766f6bc5d7d52a0e800edc7"
+    },
+    {
+      "name": "episode000011.mp4",
+      "sha256": "09d88350c8c29db75108d21c609178d5451f7266995013d5a379eb1ad9c63b8b"
+    },
+    {
+      "name": "episode000012.mp4",
+      "sha256": "e4f3060a8d49aaaa868ec63e606e12592869668c81cc5aba126709364fa61238"
+    },
+    {
+      "name": "episode000013.mp4",
+      "sha256": "c41777a476e3ca884c3b861ac740f2f92cdf00ea0a191f58ab52a913933ae734"
+    },
+    {
+      "name": "episode000014.mp4",
+      "sha256": "bba55a439be32c28b71e45aabcba272d121d4448a310c725848624dda657db66"
+    },
+    {
+      "name": "episode000015.mp4",
+      "sha256": "e8cc99a3a432626f43650788eaf229fab0c9451ce9cad30e492b7520d932234c"
+    },
+    {
+      "name": "episode000016.mp4",
+      "sha256": "7f6227219c75a76dddaac3161f9c3647e23befa91f092256bd5fdb74ec49a055"
+    },
+    {
+      "name": "episode000017.mp4",
+      "sha256": "f227b57e42515d84dc4367858f1a39082ccef89011e67af486a83534667e6d29"
+    },
+    {
+      "name": "episode000018.mp4",
+      "sha256": "b371de145ae89c662baa3b60281bad7db9d16977c81dac1bf2f763bca63c0d2c"
+    },
+    {
+      "name": "episode000019.mp4",
+      "sha256": "e5776716d75c42d654a1ea3b29198047f4236b979ba857759d9b18c3bbf1f84b"
+    },
+    {
+      "name": "episode000020.mp4",
+      "sha256": "a665ef381bfc5a32f87ea62a25b761dcd773742cd620f5b24994bea9ca54aa99"
+    },
+    {
+      "name": "episode000021.mp4",
+      "sha256": "25b25c2cfccd881ebdac2f485489a94011f45d17158b57ca730ebcaa7b7ef9ee"
+    },
+    {
+      "name": "episode000022.mp4",
+      "sha256": "a496512bf93eb50c53a507f270904a872a35da8ca007bf671ae6056a56d04cd4"
+    },
+    {
+      "name": "episode000023.mp4",
+      "sha256": "8209930c6d8a2c9eea6d67fc958a4d188718100d9878b0fba0e5e91aab81fb9d"
+    },
+    {
+      "name": "episode000024.mp4",
+      "sha256": "93ec3748c5b88c554e21366843f182f18b44e0afb9b58324b7aebf949062ee4f"
+    },
+    {
+      "name": "episode000025.mp4",
+      "sha256": "eff1a789be267ce2ddaf8a625a5e5650868a58d130e3e715c2fb9f29c9bef8e3"
+    }
+  ]
+}

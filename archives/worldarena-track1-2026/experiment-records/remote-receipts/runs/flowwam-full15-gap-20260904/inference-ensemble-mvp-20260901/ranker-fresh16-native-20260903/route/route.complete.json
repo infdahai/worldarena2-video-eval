@@ -1,0 +1,189 @@
+{
+  "completed": true,
+  "contract": "worldarena-ranker-fresh16-native-route-mvp/1",
+  "decisions": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/route/route-decisions.json",
+  "decisions_sha256": "f9ff454e41ed5ef3b060e6532db128a45fb23eb14c52486120c554ca7661553f",
+  "delta_threshold": 0.003,
+  "hidden_gt_used_for_selection": false,
+  "manifest_sha256": "d661604840181036b5ddd8742654f8082c799012996344a38c790d8a394979d7",
+  "model_sha256": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+  "p0_predictions": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/route/p0-selected16.jsonl",
+  "p0_predictions_sha256": "31690f1665e98bf9c96705035d0159a6845ad2d12ddd58a42b1d6cc48ad88c2d",
+  "policy_sha256": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7",
+  "protected_max_drop": null,
+  "ranker_model": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/ranker-fit/model.json",
+  "ranker_model_sha256": "1409145a4efadfa7d274b2742a85318da6a56322472bc687e3f13844a7eb0fd5",
+  "ranker_module_sha256": "cafcfe0aa0f06f44a286d1cf4af65a698467c2d60eb22c6fd2b23c90fe69aff6",
+  "ranker_predictions": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/route/ranker-selected16.jsonl",
+  "ranker_predictions_sha256": "85e8fd067858567ee2f16b32cf691c91624df1a4c15492472ae6d073620dc14f",
+  "real_collection_jepa_full15_gate_required": true,
+  "rows": 16,
+  "score_kind": "prediction_not_official",
+  "score_receipts": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed1/shard0/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "9f4ee4cfa32a6647def167412ef812e65a3a2298cc839052391c74f5a0fdf26c"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed1/shard1/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "977acdf6c3833c45a762ed8a73454f918441ce75f5fdcd56a45a4e6ec50410b3"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed1/shard2/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "c13a9b049436f626793653fe7916d79f0de77645830871df0e2b302e5a2e0b73"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed1/shard3/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "aaa050332317c294a99342fbf39b574ac6f670c50cd2f01b6038f98aca6850c7"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed2/shard0/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "e541a7bbaeeca2a0b7080c9e3ea5b4eb5a933900c287471f83d37f296e084419"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed2/shard1/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "c2ba0e5a8a6c31d2f65736b91d804ac649590cf8118266d3dd6af7e0f9ede4ac"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed2/shard2/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "bf3f75f62365bdc53d79e88e2d1499d8f06201c0cc9d63b8ef7033204ee5e4ff"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed2/shard3/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "08a4d71c53116c08ade9d5491346b81c61bf6a2197fd65baf05be5ea58893480"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed3/shard0/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "d43473b18000fae729876129178bb9b57f80b5c8a9a077a408b62c789977f43d"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed3/shard1/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "ab8a904a9c3ae86309b5840fc983428a8598e27c1ee865908d5a011927215817"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed3/shard2/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "6a319e340d38f209ff21a9b22ca5fb031270db024a7c81904ef38b3b3f481942"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed3/shard3/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "92a43e7e1496fc0587bf7152e51dd2682534aea427b8c4df4343e8bf1c23c007"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed4/shard0/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "e81b83c648a5a54584ee23772933d72e4e472fc4811344a05325108c8a394140"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed4/shard1/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "529ab80d6e2602d83702908f0734cecf62edb53e327584a1b487fb1c6307242d"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed4/shard2/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "2a0c1051833f6931b51822d05f8b3d2cc5f2266a0ee9d6e50379e06fcc3ecbdf"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed4/shard3/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "5ddca04c7f1315a5fce5ed6b08fd2c7f9dbe121dfd754bd620635ae351641e9c"
+    }
+  ],
+  "scoring_frames": 81,
+  "source_csvs": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed1/shard0/package/csv_results/generated-only.csv",
+      "seed": 1,
+      "sha256": "63a39b92ed79b589c9025e15b0c1d752f044041d264112037db46566cce3a23e",
+      "shard": 0
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed1/shard1/package/csv_results/generated-only.csv",
+      "seed": 1,
+      "sha256": "1c32e2244d571b6b9d5d91de53853c5d1f37d3d99403175b0839a94cc1634365",
+      "shard": 1
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed1/shard2/package/csv_results/generated-only.csv",
+      "seed": 1,
+      "sha256": "3d65cfcbf98dd18d10383476c9ff034359244ce1c343d53d6240f7ebbc6f9b07",
+      "shard": 2
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed1/shard3/package/csv_results/generated-only.csv",
+      "seed": 1,
+      "sha256": "3bcd5c76fcecfc5279a0c71721bd61ce404fae6381d42c515d6c3bb8b3de8479",
+      "shard": 3
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed2/shard0/package/csv_results/generated-only.csv",
+      "seed": 2,
+      "sha256": "f276964c17c77d1f726ade5f09e7217999daea89536c71eef5cb111c67fb338e",
+      "shard": 0
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed2/shard1/package/csv_results/generated-only.csv",
+      "seed": 2,
+      "sha256": "cd874a2a5d7936f7a2e4dd28c9270d9b30dbe3c77e7037fe6a574f2d21fa9935",
+      "shard": 1
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed2/shard2/package/csv_results/generated-only.csv",
+      "seed": 2,
+      "sha256": "3ad10d3f20f0fa6031d71d6c4eeae533e9ff17a46a99e6132d1c484c62d5740e",
+      "shard": 2
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed2/shard3/package/csv_results/generated-only.csv",
+      "seed": 2,
+      "sha256": "b297a32a7e7471d1be3a6752f822f61beac4a473dafc1a53d97004d94243b358",
+      "shard": 3
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed3/shard0/package/csv_results/generated-only.csv",
+      "seed": 3,
+      "sha256": "72542244f9a892a3305be9f7977cabd9b01236d4a42ca487e8f5f1cacf7e70ee",
+      "shard": 0
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed3/shard1/package/csv_results/generated-only.csv",
+      "seed": 3,
+      "sha256": "e2569f9b2c54b461466898d589057aca76d737929f12e4336fecf5ae205574cf",
+      "shard": 1
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed3/shard2/package/csv_results/generated-only.csv",
+      "seed": 3,
+      "sha256": "b92a56356d5652eb00d4d039c1d8d7892c649b38a853e9e0f1de85dccb30a8f3",
+      "shard": 2
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed3/shard3/package/csv_results/generated-only.csv",
+      "seed": 3,
+      "sha256": "9e43f361ccb26467e93bbfb4eeca540c2775cd18248cab2f6b8e18d5ca542b4a",
+      "shard": 3
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed4/shard0/package/csv_results/generated-only.csv",
+      "seed": 4,
+      "sha256": "a8c7f4fc309b37b1d515c30b76b539a6c27a809458051a754299c64bb7172918",
+      "shard": 0
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed4/shard1/package/csv_results/generated-only.csv",
+      "seed": 4,
+      "sha256": "5b2040922dfe1ac1a91dca1b82b9850f3cded7d4bcd8e76a294488e46cfe8e00",
+      "shard": 1
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed4/shard2/package/csv_results/generated-only.csv",
+      "seed": 4,
+      "sha256": "da7b3d9580142ac037a83549247c649a85b473e7db0e1a392bc4f7af800777df",
+      "shard": 2
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed4/shard3/package/csv_results/generated-only.csv",
+      "seed": 4,
+      "sha256": "2294ca29c9322fba5169ac9df867a0e5763852a4e014aef6b6c3d7a5a5e18175",
+      "shard": 3
+    }
+  ],
+  "source_frames": 121,
+  "wrapper_sha256": "be5bec91bdd4ea9b26be88177bec2ffe8523771d29427c7f5717f3fb574419d4"
+}

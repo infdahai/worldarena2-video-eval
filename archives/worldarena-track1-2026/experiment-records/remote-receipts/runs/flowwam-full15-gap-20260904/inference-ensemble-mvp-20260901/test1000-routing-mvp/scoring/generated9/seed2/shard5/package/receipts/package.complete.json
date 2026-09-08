@@ -1,0 +1,885 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 2,
+  "videos": [
+    {
+      "episode_id": 6,
+      "score_video": "fixed_scene_task_episode_000006.mp4",
+      "score_video_sha256": "9ed5215a66237ee1efb5ddf496b07034c89fb813f164ee3ae1f89f6fd9183a99",
+      "source_sha256": "3d878471eb1ef8bee904f1a2fd6fd064c476d1d80892ad62cf7ebbf7dcdf8d07",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode6.mp4"
+    },
+    {
+      "episode_id": 14,
+      "score_video": "fixed_scene_task_episode_000014.mp4",
+      "score_video_sha256": "cee683a59083d0c8372f7aca3f6fc7de99ee99020e37fe6479090e3264205c46",
+      "source_sha256": "8a9795bf4ca38c1d01ef955219a39ac1ff55f57aaff0bc41d56b176c3640b354",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode14.mp4"
+    },
+    {
+      "episode_id": 22,
+      "score_video": "fixed_scene_task_episode_000022.mp4",
+      "score_video_sha256": "fa6e30267e3bff1637c314be50197408fe8f150064fb5f3ad36254d902bc03c4",
+      "source_sha256": "cd1b48e091679e09b93204e1ab1649d97bcd247b7841cfabf201458d58671301",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode22.mp4"
+    },
+    {
+      "episode_id": 30,
+      "score_video": "fixed_scene_task_episode_000030.mp4",
+      "score_video_sha256": "83e556836c85cc30672a3995bb560d7f0d5eb79d9d3792c66f0880f40bd15e7f",
+      "source_sha256": "0cdc6e85538f6850f1565440e802d22888a4c352fb9c52695147adc0d7a62520",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode30.mp4"
+    },
+    {
+      "episode_id": 38,
+      "score_video": "fixed_scene_task_episode_000038.mp4",
+      "score_video_sha256": "ab961a32c68f8677f3c1159300e7ed55978f680984d001ca180d1e5b996f62f5",
+      "source_sha256": "3de17934ec3b9b6f3be1c3e7448c8086617e440f0de692b659726c598f9f2934",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode38.mp4"
+    },
+    {
+      "episode_id": 46,
+      "score_video": "fixed_scene_task_episode_000046.mp4",
+      "score_video_sha256": "11e9914b97a5ebabe69eb81cd8a49ff6b6ecf735ae5b2f8e3afc2b60b24c551e",
+      "source_sha256": "cc59177bcc4e34f1af1e119f835fb3878f9c5aa51cd2dcd58a15709f7dbca4d5",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode46.mp4"
+    },
+    {
+      "episode_id": 54,
+      "score_video": "fixed_scene_task_episode_000054.mp4",
+      "score_video_sha256": "494905267688da60d48f5255627420b7cfd1bed178d8439937c1196050253e81",
+      "source_sha256": "d405eec2399e70c379f1d64da7a4b4f7dd7bcb57f456f57efcb6839258949fcc",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode54.mp4"
+    },
+    {
+      "episode_id": 62,
+      "score_video": "fixed_scene_task_episode_000062.mp4",
+      "score_video_sha256": "6397a1d2df0c1ff5d5185364ee1cda62d7fe8b442bf1893581d8a5b4895d9b45",
+      "source_sha256": "fdc5f35a21630649c6dcbef98adbe69efe5971ade8a1901317fd824338b13a30",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode62.mp4"
+    },
+    {
+      "episode_id": 70,
+      "score_video": "fixed_scene_task_episode_000070.mp4",
+      "score_video_sha256": "1b55280e8b19fe015537351479c0f2c1afe0ed803b903bbcd65b457df28a66c4",
+      "source_sha256": "0d60498c267cf4e7b42c8839230e09e1bf2b2f3e7bb433385f5cb30f61fb6146",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode70.mp4"
+    },
+    {
+      "episode_id": 78,
+      "score_video": "fixed_scene_task_episode_000078.mp4",
+      "score_video_sha256": "ffd42c73582e304e7a86277412bf40704618416a0d3fb3c763f5d6e884f33279",
+      "source_sha256": "84c05006fc18f92054ba5501319bde58649834d47cb4abcc5de8077df5ad0de3",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode78.mp4"
+    },
+    {
+      "episode_id": 86,
+      "score_video": "fixed_scene_task_episode_000086.mp4",
+      "score_video_sha256": "9f0dc244e526426c0754b797e11b363760a3c4c5dc7b05e44244576e6d372a62",
+      "source_sha256": "8234f7cde559847f18b9c95dc6f8ca45ea801262a4ff9c9449fd6b1ca801f4d9",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode86.mp4"
+    },
+    {
+      "episode_id": 94,
+      "score_video": "fixed_scene_task_episode_000094.mp4",
+      "score_video_sha256": "22783f4a99f26c9218ee6e94d7262c9ddc0a9a9bdadb19d4d63ea1c460be91a0",
+      "source_sha256": "1b60aef53e5571949454c35068ab1054ef615124cfdcea85ebac8a3ddd1a17f2",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode94.mp4"
+    },
+    {
+      "episode_id": 102,
+      "score_video": "fixed_scene_task_episode_000102.mp4",
+      "score_video_sha256": "f55cd1252e87cf052f7f75a10b3575d9c20690fb6233b5e54f4a1fd76b845db3",
+      "source_sha256": "f28e2c88bc054ee6f5492e583de36f2f50ce348eae9d7b59fdd75b05fd8e3240",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode102.mp4"
+    },
+    {
+      "episode_id": 110,
+      "score_video": "fixed_scene_task_episode_000110.mp4",
+      "score_video_sha256": "336e347f4ea104d359185ec7f27a76eb0cbee0f5e1ea1193a67d7c931a7a00ec",
+      "source_sha256": "48bbbe687c638957d687f03b446bfadf70770461b870ac04199bd69c62f6a8b5",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode110.mp4"
+    },
+    {
+      "episode_id": 118,
+      "score_video": "fixed_scene_task_episode_000118.mp4",
+      "score_video_sha256": "f9c72e5a89ff727f49bbce36f966d08c4a8e7deb7ecbf8915974fe254ffc88c8",
+      "source_sha256": "e40148a9753fe5f8c15445009d5236d1c0d6360289f5e0bd0b6180534c20e11a",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode118.mp4"
+    },
+    {
+      "episode_id": 126,
+      "score_video": "fixed_scene_task_episode_000126.mp4",
+      "score_video_sha256": "3924db6b06f5fd535adf8d4627f5e71d9da799ce734e95985cf701aa7200792e",
+      "source_sha256": "0428614ea7b617fc7bedbaa306745acce108b0b107c0f908fb3bf60cb5107808",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode126.mp4"
+    },
+    {
+      "episode_id": 134,
+      "score_video": "fixed_scene_task_episode_000134.mp4",
+      "score_video_sha256": "d706e8236799e78d598c88eaf7cdeff865d25758054e01393cb8090b425cd26b",
+      "source_sha256": "0f5e6f71e7810fe9c2b1f261f708a6a90347e7aef2644f34299f5715a0478c85",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode134.mp4"
+    },
+    {
+      "episode_id": 142,
+      "score_video": "fixed_scene_task_episode_000142.mp4",
+      "score_video_sha256": "26c46d517345ef2f893cfabe1be40e30a7bcd0a3fe1cdbe73530c1e28bed13cd",
+      "source_sha256": "ab730e498918ec7bdc9ce15a671c805c1601b8ad904a7029538e2e30dd3c55fe",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode142.mp4"
+    },
+    {
+      "episode_id": 150,
+      "score_video": "fixed_scene_task_episode_000150.mp4",
+      "score_video_sha256": "9a224c05e3419b99c5d0ef9266faeae1192bcde2a90c8a9fa308923a22b03f97",
+      "source_sha256": "e10b284b2b78d517b07f06134ae7e495be96f1f6d158bcb693c514cfa608e478",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode150.mp4"
+    },
+    {
+      "episode_id": 158,
+      "score_video": "fixed_scene_task_episode_000158.mp4",
+      "score_video_sha256": "d2f26a4ffcd0479b0e1112b239e0d78585cdbfc465b860a64147ed0656eee688",
+      "source_sha256": "4186c6f3e28e3c1ef422dee0ce665c15a12116c56eeba68a30f6538366597bfa",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode158.mp4"
+    },
+    {
+      "episode_id": 166,
+      "score_video": "fixed_scene_task_episode_000166.mp4",
+      "score_video_sha256": "f31d3c2c18018d2b53cb2fafaafcf33c8f69331dcda118f873a9e19f3e87ce6f",
+      "source_sha256": "2b58eb75a316515c977eb994ead362c64fda7cf5bb716bc8f0bb03cab902206f",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode166.mp4"
+    },
+    {
+      "episode_id": 174,
+      "score_video": "fixed_scene_task_episode_000174.mp4",
+      "score_video_sha256": "ac255aab5a7850180355fb6603e9b41bb4145a97efdd4c39a07f16581407d06c",
+      "source_sha256": "ed5c185a36eff77896d168e3ae6eddac7b3ece09b5761f1859aff66c066f52b3",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode174.mp4"
+    },
+    {
+      "episode_id": 182,
+      "score_video": "fixed_scene_task_episode_000182.mp4",
+      "score_video_sha256": "d99e7da82ca5c8b78995267ddc0fbc6bced1f5c7d12334ae038c13ef3640618a",
+      "source_sha256": "76a53004ec5ec1558864002624f37908dd552ffbbf771b8dfc6cc68c4f343624",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode182.mp4"
+    },
+    {
+      "episode_id": 190,
+      "score_video": "fixed_scene_task_episode_000190.mp4",
+      "score_video_sha256": "25f10cb2ac9308d72b02b57a4de21f1139abaf8b6bb7d1d3bfd4733b3cb0b6ed",
+      "source_sha256": "6b99ca5b1c7c080d510c6e8769c59191d80f7d92f1b8cea5e8b36bbcb00f1f4c",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode190.mp4"
+    },
+    {
+      "episode_id": 198,
+      "score_video": "fixed_scene_task_episode_000198.mp4",
+      "score_video_sha256": "815cbfaa6e00f60c0d9500c470f8f0000854163cd4e08f8ce1ce2f49d646c988",
+      "source_sha256": "98924dfd89c87640ef02185c42ba8e6fce7cf67a45d3351ed340748b80c17c00",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode198.mp4"
+    },
+    {
+      "episode_id": 206,
+      "score_video": "fixed_scene_task_episode_000206.mp4",
+      "score_video_sha256": "02df7d694aa724ae5b1026ddb523c7606568e4055e4f10d50274a993b2de7053",
+      "source_sha256": "972e202bb54aeb132c3a987eb87f6958c097bbf4250b2045ea0508af53fcf2e3",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode206.mp4"
+    },
+    {
+      "episode_id": 214,
+      "score_video": "fixed_scene_task_episode_000214.mp4",
+      "score_video_sha256": "4c85e82eca8baccb1360a59071b21a6cdfaca95caee8bb01000ae82f936e100e",
+      "source_sha256": "6c13cdc9f4460dcf3654e6402e861a4760e6f4fbbda258461a96a2b2a10c8ee5",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode214.mp4"
+    },
+    {
+      "episode_id": 222,
+      "score_video": "fixed_scene_task_episode_000222.mp4",
+      "score_video_sha256": "629969257ca213237c1ed2d42c74d274b818ee28cf92362427f231ac248c60ee",
+      "source_sha256": "b9e791cc97d1997aec315638ccea79c43183fbe723b4ff212ad3e57be2791407",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode222.mp4"
+    },
+    {
+      "episode_id": 230,
+      "score_video": "fixed_scene_task_episode_000230.mp4",
+      "score_video_sha256": "be8195a12189875195e316b9f8e3511ba29338d3ec660812b4be294e80ff7e9f",
+      "source_sha256": "64359058fa8cfaee6b9a205dbfff6c1f88ce14696d5a2162b1e232ebc0454b32",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode230.mp4"
+    },
+    {
+      "episode_id": 238,
+      "score_video": "fixed_scene_task_episode_000238.mp4",
+      "score_video_sha256": "2b654d48a3f8851143784a62d2fb57123730d661c86a675814b888bd2cceac94",
+      "source_sha256": "60a00d0aed9181ff7857209512725f0e0803fe3eb740577fc5951df7851b7ad4",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode238.mp4"
+    },
+    {
+      "episode_id": 246,
+      "score_video": "fixed_scene_task_episode_000246.mp4",
+      "score_video_sha256": "1624447a13b784b309807e16d05e3e7a53d9e832e76a6e5c3030343a1c25aa97",
+      "source_sha256": "600519db3ede5a364eb4bf69d3adc473f899540436bfdebf373b1531fd9d494c",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode246.mp4"
+    },
+    {
+      "episode_id": 254,
+      "score_video": "fixed_scene_task_episode_000254.mp4",
+      "score_video_sha256": "7af57b41365a47d2eb0ae703f102e5afaf5d5d1bb77fb08b7515c7cf030b0b33",
+      "source_sha256": "98892368803ae65e8a8d0714d43c0a589b3f5fc89737c60224ad13f1744e1a1d",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode254.mp4"
+    },
+    {
+      "episode_id": 262,
+      "score_video": "fixed_scene_task_episode_000262.mp4",
+      "score_video_sha256": "95d05200f0464190add506926f4ff8976c686fbe31edf12539c07946e27195a4",
+      "source_sha256": "52db946cf7eaa235e339df70dafc86fa17d5ab4e3f3227c6d525711dad5c513b",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode262.mp4"
+    },
+    {
+      "episode_id": 270,
+      "score_video": "fixed_scene_task_episode_000270.mp4",
+      "score_video_sha256": "9897ab989b2fe8fbe417d118dc43df9967d501bebff4a4a15da79e89fd07bc4f",
+      "source_sha256": "79e0b838f88db72b51d94cdcba4bb45b0c7b9d587b08a2f622a3b4864ae8d93a",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode270.mp4"
+    },
+    {
+      "episode_id": 278,
+      "score_video": "fixed_scene_task_episode_000278.mp4",
+      "score_video_sha256": "2a3e21167b68aa3be1cc84d20a316d47eb4a925032f6ea0590c2c9796fccd4de",
+      "source_sha256": "a0ad937d77f6ee08f150d23e23bca3e1d40096d6543b6550b53ea849542ad3bd",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode278.mp4"
+    },
+    {
+      "episode_id": 286,
+      "score_video": "fixed_scene_task_episode_000286.mp4",
+      "score_video_sha256": "8f88906debb395d62f1d9305994a657879cfe1ce56cbd402033eb22e1fbbfef8",
+      "source_sha256": "ab2f7d1b8afdfc22501c88dc4892b0a5f84467ffd1a33a915be1d3ce79fa1976",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode286.mp4"
+    },
+    {
+      "episode_id": 294,
+      "score_video": "fixed_scene_task_episode_000294.mp4",
+      "score_video_sha256": "606316a39c71e09d083e9b3e06f41b3b355d1d47aaa03a7a9c3c07c70df8a196",
+      "source_sha256": "2d7b7e4a40cce7172923f0e311a4183ae9e13a20fe63a5c8e2e67e08d2507cf8",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode294.mp4"
+    },
+    {
+      "episode_id": 302,
+      "score_video": "fixed_scene_task_episode_000302.mp4",
+      "score_video_sha256": "7aeb5a094c6aa148a02688de118136f1fac04c633df3eeeaea12ba7ed151166b",
+      "source_sha256": "80ca62c50ff2a0b69025b893d631e9cb639a2435b2bda4fc0294a777cec6bd24",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode302.mp4"
+    },
+    {
+      "episode_id": 310,
+      "score_video": "fixed_scene_task_episode_000310.mp4",
+      "score_video_sha256": "779f868502fd7c0c0f00fa84ec32e1326878ffd73c1352a7a832e9d048952c50",
+      "source_sha256": "f834e0a09853f0288f60ae6eeb4bcdd52689d3f4ac814adc6c6d3c8957ba140a",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode310.mp4"
+    },
+    {
+      "episode_id": 318,
+      "score_video": "fixed_scene_task_episode_000318.mp4",
+      "score_video_sha256": "c1e623feda464907a63c308b74cfd2a43c712589a0c3429c35d118991a4db09b",
+      "source_sha256": "fea1c52d822af0a7c7c04705e8377ac5e15f010a6664c422f55ccf52f870a1ca",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode318.mp4"
+    },
+    {
+      "episode_id": 326,
+      "score_video": "fixed_scene_task_episode_000326.mp4",
+      "score_video_sha256": "85f5e6a21be269cd47032f61fcf2bd1033a9719fa1ffa550db3841dc186d8e8b",
+      "source_sha256": "1db4ac290611a4547e86cc20653b40db806a7976a41b9e236b07362268f4edcf",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode326.mp4"
+    },
+    {
+      "episode_id": 334,
+      "score_video": "fixed_scene_task_episode_000334.mp4",
+      "score_video_sha256": "9083db08fc249c621033dcf867de6eb5d9c6400ca1d17888ccb53754db6e43a1",
+      "source_sha256": "a048c081218b2476186a98e2f54089d36008a4c155646432886c1a93f31f41fd",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode334.mp4"
+    },
+    {
+      "episode_id": 342,
+      "score_video": "fixed_scene_task_episode_000342.mp4",
+      "score_video_sha256": "49f18147efbffd8cbe23030474436c286e01be921a4fa3b3d052574cc66c72f4",
+      "source_sha256": "ece0c416a6b0b9616b42354cc443abee44572de8619d43bc65552189647dc56a",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode342.mp4"
+    },
+    {
+      "episode_id": 350,
+      "score_video": "fixed_scene_task_episode_000350.mp4",
+      "score_video_sha256": "bc813653e8d38793c2e8c4d6c5b17669d7bf5c94f0a7ea0408a5cc9055ac3574",
+      "source_sha256": "806cef7f8114b00699a97320c955abc651ddba68f79e2477eb56a8a4d1c56e5c",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode350.mp4"
+    },
+    {
+      "episode_id": 358,
+      "score_video": "fixed_scene_task_episode_000358.mp4",
+      "score_video_sha256": "a2e48565b31386dfb8023619cdd4c60f7729ccf394c1960006bdcaa937c9b014",
+      "source_sha256": "55fcaa2faa8b2506d9f7941755208d16bc703c9b1a3d7f126246fa924d7d1663",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode358.mp4"
+    },
+    {
+      "episode_id": 366,
+      "score_video": "fixed_scene_task_episode_000366.mp4",
+      "score_video_sha256": "7aae62bb81260cd92ddd8023799776eb7226162aa8bbc456d449f6851f49b4e9",
+      "source_sha256": "f2918ca93464c7b6f04dc05a1d6aa3d3305c92fc695ebc13431a29783deedc99",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode366.mp4"
+    },
+    {
+      "episode_id": 374,
+      "score_video": "fixed_scene_task_episode_000374.mp4",
+      "score_video_sha256": "964e9e293875723f6b030f8ef7db0fe44f0b3e527aa8650366d25cd07dac0de5",
+      "source_sha256": "3fba4f4685e282c07994ab62ba7ba8594663aeb54c3ff750124c30fcece4b2aa",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode374.mp4"
+    },
+    {
+      "episode_id": 382,
+      "score_video": "fixed_scene_task_episode_000382.mp4",
+      "score_video_sha256": "b4679ca3a9ce6c9eae24702686d2e9ff2d4c3f5527d883fef4b754978d3d1f29",
+      "source_sha256": "bd56babe5a090f5ec009f4eba63aa2a51518a4157ff81dfc271409fde6e4f7b1",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode382.mp4"
+    },
+    {
+      "episode_id": 390,
+      "score_video": "fixed_scene_task_episode_000390.mp4",
+      "score_video_sha256": "abc592ece2adfd281e158e0bf99e6081921265f16c290751c9472ced3e4f2984",
+      "source_sha256": "bf14eda02e0098e87fb4dfbe1cc7ea239bfd608b3754efc30e7131db9b706c72",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode390.mp4"
+    },
+    {
+      "episode_id": 398,
+      "score_video": "fixed_scene_task_episode_000398.mp4",
+      "score_video_sha256": "a593f2de463505a2385e9e1b1199d58b3f6177008940596f9a6a1ad0c1f14c4d",
+      "source_sha256": "7262a1f8e21470bdafa8bdbe0af00591bbd42d02afe2ff1507b3ce506b2a3ebf",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode398.mp4"
+    },
+    {
+      "episode_id": 406,
+      "score_video": "fixed_scene_task_episode_000406.mp4",
+      "score_video_sha256": "19bae4da55407383f1dc3034765edd21cb4c952249fad06239c6bc5d84fae6a6",
+      "source_sha256": "d8507a858f95716c123a048ee6b9a6e67f1b7f61e0246d4cc77f04acaf6c002a",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode406.mp4"
+    },
+    {
+      "episode_id": 414,
+      "score_video": "fixed_scene_task_episode_000414.mp4",
+      "score_video_sha256": "30313dce99604a69f6c0b800266ba54e6106276f450b8ddda292aac84a71bca7",
+      "source_sha256": "83052a44fcda13f5bf0823172d6f64e2c3e2661ff1526f8d5d5295de73d552f7",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode414.mp4"
+    },
+    {
+      "episode_id": 422,
+      "score_video": "fixed_scene_task_episode_000422.mp4",
+      "score_video_sha256": "4e799a0230ab509dbe5e2ff716ef6c677daac12a2ab2601eafa4fb796e00e8b0",
+      "source_sha256": "545a7b906bc6f83e5ab0afe1376f2853b2f89ab0f1431dd05afcaa7b00af2262",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode422.mp4"
+    },
+    {
+      "episode_id": 430,
+      "score_video": "fixed_scene_task_episode_000430.mp4",
+      "score_video_sha256": "97b2b119f9db3fac82c91e6db1f42a3a188ba95dc52b4bc376b64b9ed65a9f79",
+      "source_sha256": "8658aca7f38cee20695a17c4f6e4709d8736df31dd4aaaa67711d163d6d03d3b",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode430.mp4"
+    },
+    {
+      "episode_id": 438,
+      "score_video": "fixed_scene_task_episode_000438.mp4",
+      "score_video_sha256": "c25f58cc79d3f0dbd206297f8bd68fa3a0dc95b9091fccfc57f955a53cd0b7b9",
+      "source_sha256": "a8c544b26ddbbfb382f9fd1f52639905f06edc87d2d999a3ee7e066386fc74a7",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode438.mp4"
+    },
+    {
+      "episode_id": 446,
+      "score_video": "fixed_scene_task_episode_000446.mp4",
+      "score_video_sha256": "fc2c50a1613e1a4ff1607000cf67678535e07115e9ee45ec5f5a04a0935fda99",
+      "source_sha256": "fd2f3b8df1bf81d1e474e96a449b4870f20c685467a082c507f06ef87cb350e8",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode446.mp4"
+    },
+    {
+      "episode_id": 454,
+      "score_video": "fixed_scene_task_episode_000454.mp4",
+      "score_video_sha256": "dc7b38feab22683d05f56e4cbd4d72a3db18d65a686c5bfaeebe6f0f6cc1e352",
+      "source_sha256": "bde2da478256e0f294ca16add7712f1bed56d4835e9e8c5e641b1529ac8e1bd1",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode454.mp4"
+    },
+    {
+      "episode_id": 462,
+      "score_video": "fixed_scene_task_episode_000462.mp4",
+      "score_video_sha256": "dff6c77897161f68007701e9909354fe2c27f4212a63c66f935849416cc16969",
+      "source_sha256": "ed0d8c8d3348199dcac0b0f8b24b615d282335963d10fd24882bdda704bfed87",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode462.mp4"
+    },
+    {
+      "episode_id": 470,
+      "score_video": "fixed_scene_task_episode_000470.mp4",
+      "score_video_sha256": "1ea752a5de558631d169966f7307ed121315d0ff72f7b0be0f16a4f4953f1fcd",
+      "source_sha256": "3b39b514bbb5372831fe6a60b6445897f89289b4525cf33de96cdf47e753d663",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode470.mp4"
+    },
+    {
+      "episode_id": 478,
+      "score_video": "fixed_scene_task_episode_000478.mp4",
+      "score_video_sha256": "5a04b0714ef9bee4aad12662e3293cf24c088e59a7df07af8426bf573d85d9aa",
+      "source_sha256": "bf12eb320bd58566a57c479f02b4d229364788e65febb88e025fb8930f0f883a",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode478.mp4"
+    },
+    {
+      "episode_id": 486,
+      "score_video": "fixed_scene_task_episode_000486.mp4",
+      "score_video_sha256": "4d5a35b63a84aaba58ee983adc6525240d8704486e1717f7589cc124723e36f2",
+      "source_sha256": "0e8dc68f638ed687cf0be72b80f9cbaaa13094422edd40b00efae689b536d74a",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode486.mp4"
+    },
+    {
+      "episode_id": 494,
+      "score_video": "fixed_scene_task_episode_000494.mp4",
+      "score_video_sha256": "045765ddbbc4136f44ba1e68e52d52bd7a8181a2a260c993bf45289da0ed1dd6",
+      "source_sha256": "02983000a8dca66442326db400e1d37762394cf425398a57e4b83ef80cda8008",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode494.mp4"
+    },
+    {
+      "episode_id": 502,
+      "score_video": "fixed_scene_task_episode_000502.mp4",
+      "score_video_sha256": "e2d905c82f65d31b9efef6b47eea8761b129855fa689aa39acd4795f30901b73",
+      "source_sha256": "fe978d8f56005863ec21010f844577dc393bedc3ad6ae6fe1ed215db62627051",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode502.mp4"
+    },
+    {
+      "episode_id": 510,
+      "score_video": "fixed_scene_task_episode_000510.mp4",
+      "score_video_sha256": "a661d11c45ffc913bc862ef131639449e3e8b65c3d62b120173bb6885b12dd75",
+      "source_sha256": "207481e1696212d45f36c18e3705b4994d64785e5093e11841054b344e1d54d4",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode510.mp4"
+    },
+    {
+      "episode_id": 518,
+      "score_video": "fixed_scene_task_episode_000518.mp4",
+      "score_video_sha256": "b744f5477acebf535dad9f4176c524c1f6daa2b44bc28c0694ce634bf9dea5a4",
+      "source_sha256": "64d83296530621b136124174a1f41b80013fe45bd746312daaf86f73e1e29f8f",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode518.mp4"
+    },
+    {
+      "episode_id": 526,
+      "score_video": "fixed_scene_task_episode_000526.mp4",
+      "score_video_sha256": "7c532b1d4d42fe4503a828088763666dc3a214fbb4dd619a214e192aed2138dd",
+      "source_sha256": "be0ad6e7a7993ad45802301dd8e8237aca652d761326f65ceede70cbd1a36424",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode526.mp4"
+    },
+    {
+      "episode_id": 534,
+      "score_video": "fixed_scene_task_episode_000534.mp4",
+      "score_video_sha256": "949a1a825325f14241c6206d8589b11873c5383205e8b80863793837294161fe",
+      "source_sha256": "7b50cc6e6bc1a507e86f22517fdf5ad97ed6b9ec9eef974d48e67f823398f6a9",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode534.mp4"
+    },
+    {
+      "episode_id": 542,
+      "score_video": "fixed_scene_task_episode_000542.mp4",
+      "score_video_sha256": "73d6e5252ce4562a03d88cae59b42e252f0d900a370ca3cdf5105e1bc5a3f590",
+      "source_sha256": "1f2fb8bd9a364d1e34781a25383b6853cf5788685226523134a9ec1fc6a2eb1e",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode542.mp4"
+    },
+    {
+      "episode_id": 550,
+      "score_video": "fixed_scene_task_episode_000550.mp4",
+      "score_video_sha256": "3a013a58b5242a989d6dd32a3567843c19d9b0998ddb17241286bc342fa59a1f",
+      "source_sha256": "2e753dfc4966b56b8a3381d7747fa6b69c21c66a63ca520cf797a0d267db51af",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode550.mp4"
+    },
+    {
+      "episode_id": 558,
+      "score_video": "fixed_scene_task_episode_000558.mp4",
+      "score_video_sha256": "63f872dafc4e7439f584ba8aa967f8b9ee155c1b22d4e5ec27637ce30f55bfd9",
+      "source_sha256": "9b56f538e1e588393547c26bed76e593a49bbc8319f50d4b7fac7b4ebcd3c5b5",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode558.mp4"
+    },
+    {
+      "episode_id": 566,
+      "score_video": "fixed_scene_task_episode_000566.mp4",
+      "score_video_sha256": "3ac4732ae8b72cf4967da7eb92886c24c40c32f05cf5c762906c3eb83adaa3a1",
+      "source_sha256": "feca6a16e2341a887fbaf40fc64d892ec705a1bb4e5d054388420790f6aed976",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode566.mp4"
+    },
+    {
+      "episode_id": 574,
+      "score_video": "fixed_scene_task_episode_000574.mp4",
+      "score_video_sha256": "d66fd2894e0a7c4499f09716f82bb0ca714b685bbcc5efc8566a77be586c81cb",
+      "source_sha256": "d0bcb792b620e020c36728973dc2371b81991d6d547c84bfe96f42a9efffbd34",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode574.mp4"
+    },
+    {
+      "episode_id": 582,
+      "score_video": "fixed_scene_task_episode_000582.mp4",
+      "score_video_sha256": "52823abbc2c936f1e9cb82df5f82303055109c4cb85cd4474564d243fc2ff3dd",
+      "source_sha256": "ee1630555eaf4cd7417af0f467d18d74dbae4f615b5bfcf422508b651e61b8d6",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode582.mp4"
+    },
+    {
+      "episode_id": 590,
+      "score_video": "fixed_scene_task_episode_000590.mp4",
+      "score_video_sha256": "ecb876cbf55f1fbd4bf6370de844457fb79baf5476ad587de9b9ab23f4329d5c",
+      "source_sha256": "858f6952b10184342c0fe9922d200349137b4b1ca5cab5f9a676eafc86cc1795",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode590.mp4"
+    },
+    {
+      "episode_id": 598,
+      "score_video": "fixed_scene_task_episode_000598.mp4",
+      "score_video_sha256": "f14fabc1bdc97b64dd65b7dd6a9f107b7cd800aa1a64576fed9a8cd9e7d01859",
+      "source_sha256": "5304ad16879c52d014b7cbc8934135a2b844567e6ee3ce05ae707c97adf875eb",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode598.mp4"
+    },
+    {
+      "episode_id": 606,
+      "score_video": "fixed_scene_task_episode_000606.mp4",
+      "score_video_sha256": "654c4397da43d45543cc276eb728ca5f590af650c464bec9214b4490f7f0b987",
+      "source_sha256": "e94ad09104d99a07d2fef857d59c7fd6beb9d6e15f3b5642d8b8ca5bee274607",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode606.mp4"
+    },
+    {
+      "episode_id": 614,
+      "score_video": "fixed_scene_task_episode_000614.mp4",
+      "score_video_sha256": "95c9ba56ddd697f5460118f88b1c58845766a8029743f7cb636f2113d0b0bab3",
+      "source_sha256": "ef6e9ce9a0597b4d411218c9b016124731900166c938281a6f3e66d29d97a9a3",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode614.mp4"
+    },
+    {
+      "episode_id": 622,
+      "score_video": "fixed_scene_task_episode_000622.mp4",
+      "score_video_sha256": "1d0db57a97a54652f79a496a49680e54d876dc8b3b9cb9c94c3ccd2dc192c8e1",
+      "source_sha256": "dc0f695fc8d3568d5aecc49fc9ba2d975d98b9b98ce0c109ae270e747adadbf3",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode622.mp4"
+    },
+    {
+      "episode_id": 630,
+      "score_video": "fixed_scene_task_episode_000630.mp4",
+      "score_video_sha256": "8c01a5289ea6a1a35c1853f789428ec075e380535d52b413aefbdf81f743a798",
+      "source_sha256": "1b72cc0d80b73dfdfef790b6dc29e9fc38767ebd24a4d999c7c27b9476c4eb46",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode630.mp4"
+    },
+    {
+      "episode_id": 638,
+      "score_video": "fixed_scene_task_episode_000638.mp4",
+      "score_video_sha256": "a399f68e997b9862c5ed456cc028651dc367a22b3ffecc961e5d2c7484693fa2",
+      "source_sha256": "2bd49cdb844b5f2bc8082b1bb9dfdd3e45014c707efa1f681a57bb03bee51b39",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode638.mp4"
+    },
+    {
+      "episode_id": 646,
+      "score_video": "fixed_scene_task_episode_000646.mp4",
+      "score_video_sha256": "cb86fa33fa119fcc0519bcb9b1ec99fc0689ce41569332e38c3172731844267c",
+      "source_sha256": "6698c30a78e405683617359a6d7883cf1f0e51d2b768a67a6cd9f3a2cc6092b1",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode646.mp4"
+    },
+    {
+      "episode_id": 654,
+      "score_video": "fixed_scene_task_episode_000654.mp4",
+      "score_video_sha256": "8dd2197b5448b411f0e5500eae635e1ad4fffc1104e2a481578a9c231aac0830",
+      "source_sha256": "9e4baf50939d18e9ecb36aa4a3a0f46fb5abd53cb2a763dd10c97523efb7f4d5",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode654.mp4"
+    },
+    {
+      "episode_id": 662,
+      "score_video": "fixed_scene_task_episode_000662.mp4",
+      "score_video_sha256": "6eb143e350776417c1b48e7581f7d86175b3a839323bbca2616c0d3f966bd2bc",
+      "source_sha256": "ebb0fb7eb460e3fdacb80983c1125c23a86d01371d389efdcccfc22982598e94",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode662.mp4"
+    },
+    {
+      "episode_id": 670,
+      "score_video": "fixed_scene_task_episode_000670.mp4",
+      "score_video_sha256": "c59e7ef77285901bf306b1ba4f9cea8b69289c6e073181a744b25aa242e9f8c6",
+      "source_sha256": "adaae4f5cd94a51cec6e05cd9db8f480fe52a84b1522f5a2c6e38ced76ba6957",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode670.mp4"
+    },
+    {
+      "episode_id": 678,
+      "score_video": "fixed_scene_task_episode_000678.mp4",
+      "score_video_sha256": "1ad2282e900aec2335b3e1786d6732d098bb54f8317141da4b5a562689e6e37e",
+      "source_sha256": "19d3c3ad0afd6dee006d5a961d70c485e3f8b841ed4a793a5e655d421b48748b",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode678.mp4"
+    },
+    {
+      "episode_id": 686,
+      "score_video": "fixed_scene_task_episode_000686.mp4",
+      "score_video_sha256": "5dca6b7f69ab3b788889f2c58f70711a0803caa2b6cd5f4026ad639819267211",
+      "source_sha256": "e230cc9fdfb293d1548fe0cf0c11b06f57e7391a66c889181b31e29659a9aae9",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode686.mp4"
+    },
+    {
+      "episode_id": 694,
+      "score_video": "fixed_scene_task_episode_000694.mp4",
+      "score_video_sha256": "e3a24cf102355e8eb327556bca6ed2fbb6b9a618cbc7fb1507cf6126bbd35728",
+      "source_sha256": "1c6381341629b2196b9ae69a58202ca21354c08518e3e72f82024462a8588f97",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode694.mp4"
+    },
+    {
+      "episode_id": 702,
+      "score_video": "fixed_scene_task_episode_000702.mp4",
+      "score_video_sha256": "ee9a3ace1b73f2e619c30a3508ce5c022a3a9218afbe494b2d9407473c69d261",
+      "source_sha256": "51d2e6886477907aa237741ecf5066b751663cb3addf66d8d9fbc999272b301f",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode702.mp4"
+    },
+    {
+      "episode_id": 710,
+      "score_video": "fixed_scene_task_episode_000710.mp4",
+      "score_video_sha256": "5385acd0a78da9b73d33f60c70ccf8cfb75f60c70710618f62ae24a0c4b41a11",
+      "source_sha256": "1a7b96a74c53d71508c40761e23f8537813aba73e7722cddb14303a557ff6a6e",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode710.mp4"
+    },
+    {
+      "episode_id": 718,
+      "score_video": "fixed_scene_task_episode_000718.mp4",
+      "score_video_sha256": "203e89666a14c551ca49f27b25ab5534e482aca595b72b3645096cb6c5b88e08",
+      "source_sha256": "5f24cc56a08695ef1e83f4845fbac13f513473f30b874c3dcf0c7641857756b4",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode718.mp4"
+    },
+    {
+      "episode_id": 726,
+      "score_video": "fixed_scene_task_episode_000726.mp4",
+      "score_video_sha256": "c8259a5d5957f1c6017abe91eb6c60e60bdf46f41a28fa1d55b25a5d91bb1461",
+      "source_sha256": "a2a1f8d770d754f43067ce04fbb111f27604fbbd37e3b9992724bd46a0e9a3c2",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode726.mp4"
+    },
+    {
+      "episode_id": 734,
+      "score_video": "fixed_scene_task_episode_000734.mp4",
+      "score_video_sha256": "7d83ddc5572d61d54b0e4c18b30773b3e69255af99c2d2a24d6fb0915da527d1",
+      "source_sha256": "d7bc53d6835ca482b2ba5196b8fc90b33b3e803a94f48f23aca5701153b21673",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode734.mp4"
+    },
+    {
+      "episode_id": 742,
+      "score_video": "fixed_scene_task_episode_000742.mp4",
+      "score_video_sha256": "150e8eceeb5bbc9fa4a714ad3fcaa3dc2584d8e0981f63093e186fc09b2e938f",
+      "source_sha256": "ab055d1be2857024d94581fc04899349d4348cdbf9651204ecfee8dca1b1e54e",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode742.mp4"
+    },
+    {
+      "episode_id": 750,
+      "score_video": "fixed_scene_task_episode_000750.mp4",
+      "score_video_sha256": "d0a363fdf2436fcfd156b57f7b3f914a366da7943454fc762422bab6a958dc32",
+      "source_sha256": "54f58ec4e69ae3f9300897d2fe84bd5898022673f7dee5bdb0c5b26939cfbb30",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode750.mp4"
+    },
+    {
+      "episode_id": 758,
+      "score_video": "fixed_scene_task_episode_000758.mp4",
+      "score_video_sha256": "6f9ff69c86a4f6533dbad386d9d4a8aa7decc1f20453bfc86c98bc23ad493acf",
+      "source_sha256": "59c2d40a2c49a996a968187dde3db303bd3cde37e343953130ec8234a4afbec4",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode758.mp4"
+    },
+    {
+      "episode_id": 766,
+      "score_video": "fixed_scene_task_episode_000766.mp4",
+      "score_video_sha256": "f0a69e79e05a9761511b8a9711da9963ca9bf4d435d90f7f9c7c7398e8edeb27",
+      "source_sha256": "9a2b0190e5e71f981cc0c8e8702a7f32c1b21d9e1113e5ec5c0159419d04cd18",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode766.mp4"
+    },
+    {
+      "episode_id": 774,
+      "score_video": "fixed_scene_task_episode_000774.mp4",
+      "score_video_sha256": "e446f854172a0436b0974d645309917611ebf586441939e6e1bb2fcb00a5bfc1",
+      "source_sha256": "ae398e7563166a55aa8680c73cb96d6862c5456d656de0ee2e8848773f79fea0",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode774.mp4"
+    },
+    {
+      "episode_id": 782,
+      "score_video": "fixed_scene_task_episode_000782.mp4",
+      "score_video_sha256": "e988672a4df47c08096fae59abac66164449177cdcb7b2ca01cc9031115c395b",
+      "source_sha256": "e0dcd475f0583c862cae6e2f68f3d641bc9b358d5aef2228726ae0de4f559075",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode782.mp4"
+    },
+    {
+      "episode_id": 790,
+      "score_video": "fixed_scene_task_episode_000790.mp4",
+      "score_video_sha256": "f47f446e8d5d2203a255e5c13b88ad0db3a31a2db429388ea897328289430610",
+      "source_sha256": "003dd1bc614d1fd65eaec13c4db14b0e9bf0540756b8147f26ddd7fef70053be",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode790.mp4"
+    },
+    {
+      "episode_id": 798,
+      "score_video": "fixed_scene_task_episode_000798.mp4",
+      "score_video_sha256": "e2b9e66d3d4137d4334c7aa39ba6f99ca7897ca621c2c5a4cbf154cacd285753",
+      "source_sha256": "e6a63672af8bf56c1d86175b7418baecadb8d5aecb0b8253ca549ea7d8a133c1",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode798.mp4"
+    },
+    {
+      "episode_id": 806,
+      "score_video": "fixed_scene_task_episode_000806.mp4",
+      "score_video_sha256": "9cb4c04f1ec3630a1f3da9e2261d6d86540f59220f971c7649f9e9c9c1683918",
+      "source_sha256": "b42f99bd3f35f7c643db159b46621ea04f1e673c62fef26cada6f21ff24e64ce",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode806.mp4"
+    },
+    {
+      "episode_id": 814,
+      "score_video": "fixed_scene_task_episode_000814.mp4",
+      "score_video_sha256": "974a21b3bb8eb3c20f144a9fcfb3152fb2eb7a811e28789b1632e1b1f2781644",
+      "source_sha256": "c5a273d91548365e4a194d9a2c1bcea7387874e93677e09233cc6c721ae6a800",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode814.mp4"
+    },
+    {
+      "episode_id": 822,
+      "score_video": "fixed_scene_task_episode_000822.mp4",
+      "score_video_sha256": "d6134c4cf0c4709b3f4f325e01d6f533dc6e1f2d7ad2adab84c3e0c40a3eaba6",
+      "source_sha256": "eadef05c2dd3b8d73c2283f3584415ddd159be521c22644334113283e397136a",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode822.mp4"
+    },
+    {
+      "episode_id": 830,
+      "score_video": "fixed_scene_task_episode_000830.mp4",
+      "score_video_sha256": "9ca044237b509ca3602b154b33cded3290f9a2c41421d96ed7c2ecd958caded3",
+      "source_sha256": "524628d9994e458edae73668b44fcbd263dd48ab27574fc0eb999a4702ec5326",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode830.mp4"
+    },
+    {
+      "episode_id": 838,
+      "score_video": "fixed_scene_task_episode_000838.mp4",
+      "score_video_sha256": "30c89f6e15840d242249d017eff772c858e3d5da759f8bed82b782142f794b00",
+      "source_sha256": "53dd8d68399e1602e716e107428b3102115f42e62aab7e4888fc38c2222c4cc1",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode838.mp4"
+    },
+    {
+      "episode_id": 846,
+      "score_video": "fixed_scene_task_episode_000846.mp4",
+      "score_video_sha256": "e6c8ab3936592b3068f2a9c547cf9ff6928381538296b55129509b79ce606141",
+      "source_sha256": "69fe335d16b546b86a98d488eb2c7bbd80ed2b686f927f31fdb4cae655906205",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode846.mp4"
+    },
+    {
+      "episode_id": 854,
+      "score_video": "fixed_scene_task_episode_000854.mp4",
+      "score_video_sha256": "b1c730fcaf7c4d127a0977703ffcc23f45e5896be65ee022ce223a14a8ab92ef",
+      "source_sha256": "11c62f174042c02484820c6cac4a21a4d53d4d6124b8319a44ad354c678722c0",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode854.mp4"
+    },
+    {
+      "episode_id": 862,
+      "score_video": "fixed_scene_task_episode_000862.mp4",
+      "score_video_sha256": "523c0365ccb48d3ffe240bcc9cc1cead4b3940a31edf7e3f4d138ab297551511",
+      "source_sha256": "c952ab0369e38721f80823614c2a7604570ffaf21d1d5e5f4c205b243ec4e3f0",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode862.mp4"
+    },
+    {
+      "episode_id": 870,
+      "score_video": "fixed_scene_task_episode_000870.mp4",
+      "score_video_sha256": "8ddc08a24f4d40dbd6c834f19d584cd2425048144889f244885bcd1768cd0a19",
+      "source_sha256": "a4a1c62b1ac51d2e70d9adfed2f9638e0d380489a7f70f16ca128a4ddd863f3b",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode870.mp4"
+    },
+    {
+      "episode_id": 878,
+      "score_video": "fixed_scene_task_episode_000878.mp4",
+      "score_video_sha256": "6f8b156cc36b9f752c90692467911bbd3f884843186c9362aef714423d7fd58d",
+      "source_sha256": "a19d907d8af2f74025538875683f47a9b59f90223a9ef5924ac0d10635a88b27",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode878.mp4"
+    },
+    {
+      "episode_id": 886,
+      "score_video": "fixed_scene_task_episode_000886.mp4",
+      "score_video_sha256": "9b0bf6979664370fd1834671f89965ce20b4b76f640637818a0922d62da35ba2",
+      "source_sha256": "ea153e79fecc4dcc5205572d914402f47100b0e834ec600b3631220e29da0f26",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode886.mp4"
+    },
+    {
+      "episode_id": 894,
+      "score_video": "fixed_scene_task_episode_000894.mp4",
+      "score_video_sha256": "4688127de94fd59dc0205ae69e136ad82ecf5d9f130c5e9230d198365862ae60",
+      "source_sha256": "2e681106ac47532ad7c0491f19fab73b775a444e32c1cf1a41e7f22a92456424",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode894.mp4"
+    },
+    {
+      "episode_id": 902,
+      "score_video": "fixed_scene_task_episode_000902.mp4",
+      "score_video_sha256": "46c667a273ec22b13019fa8b6772f97eb4b50aca73e379e7af4034470a0e5943",
+      "source_sha256": "e60ea08c406feaaa1f428ff2a96058c71ecde13f4b896e0630c5616e51e31677",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode902.mp4"
+    },
+    {
+      "episode_id": 910,
+      "score_video": "fixed_scene_task_episode_000910.mp4",
+      "score_video_sha256": "a1b7892c49442d1fedf8d2c2936272c6fcfca18324bb954059bb85444a22b9f0",
+      "source_sha256": "29698b22e887e9a1029355ed4cadc91a56530a0dad62cc8abf34a55ebb0bf9d6",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode910.mp4"
+    },
+    {
+      "episode_id": 918,
+      "score_video": "fixed_scene_task_episode_000918.mp4",
+      "score_video_sha256": "aeb33630278e330f81f559709075848425467c09a8bf8dce26e7d791d821e780",
+      "source_sha256": "a7af4d5d5af782e1c5761ede3df7d1435336f4ec8fc6c424ec64031d5615364f",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode918.mp4"
+    },
+    {
+      "episode_id": 926,
+      "score_video": "fixed_scene_task_episode_000926.mp4",
+      "score_video_sha256": "9df8df7ed98046de842fa0a584a1747b06bd1d5e1950cbdcba14fe5d4506591e",
+      "source_sha256": "98aa0e44b15f64e9f02631452e7ce4dd39f0947acb37194ebb4a8ae6e71a7a60",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode926.mp4"
+    },
+    {
+      "episode_id": 934,
+      "score_video": "fixed_scene_task_episode_000934.mp4",
+      "score_video_sha256": "33065077505e8d3e99e5b73ebfd2731a8616961aef54e7e13d00da66e64e529c",
+      "source_sha256": "d3a7c61d6611699dcacb3e4b737bb1313e00f1d2f4907232c7ec553b98b9d438",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode934.mp4"
+    },
+    {
+      "episode_id": 942,
+      "score_video": "fixed_scene_task_episode_000942.mp4",
+      "score_video_sha256": "c2fb095a8646f6806f4011544faa89ca03cc63ac17b4a1fd5d8ad1dc2bf9eea4",
+      "source_sha256": "d474451194c9187ab4b7553fbd5edfe3df39966cf47109195ab7e29e4822c328",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode942.mp4"
+    },
+    {
+      "episode_id": 950,
+      "score_video": "fixed_scene_task_episode_000950.mp4",
+      "score_video_sha256": "aaceb3607fc568f15b630ecc9c53666f735411b0f1e7260d8ecb6159c80edffd",
+      "source_sha256": "8a6e3fd12dfaa0ba689c1685f5105581bd81549a105505f29fe596f8d47e8faf",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode950.mp4"
+    },
+    {
+      "episode_id": 958,
+      "score_video": "fixed_scene_task_episode_000958.mp4",
+      "score_video_sha256": "a17b0ba0978b2486c58161a7168e093588429d4e447620ce9e719425c5d192a8",
+      "source_sha256": "6eccb544d85aeb349c1d5f0f52377236fad5ce12fa01359438be46fe89932132",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode958.mp4"
+    },
+    {
+      "episode_id": 966,
+      "score_video": "fixed_scene_task_episode_000966.mp4",
+      "score_video_sha256": "ca9310d4162b8e9b288cfa7b0c9fcb64b5d34e89a3f8811696450a97cbd4875f",
+      "source_sha256": "c1809a95b2206cbe2aba20b507f127651d58ff1d4e5cc8fc64f1ff0b4df7531a",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode966.mp4"
+    },
+    {
+      "episode_id": 974,
+      "score_video": "fixed_scene_task_episode_000974.mp4",
+      "score_video_sha256": "a6cc361297bed3a925dd22892a5f2c82f22da0b7c35a9e8658045951dd5e9f6a",
+      "source_sha256": "ed1eeaff961f56e712f4b440f2049664dac1bc67e6cc81c0a9411e7939e94c3b",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode974.mp4"
+    },
+    {
+      "episode_id": 982,
+      "score_video": "fixed_scene_task_episode_000982.mp4",
+      "score_video_sha256": "3da17ec375de7f833d2b799e8f766272516be037b225915189fc59af9f4a5917",
+      "source_sha256": "e306131abfe0bc1cfd6b46dd5865e10a7a8dced8cb0cc78ef5b13b0d9ff0ab0f",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode982.mp4"
+    },
+    {
+      "episode_id": 990,
+      "score_video": "fixed_scene_task_episode_000990.mp4",
+      "score_video_sha256": "a09cd9ef0c411456965c0d7176d418949d479cbc249f6782bc6043bba000a1c7",
+      "source_sha256": "33eba4c93ea2252dd66a94875e9d6afd1906fb3bff9779063549d649e7d70dc7",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode990.mp4"
+    },
+    {
+      "episode_id": 998,
+      "score_video": "fixed_scene_task_episode_000998.mp4",
+      "score_video_sha256": "72ec38e97aed026827b07c173d65130b876c728f9c77d03826d0092bfbe219ad",
+      "source_sha256": "3411cf2bc869d59089925086a2bd2c707558ec8f51a763e86bfa5abf5b9fc10c",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed2/shard5/FlowWAMOfficialStage1_test/episode998.mp4"
+    }
+  ]
+}

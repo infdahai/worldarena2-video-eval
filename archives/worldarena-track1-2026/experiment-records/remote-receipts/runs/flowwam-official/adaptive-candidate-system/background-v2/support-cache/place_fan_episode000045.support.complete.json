@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.041396484375,
+    "mean_area_fraction": 0.033987107767489706,
+    "valid_frames": 80
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.14453125,
+    "mean_area_fraction": 0.0918701372813786,
+    "valid_frames": 67
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.14474283854166667,
+    "mean_area_fraction": 0.08923213252314817,
+    "valid_frames": 67
+  },
+  "source_video_sha256": "78b5f3745271b6284afac6aff43dc041e8eb4a2292ce03cffbb60466e2c435e9",
+  "support_fraction": 0.6360327851723251,
+  "support_sha256": "7e28d71db2b9a801be7fb8d2205274d22eff0780e6e6f221737f5187a977e70b",
+  "video_id": "place_fan_episode000045"
+}

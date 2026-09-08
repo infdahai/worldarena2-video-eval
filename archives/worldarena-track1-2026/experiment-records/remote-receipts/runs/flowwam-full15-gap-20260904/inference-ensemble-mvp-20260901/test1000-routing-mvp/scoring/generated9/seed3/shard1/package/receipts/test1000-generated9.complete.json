@@ -1,0 +1,22 @@
+{
+  "completed": true,
+  "contract": "worldarena-test1000-generated9-shard-mvp/1",
+  "episodes_sha256": "a1f22faad7f3d2108268ab94abb3b2d90247b8d9607f0b3d614b3af1af138849",
+  "generated9_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/scoring/generated9/seed3/shard1/package/csv_results/generated-only.csv",
+  "generated9_csv_sha256": "ea7cc9d208b8bf2f2504258d99a3222ebc30730c4069ae885c3b06cf254d5875",
+  "hidden_ground_truth_used": false,
+  "inputs": [
+    "candidate_video",
+    "released_first_frame",
+    "released_instruction"
+  ],
+  "legacy_phase_rows_ignored": true,
+  "merge_only": true,
+  "package_video_count_verified": 125,
+  "rows": 125,
+  "seed": 3,
+  "shard": 1,
+  "source_stage1_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/test1000-routing-mvp/candidates/seed3/shard1/stage1-only.receipt.json",
+  "source_stage1_receipt_sha256": "707162edb8add97b447e187dab9310ad6bb00a4af520b247658cfcdc51b7eeb7",
+  "wrapper_sha256": "44ab66ff0a828b764415e5e7f43e28fecdd04372f5eee5980223ecfee76eb744"
+}

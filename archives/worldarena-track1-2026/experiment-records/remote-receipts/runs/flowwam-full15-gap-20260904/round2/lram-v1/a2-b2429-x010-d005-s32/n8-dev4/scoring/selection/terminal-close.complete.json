@@ -1,0 +1,23 @@
+{
+  "arm": "a2-b2429-x010-d005-s32",
+  "completed": true,
+  "contract": "worldarena-track1-round2-lram-terminal-close/1",
+  "corrected15_used": false,
+  "gate_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/lram-v1/a2-b2429-x010-d005-s32/n8-dev4/scoring/selection/generated9-cheap-gate.complete.json",
+  "gate_receipt_sha256": "678f5aa851137bd38e7330c06c3d61f69729c23586051971b7535c707ce822c4",
+  "raw9_delta": {
+    "Aesthetic Quality": 0.0003845617175102234,
+    "Dynamic Degree": 0.0016777132900209213,
+    "Flow Score": 0.0021303537148560925,
+    "Image Quality": -0.0030181432064668723,
+    "Instruction Following": 0.0,
+    "Interaction Quality": 0.0,
+    "Motion Smoothness": -0.00823058070851257,
+    "Perspectivity": 0.0,
+    "Photometric Consistency": -0.0017030659753584088
+  },
+  "reason": "visual_target_cluster_delta_not_positive",
+  "selected_full15_started": false,
+  "target_cluster_delta": -0.0014455491547716859,
+  "terminal_state": "closed-at-generated9-cheap-gate"
+}

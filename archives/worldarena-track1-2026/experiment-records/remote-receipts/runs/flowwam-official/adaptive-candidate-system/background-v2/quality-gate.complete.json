@@ -1,0 +1,53 @@
+{
+  "black_count": 0,
+  "completed": true,
+  "contract": "flowwam-background-v2-quality-gate/1",
+  "count": 20,
+  "downstream_metric_evaluation": "contractually_skipped",
+  "generation_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/background-v2/background-v2-generation.complete.json",
+  "generation_receipt_sha256": "50dbd5cf3c4e3411d03c10d060ebfb37c8de6d2724fcb9bb0cf68988e8b89262",
+  "parameter_search_allowed": false,
+  "passed": false,
+  "prerequisite_gate": "seam",
+  "reason": "frozen seam diagnostic failed",
+  "seam_failure_count": 7,
+  "seam_failures": [
+    {
+      "max_boundary_gradient_p95": 9.672364139556889,
+      "threshold": 8.0,
+      "video_id": "lift_pot_episode000039"
+    },
+    {
+      "max_boundary_gradient_p95": 12.91165561676025,
+      "threshold": 8.0,
+      "video_id": "move_can_pot_episode000036"
+    },
+    {
+      "max_boundary_gradient_p95": 12.705617237091053,
+      "threshold": 8.0,
+      "video_id": "move_pillbottle_pad_episode000004"
+    },
+    {
+      "max_boundary_gradient_p95": 15.527035427093498,
+      "threshold": 8.0,
+      "video_id": "open_laptop_episode000024"
+    },
+    {
+      "max_boundary_gradient_p95": 18.648118209838866,
+      "threshold": 8.0,
+      "video_id": "place_container_plate_episode000032"
+    },
+    {
+      "max_boundary_gradient_p95": 19.298026847839356,
+      "threshold": 8.0,
+      "video_id": "place_fan_episode000045"
+    },
+    {
+      "max_boundary_gradient_p95": 13.975813817977905,
+      "threshold": 8.0,
+      "video_id": "place_object_basket_episode000012"
+    }
+  ],
+  "seam_passed": false,
+  "terminal_status": "closed"
+}

@@ -1,0 +1,228 @@
+{
+  "allowed_usage": "mechanism-smoke-only",
+  "completed": true,
+  "contract": "flowwam-targeted15-smoke-bootstrap/1",
+  "count": 10,
+  "promotion_evidence": false,
+  "source_manifest": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/.worldarena_manifest.json",
+  "source_manifest_sha256": "c75870c5d9dad05170d1f9a54f5d95983b322d57bb496e11d3b3e6815b4b7634",
+  "source_repo": "YixiangChen/FlowWAM_RoboTwin",
+  "source_revision": "506c4e014f7dbd291e7d7683c79fc685dd3e2714",
+  "tasks": [
+    {
+      "allowed_usage": "mechanism-smoke-only",
+      "canonical_manifest_sha256": "9010aafe927af5fe73a013b37482b3580d88d63030f019966f9de2c56416400b",
+      "completed": true,
+      "contract": "flowwam-targeted15-smoke-task-bootstrap/1",
+      "episodes": [
+        {
+          "action_sha256": "3b4751516679e370be0424eece0c7cea13108e2a2bc6ba5e093ddf9d6a36baa7",
+          "episode_index": 0,
+          "episode_name": "episode000000",
+          "first_frame_sha256": "932ec75dbe9cd71c74f4347f51e4f2d52e3032d085e97dc7221fedb306286c3d",
+          "instruction_file_sha256": "b9f31f42bcd2422d05cbd7d13d354b48594aad544d5c03efc170eff0895a983c",
+          "robot_only_sha256": "ca86f693ab48bfe501b756ad4514317381b10fcfcf12256ed17c521b40ba64ce",
+          "sample": "blocks_ranking_rgb__aloha-agilex_clean_50__episode_000000"
+        },
+        {
+          "action_sha256": "6b4c6a4bb23ef2c313ae4c2440ae047b66165141389807be580fda0740aea829",
+          "episode_index": 1,
+          "episode_name": "episode000001",
+          "first_frame_sha256": "72e1d18cf9e4f3801086b808db1df4a30e5a3b92405e756a55a4adbcaf9b4e8c",
+          "instruction_file_sha256": "48b55b5f8cc3c3914d63fef2760a6073c2a2b8a4e87755f9406b7957afc769b5",
+          "robot_only_sha256": "82f4cdea116942fe924c9ed9599847b19de7a098c24d9994243ca75bd38ac31a",
+          "sample": "blocks_ranking_rgb__aloha-agilex_clean_50__episode_000001"
+        }
+      ],
+      "extraction_receipt": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/blocks_ranking_rgb/.worldarena_extracted.json",
+      "extraction_receipt_sha256": "4555261c2dab3efb545f09ab3aa6dca4b67cbee04c7c48bd2b7af4e7036b9425",
+      "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/manifests/gpu0-blocks_ranking_rgb.jsonl",
+      "physical_gpu": 0,
+      "promotion_evidence": false,
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/receipts/gpu0-blocks_ranking_rgb.complete.json",
+      "receipt_sha256": "03e88ce0d1dc5634aaddd02911f041d0f826a7cf8028f095c91a928f3bd2389f",
+      "shard_input_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu0-blocks_ranking_rgb/shard-input.complete.json",
+      "shard_input_receipt_sha256": "11966f52da62cf8a80784b81e01f48e15401a0da5b6fe470481c1d40e2a27770",
+      "shard_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu0-blocks_ranking_rgb",
+      "source_archive": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/aloha-agilex_clean_50/blocks_ranking_rgb.tar.gz",
+      "source_archive_sha256": "e83b5b19a359269e737f30b7532b9b866d18b4c2dc73c576c37f6c5fbd06f031",
+      "source_manifest": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/.worldarena_manifest.json",
+      "source_manifest_sha256": "c75870c5d9dad05170d1f9a54f5d95983b322d57bb496e11d3b3e6815b4b7634",
+      "source_repo": "YixiangChen/FlowWAM_RoboTwin",
+      "source_revision": "506c4e014f7dbd291e7d7683c79fc685dd3e2714",
+      "task": "blocks_ranking_rgb"
+    },
+    {
+      "allowed_usage": "mechanism-smoke-only",
+      "canonical_manifest_sha256": "30a61aa46e505baea2267b84561e3f595421a58a220f3d68d32e091572e0a08c",
+      "completed": true,
+      "contract": "flowwam-targeted15-smoke-task-bootstrap/1",
+      "episodes": [
+        {
+          "action_sha256": "b33e81d0c5d13f430d4383636ca6bcbd822873c9a25fafe9c631885e33b8e707",
+          "episode_index": 0,
+          "episode_name": "episode000000",
+          "first_frame_sha256": "625d0962700bf2c20fc8340027de58554f778e5748b45686e140049daca1884d",
+          "instruction_file_sha256": "a2c95ab96d876c8e9f39feed2b376b40a1cae4ef231d2bde155ec762a6c5acf7",
+          "robot_only_sha256": "9fb693bc3aecd83617ab9a6784492ac6d36a9668899ec782e984b27d47fa4116",
+          "sample": "blocks_ranking_size__aloha-agilex_clean_50__episode_000000"
+        },
+        {
+          "action_sha256": "458c87d33bee1894487145a76c9186fcafe1fd0e0ac4b4d971c70a72b2ef45cc",
+          "episode_index": 1,
+          "episode_name": "episode000001",
+          "first_frame_sha256": "75b3376cea559ac8673b244254f2f82c33e6f81eb107bf3e3072ed55bee8a668",
+          "instruction_file_sha256": "bee8d005ee8784d8dcf40ed06a10ba6c0cee41387dc34f50c4db4381d3387efb",
+          "robot_only_sha256": "46e9419eb4480f944892fa95bc657d1424697b8386ccce98d6f4efb0e763aefc",
+          "sample": "blocks_ranking_size__aloha-agilex_clean_50__episode_000001"
+        }
+      ],
+      "extraction_receipt": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/blocks_ranking_size/.worldarena_extracted.json",
+      "extraction_receipt_sha256": "57621a75e54a818fc503c88ac32acd4c8c0369d1a4f6ffe563c424af46657ea5",
+      "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/manifests/gpu1-blocks_ranking_size.jsonl",
+      "physical_gpu": 1,
+      "promotion_evidence": false,
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/receipts/gpu1-blocks_ranking_size.complete.json",
+      "receipt_sha256": "636c744b7d65b334c92fd0925950fd4f71deaf8f8cdacddf78425f2311727c31",
+      "shard_input_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu1-blocks_ranking_size/shard-input.complete.json",
+      "shard_input_receipt_sha256": "d1373618987a88b724ae3a53fe0999c242d27e0117d71277ba36bb3ec43d56d5",
+      "shard_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu1-blocks_ranking_size",
+      "source_archive": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/aloha-agilex_clean_50/blocks_ranking_size.tar.gz",
+      "source_archive_sha256": "92d4323f19f571b0be2196ef47a3120dd15cea9e3b4ffeeb356c508417d053f4",
+      "source_manifest": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/.worldarena_manifest.json",
+      "source_manifest_sha256": "c75870c5d9dad05170d1f9a54f5d95983b322d57bb496e11d3b3e6815b4b7634",
+      "source_repo": "YixiangChen/FlowWAM_RoboTwin",
+      "source_revision": "506c4e014f7dbd291e7d7683c79fc685dd3e2714",
+      "task": "blocks_ranking_size"
+    },
+    {
+      "allowed_usage": "mechanism-smoke-only",
+      "canonical_manifest_sha256": "5c7af072d5ac7d6b9f4844113b565fa8fa6f22a9efcd3f31b3988d0641a061ec",
+      "completed": true,
+      "contract": "flowwam-targeted15-smoke-task-bootstrap/1",
+      "episodes": [
+        {
+          "action_sha256": "f665aed3cfc5dbf2d78766e87b35367143f12e848bf448440c2d132feb640741",
+          "episode_index": 0,
+          "episode_name": "episode000000",
+          "first_frame_sha256": "eb441f22f903094b65403fa9eea104332eb4b8c116dbeed568926e0b8d81bba1",
+          "instruction_file_sha256": "852c8d0d52d0833f280db69a21402fa09e697db698629672ba215b2651cbc7bd",
+          "robot_only_sha256": "cb96db042c41cb2c62ebad1bf03ea7812c7831153fa79f3b7e453f9885bf0b07",
+          "sample": "open_microwave__aloha-agilex_clean_50__episode_000000"
+        },
+        {
+          "action_sha256": "34cc4de981913107d5eaebc227f4db5c37c1bc39617e7510edc265997d465df6",
+          "episode_index": 1,
+          "episode_name": "episode000001",
+          "first_frame_sha256": "02cbb9faab09c461771d5a80dcfebbb8c699304f4cf48e612861a85ead3d24fd",
+          "instruction_file_sha256": "47d17a3313877cd83d646513e64ff1c6f0d3f17d6ae269183867dcd663fd1183",
+          "robot_only_sha256": "c32db3d537ae3e9e663b35a8131a62ddbb0077fc1f6534ee9f905cfdd84061a8",
+          "sample": "open_microwave__aloha-agilex_clean_50__episode_000001"
+        }
+      ],
+      "extraction_receipt": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/open_microwave/.worldarena_extracted.json",
+      "extraction_receipt_sha256": "18e2a4752486006205a26071b485d9e19ea4b6d9839bbe78ccf0234af0d12e0f",
+      "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/manifests/gpu2-open_microwave.jsonl",
+      "physical_gpu": 2,
+      "promotion_evidence": false,
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/receipts/gpu2-open_microwave.complete.json",
+      "receipt_sha256": "9625d2b081708dfab168c475099e71203d07d179ddff99a00d14abeadf84b295",
+      "shard_input_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu2-open_microwave/shard-input.complete.json",
+      "shard_input_receipt_sha256": "2150b5c1624e378f615834a26dea71e22c250643fbbde45e6a6503a58c8e0ffc",
+      "shard_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu2-open_microwave",
+      "source_archive": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/aloha-agilex_clean_50/open_microwave.tar.gz",
+      "source_archive_sha256": "d82cbea75e59253ca474599a5554241df8d46f80432bca90586efb0ab36947b0",
+      "source_manifest": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/.worldarena_manifest.json",
+      "source_manifest_sha256": "c75870c5d9dad05170d1f9a54f5d95983b322d57bb496e11d3b3e6815b4b7634",
+      "source_repo": "YixiangChen/FlowWAM_RoboTwin",
+      "source_revision": "506c4e014f7dbd291e7d7683c79fc685dd3e2714",
+      "task": "open_microwave"
+    },
+    {
+      "allowed_usage": "mechanism-smoke-only",
+      "canonical_manifest_sha256": "610f3187a759a78d53e54f277b7bec1bece20f2ad71590418976f5f14fba2628",
+      "completed": true,
+      "contract": "flowwam-targeted15-smoke-task-bootstrap/1",
+      "episodes": [
+        {
+          "action_sha256": "a07a57266e38016a53b8500008686bc28ec23e398670f937c6d67da8dbd57a28",
+          "episode_index": 0,
+          "episode_name": "episode000000",
+          "first_frame_sha256": "a8ee21d0c8bcbca08a0ef8bec90c94f0b88fb26332d3935c2cad6980cf1ef911",
+          "instruction_file_sha256": "fbf78875115a90237c30047250b3fd645dbdcbb95af8a2f58e8a8a7a89df677a",
+          "robot_only_sha256": "cf9e27c7a36eb2286142998310eb001544a2c0571366770048deda5a2cd99e71",
+          "sample": "put_object_cabinet__aloha-agilex_clean_50__episode_000000"
+        },
+        {
+          "action_sha256": "1e66392427c503278e3858932e187ea6de8f4b99c9e6706756dbbd7655b4f05e",
+          "episode_index": 1,
+          "episode_name": "episode000001",
+          "first_frame_sha256": "d7ecd1866ab0ee1f92d1b1eed16458101f6845a8ac152b77829c62ca117a1b31",
+          "instruction_file_sha256": "21075e397d4fca9f36a2d00e0bf70adb0947cc8ce5728d999a2383c3b07c9b00",
+          "robot_only_sha256": "a2f0874069d4992cf6299bd07bda389fbecde4224c24cd489426c452e651a6d2",
+          "sample": "put_object_cabinet__aloha-agilex_clean_50__episode_000001"
+        }
+      ],
+      "extraction_receipt": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/put_object_cabinet/.worldarena_extracted.json",
+      "extraction_receipt_sha256": "c6e1d010ab4495dace13382d1f33724c211ae24728059415b76a6638d83e5136",
+      "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/manifests/gpu3-put_object_cabinet.jsonl",
+      "physical_gpu": 3,
+      "promotion_evidence": false,
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/receipts/gpu3-put_object_cabinet.complete.json",
+      "receipt_sha256": "816fd908a6f876c58d76391be991a000e5787274d6d9e8c9a38749a8d58a0557",
+      "shard_input_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu3-put_object_cabinet/shard-input.complete.json",
+      "shard_input_receipt_sha256": "91460d4f39f3bc1920aee1fe619025d9880c2d26f202103e777aafde44ae58b6",
+      "shard_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu3-put_object_cabinet",
+      "source_archive": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/aloha-agilex_clean_50/put_object_cabinet.tar.gz",
+      "source_archive_sha256": "cd1c9aeba372881f4016314b73cab0c965078059850f3241216f077236c0e0a2",
+      "source_manifest": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/.worldarena_manifest.json",
+      "source_manifest_sha256": "c75870c5d9dad05170d1f9a54f5d95983b322d57bb496e11d3b3e6815b4b7634",
+      "source_repo": "YixiangChen/FlowWAM_RoboTwin",
+      "source_revision": "506c4e014f7dbd291e7d7683c79fc685dd3e2714",
+      "task": "put_object_cabinet"
+    },
+    {
+      "allowed_usage": "mechanism-smoke-only",
+      "canonical_manifest_sha256": "86e57311c2a43d5c86705ff2ff35cfd4a5aeb535c7c364f5b393fb3dc26230a2",
+      "completed": true,
+      "contract": "flowwam-targeted15-smoke-task-bootstrap/1",
+      "episodes": [
+        {
+          "action_sha256": "9dfc280a53a150d53c6ca4ec2a20688d38cf3618d40d06d2fac2ecebd9bdaef8",
+          "episode_index": 0,
+          "episode_name": "episode000000",
+          "first_frame_sha256": "71c14860ecab2aa7c528b21820b0c51298db38e155d56712f9720c2c88a49c85",
+          "instruction_file_sha256": "97ed92b5de4f7a7f69460090334c4793fa72c56f17f4ca461a9e988e97cfc6d3",
+          "robot_only_sha256": "cfea6b954cd47ac7f0b164d8cdb1432add77626ac49f0c16626f310e5b96194a",
+          "sample": "stack_bowls_three__aloha-agilex_clean_50__episode_000000"
+        },
+        {
+          "action_sha256": "ad950f2977b2a0023fe0399dbef360901bca4c5b922dc426ceb2395ff7c78f7d",
+          "episode_index": 1,
+          "episode_name": "episode000001",
+          "first_frame_sha256": "00e21bb977f3e45bdec0c667a66b1c7425c01a1c9c96aa801f2e1ed6379ede2b",
+          "instruction_file_sha256": "0d95c7f436fbe081d8f3397423b1a22ff49da531aeb9a3ead32c23eed9354b14",
+          "robot_only_sha256": "f288aadbd0037d183c428dba7e81d8afa225cc1c6f205afb9067b4d8b06a6c02",
+          "sample": "stack_bowls_three__aloha-agilex_clean_50__episode_000001"
+        }
+      ],
+      "extraction_receipt": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/stack_bowls_three/.worldarena_extracted.json",
+      "extraction_receipt_sha256": "396f3b2183b3f685ca22c5809686fa92643d2873920bbec331a812b1329507ce",
+      "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/manifests/gpu4-stack_bowls_three.jsonl",
+      "physical_gpu": 4,
+      "promotion_evidence": false,
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/receipts/gpu4-stack_bowls_three.complete.json",
+      "receipt_sha256": "0071fc2136f60fc90a6f14dea3224b576d891e9b2f9a9025df1164daa36dc917",
+      "shard_input_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu4-stack_bowls_three/shard-input.complete.json",
+      "shard_input_receipt_sha256": "0d737e126cd54888d1226e04865ce73ecd83f1840955c683342bcf8f098d63d2",
+      "shard_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu4-stack_bowls_three",
+      "source_archive": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/aloha-agilex_clean_50/stack_bowls_three.tar.gz",
+      "source_archive_sha256": "8cf4d63e1c1803b9303c5cbb6d7cb34da6dfeb91b738a1d9ffb5a081b1c7cfc9",
+      "source_manifest": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/.worldarena_manifest.json",
+      "source_manifest_sha256": "c75870c5d9dad05170d1f9a54f5d95983b322d57bb496e11d3b3e6815b4b7634",
+      "source_repo": "YixiangChen/FlowWAM_RoboTwin",
+      "source_revision": "506c4e014f7dbd291e7d7683c79fc685dd3e2714",
+      "task": "stack_bowls_three"
+    }
+  ]
+}

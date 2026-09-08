@@ -1,0 +1,171 @@
+{
+  "black_frame_count": 0,
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "completed": true,
+  "contract": "flowwam-adaptive-paired-generation/1",
+  "episodes": 7,
+  "manifest_sha256": "49d89ac6c3450aff8e1705819f455b8fbab7eaff444f67bd0f55b92ede586908",
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "per_video": [
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000000",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed1/episode000000.mp4",
+      "sample": "turn_switch__aloha-agilex_clean_50__episode_000037",
+      "seed": 1,
+      "sha256": "2080c5abe85f9eae2750927054848eae3c24f256840671ca0c22af466d4639d9",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000000",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed4/episode000000.mp4",
+      "sample": "turn_switch__aloha-agilex_clean_50__episode_000037",
+      "seed": 4,
+      "sha256": "5eb815046ff57031a1a6da05121be81f550fce9bce7376882bdc9a58adb4d64e",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000001",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed1/episode000001.mp4",
+      "sample": "place_dual_shoes__aloha-agilex_clean_50__episode_000037",
+      "seed": 1,
+      "sha256": "819a150a03506db529cc0adf3c82fb44c59cbe3debce512de1b969165ccf6b32",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000001",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed4/episode000001.mp4",
+      "sample": "place_dual_shoes__aloha-agilex_clean_50__episode_000037",
+      "seed": 4,
+      "sha256": "c0687ebd07ac08e37c91b369c1510f5cd4fdfa47b73097ff84286d04def3d5b0",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000002",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed1/episode000002.mp4",
+      "sample": "place_shoe__aloha-agilex_clean_50__episode_000043",
+      "seed": 1,
+      "sha256": "ecada7355c8b57b42945dc53832a6b5c4f046ba4ade53d5f9abad127a04f8220",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000002",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed4/episode000002.mp4",
+      "sample": "place_shoe__aloha-agilex_clean_50__episode_000043",
+      "seed": 4,
+      "sha256": "34eff44b70f60a40fcecbf7c5fc01fa1ff264d21803a095e494304850cc01215",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000003",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed1/episode000003.mp4",
+      "sample": "move_playingcard_away__aloha-agilex_clean_50__episode_000040",
+      "seed": 1,
+      "sha256": "ff2aab4e9d468079e350393704c3b9c1ecff0bd538af4dc99c211cfbe8609a4a",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000003",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed4/episode000003.mp4",
+      "sample": "move_playingcard_away__aloha-agilex_clean_50__episode_000040",
+      "seed": 4,
+      "sha256": "a705c0b6d6da963e173069be22e58162ef952a6834c734196b60db960d6f86b0",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000004",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed1/episode000004.mp4",
+      "sample": "place_bread_skillet__aloha-agilex_clean_50__episode_000027",
+      "seed": 1,
+      "sha256": "08e784752d4a8ccbe44311876abc1f6d3a180ed714689c50c0d198e60e328262",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000004",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed4/episode000004.mp4",
+      "sample": "place_bread_skillet__aloha-agilex_clean_50__episode_000027",
+      "seed": 4,
+      "sha256": "07b06340171a6905af069196b87f3422e420b3e763276bbbcb1ea68c77a8e408",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000005",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed1/episode000005.mp4",
+      "sample": "shake_bottle__aloha-agilex_clean_50__episode_000028",
+      "seed": 1,
+      "sha256": "a179fc4daf214ee6a69803d1f3311521b0289a3d89e8fd8685e7fa24d9887be7",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000005",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed4/episode000005.mp4",
+      "sample": "shake_bottle__aloha-agilex_clean_50__episode_000028",
+      "seed": 4,
+      "sha256": "223ec239c988c4c4cba4790f5f3a9212f5baad315b4f806d7e35110bb7773e46",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000006",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed1/episode000006.mp4",
+      "sample": "click_alarmclock__aloha-agilex_clean_50__episode_000021",
+      "seed": 1,
+      "sha256": "3a82da44c1b75467dbe133a408fefe4f0cbf840df11d225557a3045b5723ab2c",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000006",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu3/seed4/episode000006.mp4",
+      "sample": "click_alarmclock__aloha-agilex_clean_50__episode_000021",
+      "seed": 4,
+      "sha256": "e464abff0af98e16e0757e96cdf36fd646a88afc0bd2283ce43c79c76384c95a",
+      "width": 640
+    }
+  ],
+  "physical_gpu": 3,
+  "seed_counts": {
+    "1": 7,
+    "4": 7
+  },
+  "videos": 14
+}

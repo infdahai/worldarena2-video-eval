@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 4,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "a525cd574270d59b9ab041b818c59aa922913e402db8e7139d47012af52d6cd2",
+      "source_sha256": "46bee9e22bcd6c29354fddac70f67c6f3454280a55cf0f86ded065bc3edd8005",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-scan-w16-lr3e4/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "24072a45e4856744a4d36d466cb1f71ac704a899a9f0c7a9786410ee8196d780",
+      "source_sha256": "fc02ae04109d2a7d006fe806ba3c4d491ecb7db22b3b1a2858a190353d40db47",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-scan-w16-lr3e4/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "9718cc725b5b3cd87b84b79f4ddf50ad34728274a92571425a7364f203ded26d",
+      "source_sha256": "2deebeeee71ae33f38b848440d981db22daee3b531311316cdfd1ce1cfdd0d37",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-scan-w16-lr3e4/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "c41c07115a33fdd0afee6e1cdb698d8248b23696da03dbbbe6e87a3c841aba5f",
+      "source_sha256": "f4406eb3c383f5d5e6259395edfcebfeaffdf201d52207a638a4aa628cdce867",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-scan-w16-lr3e4/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

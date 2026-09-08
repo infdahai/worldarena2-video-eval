@@ -1,0 +1,63 @@
+{
+  "completed": true,
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "corrected15_used_for_selection": false,
+  "hidden_gt_used": false,
+  "selection_contract": "worldarena-track1-late-b2-n8-generated9-selection/1",
+  "selection_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/late-orb-v2/b2-block24-29-s31-r1/n8-dev4/scoring/selection/selection.complete.json",
+  "selection_receipt_sha256": "8241be8ea025370e1559b327d2089ab8874f46ef9cf0d62cbd7e0e4c9e12d1d9",
+  "videos": [
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "episode_index": 0,
+      "height": 480,
+      "name": "episode__pick_dual_bottles__aloha-agilex_clean_50__episode_000000.mp4",
+      "sample": "pick_dual_bottles__aloha-agilex_clean_50__episode_000000",
+      "selected_seed": 4,
+      "sha256": "7a4f2ba3fc847af2f04d4295f29ef199f1759740f44169760954e74a0bbe71b1",
+      "task": "pick_dual_bottles",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "episode_index": 8,
+      "height": 480,
+      "name": "episode__click_bell__aloha-agilex_clean_50__episode_000008.mp4",
+      "sample": "click_bell__aloha-agilex_clean_50__episode_000008",
+      "selected_seed": 1,
+      "sha256": "f846accf7e74196e84b72b4d4c6bc86bdf244cfc0510627e56c8d9dcbc22e609",
+      "task": "click_bell",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "episode_index": 17,
+      "height": 480,
+      "name": "episode__place_container_plate__aloha-agilex_clean_50__episode_000017.mp4",
+      "sample": "place_container_plate__aloha-agilex_clean_50__episode_000017",
+      "selected_seed": 4,
+      "sha256": "9e1ba579531ede2dc06904761992cdd1fc75cccb82bd29abf4ad1e876aab3bb1",
+      "task": "place_container_plate",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "episode_index": 24,
+      "height": 480,
+      "name": "episode__open_laptop__aloha-agilex_clean_50__episode_000024.mp4",
+      "sample": "open_laptop__aloha-agilex_clean_50__episode_000024",
+      "selected_seed": 4,
+      "sha256": "69600225ba94e36fd88dee1cf7e521e72e56255dac2e8aba6aa143f61a9a1f1d",
+      "task": "open_laptop",
+      "width": 640
+    }
+  ]
+}

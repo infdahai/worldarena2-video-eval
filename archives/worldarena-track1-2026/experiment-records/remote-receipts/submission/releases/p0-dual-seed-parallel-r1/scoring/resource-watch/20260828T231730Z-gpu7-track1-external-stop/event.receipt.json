@@ -1,0 +1,29 @@
+{
+  "event_utc": "2026-08-28T23:17:30.674696Z",
+  "event_local": "2026-08-29T07:17:30.674696+08:00",
+  "gpu_index": 7,
+  "gpu_uuid": "GPU-c4f01096-8831-924c-df5c-7eb23ebecfc1",
+  "track1": {
+    "pgid": 1293842,
+    "parent_pid": 1293846,
+    "child_pid": 1293862,
+    "step": 933
+  },
+  "signal": {
+    "name": "SIGTERM",
+    "sender_pid": 1908651,
+    "sender_uid": 1001
+  },
+  "source": {
+    "codex_pid": 1583292,
+    "cwd": "/data/fjy/worldarena",
+    "command": "kill -TERM -- -1293842; sleep 3; ps ...; nvidia-smi ...",
+    "purpose": "release GPU7 for SSE12 hold truth; GPU1/GPU7 each 75 groups"
+  },
+  "checkpoint": {
+    "step": 933,
+    "completed_count": 94,
+    "expected_count": 125
+  },
+  "action": "checkpointed step933 at 94 of 125; yielded GPU7; cooldown starts at event_local; no signal sent to external process"
+}

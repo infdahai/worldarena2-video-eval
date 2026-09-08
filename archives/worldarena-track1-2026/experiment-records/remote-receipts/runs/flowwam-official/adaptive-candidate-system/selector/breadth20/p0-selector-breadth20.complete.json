@@ -1,0 +1,41 @@
+{
+  "breadth20_manifest_sha256": "3ae20d5fd4cdd5c238bc8070da5d9bef0353d82f211f727734862623bd15f762",
+  "clean50_receipt_sha256": "1d72aa6b1a6f260c963756309f3c74a57504381b929663b9361a8201248b187e",
+  "completed": true,
+  "contract": "flowwam-p0-selector-breadth20-baseline/1",
+  "current_champion": "p0_postgen_selector",
+  "model_sha256": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+  "policy_sha256": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7",
+  "predictions": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/breadth20/p0-selector-breadth20.predictions.jsonl",
+  "predictions_sha256": "0340733a1ec9b4b33fcbc383e13cb5e77e17c46e56464a61f1ed0c825967d9a0",
+  "row_count": 20,
+  "rows": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/breadth20/p0-selector-breadth20.rows.jsonl",
+  "rows_sha256": "e828c01cc6aac867c051d642e02f745a96067652c4490c4c2ac67d91e876baaa",
+  "selection_counts": {
+    "seed1": 11,
+    "seed4": 9
+  },
+  "source_receipt_sha256s": {
+    "seed1_corrected": "c4a4f48c057d918c20d917b9a88303f676901bae956931752d6cc14b6186b1bc",
+    "seed1_raw": "604c5c8b9ce959376bc897a8ea921673154f8ecade86a51d1f8d244545aff312",
+    "seed4_corrected": "5900318239006352898a6d6b24669ba8af0f93e1fed172ac06f61834cdee284f",
+    "seed4_raw": "a686a95f06a4feb86af6ef942b3a2db3db46295791488832874c16da82e57542"
+  },
+  "source_score_sha256s": {
+    "seed1_corrected": "0c79818a299f7362918ed0cbbd803b0a27b3c00c410216fb85850a53d04636f4",
+    "seed1_raw": "7c0a108007e7c5839a447d0b51d9052f147bb86a5359b21dc51982e28c5dc2b3",
+    "seed4_corrected": "a8dd3d14d7776a042c46cf3350be8b02b447135f98c7e0ad9de89edf754fbb70",
+    "seed4_raw": "a3d8f3c23ddecf1ab4f0408bb82bdb24a9cd8debaf71c6d95bb4d81310324148"
+  },
+  "summary": {
+    "corrected_mean": 0.6729899736980808,
+    "image_mean": 0.5168502574496798,
+    "instruction_mean": 0.74,
+    "interaction_mean": 0.7400000000000001,
+    "jepa_mean": 0.9452229917049408,
+    "non_motion_mean": 0.732603937307677,
+    "raw_mean": 0.6754179853329957,
+    "trajectory_mean": 0.6073566847799482
+  },
+  "terminal_state": "pass"
+}

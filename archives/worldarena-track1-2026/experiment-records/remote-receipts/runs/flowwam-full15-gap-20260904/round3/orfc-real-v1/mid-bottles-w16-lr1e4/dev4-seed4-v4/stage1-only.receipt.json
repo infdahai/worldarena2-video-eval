@@ -1,0 +1,105 @@
+{
+  "checkpoint_lineage": null,
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "generated_this_run_count": 4,
+  "inference_sweep": {
+    "is_official_default": false,
+    "overrides": {
+      "flow_max_magnitude": 20.0,
+      "seed": 4
+    }
+  },
+  "instruction_variant": 0,
+  "max_episodes": null,
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "orfc_adapter": {
+    "adapter_loaded": true,
+    "cache_map": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-dev4-cache-v1/cache-map.v1.json",
+    "cache_map_sha256": "d2e3d66497c2e3e31501ebbfc98038420c663863d783c24cafca078cb85dd4c1",
+    "checkpoint": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/mid-bottles-w16-lr1e4/orfc-step-1.safetensors",
+    "checkpoint_sha256": "7f5d22a950517d945a291c38298019ac50940e4d5ec4a27938c7c63479cf7c63",
+    "denoise_calls": 200,
+    "episode_names": [
+      "episode000000",
+      "episode000001",
+      "episode000002",
+      "episode000003"
+    ],
+    "frame0": "immutable",
+    "last_active_episode": "episode000003",
+    "model_fn": "model_fn_wan_video_dual_stream_orfc",
+    "parent_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+    "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/mid-bottles-w16-lr1e4/smoke.complete.json",
+    "receipt_sha256": "4106d405f35b6697962a0a5749a7f4ca892ea6069742533326b2d2a90dfb6a2e"
+  },
+  "physical_gpu": 1,
+  "requested_episode_names": [
+    "episode000000",
+    "episode000001",
+    "episode000002",
+    "episode000003"
+  ],
+  "resumed_valid_count": 0,
+  "robot_conditioning": {
+    "mode": "pre-generated",
+    "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/robot_only"
+  },
+  "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-dev4-cache-v1/manifests/stage1-dev4.v1.jsonl",
+  "sample_manifest_sha256": "1e9197a9670c7e1fb4436966292bcd6440b42f8e428f53fcfe1023eac5505d26",
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 4,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000000.mp4",
+      "sha256": "d6d5388edab8969f68f0f2da6153e2d4a80b5705522603e6b93e5878104e095b",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000001.mp4",
+      "sha256": "5f3026db9147b1e0374a106e900a3fead1b76ca5749f63aa3fc596940867a440",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000002.mp4",
+      "sha256": "d089f84d6554aabeccbbd4db4852370d41a8a8dd7b1ec8117a7cd0651daa3589",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000003.mp4",
+      "sha256": "af8623cf7a043fd051737fec997fe340fa6641f6b6610cb38d2b434ddd7790d1",
+      "width": 640
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/scoring/selected-full15/package/output_VLM/GT_RPO_B2829_LR1E7_B1_T8_R2_Selected/GT_RPO_B2829_LR1E7_B1_T8_R2_Selected_summary_val_all_intern.json",
+  "output_sha256": "eef31df6edf946ca83ca62c12b61f6082b49b03cee916f57b916966305886cab",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/GT_RPO_B2829_LR1E7_B1_T8_R2_Selected/click_bell_episode_000008_20260831_145746.json",
+      "sha256": "fb3fc3f152ccc4d6bddf200effc49a6f9b652b2445f8b5474a84421f7beedab8",
+      "timestamp": "20260831_145746",
+      "video": "click_bell_episode_000008.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/GT_RPO_B2829_LR1E7_B1_T8_R2_Selected/open_laptop_episode_000024_20260831_150009.json",
+      "sha256": "bd858567666b3ae4a6ca0cd060e805e587d8c19446139b75090e35d1b3ba5a96",
+      "timestamp": "20260831_150009",
+      "video": "open_laptop_episode_000024.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/GT_RPO_B2829_LR1E7_B1_T8_R2_Selected/pick_dual_bottles_episode_000000_20260831_150232.json",
+      "sha256": "27b0e44ead2bed1a66e54fc5e0138559dd40c49ffcbafa93502bb75c1bcf30f6",
+      "timestamp": "20260831_150232",
+      "video": "pick_dual_bottles_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/GT_RPO_B2829_LR1E7_B1_T8_R2_Selected/place_container_plate_episode_000017_20260831_150456.json",
+      "sha256": "0c16f076e1b030aa1f8f3df41a845da0735e77dfc18b614fc5802728395e0532",
+      "timestamp": "20260831_150456",
+      "video": "place_container_plate_episode_000017.mp4"
+    }
+  ]
+}

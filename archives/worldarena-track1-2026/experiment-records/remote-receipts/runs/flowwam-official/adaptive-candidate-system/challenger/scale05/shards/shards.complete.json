@@ -1,0 +1,69 @@
+{
+  "completed": true,
+  "contiguous": true,
+  "contract": "flowwam-challenger-scale05-shards/1",
+  "episode_count": 20,
+  "physical_gpus": [
+    0,
+    4,
+    5,
+    6
+  ],
+  "shards": [
+    {
+      "count": 5,
+      "episodes": [
+        "episode__handover_mic__aloha-agilex_clean_50__episode_000044",
+        "episode__hanging_mug__aloha-agilex_clean_50__episode_000004",
+        "episode__lift_pot__aloha-agilex_clean_50__episode_000039",
+        "episode__move_can_pot__aloha-agilex_clean_50__episode_000036",
+        "episode__move_pillbottle_pad__aloha-agilex_clean_50__episode_000004"
+      ],
+      "input_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/scale05/shards/gpu0/input",
+      "physical_gpu": 0,
+      "robot_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/scale05/shards/gpu0/robot_only"
+    },
+    {
+      "count": 5,
+      "episodes": [
+        "episode__move_playingcard_away__aloha-agilex_clean_50__episode_000001",
+        "episode__move_stapler_pad__aloha-agilex_clean_50__episode_000027",
+        "episode__open_laptop__aloha-agilex_clean_50__episode_000024",
+        "episode__pick_diverse_bottles__aloha-agilex_clean_50__episode_000028",
+        "episode__pick_dual_bottles__aloha-agilex_clean_50__episode_000029"
+      ],
+      "input_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/scale05/shards/gpu4/input",
+      "physical_gpu": 4,
+      "robot_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/scale05/shards/gpu4/robot_only"
+    },
+    {
+      "count": 5,
+      "episodes": [
+        "episode__place_a2b_left__aloha-agilex_clean_50__episode_000042",
+        "episode__place_bread_basket__aloha-agilex_clean_50__episode_000049",
+        "episode__place_bread_skillet__aloha-agilex_clean_50__episode_000047",
+        "episode__place_burger_fries__aloha-agilex_clean_50__episode_000002",
+        "episode__place_can_basket__aloha-agilex_clean_50__episode_000021"
+      ],
+      "input_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/scale05/shards/gpu5/input",
+      "physical_gpu": 5,
+      "robot_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/scale05/shards/gpu5/robot_only"
+    },
+    {
+      "count": 5,
+      "episodes": [
+        "episode__place_container_plate__aloha-agilex_clean_50__episode_000032",
+        "episode__place_dual_shoes__aloha-agilex_clean_50__episode_000029",
+        "episode__place_empty_cup__aloha-agilex_clean_50__episode_000021",
+        "episode__place_fan__aloha-agilex_clean_50__episode_000045",
+        "episode__place_object_basket__aloha-agilex_clean_50__episode_000012"
+      ],
+      "input_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/scale05/shards/gpu6/input",
+      "physical_gpu": 6,
+      "robot_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/scale05/shards/gpu6/robot_only"
+    }
+  ],
+  "source_input": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/stage1-breadth20/input",
+  "source_robot": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/stage1-breadth20/robot_only",
+  "zero_overlap": true
+}

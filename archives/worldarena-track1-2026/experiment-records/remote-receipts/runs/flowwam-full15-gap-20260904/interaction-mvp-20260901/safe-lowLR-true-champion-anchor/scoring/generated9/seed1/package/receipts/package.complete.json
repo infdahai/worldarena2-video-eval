@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 1,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "133171cd6147d359ccc161e706525741249f919907fef4c28d5f102181050657",
+      "source_sha256": "76aef7687fc29e4c4c50ca07710cac43b02e858e7b07c175caaae45281941190",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "a8867aac54407f468d20d84ca5254cf340724886eb77b7ec6c3ac61607f87d5c",
+      "source_sha256": "30296632e45155fe5e6bb941b9b825ffebd1abd161eb916fba5e6e5e250d48ce",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "c0bd2699aa8dcb47fffc3baefc3faeb7c753f3e7fda98ef9c20531c4e361ebdb",
+      "source_sha256": "700b9281b36ba3af9a6b6e3e027964bbf760e8ef0e9c1ea13d693b3f9cb62235",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "f6275c75e4a6f5af73f51762a5c7498866eeafa1e16d09544eb4bdf04095b95a",
+      "source_sha256": "b29487333d74daa8ffe881e0aad2a00bdc764e1414156adad4cd9cfdf99b42c8",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

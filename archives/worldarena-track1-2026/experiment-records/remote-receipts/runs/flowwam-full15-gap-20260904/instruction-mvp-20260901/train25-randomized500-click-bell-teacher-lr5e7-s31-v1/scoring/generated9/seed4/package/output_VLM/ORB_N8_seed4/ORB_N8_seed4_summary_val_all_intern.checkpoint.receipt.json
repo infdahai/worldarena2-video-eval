@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/train25-randomized500-click-bell-teacher-lr5e7-s31-v1/scoring/generated9/seed4/package/output_VLM/ORB_N8_seed4/ORB_N8_seed4_summary_val_all_intern.json",
+  "output_sha256": "535f7f57ba3165aee37e571148fcb260f1efa6939bc30fafb32a116eedb37431",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/train25-randomized500-click-bell-teacher-lr5e7-s31-v1/scoring/generated9/seed4/package/work/tmp/vlm/ORB_N8_seed4/fixed_scene_task_episode_000000_20260901_111505.json",
+      "sha256": "29f525edaa590bf18d1b3a75935a5d0d7239a42942e970bbdbc8412b3e127af0",
+      "timestamp": "20260901_111505",
+      "video": "fixed_scene_task_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/train25-randomized500-click-bell-teacher-lr5e7-s31-v1/scoring/generated9/seed4/package/work/tmp/vlm/ORB_N8_seed4/fixed_scene_task_episode_000001_20260901_111722.json",
+      "sha256": "dc833f4782f7a6497bb5d466b05429c3d7b2652a50fb8f57cf1b84a5621cd925",
+      "timestamp": "20260901_111722",
+      "video": "fixed_scene_task_episode_000001.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/train25-randomized500-click-bell-teacher-lr5e7-s31-v1/scoring/generated9/seed4/package/work/tmp/vlm/ORB_N8_seed4/fixed_scene_task_episode_000002_20260901_111940.json",
+      "sha256": "cda46e8ac32c676337fc305a33cd8543e729676adde3451c2366503292661250",
+      "timestamp": "20260901_111940",
+      "video": "fixed_scene_task_episode_000002.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/train25-randomized500-click-bell-teacher-lr5e7-s31-v1/scoring/generated9/seed4/package/work/tmp/vlm/ORB_N8_seed4/fixed_scene_task_episode_000003_20260901_112157.json",
+      "sha256": "f48d1d8da878f8528c400f5b45474461322e364c4a558037e8cd980d23d854fc",
+      "timestamp": "20260901_112157",
+      "video": "fixed_scene_task_episode_000003.mp4"
+    }
+  ]
+}

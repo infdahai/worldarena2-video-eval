@@ -1,0 +1,295 @@
+{
+  "checkpoints": {
+    "qonly50": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/ablation-v2-1k-qonly-lora2e6-ws7/step-000050.pt",
+      "sha256": "1eba95be711692222d5975e56867c45ee05d3fa28494ce84f6d952a1410be872"
+    },
+    "s1a125": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/s1A_branch_0125_ws7/step-000125.pt",
+      "sha256": "59b0de933abc5229cd81ad8507b3f7ab550f996d29038496ae8a58e373fb6df3"
+    }
+  },
+  "conditions": [
+    "correct",
+    "hold",
+    "reverse",
+    "swap",
+    "random-valid",
+    "left-reverse",
+    "right-reverse",
+    "null"
+  ],
+  "contract": "wan-action-causality-audit/2",
+  "episode_count": 8,
+  "inputs": {
+    "cached_manifest": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/manifests/v2-1000.cached.jsonl",
+    "cached_manifest_sha256": "f066f72fdf0ca25ab03ab4b8458f63b24531adecb4c1b289f688408cd9426efa",
+    "trajectory_stats": "/data/di/worldarena2_track1_20260815/data_selection/v2-clean50-36tasks/trajectory-stats.jsonl",
+    "trajectory_stats_sha256": "5a60615069a108003a8e5d6898e70db0cac6aa2590c3c38a00f1ef866cb9e8f1",
+    "urdf": "/home/huazhi/nlh/baseline/source_inputs/arx5_description_isaac.urdf",
+    "urdf_sha256": "097c59fb19a7b482249c6097df8319586ea7cfd268c015516f103b289a7e761a"
+  },
+  "records": [
+    {
+      "camera_calibration_sha256": "e13a30345119434ceccc914706ff73dc9b1517d3f54c65d1cd7b5e4ce12af87b",
+      "condition_sha256": {
+        "correct": "dadc232dfdf48c5ef33a4c85da131202e0cbc0f5e0e23056664e84712624b106",
+        "hold": "600101ba99fbea42b436461f6d528fe05aac3f7f34304c6bb5653dc58decd9e9",
+        "left-reverse": "2b4606a1bcbd74cd1961fb360ad35fc197123fda7003cf972c95cb5b27e1c526",
+        "random-valid": "fee180c0f10b6fd6ceccad8fcc7a7a935bb853c21a7631817b607293839e87d0",
+        "reverse": "262ab6633111fb6a856cac470dd4c6da4f11c3591e48e720bfb40e0d24971c53",
+        "right-reverse": "5c2b514d585899f1d95e1803208697941d91c45de2967c06f0abaed94cd51d06",
+        "swap": "5323e137abe3ee554fba15fe2f571cbf01e89d54b1fab414909c24b2480bf3b7"
+      },
+      "conditions": {
+        "correct": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000000/correct.npz",
+        "hold": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000000/hold.npz",
+        "left-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000000/left-reverse.npz",
+        "random-valid": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000000/random-valid.npz",
+        "reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000000/reverse.npz",
+        "right-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000000/right-reverse.npz",
+        "swap": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000000/swap.npz"
+      },
+      "context": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/contexts/place_bread_basket__aloha-agilex_clean_50__episode_000000.pt",
+      "latent": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/latents/place_bread_basket__aloha-agilex_clean_50__episode_000000.pt",
+      "random_donor": "place_bread_basket__aloha-agilex_clean_50__episode_000001",
+      "random_donor_hdf5_sha256": "56a30d1420b845c38938474b1d3c28f135a15d9d4e96dc71d8584bfb96994622",
+      "regions": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000000/regions.npz",
+      "regions_sha256": "e5dad9f80db77241abc6b2f66c047860d4c8d305efcf8ec6c3086fdfa3ef2243",
+      "sample": "place_bread_basket__aloha-agilex_clean_50__episode_000000",
+      "stratum": "left",
+      "target_hdf5": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_bread_basket/aloha-agilex_clean_50/data/episode0.hdf5",
+      "target_hdf5_sha256": "3d31bbe24b2c0bbf259f1b3c5124ea4aa8d2b9d16e946500266d3e06cd2dc05d",
+      "task": "place_bread_basket"
+    },
+    {
+      "camera_calibration_sha256": "e13a30345119434ceccc914706ff73dc9b1517d3f54c65d1cd7b5e4ce12af87b",
+      "condition_sha256": {
+        "correct": "a986760a1815cd2512f60b91faf429c1266b2ab5b389145e352e59ee40e0275f",
+        "hold": "600101ba99fbea42b436461f6d528fe05aac3f7f34304c6bb5653dc58decd9e9",
+        "left-reverse": "559246faa2708f0e6bf45e020f7dde331784b168e313058f957091d485bbc8d8",
+        "random-valid": "dadc232dfdf48c5ef33a4c85da131202e0cbc0f5e0e23056664e84712624b106",
+        "reverse": "3ca344e173727b12105d486da36e5032d75d3c2f812c4e10c0946b97cb0e9e6e",
+        "right-reverse": "60c743dd332b671be9516a74ade612625ed5f456e152ad62c4e35002057809a7",
+        "swap": "48abd4b69982650ec116b51c5cee49c9009ef2d0fa5d6906daa91f22b1ad31d6"
+      },
+      "conditions": {
+        "correct": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000019/correct.npz",
+        "hold": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000019/hold.npz",
+        "left-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000019/left-reverse.npz",
+        "random-valid": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000019/random-valid.npz",
+        "reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000019/reverse.npz",
+        "right-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000019/right-reverse.npz",
+        "swap": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000019/swap.npz"
+      },
+      "context": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/contexts/place_bread_basket__aloha-agilex_clean_50__episode_000019.pt",
+      "latent": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/latents/place_bread_basket__aloha-agilex_clean_50__episode_000019.pt",
+      "random_donor": "place_bread_basket__aloha-agilex_clean_50__episode_000000",
+      "random_donor_hdf5_sha256": "3d31bbe24b2c0bbf259f1b3c5124ea4aa8d2b9d16e946500266d3e06cd2dc05d",
+      "regions": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_basket__aloha-agilex_clean_50__episode_000019/regions.npz",
+      "regions_sha256": "6a9992f64cff1194bb06810c2b1f4cc7deadf178fc015642841f4b01de9aeaf3",
+      "sample": "place_bread_basket__aloha-agilex_clean_50__episode_000019",
+      "stratum": "left",
+      "target_hdf5": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_bread_basket/aloha-agilex_clean_50/data/episode19.hdf5",
+      "target_hdf5_sha256": "bc44bec2d46b39c382f9bd040619c91b5d89801859e924be57bbc4cf2417e936",
+      "task": "place_bread_basket"
+    },
+    {
+      "camera_calibration_sha256": "e13a30345119434ceccc914706ff73dc9b1517d3f54c65d1cd7b5e4ce12af87b",
+      "condition_sha256": {
+        "correct": "caf8aa808ac4148fef74e626b29b4197deab3416deb3d1b2e64b671f581d8e73",
+        "hold": "600101ba99fbea42b436461f6d528fe05aac3f7f34304c6bb5653dc58decd9e9",
+        "left-reverse": "2de7a167d8388bf7455db34f989d2a023891eae9cdb7d731ce361195f2d471bb",
+        "random-valid": "ee72a4d921633a482b4cea1250e272004b5e2aaa31312891dc2002d5b298e8dd",
+        "reverse": "4c2ad6182df75d8b3e921b4e84f878d21bb180bef7af87a516b8ef5d7173679b",
+        "right-reverse": "4cc7d23c645e272f6af3f982ccfc57cfeefc06b8927d08252fab4b6a10b7cdb7",
+        "swap": "b7f6e50eea8ac87a3f21001b452a89dda3ee094e25227d2e80f24b9a3429ae07"
+      },
+      "conditions": {
+        "correct": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000021/correct.npz",
+        "hold": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000021/hold.npz",
+        "left-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000021/left-reverse.npz",
+        "random-valid": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000021/random-valid.npz",
+        "reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000021/reverse.npz",
+        "right-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000021/right-reverse.npz",
+        "swap": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000021/swap.npz"
+      },
+      "context": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/contexts/pick_dual_bottles__aloha-agilex_clean_50__episode_000021.pt",
+      "latent": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/latents/pick_dual_bottles__aloha-agilex_clean_50__episode_000021.pt",
+      "random_donor": "pick_dual_bottles__aloha-agilex_clean_50__episode_000029",
+      "random_donor_hdf5_sha256": "fbea64bfa05bcc5b8a94d7665b93b313deca53034ab6e5fb55b730e0113193e7",
+      "regions": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000021/regions.npz",
+      "regions_sha256": "75d65a8543b3c2395dfb8620cee1f270954cb82de73a867f2832f681690d34e7",
+      "sample": "pick_dual_bottles__aloha-agilex_clean_50__episode_000021",
+      "stratum": "right",
+      "target_hdf5": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/pick_dual_bottles/aloha-agilex_clean_50/data/episode21.hdf5",
+      "target_hdf5_sha256": "d6541df40720d45c6ebd9d16a2275c097a2432e1aa600acd3df44556be8e4e22",
+      "task": "pick_dual_bottles"
+    },
+    {
+      "camera_calibration_sha256": "e13a30345119434ceccc914706ff73dc9b1517d3f54c65d1cd7b5e4ce12af87b",
+      "condition_sha256": {
+        "correct": "8adda1ba7624723041bc1090f61c9d07492318a09e606e89bf5b6bed3fa94912",
+        "hold": "600101ba99fbea42b436461f6d528fe05aac3f7f34304c6bb5653dc58decd9e9",
+        "left-reverse": "5937121ef209ab905a4b9dff4faea3c6752cfccc3c9a2bbb07ab818e992da465",
+        "random-valid": "ee72a4d921633a482b4cea1250e272004b5e2aaa31312891dc2002d5b298e8dd",
+        "reverse": "0a8434f750c935acac1086ad73698fa7965e09fe60ac7925b72ee387dc4074b1",
+        "right-reverse": "9412bbab8984dfd76cbbe389e445d2c41ac6a411b4bba0a2b81bc3db3653bf03",
+        "swap": "624e82a9790d4ccf3ef970bf488f5405757caf6dc2e6fde535b5d50aeb6be1ce"
+      },
+      "conditions": {
+        "correct": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000001/correct.npz",
+        "hold": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000001/hold.npz",
+        "left-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000001/left-reverse.npz",
+        "random-valid": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000001/random-valid.npz",
+        "reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000001/reverse.npz",
+        "right-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000001/right-reverse.npz",
+        "swap": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000001/swap.npz"
+      },
+      "context": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/contexts/pick_dual_bottles__aloha-agilex_clean_50__episode_000001.pt",
+      "latent": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/latents/pick_dual_bottles__aloha-agilex_clean_50__episode_000001.pt",
+      "random_donor": "pick_dual_bottles__aloha-agilex_clean_50__episode_000029",
+      "random_donor_hdf5_sha256": "fbea64bfa05bcc5b8a94d7665b93b313deca53034ab6e5fb55b730e0113193e7",
+      "regions": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/pick_dual_bottles__aloha-agilex_clean_50__episode_000001/regions.npz",
+      "regions_sha256": "7de81172519745d2997786f9fe1c00eca7e9ae1764690e046d9f89bea87b85e4",
+      "sample": "pick_dual_bottles__aloha-agilex_clean_50__episode_000001",
+      "stratum": "right",
+      "target_hdf5": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/pick_dual_bottles/aloha-agilex_clean_50/data/episode1.hdf5",
+      "target_hdf5_sha256": "aa2610b0d85e2f0867564efc7d9e4003bdbc86a371ad5fe3d4c6755ae7b226d7",
+      "task": "pick_dual_bottles"
+    },
+    {
+      "camera_calibration_sha256": "e13a30345119434ceccc914706ff73dc9b1517d3f54c65d1cd7b5e4ce12af87b",
+      "condition_sha256": {
+        "correct": "aa28c9bd5acead2a8440288cc2b662d8689b40a7fb5408b64b45919b36c9bae8",
+        "hold": "600101ba99fbea42b436461f6d528fe05aac3f7f34304c6bb5653dc58decd9e9",
+        "left-reverse": "10255668b275279453ba1a9827719e5187b971325de18726106e27bb15d1d5f1",
+        "random-valid": "b4135c70a54b191c80eae1d2b1d354b0c4fd1013e6f3b220f27a2be14dd118c3",
+        "reverse": "e804f1616979a80a9e4aa9d66e9ea19502945a5f670d0171aa4c48a03dcf28eb",
+        "right-reverse": "71374ebd65dfc211ae857ee1ea85650f6f44d57b177ef40c92e5d55302c13b12",
+        "swap": "215e83c11e06130fbef0db65b1770d4530c377d43f91d06fed33392322f5234b"
+      },
+      "conditions": {
+        "correct": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000012/correct.npz",
+        "hold": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000012/hold.npz",
+        "left-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000012/left-reverse.npz",
+        "random-valid": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000012/random-valid.npz",
+        "reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000012/reverse.npz",
+        "right-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000012/right-reverse.npz",
+        "swap": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000012/swap.npz"
+      },
+      "context": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/contexts/scan_object__aloha-agilex_clean_50__episode_000012.pt",
+      "latent": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/latents/scan_object__aloha-agilex_clean_50__episode_000012.pt",
+      "random_donor": "scan_object__aloha-agilex_clean_50__episode_000048",
+      "random_donor_hdf5_sha256": "2ac0a89c9e80496de5e1a7827057abfca29fd6afe1e54c7414ed1df5bebb38de",
+      "regions": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000012/regions.npz",
+      "regions_sha256": "17b2fa5a352ed3408489fa9db13d994a6e67ebf9d455355bad6ea86c283ef788",
+      "sample": "scan_object__aloha-agilex_clean_50__episode_000012",
+      "stratum": "dual",
+      "target_hdf5": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/scan_object/aloha-agilex_clean_50/data/episode12.hdf5",
+      "target_hdf5_sha256": "d1e3f1451108b5d5d16717979a2f7400a921b685390236c100b6d3bbf42fa409",
+      "task": "scan_object"
+    },
+    {
+      "camera_calibration_sha256": "e13a30345119434ceccc914706ff73dc9b1517d3f54c65d1cd7b5e4ce12af87b",
+      "condition_sha256": {
+        "correct": "4a6ea514b9637ffdac2630783c6a29b8de5dbd61b61357fdd1e5692f6bcee6cd",
+        "hold": "600101ba99fbea42b436461f6d528fe05aac3f7f34304c6bb5653dc58decd9e9",
+        "left-reverse": "a08776ac0c1ce6fd976c5d01c75c1baf2eadceb0cf625c12a999e7837dd2824d",
+        "random-valid": "b4135c70a54b191c80eae1d2b1d354b0c4fd1013e6f3b220f27a2be14dd118c3",
+        "reverse": "1536620d0b49c79a1093839b0a1d42b73eef07fe4d51487086a7d00b7254d1ff",
+        "right-reverse": "aedab2615179543fa071df8521a506385c21da22da39fa604787d6e71a1cd5a4",
+        "swap": "e051bdd3e3bb6d20b7b1a23ff7304fcb8ab10d78a9aede738394ca50cf2591ac"
+      },
+      "conditions": {
+        "correct": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000027/correct.npz",
+        "hold": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000027/hold.npz",
+        "left-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000027/left-reverse.npz",
+        "random-valid": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000027/random-valid.npz",
+        "reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000027/reverse.npz",
+        "right-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000027/right-reverse.npz",
+        "swap": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000027/swap.npz"
+      },
+      "context": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/contexts/scan_object__aloha-agilex_clean_50__episode_000027.pt",
+      "latent": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/latents/scan_object__aloha-agilex_clean_50__episode_000027.pt",
+      "random_donor": "scan_object__aloha-agilex_clean_50__episode_000048",
+      "random_donor_hdf5_sha256": "2ac0a89c9e80496de5e1a7827057abfca29fd6afe1e54c7414ed1df5bebb38de",
+      "regions": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/scan_object__aloha-agilex_clean_50__episode_000027/regions.npz",
+      "regions_sha256": "e54f9e76c5bd1e666a13101789a814c7deb0e3d4b837d374bdf069871424d7a7",
+      "sample": "scan_object__aloha-agilex_clean_50__episode_000027",
+      "stratum": "dual",
+      "target_hdf5": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/scan_object/aloha-agilex_clean_50/data/episode27.hdf5",
+      "target_hdf5_sha256": "60e88ecb28925852e7a3323b0faf2eedea7602028503732752fb51fc7e5c290e",
+      "task": "scan_object"
+    },
+    {
+      "camera_calibration_sha256": "e13a30345119434ceccc914706ff73dc9b1517d3f54c65d1cd7b5e4ce12af87b",
+      "condition_sha256": {
+        "correct": "4281ddd401a67b121d01d0389032060176cadf262f610d61c600e18caf00fb69",
+        "hold": "600101ba99fbea42b436461f6d528fe05aac3f7f34304c6bb5653dc58decd9e9",
+        "left-reverse": "560cc2c136e0b95b2745705f8b1c756233bc648207b03e62428ba8be2e1b8210",
+        "random-valid": "0c864611b802860fb3782a1ff6e79739aad586be760e2bed37c22f5825bc9d08",
+        "reverse": "d51898424a593aff855b1a873119dde75937aa95087d4bb745dec18d4245b772",
+        "right-reverse": "91abf234092f8b33acb08a30a069e8c46a4aad45c45cb7bdb07422c15b4585d8",
+        "swap": "8e943e0e3fa49af09da266253c802620150dadad07f9b7d23c41c9a18d73de8d"
+      },
+      "conditions": {
+        "correct": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000031/correct.npz",
+        "hold": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000031/hold.npz",
+        "left-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000031/left-reverse.npz",
+        "random-valid": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000031/random-valid.npz",
+        "reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000031/reverse.npz",
+        "right-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000031/right-reverse.npz",
+        "swap": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000031/swap.npz"
+      },
+      "context": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/contexts/place_bread_skillet__aloha-agilex_clean_50__episode_000031.pt",
+      "latent": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/latents/place_bread_skillet__aloha-agilex_clean_50__episode_000031.pt",
+      "random_donor": "place_bread_skillet__aloha-agilex_clean_50__episode_000013",
+      "random_donor_hdf5_sha256": "815c8e2d9f741c622e8ffbceed2012339f13970732f80ea765dc69437ce8bb89",
+      "regions": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000031/regions.npz",
+      "regions_sha256": "4dc190599900ad92e96b37fc7bb81e4e194a899f5f96f09838ad5d85561d70bc",
+      "sample": "place_bread_skillet__aloha-agilex_clean_50__episode_000031",
+      "stratum": "large",
+      "target_hdf5": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_bread_skillet/aloha-agilex_clean_50/data/episode31.hdf5",
+      "target_hdf5_sha256": "ccf7e7509cd9dbecad48ad92608b10b800c101bb29be5b9396333535387ff5c6",
+      "task": "place_bread_skillet"
+    },
+    {
+      "camera_calibration_sha256": "e13a30345119434ceccc914706ff73dc9b1517d3f54c65d1cd7b5e4ce12af87b",
+      "condition_sha256": {
+        "correct": "3e33ed5d5c2f50b61f9e61b7adac74c485636f73598045c07c80a3b0e4f2b933",
+        "hold": "600101ba99fbea42b436461f6d528fe05aac3f7f34304c6bb5653dc58decd9e9",
+        "left-reverse": "5cc14a70657ad3cd21fab8457fdb48888fd81b233c00a4499c92271e586c661e",
+        "random-valid": "22c245e2cbdb1ca7b052362a0cdacb79ad6b46b0538889fd81eae5192a6c0c3b",
+        "reverse": "0ccdc339f6520d568d82c66b13bff50c56f8516e21d8ef0352e9cdd3ed85ab38",
+        "right-reverse": "b03e2b178bc0f0b790fc99b4970049268f9a0c2b969afeb8e69110482e31e3db",
+        "swap": "ea5e8a9c29f1c21e7a1fa8236fce6755ae523d0a2a2d5243b740df60aa7d3cd3"
+      },
+      "conditions": {
+        "correct": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000006/correct.npz",
+        "hold": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000006/hold.npz",
+        "left-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000006/left-reverse.npz",
+        "random-valid": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000006/random-valid.npz",
+        "reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000006/reverse.npz",
+        "right-reverse": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000006/right-reverse.npz",
+        "swap": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000006/swap.npz"
+      },
+      "context": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/contexts/place_bread_skillet__aloha-agilex_clean_50__episode_000006.pt",
+      "latent": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/latents/place_bread_skillet__aloha-agilex_clean_50__episode_000006.pt",
+      "random_donor": "place_bread_skillet__aloha-agilex_clean_50__episode_000010",
+      "random_donor_hdf5_sha256": "e8e1e404a80d0c84458d59c3a14fc9694ecfa5d4d6081d242f416bc8f46de86d",
+      "regions": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/conditions/place_bread_skillet__aloha-agilex_clean_50__episode_000006/regions.npz",
+      "regions_sha256": "1b419336373814c62d6b8964b0db4cb6eebef9a29ddfecc2b8732329468894f7",
+      "sample": "place_bread_skillet__aloha-agilex_clean_50__episode_000006",
+      "stratum": "large",
+      "target_hdf5": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_bread_skillet/aloha-agilex_clean_50/data/episode6.hdf5",
+      "target_hdf5_sha256": "6a92aec2ca92acfad2ed3a5a7e5024f5972535ab647708a88f2c39a6ae1904b9",
+      "task": "place_bread_skillet"
+    }
+  ],
+  "timesteps": [
+    250,
+    500,
+    750
+  ]
+}

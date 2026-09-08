@@ -1,0 +1,74 @@
+{
+  "best_of_n": {
+    "4": {
+      "winner_counts": {
+        "1": 7,
+        "2": 7,
+        "3": 17,
+        "4": 9
+      }
+    }
+  },
+  "completed": true,
+  "contract": "worldarena-seed3-frozen-seed142-incremental-routing-mvp/1",
+  "feature_policy": "generated_only_no_hidden_gt",
+  "inputs": {
+    "already_scored_winners": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/router/seed1-4-2-3-generated9-mvp/seed3-new-winners.generated9.csv",
+      "sha256": "7df6e75957115a82f92dafe17dc3f5f86cf3aa24716f66659686f8d25fa1cf39"
+    },
+    "prior_package": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1199/dev-clean-50/receipts/package.complete.json",
+      "sha256": "e5f01663b83ff008d05ea45aa24d93aff6561bed3cab5ad6329943c606538c3e"
+    },
+    "seed3_generated9": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/scoring/seed3/merged40/csv/generated-only-task-aware.csv",
+      "sha256": "f9a253b7c5b5a1199454f7b43b8c5e5a798999591964006bcd852c9d7c9d7e8d"
+    }
+  },
+  "outputs": {
+    "route40_csv": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/router/seed142-frozen-plus3-generated9-mvp/seed142-frozen-plus3-route40.generated9.csv",
+      "sha256": "25cfef55dc282304adb1e7575b8fd43c3edbe020d8c974a8b3a1e6549754c8c3"
+    },
+    "seed3_additional_winners_csv": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/router/seed142-frozen-plus3-generated9-mvp/seed3-frozen-extra3.generated9.csv",
+      "sha256": "ef3eca84dd33cb2bb718a9411bd5d08ad139fbf448c5d37b7c3b0efc7779cecf"
+    },
+    "seed3_new_winners_csv": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/router/seed142-frozen-plus3-generated9-mvp/seed3-frozen-new17.generated9.csv",
+      "sha256": "051d7748095c7c1aefc6aa1e4c3ce95a59e4bcec711731aca8d1d24b4c31faca"
+    }
+  },
+  "prior_route_frozen": true,
+  "row_count": 40,
+  "seed3_increment": {
+    "additional_keys": [
+      "dump_bin_bigbin::episode000011",
+      "place_phone_stand::episode000039",
+      "place_shoe::episode000043"
+    ],
+    "additional_unscored_count": 3,
+    "mean9_delta_full40": 0.004045770050514875,
+    "new_winner_count": 17,
+    "winner_keys": [
+      "click_alarmclock::episode000021",
+      "dump_bin_bigbin::episode000011",
+      "lift_pot::episode000033",
+      "move_pillbottle_pad::episode000032",
+      "move_stapler_pad::episode000013",
+      "open_laptop::episode000024",
+      "pick_dual_bottles::episode000000",
+      "place_bread_basket::episode000013",
+      "place_can_basket::episode000042",
+      "place_dual_shoes::episode000037",
+      "place_empty_cup::episode000029",
+      "place_phone_stand::episode000039",
+      "place_shoe::episode000043",
+      "scan_object::episode000016",
+      "shake_bottle::episode000028",
+      "stack_blocks_two::episode000013",
+      "stack_bowls_two::episode000010"
+    ]
+  }
+}

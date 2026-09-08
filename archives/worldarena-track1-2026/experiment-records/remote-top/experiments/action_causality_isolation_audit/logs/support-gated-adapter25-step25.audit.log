@@ -1,0 +1,22 @@
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+[W816 19:27:36.262260868 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 19:27:47.448144655 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.12s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.12s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.12s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.12s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.12s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.12s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.12s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.12s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.13s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.15s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.15s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.15s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.15s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.15s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.77s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.77s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.79s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.79s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.79s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.79s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.79s/it]
+{"checkpoint_label": "s1a125-support-gated-adapter25-step25", "completed": 1, "event": "action_causality_episode_audited", "sample": "place_bread_basket__aloha-agilex_clean_50__episode_000000", "total": 8}
+{"checkpoint_label": "s1a125-support-gated-adapter25-step25", "completed": 2, "event": "action_causality_episode_audited", "sample": "place_bread_basket__aloha-agilex_clean_50__episode_000019", "total": 8}
+{"checkpoint_label": "s1a125-support-gated-adapter25-step25", "completed": 3, "event": "action_causality_episode_audited", "sample": "pick_dual_bottles__aloha-agilex_clean_50__episode_000021", "total": 8}
+{"checkpoint_label": "s1a125-support-gated-adapter25-step25", "completed": 4, "event": "action_causality_episode_audited", "sample": "pick_dual_bottles__aloha-agilex_clean_50__episode_000001", "total": 8}
+{"checkpoint_label": "s1a125-support-gated-adapter25-step25", "completed": 5, "event": "action_causality_episode_audited", "sample": "scan_object__aloha-agilex_clean_50__episode_000012", "total": 8}
+{"checkpoint_label": "s1a125-support-gated-adapter25-step25", "completed": 6, "event": "action_causality_episode_audited", "sample": "scan_object__aloha-agilex_clean_50__episode_000027", "total": 8}
+{"checkpoint_label": "s1a125-support-gated-adapter25-step25", "completed": 7, "event": "action_causality_episode_audited", "sample": "place_bread_skillet__aloha-agilex_clean_50__episode_000031", "total": 8}
+{"checkpoint_label": "s1a125-support-gated-adapter25-step25", "completed": 8, "event": "action_causality_episode_audited", "sample": "place_bread_skillet__aloha-agilex_clean_50__episode_000006", "total": 8}
+{"classification": "robot_loss_action_insensitive", "event": "action_causality_checkpoint_audited", "label": "s1a125-support-gated-adapter25-step25", "report": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/reports/s1a125-support-gated-adapter25-step25.v2.json"}

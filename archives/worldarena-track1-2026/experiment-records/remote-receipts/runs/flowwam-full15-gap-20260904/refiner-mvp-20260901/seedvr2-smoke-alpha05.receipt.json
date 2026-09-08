@@ -1,0 +1,125 @@
+{
+  "contract": "flowwam-worldarena-official-refiner/1",
+  "input_stems": [
+    "episode000000"
+  ],
+  "memory_schedule": {
+    "contract": "flowwam-seedvr2-memory-safe-4090/1",
+    "conv_max_mem": 0.5,
+    "dit_dtype": "bfloat16",
+    "dit_offload": true,
+    "norm_max_mem": 0.5,
+    "rope": {
+      "contract": "seedvr2-shape-bounded-chunked-rope/2",
+      "fp32_chunk_rows": 1024,
+      "patched_modules": 32
+    }
+  },
+  "norm_compat": {
+    "config_sha256": "6e7fa1ef62a11f5fcf755c34997569c031c01ae50a4d3ddab4061f3a786ce196",
+    "contract": "seedvr2-rtx4090-unfused-chunked-norms/2",
+    "enabled": true,
+    "rmsnorm_fp32_chunk_rows": 1024
+  },
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "refiner": {
+    "alpha": 0.5,
+    "overlap": 4,
+    "sample_steps": 1,
+    "seed": 666,
+    "target_size": [
+      640,
+      480
+    ],
+    "window": 17
+  },
+  "seedvr_revision": "37255ff8cccfb01071b87f635a5948ca8d53117c",
+  "starts_gpu": true,
+  "submission_size": [
+    640,
+    480
+  ],
+  "videos": [
+    {
+      "contract": "flowwam-worldarena-official-refined-video/1",
+      "first_frame_array_preserved": true,
+      "fps": 24.0,
+      "frames": 121,
+      "input_sha256": "07a592e0a43ac8a85bb77c9ff22529e3a3b25b17e197a4343ae9ae53e13a9a91",
+      "native_sha256": "711053032357c2429d49591fc20dda0fddea3a8a42c67af54e2f9817a8141d48",
+      "native_size": [
+        640,
+        480
+      ],
+      "overlap": 4,
+      "refined_sha256": "d7ba80a8cc0613ba12289a9d4ed20e6d5a0ce024545902c0d0ee4a60ebf5844a",
+      "sample": "episode000000",
+      "segments": [
+        {
+          "padded_frames": 0,
+          "start": 0,
+          "stop": 17,
+          "valid_frames": 17
+        },
+        {
+          "padded_frames": 0,
+          "start": 13,
+          "stop": 30,
+          "valid_frames": 17
+        },
+        {
+          "padded_frames": 0,
+          "start": 26,
+          "stop": 43,
+          "valid_frames": 17
+        },
+        {
+          "padded_frames": 0,
+          "start": 39,
+          "stop": 56,
+          "valid_frames": 17
+        },
+        {
+          "padded_frames": 0,
+          "start": 52,
+          "stop": 69,
+          "valid_frames": 17
+        },
+        {
+          "padded_frames": 0,
+          "start": 65,
+          "stop": 82,
+          "valid_frames": 17
+        },
+        {
+          "padded_frames": 0,
+          "start": 78,
+          "stop": 95,
+          "valid_frames": 17
+        },
+        {
+          "padded_frames": 0,
+          "start": 91,
+          "stop": 108,
+          "valid_frames": 17
+        },
+        {
+          "padded_frames": 0,
+          "start": 104,
+          "stop": 121,
+          "valid_frames": 17
+        }
+      ],
+      "submission_sha256": "711053032357c2429d49591fc20dda0fddea3a8a42c67af54e2f9817a8141d48",
+      "submission_size": [
+        640,
+        480
+      ],
+      "window": 17
+    }
+  ],
+  "weight_sha256": {
+    "ema_vae.pth": "c7df8a67e68b7f9aca3d5d2153d2ce8ab4373687741a0f9ce87cb356ace51cac",
+    "seedvr2_ema_3b.pth": "6bcc5ac59447e97b100477480aebb01be2ec724c8340bb83faae21f64848604b"
+  }
+}

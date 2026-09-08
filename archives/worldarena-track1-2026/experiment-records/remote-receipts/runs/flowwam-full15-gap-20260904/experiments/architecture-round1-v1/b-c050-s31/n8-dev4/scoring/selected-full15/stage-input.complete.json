@@ -1,0 +1,56 @@
+{
+  "completed": true,
+  "contract": "b-c050-selected-full15-prompt-bound-input/1",
+  "formal_test_opened": false,
+  "frozen_input_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/full15-input/input.complete.json",
+  "frozen_input_receipt_sha256": "2b8d48a194082f3653fe3f4b6aed8b29770d7c50fc140431cddf6c9f8f0a9d15",
+  "items": [
+    {
+      "episode_index": 0,
+      "first_frame_sha256": "362842aa0f9d5d2b702b02be373393a5b1c917351773429737d245ceac4e1283",
+      "hdf5_sha256": "a57f7fb488acc6a88f53c0cb3289898663c43043f7fb8bf017021b58574ce136",
+      "instruction": "Grab the brown bottle with red label with an arm, grab the bottle with ridges near base next.",
+      "instruction_sha256": "b26ec001e5a4088dde15f89087c2fd37e7c933c051fce690e2d5bdf877a2d04a",
+      "logical_episode_id": 0,
+      "sample": "pick_dual_bottles__aloha-agilex_clean_50__episode_000000",
+      "task": "pick_dual_bottles"
+    },
+    {
+      "episode_index": 8,
+      "first_frame_sha256": "9403b660ce138f8ee70e49c774bd25df2b88a30933f44079eecc8b45687e6d9e",
+      "hdf5_sha256": "655456c02b6532e6acfbbcd45ecf837d78f1a6308f21eacc12bb48dc31172751",
+      "instruction": "Activate the blue bell by pressing its top center.",
+      "instruction_sha256": "5b7a8cf9d332c3abdddd54927fd8ff8eb3b1c4e741e5cff9bdb3a83ff34f0e7b",
+      "logical_episode_id": 1,
+      "sample": "click_bell__aloha-agilex_clean_50__episode_000008",
+      "task": "click_bell"
+    },
+    {
+      "episode_index": 17,
+      "first_frame_sha256": "2587be22cff6716ef130dc1d44f0ed7b5ed78a16f175943bcd31da7fd7d5e9f4",
+      "hdf5_sha256": "947528ada717e28f245a4f21a773e4093fffe3bf4a271efaef50b3dc2cc00e0b",
+      "instruction": "Stick the container onto the food plate using the curved bowl light blue shade.",
+      "instruction_sha256": "2f664a2cd84891acf1b20a1d7fb60d8460b731fafc798b13e87088b602de4c96",
+      "logical_episode_id": 2,
+      "sample": "place_container_plate__aloha-agilex_clean_50__episode_000017",
+      "task": "place_container_plate"
+    },
+    {
+      "episode_index": 24,
+      "first_frame_sha256": "c4d236a6d5652bc7de9f1d87a3fa0dfd43c9fd5f7ddeec57cd3420b3d0ba9042",
+      "hdf5_sha256": "428c33dd19c0543e705736494e2592b545e95e69af11d6037c51e31518ba538e",
+      "instruction": "Lift the black laptop with smooth body slightly.",
+      "instruction_sha256": "9b803a8c812bbb4b44187f4b090edc95400f08fbf41f58b1fb9e7174bd541c7e",
+      "logical_episode_id": 3,
+      "sample": "open_laptop__aloha-agilex_clean_50__episode_000024",
+      "task": "open_laptop"
+    }
+  ],
+  "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/full15-input/dev4-manifest.jsonl",
+  "manifest_sha256": "dcf1b56739b661e0b0bef87cc9eeafe4bd32f8959fb6ae83fae9dcac9a72c7d1",
+  "remap_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/remap/remap.complete.json",
+  "remap_receipt_sha256": "0c632305d3eef1f67e89c7b6489b53bff4ef0886d294af34d6202688fb3b5925",
+  "rows": 4,
+  "selection_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/selection/selection.complete.json",
+  "selection_receipt_sha256": "0506e1c49b49a040a8b034c73a0f3f7bda72fee15b2b0b0bdb57871d70378df9"
+}

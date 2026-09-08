@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.044375,
+    "mean_area_fraction": 0.030221796231995886,
+    "valid_frames": 81
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.4678092447916667,
+    "mean_area_fraction": 0.1883154095936214,
+    "valid_frames": 76
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.4643326822916667,
+    "mean_area_fraction": 0.1763160686728395,
+    "valid_frames": 76
+  },
+  "source_video_sha256": "a9a25756c887b69d7f5f041bb80e802907934c71264c0371cc73d31aff4bd818",
+  "support_fraction": 0.8864431825488683,
+  "support_sha256": "9e40e2082039353a6d2e820f3d555390848492ebbc73c3fa49b7c40f8feaa552",
+  "video_id": "hanging_mug_episode000004"
+}

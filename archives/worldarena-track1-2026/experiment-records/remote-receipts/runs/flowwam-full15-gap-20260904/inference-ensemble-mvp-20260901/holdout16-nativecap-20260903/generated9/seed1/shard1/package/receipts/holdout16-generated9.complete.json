@@ -1,0 +1,63 @@
+{
+  "completed": true,
+  "contract": "worldarena-holdout16-generated9-shard-mvp/1",
+  "generated9_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed1/shard1/package/csv_results/generated-only.csv",
+  "generated9_csv_sha256": "c33b5d6db171cd27a1640086d42fd778c78b4f913029f0814c17aa5077490daa",
+  "hidden_ground_truth_used": false,
+  "inputs": [
+    "candidate_video",
+    "released_first_frame",
+    "released_instruction"
+  ],
+  "manifest_sha256": "b4c46410dea61ad9207596b95f0c895fa67f718a9ca24d88afe7bfbd4e964858",
+  "mapping": [
+    {
+      "episode_id": "press_stapler__aloha-agilex_clean_50__episode_000026",
+      "score_video_id": "fixed_scene_task_episode_000005",
+      "score_video_sha256": "d668c084181a0efec79313085e91d706608cb2f1f9abb678177750e5a03c1201",
+      "scoring_frames": 81,
+      "source_frames": 121,
+      "source_sha256": "0b713bcece87e1fa5deb863e952ca07ad7cd1986308145284c9a842d57224290",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/press_stapler/FlowWAMOfficialStage1_test/episode000004.mp4",
+      "stage1_episode_name": "episode000004"
+    },
+    {
+      "episode_id": "press_stapler__aloha-agilex_clean_50__episode_000021",
+      "score_video_id": "fixed_scene_task_episode_000006",
+      "score_video_sha256": "ddcebcbe12ccebfd4db541d6eead12c6677abc7c98f02d778ce2a8af94858c20",
+      "scoring_frames": 81,
+      "source_frames": 121,
+      "source_sha256": "91db615df8b599c6ddd37922af7ab5919885a1f6791468205b2bc2ecb44b40be",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/press_stapler/FlowWAMOfficialStage1_test/episode000005.mp4",
+      "stage1_episode_name": "episode000005"
+    },
+    {
+      "episode_id": "press_stapler__aloha-agilex_clean_50__episode_000033",
+      "score_video_id": "fixed_scene_task_episode_000007",
+      "score_video_sha256": "b04c72b5ff098269111aa0673cf8c3938e2dd9161737da753d27d40a8eee9802",
+      "scoring_frames": 81,
+      "source_frames": 121,
+      "source_sha256": "1776db8b588d0905deba6a844d69e0dec87c29a7960484b0cbfe69b8c40517cf",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/press_stapler/FlowWAMOfficialStage1_test/episode000006.mp4",
+      "stage1_episode_name": "episode000006"
+    },
+    {
+      "episode_id": "press_stapler__aloha-agilex_clean_50__episode_000012",
+      "score_video_id": "fixed_scene_task_episode_000008",
+      "score_video_sha256": "0bcfad040fa0fdfb17372a8c2d7f4ded6f00ad579cc77d3789d009a4a046a069",
+      "scoring_frames": 81,
+      "source_frames": 121,
+      "source_sha256": "2181dcf3b0aeb8668a7c6726e296a9a4982ddaf2f8269343f73eee1f551066de",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/press_stapler/FlowWAMOfficialStage1_test/episode000007.mp4",
+      "stage1_episode_name": "episode000007"
+    }
+  ],
+  "rows": 4,
+  "scoring_frames": 81,
+  "seed": 1,
+  "shard": 1,
+  "source_frames": 121,
+  "source_stage1_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/press_stapler/stage1-only.receipt.json",
+  "source_stage1_receipt_sha256": "cda425864c7fab298ddeb6de209481206c8b1a4c500ded7793f081a33222fb70",
+  "wrapper_sha256": "a6dfdc89e2062c2ebf781e34ad2ad73eb0b48ffb6c4c451ee1b87b836d91f929"
+}

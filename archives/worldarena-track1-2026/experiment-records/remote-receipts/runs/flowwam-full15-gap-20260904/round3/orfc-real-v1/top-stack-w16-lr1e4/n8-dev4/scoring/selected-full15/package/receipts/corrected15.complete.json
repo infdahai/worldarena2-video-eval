@@ -1,0 +1,30 @@
+{
+  "aggregate_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-stack-w16-lr1e4/n8-dev4/scoring/selected-full15/package/receipts/aggregate.complete.json",
+  "aggregate_receipt_sha256": "cf040855edfc2c5a61772793727c0a0538569cfcbf416b663fa334df3a58ae30",
+  "candidate": "orfc-top-stack-w16-lr1e4",
+  "capped_episode_counts": {
+    "Dynamic Degree": 1,
+    "Flow Score": 1,
+    "Motion Smoothness": 4
+  },
+  "completed": true,
+  "contract": "worldarena2-round3-gt-reference-motion-correction/1",
+  "corrected_15_metric_mean": 0.689695467403437,
+  "corrected_columns": [
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ],
+  "corrected_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-stack-w16-lr1e4/n8-dev4/scoring/selected-full15/package/csv_results/corrected15.csv",
+  "corrected_csv_sha256": "b5fe58eff81a628b2f47b51b68aa227d266d742419c3b67cfeb4691d197e70c9",
+  "formula": "adjusted_score=min(original_score,matched_gt_reference_score)",
+  "gt_results_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/fresh40/latest-scorer/gt-motion-output/gt_reference_results.json",
+  "gt_results_json_sha256": "79c73e40198125f52d4c010a524892f8483459cde027c50d55fe0da411320548",
+  "nonmotion12_mean": 0.7696020927454658,
+  "raw_15_metric_mean": 0.692752342317267,
+  "raw_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-stack-w16-lr1e4/n8-dev4/scoring/selected-full15/package/csv_results/aggregated_results.csv",
+  "raw_csv_sha256": "87376f7abab737f870905fc4bfa3164bfc8bbd3e6d953a888fcc15dc317d5c50",
+  "row_count": 4,
+  "selection_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-stack-w16-lr1e4/n8-dev4/scoring/selection/selection.complete.json",
+  "selection_receipt_sha256": "7a34933ad703333d3a723a7033854dda36aa9a36968d4a6cedbd51cb88cfe35b"
+}

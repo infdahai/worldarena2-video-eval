@@ -1,0 +1,61 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-late-b2-n8-generated9-selection/1",
+  "corrected15_used_for_selection": false,
+  "feature_policy": "generated_only_no_hidden_gt",
+  "generated9_csvs": {
+    "seed1": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/scoring/generated9/seed1/package/csv_results/generated-only.csv",
+      "sha256": "752502dd2c2263680612253a46847087e99dfcb39b691471ee77bc83903d8446"
+    },
+    "seed4": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/scoring/generated9/seed4/package/csv_results/generated-only.csv",
+      "sha256": "c592a8fd41c0efde1d1767678f28e024883168468aec4e209e0a97ca153379d8"
+    }
+  },
+  "model": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/postgen/postgen-selector.model.json",
+  "model_sha256": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+  "policy": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/policy-selection.complete.json",
+  "policy_sha256": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7",
+  "row_count": 4,
+  "rows": [
+    {
+      "logical_episode_id": 0,
+      "score_video_id": "fixed_scene_task_episode_000000",
+      "seed1_probability": 0.3289657060675233,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/eval-late5-seed4-retry2/FlowWAMOfficialStage1_test/episode000000.mp4",
+      "selected_video_sha256": "66db28ff9a14d18453912f18bdb1b928bc30a688bdf1df827c6c718fece598c0"
+    },
+    {
+      "logical_episode_id": 1,
+      "score_video_id": "fixed_scene_task_episode_000001",
+      "seed1_probability": 0.12154235390304581,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/eval-late5-seed4-retry2/FlowWAMOfficialStage1_test/episode000001.mp4",
+      "selected_video_sha256": "6c45951499b4da1fbea2c29b05d85bcf1a8bed6166b1010f6d74a8ffa2df5fde"
+    },
+    {
+      "logical_episode_id": 2,
+      "score_video_id": "fixed_scene_task_episode_000002",
+      "seed1_probability": 0.02032632838156723,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/eval-late5-seed4-retry2/FlowWAMOfficialStage1_test/episode000002.mp4",
+      "selected_video_sha256": "cd5cc721365f8187980190831d68817935e27309edf1b3724c4af101884529e6"
+    },
+    {
+      "logical_episode_id": 3,
+      "score_video_id": "fixed_scene_task_episode_000003",
+      "seed1_probability": 0.20257336094070266,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/eval-late5-seed4-retry2/FlowWAMOfficialStage1_test/episode000003.mp4",
+      "selected_video_sha256": "6945a95930bc7ad5f6eacac4b3f400cf49b3b5eb1272047b5b7d1eb339e7fa15"
+    }
+  ],
+  "selected_seed_counts": {
+    "seed1": 0,
+    "seed4": 4
+  },
+  "selection_jsonl": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/n8-dev4/scoring/selection/selection.jsonl",
+  "selection_jsonl_sha256": "2e32e5735d8f7831d907b05b2fda22b0c8adc0c308b2d9f5f7f68d4cb22d62fb"
+}

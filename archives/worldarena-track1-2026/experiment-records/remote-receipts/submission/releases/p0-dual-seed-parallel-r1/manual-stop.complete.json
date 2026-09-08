@@ -1,0 +1,28 @@
+{
+  "status": "stopped_by_user",
+  "stopped_at": "2026-08-27T16:54:37+08:00",
+  "root": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1",
+  "progress": {
+    "seed1_unique": 748,
+    "seed4_unique": 763,
+    "total_unique_candidates": 1511,
+    "stage_receipts": 8,
+    "worker_receipts": 0
+  },
+  "termination": {
+    "signal": "SIGTERM",
+    "remaining_project_processes": 0,
+    "remaining_gpu_compute_processes": 0
+  },
+  "snapshot": {
+    "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/manual-stop-20260827T1619+0800.snapshot.txt",
+    "sha256": "a1be4206ebaf57080de211dfe60f2f01a6d35fb31ba0c31d8b03c5bea4347a2e"
+  },
+  "preservation": {
+    "videos_deleted": false,
+    "receipts_deleted": false,
+    "logs_deleted": false,
+    "stale_pid_files_preserved": 8
+  },
+  "resume_note": "Resume only after validating existing videos; stale pid files must be reconciled before restart."
+}

@@ -1,0 +1,87 @@
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+[W816 17:52:28.670113723 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 518, in <module>
+    main()
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 277, in main
+    raise ValueError("Wan source must be the approved read-only checkout")
+ValueError: Wan source must be the approved read-only checkout
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 518, in <module>
+    main()
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 277, in main
+    raise ValueError("Wan source must be the approved read-only checkout")
+ValueError: Wan source must be the approved read-only checkout
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 518, in <module>
+    main()
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 277, in main
+    raise ValueError("Wan source must be the approved read-only checkout")
+ValueError: Wan source must be the approved read-only checkout
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 518, in <module>
+    main()
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 277, in main
+    raise ValueError("Wan source must be the approved read-only checkout")
+ValueError: Wan source must be the approved read-only checkout
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 518, in <module>
+    main()
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 277, in main
+    raise ValueError("Wan source must be the approved read-only checkout")
+ValueError: Wan source must be the approved read-only checkout
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 518, in <module>
+    main()
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 277, in main
+    raise ValueError("Wan source must be the approved read-only checkout")
+ValueError: Wan source must be the approved read-only checkout
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 518, in <module>
+    main()
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 277, in main
+    raise ValueError("Wan source must be the approved read-only checkout")
+ValueError: Wan source must be the approved read-only checkout
+W0816 17:52:30.459000 27431 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 27700 closing signal SIGTERM
+W0816 17:52:30.461000 27431 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 27701 closing signal SIGTERM
+W0816 17:52:30.462000 27431 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 27702 closing signal SIGTERM
+W0816 17:52:30.463000 27431 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 27703 closing signal SIGTERM
+W0816 17:52:30.463000 27431 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 27704 closing signal SIGTERM
+W0816 17:52:30.464000 27431 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 27705 closing signal SIGTERM
+E0816 17:52:30.528000 27431 site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 6 (pid: 27706) of binary: /data/di/worldarena2_track1_20260815/venv_reuse/bin/python
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/run.py", line 905, in <module>
+    main()
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 143, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 277, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-08-16_17:52:30
+  host      : bm-heo4ph
+  rank      : 6 (local_rank: 6)
+  exitcode  : 1 (pid: 27706)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

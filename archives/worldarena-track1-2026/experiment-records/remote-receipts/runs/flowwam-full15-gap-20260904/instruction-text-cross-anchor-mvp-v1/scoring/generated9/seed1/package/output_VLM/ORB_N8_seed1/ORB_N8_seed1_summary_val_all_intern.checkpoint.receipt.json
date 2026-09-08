@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/scoring/generated9/seed1/package/output_VLM/ORB_N8_seed1/ORB_N8_seed1_summary_val_all_intern.json",
+  "output_sha256": "e6d8b6f7eb42374bb6bc9cde91e938c38db69decd64a019344a8d5b1f3d2276b",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/scoring/generated9/seed1/package/work/tmp/vlm/ORB_N8_seed1/fixed_scene_task_episode_000000_20260901_055921.json",
+      "sha256": "9e7cb1267156df9b964e11666c138acdfe0c73714ec842955437ca7cf6e653ee",
+      "timestamp": "20260901_055921",
+      "video": "fixed_scene_task_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/scoring/generated9/seed1/package/work/tmp/vlm/ORB_N8_seed1/fixed_scene_task_episode_000001_20260901_060138.json",
+      "sha256": "f6efba145dce142dc22325dfc3bac25790a12af8fddee3b3c7c9198dc4fd40e8",
+      "timestamp": "20260901_060138",
+      "video": "fixed_scene_task_episode_000001.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/scoring/generated9/seed1/package/work/tmp/vlm/ORB_N8_seed1/fixed_scene_task_episode_000002_20260901_060355.json",
+      "sha256": "cd1b3934e5eabd59e630509dbb4d50c1f33bbd79b995cfeb495255632bb95496",
+      "timestamp": "20260901_060355",
+      "video": "fixed_scene_task_episode_000002.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/scoring/generated9/seed1/package/work/tmp/vlm/ORB_N8_seed1/fixed_scene_task_episode_000003_20260901_060612.json",
+      "sha256": "cf12cf9a9e26ad9f2b0caef7f1e3438c8993a63aaa10e6383c7b45e91a8899bf",
+      "timestamp": "20260901_060612",
+      "video": "fixed_scene_task_episode_000003.mp4"
+    }
+  ]
+}

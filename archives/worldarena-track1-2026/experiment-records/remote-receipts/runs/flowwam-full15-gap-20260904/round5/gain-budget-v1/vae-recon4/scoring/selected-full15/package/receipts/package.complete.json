@@ -1,0 +1,28 @@
+{
+  "completed": true,
+  "contract": "vae-ceiling-base-package/1",
+  "model_name": "R5_VAE_Recon4",
+  "rows": 4,
+  "videos": [
+    {
+      "generated_sha256": "3550a50a1a69eb7e120af63d90c283f8af3b8ef167f9bea5d2239e1abe78384c",
+      "gt_sha256": "7e5e1de60e0b080e831e5c58f354869c16c43bf4e43aa0730034a27a9806f960",
+      "name": "press_stapler_episode_000000.mp4"
+    },
+    {
+      "generated_sha256": "c058da3f63387a8eaa0a34150e5901d43bc11131c147cb5333100d81eede7c74",
+      "gt_sha256": "468cbb60c86c6839019078ccd43b253eec3d1e6f762d4114b558409ddd7af7a5",
+      "name": "stack_bowls_three_episode_000000.mp4"
+    },
+    {
+      "generated_sha256": "4b591bf64fa037bceba57b2b8971480ccbb35876b832905823ba1f484a3ff90c",
+      "gt_sha256": "09d47671ee56ee28b0381386ae74a5f83e1eacbabafbfd480532467cea7e2c56",
+      "name": "open_microwave_episode_000000.mp4"
+    },
+    {
+      "generated_sha256": "f089de27b5aca0e0391b9d4772c7456b3dca384f3ca8e154ebf8479c7cc25220",
+      "gt_sha256": "3cca4dccd2e48d75592deec6e0c974739d0288b05ce36cbb994995ab4d529e1f",
+      "name": "put_object_cabinet_episode_000000.mp4"
+    }
+  ]
+}

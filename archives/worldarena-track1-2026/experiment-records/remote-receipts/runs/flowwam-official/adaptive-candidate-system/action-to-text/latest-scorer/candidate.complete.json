@@ -1,0 +1,27 @@
+{
+  "announcement_url": "https://v2.world-arena.ai/WorldArena-2.0/motion-quality-evaluation-update.html",
+  "capped_episode_counts": {
+    "Dynamic Degree": 10,
+    "Flow Score": 3,
+    "Motion Smoothness": 16
+  },
+  "completed": true,
+  "contract": "worldarena2-latest-gt-reference-motion-correction/1",
+  "corrected_15_metric_mean": 0.672961934894051,
+  "corrected_columns": [
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ],
+  "corrected_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/action-to-text/latest-scorer/candidate-corrected.csv",
+  "corrected_csv_sha256": "f4256bb8b9e14cb04533c664c54ef05b85ef847e773806b5c00b612d2ed0e374",
+  "difficulty_ood_adjustment": "not_publicly_reproducible",
+  "formula": "adjusted_score=min(original_score,matched_gt_reference_score)",
+  "gt_results_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/action-to-text/latest-scorer/gt-motion-output/gt_reference_results.json",
+  "gt_results_json_sha256": "5a725dc10e7297fd1d960e44a9335904cf9765b4fd3bf08354d8753cd7c10afa",
+  "raw_15_metric_mean": 0.6753692200281407,
+  "raw_csv": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0752/dev-clean-50/csv_results/aggregated_results.csv",
+  "raw_csv_sha256": "d08b12d5d5ba231b1568683c4d8019f6d2c55d68c972ffda894be84fe05d2fdf",
+  "raw_metric_fp_tolerance": 0.001,
+  "row_count": 20
+}

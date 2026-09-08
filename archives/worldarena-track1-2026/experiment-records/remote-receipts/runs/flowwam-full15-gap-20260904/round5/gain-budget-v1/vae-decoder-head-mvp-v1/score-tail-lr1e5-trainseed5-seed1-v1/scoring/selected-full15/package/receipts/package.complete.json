@@ -1,0 +1,28 @@
+{
+  "completed": true,
+  "contract": "vae-ceiling-base-package/1",
+  "model_name": "R5_tail_lr1e5_trainseed5_seed1",
+  "rows": 4,
+  "videos": [
+    {
+      "generated_sha256": "e0880d751bfb9e0461c25baf71b51acc50f4cb22dc95e3d423d8239c116a94a4",
+      "gt_sha256": "a7af7b273b0b6ac079e2e938bf5b0e01a28a3f49f895ba019fc802b7d4d09a22",
+      "name": "click_bell_episode_000008.mp4"
+    },
+    {
+      "generated_sha256": "c7a59c5afbd2ad5fa0df3c6d28339c038e43073fb9f7f26084357e55b60fd4dd",
+      "gt_sha256": "f8f276c5fad10ebcd258104ba13b480504b2fedfbaafcfc3412e82cdcaa1d68d",
+      "name": "open_laptop_episode_000024.mp4"
+    },
+    {
+      "generated_sha256": "38d03475ead21df2f761c73f4722b96e77fd907ae0d82f9b45505544b2f3ab05",
+      "gt_sha256": "660ba0f846987673afc2152868ff5e61927c59fcf3719f51d457dbe14865f229",
+      "name": "pick_dual_bottles_episode_000000.mp4"
+    },
+    {
+      "generated_sha256": "2e4f3ac6394955468a17f953dfe36ac3147fbfa4cfd409e42dfadae180cb2283",
+      "gt_sha256": "db83e5f1b8e731d12a30558c4f682c96c2e0cd9cf171c670d1e3b0ff06d7fad4",
+      "name": "place_container_plate_episode_000017.mp4"
+    }
+  ]
+}

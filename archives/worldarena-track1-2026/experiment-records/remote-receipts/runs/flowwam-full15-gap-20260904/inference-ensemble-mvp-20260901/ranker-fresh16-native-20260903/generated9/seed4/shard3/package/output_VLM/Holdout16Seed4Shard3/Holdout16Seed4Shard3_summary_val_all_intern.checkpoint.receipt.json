@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed4/shard3/package/output_VLM/Holdout16Seed4Shard3/Holdout16Seed4Shard3_summary_val_all_intern.json",
+  "output_sha256": "ca889cc142d453b8a0c1c9ed0a563fa327b58fa07d41abeeacbdb3f4a82dbc24",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed4/shard3/package/work/tmp/vlm/Holdout16Seed4Shard3/fixed_scene_task_episode_000013_20260903_210420.json",
+      "sha256": "1b9d49b8fbcabeeffee53f915c426940a88c90f37228603e007113d3f7dc7ee2",
+      "timestamp": "20260903_210420",
+      "video": "fixed_scene_task_episode_000013.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed4/shard3/package/work/tmp/vlm/Holdout16Seed4Shard3/fixed_scene_task_episode_000014_20260903_210634.json",
+      "sha256": "e932fc2aa1c9e4466c46336e8141e520e66118500badfa4c306cffbc5e109dc5",
+      "timestamp": "20260903_210634",
+      "video": "fixed_scene_task_episode_000014.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed4/shard3/package/work/tmp/vlm/Holdout16Seed4Shard3/fixed_scene_task_episode_000015_20260903_210849.json",
+      "sha256": "4559e48d49310a254c2cc0f84b9088b01eadfeda925dac1955eb8c6bd655102d",
+      "timestamp": "20260903_210849",
+      "video": "fixed_scene_task_episode_000015.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/ranker-fresh16-native-20260903/generated9/seed4/shard3/package/work/tmp/vlm/Holdout16Seed4Shard3/fixed_scene_task_episode_000016_20260903_211104.json",
+      "sha256": "fd842a172a185cea27d9708541103ec559681d936cba3b72dc9caee3c41fdd46",
+      "timestamp": "20260903_211104",
+      "video": "fixed_scene_task_episode_000016.mp4"
+    }
+  ]
+}

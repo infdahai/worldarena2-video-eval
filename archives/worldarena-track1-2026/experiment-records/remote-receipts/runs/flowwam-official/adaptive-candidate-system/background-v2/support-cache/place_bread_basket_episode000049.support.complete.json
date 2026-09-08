@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": false,
+    "maximum_area_fraction": 0.0,
+    "mean_area_fraction": 0.0,
+    "valid_frames": 0
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.434384765625,
+    "mean_area_fraction": 0.25479604713220166,
+    "valid_frames": 74
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.42180989583333334,
+    "mean_area_fraction": 0.2450587545010288,
+    "valid_frames": 73
+  },
+  "source_video_sha256": "c3cecc93701a01e0c134a12432340b7ecfe2be8ef837a9b873baff8a2e949d87",
+  "support_fraction": 0.7879937467849795,
+  "support_sha256": "1da5445046414e9ae235bdb09569a60738f165f2be54390592270fa941c75b09",
+  "video_id": "place_bread_basket_episode000049"
+}

@@ -1,0 +1,25 @@
+{
+  "contract": "worldarena-track1-external-stop-evidence/1",
+  "event_time": "2026-08-29T07:50:08.449017+08:00",
+  "gpu_index": 1,
+  "gpu_uuid": "GPU-a3ba221d-3832-3906-cef7-f8aae054c149",
+  "step": 933,
+  "process_group": 1974216,
+  "worker_pid": 1974222,
+  "compute_pid": 1974247,
+  "signal": "SIGTERM",
+  "signal_sender_pid": 1975877,
+  "signal_sender_uid": 1001,
+  "source_codex_pid": 1583292,
+  "source_cwd": "/data/fjy/worldarena",
+  "source_command": "kill -TERM -- -1974216",
+  "source_session": "/home/huazhi/.codex/sessions/2026/08/28/rollout-2026-08-28T09-07-56-01a045e8-bde3-7f31-86a4-6ff37b3e8214.jsonl",
+  "source_session_ordinals": [
+    23144,
+    23157
+  ],
+  "checkpoint_completed_count": 94,
+  "checkpoint_expected_count": 125,
+  "action": "checkpointed_and_yielded_no_signal_sent",
+  "cooldown_not_before": "2026-08-29T08:00:08+08:00"
+}

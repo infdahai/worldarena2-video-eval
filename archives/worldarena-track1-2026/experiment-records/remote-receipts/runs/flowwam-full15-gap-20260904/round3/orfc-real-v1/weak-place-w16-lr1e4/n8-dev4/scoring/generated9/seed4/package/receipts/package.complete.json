@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 4,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "10f3adf77988cde2a2411b5c725f259b8f6f1b221e6524ebad22e33bc4e2e8dd",
+      "source_sha256": "1be1e35f342f22680151050452215811301e1fa47e28e511a505f7d4d0ca40fa",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/weak-place-w16-lr1e4/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "72c1639b7b6b705b48722bedd08c05b8c8c579401f41fdaaa6893f8e8d809ce7",
+      "source_sha256": "d46c793b7410c5b8c730a9130ffdc25b27b72a9a87938684b08ba3c9b3c526a4",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/weak-place-w16-lr1e4/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "2917d30f034b3c44330779b87fb79649593e3d55d86e037aa7c1a59fe81a3a39",
+      "source_sha256": "0f07f3153aa578f58d1fa271e463c9a117f900333e6da8fb8b788716dca240cf",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/weak-place-w16-lr1e4/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "92d471c4e2a03991d923844f48f4af121b022fcfa288b3c1be5df1a488116033",
+      "source_sha256": "408e0eef2b5c8670572533d0bea540b335f7a08608f12bb134c63648d0ca4827",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/weak-place-w16-lr1e4/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

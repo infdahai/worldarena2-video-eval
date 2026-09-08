@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.2749967447916667,
+    "mean_area_fraction": 0.14947687596450615,
+    "valid_frames": 81
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.26399088541666665,
+    "mean_area_fraction": 0.13975204153806584,
+    "valid_frames": 70
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.2644856770833333,
+    "mean_area_fraction": 0.1323558063271605,
+    "valid_frames": 78
+  },
+  "source_video_sha256": "b8ff3d5b009bc427ef6cfac9da1e980a32c889c0115cb59c5a41eff11b0ed2a3",
+  "support_fraction": 0.8673742926954733,
+  "support_sha256": "9ebbffc89d959fee161ec4f52cf4838aa2fbc63fc0d43ec0ee8a1083da0813cf",
+  "video_id": "pick_diverse_bottles_episode000028"
+}

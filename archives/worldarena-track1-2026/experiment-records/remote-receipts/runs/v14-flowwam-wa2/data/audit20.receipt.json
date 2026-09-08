@@ -1,0 +1,42 @@
+{
+  "contract": "v14-flowwam-wa2/1-audit-selection",
+  "excluded_tasks": [
+    "click_alarmclock",
+    "click_bell",
+    "dump_bin_bigbin",
+    "grab_roller",
+    "open_microwave",
+    "press_stapler",
+    "put_object_cabinet",
+    "stack_bowls_three"
+  ],
+  "inputs": {
+    "clean1000": "4b74630ec58f99452e777dbc275f470792f49570c54a1ceaf194b3f112f4585d",
+    "dev_clean50": "2793a0cc1db33cb6885f36c7706f550702487aae381036571e9781c42e11ba17",
+    "dev_fast20": "aaf9f4268a78e3ed160908780809ba9c23f12946176072787048d21ed7f50864"
+  },
+  "manifest_sha256": "6819acb0deb88c111e2832f4627a9caa8f0898695efca3c04d07c7c5afdba2e9",
+  "rows": 20,
+  "tasks": [
+    "handover_mic",
+    "hanging_mug",
+    "lift_pot",
+    "move_can_pot",
+    "move_pillbottle_pad",
+    "move_playingcard_away",
+    "move_stapler_pad",
+    "open_laptop",
+    "pick_diverse_bottles",
+    "pick_dual_bottles",
+    "place_a2b_left",
+    "place_bread_basket",
+    "place_bread_skillet",
+    "place_burger_fries",
+    "place_can_basket",
+    "place_container_plate",
+    "place_dual_shoes",
+    "place_empty_cup",
+    "place_fan",
+    "place_object_basket"
+  ]
+}

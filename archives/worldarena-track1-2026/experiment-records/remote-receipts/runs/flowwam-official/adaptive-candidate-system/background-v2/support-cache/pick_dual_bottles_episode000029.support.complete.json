@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.26163411458333335,
+    "mean_area_fraction": 0.12485596707818933,
+    "valid_frames": 81
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.27999674479166664,
+    "mean_area_fraction": 0.1486008632330247,
+    "valid_frames": 67
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.28387044270833334,
+    "mean_area_fraction": 0.14915891042952675,
+    "valid_frames": 66
+  },
+  "source_video_sha256": "ed6802d74cc7eee1845418ee46d1ce0bb100099bac530cf03cad464fb2556256",
+  "support_fraction": 0.8680629902906378,
+  "support_sha256": "a4fb8b82de7d18b0800a6bc258f46222138713cfba90c4d71ad2a456619bfb58",
+  "video_id": "pick_dual_bottles_episode000029"
+}

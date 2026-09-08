@@ -1,0 +1,62 @@
+{
+  "contract": "flowwam-wan22-vae-ceiling-fast/1",
+  "mean_psnr_db": 36.610425497589674,
+  "mean_ssim": 0.9799841246855111,
+  "peak_allocated_gib": 8.784204006195068,
+  "peak_reserved_gib": 10.57421875,
+  "row_count": 4,
+  "rows": [
+    {
+      "fps": 24.0,
+      "frames": 81,
+      "height": 480,
+      "mae_255": 0.7396718263626099,
+      "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round5/gain-budget-v1/vae-ceiling-native4-v1/press_stapler-episode_000000.mp4",
+      "output_sha256": "3550a50a1a69eb7e120af63d90c283f8af3b8ef167f9bea5d2239e1abe78384c",
+      "psnr_db": 39.278487615140875,
+      "source": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0761/dev-clean-50/gt_source/press_stapler/a/b/c/episode_000000.mp4",
+      "source_sha256": "7e5e1de60e0b080e831e5c58f354869c16c43bf4e43aa0730034a27a9806f960",
+      "ssim": 0.9890859428747201,
+      "width": 640
+    },
+    {
+      "fps": 24.0,
+      "frames": 81,
+      "height": 480,
+      "mae_255": 1.225923776626587,
+      "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round5/gain-budget-v1/vae-ceiling-native4-v1/stack_bowls_three-episode_000000.mp4",
+      "output_sha256": "c058da3f63387a8eaa0a34150e5901d43bc11131c147cb5333100d81eede7c74",
+      "psnr_db": 35.88297124362545,
+      "source": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0761/dev-clean-50/gt_source/stack_bowls_three/a/b/c/episode_000000.mp4",
+      "source_sha256": "468cbb60c86c6839019078ccd43b253eec3d1e6f762d4114b558409ddd7af7a5",
+      "ssim": 0.9792964406955389,
+      "width": 640
+    },
+    {
+      "fps": 24.0,
+      "frames": 81,
+      "height": 480,
+      "mae_255": 1.0902329683303833,
+      "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round5/gain-budget-v1/vae-ceiling-native4-v1/open_microwave-episode_000000.mp4",
+      "output_sha256": "4b591bf64fa037bceba57b2b8971480ccbb35876b832905823ba1f484a3ff90c",
+      "psnr_db": 36.17630551273485,
+      "source": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0761/dev-clean-50/gt_source/open_microwave/a/b/c/episode_000000.mp4",
+      "source_sha256": "09d47671ee56ee28b0381386ae74a5f83e1eacbabafbfd480532467cea7e2c56",
+      "ssim": 0.9813508339870123,
+      "width": 640
+    },
+    {
+      "fps": 24.0,
+      "frames": 81,
+      "height": 480,
+      "mae_255": 1.6384514570236206,
+      "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round5/gain-budget-v1/vae-ceiling-native4-v1/put_object_cabinet-episode_000000.mp4",
+      "output_sha256": "f089de27b5aca0e0391b9d4772c7456b3dca384f3ca8e154ebf8479c7cc25220",
+      "psnr_db": 35.103937618857515,
+      "source": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0761/dev-clean-50/gt_source/put_object_cabinet/a/b/c/episode_000000.mp4",
+      "source_sha256": "3cca4dccd2e48d75592deec6e0c974739d0288b05ce36cbb994995ab4d529e1f",
+      "ssim": 0.9702032811847734,
+      "width": 640
+    }
+  ]
+}

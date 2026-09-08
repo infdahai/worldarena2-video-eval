@@ -1,0 +1,76 @@
+{
+  "candidates": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/scoring/selection/candidates.jsonl",
+  "candidates_sha256": "d357f3f9b605372972e6f880d11e2f6994e8c0a6083eb4a170529e7b44da0f95",
+  "completed": true,
+  "contract": "worldarena-track1-late-b2-n8-generated9-selection/1",
+  "corrected15_used_for_selection": false,
+  "feature_policy": "generated_only_no_hidden_gt",
+  "generated9_csvs": {
+    "seed1": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/scoring/generated9/seed1/package/csv_results/generated-only.csv",
+      "sha256": "f78557d84d056435339b881c55578a7d8f6f7ea528775400a27e31e612039e70"
+    },
+    "seed4": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/scoring/generated9/seed4/package/csv_results/generated-only.csv",
+      "sha256": "9c39d2560302fb40b36e3e35254842aaeecd16738460530ea5cf12548e2ae567"
+    }
+  },
+  "model": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/postgen/postgen-selector.model.json",
+  "model_sha256": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+  "policy": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/policy-selection.complete.json",
+  "policy_sha256": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7",
+  "row_count": 4,
+  "rows": [
+    {
+      "logical_episode_id": 0,
+      "score_video_id": "fixed_scene_task_episode_000000",
+      "seed1_probability": 0.3736992627543062,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000000.mp4",
+      "selected_video_sha256": "590ef08f3b2f13102c900f33a7e9eefcd0ca25d1d6ab95eddd8f550432a5a62a"
+    },
+    {
+      "logical_episode_id": 1,
+      "score_video_id": "fixed_scene_task_episode_000001",
+      "seed1_probability": 0.5732634795136925,
+      "selected_seed": 1,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/seed1/FlowWAMOfficialStage1_test/episode000001.mp4",
+      "selected_video_sha256": "aae9e11aad3b0cd35f37a225f801eb686d96360d94174b357fd5c0c94b2c6f0d"
+    },
+    {
+      "logical_episode_id": 2,
+      "score_video_id": "fixed_scene_task_episode_000002",
+      "seed1_probability": 0.12004790202349777,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000002.mp4",
+      "selected_video_sha256": "5011cd59f7f4b0e86e3cc92a76624f84438d9e3ba8340ae8597efa9ae3767acc"
+    },
+    {
+      "logical_episode_id": 3,
+      "score_video_id": "fixed_scene_task_episode_000003",
+      "seed1_probability": 0.1936292432805293,
+      "selected_seed": 4,
+      "selected_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000003.mp4",
+      "selected_video_sha256": "b48ba38db954626afcecd596f46f3bab5f780bf4fed62dfcb1c6bbb7afbd9d35"
+    }
+  ],
+  "selected_seed_counts": {
+    "seed1": 1,
+    "seed4": 3
+  },
+  "selection_jsonl": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr1e7-b1-train8-r2/n8-dev4/scoring/selection/selection.jsonl",
+  "selection_jsonl_sha256": "e1dfbd3539577c1cbfa1b36c4776f7c4c107529c2f66e8a20a1664ec52fe1638",
+  "selector_episode_id_adapter": "logical_zero_based_plus_one_for_release_selector_only",
+  "source_metric_columns": [
+    "Instruction Following",
+    "Interaction Quality",
+    "Perspectivity",
+    "Image Quality",
+    "Aesthetic Quality",
+    "Photometric Consistency",
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ],
+  "terminal_state": "late-b2-generated9-selection-frozen"
+}

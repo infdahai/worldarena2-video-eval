@@ -1,0 +1,72 @@
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 14, in <module>
+    from worldarena_baseline.action_causality import summarize_discovery_records
+ModuleNotFoundError: No module named 'worldarena_baseline'
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 14, in <module>
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 14, in <module>
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 14, in <module>
+    from worldarena_baseline.action_causality import summarize_discovery_records
+    from worldarena_baseline.action_causality import summarize_discovery_records
+ModuleNotFoundError: No module named 'worldarena_baseline'
+    from worldarena_baseline.action_causality import summarize_discovery_records
+ModuleNotFoundError: No module named 'worldarena_baseline'
+ModuleNotFoundError: No module named 'worldarena_baseline'
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 14, in <module>
+    from worldarena_baseline.action_causality import summarize_discovery_records
+ModuleNotFoundError: No module named 'worldarena_baseline'
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 14, in <module>
+    from worldarena_baseline.action_causality import summarize_discovery_records
+ModuleNotFoundError: No module named 'worldarena_baseline'
+Traceback (most recent call last):
+  File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 14, in <module>
+    from worldarena_baseline.action_causality import summarize_discovery_records
+ModuleNotFoundError: No module named 'worldarena_baseline'
+W0816 18:04:59.794000 38125 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 38194 closing signal SIGTERM
+W0816 18:04:59.796000 38125 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 38195 closing signal SIGTERM
+W0816 18:04:59.797000 38125 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 38196 closing signal SIGTERM
+W0816 18:04:59.797000 38125 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 38197 closing signal SIGTERM
+W0816 18:04:59.797000 38125 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 38198 closing signal SIGTERM
+W0816 18:04:59.798000 38125 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 38199 closing signal SIGTERM
+E0816 18:04:59.862000 38125 site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 6 (pid: 38200) of binary: /data/di/worldarena2_track1_20260815/venv_reuse/bin/python
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/run.py", line 905, in <module>
+    main()
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 143, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 277, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/audit_wan_action_causality_fsdp.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-08-16_18:04:59
+  host      : bm-heo4ph
+  rank      : 6 (local_rank: 6)
+  exitcode  : 1 (pid: 38200)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

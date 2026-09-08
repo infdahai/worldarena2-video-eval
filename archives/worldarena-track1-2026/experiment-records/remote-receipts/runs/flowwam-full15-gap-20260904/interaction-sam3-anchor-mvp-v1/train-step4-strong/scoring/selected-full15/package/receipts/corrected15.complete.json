@@ -1,0 +1,30 @@
+{
+  "aggregate_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4-strong/scoring/selected-full15/package/receipts/aggregate.complete.json",
+  "aggregate_receipt_sha256": "25d183ca562c94c535ef534cd1d765d94612883271f2bd67940808a40dc19db7",
+  "candidate": "interaction-strong-step4",
+  "capped_episode_counts": {
+    "Dynamic Degree": 0,
+    "Flow Score": 0,
+    "Motion Smoothness": 0
+  },
+  "completed": true,
+  "contract": "worldarena2-round3-gt-reference-motion-correction/1",
+  "corrected_15_metric_mean": 0.6727125815414458,
+  "corrected_columns": [
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ],
+  "corrected_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4-strong/scoring/selected-full15/package/csv_results/corrected15.csv",
+  "corrected_csv_sha256": "018c9b53e9b665563e1b6561b74fbed2d6f55e854e08e841125d20577a245039",
+  "formula": "adjusted_score=min(original_score,matched_gt_reference_score)",
+  "gt_results_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4-strong/scoring/selected-full15/package/output/generated_results.json",
+  "gt_results_json_sha256": "1811f59f5be596916c223a81c457e1b0091eb97721a1688ca1420a160e2ce38d",
+  "nonmotion12_mean": 0.7443354474975812,
+  "raw_15_metric_mean": 0.6727125815414458,
+  "raw_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4-strong/scoring/selected-full15/package/csv_results/aggregated_results.csv",
+  "raw_csv_sha256": "018c9b53e9b665563e1b6561b74fbed2d6f55e854e08e841125d20577a245039",
+  "row_count": 4,
+  "selection_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4-strong/scoring/selection/selection.complete.json",
+  "selection_receipt_sha256": "bbbbd0231fdaf211527bddca9557318b8d77f9fd0320be6ea6d97e142f923c7c"
+}

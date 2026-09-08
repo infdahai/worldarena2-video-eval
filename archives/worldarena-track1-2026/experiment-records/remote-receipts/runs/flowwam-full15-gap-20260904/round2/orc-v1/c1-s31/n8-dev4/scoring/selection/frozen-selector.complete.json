@@ -1,0 +1,20 @@
+{
+  "candidates": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c1-s31/n8-dev4/scoring/selection/candidates.jsonl",
+  "candidates_sha256": "043abe70433130325abe0d2aa7ddf32d1771aba690a7207d02b416d5f1682d5d",
+  "completed": true,
+  "contract": "worldarena-track1-p0-selection/1",
+  "deployment_sha_gate": true,
+  "feature_policy": "generated_only_no_hidden_gt",
+  "model": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/postgen/postgen-selector.model.json",
+  "model_sha256": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+  "policy": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/policy-selection.complete.json",
+  "policy_sha256": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7",
+  "predictions": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c1-s31/n8-dev4/scoring/selection/selection.jsonl",
+  "predictions_sha256": "c5fae71e50b64990cd7073446bcd45036d7610349bdc16aeeb3a29479f939842",
+  "row_count": 4,
+  "selection_counts": {
+    "seed1": 1,
+    "seed4": 3
+  },
+  "terminal_state": "frozen_p0_candidates_selected"
+}

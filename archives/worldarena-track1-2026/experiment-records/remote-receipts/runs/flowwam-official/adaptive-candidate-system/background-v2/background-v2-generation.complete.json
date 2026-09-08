@@ -1,0 +1,350 @@
+{
+  "black_count": 0,
+  "completed": true,
+  "contract": "flowwam-background-v2-generation/1",
+  "count": 20,
+  "manifest_sha256": "8565a8fff587c7d2247efa070d9840df93412d76c50aa0760e112d6241404292",
+  "seam_passed": false,
+  "videos": [
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "10f110b081eb61f475ca5975aade0db00c2bff7a66c1346584eaa0d0ff8fd816",
+      "seam": {
+        "changed_fraction": 0.19818246849279836,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 41,
+        "max_boundary_gradient_p95": 3.100371360778814,
+        "passed": true,
+        "support_fraction": 0.7489092238940329,
+        "threshold": 8.0
+      },
+      "source_sha256": "9566fa680ff3dc788ccd81e24d171220a3952913aa88125c23179761fb69cf09",
+      "support_sha256": "20c257f907540fd2b5378d2bae00f5086a1a8216b817fa9408d601f273497083",
+      "video_id": "handover_mic_episode000044"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "a942694b863e4b1888e646fb49df942abbed57585e995cf7c1a40685e102eab1",
+      "seam": {
+        "changed_fraction": 0.08676705568415638,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 24,
+        "max_boundary_gradient_p95": 7.320511054992674,
+        "passed": true,
+        "support_fraction": 0.8864431825488683,
+        "threshold": 8.0
+      },
+      "source_sha256": "a9a25756c887b69d7f5f041bb80e802907934c71264c0371cc73d31aff4bd818",
+      "support_sha256": "9e40e2082039353a6d2e820f3d555390848492ebbc73c3fa49b7c40f8feaa552",
+      "video_id": "hanging_mug_episode000004"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "5a193488c2f0984aa5f5289a9da6e81d6758bd6fc7ce0993360bc8ad15feed40",
+      "seam": {
+        "changed_fraction": 0.24161494502314815,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 41,
+        "max_boundary_gradient_p95": 9.672364139556889,
+        "passed": false,
+        "support_fraction": 0.695385038901749,
+        "threshold": 8.0
+      },
+      "source_sha256": "6ee5e1894f3c4085923321ebf7946ac093f27830cf1ad771cde35d558ec93e7d",
+      "support_sha256": "1253657fbbf2d66ea690275a020be31dab13ba7cb394373eca08012e60fadcf5",
+      "video_id": "lift_pot_episode000039"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "9742248778056abfcf1f6f414693e8a06734bd2fba3ce28ef49dc4b0d011e361",
+      "seam": {
+        "changed_fraction": 0.20333867830504115,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 81,
+        "max_boundary_gradient_p95": 12.91165561676025,
+        "passed": false,
+        "support_fraction": 0.7037188143004115,
+        "threshold": 8.0
+      },
+      "source_sha256": "322961d0a9fdffca1b3b7eeb08e6c880456a658aac3d7103ff83beb980797721",
+      "support_sha256": "0734652aa2238c732a022b5fd0cef61ea774718ba74e3707f4208c6e60f54753",
+      "video_id": "move_can_pot_episode000036"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "0b728431f9a59fad83b7ec0a5d298470b777651da3145daaf8f484aef8b50397",
+      "seam": {
+        "changed_fraction": 0.15345196759259258,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 37,
+        "max_boundary_gradient_p95": 12.705617237091053,
+        "passed": false,
+        "support_fraction": 0.8120103925540123,
+        "threshold": 8.0
+      },
+      "source_sha256": "0cc45661e516a01094c9e8f8d1711cb789ab54914a284cce716a9f5ae351bda3",
+      "support_sha256": "75a8c1ca6c04f2ed4207749b8c6a785340aa662e06f0e4a17e85e21810add12f",
+      "video_id": "move_pillbottle_pad_episode000004"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "71ff1ae5f9eaaa261067a99b14b66c6d5427681e11fbf315241f5c18fd92b237",
+      "seam": {
+        "changed_fraction": 0.2528706114969136,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 59,
+        "max_boundary_gradient_p95": 4.393593454360966,
+        "passed": true,
+        "support_fraction": 0.6288364840534979,
+        "threshold": 8.0
+      },
+      "source_sha256": "03179867fe32d42bbda38f45d5af3771b672bb3c730a0c4ce1bf47bee23baf2d",
+      "support_sha256": "6094bd4bfef1e5c735a509b7c89e1baf586b08b2d91567583905996ed3ac1be4",
+      "video_id": "move_playingcard_away_episode000001"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "6aa427db9d1649b78732668951b8f0e882ba664daee6618bf42365ef58673a8e",
+      "seam": {
+        "changed_fraction": 0.21734788933899177,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 75,
+        "max_boundary_gradient_p95": 1.796166580915451,
+        "passed": true,
+        "support_fraction": 0.6927671280221194,
+        "threshold": 8.0
+      },
+      "source_sha256": "9305db8e47d532dc0de1dcbb221f47eb9a6af862b43030c5e2ebc9be1c69530a",
+      "support_sha256": "1bb0c2967ca22a2ebf24566ee5d8698fe9a839702380e6fb2835a32de970b7c0",
+      "video_id": "move_stapler_pad_episode000027"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "db89119375bcd293fe628b4c44198fbc97ff3d5c895b5513631b927e50fc3901",
+      "seam": {
+        "changed_fraction": 0.3126388085133745,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 78,
+        "max_boundary_gradient_p95": 15.527035427093498,
+        "passed": false,
+        "support_fraction": 0.6307441165123456,
+        "threshold": 8.0
+      },
+      "source_sha256": "4f489841b5bfb944e511583794efb1d44222b03aee87b8e89ae030dcf6b67f61",
+      "support_sha256": "dd3feea3437b98e49ab176c37f0d9d370ab168a12b00e632b38fe930d038f5b5",
+      "video_id": "open_laptop_episode000024"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "228b86b5a9c0611a41d983c4137317006dd1d567d5fc567fd13d3d2c2d999823",
+      "seam": {
+        "changed_fraction": 0.11568170492541152,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 25,
+        "max_boundary_gradient_p95": 3.6367143273353575,
+        "passed": true,
+        "support_fraction": 0.8673742926954733,
+        "threshold": 8.0
+      },
+      "source_sha256": "b8ff3d5b009bc427ef6cfac9da1e980a32c889c0115cb59c5a41eff11b0ed2a3",
+      "support_sha256": "9ebbffc89d959fee161ec4f52cf4838aa2fbc63fc0d43ec0ee8a1083da0813cf",
+      "video_id": "pick_diverse_bottles_episode000028"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "c6b01a5a35f98c0a87acd0d5dcf5a830e7f337ed1217bd2bb5af59e901520575",
+      "seam": {
+        "changed_fraction": 0.11676126864711935,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 27,
+        "max_boundary_gradient_p95": 3.8930444598197886,
+        "passed": true,
+        "support_fraction": 0.8680629902906378,
+        "threshold": 8.0
+      },
+      "source_sha256": "ed6802d74cc7eee1845418ee46d1ce0bb100099bac530cf03cad464fb2556256",
+      "support_sha256": "a4fb8b82de7d18b0800a6bc258f46222138713cfba90c4d71ad2a456619bfb58",
+      "video_id": "pick_dual_bottles_episode000029"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "0fe15e9a34974b96b3a0882d56a7e7dcd77468401bc028b2189e31e5d7497369",
+      "seam": {
+        "changed_fraction": 0.16468191390174897,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 35,
+        "max_boundary_gradient_p95": 7.629620504379272,
+        "passed": true,
+        "support_fraction": 0.7990515689300411,
+        "threshold": 8.0
+      },
+      "source_sha256": "59f7d8b9c915525cf1f239d70424fff7a82848aa6694cf11192252cbd23d5e74",
+      "support_sha256": "ab81ef5cda81b6fc2fa04695aafb96e57830e6cd96e425c430945fa7dccf5b76",
+      "video_id": "place_a2b_left_episode000042"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "73a61ee6fa29949763b3dd1d640f1aa179ef45808770c7d8ac20dbb9a03ffc1f",
+      "seam": {
+        "changed_fraction": 0.1841134580761317,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 44,
+        "max_boundary_gradient_p95": 7.620413064956665,
+        "passed": true,
+        "support_fraction": 0.7879937467849795,
+        "threshold": 8.0
+      },
+      "source_sha256": "c3cecc93701a01e0c134a12432340b7ecfe2be8ef837a9b873baff8a2e949d87",
+      "support_sha256": "1da5445046414e9ae235bdb09569a60738f165f2be54390592270fa941c75b09",
+      "video_id": "place_bread_basket_episode000049"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "05f56b16bd7e674f9c6f6b08133cdde3e2b361cc1401f1701d3660d532b09883",
+      "seam": {
+        "changed_fraction": 0.21682243441358023,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 52,
+        "max_boundary_gradient_p95": 7.373633480072023,
+        "passed": true,
+        "support_fraction": 0.7480831243569959,
+        "threshold": 8.0
+      },
+      "source_sha256": "587b04184308596c5b20794609d123dc89b7756f380997ee10e08c4e88772779",
+      "support_sha256": "7c8a56b214aa38ff1fdbd9aa6e2ceab03fdd4347dd565b90e6b0e2d2f2d44c02",
+      "video_id": "place_bread_skillet_episode000047"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "21ead254a191e8d98089da47378d5c61c50c4e77e065a2c1b022bfdef6adf5a9",
+      "seam": {
+        "changed_fraction": 0.1719503922325103,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 40,
+        "max_boundary_gradient_p95": 5.342563319206237,
+        "passed": true,
+        "support_fraction": 0.7945595421810699,
+        "threshold": 8.0
+      },
+      "source_sha256": "0fcd6663902c388586a0f18395bdf9a9a4d3d16b05e0c29232178647e5e476c9",
+      "support_sha256": "06bb6c8f870cf32a471dc35eb7021ec562c0006475264e4d32625b209e59282f",
+      "video_id": "place_burger_fries_episode000002"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "18a5b6b77ed4e4483af3a5cccf3260f38abf517ecca65fba13b79014fcad384e",
+      "seam": {
+        "changed_fraction": 0.1727925266846708,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 43,
+        "max_boundary_gradient_p95": 6.001586198806763,
+        "passed": true,
+        "support_fraction": 0.801364012667181,
+        "threshold": 8.0
+      },
+      "source_sha256": "fb1e9164e4d08eeaeb35711f0e584df18e4355a00cd730ce00e6bac844e3ef10",
+      "support_sha256": "46b1c2f4d102a9a085fa8d8e7b945419b0d989d0382862e788e55ccc1ae5f7a5",
+      "video_id": "place_can_basket_episode000021"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "52687893c1a818a9c2fc49de5a1c6c5f977346bf83558e4f333785f67440421c",
+      "seam": {
+        "changed_fraction": 0.22290798611111112,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 79,
+        "max_boundary_gradient_p95": 18.648118209838866,
+        "passed": false,
+        "support_fraction": 0.6887893840020576,
+        "threshold": 8.0
+      },
+      "source_sha256": "a782564610cd17026ee207026f2404480805d4174d1d744d372cc4b7de87bf36",
+      "support_sha256": "0f1ad61563b056e0c4ce4e5668edd4a34a783e50e31eb17af1025249f20527ec",
+      "video_id": "place_container_plate_episode000032"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "7880e8d5b0f15791cdbdfb28d667bee909f90f10fa9e9ecf56e73768324c7f8c",
+      "seam": {
+        "changed_fraction": 0.19439059284979424,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 30,
+        "max_boundary_gradient_p95": 3.1721843957901084,
+        "passed": true,
+        "support_fraction": 0.7864511799125514,
+        "threshold": 8.0
+      },
+      "source_sha256": "edc8a435b12f375b6dd85af37a953db741b8ead22718dbadf569ed433834012b",
+      "support_sha256": "4b1c3a2096accd5129d9e2bc6770872191c59404fa38f9e3dd0348549dd07d76",
+      "video_id": "place_dual_shoes_episode000029"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "ca45b131ad6198136bf235ab67acd71964998d3c4f7094f5d5cfd8578bc2b51f",
+      "seam": {
+        "changed_fraction": 0.12140399948559671,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 32,
+        "max_boundary_gradient_p95": 4.669641017913818,
+        "passed": true,
+        "support_fraction": 0.8352171344521605,
+        "threshold": 8.0
+      },
+      "source_sha256": "edcf2e56aa6ae123a52f853c63b128c71aba4d54620b23307d0cae8f51d49445",
+      "support_sha256": "c7db9b67e32c32c09bca9a7188d1ebdf5505a27612f8c1a2870ab0a63f565cd9",
+      "video_id": "place_empty_cup_episode000021"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "fd897bb7cfb6e31e3df85b84501af72ef6440842b09fd2413f0fdd6c7ba4a057",
+      "seam": {
+        "changed_fraction": 0.2605197884516461,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 79,
+        "max_boundary_gradient_p95": 19.298026847839356,
+        "passed": false,
+        "support_fraction": 0.6360327851723251,
+        "threshold": 8.0
+      },
+      "source_sha256": "78b5f3745271b6284afac6aff43dc041e8eb4a2292ce03cffbb60466e2c435e9",
+      "support_sha256": "7e28d71db2b9a801be7fb8d2205274d22eff0780e6e6f221737f5187a977e70b",
+      "video_id": "place_fan_episode000045"
+    },
+    {
+      "black_frames": 0,
+      "frame_count": 81,
+      "output_sha256": "55d0027685a3351c7d349f2eba1c9707cad4745e2db91bed0ff77d13e2b751e3",
+      "seam": {
+        "changed_fraction": 0.12293193801440329,
+        "contract": "flowwam-background-v2-seam/1",
+        "frames_with_boundary": 60,
+        "max_boundary_gradient_p95": 13.975813817977905,
+        "passed": false,
+        "support_fraction": 0.836947337962963,
+        "threshold": 8.0
+      },
+      "source_sha256": "9ecac65b36903e1399e5ff347ba570608a5f357723b0ca10e0fc12edc6228b8f",
+      "support_sha256": "705194ae4c9e2887816c5c0e7416de656b6e0cb8e53f918b7bf680aaf4191ec7",
+      "video_id": "place_object_basket_episode000012"
+    }
+  ]
+}

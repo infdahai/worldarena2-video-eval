@@ -1,0 +1,82 @@
+{
+  "arm_selected_raw9_mean": {
+    "Aesthetic Quality": 0.390703409910202,
+    "Dynamic Degree": 0.2790096320438652,
+    "Flow Score": 0.17385813750186813,
+    "Image Quality": 0.5147605896584782,
+    "Instruction Following": 0.85,
+    "Interaction Quality": 0.8,
+    "Motion Smoothness": 0.7052363642045507,
+    "Perspectivity": 1.0,
+    "Photometric Consistency": 0.34390236885410547
+  },
+  "arm_selected_seeds": [
+    4,
+    4,
+    4,
+    4
+  ],
+  "completed": true,
+  "contract": "worldarena-track1-round2-generated9-cheap-gate/1",
+  "corrected15_used": false,
+  "gate": {
+    "all_metric_floor": -0.006978899240493774,
+    "pass": false,
+    "protection_floor": 0.0,
+    "protection_metrics": [
+      "Instruction Following",
+      "Interaction Quality",
+      "Perspectivity"
+    ],
+    "rule": "target_cluster_delta>0 and each protection_delta>=-0.05 and every raw9_delta>=-0.10",
+    "target_cluster_delta": -0.003936891431273977,
+    "target_metrics": [
+      "Image Quality",
+      "Aesthetic Quality",
+      "Photometric Consistency"
+    ]
+  },
+  "inputs": {
+    "candidates": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/lram-v1/a1-b29-x010-d005-s31/n8-dev4/scoring/selection/candidates.jsonl",
+    "candidates_sha256": "df21286afca461d316243beec52833d0f219e7b9b0ac50044de38166b2c184d2",
+    "p0_rows": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/audits/p0-selector9-fresh40-replay-v1/p0-selector9-fresh40-replay.rows.jsonl",
+    "p0_rows_sha256": "b46965bc126305842d3b73dc26f0b925a411bd50edb4727fb6ab1cb0ee829387",
+    "selection_complete": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/lram-v1/a1-b29-x010-d005-s31/n8-dev4/scoring/selection/selection.complete.json",
+    "selection_complete_sha256": "6d6d44f199da98b3ef491125db80244ac44965b761f649a6c9a12d86bbe66539"
+  },
+  "p0_selected_raw9_mean": {
+    "Aesthetic Quality": 0.3976823091506958,
+    "Dynamic Degree": 0.27732146868031543,
+    "Flow Score": 0.17251006447198697,
+    "Image Quality": 0.5203593138117849,
+    "Instruction Following": 0.85,
+    "Interaction Quality": 0.8,
+    "Motion Smoothness": 0.7008294732698589,
+    "Perspectivity": 1.0,
+    "Photometric Consistency": 0.34313541975412687
+  },
+  "p0_selected_seeds": [
+    4,
+    1,
+    4,
+    1
+  ],
+  "raw9_delta": {
+    "Aesthetic Quality": -0.006978899240493774,
+    "Dynamic Degree": 0.0016881633635497661,
+    "Flow Score": 0.0013480730298811583,
+    "Image Quality": -0.0055987241533067555,
+    "Instruction Following": 0.0,
+    "Interaction Quality": 0.0,
+    "Motion Smoothness": 0.004406890934691821,
+    "Perspectivity": 0.0,
+    "Photometric Consistency": 0.0007669490999785977
+  },
+  "same_source_dev4": [
+    "pick_dual_bottles",
+    "click_bell",
+    "place_container_plate",
+    "open_laptop"
+  ],
+  "terminal_state": "round2-generated9-cheap-gate-complete"
+}

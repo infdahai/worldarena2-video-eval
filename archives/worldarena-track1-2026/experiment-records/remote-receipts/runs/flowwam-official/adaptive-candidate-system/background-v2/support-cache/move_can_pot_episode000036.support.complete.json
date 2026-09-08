@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.0959375,
+    "mean_area_fraction": 0.09478628150720167,
+    "valid_frames": 81
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.10333333333333333,
+    "mean_area_fraction": 0.03069110886059671,
+    "valid_frames": 54
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.08398763020833333,
+    "mean_area_fraction": 0.024713983731995882,
+    "valid_frames": 57
+  },
+  "source_video_sha256": "322961d0a9fdffca1b3b7eeb08e6c880456a658aac3d7103ff83beb980797721",
+  "support_fraction": 0.7037188143004115,
+  "support_sha256": "0734652aa2238c732a022b5fd0cef61ea774718ba74e3707f4208c6e60f54753",
+  "video_id": "move_can_pot_episode000036"
+}

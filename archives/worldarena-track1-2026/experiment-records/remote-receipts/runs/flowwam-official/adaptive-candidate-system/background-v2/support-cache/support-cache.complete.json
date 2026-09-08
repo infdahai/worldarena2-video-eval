@@ -1,0 +1,608 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support-cache/1",
+  "count": 20,
+  "manifest_sha256": "8565a8fff587c7d2247efa070d9840df93412d76c50aa0760e112d6241404292",
+  "rows": [
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.010843098958333333,
+        "mean_area_fraction": 0.004776676633230452,
+        "valid_frames": 81
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.341416015625,
+        "mean_area_fraction": 0.19059791345164612,
+        "valid_frames": 74
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.3447981770833333,
+        "mean_area_fraction": 0.1939891975308642,
+        "valid_frames": 74
+      },
+      "source_video_sha256": "9566fa680ff3dc788ccd81e24d171220a3952913aa88125c23179761fb69cf09",
+      "support_fraction": 0.7489092238940329,
+      "support_sha256": "20c257f907540fd2b5378d2bae00f5086a1a8216b817fa9408d601f273497083",
+      "video_id": "handover_mic_episode000044"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.044375,
+        "mean_area_fraction": 0.030221796231995886,
+        "valid_frames": 81
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.4678092447916667,
+        "mean_area_fraction": 0.1883154095936214,
+        "valid_frames": 76
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.4643326822916667,
+        "mean_area_fraction": 0.1763160686728395,
+        "valid_frames": 76
+      },
+      "source_video_sha256": "a9a25756c887b69d7f5f041bb80e802907934c71264c0371cc73d31aff4bd818",
+      "support_fraction": 0.8864431825488683,
+      "support_sha256": "9e40e2082039353a6d2e820f3d555390848492ebbc73c3fa49b7c40f8feaa552",
+      "video_id": "hanging_mug_episode000004"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.084609375,
+        "mean_area_fraction": 0.06959402327674898,
+        "valid_frames": 81
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.15895182291666668,
+        "mean_area_fraction": 0.018085575810185186,
+        "valid_frames": 12
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.14992838541666667,
+        "mean_area_fraction": 0.03478696469907407,
+        "valid_frames": 21
+      },
+      "source_video_sha256": "6ee5e1894f3c4085923321ebf7946ac093f27830cf1ad771cde35d558ec93e7d",
+      "support_fraction": 0.695385038901749,
+      "support_sha256": "1253657fbbf2d66ea690275a020be31dab13ba7cb394373eca08012e60fadcf5",
+      "video_id": "lift_pot_episode000039"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.0959375,
+        "mean_area_fraction": 0.09478628150720167,
+        "valid_frames": 81
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.10333333333333333,
+        "mean_area_fraction": 0.03069110886059671,
+        "valid_frames": 54
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.08398763020833333,
+        "mean_area_fraction": 0.024713983731995882,
+        "valid_frames": 57
+      },
+      "source_video_sha256": "322961d0a9fdffca1b3b7eeb08e6c880456a658aac3d7103ff83beb980797721",
+      "support_fraction": 0.7037188143004115,
+      "support_sha256": "0734652aa2238c732a022b5fd0cef61ea774718ba74e3707f4208c6e60f54753",
+      "video_id": "move_can_pot_episode000036"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": false,
+        "maximum_area_fraction": 0.0,
+        "mean_area_fraction": 0.0,
+        "valid_frames": 0
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.13029296875,
+        "mean_area_fraction": 0.07535698784722221,
+        "valid_frames": 72
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.129423828125,
+        "mean_area_fraction": 0.07190224729938272,
+        "valid_frames": 70
+      },
+      "source_video_sha256": "0cc45661e516a01094c9e8f8d1711cb789ab54914a284cce716a9f5ae351bda3",
+      "support_fraction": 0.8120103925540123,
+      "support_sha256": "75a8c1ca6c04f2ed4207749b8c6a785340aa662e06f0e4a17e85e21810add12f",
+      "video_id": "move_pillbottle_pad_episode000004"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.022317708333333332,
+        "mean_area_fraction": 0.00785353170010288,
+        "valid_frames": 49
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.20178385416666667,
+        "mean_area_fraction": 0.09356296617798353,
+        "valid_frames": 68
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.201953125,
+        "mean_area_fraction": 0.08969618055555555,
+        "valid_frames": 68
+      },
+      "source_video_sha256": "03179867fe32d42bbda38f45d5af3771b672bb3c730a0c4ce1bf47bee23baf2d",
+      "support_fraction": 0.6288364840534979,
+      "support_sha256": "6094bd4bfef1e5c735a509b7c89e1baf586b08b2d91567583905996ed3ac1be4",
+      "video_id": "move_playingcard_away_episode000001"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.030940755208333334,
+        "mean_area_fraction": 0.019054221322016462,
+        "valid_frames": 80
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.153544921875,
+        "mean_area_fraction": 0.08496985918209878,
+        "valid_frames": 69
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.13958984375,
+        "mean_area_fraction": 0.07298261477623458,
+        "valid_frames": 62
+      },
+      "source_video_sha256": "9305db8e47d532dc0de1dcbb221f47eb9a6af862b43030c5e2ebc9be1c69530a",
+      "support_fraction": 0.6927671280221194,
+      "support_sha256": "1bb0c2967ca22a2ebf24566ee5d8698fe9a839702380e6fb2835a32de970b7c0",
+      "video_id": "move_stapler_pad_episode000027"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.107939453125,
+        "mean_area_fraction": 0.07214052051183129,
+        "valid_frames": 81
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.20614908854166666,
+        "mean_area_fraction": 0.12181403517232509,
+        "valid_frames": 73
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.20484375,
+        "mean_area_fraction": 0.12000313464506174,
+        "valid_frames": 74
+      },
+      "source_video_sha256": "4f489841b5bfb944e511583794efb1d44222b03aee87b8e89ae030dcf6b67f61",
+      "support_fraction": 0.6307441165123456,
+      "support_sha256": "dd3feea3437b98e49ab176c37f0d9d370ab168a12b00e632b38fe930d038f5b5",
+      "video_id": "open_laptop_episode000024"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.2749967447916667,
+        "mean_area_fraction": 0.14947687596450615,
+        "valid_frames": 81
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.26399088541666665,
+        "mean_area_fraction": 0.13975204153806584,
+        "valid_frames": 70
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.2644856770833333,
+        "mean_area_fraction": 0.1323558063271605,
+        "valid_frames": 78
+      },
+      "source_video_sha256": "b8ff3d5b009bc427ef6cfac9da1e980a32c889c0115cb59c5a41eff11b0ed2a3",
+      "support_fraction": 0.8673742926954733,
+      "support_sha256": "9ebbffc89d959fee161ec4f52cf4838aa2fbc63fc0d43ec0ee8a1083da0813cf",
+      "video_id": "pick_diverse_bottles_episode000028"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.26163411458333335,
+        "mean_area_fraction": 0.12485596707818933,
+        "valid_frames": 81
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.27999674479166664,
+        "mean_area_fraction": 0.1486008632330247,
+        "valid_frames": 67
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.28387044270833334,
+        "mean_area_fraction": 0.14915891042952675,
+        "valid_frames": 66
+      },
+      "source_video_sha256": "ed6802d74cc7eee1845418ee46d1ce0bb100099bac530cf03cad464fb2556256",
+      "support_fraction": 0.8680629902906378,
+      "support_sha256": "a4fb8b82de7d18b0800a6bc258f46222138713cfba90c4d71ad2a456619bfb58",
+      "video_id": "pick_dual_bottles_episode000029"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": false,
+        "maximum_area_fraction": 0.0,
+        "mean_area_fraction": 0.0,
+        "valid_frames": 0
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.14460611979166665,
+        "mean_area_fraction": 0.10608784239969136,
+        "valid_frames": 71
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.12783528645833334,
+        "mean_area_fraction": 0.09441273630401234,
+        "valid_frames": 72
+      },
+      "source_video_sha256": "59f7d8b9c915525cf1f239d70424fff7a82848aa6694cf11192252cbd23d5e74",
+      "support_fraction": 0.7990515689300411,
+      "support_sha256": "ab81ef5cda81b6fc2fa04695aafb96e57830e6cd96e425c430945fa7dccf5b76",
+      "video_id": "place_a2b_left_episode000042"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": false,
+        "maximum_area_fraction": 0.0,
+        "mean_area_fraction": 0.0,
+        "valid_frames": 0
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.434384765625,
+        "mean_area_fraction": 0.25479604713220166,
+        "valid_frames": 74
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.42180989583333334,
+        "mean_area_fraction": 0.2450587545010288,
+        "valid_frames": 73
+      },
+      "source_video_sha256": "c3cecc93701a01e0c134a12432340b7ecfe2be8ef837a9b873baff8a2e949d87",
+      "support_fraction": 0.7879937467849795,
+      "support_sha256": "1da5445046414e9ae235bdb09569a60738f165f2be54390592270fa941c75b09",
+      "video_id": "place_bread_basket_episode000049"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": false,
+        "maximum_area_fraction": 0.0,
+        "mean_area_fraction": 0.0,
+        "valid_frames": 0
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.34616536458333336,
+        "mean_area_fraction": 0.1758789866255144,
+        "valid_frames": 71
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.312451171875,
+        "mean_area_fraction": 0.16529533982767491,
+        "valid_frames": 71
+      },
+      "source_video_sha256": "587b04184308596c5b20794609d123dc89b7756f380997ee10e08c4e88772779",
+      "support_fraction": 0.7480831243569959,
+      "support_sha256": "7c8a56b214aa38ff1fdbd9aa6e2ceab03fdd4347dd565b90e6b0e2d2f2d44c02",
+      "video_id": "place_bread_skillet_episode000047"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": false,
+        "maximum_area_fraction": 0.0,
+        "mean_area_fraction": 0.0,
+        "valid_frames": 0
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.2544140625,
+        "mean_area_fraction": 0.1496133937757202,
+        "valid_frames": 81
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.250556640625,
+        "mean_area_fraction": 0.14659649884259257,
+        "valid_frames": 76
+      },
+      "source_video_sha256": "0fcd6663902c388586a0f18395bdf9a9a4d3d16b05e0c29232178647e5e476c9",
+      "support_fraction": 0.7945595421810699,
+      "support_sha256": "06bb6c8f870cf32a471dc35eb7021ec562c0006475264e4d32625b209e59282f",
+      "video_id": "place_burger_fries_episode000002"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.03146158854166667,
+        "mean_area_fraction": 0.015696775334362142,
+        "valid_frames": 81
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.13828776041666666,
+        "mean_area_fraction": 0.08809204603909465,
+        "valid_frames": 73
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.133828125,
+        "mean_area_fraction": 0.08695830922067901,
+        "valid_frames": 75
+      },
+      "source_video_sha256": "fb1e9164e4d08eeaeb35711f0e584df18e4355a00cd730ce00e6bac844e3ef10",
+      "support_fraction": 0.801364012667181,
+      "support_sha256": "46b1c2f4d102a9a085fa8d8e7b945419b0d989d0382862e788e55ccc1ae5f7a5",
+      "video_id": "place_can_basket_episode000021"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": false,
+        "maximum_area_fraction": 0.0,
+        "mean_area_fraction": 0.0,
+        "valid_frames": 0
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.17329427083333335,
+        "mean_area_fraction": 0.05582352752057613,
+        "valid_frames": 31
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.15235026041666666,
+        "mean_area_fraction": 0.047434132265946505,
+        "valid_frames": 36
+      },
+      "source_video_sha256": "a782564610cd17026ee207026f2404480805d4174d1d744d372cc4b7de87bf36",
+      "support_fraction": 0.6887893840020576,
+      "support_sha256": "0f1ad61563b056e0c4ce4e5668edd4a34a783e50e31eb17af1025249f20527ec",
+      "video_id": "place_container_plate_episode000032"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.11102213541666667,
+        "mean_area_fraction": 0.0580174977494856,
+        "valid_frames": 81
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.271357421875,
+        "mean_area_fraction": 0.16849750032150207,
+        "valid_frames": 74
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.27388346354166665,
+        "mean_area_fraction": 0.1651120836548354,
+        "valid_frames": 73
+      },
+      "source_video_sha256": "edc8a435b12f375b6dd85af37a953db741b8ead22718dbadf569ed433834012b",
+      "support_fraction": 0.7864511799125514,
+      "support_sha256": "4b1c3a2096accd5129d9e2bc6770872191c59404fa38f9e3dd0348549dd07d76",
+      "video_id": "place_dual_shoes_episode000029"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.026272786458333332,
+        "mean_area_fraction": 0.022373971193415637,
+        "valid_frames": 81
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.181875,
+        "mean_area_fraction": 0.08263101208847737,
+        "valid_frames": 63
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.18038736979166667,
+        "mean_area_fraction": 0.08191044560185186,
+        "valid_frames": 65
+      },
+      "source_video_sha256": "edcf2e56aa6ae123a52f853c63b128c71aba4d54620b23307d0cae8f51d49445",
+      "support_fraction": 0.8352171344521605,
+      "support_sha256": "c7db9b67e32c32c09bca9a7188d1ebdf5505a27612f8c1a2870ab0a63f565cd9",
+      "video_id": "place_empty_cup_episode000021"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.041396484375,
+        "mean_area_fraction": 0.033987107767489706,
+        "valid_frames": 80
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.14453125,
+        "mean_area_fraction": 0.0918701372813786,
+        "valid_frames": 67
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.14474283854166667,
+        "mean_area_fraction": 0.08923213252314817,
+        "valid_frames": 67
+      },
+      "source_video_sha256": "78b5f3745271b6284afac6aff43dc041e8eb4a2292ce03cffbb60466e2c435e9",
+      "support_fraction": 0.6360327851723251,
+      "support_sha256": "7e28d71db2b9a801be7fb8d2205274d22eff0780e6e6f221737f5187a977e70b",
+      "video_id": "place_fan_episode000045"
+    },
+    {
+      "completed": true,
+      "contract": "flowwam-background-v2-support/1",
+      "expected_flow_threshold": 0.5,
+      "flow_backend": "torchvision-raft-large-default",
+      "frame_count": 81,
+      "generated_flow_threshold": 1.0,
+      "generated_object_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.13803059895833333,
+        "mean_area_fraction": 0.1215745965149177,
+        "valid_frames": 80
+      },
+      "generated_robot_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.25654947916666665,
+        "mean_area_fraction": 0.10761907632458848,
+        "valid_frames": 73
+      },
+      "renderer_sam3": {
+        "included": true,
+        "maximum_area_fraction": 0.25658854166666667,
+        "mean_area_fraction": 0.10470204796810699,
+        "valid_frames": 72
+      },
+      "source_video_sha256": "9ecac65b36903e1399e5ff347ba570608a5f357723b0ca10e0fc12edc6228b8f",
+      "support_fraction": 0.836947337962963,
+      "support_sha256": "705194ae4c9e2887816c5c0e7416de656b6e0cb8e53f918b7bf680aaf4191ec7",
+      "video_id": "place_object_basket_episode000012"
+    }
+  ]
+}

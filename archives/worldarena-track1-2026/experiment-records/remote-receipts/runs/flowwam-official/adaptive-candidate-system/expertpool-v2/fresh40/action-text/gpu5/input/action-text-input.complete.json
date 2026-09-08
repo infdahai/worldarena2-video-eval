@@ -1,0 +1,51 @@
+{
+  "completed": true,
+  "contract": "flowwam-action-to-text-input/1",
+  "episodes": 6,
+  "output_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/fresh40/action-text/gpu5/input",
+  "rows": [
+    {
+      "action_sha256": "bcab07758c28fd1b6f9f14e89e47a49a382d8fdc621ba89f00fa85c1f4d8739d",
+      "augmented_prompt_sha256": "84b76200b8dbef9b25d4b3b6755d23e575820bc076efec3d3596ecb0f94ec2cc",
+      "episode": "episode000000",
+      "first_frame_sha256": "cec5982f6a66fa17063df6aa83f57022b4abde896147ff8ef223a30296abc95b",
+      "source_prompt_sha256": "1b5232a6d99c10c007314051bf9b9e184ed70c94a9ecfd8596be7233d43cf39d"
+    },
+    {
+      "action_sha256": "780d0b928a8ebc8893932fcc0485abc3c3ae5a354820590ff67a6c330d1abfe4",
+      "augmented_prompt_sha256": "a1c11e23c408458714a9890254c3e2844cc30be8a7ba316e04383f2484b06dbf",
+      "episode": "episode000001",
+      "first_frame_sha256": "317dc7e63d218713ecbb1be7aa9733f13d0a61844af59cd8f9b5a1ba3aee392c",
+      "source_prompt_sha256": "c9f47969b3a642621ba71baf721bdc4f7aba32f518da180bc3b882314fdf96e9"
+    },
+    {
+      "action_sha256": "9be3768bae636868fc918579d347ebc0b877668c1c49637492179c4270b52f8b",
+      "augmented_prompt_sha256": "605d553045950a52130e357b0697937634837b66dfda44df74eafaa4a12b1ffe",
+      "episode": "episode000002",
+      "first_frame_sha256": "7a1f8b123401cb657e01a6bd9d607b997b12a31a6b54f7690fe687c71c66c089",
+      "source_prompt_sha256": "aedffcf04f1142e3f846fd23deb1ab18c0f2803cdebedf612c98a5eefd971baf"
+    },
+    {
+      "action_sha256": "468eef79ccb6027349bc9eab8a2c5185c0aedef5a52c613de33bbdee14e36925",
+      "augmented_prompt_sha256": "b76681949192383d84cc46034a7b1b6ac6684771ed6813eede0392151e339e96",
+      "episode": "episode000003",
+      "first_frame_sha256": "360c97fc131c43870292196b4ed24d4bbc655830ef36367ff1fc95275dea0c83",
+      "source_prompt_sha256": "3c9d29faf85f43907009a140fdbcb943639fd0ccae6975f8eb1a45137ab5f346"
+    },
+    {
+      "action_sha256": "00ae8aea090cec3048003b7459423172e9c9f12e200e4e14c8bda823ea76dbf3",
+      "augmented_prompt_sha256": "a4a5867ac3ad81db432740d152c6ac4cf5e3a76102178029a5bc77c4d03488f3",
+      "episode": "episode000004",
+      "first_frame_sha256": "536730a06028f6ec0a3cc73ea33d7ff54c66eccbf64b7a93471eaca6e4923c31",
+      "source_prompt_sha256": "e2c1df68261df86c108f17c80d8d0cedc2dcceb8b476ccbc443cc1d3d21ec148"
+    },
+    {
+      "action_sha256": "6ece3581ea0ef3ee11a0e4e63a296787f8f17551a95187cc1c8e8e242ecb9422",
+      "augmented_prompt_sha256": "1d9b9e8da94b05532eb1e2a8e982b8a6ae5a14e32b0d270f0fdb0f17c115c2d0",
+      "episode": "episode000005",
+      "first_frame_sha256": "3361d304273c9f799b7891127f53c993bdc981a5e7e820ac9e6d4eb4204d258a",
+      "source_prompt_sha256": "244ffe7d85c7db0133d96fabe6dcbf7debe6f9bf0eb5c743123c950c4b28feea"
+    }
+  ],
+  "source_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu5/input"
+}

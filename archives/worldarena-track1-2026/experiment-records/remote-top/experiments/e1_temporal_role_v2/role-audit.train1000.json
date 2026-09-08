@@ -1,0 +1,304 @@
+{
+  "cache_root": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3",
+  "contract": "wan-action-lite-e1-temporal-role-audit/1",
+  "episodes": 1000,
+  "latent_tokens_excluding_frame0": 20000,
+  "left_score_quantiles": {
+    "0.0": 0.0,
+    "0.1": 0.0,
+    "0.25": 0.0,
+    "0.5": 0.28037121891975403,
+    "0.75": 0.8006500601768494,
+    "0.9": 1.1689786911010742,
+    "0.95": 1.2767149209976196,
+    "0.99": 1.7137635028362197,
+    "1.0": 2.4137253761291504
+  },
+  "manifest": "/data/di/worldarena2_track1_20260815/cache/v2-clean50-36tasks-v3/manifests/v2-1000.cached.jsonl",
+  "manifest_sha256": "f066f72fdf0ca25ab03ab4b8458f63b24531adecb4c1b289f688408cd9426efa",
+  "per_task_role_fractions": {
+    "click_alarmclock": {
+      "AMBIGUOUS": 0.12564102564102564,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.2641025641025641,
+      "QUIET": 0.4025641025641026,
+      "RIGHT_ONLY": 0.2076923076923077
+    },
+    "click_bell": {
+      "AMBIGUOUS": 0.3611111111111111,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.13333333333333333,
+      "QUIET": 0.3638888888888889,
+      "RIGHT_ONLY": 0.14166666666666666
+    },
+    "dump_bin_bigbin": {
+      "AMBIGUOUS": 0.02857142857142857,
+      "BOTH": 0.06836734693877551,
+      "LEFT_ONLY": 0.4969387755102041,
+      "QUIET": 0.21326530612244898,
+      "RIGHT_ONLY": 0.19285714285714287
+    },
+    "handover_mic": {
+      "AMBIGUOUS": 0.10454545454545454,
+      "BOTH": 0.16515151515151516,
+      "LEFT_ONLY": 0.3803030303030303,
+      "QUIET": 0.0015151515151515152,
+      "RIGHT_ONLY": 0.3484848484848485
+    },
+    "hanging_mug": {
+      "AMBIGUOUS": 0.008695652173913044,
+      "BOTH": 0.16956521739130434,
+      "LEFT_ONLY": 0.42391304347826086,
+      "QUIET": 0.0,
+      "RIGHT_ONLY": 0.3978260869565217
+    },
+    "lift_pot": {
+      "AMBIGUOUS": 0.10869565217391304,
+      "BOTH": 0.5391304347826087,
+      "LEFT_ONLY": 0.05217391304347826,
+      "QUIET": 0.3,
+      "RIGHT_ONLY": 0.0
+    },
+    "move_can_pot": {
+      "AMBIGUOUS": 0.1037037037037037,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.2833333333333333,
+      "QUIET": 0.19444444444444445,
+      "RIGHT_ONLY": 0.4185185185185185
+    },
+    "move_pillbottle_pad": {
+      "AMBIGUOUS": 0.06944444444444445,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.5222222222222223,
+      "QUIET": 0.16666666666666666,
+      "RIGHT_ONLY": 0.24166666666666667
+    },
+    "move_playingcard_away": {
+      "AMBIGUOUS": 0.035416666666666666,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.24375,
+      "QUIET": 0.2875,
+      "RIGHT_ONLY": 0.43333333333333335
+    },
+    "move_stapler_pad": {
+      "AMBIGUOUS": 0.05384615384615385,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.38461538461538464,
+      "QUIET": 0.13076923076923078,
+      "RIGHT_ONLY": 0.4307692307692308
+    },
+    "open_laptop": {
+      "AMBIGUOUS": 0.03387096774193549,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.4645161290322581,
+      "QUIET": 0.06451612903225806,
+      "RIGHT_ONLY": 0.43709677419354837
+    },
+    "pick_diverse_bottles": {
+      "AMBIGUOUS": 0.15535714285714286,
+      "BOTH": 0.7107142857142857,
+      "LEFT_ONLY": 0.07142857142857142,
+      "QUIET": 0.0625,
+      "RIGHT_ONLY": 0.0
+    },
+    "pick_dual_bottles": {
+      "AMBIGUOUS": 0.1396551724137931,
+      "BOTH": 0.75,
+      "LEFT_ONLY": 0.05,
+      "QUIET": 0.0603448275862069,
+      "RIGHT_ONLY": 0.0
+    },
+    "place_a2b_left": {
+      "AMBIGUOUS": 0.046153846153846156,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.5173076923076924,
+      "QUIET": 0.13076923076923078,
+      "RIGHT_ONLY": 0.3057692307692308
+    },
+    "place_bread_basket": {
+      "AMBIGUOUS": 0.05185185185185185,
+      "BOTH": 0.24444444444444444,
+      "LEFT_ONLY": 0.42962962962962964,
+      "QUIET": 0.046296296296296294,
+      "RIGHT_ONLY": 0.22777777777777777
+    },
+    "place_bread_skillet": {
+      "AMBIGUOUS": 0.10333333333333333,
+      "BOTH": 0.5483333333333333,
+      "LEFT_ONLY": 0.145,
+      "QUIET": 0.10166666666666667,
+      "RIGHT_ONLY": 0.10166666666666667
+    },
+    "place_burger_fries": {
+      "AMBIGUOUS": 0.08214285714285714,
+      "BOTH": 0.5303571428571429,
+      "LEFT_ONLY": 0.18928571428571428,
+      "QUIET": 0.0,
+      "RIGHT_ONLY": 0.1982142857142857
+    },
+    "place_can_basket": {
+      "AMBIGUOUS": 0.02142857142857143,
+      "BOTH": 0.18571428571428572,
+      "LEFT_ONLY": 0.4142857142857143,
+      "QUIET": 0.04285714285714286,
+      "RIGHT_ONLY": 0.3357142857142857
+    },
+    "place_container_plate": {
+      "AMBIGUOUS": 0.145,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.2375,
+      "QUIET": 0.16,
+      "RIGHT_ONLY": 0.4575
+    },
+    "place_dual_shoes": {
+      "AMBIGUOUS": 0.07051282051282051,
+      "BOTH": 0.691025641025641,
+      "LEFT_ONLY": 0.13974358974358975,
+      "QUIET": 0.04230769230769231,
+      "RIGHT_ONLY": 0.05641025641025641
+    },
+    "place_empty_cup": {
+      "AMBIGUOUS": 0.10238095238095238,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.319047619047619,
+      "QUIET": 0.2571428571428571,
+      "RIGHT_ONLY": 0.32142857142857145
+    },
+    "place_fan": {
+      "AMBIGUOUS": 0.06315789473684211,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.4368421052631579,
+      "QUIET": 0.15526315789473685,
+      "RIGHT_ONLY": 0.3447368421052632
+    },
+    "place_object_basket": {
+      "AMBIGUOUS": 0.02619047619047619,
+      "BOTH": 0.16904761904761906,
+      "LEFT_ONLY": 0.48095238095238096,
+      "QUIET": 0.002380952380952381,
+      "RIGHT_ONLY": 0.32142857142857145
+    },
+    "place_object_scale": {
+      "AMBIGUOUS": 0.03125,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.5291666666666667,
+      "QUIET": 0.15,
+      "RIGHT_ONLY": 0.28958333333333336
+    },
+    "place_object_stand": {
+      "AMBIGUOUS": 0.08421052631578947,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.24736842105263157,
+      "QUIET": 0.18947368421052632,
+      "RIGHT_ONLY": 0.4789473684210526
+    },
+    "place_phone_stand": {
+      "AMBIGUOUS": 0.13194444444444445,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.5277777777777778,
+      "QUIET": 0.1736111111111111,
+      "RIGHT_ONLY": 0.16666666666666666
+    },
+    "place_shoe": {
+      "AMBIGUOUS": 0.05416666666666667,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.19166666666666668,
+      "QUIET": 0.2125,
+      "RIGHT_ONLY": 0.5416666666666666
+    },
+    "put_bottles_dustbin": {
+      "AMBIGUOUS": 0.038,
+      "BOTH": 0.679,
+      "LEFT_ONLY": 0.274,
+      "QUIET": 0.001,
+      "RIGHT_ONLY": 0.008
+    },
+    "scan_object": {
+      "AMBIGUOUS": 0.11724137931034483,
+      "BOTH": 0.5155172413793103,
+      "LEFT_ONLY": 0.19655172413793104,
+      "QUIET": 0.0034482758620689655,
+      "RIGHT_ONLY": 0.16724137931034483
+    },
+    "shake_bottle": {
+      "AMBIGUOUS": 0.189,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.369,
+      "QUIET": 0.014,
+      "RIGHT_ONLY": 0.428
+    },
+    "shake_bottle_horizontally": {
+      "AMBIGUOUS": 0.053125,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.509375,
+      "QUIET": 0.01875,
+      "RIGHT_ONLY": 0.41875
+    },
+    "stack_blocks_three": {
+      "AMBIGUOUS": 0.021153846153846155,
+      "BOTH": 0.21923076923076923,
+      "LEFT_ONLY": 0.4096153846153846,
+      "QUIET": 0.0,
+      "RIGHT_ONLY": 0.35
+    },
+    "stack_blocks_two": {
+      "AMBIGUOUS": 0.010526315789473684,
+      "BOTH": 0.12368421052631579,
+      "LEFT_ONLY": 0.39210526315789473,
+      "QUIET": 0.0,
+      "RIGHT_ONLY": 0.47368421052631576
+    },
+    "stack_bowls_two": {
+      "AMBIGUOUS": 0.058823529411764705,
+      "BOTH": 0.026470588235294117,
+      "LEFT_ONLY": 0.35294117647058826,
+      "QUIET": 0.03235294117647059,
+      "RIGHT_ONLY": 0.5294117647058824
+    },
+    "stamp_seal": {
+      "AMBIGUOUS": 0.058695652173913045,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.3804347826086957,
+      "QUIET": 0.16956521739130434,
+      "RIGHT_ONLY": 0.391304347826087
+    },
+    "turn_switch": {
+      "AMBIGUOUS": 0.15319148936170213,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.1829787234042553,
+      "QUIET": 0.5159574468085106,
+      "RIGHT_ONLY": 0.1478723404255319
+    }
+  },
+  "right_score_quantiles": {
+    "0.0": 0.0,
+    "0.1": 0.0,
+    "0.25": 0.0,
+    "0.5": 0.07915729656815529,
+    "0.75": 0.6590791940689087,
+    "0.9": 1.0434247255325317,
+    "0.95": 1.183234870433807,
+    "0.99": 1.37297785282135,
+    "1.0": 1.837824821472168
+  },
+  "role_counts": {
+    "AMBIGUOUS": 1740,
+    "BOTH": 3929,
+    "LEFT_ONLY": 6369,
+    "QUIET": 2679,
+    "RIGHT_ONLY": 5283
+  },
+  "role_fractions": {
+    "AMBIGUOUS": 0.087,
+    "BOTH": 0.19645,
+    "LEFT_ONLY": 0.31845,
+    "QUIET": 0.13395,
+    "RIGHT_ONLY": 0.26415
+  },
+  "support_overlap_mean": 1.4221384237209956e-05,
+  "thresholds": {
+    "active": 0.2,
+    "quiet": 0.05,
+    "temporal_window": 3
+  }
+}

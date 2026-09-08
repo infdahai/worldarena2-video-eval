@@ -1,0 +1,64 @@
+{
+  "completed": true,
+  "contract": "seed3-selected-corrected15-merge/1",
+  "full15_used_for_selection": false,
+  "inputs": {
+    "generated9_csv": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/scoring/seed3/merged40/csv/generated-only-task-aware.csv",
+      "sha256": "f9a253b7c5b5a1199454f7b43b8c5e5a798999591964006bcd852c9d7c9d7e8d"
+    },
+    "gt_results_json": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/fresh40/latest-scorer/gt-motion-output/gt_reference_results.json",
+      "sha256": "79c73e40198125f52d4c010a524892f8483459cde027c50d55fe0da411320548"
+    },
+    "jepa_json": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1201/dev-clean-50/output_JEDi/results.json",
+      "sha256": "80490a66459968119f11efc009d23dc5394e4c6ef22798823b1d35c80062c1c5"
+    },
+    "missing5_json": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1206/dev-clean-50/output/generated_results.json",
+      "sha256": "f8d48c50580f0b7c9e960333eb6201e5b79f9fe2e3fba7ae8f65c2cd508eeff1"
+    },
+    "package_receipt": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1206/dev-clean-50/receipts/package.complete.json",
+      "sha256": "90a3b42bdd0a5eab58f7c753446ea30fd2a1f33dead0140905cbf8d0382a4d48"
+    },
+    "prior_paired_rows": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/route40-final-compare/paired40.rows.jsonl",
+      "sha256": "2fb77978b6cacb69c15cf6e6f5aa9b797141e76f59bca2d112f0c9b2f42784cd"
+    }
+  },
+  "outputs": {
+    "rows_jsonl": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/seed3-frozen-extra3/merged-corrected15/seed3-new14.rows.jsonl",
+      "sha256": "09affa619f6f536fd23c4576ccc865e39359e35af57d2c46cb6f5f4f34704b73"
+    },
+    "summary_json": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/seed3-frozen-extra3/merged-corrected15/seed3-new14.summary.json",
+      "sha256": "dccfa5c8d34999df4b51860711f559a42b9a7996a1ecb7816297db427463a101"
+    }
+  },
+  "row_count": 3,
+  "summary": {
+    "diagnostic_nonjepa14_mean_delta_vs_prior_route": -0.007631029177727816,
+    "metric_deltas_nonjepa14": {
+      "Aesthetic Quality": 0.004831522703170776,
+      "Background Consistency": 0.0023152669270833184,
+      "Depth Accuracy": -0.0031959471098602643,
+      "Dynamic Degree": -0.005906020135925431,
+      "Flow Score": -0.00013751666014041874,
+      "Image Quality": 0.0039826933150429,
+      "Instruction Following": 0.0,
+      "Interaction Quality": 0.0,
+      "Motion Smoothness": 0.0,
+      "Perspectivity": 0.0,
+      "Photometric Consistency": 0.004730655037194882,
+      "Semantic Alignment": -0.01513666666666665,
+      "Subject Consistency": 7.34943896533539e-06,
+      "Trajectory Accuracy": -0.09832574533705389
+    },
+    "rows": 3,
+    "selected14_jepa_scope_score": 0.9118150472640991,
+    "warning": "selected14 JEPA scope is not promotion-comparable; use full40 same-scope JEPA"
+  }
+}

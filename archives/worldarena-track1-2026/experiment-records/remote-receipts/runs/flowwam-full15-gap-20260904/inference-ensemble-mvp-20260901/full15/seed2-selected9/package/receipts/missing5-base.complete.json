@@ -1,0 +1,78 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/envs/WorldArena/bin/python",
+        "/home/huazhi/nlh/WorldArena-2.0/video_quality_ood/preprocess_datasets.py",
+        "--summary_json",
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1198/dev-clean-50/summary.json",
+        "--gen_video_dir",
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1198/dev-clean-50/videos/RoutingP0Seed2Selected9_test",
+        "--output_base",
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1198/dev-clean-50/work/data"
+      ],
+      "cwd": "/home/huazhi/nlh/WorldArena-2.0/video_quality_ood",
+      "kind": "preprocess-standard"
+    },
+    {
+      "argv": [
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/envs/WorldArena/bin/python",
+        "/home/huazhi/nlh/WorldArena-2.0/video_quality_ood/processing/video_resize.py",
+        "--config_path",
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1198/dev-clean-50/work/config.yaml"
+      ],
+      "cwd": "/home/huazhi/nlh/WorldArena-2.0/video_quality_ood",
+      "kind": "resize"
+    },
+    {
+      "argv": [
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/envs/WorldArena/bin/python",
+        "/home/huazhi/nlh/WorldArena-2.0/video_quality_ood/processing/detection_tracking.py",
+        "--config_path",
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1198/dev-clean-50/work/config.yaml"
+      ],
+      "cwd": "/home/huazhi/nlh/WorldArena-2.0/video_quality_ood",
+      "kind": "detect"
+    },
+    {
+      "argv": [
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/envs/WorldArena/bin/python",
+        "-B",
+        "/home/huazhi/nlh/WorldArena-2.0/video_quality_ood/evaluate.py",
+        "--dimension",
+        "trajectory_accuracy",
+        "semantic_alignment",
+        "depth_accuracy",
+        "background_consistency",
+        "subject_consistency",
+        "--config",
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1198/dev-clean-50/work/config.yaml",
+        "--overwrite"
+      ],
+      "cwd": "/home/huazhi/nlh/WorldArena-2.0/video_quality_ood",
+      "kind": "standard-metrics-missing5"
+    }
+  ],
+  "completed": true,
+  "contract": "seed2-selected9-missing5-base/1",
+  "means": {
+    "background_consistency": 0.011368251376681859,
+    "depth_accuracy": 0.20695665147569445,
+    "semantic_alignment": 0.897244111111111,
+    "subject_consistency": 0.010329287487547845,
+    "trajectory_accuracy": 45.89833333333334
+  },
+  "metrics": [
+    "trajectory_accuracy",
+    "semantic_alignment",
+    "depth_accuracy",
+    "background_consistency",
+    "subject_consistency"
+  ],
+  "model_name": "RoutingP0Seed2Selected9",
+  "physical_gpu": 0,
+  "result": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1198/dev-clean-50/output/generated_results.json",
+  "result_sha256": "fdb8a559036e6e26ceb1dc3f5a0dabbb6c24d99bb1b55d6e62316d72023a0324",
+  "step": 1198,
+  "video_count": 9
+}

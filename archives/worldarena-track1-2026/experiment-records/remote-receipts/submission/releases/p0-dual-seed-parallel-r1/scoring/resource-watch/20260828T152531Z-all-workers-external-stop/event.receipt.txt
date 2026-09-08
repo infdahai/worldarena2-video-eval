@@ -1,0 +1,9 @@
+event=all_workers_external_stop
+observed_utc=2026-08-28T15:25:31Z
+action=checkpoint_only_no_restart
+cooldown_not_before_utc=2026-08-28T15:45:31Z
+parents=856450,856455,856460,856465,856470,856475,856480,856485
+compute_children=856507,856508,856576,856509,856511,856537,856577,856510
+steps=926,927,928,929,930,931,932,933
+checkpoint_total=1045
+note=all_parents_and_compute_children_disappeared_after_verified_start

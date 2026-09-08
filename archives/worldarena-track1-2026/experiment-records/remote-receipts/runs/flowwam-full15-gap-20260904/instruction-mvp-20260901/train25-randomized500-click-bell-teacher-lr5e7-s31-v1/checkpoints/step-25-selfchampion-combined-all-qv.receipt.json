@@ -1,0 +1,12 @@
+{
+  "contract": "flowwam-self-cross-lora-merge-mvp/1",
+  "created_at": "2026-09-01T02:51:02.327473+00:00",
+  "cross_checkpoint": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/train25-randomized500-click-bell-teacher-lr5e7-s31-v1/checkpoints/step-25.safetensors",
+  "cross_sha256": "36c13e559b265eae9dd3d88756a9d51c1f9cdaabd43a76313f1b850e1d28ce59",
+  "loaded_pairs": 120,
+  "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/train25-randomized500-click-bell-teacher-lr5e7-s31-v1/checkpoints/step-25-selfchampion-combined-all-qv.safetensors",
+  "output_sha256": "2d69483484a6e69adc7685d73b9407c56b4b1b9e9a78909905daac346e716fa7",
+  "self_checkpoint": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round4/jepa-preserve-v1/as-lr3e7-r2/checkpoints/step-8.safetensors",
+  "self_sha256": "d926f92ccfe8c7c28e91a485aecf54deeceeeffc2cb612bae3300e37f5da48c7",
+  "tensor_count": 240
+}

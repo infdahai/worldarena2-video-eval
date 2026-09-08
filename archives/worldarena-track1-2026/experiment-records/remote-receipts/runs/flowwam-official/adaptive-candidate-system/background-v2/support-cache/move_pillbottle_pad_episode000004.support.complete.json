@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": false,
+    "maximum_area_fraction": 0.0,
+    "mean_area_fraction": 0.0,
+    "valid_frames": 0
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.13029296875,
+    "mean_area_fraction": 0.07535698784722221,
+    "valid_frames": 72
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.129423828125,
+    "mean_area_fraction": 0.07190224729938272,
+    "valid_frames": 70
+  },
+  "source_video_sha256": "0cc45661e516a01094c9e8f8d1711cb789ab54914a284cce716a9f5ae351bda3",
+  "support_fraction": 0.8120103925540123,
+  "support_sha256": "75a8c1ca6c04f2ed4207749b8c6a785340aa662e06f0e4a17e85e21810add12f",
+  "video_id": "move_pillbottle_pad_episode000004"
+}

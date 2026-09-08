@@ -1,0 +1,18 @@
+{
+  "aggregated_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/e-mask-d1-s31/n8-dev4/scoring/selected-full15/package/csv_results/aggregated_results.csv",
+  "aggregated_csv_sha256": "1faec2bf574ae4e3e1e279aa9ba657cc66b93c4e4bb0cafffcfe3264121ece60",
+  "base_metric_sha256": "f389863a7e9bc3b8f1a1e4b65a6d9140b094b3d1aa7c23d2fc85c0d768bfe102",
+  "completed": true,
+  "contract": "worldarena-track1-e-mask-d1-selected-full15-aggregate/1",
+  "expected_count": 4,
+  "jepa_result_sha256": "f1bf0fc6bb106ae6e7ffa9b975f0ed43a7f5ecdf25881f46708ff1b7b96a3f8e",
+  "model_name": "E_Mask_D1_Selected",
+  "official_raw_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/e-mask-d1-s31/n8-dev4/scoring/selected-full15/package/csv_results/official_raw_aggregated_results.csv",
+  "official_raw_csv_sha256": "4178b03e02fe86eeef80915334f339d7d88a921637aec480bccfb666ea0d7243",
+  "phase_receipts_sha256": {
+    "base": "a22f628ffd3c3ce5acdf083dfab8af95b95ce9851b0bf42c738da51a6977788d",
+    "jepa": "6c285e29634eb38e19aace129444438dd26ceddc84a52d06e77416f3101f9d57",
+    "vlm": "6919567eef8aa07bfd3a9777b75a538624edb01dac0c076a8e372b34845cc4da"
+  },
+  "selection_receipt_sha256": "95eddf092ab6ce62348f44afc4c954b7ecfa3b595a82b2ea63795f4625d408d8"
+}

@@ -1,0 +1,19 @@
+{
+  "aggregated_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/selected-full15/package/csv_results/aggregated_results.csv",
+  "aggregated_csv_sha256": "1bd93669a49f17a6dbba5415148d5e04f8bc1aa00e76b15b64cee7705fb12dd1",
+  "base_metric_sha256": "a2f90aa186415de23a73fb301ad68cdbeb4bae8d270fbe94d07e99ae6994cb6a",
+  "completed": true,
+  "contract": "worldarena-track1-b-c050-selected-full15-aggregate/1",
+  "expected_count": 4,
+  "jepa_result_sha256": "6c0bed2a051e0eb85477b921066bf06b997f965a5217b7f032ddaed7ddb6f451",
+  "model_name": "B_C050_Selected",
+  "official_raw_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/selected-full15/package/csv_results/official_raw_aggregated_results.csv",
+  "official_raw_csv_sha256": "9381e2a224353e42e9f51902b105bc8e6b4c217fc845f0efd140c3c206b207d2",
+  "phase_receipts_sha256": {
+    "base": "6c0865b9d86cf5b354eeda041bea6969be1049f444fdb1ee820d973745165cd1",
+    "jepa": "03f10e8c436b7d832d3c690aa50d6650335c64242f1bb402372b33cffadc0f9a",
+    "vlm": "0ff12ca4cb854e42cdf7424af14ecbf0695803d793d5a92398c8c3b33e062d5a"
+  },
+  "selection_receipt_sha256": "0506e1c49b49a040a8b034c73a0f3f7bda72fee15b2b0b0bdb57871d70378df9",
+  "source_commit": "7b3feee108427bee3380064bb5154970ed7468b5"
+}

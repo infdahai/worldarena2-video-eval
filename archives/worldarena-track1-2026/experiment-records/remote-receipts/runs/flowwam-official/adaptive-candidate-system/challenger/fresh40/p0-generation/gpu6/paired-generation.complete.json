@@ -1,0 +1,149 @@
+{
+  "black_frame_count": 0,
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "completed": true,
+  "contract": "flowwam-adaptive-paired-generation/1",
+  "episodes": 6,
+  "manifest_sha256": "49d89ac6c3450aff8e1705819f455b8fbab7eaff444f67bd0f55b92ede586908",
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "per_video": [
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000000",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu6/seed1/episode000000.mp4",
+      "sample": "place_phone_stand__aloha-agilex_clean_50__episode_000028",
+      "seed": 1,
+      "sha256": "3693f4e712b30626a39527984d0628d8f4a016d77ae156af210692a31fba4385",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000000",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu6/seed4/episode000000.mp4",
+      "sample": "place_phone_stand__aloha-agilex_clean_50__episode_000028",
+      "seed": 4,
+      "sha256": "ae54a9c603545f8de0fbcc9ec65494e1efdaeb1c50bca067ddab687ce5583444",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000001",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu6/seed1/episode000001.mp4",
+      "sample": "place_object_basket__aloha-agilex_clean_50__episode_000034",
+      "seed": 1,
+      "sha256": "f2733d0c8d8723b0c31af93ac97d38114b14150da724ca701d099591870d0ba9",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000001",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu6/seed4/episode000001.mp4",
+      "sample": "place_object_basket__aloha-agilex_clean_50__episode_000034",
+      "seed": 4,
+      "sha256": "10a8a9aa45f481b8239729fb09f11fa29aa01b1257678764f3832b0a0c173a5d",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000002",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu6/seed1/episode000002.mp4",
+      "sample": "pick_diverse_bottles__aloha-agilex_clean_50__episode_000013",
+      "seed": 1,
+      "sha256": "a114590ca83535b08dfacc94f400f5aee05d7cb77092f52013c6ad163967afff",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000002",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu6/seed4/episode000002.mp4",
+      "sample": "pick_diverse_bottles__aloha-agilex_clean_50__episode_000013",
+      "seed": 4,
+      "sha256": "9a3cdba0e321229c4486a78f931b8fdf1a8564291cc795a05a94eab6c3788dca",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000003",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu6/seed1/episode000003.mp4",
+      "sample": "place_object_stand__aloha-agilex_clean_50__episode_000040",
+      "seed": 1,
+      "sha256": "e814d8aa8d131079cbb6ca02d578608e47a46410c5b9ceed33f9112a4b60c5ed",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000003",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu6/seed4/episode000003.mp4",
+      "sample": "place_object_stand__aloha-agilex_clean_50__episode_000040",
+      "seed": 4,
+      "sha256": "15bd4f5a6b0f71b13a4bf159a573b6e038550543245f58657000f213f38b302a",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000004",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu6/seed1/episode000004.mp4",
+      "sample": "stack_bowls_two__aloha-agilex_clean_50__episode_000010",
+      "seed": 1,
+      "sha256": "aef3b59f5120954f224dafa152c25cfecbc7c33def3489b4afc78c28c74175af",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000004",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu6/seed4/episode000004.mp4",
+      "sample": "stack_bowls_two__aloha-agilex_clean_50__episode_000010",
+      "seed": 4,
+      "sha256": "3faeccdf07c10cdc963b9b648ec027f7c26349bc79ee65bace8639d7d0aeb7e8",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000005",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu6/seed1/episode000005.mp4",
+      "sample": "shake_bottle_horizontally__aloha-agilex_clean_50__episode_000021",
+      "seed": 1,
+      "sha256": "caf3e9bc0b199fe18b6d92e9e4fb5a19a5761fc2e1d54b1d73c725f89d39108a",
+      "width": 640
+    },
+    {
+      "black_frame_fraction": 0.0,
+      "episode_name": "episode000005",
+      "frames": 121,
+      "height": 480,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/p0-generation/gpu6/seed4/episode000005.mp4",
+      "sample": "shake_bottle_horizontally__aloha-agilex_clean_50__episode_000021",
+      "seed": 4,
+      "sha256": "f7949fb3392d9cdc05ed806aba972425a047a23ba98a3c24e8fa0b9f140b13fd",
+      "width": 640
+    }
+  ],
+  "physical_gpu": 6,
+  "seed_counts": {
+    "1": 6,
+    "4": 6
+  },
+  "videos": 12
+}

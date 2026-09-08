@@ -1,0 +1,788 @@
+{
+  "action_raster_shape": [
+    1,
+    10,
+    81,
+    60,
+    80
+  ],
+  "action_raster_source": "/data/di/worldarena2_track1_20260815/eval/dev-fast-20-v3/action-cache/action_rasters_v3/click_alarmclock__aloha-agilex_clean_50__episode_000000.npz",
+  "backward": true,
+  "condition_semantics": {
+    "null": "action_present=0 with zero raster and pose=None",
+    "present": "action_present=1 with raster-only conditioning"
+  },
+  "condition_support_shape": [
+    1,
+    2,
+    21,
+    15,
+    20
+  ],
+  "counterfactual_mean_abs_delta": null,
+  "event": "wan_action_v3_fsdp_probe_ok",
+  "input_provenance": {
+    "action_condition": {
+      "bytes": 41443,
+      "path": "/data/di/worldarena2_track1_20260815/eval/dev-fast-20-v3/action-cache/action_rasters_v3/click_alarmclock__aloha-agilex_clean_50__episode_000000.npz",
+      "sha256": "86740b780e3ffe5062ed14d698b671c6ac88ff9149c5d907a1175935688452a4"
+    },
+    "adapter": {
+      "bytes": 76085693,
+      "path": "/data/di/worldarena2_track1_20260815/runs/s1A_branch_0125_ws7/step-000125.pt",
+      "sha256": "59b0de933abc5229cd81ad8507b3f7ab550f996d29038496ae8a58e373fb6df3"
+    },
+    "contract_version": "wan-action-lite-v3-smoke/1",
+    "model": {
+      "assets": {
+        ".gitattributes": {
+          "bytes": 1866,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/.gitattributes",
+          "sha256": "9d367d6e3a691a377ca16b3dd3d6467afb83ee36be612cfe1858985c7733f62b"
+        },
+        ".msc": {
+          "bytes": 507,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/.msc",
+          "sha256": "e08718041f55dc3bfa49e18e8228c49bb760c477f2501214361326327e2f8c4f"
+        },
+        ".mv": {
+          "bytes": 36,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/.mv",
+          "sha256": "2b49c3a970f900cd3e1cbd1c68ca5efccaba49cdb121eeca5c51b53173558895"
+        },
+        "README.md": {
+          "bytes": 15935,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/README.md",
+          "sha256": "e357cb3ac077f8739755b0fb38fe8424c76534b19b4a84f6138856abb00abf69"
+        },
+        "Wan2.2_VAE.pth": {
+          "bytes": 2818839170,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/Wan2.2_VAE.pth",
+          "sha256": "20eb789667fa5e60e7516bf509512f6cb61f01b0aa0695eadaea930c13892b36"
+        },
+        "assets/comp_effic.png": {
+          "bytes": 202156,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/assets/comp_effic.png",
+          "sha256": "75ee012dcfb08365bec67a3ec7afc126fc2817f79b9f80e38711792d4770e32b"
+        },
+        "assets/logo.png": {
+          "bytes": 56322,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/assets/logo.png",
+          "sha256": "96cddc0f667293436d0b9f92a299b6346b65b231d38ee49719a33d46c91fe1e3"
+        },
+        "assets/moe_2.png": {
+          "bytes": 527914,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/assets/moe_2.png",
+          "sha256": "4ea471ccb64349bd08bc9a78f336ae000e9ca3b40da9a652b8028b214a8c6093"
+        },
+        "assets/moe_arch.png": {
+          "bytes": 74900,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/assets/moe_arch.png",
+          "sha256": "709510625af90bad3f9509c8c9bb6dc779576cd7f80b9bc95d75fe33f2755079"
+        },
+        "assets/performance.png": {
+          "bytes": 306535,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/assets/performance.png",
+          "sha256": "97ef99c13c8ae717a8a11c8d8ec927b69077c647cc6689755d08fc38e7fbb830"
+        },
+        "assets/vae.png": {
+          "bytes": 165486,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/assets/vae.png",
+          "sha256": "4aaea5e187f1c5908e15ade5bef24c9fb59882986bc3d2ad75f7fe820f3d772f"
+        },
+        "config.json": {
+          "bytes": 251,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/config.json",
+          "sha256": "d1fea36899d00c2501b836c13ad65af56e2f9529ba622e50886d3f5c3e6c02bc"
+        },
+        "configuration.json": {
+          "bytes": 43,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/configuration.json",
+          "sha256": "a6b66993e9da0feaba8d42d06b21ad9cfaf7d8b591f32fd639ae35b7f5d2d859"
+        },
+        "diffusion_pytorch_model-00001-of-00003.safetensors": {
+          "bytes": 9825014472,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/diffusion_pytorch_model-00001-of-00003.safetensors",
+          "sha256": "720b06c4ade5e87c1246bba8ac95b664c638749cd9b102cf84d823bb44c026a1"
+        },
+        "diffusion_pytorch_model-00002-of-00003.safetensors": {
+          "bytes": 9995661736,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/diffusion_pytorch_model-00002-of-00003.safetensors",
+          "sha256": "09ec5ef720d8396f6cfa51fbdcbdb2327e37722afd6e89fd38f1e7e5e782c283"
+        },
+        "diffusion_pytorch_model-00003-of-00003.safetensors": {
+          "bytes": 178558176,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/diffusion_pytorch_model-00003-of-00003.safetensors",
+          "sha256": "6306f7894c345de9093ad588771c2abfaeb668a81f7a6d9a918bd26ba3568e49"
+        },
+        "diffusion_pytorch_model.safetensors.index.json": {
+          "bytes": 72865,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/diffusion_pytorch_model.safetensors.index.json",
+          "sha256": "bfa2337f1163e195d24151a72298daf34a620543898109be47e414c8daa5b3fe"
+        },
+        "examples/i2v_input.JPG": {
+          "bytes": 250628,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/examples/i2v_input.JPG",
+          "sha256": "077e3d965090c9028c69c00931675f42e1acc815c6eb450ab291b3b72d211a8e"
+        },
+        "google/umt5-xxl/special_tokens_map.json": {
+          "bytes": 6623,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/google/umt5-xxl/special_tokens_map.json",
+          "sha256": "7b8a9f5040adb67b5805abdfd42c1f8d0f3d0e711f10726580eb3789cd0ad61d"
+        },
+        "google/umt5-xxl/spiece.model": {
+          "bytes": 4548313,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/google/umt5-xxl/spiece.model",
+          "sha256": "e3909a67b780650b35cf529ac782ad2b6b26e6d1f849d3fbb6a872905f452458"
+        },
+        "google/umt5-xxl/tokenizer.json": {
+          "bytes": 16837417,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/google/umt5-xxl/tokenizer.json",
+          "sha256": "6e197b4d3dbd71da14b4eb255f4fa91c9c1f2068b20a2de2472967ca3d22602b"
+        },
+        "google/umt5-xxl/tokenizer_config.json": {
+          "bytes": 61728,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/google/umt5-xxl/tokenizer_config.json",
+          "sha256": "ed9a3a8b0faa71a70a32847e0435fe036e6e112d4df4edb7bb48a921e344dc05"
+        },
+        "models_t5_umt5-xxl-enc-bf16.pth": {
+          "bytes": 11361920418,
+          "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/models_t5_umt5-xxl-enc-bf16.pth",
+          "sha256": "7cace0da2b446bbbbc57d031ab6cf163a3d59b366da94e5afe36745b746fd81d"
+        }
+      },
+      "manifest": {
+        "bytes": 1932,
+        "path": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B/.worldarena_manifest.json",
+        "sha256": "ed53bcd61bea3084986d9ae3fe005297227e9e2fb475fd8abe819600f5b12b11"
+      },
+      "repo_id": "Wan-AI/Wan2.2-TI2V-5B",
+      "revision": "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+      "root": "/data/di/worldarena2_track1_20260815/models/Wan2.2-TI2V-5B"
+    },
+    "source": {
+      "baseline/scripts/probe_wan_action_fsdp.py": {
+        "bytes": 19974,
+        "path": "/home/huazhi/nlh/baseline/scripts/probe_wan_action_fsdp.py",
+        "sha256": "03255586dfaefe8c2bd134c092e8ffd4bebc8e38e08239fa5ca61dd62bae4710"
+      },
+      "baseline/src/worldarena_baseline/environment_manifest.py": {
+        "bytes": 7272,
+        "path": "/home/huazhi/nlh/baseline/src/worldarena_baseline/environment_manifest.py",
+        "sha256": "f2b544bd2fe4e6dddafc50ea568f20a109fed8dedfecbe3a6f62f2548a7ce60a"
+      },
+      "baseline/src/worldarena_baseline/wan_action_adapter.py": {
+        "bytes": 19546,
+        "path": "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_action_adapter.py",
+        "sha256": "896a5fc3a6dce0bc76f6fcf7deb468cde4547d2d35758af5cab91a2c642a7ff0"
+      },
+      "baseline/src/worldarena_baseline/wan_action_loss.py": {
+        "bytes": 7453,
+        "path": "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_action_loss.py",
+        "sha256": "8d3b465c6abc312461219b8be1c2439d3b6659bd9d5d0376d39b769dda8be88f"
+      },
+      "baseline/src/worldarena_baseline/wan_lora.py": {
+        "bytes": 8081,
+        "path": "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_lora.py",
+        "sha256": "2ceb99df1d06c0ac3a273234f92dcd57b9175b4833fc87c78634387f7b533361"
+      },
+      "baseline/src/worldarena_baseline/wan_probe.py": {
+        "bytes": 16668,
+        "path": "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_probe.py",
+        "sha256": "32e67450b4191b966c6663361e57ea6a2009b1284c782d3b716634617a51421a"
+      },
+      "baseline/src/worldarena_baseline/wan_ti2v_import.py": {
+        "bytes": 2190,
+        "path": "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_ti2v_import.py",
+        "sha256": "ecedfc088ccc6371ac09f09ed1f2a78916177a2f694a4042c9ae5632c01db381"
+      },
+      "wan/__init__.py": {
+        "bytes": 281,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/__init__.py",
+        "sha256": "ab6b0151f3b0eca9fec83b38ed5ac0052023d41ad2f238a7f0d6f165b1f48885"
+      },
+      "wan/animate.py": {
+        "bytes": 27456,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/animate.py",
+        "sha256": "ddc708584ee3494bc8cc247f403b0459a1205cff3a0b87299ad97430845fc253"
+      },
+      "wan/configs/__init__.py": {
+        "bytes": 1327,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/configs/__init__.py",
+        "sha256": "2e18e747b42fabed0c14e5775c824aca828692a9eaaa11e6131c08f3d65e314d"
+      },
+      "wan/configs/shared_config.py": {
+        "bytes": 945,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/configs/shared_config.py",
+        "sha256": "3ae102e029d4d0e3436ebbaa9f8fd32c10e8468ae8be07facdca2e20ec1858fe"
+      },
+      "wan/configs/wan_animate_14B.py": {
+        "bytes": 1288,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/configs/wan_animate_14B.py",
+        "sha256": "a701480f0fc9b361f36e2b1954e7daa0ad948c38896fd78df2c634950ba72f0d"
+      },
+      "wan/configs/wan_i2v_A14B.py": {
+        "bytes": 1030,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/configs/wan_i2v_A14B.py",
+        "sha256": "1cddca2dd2976df3d08c602e437a8d1aec94b33b3cb4dea3187003dbe5195cd2"
+      },
+      "wan/configs/wan_s2v_14B.py": {
+        "bytes": 2179,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/configs/wan_s2v_14B.py",
+        "sha256": "c650ab8d6fd2abdd68546e2fcb7c6bc84ef38a65f002d6872e887c272c80782d"
+      },
+      "wan/configs/wan_t2v_A14B.py": {
+        "bytes": 1023,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/configs/wan_t2v_A14B.py",
+        "sha256": "a1f3a70472aece6d7a3cfe83ed39be829e957484db23069c13c7a3c35ac07a48"
+      },
+      "wan/configs/wan_ti2v_5B.py": {
+        "bytes": 891,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/configs/wan_ti2v_5B.py",
+        "sha256": "26d9e7b9c555eb0900b13751267a596556f869e7aee2d1572afc2a0a4a76f4c7"
+      },
+      "wan/distributed/__init__.py": {
+        "bytes": 73,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/distributed/__init__.py",
+        "sha256": "013ec40a0739296f1ba474036e5d46e06998f795daa0b7c3214773d885a3ab1a"
+      },
+      "wan/distributed/fsdp.py": {
+        "bytes": 1379,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/distributed/fsdp.py",
+        "sha256": "f4a6e3c69e7bb0e6c81bd9b9f94e14e210f052055587d032c05b9b7caebceb72"
+      },
+      "wan/distributed/sequence_parallel.py": {
+        "bytes": 5189,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/distributed/sequence_parallel.py",
+        "sha256": "4f50898eff51efbfebf8709e2d2993fc87b2442c548753cd36e4e607cdd55e0a"
+      },
+      "wan/distributed/ulysses.py": {
+        "bytes": 1322,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/distributed/ulysses.py",
+        "sha256": "0c9969ec8e99358fb79a224700853f89b52724c8dc2055f91972ace47f04a483"
+      },
+      "wan/distributed/util.py": {
+        "bytes": 1379,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/distributed/util.py",
+        "sha256": "b8925fdbdc0cf4409ba5760d92c66f1e329de40b1dad7f2011a7d37caad97b56"
+      },
+      "wan/image2video.py": {
+        "bytes": 16479,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/image2video.py",
+        "sha256": "53f4f302f7e9bc7bca2465abd3f7ff5f0e8fa909c7dc36bd0c49abb7918d5f68"
+      },
+      "wan/modules/__init__.py": {
+        "bytes": 498,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/__init__.py",
+        "sha256": "7bb54dcccf99bbdab4d5781519c8324629be898986427054a48285cc7faa316c"
+      },
+      "wan/modules/animate/__init__.py": {
+        "bytes": 186,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/__init__.py",
+        "sha256": "25539340535bb775870df1d12232da8662274033d5636a3b0c7f120a639ef006"
+      },
+      "wan/modules/animate/animate_utils.py": {
+        "bytes": 4534,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/animate_utils.py",
+        "sha256": "a3e43e655c1c8a3dcee88e3d596c90b2b6fec7560dd5d1fb32501a2f93dea720"
+      },
+      "wan/modules/animate/clip.py": {
+        "bytes": 16849,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/clip.py",
+        "sha256": "99288e68ede350eb7893f1382c3e55744f30f691d793e1cece74f3bdc5e6efdf"
+      },
+      "wan/modules/animate/face_blocks.py": {
+        "bytes": 12202,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/face_blocks.py",
+        "sha256": "cd91cdffc024d416d920115ffad17cf8e20a40242e4ab4aa163b0809fc44ecbb"
+      },
+      "wan/modules/animate/model_animate.py": {
+        "bytes": 15898,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/model_animate.py",
+        "sha256": "291292e07ea6ebd50fe3201769c1207a5a0692e5526e6e4857282c65e728b9de"
+      },
+      "wan/modules/animate/motion_encoder.py": {
+        "bytes": 8096,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/motion_encoder.py",
+        "sha256": "fc01f0a8462c959043d5277518790be6054785c379753c98b4daac742f4b8697"
+      },
+      "wan/modules/animate/preprocess/__init__.py": {
+        "bytes": 167,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/preprocess/__init__.py",
+        "sha256": "97cdc0a0257a0fe032f8fa3dae5d73caf7579012ae13cf01f9418a46ba4d6508"
+      },
+      "wan/modules/animate/preprocess/human_visualization.py": {
+        "bytes": 44228,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/preprocess/human_visualization.py",
+        "sha256": "962813c71b2f2e09f7cd745b35b31a0d278b122b5f2f429018d0576c795eda33"
+      },
+      "wan/modules/animate/preprocess/pose2d.py": {
+        "bytes": 17641,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/preprocess/pose2d.py",
+        "sha256": "b71792fa2222c4c8eacf43dba21b4c8e4b510fbdcbd9505353a108a095e47f19"
+      },
+      "wan/modules/animate/preprocess/pose2d_utils.py": {
+        "bytes": 41804,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/preprocess/pose2d_utils.py",
+        "sha256": "a5fc3867420b5ee985ba0cc4e304cb57de177d221941df99116db1c83ddc2047"
+      },
+      "wan/modules/animate/preprocess/preprocess_data.py": {
+        "bytes": 4623,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/preprocess/preprocess_data.py",
+        "sha256": "7516300f099b3ade28c51abf0e9a3357ec60a1d085dec7935ce3d245a3f6e939"
+      },
+      "wan/modules/animate/preprocess/process_pipepline.py": {
+        "bytes": 17839,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/preprocess/process_pipepline.py",
+        "sha256": "daeb8b68d8cfc4058bc281deab03d4b34d33b587a6f0dd5096689d526f8868c4"
+      },
+      "wan/modules/animate/preprocess/retarget_pose.py": {
+        "bytes": 36891,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/preprocess/retarget_pose.py",
+        "sha256": "017b1d3ebd0ac4f41bb3e0755b3cfeb97015cb0498144d74d628904004c744af"
+      },
+      "wan/modules/animate/preprocess/sam_utils.py": {
+        "bytes": 5916,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/preprocess/sam_utils.py",
+        "sha256": "97d389115290a10ed30ed53fbacec8c33ea0719a1bc9f7e354b65c680294311c"
+      },
+      "wan/modules/animate/preprocess/utils.py": {
+        "bytes": 7263,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/preprocess/utils.py",
+        "sha256": "59cf48da9d816156218dc37f8daec3385f4260714fc40bedfe2f8d8ff6898c0f"
+      },
+      "wan/modules/animate/preprocess/video_predictor.py": {
+        "bytes": 8314,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/preprocess/video_predictor.py",
+        "sha256": "c8f8857d1dbf0025a8b4260c164ed3fd8ddae5a58369e625c7fa9ee351973659"
+      },
+      "wan/modules/animate/xlm_roberta.py": {
+        "bytes": 4864,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/animate/xlm_roberta.py",
+        "sha256": "d521f5f12fcdb61169e58d2881268752f28ec5320b5df869d01f9e91439da8d0"
+      },
+      "wan/modules/attention.py": {
+        "bytes": 5435,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/attention.py",
+        "sha256": "23fe7c6f6e4065242d95e5e188cb2d1a16bd283f05dca7e7e878977158fcfdbc"
+      },
+      "wan/modules/model.py": {
+        "bytes": 18097,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py",
+        "sha256": "8b39115298ca7322806c19b3165b3f435a94fe4a58f0624aec24f8e7f4997432"
+      },
+      "wan/modules/s2v/__init__.py": {
+        "bytes": 193,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/s2v/__init__.py",
+        "sha256": "38fac41c9e5f3e4501364b4b7a64728ed0e9aab3957987e137e9f47549887143"
+      },
+      "wan/modules/s2v/audio_encoder.py": {
+        "bytes": 7299,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/s2v/audio_encoder.py",
+        "sha256": "7f07510f52dd829547c52f9866b18aa9a81af644d1031c079ce846947c5bb3e9"
+      },
+      "wan/modules/s2v/audio_utils.py": {
+        "bytes": 3544,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/s2v/audio_utils.py",
+        "sha256": "76931d7291f69a6b6ed3a7a1a9a106ad8b5f5d494a451db67718b4fbcc4dbcfd"
+      },
+      "wan/modules/s2v/auxi_blocks.py": {
+        "bytes": 7923,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/s2v/auxi_blocks.py",
+        "sha256": "6ff7b5560036e5f0eaaa34460a328afcdbd7bd62baf93b699d5f6d2d556f95d6"
+      },
+      "wan/modules/s2v/model_s2v.py": {
+        "bytes": 34511,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/s2v/model_s2v.py",
+        "sha256": "91fb14df44edab2d01b5634420b463c5f1563aecdf6dac905da6b3acac3145cc"
+      },
+      "wan/modules/s2v/motioner.py": {
+        "bytes": 28462,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/s2v/motioner.py",
+        "sha256": "db348a3ca0dfb22122a78aebdcf162ba76d4d4e79b7b763c684d819279ac957a"
+      },
+      "wan/modules/s2v/s2v_utils.py": {
+        "bytes": 3139,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/s2v/s2v_utils.py",
+        "sha256": "e45ae6c274b17e4fdddcb0439b598897a37679b8934ebd71f87255f92d5f0b2f"
+      },
+      "wan/modules/t5.py": {
+        "bytes": 16910,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/t5.py",
+        "sha256": "8b0cebf3192c542f92a344255a06c203df3ba24160715899a055cc8de0cd930f"
+      },
+      "wan/modules/tokenizers.py": {
+        "bytes": 2431,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/tokenizers.py",
+        "sha256": "cf5b189c1ae017326efadab2fc6380ba223fa7a59d0be6464bd264db53c76934"
+      },
+      "wan/modules/vae2_1.py": {
+        "bytes": 23171,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/vae2_1.py",
+        "sha256": "d0dfe9eccd0cdbcb37ffde9887579be58f4c1bb6fc2dbb1b72e8916e170df180"
+      },
+      "wan/modules/vae2_2.py": {
+        "bytes": 31846,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/vae2_2.py",
+        "sha256": "eab5ce4aa1ce03af2978f2a8e8364c419f5fbb8535d265ac86b0b02ddcf0c1f6"
+      },
+      "wan/speech2video.py": {
+        "bytes": 29066,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/speech2video.py",
+        "sha256": "841cb2296299b60637d79abc80967a7d59b4b22711debe8f501ba36e7daaf72f"
+      },
+      "wan/text2video.py": {
+        "bytes": 14679,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/text2video.py",
+        "sha256": "2f212e1f6d7ba4408a25998091b70ee35dde8bcaaeaedd3ba03d6cdab84dc683"
+      },
+      "wan/textimage2video.py": {
+        "bytes": 24031,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/textimage2video.py",
+        "sha256": "228f2fabf23014ed41ec6b8cd713d5be7371bb558501c71a62a0258b491a877b"
+      },
+      "wan/utils/__init__.py": {
+        "bytes": 402,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/utils/__init__.py",
+        "sha256": "47b3d1e3f72006ac769d13b34f0575450eec7c1de1ef4f9837436a2057b51033"
+      },
+      "wan/utils/fm_solvers.py": {
+        "bytes": 40142,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/utils/fm_solvers.py",
+        "sha256": "b870bdc7253593b75097896b2351e74f747f76d756f58f1b4b0008d6821ae811"
+      },
+      "wan/utils/fm_solvers_unipc.py": {
+        "bytes": 32558,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/utils/fm_solvers_unipc.py",
+        "sha256": "0dec8c7ed17f6f2049275c6848113314da6ccec1c8db5bdc89df43c05c6038d9"
+      },
+      "wan/utils/prompt_extend.py": {
+        "bytes": 19971,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/utils/prompt_extend.py",
+        "sha256": "d90503d4e526e1c899184b809221bd9ea487047de684e31589f2bb2720ca69b4"
+      },
+      "wan/utils/qwen_vl_utils.py": {
+        "bytes": 13060,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/utils/qwen_vl_utils.py",
+        "sha256": "14275f4ca0c4664c37145da6bd8ffe4be7b7854377f6101e80171414397bdc98"
+      },
+      "wan/utils/system_prompt.py": {
+        "bytes": 20134,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/utils/system_prompt.py",
+        "sha256": "6a42ee64ca850692e91a517b9d86ba649adc973370444746e5af5f3bde087612"
+      },
+      "wan/utils/utils.py": {
+        "bytes": 7274,
+        "path": "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/utils/utils.py",
+        "sha256": "905850d9814ac99222b4dbb28016abcd6306e5ca161493b498b1c4afb5a99e89"
+      }
+    }
+  },
+  "input_provenance_sha256": "e4dccf2b24fadf92b2f7065c66ab73e640622591d480678d30c7bbac77e09d0d",
+  "latent_shape": [
+    1,
+    48,
+    21,
+    30,
+    40
+  ],
+  "lora_gradient_sum": 173.51178705401765,
+  "lora_parameter_count": 4325376,
+  "loss": 2.547943592071533,
+  "loss_weight_shape": [
+    1,
+    1,
+    21,
+    30,
+    40
+  ],
+  "max_peak_allocated_bytes": 7066670080,
+  "max_peak_reserved_bytes": 8384413696,
+  "max_step_time_seconds": 4.942142935935408,
+  "memory_limit_bytes": 23622320128,
+  "optimizer_steps": 3,
+  "pose_shape": [
+    1,
+    81,
+    11
+  ],
+  "ranks": [
+    {
+      "forbidden_training_modules": [],
+      "gradient_norms": {
+        "left_pose": 0.0,
+        "left_raster": 0.9892822640949196,
+        "right_pose": 0.0,
+        "right_raster": 0.9889568416905027
+      },
+      "optimizer_steps": 3,
+      "peak_allocated_bytes": 7066670080,
+      "peak_reserved_bytes": 8384413696,
+      "post_step_allocated_bytes": [
+        1686808576,
+        1686808576,
+        1686812672
+      ],
+      "rank": 0,
+      "residual_norms": {
+        "0": 345.16351318359375,
+        "16": 605.2588500976562,
+        "24": 392.16021728515625,
+        "8": 747.2486572265625
+      },
+      "step_peak_allocated_bytes": [
+        7041315840,
+        7066670080,
+        7066670080
+      ],
+      "step_peak_reserved_bytes": [
+        8300527616,
+        8342470656,
+        8384413696
+      ],
+      "step_times_seconds": [
+        4.887884269934148,
+        4.942142935935408,
+        4.817492424976081
+      ]
+    },
+    {
+      "forbidden_training_modules": [],
+      "gradient_norms": {
+        "left_pose": 0.0,
+        "left_raster": 0.9892822640949196,
+        "right_pose": 0.0,
+        "right_raster": 0.9889568416905027
+      },
+      "optimizer_steps": 3,
+      "peak_allocated_bytes": 7066670080,
+      "peak_reserved_bytes": 8384413696,
+      "post_step_allocated_bytes": [
+        1686808576,
+        1686808576,
+        1686812672
+      ],
+      "rank": 1,
+      "residual_norms": {
+        "0": 345.16351318359375,
+        "16": 605.2588500976562,
+        "24": 392.16021728515625,
+        "8": 747.2486572265625
+      },
+      "step_peak_allocated_bytes": [
+        7041315840,
+        7066670080,
+        7066670080
+      ],
+      "step_peak_reserved_bytes": [
+        8300527616,
+        8342470656,
+        8384413696
+      ],
+      "step_times_seconds": [
+        4.888150339946151,
+        4.942104750080034,
+        4.81749691395089
+      ]
+    },
+    {
+      "forbidden_training_modules": [],
+      "gradient_norms": {
+        "left_pose": 0.0,
+        "left_raster": 0.9892822640949196,
+        "right_pose": 0.0,
+        "right_raster": 0.9889568416905027
+      },
+      "optimizer_steps": 3,
+      "peak_allocated_bytes": 7066670080,
+      "peak_reserved_bytes": 8384413696,
+      "post_step_allocated_bytes": [
+        1686808576,
+        1686808576,
+        1686812672
+      ],
+      "rank": 2,
+      "residual_norms": {
+        "0": 345.16351318359375,
+        "16": 605.2588500976562,
+        "24": 392.16021728515625,
+        "8": 747.2486572265625
+      },
+      "step_peak_allocated_bytes": [
+        7041315840,
+        7066670080,
+        7066670080
+      ],
+      "step_peak_reserved_bytes": [
+        8300527616,
+        8342470656,
+        8384413696
+      ],
+      "step_times_seconds": [
+        4.888187745818868,
+        4.9420599930454046,
+        4.817427645903081
+      ]
+    },
+    {
+      "forbidden_training_modules": [],
+      "gradient_norms": {
+        "left_pose": 0.0,
+        "left_raster": 0.9892822640949196,
+        "right_pose": 0.0,
+        "right_raster": 0.9889568416905027
+      },
+      "optimizer_steps": 3,
+      "peak_allocated_bytes": 7066670080,
+      "peak_reserved_bytes": 8384413696,
+      "post_step_allocated_bytes": [
+        1686808576,
+        1686808576,
+        1686812672
+      ],
+      "rank": 3,
+      "residual_norms": {
+        "0": 345.16351318359375,
+        "16": 605.2588500976562,
+        "24": 392.16021728515625,
+        "8": 747.2486572265625
+      },
+      "step_peak_allocated_bytes": [
+        7041315840,
+        7066670080,
+        7066670080
+      ],
+      "step_peak_reserved_bytes": [
+        8300527616,
+        8342470656,
+        8384413696
+      ],
+      "step_times_seconds": [
+        4.896988354856148,
+        4.931182652013376,
+        4.817846252815798
+      ]
+    },
+    {
+      "forbidden_training_modules": [],
+      "gradient_norms": {
+        "left_pose": 0.0,
+        "left_raster": 0.9892822640949196,
+        "right_pose": 0.0,
+        "right_raster": 0.9889568416905027
+      },
+      "optimizer_steps": 3,
+      "peak_allocated_bytes": 7066670080,
+      "peak_reserved_bytes": 8384413696,
+      "post_step_allocated_bytes": [
+        1686808576,
+        1686808576,
+        1686812672
+      ],
+      "rank": 4,
+      "residual_norms": {
+        "0": 345.16351318359375,
+        "16": 605.2588500976562,
+        "24": 392.16021728515625,
+        "8": 747.2486572265625
+      },
+      "step_peak_allocated_bytes": [
+        7041315840,
+        7066670080,
+        7066670080
+      ],
+      "step_peak_reserved_bytes": [
+        8300527616,
+        8342470656,
+        8384413696
+      ],
+      "step_times_seconds": [
+        4.895036780042574,
+        4.934801077935845,
+        4.8174152239225805
+      ]
+    },
+    {
+      "forbidden_training_modules": [],
+      "gradient_norms": {
+        "left_pose": 0.0,
+        "left_raster": 0.9892822640949196,
+        "right_pose": 0.0,
+        "right_raster": 0.9889568416905027
+      },
+      "optimizer_steps": 3,
+      "peak_allocated_bytes": 7066670080,
+      "peak_reserved_bytes": 8384413696,
+      "post_step_allocated_bytes": [
+        1686808576,
+        1686808576,
+        1686812672
+      ],
+      "rank": 5,
+      "residual_norms": {
+        "0": 345.16351318359375,
+        "16": 605.2588500976562,
+        "24": 392.16021728515625,
+        "8": 747.2486572265625
+      },
+      "step_peak_allocated_bytes": [
+        7041315840,
+        7066670080,
+        7066670080
+      ],
+      "step_peak_reserved_bytes": [
+        8300527616,
+        8342470656,
+        8384413696
+      ],
+      "step_times_seconds": [
+        4.8887140059378,
+        4.941800743108615,
+        4.817404106957838
+      ]
+    },
+    {
+      "forbidden_training_modules": [],
+      "gradient_norms": {
+        "left_pose": 0.0,
+        "left_raster": 0.9892822640949196,
+        "right_pose": 0.0,
+        "right_raster": 0.9889568416905027
+      },
+      "optimizer_steps": 3,
+      "peak_allocated_bytes": 7066670080,
+      "peak_reserved_bytes": 8384413696,
+      "post_step_allocated_bytes": [
+        1686808576,
+        1686808576,
+        1686812672
+      ],
+      "rank": 6,
+      "residual_norms": {
+        "0": 345.16351318359375,
+        "16": 605.2588500976562,
+        "24": 392.16021728515625,
+        "8": 747.2486572265625
+      },
+      "step_peak_allocated_bytes": [
+        7041315840,
+        7066670080,
+        7066670080
+      ],
+      "step_peak_reserved_bytes": [
+        8300527616,
+        8342470656,
+        8384413696
+      ],
+      "step_times_seconds": [
+        4.887363168876618,
+        4.9420040608383715,
+        4.817397182108834
+      ]
+    }
+  ],
+  "schema_version": 3,
+  "sequence_length": 6300,
+  "use_pose": false,
+  "world_size": 7
+}

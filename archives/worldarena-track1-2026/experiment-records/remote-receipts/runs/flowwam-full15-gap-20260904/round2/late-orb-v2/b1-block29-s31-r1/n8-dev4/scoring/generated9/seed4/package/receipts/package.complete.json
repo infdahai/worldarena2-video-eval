@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 4,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "a8d34e3d76287a164410c462d9830cd4a77fc67a6dcf2dd97beed80890b268d4",
+      "source_sha256": "2ea9e5169194ffd9bb0440bb4072295ca83b435a7735aeaad00f9a64960d46df",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/late-orb-v2/b1-block29-s31-r1/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "d658fdfd6169edb353f972767b088e88bb16a04923770eef300e6796f47852de",
+      "source_sha256": "299733f3e1e3b1f81e62cf2e655c504429872e25c763cdfc86277f6cf20ebbb5",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/late-orb-v2/b1-block29-s31-r1/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "24d24328933d6fe797abb44e0239f72ea9c4e5912c5ff04b67bf532b97bac27f",
+      "source_sha256": "fd27907e618c2813a14bce678d84bd871f82b2d78d136cc4c73b0e693da21b9a",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/late-orb-v2/b1-block29-s31-r1/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "3baeec67b5bc9fe2f9d4f0db77219c457c1e041fa648ef52d479358e9bc7243b",
+      "source_sha256": "b635dbae8880b832cbf6169cf25c9006229980fcca9f908dc71dc79f346fbf55",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/late-orb-v2/b1-block29-s31-r1/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

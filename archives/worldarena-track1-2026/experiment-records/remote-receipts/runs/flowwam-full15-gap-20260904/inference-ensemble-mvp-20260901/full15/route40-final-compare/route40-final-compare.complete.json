@@ -1,0 +1,126 @@
+{
+  "comparison": {
+    "decision": {
+      "confidence_interval_computed": false,
+      "criterion": "GO iff same-scope full40 corrected15 delta is strictly positive",
+      "go_no_go": "GO"
+    },
+    "delta": {
+      "corrected15": 0.0014975391894425094,
+      "metric_means": {
+        "Aesthetic Quality": -0.0013445489108562247,
+        "Background Consistency": -0.0005002593994141158,
+        "Depth Accuracy": 0.00047095605240410343,
+        "Dynamic Degree": 0.00021281497724945364,
+        "Flow Score": 0.0017127036043723676,
+        "Image Quality": 0.0015587878286102974,
+        "Instruction Following": 0.0050000000000000044,
+        "Interaction Quality": 0.0,
+        "JEPA Similarity": -0.0004572272300720215,
+        "Motion Smoothness": 0.00015655772764655573,
+        "Perspectivity": 0.0,
+        "Photometric Consistency": 0.00018852697785173844,
+        "Semantic Alignment": 0.0038941000000001225,
+        "Subject Consistency": -7.016678806393006e-05,
+        "Trajectory Accuracy": 0.011640843001909484
+      },
+      "nonmotion12": 0.0016984176276975127
+    },
+    "incumbent": {
+      "corrected15": 0.6772225146107338,
+      "metric_means": {
+        "Aesthetic Quality": 0.4003144308924675,
+        "Background Consistency": 0.9157691955566405,
+        "Depth Accuracy": 0.9955944620292497,
+        "Dynamic Degree": 0.3362913047450463,
+        "Flow Score": 0.24079527957415364,
+        "Image Quality": 0.49430926118662344,
+        "Instruction Following": 0.7300000000000002,
+        "Interaction Quality": 0.7500000000000004,
+        "JEPA Similarity": 0.9608721137046814,
+        "Motion Smoothness": 0.6998058539002145,
+        "Perspectivity": 0.9349999999999999,
+        "Photometric Consistency": 0.22276431425504764,
+        "Semantic Alignment": 0.8950317000000002,
+        "Subject Consistency": 0.848273501363583,
+        "Trajectory Accuracy": 0.7335163019532971
+      },
+      "nonmotion12": 0.7401204400784659,
+      "rows": 40
+    },
+    "paired_rows": {
+      "incumbent_wins": 34,
+      "route_wins": 6,
+      "ties": 0
+    },
+    "route": {
+      "corrected15": 0.6787200538001763,
+      "metric_means": {
+        "Aesthetic Quality": 0.39896988198161126,
+        "Background Consistency": 0.9152689361572264,
+        "Depth Accuracy": 0.9960654180816538,
+        "Dynamic Degree": 0.33650411972229577,
+        "Flow Score": 0.242507983178526,
+        "Image Quality": 0.49586804901523374,
+        "Instruction Following": 0.7350000000000002,
+        "Interaction Quality": 0.7500000000000004,
+        "JEPA Similarity": 0.9604148864746094,
+        "Motion Smoothness": 0.6999624116278611,
+        "Perspectivity": 0.9349999999999999,
+        "Photometric Consistency": 0.22295284123289938,
+        "Semantic Alignment": 0.8989258000000003,
+        "Subject Consistency": 0.8482033345755191,
+        "Trajectory Accuracy": 0.7451571449552066
+      },
+      "nonmotion12": 0.7418188577061634,
+      "rows": 40
+    }
+  },
+  "completed": true,
+  "contract": "worldarena-routing-seed142-full40-same-scope-jepa-compare/1",
+  "full15_used_for_selection": false,
+  "hidden_gt_used_for_selection": false,
+  "inputs": {
+    "incumbent_jepa_receipt": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1200/dev-clean-50/receipts/jepa.complete.json",
+      "sha256": "fe5f01b9bbc21d006628fe05bffd04f4eb9418bcf2a98e5d79fed3163ee0806b"
+    },
+    "incumbent_package_receipt": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1200/dev-clean-50/receipts/package.complete.json",
+      "sha256": "b8f7c33b7e32e15e6285929cbea62dfd1eccce8e9729d86a7839db7b4a31bcfb"
+    },
+    "replay_rows": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/audits/p0-selector9-fresh40-replay-v1/p0-selector9-fresh40-replay.rows.jsonl",
+      "sha256": "b46965bc126305842d3b73dc26f0b925a411bd50edb4727fb6ab1cb0ee829387"
+    },
+    "route_jepa_receipt": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1199/dev-clean-50/receipts/jepa.complete.json",
+      "sha256": "e9f5e4482696fc640527dae92d58ae5084d5bc8a54d2347f20963ab87b020064"
+    },
+    "route_package_receipt": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1199/dev-clean-50/receipts/package.complete.json",
+      "sha256": "e5f01663b83ff008d05ea45aa24d93aff6561bed3cab5ad6329943c606538c3e"
+    },
+    "seed2_selected_rows": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/seed2-selected9/merged-corrected15-v2/seed2-selected9.rows.jsonl",
+      "sha256": "1553799dde6daf4672023641356848f00882ed6f592f474dab76022f74caee06"
+    }
+  },
+  "jepa_values": "one same-scope full40 set score injected into all rows of each model",
+  "motion_values": "pre-corrected per episode with matched-GT cap",
+  "outputs": {
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/route40-final-compare/comparison.summary.json": {
+      "sha256": "dbb2da29d31aac8de75915177fe762e09a606bbbe4effb0ae181ac7822fc9bb2"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/route40-final-compare/incumbent40.corrected15.csv": {
+      "sha256": "2aa66d826b77f89e1306e917a515c7647a1c79202aab86636311bd56c34e5ffd"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/route40-final-compare/paired40.rows.jsonl": {
+      "sha256": "2fb77978b6cacb69c15cf6e6f5aa9b797141e76f59bca2d112f0c9b2f42784cd"
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/route40-final-compare/route40.corrected15.csv": {
+      "sha256": "6074c32b931482e14704f874253fe9a056b6de0c5e9061a57e122ddd393a4147"
+    }
+  },
+  "selection_used_generated9_only": true
+}

@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": false,
+    "maximum_area_fraction": 0.0,
+    "mean_area_fraction": 0.0,
+    "valid_frames": 0
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.14460611979166665,
+    "mean_area_fraction": 0.10608784239969136,
+    "valid_frames": 71
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.12783528645833334,
+    "mean_area_fraction": 0.09441273630401234,
+    "valid_frames": 72
+  },
+  "source_video_sha256": "59f7d8b9c915525cf1f239d70424fff7a82848aa6694cf11192252cbd23d5e74",
+  "support_fraction": 0.7990515689300411,
+  "support_sha256": "ab81ef5cda81b6fc2fa04695aafb96e57830e6cd96e425c430945fa7dccf5b76",
+  "video_id": "place_a2b_left_episode000042"
+}

@@ -1,0 +1,99 @@
+{
+  "chosen_on_old_holdout": {
+    "result": {
+      "mean": 0.6589559613754716,
+      "rows": 40,
+      "selected_seed_counts": {
+        "1": 18,
+        "4": 22
+      },
+      "uplift_vs_seed1": 0.005876078080019886,
+      "wins_or_ties": 27
+    },
+    "shrink": 2.0,
+    "w_postgen_logit": 0.25,
+    "w_task_prior": 0.5
+  },
+  "completed": true,
+  "contract": "worldarena-seed-router-mvp/1",
+  "data_boundaries": {
+    "fresh_overlap_with_selector200": 0,
+    "train_rows": 160,
+    "tuning_holdout_rows": 40,
+    "untouched_fresh_rows": 40
+  },
+  "feature_policy": "task_plus_generated9_only_no_fresh_labels_for_tuning",
+  "fresh40": {
+    "diagnostic_oracle": {
+      "mean": 0.6774110478838236,
+      "rows": 40,
+      "selected_seed_counts": {
+        "1": 22,
+        "4": 18
+      },
+      "uplift_vs_seed1": 0.007389612053561478,
+      "wins_or_ties": 40
+    },
+    "fixed_seed1": {
+      "mean": 0.6700214358302621,
+      "rows": 40,
+      "selected_seed_counts": {
+        "1": 40,
+        "4": 0
+      },
+      "uplift_vs_seed1": 0.0,
+      "wins_or_ties": 22
+    },
+    "fixed_seed4": {
+      "mean": 0.6654975261698359,
+      "rows": 40,
+      "selected_seed_counts": {
+        "1": 0,
+        "4": 40
+      },
+      "uplift_vs_seed1": -0.004523909660426151,
+      "wins_or_ties": 18
+    },
+    "frozen_postgen": {
+      "mean": 0.6710700069479606,
+      "rows": 40,
+      "selected_seed_counts": {
+        "1": 20,
+        "4": 20
+      },
+      "uplift_vs_seed1": 0.0010485711176985157,
+      "wins_or_ties": 26
+    },
+    "holdout_tuned_blend": {
+      "mean": 0.6715479149613078,
+      "rows": 40,
+      "selected_seed_counts": {
+        "1": 24,
+        "4": 16
+      },
+      "uplift_vs_seed1": 0.0015264791310457548,
+      "wins_or_ties": 28
+    },
+    "task_prior": {
+      "mean": 0.6688008153484182,
+      "rows": 40,
+      "selected_seed_counts": {
+        "1": 21,
+        "4": 19
+      },
+      "uplift_vs_seed1": -0.0012206204818439037,
+      "wins_or_ties": 23
+    }
+  },
+  "input_sha256s": {
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0750/dev-clean-50/csv_results/aggregated_results.csv": "c0c0f4b579091f2f7a0d5df16d97eafc9344725339909abb65279d38d6c29ab8",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0760/dev-clean-50/csv_results/aggregated_results.csv": "88da51d621c2250419a026a1f82fe61efd2130e507e0c8cb710599652cbfa7bf",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/audits/p0-selector9-fresh40-replay-v1/p0-selector9-fresh40-replay.rows.jsonl": "b46965bc126305842d3b73dc26f0b925a411bd50edb4727fb6ab1cb0ee829387",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/fresh40_p0_seed1.corrected.csv": "3ba5c3854c23a340ed1c105868c44978609d926367224b912482ed09e369cf13",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/fresh40_p0_seed4.corrected.csv": "68447148fa0acadc2d67547493c52fc0df22bd5a06b1d2702463b92da59b0f12",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/latest-scorer/seed1-corrected.csv": "a1f1d64b9b7446d3f7eb6346c97177abceabab0cf5ce7b566d7fb0b0bfe4d8ae",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/latest-scorer/seed4-corrected.csv": "4e49a42e8c8f6c3b48930c60ff184fc3137645c038fdd3afe0a8e2f42c5c3d65",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/manifests/selector-200.jsonl": "4b147c15ba6b9fad45d66cdc542e57bbe9a967c0cd8d05a5f267cad7c702a18e",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/postgen/postgen-selector.model.json": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa"
+  }
+}

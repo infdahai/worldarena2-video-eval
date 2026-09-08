@@ -1,0 +1,72 @@
+{
+  "event_count": 26,
+  "experiments": {
+    "action-causality-audit": [
+      "action-causality-audit.discovery8.complete.v1"
+    ],
+    "action-causality-isolation-audit": [
+      "action-causality-support-gating.discovery8.complete.v1"
+    ],
+    "arm-proxy-dataset-v1": [
+      "arm-proxy-dataset-v1.completed.v1"
+    ],
+    "arm-proxy-detector-v1": [
+      "arm-proxy-detector-v1.training-complete.v1"
+    ],
+    "e1-temporal-role": [
+      "e1-temporal-role-prototype.fast20-complete.v1",
+      "e1-temporal-role.training-complete.v1"
+    ],
+    "e1v2-five-role": [
+      "e1v2-five-role.fast20-complete.v1",
+      "e1v2-five-role.group-analysis.v1"
+    ],
+    "flow160-proxy-fast20": [
+      "flow160-proxy-fast20.calibration-failed.v1"
+    ],
+    "legacy-collapse-screen": [
+      "arm-proxy-legacy-collapse.final.v1"
+    ],
+    "recovery75": [
+      "recovery75.training-complete.v1"
+    ],
+    "s1A125": [
+      "s1A125.training-complete.v1"
+    ],
+    "s1a125-recovery75": [
+      "arm-proxy-s1a-recovery75.final.v1"
+    ],
+    "sam3-pending-freeze": [
+      "sam3-pending-freeze.completed.v1"
+    ],
+    "stage1-matched-ab": [
+      "arm-proxy-stage1-matched-ab.final.v1"
+    ],
+    "stage2-original": [
+      "arm-proxy-stage2-100-200.final.v1"
+    ],
+    "template-proxy-fast20": [
+      "template-proxy-fast20.calibration-failed.v1"
+    ],
+    "v2-1k-adapteronly": [
+      "v2-1k-adapteronly-75.training-complete.v1",
+      "v2-1k-adapteronly-fast20.proxy-complete.v1"
+    ],
+    "v2-1k-adapteronly-lr2e5": [
+      "v2-1k-adapteronly-lr2e5-fast20.official-sam3-complete.v1",
+      "v2-1k-adapteronly-lr2e5-fast20.proxy-complete.v1"
+    ],
+    "v2-1k-general": [
+      "v2-1k-general.training-complete.v1"
+    ],
+    "v2-1k-general-loraonly": [
+      "arm-proxy-fast20-v1.selection-blocked.v1",
+      "arm-proxy-v2-1k-loraonly.final.v2",
+      "v2-1k-loraonly-fast20-generation.completed.v1"
+    ],
+    "v2-1k-qonly-lora2e6": [
+      "v2-1k-qonly-lora2e6-step50.complete.v1"
+    ]
+  },
+  "schema": "wan-action-lite-experiment-index/1"
+}

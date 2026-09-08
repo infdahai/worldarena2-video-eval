@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.010843098958333333,
+    "mean_area_fraction": 0.004776676633230452,
+    "valid_frames": 81
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.341416015625,
+    "mean_area_fraction": 0.19059791345164612,
+    "valid_frames": 74
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.3447981770833333,
+    "mean_area_fraction": 0.1939891975308642,
+    "valid_frames": 74
+  },
+  "source_video_sha256": "9566fa680ff3dc788ccd81e24d171220a3952913aa88125c23179761fb69cf09",
+  "support_fraction": 0.7489092238940329,
+  "support_sha256": "20c257f907540fd2b5378d2bae00f5086a1a8216b817fa9408d601f273497083",
+  "video_id": "handover_mic_episode000044"
+}

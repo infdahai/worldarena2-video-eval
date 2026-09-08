@@ -1,0 +1,27 @@
+{
+  "contract": "flowwam-official-v16-data/1",
+  "derivation": "first-frame-640-to-320-bicubic",
+  "elapsed_seconds": 6.371394634246826,
+  "eval_package_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0400/dev-clean-50/receipts/package.complete.json",
+  "eval_package_receipt_sha256": "b5c6cde86027db8701316937050936ec62d1a2628ec29016e5169c9e14a903d1",
+  "high_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640",
+  "leakage": {
+    "collision_count": 0,
+    "collisions": [],
+    "eval_rows": 50,
+    "passed": true,
+    "split": "dev-clean50",
+    "train_rows": 1785
+  },
+  "low_reference_only": true,
+  "low_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/320",
+  "low_size": [
+    320,
+    240
+  ],
+  "manifest": "/data/di/worldarena2_track1_20260815/data_selection/v4-clean-scale-20260817-r3/clean-1785.jsonl",
+  "manifest_sha256": "6bcc85830fa2c6ccb45b2c3f7f593102674efce6a76a7a6e5d8871fcccdbae35",
+  "passed": true,
+  "rows": 1785,
+  "source_root": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted"
+}

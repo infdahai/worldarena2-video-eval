@@ -1,0 +1,41 @@
+{
+  "allowed_usage": "mechanism-smoke-only",
+  "canonical_manifest_sha256": "5c7af072d5ac7d6b9f4844113b565fa8fa6f22a9efcd3f31b3988d0641a061ec",
+  "completed": true,
+  "contract": "flowwam-targeted15-smoke-task-bootstrap/1",
+  "episodes": [
+    {
+      "action_sha256": "f665aed3cfc5dbf2d78766e87b35367143f12e848bf448440c2d132feb640741",
+      "episode_index": 0,
+      "episode_name": "episode000000",
+      "first_frame_sha256": "eb441f22f903094b65403fa9eea104332eb4b8c116dbeed568926e0b8d81bba1",
+      "instruction_file_sha256": "852c8d0d52d0833f280db69a21402fa09e697db698629672ba215b2651cbc7bd",
+      "robot_only_sha256": "cb96db042c41cb2c62ebad1bf03ea7812c7831153fa79f3b7e453f9885bf0b07",
+      "sample": "open_microwave__aloha-agilex_clean_50__episode_000000"
+    },
+    {
+      "action_sha256": "34cc4de981913107d5eaebc227f4db5c37c1bc39617e7510edc265997d465df6",
+      "episode_index": 1,
+      "episode_name": "episode000001",
+      "first_frame_sha256": "02cbb9faab09c461771d5a80dcfebbb8c699304f4cf48e612861a85ead3d24fd",
+      "instruction_file_sha256": "47d17a3313877cd83d646513e64ff1c6f0d3f17d6ae269183867dcd663fd1183",
+      "robot_only_sha256": "c32db3d537ae3e9e663b35a8131a62ddbb0077fc1f6534ee9f905cfdd84061a8",
+      "sample": "open_microwave__aloha-agilex_clean_50__episode_000001"
+    }
+  ],
+  "extraction_receipt": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/open_microwave/.worldarena_extracted.json",
+  "extraction_receipt_sha256": "18e2a4752486006205a26071b485d9e19ea4b6d9839bbe78ccf0234af0d12e0f",
+  "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/manifests/gpu2-open_microwave.jsonl",
+  "physical_gpu": 2,
+  "promotion_evidence": false,
+  "shard_input_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu2-open_microwave/shard-input.complete.json",
+  "shard_input_receipt_sha256": "2150b5c1624e378f615834a26dea71e22c250643fbbde45e6a6503a58c8e0ffc",
+  "shard_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu2-open_microwave",
+  "source_archive": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/aloha-agilex_clean_50/open_microwave.tar.gz",
+  "source_archive_sha256": "d82cbea75e59253ca474599a5554241df8d46f80432bca90586efb0ab36947b0",
+  "source_manifest": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/.worldarena_manifest.json",
+  "source_manifest_sha256": "c75870c5d9dad05170d1f9a54f5d95983b322d57bb496e11d3b3e6815b4b7634",
+  "source_repo": "YixiangChen/FlowWAM_RoboTwin",
+  "source_revision": "506c4e014f7dbd291e7d7683c79fc685dd3e2714",
+  "task": "open_microwave"
+}

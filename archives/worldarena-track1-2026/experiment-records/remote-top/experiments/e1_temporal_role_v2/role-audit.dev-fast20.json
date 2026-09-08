@@ -1,0 +1,722 @@
+{
+  "cache_root": "/data/di/worldarena2_track1_20260815/eval/dev-fast-20-v3/action-cache",
+  "contract": "wan-action-lite-e1-temporal-role-audit/1",
+  "episodes": 20,
+  "latent_tokens_excluding_frame0": 400,
+  "left_score_quantiles": {
+    "0.0": 0.0,
+    "0.1": 0.0,
+    "0.25": 0.0,
+    "0.5": 0.1558515951037407,
+    "0.75": 0.447761632502079,
+    "0.9": 0.7567408084869385,
+    "0.95": 1.1685147285461426,
+    "0.99": 1.6121540069580078,
+    "1.0": 1.7308071851730347
+  },
+  "manifest": "/data/di/worldarena2_track1_20260815/eval/dev-fast-20-v3/dev-fast-20.jsonl",
+  "manifest_sha256": "aaf9f4268a78e3ed160908780809ba9c23f12946176072787048d21ed7f50864",
+  "per_sample": {
+    "click_alarmclock__aloha-agilex_clean_50__episode_000000": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.15,
+        "BOTH": 0.0,
+        "LEFT_ONLY": 0.0,
+        "QUIET": 0.5,
+        "RIGHT_ONLY": 0.35
+      },
+      "role_schedule": [
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY"
+      ],
+      "task": "click_alarmclock"
+    },
+    "click_alarmclock__aloha-agilex_clean_50__episode_000001": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.2,
+        "BOTH": 0.0,
+        "LEFT_ONLY": 0.6,
+        "QUIET": 0.2,
+        "RIGHT_ONLY": 0.0
+      },
+      "role_schedule": [
+        "QUIET",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "AMBIGUOUS",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY"
+      ],
+      "task": "click_alarmclock"
+    },
+    "click_alarmclock__aloha-agilex_clean_50__episode_000002": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.1,
+        "BOTH": 0.0,
+        "LEFT_ONLY": 0.0,
+        "QUIET": 0.3,
+        "RIGHT_ONLY": 0.6
+      },
+      "role_schedule": [
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "AMBIGUOUS",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY"
+      ],
+      "task": "click_alarmclock"
+    },
+    "click_alarmclock__aloha-agilex_clean_50__episode_000003": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.05,
+        "BOTH": 0.0,
+        "LEFT_ONLY": 0.65,
+        "QUIET": 0.3,
+        "RIGHT_ONLY": 0.0
+      },
+      "role_schedule": [
+        "QUIET",
+        "QUIET",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "AMBIGUOUS",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY"
+      ],
+      "task": "click_alarmclock"
+    },
+    "click_alarmclock__aloha-agilex_clean_50__episode_000004": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.05,
+        "BOTH": 0.0,
+        "LEFT_ONLY": 0.65,
+        "QUIET": 0.3,
+        "RIGHT_ONLY": 0.0
+      },
+      "role_schedule": [
+        "QUIET",
+        "AMBIGUOUS",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY"
+      ],
+      "task": "click_alarmclock"
+    },
+    "click_bell__aloha-agilex_clean_50__episode_000000": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.25,
+        "BOTH": 0.0,
+        "LEFT_ONLY": 0.5,
+        "QUIET": 0.25,
+        "RIGHT_ONLY": 0.0
+      },
+      "role_schedule": [
+        "QUIET",
+        "AMBIGUOUS",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "AMBIGUOUS",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY"
+      ],
+      "task": "click_bell"
+    },
+    "click_bell__aloha-agilex_clean_50__episode_000001": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.4,
+        "BOTH": 0.0,
+        "LEFT_ONLY": 0.0,
+        "QUIET": 0.4,
+        "RIGHT_ONLY": 0.2
+      },
+      "role_schedule": [
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS"
+      ],
+      "task": "click_bell"
+    },
+    "click_bell__aloha-agilex_clean_50__episode_000002": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.35,
+        "BOTH": 0.0,
+        "LEFT_ONLY": 0.35,
+        "QUIET": 0.3,
+        "RIGHT_ONLY": 0.0
+      },
+      "role_schedule": [
+        "QUIET",
+        "AMBIGUOUS",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS"
+      ],
+      "task": "click_bell"
+    },
+    "click_bell__aloha-agilex_clean_50__episode_000003": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.35,
+        "BOTH": 0.0,
+        "LEFT_ONLY": 0.0,
+        "QUIET": 0.35,
+        "RIGHT_ONLY": 0.3
+      },
+      "role_schedule": [
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS"
+      ],
+      "task": "click_bell"
+    },
+    "click_bell__aloha-agilex_clean_50__episode_000004": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.2,
+        "BOTH": 0.0,
+        "LEFT_ONLY": 0.45,
+        "QUIET": 0.35,
+        "RIGHT_ONLY": 0.0
+      },
+      "role_schedule": [
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY"
+      ],
+      "task": "click_bell"
+    },
+    "dump_bin_bigbin__aloha-agilex_clean_50__episode_000000": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.05,
+        "BOTH": 0.0,
+        "LEFT_ONLY": 0.65,
+        "QUIET": 0.3,
+        "RIGHT_ONLY": 0.0
+      },
+      "role_schedule": [
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "AMBIGUOUS",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "QUIET"
+      ],
+      "task": "dump_bin_bigbin"
+    },
+    "dump_bin_bigbin__aloha-agilex_clean_50__episode_000001": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.0,
+        "BOTH": 0.15,
+        "LEFT_ONLY": 0.3,
+        "QUIET": 0.1,
+        "RIGHT_ONLY": 0.45
+      },
+      "role_schedule": [
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "QUIET",
+        "QUIET"
+      ],
+      "task": "dump_bin_bigbin"
+    },
+    "dump_bin_bigbin__aloha-agilex_clean_50__episode_000002": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.0,
+        "BOTH": 0.15,
+        "LEFT_ONLY": 0.3,
+        "QUIET": 0.1,
+        "RIGHT_ONLY": 0.45
+      },
+      "role_schedule": [
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "QUIET",
+        "QUIET"
+      ],
+      "task": "dump_bin_bigbin"
+    },
+    "dump_bin_bigbin__aloha-agilex_clean_50__episode_000003": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.0,
+        "BOTH": 0.2,
+        "LEFT_ONLY": 0.25,
+        "QUIET": 0.1,
+        "RIGHT_ONLY": 0.45
+      },
+      "role_schedule": [
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "QUIET",
+        "QUIET"
+      ],
+      "task": "dump_bin_bigbin"
+    },
+    "dump_bin_bigbin__aloha-agilex_clean_50__episode_000004": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.0,
+        "BOTH": 0.15,
+        "LEFT_ONLY": 0.3,
+        "QUIET": 0.1,
+        "RIGHT_ONLY": 0.45
+      },
+      "role_schedule": [
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "RIGHT_ONLY",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "QUIET",
+        "QUIET"
+      ],
+      "task": "dump_bin_bigbin"
+    },
+    "grab_roller__aloha-agilex_clean_50__episode_000000": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.2,
+        "BOTH": 0.55,
+        "LEFT_ONLY": 0.1,
+        "QUIET": 0.15,
+        "RIGHT_ONLY": 0.0
+      },
+      "role_schedule": [
+        "QUIET",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "QUIET",
+        "QUIET",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH"
+      ],
+      "task": "grab_roller"
+    },
+    "grab_roller__aloha-agilex_clean_50__episode_000001": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.4,
+        "BOTH": 0.45,
+        "LEFT_ONLY": 0.0,
+        "QUIET": 0.15,
+        "RIGHT_ONLY": 0.0
+      },
+      "role_schedule": [
+        "QUIET",
+        "AMBIGUOUS",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "BOTH",
+        "BOTH",
+        "BOTH"
+      ],
+      "task": "grab_roller"
+    },
+    "grab_roller__aloha-agilex_clean_50__episode_000002": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.05,
+        "BOTH": 0.65,
+        "LEFT_ONLY": 0.1,
+        "QUIET": 0.2,
+        "RIGHT_ONLY": 0.0
+      },
+      "role_schedule": [
+        "QUIET",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH"
+      ],
+      "task": "grab_roller"
+    },
+    "grab_roller__aloha-agilex_clean_50__episode_000003": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.25,
+        "BOTH": 0.5,
+        "LEFT_ONLY": 0.1,
+        "QUIET": 0.15,
+        "RIGHT_ONLY": 0.0
+      },
+      "role_schedule": [
+        "QUIET",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "QUIET",
+        "QUIET",
+        "AMBIGUOUS",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH"
+      ],
+      "task": "grab_roller"
+    },
+    "grab_roller__aloha-agilex_clean_50__episode_000004": {
+      "role_fractions": {
+        "AMBIGUOUS": 0.2,
+        "BOTH": 0.5,
+        "LEFT_ONLY": 0.1,
+        "QUIET": 0.2,
+        "RIGHT_ONLY": 0.0
+      },
+      "role_schedule": [
+        "QUIET",
+        "LEFT_ONLY",
+        "LEFT_ONLY",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "AMBIGUOUS",
+        "QUIET",
+        "QUIET",
+        "QUIET",
+        "BOTH",
+        "BOTH",
+        "BOTH",
+        "BOTH"
+      ],
+      "task": "grab_roller"
+    }
+  },
+  "per_task_role_fractions": {
+    "click_alarmclock": {
+      "AMBIGUOUS": 0.11,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.38,
+      "QUIET": 0.32,
+      "RIGHT_ONLY": 0.19
+    },
+    "click_bell": {
+      "AMBIGUOUS": 0.31,
+      "BOTH": 0.0,
+      "LEFT_ONLY": 0.26,
+      "QUIET": 0.33,
+      "RIGHT_ONLY": 0.1
+    },
+    "dump_bin_bigbin": {
+      "AMBIGUOUS": 0.01,
+      "BOTH": 0.13,
+      "LEFT_ONLY": 0.36,
+      "QUIET": 0.14,
+      "RIGHT_ONLY": 0.36
+    },
+    "grab_roller": {
+      "AMBIGUOUS": 0.22,
+      "BOTH": 0.53,
+      "LEFT_ONLY": 0.08,
+      "QUIET": 0.17,
+      "RIGHT_ONLY": 0.0
+    }
+  },
+  "right_score_quantiles": {
+    "0.0": 0.0,
+    "0.1": 0.0,
+    "0.25": 0.0,
+    "0.5": 0.004965711617842317,
+    "0.75": 0.27400242537260056,
+    "0.9": 0.9247037768363953,
+    "0.95": 1.1730796098709106,
+    "0.99": 1.2977900505065918,
+    "1.0": 1.3259329795837402
+  },
+  "role_counts": {
+    "AMBIGUOUS": 65,
+    "BOTH": 66,
+    "LEFT_ONLY": 108,
+    "QUIET": 96,
+    "RIGHT_ONLY": 65
+  },
+  "role_fractions": {
+    "AMBIGUOUS": 0.1625,
+    "BOTH": 0.165,
+    "LEFT_ONLY": 0.27,
+    "QUIET": 0.24,
+    "RIGHT_ONLY": 0.1625
+  },
+  "support_overlap_mean": 6.359852726260821e-06,
+  "thresholds": {
+    "active": 0.2,
+    "quiet": 0.05,
+    "temporal_window": 3
+  }
+}

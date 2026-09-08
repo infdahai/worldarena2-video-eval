@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-static-heavy-s2/n8-dev4/scoring/selected-full15/package/output_VLM/Native640_StaticHeavy_S2/Native640_StaticHeavy_S2_summary_val_all_intern.json",
+  "output_sha256": "cb15260af0c80901f0a15dc29801a48a3e460cf4945492e26e60827b5cd8859d",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-static-heavy-s2/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Native640_StaticHeavy_S2/click_bell_episode_000008_20260831_181713.json",
+      "sha256": "a0058b0e62165bd1c1e659de78c8b9a162980585f2c170643ca3d289def671da",
+      "timestamp": "20260831_181713",
+      "video": "click_bell_episode_000008.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-static-heavy-s2/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Native640_StaticHeavy_S2/open_laptop_episode_000024_20260831_181925.json",
+      "sha256": "deb3072475f080c310d25edcd8551c6d1c05079b201889a73f80573ab12be5b4",
+      "timestamp": "20260831_181925",
+      "video": "open_laptop_episode_000024.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-static-heavy-s2/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Native640_StaticHeavy_S2/pick_dual_bottles_episode_000000_20260831_182138.json",
+      "sha256": "0a762a06a89a340fe8caf13b23536c293b687cc71eb07841d5f349be8c5dc2af",
+      "timestamp": "20260831_182138",
+      "video": "pick_dual_bottles_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-static-heavy-s2/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Native640_StaticHeavy_S2/place_container_plate_episode_000017_20260831_182350.json",
+      "sha256": "2d0c8d337e6218c0b203f374d73237619685f6cfb1e8b52598451c4c4b0f747a",
+      "timestamp": "20260831_182350",
+      "video": "place_container_plate_episode_000017.mp4"
+    }
+  ]
+}

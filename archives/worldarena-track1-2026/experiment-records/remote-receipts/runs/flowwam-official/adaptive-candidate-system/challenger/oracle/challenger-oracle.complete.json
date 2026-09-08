@@ -1,0 +1,234 @@
+{
+  "completed": true,
+  "contract": "flowwam-challenger-oracle/1",
+  "result": {
+    "episodes": [
+      {
+        "scores": {
+          "action_text": 0.6335283271798244,
+          "p0": 0.6290773293579057,
+          "winner": 0.6400655738246733
+        },
+        "selected": "winner",
+        "video_id": "handover_mic_episode000044"
+      },
+      {
+        "scores": {
+          "action_text": 0.7029148132228064,
+          "p0": 0.7024407120241306,
+          "winner": 0.6970332363764098
+        },
+        "selected": "action_text",
+        "video_id": "hanging_mug_episode000004"
+      },
+      {
+        "scores": {
+          "action_text": 0.5584809337244699,
+          "p0": 0.5280933297089011,
+          "winner": 0.5866391014344448
+        },
+        "selected": "winner",
+        "video_id": "lift_pot_episode000039"
+      },
+      {
+        "scores": {
+          "action_text": 0.7302057083198511,
+          "p0": 0.7247383537836438,
+          "winner": 0.729791973768805
+        },
+        "selected": "action_text",
+        "video_id": "move_can_pot_episode000036"
+      },
+      {
+        "scores": {
+          "action_text": 0.6963649922202784,
+          "p0": 0.6818145389013034,
+          "winner": 0.7058855019840328
+        },
+        "selected": "winner",
+        "video_id": "move_pillbottle_pad_episode000004"
+      },
+      {
+        "scores": {
+          "action_text": 0.6857980622247304,
+          "p0": 0.6881757731935003,
+          "winner": 0.7016923349009568
+        },
+        "selected": "winner",
+        "video_id": "move_playingcard_away_episode000001"
+      },
+      {
+        "scores": {
+          "action_text": 0.6120086353961965,
+          "p0": 0.6180961346907785,
+          "winner": 0.610868450195958
+        },
+        "selected": "p0",
+        "video_id": "move_stapler_pad_episode000027"
+      },
+      {
+        "scores": {
+          "action_text": 0.6981079344709195,
+          "p0": 0.6822322950120323,
+          "winner": 0.6970581279009294
+        },
+        "selected": "action_text",
+        "video_id": "open_laptop_episode000024"
+      },
+      {
+        "scores": {
+          "action_text": 0.6908052433303774,
+          "p0": 0.6937600886321635,
+          "winner": 0.6953346546906211
+        },
+        "selected": "winner",
+        "video_id": "pick_diverse_bottles_episode000028"
+      },
+      {
+        "scores": {
+          "action_text": 0.7195081484436863,
+          "p0": 0.7299030340577267,
+          "winner": 0.7191931684475553
+        },
+        "selected": "p0",
+        "video_id": "pick_dual_bottles_episode000029"
+      },
+      {
+        "scores": {
+          "action_text": 0.6574433634161229,
+          "p0": 0.65491276289897,
+          "winner": 0.6526504560656747
+        },
+        "selected": "action_text",
+        "video_id": "place_a2b_left_episode000042"
+      },
+      {
+        "scores": {
+          "action_text": 0.6805815951774669,
+          "p0": 0.698513809638159,
+          "winner": 0.6845402270021114
+        },
+        "selected": "p0",
+        "video_id": "place_bread_basket_episode000049"
+      },
+      {
+        "scores": {
+          "action_text": 0.601512680656848,
+          "p0": 0.6013488440804848,
+          "winner": 0.6193518415860618
+        },
+        "selected": "winner",
+        "video_id": "place_bread_skillet_episode000047"
+      },
+      {
+        "scores": {
+          "action_text": 0.7027882574406414,
+          "p0": 0.7058498412319598,
+          "winner": 0.7191014111849119
+        },
+        "selected": "winner",
+        "video_id": "place_burger_fries_episode000002"
+      },
+      {
+        "scores": {
+          "action_text": 0.7080776155222341,
+          "p0": 0.6924723445152566,
+          "winner": 0.6876101617719327
+        },
+        "selected": "action_text",
+        "video_id": "place_can_basket_episode000021"
+      },
+      {
+        "scores": {
+          "action_text": 0.7015066592307242,
+          "p0": 0.6468543976005547,
+          "winner": 0.7045178528607002
+        },
+        "selected": "winner",
+        "video_id": "place_container_plate_episode000032"
+      },
+      {
+        "scores": {
+          "action_text": 0.7008159125424015,
+          "p0": 0.7059898043988824,
+          "winner": 0.7159522777262056
+        },
+        "selected": "winner",
+        "video_id": "place_dual_shoes_episode000029"
+      },
+      {
+        "scores": {
+          "action_text": 0.5990547543643187,
+          "p0": 0.6429790000939378,
+          "winner": 0.6294339889117573
+        },
+        "selected": "p0",
+        "video_id": "place_empty_cup_episode000021"
+      },
+      {
+        "scores": {
+          "action_text": 0.6161194683643977,
+          "p0": 0.6755930182439941,
+          "winner": 0.6495074950640495
+        },
+        "selected": "p0",
+        "video_id": "place_fan_episode000045"
+      },
+      {
+        "scores": {
+          "action_text": 0.7636155926327225,
+          "p0": 0.7569540618973272,
+          "winner": 0.7564110466491459
+        },
+        "selected": "action_text",
+        "video_id": "place_object_basket_episode000012"
+      }
+    ],
+    "p0_action_text": {
+      "action_text_strict_wins": 11,
+      "oracle_mean": 0.6805309562388951,
+      "uplift": 0.007540982540814478
+    },
+    "p0_mean": 0.6729899736980807,
+    "p0_winner": {
+      "checks": {
+        "uplift_ge_0_005": true,
+        "winner_strict_wins_ge_5": true
+      },
+      "oracle_mean": 0.6843627764961312,
+      "passed": true,
+      "uplift": 0.01137280279805053,
+      "winner_strict_wins": 11
+    },
+    "p0_winner_action_text": {
+      "action_text_extra_uplift": 0.0013367522289617906,
+      "action_text_independent_wins": 6,
+      "action_text_passed": false,
+      "checks": {
+        "action_text_extra_uplift_ge_0_003": false,
+        "action_text_independent_wins_ge_4": true
+      },
+      "oracle_mean": 0.685699528725093,
+      "uplift": 0.01270955502701232
+    },
+    "row_count": 20
+  },
+  "sources": {
+    "action_text": {
+      "bytes": 5903,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/action-to-text/latest-scorer/candidate-corrected.csv",
+      "sha256": "f4256bb8b9e14cb04533c664c54ef05b85ef847e773806b5c00b612d2ed0e374"
+    },
+    "p0": {
+      "bytes": 23671,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/breadth20/p0-selector-breadth20.rows.jsonl",
+      "sha256": "e828c01cc6aac867c051d642e02f745a96067652c4490c4c2ac67d91e876baaa"
+    },
+    "winner": {
+      "bytes": 5921,
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/self-training/checkpoint-gate/seed4/latest-wa2-corrected.csv",
+      "sha256": "2259dc2eea8ac2ade261d006ba40279e5000a2dad8fb6f2d57f193b4388949f1"
+    }
+  },
+  "terminal_state": "pass"
+}

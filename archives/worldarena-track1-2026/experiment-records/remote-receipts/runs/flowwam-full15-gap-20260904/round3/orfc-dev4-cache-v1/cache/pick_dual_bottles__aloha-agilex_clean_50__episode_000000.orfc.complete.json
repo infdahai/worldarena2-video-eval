@@ -1,0 +1,46 @@
+{
+  "completed": true,
+  "contact_definition": "residual-near-fb-consistent-robot-motion",
+  "contact_fraction": 0.019333332777023315,
+  "contract": "flowwam-orfc-episode-cache/1",
+  "episode_id": "pick_dual_bottles__aloha-agilex_clean_50__episode_000000",
+  "flow_backend": "RAFTFlowExtractor",
+  "flow_threshold": 0.25,
+  "inconsistency_threshold": 0.5,
+  "manifest_sha256": "54ef7d937bb303699084b235d30146541a2d5f15f94a3564325bebdd636e0773",
+  "occlusion_fraction": 0.07999999821186066,
+  "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-dev4-cache-v1/cache/pick_dual_bottles__aloha-agilex_clean_50__episode_000000.orfc.pt",
+  "output_sha256": "d2aa4f2e6985db3eff1fc9d4fc7020f78c7d10345d147c88773cf23191cbf046",
+  "residual_definition": "full_scene_flow-minus-robot_flow",
+  "residual_threshold": 0.25,
+  "robot_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/robot_only/episode000000.hdf5",
+  "robot_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/robot_only/episode000000.hdf5",
+  "robot_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/pick_dual_bottles/aloha-agilex_clean_50/robot_only/data/episode0.hdf5",
+  "robot_hdf5_resolved_sha256": "8e30dfceebbb2b0deb6cf02950723124e24c2d909981381d4c2360367a546a8c",
+  "robot_hdf5_sha256": "8e30dfceebbb2b0deb6cf02950723124e24c2d909981381d4c2360367a546a8c",
+  "sample": "pick_dual_bottles__aloha-agilex_clean_50__episode_000000",
+  "scene_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/input/data/fixed_scene_task/episode000000.hdf5",
+  "scene_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/input/data/fixed_scene_task/episode000000.hdf5",
+  "scene_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/pick_dual_bottles/aloha-agilex_clean_50/data/episode0.hdf5",
+  "scene_hdf5_resolved_sha256": "a57f7fb488acc6a88f53c0cb3289898663c43043f7fb8bf017021b58574ce136",
+  "scene_hdf5_sha256": "a57f7fb488acc6a88f53c0cb3289898663c43043f7fb8bf017021b58574ce136",
+  "source_frame_count": 125,
+  "source_shape": [
+    240,
+    320
+  ],
+  "split": "round3_dev4_orfc",
+  "target_shape": [
+    5,
+    15,
+    20
+  ],
+  "task": "pick_dual_bottles",
+  "temporal_indices": [
+    0,
+    31,
+    62,
+    92,
+    123
+  ]
+}

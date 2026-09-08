@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 4,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "0dbfb73e0eccb665567e85aae240c22c6f5e2540737b048ba75aed8cfd421550",
+      "source_sha256": "8c7a7da2f34f9b3d26067cccb76ec622c1ee2868dd92279bd927d60f4d9e0ff8",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b29-lr1e7-b05-train8-r2/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "c015fd247db8327970892fd4bf2b883722fd781bb67ed2f296a3cd47ff5995f8",
+      "source_sha256": "975c903774708e0c67b4e85b6c8d9e65d403542e38ea43912536ad3f2364800d",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b29-lr1e7-b05-train8-r2/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "ff9a4e88efbbb70c7b68719fb8e95a21286afbd3bc49df4a01e0ffb23c91bfa3",
+      "source_sha256": "f72b4a0541b49e6efa0b083f4c2f26ddcc4cb0e837399453ab792e6e8fb476cf",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b29-lr1e7-b05-train8-r2/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "26fe9c5abd9cf60e59d5967e8fcbfc026b11d0c1ac7594ef737b9b94061ff7cc",
+      "source_sha256": "0e54ceb89a82a8f666b881bc0102d411e424acc0f843b60f2bd8791ba219bb79",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b29-lr1e7-b05-train8-r2/n8-dev4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

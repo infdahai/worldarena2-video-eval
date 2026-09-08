@@ -1,0 +1,29 @@
+{
+  "attempts": [
+    {
+      "log": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/seedvr2-official-sp2/smoke-720x1280/smoke.log",
+      "log_sha256": "46a32af0baad7d6d33ad9f69927cbf8a1571c8b6f93c95002e35d57c0aa8a31d",
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/seedvr2-official-sp2/smoke-720x1280/smoke.receipt.json",
+      "receipt_exists": false,
+      "root_cause": "all_to_all_empty_like_400_mib_cuda_oom",
+      "target": "720x1280"
+    },
+    {
+      "log": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/seedvr2-official-sp2/smoke-640x480-fallback/smoke.log",
+      "log_sha256": "d46868539af790af9ebbff92eb97a96b46412ee323ca98dc7818295779107488",
+      "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/seedvr2-official-sp2/smoke-640x480-fallback/smoke.receipt.json",
+      "receipt_exists": false,
+      "root_cause": "official_rope_get_axial_freqs_7_88_gib_cuda_oom",
+      "target": "640x480"
+    }
+  ],
+  "completed": true,
+  "contract": "flowwam-seedvr2-official-sp2-stop/1",
+  "decision": "stop_seedvr2_no_more_attempts",
+  "physical_gpus": [
+    4,
+    5
+  ],
+  "reason": "full-resolution and the sole contract-authorized 640x480 fallback both exited with CUDA OOM and no receipt",
+  "recorded_at": "2026-08-24T08:26:24.643233+00:00"
+}

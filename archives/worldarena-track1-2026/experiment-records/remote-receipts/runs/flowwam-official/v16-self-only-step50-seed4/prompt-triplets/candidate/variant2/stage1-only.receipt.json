@@ -1,0 +1,94 @@
+{
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "inference_sweep": {
+    "is_official_default": false,
+    "overrides": {
+      "flow_max_magnitude": 20.0,
+      "seed": 4
+    }
+  },
+  "instruction_variant": 2,
+  "lora_adapter": {
+    "alpha": 8.0,
+    "attention_scope": "self",
+    "checkpoint": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/checkpoints/step-50.safetensors",
+    "checkpoint_sha256": "37ab801d3f04125a2dc0fe1ce6924dd90d84577c518bd18812a0806c9c1fff42",
+    "filtered_cross_attention_pairs": 60,
+    "hotload": true,
+    "loaded_pairs": 60,
+    "rank": 8,
+    "scale": 1.0,
+    "source_pairs": 120,
+    "target_modules": [
+      "self_attn.q",
+      "self_attn.v"
+    ]
+  },
+  "max_episodes": 10,
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "physical_gpu": 5,
+  "robot_conditioning": {
+    "mode": "pre-generated",
+    "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-self-only-step50-seed4/prompt-triplets/robot-only"
+  },
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 4,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "name": "episode__wa2val__episode_000001.mp4",
+      "sha256": "c4729511b9e236a6e9bb668fa772978eae47edbd36c65fdcb9bf0beae817569a"
+    },
+    {
+      "name": "episode__wa2val__episode_000002.mp4",
+      "sha256": "39882c756c98d0064740075d6638080ca373282ef5886f5e7e8dc57bc5986376"
+    },
+    {
+      "name": "episode__wa2val__episode_000003.mp4",
+      "sha256": "4724b66bb62a818e775ab2e43815cbf2e65ad16961b0f1d462b62bfca391346d"
+    },
+    {
+      "name": "episode__wa2val__episode_000004.mp4",
+      "sha256": "86fbd74767ce7df293a1b699b56d7de2f0e195f46c95477aeda0fbab4b7af911"
+    },
+    {
+      "name": "episode__wa2val__episode_000005.mp4",
+      "sha256": "8f26bc2c0e46c2a8b3acb7926238c9e0222245890581d863b1fc228659375c1f"
+    },
+    {
+      "name": "episode__wa2val__episode_000006.mp4",
+      "sha256": "509b1283f788cb1042c3086cae79039361eab2f4c805e146b6175b321b953c26"
+    },
+    {
+      "name": "episode__wa2val__episode_000007.mp4",
+      "sha256": "7028e5b126a0dd12a9439e509b865810bf79e10e95b513b0c771bd824b57a3ec"
+    },
+    {
+      "name": "episode__wa2val__episode_000008.mp4",
+      "sha256": "2b737065dab111282c52b173c5991d8d29633ccb2057be53a652ce913091626e"
+    },
+    {
+      "name": "episode__wa2val__episode_000009.mp4",
+      "sha256": "0f115d62b57fff01d84b6c006f2edb1fa33eb27c3b23594367c16dcbf8973085"
+    },
+    {
+      "name": "episode__wa2val__episode_000010.mp4",
+      "sha256": "a89fe686d6a8b7e938b0d7489a5ee6e517a4f7b269c68a0d7a33ab39cd708271"
+    }
+  ]
+}

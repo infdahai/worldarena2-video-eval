@@ -1,0 +1,27 @@
+{
+  "completed": true,
+  "contract": "flowwam-expertpool-v2-train160-manifest/1",
+  "gpu_rows": {
+    "0": 27,
+    "2": 27,
+    "3": 27,
+    "4": 27,
+    "5": 26,
+    "6": 26
+  },
+  "holdout_rows": 0,
+  "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/manifests/train160/train160.jsonl",
+  "manifest_sha256": "f5dfbe756d3421169960c7f575b6638d657a97366a5e11a015c9066bf9893773",
+  "physical_gpus": [
+    0,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "rows": 160,
+  "source_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/manifests/selector-200.jsonl",
+  "source_manifest_sha256": "4b147c15ba6b9fad45d66cdc542e57bbe9a967c0cd8d05a5f267cad7c702a18e",
+  "source_split": "train"
+}

@@ -1,0 +1,45 @@
+{
+  "completed": true,
+  "contact_definition": "residual-near-fb-consistent-robot-motion",
+  "contact_fraction": 0.1340000033378601,
+  "contract": "flowwam-orfc-episode-cache/1",
+  "episode_id": "scan_object__aloha-agilex_clean_50__episode_000018",
+  "flow_backend": "RAFTFlowExtractor",
+  "flow_threshold": 0.25,
+  "inconsistency_threshold": 0.5,
+  "manifest_sha256": "15d962245daf2e723421f6190cb5ae992c34ba8614a4cfed2eaf008f1e6dc4d3",
+  "occlusion_fraction": 0.14666666090488434,
+  "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-v1/cache/scan_object__aloha-agilex_clean_50__episode_000018.orfc.pt",
+  "output_sha256": "509d83acd99f693d366e9d4f45c7899c3a1d5c40a9ea7c9f021d34f197d195ad",
+  "residual_definition": "full_scene_flow-minus-robot_flow",
+  "residual_threshold": 0.25,
+  "robot_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/scan_object/aloha-agilex_clean_50/robot_only/data/episode18.hdf5",
+  "robot_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/scan_object/aloha-agilex_clean_50/robot_only/data/episode18.hdf5",
+  "robot_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/scan_object/aloha-agilex_clean_50/robot_only/data/episode18.hdf5",
+  "robot_hdf5_resolved_sha256": "14f176d78d33a7b0f6410200574ac21afbe75cf94a791fe92e8c143687834ff8",
+  "robot_hdf5_sha256": "14f176d78d33a7b0f6410200574ac21afbe75cf94a791fe92e8c143687834ff8",
+  "scene_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/scan_object/aloha-agilex_clean_50/data/episode18.hdf5",
+  "scene_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/scan_object/aloha-agilex_clean_50/data/episode18.hdf5",
+  "scene_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/scan_object/aloha-agilex_clean_50/data/episode18.hdf5",
+  "scene_hdf5_resolved_sha256": "8ba31883db877880b052a3f03ab9658d7287c827028826e3fefa31d604d3446e",
+  "scene_hdf5_sha256": "8ba31883db877880b052a3f03ab9658d7287c827028826e3fefa31d604d3446e",
+  "source_frame_count": 171,
+  "source_shape": [
+    240,
+    320
+  ],
+  "split": "round3_train_n8",
+  "target_shape": [
+    5,
+    15,
+    20
+  ],
+  "task": "scan_object",
+  "temporal_indices": [
+    0,
+    42,
+    84,
+    127,
+    169
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "array_sha256": {
+    "baseline": "aca60a56acb2d1ad456a0380de4dc084e2751f52847f7a7ea124e7b98df36b7d",
+    "candidate": "3e97f4c41f64851fb49701f3eef9c86050e87397a442123b410552199700d730",
+    "commanded": "1a74e0c5f4d7f360270f710eeed6ec699ec6e6232ba23e242f4a600e6c426a65",
+    "ground_truth": "e0e9dc9d1049f14112eb30a16b6b4d1da0f28b343360ac7381b21267b8ba32a8"
+  },
+  "baseline": "formal-s1A125",
+  "baseline_mean_inverse_all20": 1.9090536642892613,
+  "baseline_valid_episodes": 6,
+  "candidate": "stage2-joint-step100-adapter1e-4-lora2e-5",
+  "candidate_mean_inverse_all20": 26.351168339083756,
+  "candidate_valid_episodes": 1,
+  "contract": "wan-action-lite-official-sam3-dev-fast20/1",
+  "created_at": "2026-08-16T07:39:59.096572+00:00",
+  "decision": "reject_candidate_black_guardrail_and_gate",
+  "event": "official_sam3_dev_fast20_complete",
+  "known_black_video_rate": 0.1,
+  "official_evaluator_commit": "7b3feee108427bee3380064bb5154970ed7468b5",
+  "paired_win_rate_all20": 0.05,
+  "preprocessing_parity": {
+    "evidence": "/data/di/worldarena2_track1_20260815/eval/official-sam3-lr2e5-fast20/diagnostics/preprocess-parity/preprocess-parity.json",
+    "official_default_vs_staging_byte_equal": true
+  },
+  "relative_gain_all20": 12.803262229872553,
+  "scope": "dev-fast20-official-evaluator-not-test1000",
+  "strict_gate": {
+    "detection_coverage": 0.06234567901234568,
+    "episode_count": 20,
+    "failure_reasons": [
+      "invalid episodes present",
+      "official mean inverse gain is below 5%",
+      "raw mean distance is not strictly lower",
+      "paired win rate is not strictly above 55%",
+      "action-adherence distance did not improve by 5%"
+    ],
+    "invalid_episode_count": 20,
+    "minimum_relative_gain": 0.05,
+    "official_commit": "7b3feee108427bee3380064bb5154970ed7468b5",
+    "paired_finite_episode_count": 0,
+    "paired_win_rate": null,
+    "passed": false,
+    "raster_only_action_adherence_mean": null,
+    "raster_only_mean": null,
+    "raster_only_raw_mean": null,
+    "raster_only_raw_median": null,
+    "raster_pose_action_adherence_mean": null,
+    "raster_pose_mean": null,
+    "raster_pose_raw_mean": null,
+    "raster_pose_raw_median": null,
+    "relative_gain": null,
+    "sample_count": 0
+  },
+  "strict_gate_passed": false,
+  "summary_path": "/data/di/worldarena2_track1_20260815/eval/official-sam3-lr2e5-fast20/pair-stage2joint100/summary.json"
+}

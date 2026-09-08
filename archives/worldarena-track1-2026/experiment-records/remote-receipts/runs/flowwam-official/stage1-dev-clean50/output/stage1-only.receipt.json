@@ -1,0 +1,224 @@
+{
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 1,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "name": "episode__grab_roller__aloha-agilex_clean_50__episode_000000.mp4",
+      "sha256": "0a5248ccedb2e6a1427ec538cb32947e1e46fa3e807a2139fa5b6892c35c2899"
+    },
+    {
+      "name": "episode__grab_roller__aloha-agilex_clean_50__episode_000001.mp4",
+      "sha256": "105139ee549ef8b19763fb584bcfc6f5d47e48cdc3ae233d11133e05cb8f9d3c"
+    },
+    {
+      "name": "episode__grab_roller__aloha-agilex_clean_50__episode_000002.mp4",
+      "sha256": "e598de9c5162bfba8803c490c24209a8e1442961a6719a5faa8f6f8f53205f3b"
+    },
+    {
+      "name": "episode__grab_roller__aloha-agilex_clean_50__episode_000003.mp4",
+      "sha256": "64e66b88495bb439ef8226db77a18042041e05ad01c0a3bc6b87c3503f7284bd"
+    },
+    {
+      "name": "episode__grab_roller__aloha-agilex_clean_50__episode_000004.mp4",
+      "sha256": "118a037443e6c14f3f836c8cd82fa42878072397578a3eacfaffa574af2c4945"
+    },
+    {
+      "name": "episode__grab_roller__aloha-agilex_clean_50__episode_000005.mp4",
+      "sha256": "60dfaccd6c70474efa07cddbbcf980b2f048e384066cac8a13d4aa1f74deda21"
+    },
+    {
+      "name": "episode__grab_roller__aloha-agilex_clean_50__episode_000006.mp4",
+      "sha256": "4b7d3c6860aff4fbd689665dde2409327c760d790f4d9c8109428e3efd54f57c"
+    },
+    {
+      "name": "episode__grab_roller__aloha-agilex_clean_50__episode_000007.mp4",
+      "sha256": "8d33f46544fdc2c769aee0b9a4ef5e553999259b69346abb38cfcc220393c7db"
+    },
+    {
+      "name": "episode__grab_roller__aloha-agilex_clean_50__episode_000008.mp4",
+      "sha256": "d1731e01677ede99d918a3234db35be12d5008b65cd29736c985d289b0c1e9f8"
+    },
+    {
+      "name": "episode__grab_roller__aloha-agilex_clean_50__episode_000009.mp4",
+      "sha256": "ed8362ee52405a93ab9933b9a4f7c1af7b176fff876a2f27d59632aaf4b1e325"
+    },
+    {
+      "name": "episode__open_microwave__aloha-agilex_clean_50__episode_000000.mp4",
+      "sha256": "9468ddde933c9a499d3bb7a0cba212c1729f54947d793985584553234f5e291a"
+    },
+    {
+      "name": "episode__open_microwave__aloha-agilex_clean_50__episode_000001.mp4",
+      "sha256": "57d5d79d8b3e3ee0128cad7fe85c4af14a918b0e30712227f1e65f2700d6a1ac"
+    },
+    {
+      "name": "episode__open_microwave__aloha-agilex_clean_50__episode_000002.mp4",
+      "sha256": "d7350e8ea88f9a1f95baf695a8fe72481fd74e41336e0878f9ef5b209dae347d"
+    },
+    {
+      "name": "episode__open_microwave__aloha-agilex_clean_50__episode_000003.mp4",
+      "sha256": "7d063ff46632cd983c37c4fcd114ed947ace683af4426337acf1ed3bd97c7803"
+    },
+    {
+      "name": "episode__open_microwave__aloha-agilex_clean_50__episode_000004.mp4",
+      "sha256": "851535dec56849c295fd317622c96a00568a7103bbd047c88fb1279ae43af45b"
+    },
+    {
+      "name": "episode__open_microwave__aloha-agilex_clean_50__episode_000005.mp4",
+      "sha256": "612d04b2ba122454feed96a1794e8d662f035c67cfaae79d24fb6b9bb862444f"
+    },
+    {
+      "name": "episode__open_microwave__aloha-agilex_clean_50__episode_000006.mp4",
+      "sha256": "663ebfdb5092a701c44ffb2a238b1623af4df1fb8225e0d7e929a6d111ca74b2"
+    },
+    {
+      "name": "episode__open_microwave__aloha-agilex_clean_50__episode_000007.mp4",
+      "sha256": "3424a51b9d1dcfba40b4d2c29276d12cede856610dc9b98c42cab0e4821575a6"
+    },
+    {
+      "name": "episode__open_microwave__aloha-agilex_clean_50__episode_000008.mp4",
+      "sha256": "76d791af77f9c9968d093c617ead02691f3aafe77180f237e632c2f4ba7a3a3d"
+    },
+    {
+      "name": "episode__open_microwave__aloha-agilex_clean_50__episode_000009.mp4",
+      "sha256": "2befa7c6f62a6b3c50a33bd967c850af29424bf19a60aa5e42d50ccd5421afc5"
+    },
+    {
+      "name": "episode__press_stapler__aloha-agilex_clean_50__episode_000000.mp4",
+      "sha256": "fa3590c79c6079893530eba05cdfacaa8afadff5fd9c7d696491db3dcae9931f"
+    },
+    {
+      "name": "episode__press_stapler__aloha-agilex_clean_50__episode_000001.mp4",
+      "sha256": "a46ec6e917f550b1c81722fdd681f8467c1c364869f125418f38d5fa479fe92c"
+    },
+    {
+      "name": "episode__press_stapler__aloha-agilex_clean_50__episode_000002.mp4",
+      "sha256": "51a359f20f45d4cd7b58184277ccf0bd1f1ca37925b48d6310377e2a49f83618"
+    },
+    {
+      "name": "episode__press_stapler__aloha-agilex_clean_50__episode_000003.mp4",
+      "sha256": "5a1fd0ed9c52681fabdccbc125a248841f3c38b27c88f5561eff0417371a8b8a"
+    },
+    {
+      "name": "episode__press_stapler__aloha-agilex_clean_50__episode_000004.mp4",
+      "sha256": "369c50c920e948b3415e5adfd27ea8dbd863d35efb6104e246941f9bc96b05ab"
+    },
+    {
+      "name": "episode__press_stapler__aloha-agilex_clean_50__episode_000005.mp4",
+      "sha256": "73a5a1a284e8cc8bb27063db5ad501b42ef2e252eafa80bc57df637ad72a8f25"
+    },
+    {
+      "name": "episode__press_stapler__aloha-agilex_clean_50__episode_000006.mp4",
+      "sha256": "ba9edb1dfa26f88663e4fa9e97adcfadc2e6234ea01e97ac4f62f53843f019e6"
+    },
+    {
+      "name": "episode__press_stapler__aloha-agilex_clean_50__episode_000007.mp4",
+      "sha256": "a37a82098b18dfd6f6df3413739db3c09085f4fa5ce70df0d3564b9477d836f6"
+    },
+    {
+      "name": "episode__press_stapler__aloha-agilex_clean_50__episode_000008.mp4",
+      "sha256": "543146835ecfaa744ab7cc403ac8ee5c11986e53a1361d2a37eccef46ef0aaec"
+    },
+    {
+      "name": "episode__press_stapler__aloha-agilex_clean_50__episode_000009.mp4",
+      "sha256": "3537d0d2571d021e638ec242465352678cd6b0c9c72ec8485f0a65205ab2569a"
+    },
+    {
+      "name": "episode__put_object_cabinet__aloha-agilex_clean_50__episode_000000.mp4",
+      "sha256": "4b68944ddf982a8182de8c41995bebab1e011ad3b65e894f6de8763792e6c2fc"
+    },
+    {
+      "name": "episode__put_object_cabinet__aloha-agilex_clean_50__episode_000001.mp4",
+      "sha256": "578bb75fe6214e6a34fa410aee5b16b7d1380ff66222432233ffbfc91353b8d9"
+    },
+    {
+      "name": "episode__put_object_cabinet__aloha-agilex_clean_50__episode_000002.mp4",
+      "sha256": "e84cae49ddde59e65ef8b5a9ae5482e14735bdf0daf385787c2394d8636dfb03"
+    },
+    {
+      "name": "episode__put_object_cabinet__aloha-agilex_clean_50__episode_000003.mp4",
+      "sha256": "de244fccec7407ab8e42d4ede217c11c54d09df0b84eb044589e9b1a4543b7cf"
+    },
+    {
+      "name": "episode__put_object_cabinet__aloha-agilex_clean_50__episode_000004.mp4",
+      "sha256": "1668d6089e13851ea780fd04631211b07551968af74e7b4591700fbd8e7b053f"
+    },
+    {
+      "name": "episode__put_object_cabinet__aloha-agilex_clean_50__episode_000005.mp4",
+      "sha256": "f4a741b2d1ade05978c220e4c59e93a67e4fd187226ac61225a6801d8504a92e"
+    },
+    {
+      "name": "episode__put_object_cabinet__aloha-agilex_clean_50__episode_000006.mp4",
+      "sha256": "786b8076f5491762dae5ecb3d68302f2c24571cf0964be708216ad1c5ffae9e3"
+    },
+    {
+      "name": "episode__put_object_cabinet__aloha-agilex_clean_50__episode_000007.mp4",
+      "sha256": "bb6532ac2ab8950bf0ab76d64c23c38e54ad38280dc6faf39c06d1a2fa0957bb"
+    },
+    {
+      "name": "episode__put_object_cabinet__aloha-agilex_clean_50__episode_000008.mp4",
+      "sha256": "f652de5a89349c472004251e9f2da6a6357e853b76bba86c776ad28f68c23adf"
+    },
+    {
+      "name": "episode__put_object_cabinet__aloha-agilex_clean_50__episode_000009.mp4",
+      "sha256": "f1838fca50afc256592081b6962f90e460283170401332095ea9a519b4d0074a"
+    },
+    {
+      "name": "episode__stack_bowls_three__aloha-agilex_clean_50__episode_000000.mp4",
+      "sha256": "e63fc93829a0b6324b6051b249b49ece648d8a99b4f2690c618f3b5403fb0685"
+    },
+    {
+      "name": "episode__stack_bowls_three__aloha-agilex_clean_50__episode_000001.mp4",
+      "sha256": "a937dc92cac61045ba7a0c482fd49eab4e5d6d8e6fc885f1a04a7b87cb511eda"
+    },
+    {
+      "name": "episode__stack_bowls_three__aloha-agilex_clean_50__episode_000002.mp4",
+      "sha256": "52386edf20ea4e378c62153bcc2fcec6db655e597468540ca3e3f22acb14c3a4"
+    },
+    {
+      "name": "episode__stack_bowls_three__aloha-agilex_clean_50__episode_000003.mp4",
+      "sha256": "7da881b73420b8e06a192ddf92dcfa33f606c79a4107c0aed48746dd06cc1722"
+    },
+    {
+      "name": "episode__stack_bowls_three__aloha-agilex_clean_50__episode_000004.mp4",
+      "sha256": "c01557e25a34ac43c2bad933f6074720ebac48cb52dbb7e77d5c66ed29e751a4"
+    },
+    {
+      "name": "episode__stack_bowls_three__aloha-agilex_clean_50__episode_000005.mp4",
+      "sha256": "a1597ffc27969d7bb1c9ca5abdc8b59fc22b99de84c1532cfc8d4875cd672189"
+    },
+    {
+      "name": "episode__stack_bowls_three__aloha-agilex_clean_50__episode_000006.mp4",
+      "sha256": "d8457dd68b4d512f34331cc0b9d788a1e44bb0d38f5436b6d4e86d3d7c61bd2a"
+    },
+    {
+      "name": "episode__stack_bowls_three__aloha-agilex_clean_50__episode_000007.mp4",
+      "sha256": "e05852e9716a9df8f656f1ed14bf906d16a4b018005b098759a206ffe7661e60"
+    },
+    {
+      "name": "episode__stack_bowls_three__aloha-agilex_clean_50__episode_000008.mp4",
+      "sha256": "b7d2f8a032a72d3b0e5cee530f85c74459d1a9c95dbc378c068951524d4ed665"
+    },
+    {
+      "name": "episode__stack_bowls_three__aloha-agilex_clean_50__episode_000009.mp4",
+      "sha256": "5253b500d130e10138d87e3889a79e8c75a601c59d76e5facd0c9ab2ada384c5"
+    }
+  ]
+}

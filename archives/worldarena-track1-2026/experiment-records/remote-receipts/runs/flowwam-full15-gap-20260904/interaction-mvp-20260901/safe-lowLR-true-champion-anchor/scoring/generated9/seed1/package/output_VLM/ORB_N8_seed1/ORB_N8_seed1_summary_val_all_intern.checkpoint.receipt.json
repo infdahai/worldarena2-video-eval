@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/scoring/generated9/seed1/package/output_VLM/ORB_N8_seed1/ORB_N8_seed1_summary_val_all_intern.json",
+  "output_sha256": "9c66fd3f12166fdf338635f058e7ba29352bbdbcbc28fb286a1fef8da58adf96",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/scoring/generated9/seed1/package/work/tmp/vlm/ORB_N8_seed1/fixed_scene_task_episode_000000_20260901_100423.json",
+      "sha256": "0e095479ae25b0f5db6de543ea946b70c081059322cbd704c44d5358f233307b",
+      "timestamp": "20260901_100423",
+      "video": "fixed_scene_task_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/scoring/generated9/seed1/package/work/tmp/vlm/ORB_N8_seed1/fixed_scene_task_episode_000001_20260901_100639.json",
+      "sha256": "a0058b0e62165bd1c1e659de78c8b9a162980585f2c170643ca3d289def671da",
+      "timestamp": "20260901_100639",
+      "video": "fixed_scene_task_episode_000001.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/scoring/generated9/seed1/package/work/tmp/vlm/ORB_N8_seed1/fixed_scene_task_episode_000002_20260901_100857.json",
+      "sha256": "dcf16bf5cc593fa9fa36a84c349373bf9a47ea2eb7bbc827d7ce1bba6d5a063f",
+      "timestamp": "20260901_100857",
+      "video": "fixed_scene_task_episode_000002.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/scoring/generated9/seed1/package/work/tmp/vlm/ORB_N8_seed1/fixed_scene_task_episode_000003_20260901_101114.json",
+      "sha256": "90640b9d7da850df86d124484414f304b2a658c7bc745fc8058fe25ea7ac16d6",
+      "timestamp": "20260901_101114",
+      "video": "fixed_scene_task_episode_000003.mp4"
+    }
+  ]
+}

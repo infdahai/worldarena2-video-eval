@@ -1,0 +1,26 @@
+{
+  "completed": true,
+  "contract": "flowwam-challenger-fresh-holdout/1",
+  "exclusion_manifest_sha256s": {
+    "/data/di/worldarena2_track1_20260815/eval/dev-fast-20-v3/dev-fast-20.jsonl": "aaf9f4268a78e3ed160908780809ba9c23f12946176072787048d21ed7f50864",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/manifests/selector-200.jsonl": "4b147c15ba6b9fad45d66cdc542e57bbe9a967c0cd8d05a5f267cad7c702a18e",
+    "/data/di/worldarena2_track1_20260815/runs/v13-scoreboost/data/dev-clean50.jsonl": "2793a0cc1db33cb6885f36c7706f550702487aae381036571e9781c42e11ba17"
+  },
+  "formal_test_opened": false,
+  "formal_test_receipt_sha256": "4d44235e3081d4d5a4b43564533125b14bdefc6981fb88bc3341b04b56f84d0a",
+  "gpu_rows": {
+    "0": 7,
+    "2": 7,
+    "3": 7,
+    "4": 7,
+    "5": 6,
+    "6": 6
+  },
+  "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/manifests/fresh40/fresh40.jsonl",
+  "manifest_sha256": "49d89ac6c3450aff8e1705819f455b8fbab7eaff444f67bd0f55b92ede586908",
+  "rows": 40,
+  "selection_salt": "challenger-fresh40-v1:",
+  "shard_salt": "challenger-fresh40-shard-v1:",
+  "source_manifest_sha256": "6bcc85830fa2c6ccb45b2c3f7f593102674efce6a76a7a6e5d8871fcccdbae35",
+  "split": "fresh_holdout"
+}

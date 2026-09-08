@@ -1,0 +1,31 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-base-paired-probe/1",
+  "elapsed_seconds": 665.9939677715302,
+  "episode_ids": [
+    1,
+    9,
+    17,
+    121,
+    137,
+    185
+  ],
+  "experiment_only": true,
+  "formal_base_receipt": false,
+  "gpu_uuid": "GPU-1770b48c-3b2b-6d7a-30c7-7a9b8b4e53a4",
+  "input_manifest": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/base-paired-experiment/v1/seed4/input-manifest.json",
+  "input_manifest_rows": 6,
+  "metrics": [
+    "image_quality",
+    "aesthetic_quality",
+    "photometric_smoothness",
+    "dynamic_degree",
+    "flow_score",
+    "motion_smoothness"
+  ],
+  "output": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/base-paired-experiment/v1/seed4/output/generated_results.json",
+  "output_sha256": "0199756a27230c4ecd578c589641dc63b41b9d2f0b1be6e3006fd12894daac3c",
+  "physical_gpu": 5,
+  "sample_count": 6,
+  "seed": 4
+}

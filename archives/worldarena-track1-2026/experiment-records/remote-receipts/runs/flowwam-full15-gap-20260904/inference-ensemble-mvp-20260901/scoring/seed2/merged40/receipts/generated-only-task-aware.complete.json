@@ -1,0 +1,42 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-task-aware-generated9-mvp/1",
+  "generated9_mean": 0.5303072401689062,
+  "hidden_ground_truth_used": false,
+  "identity": "full-task-name+episode-index",
+  "means": {
+    "Aesthetic Quality": 0.3964982405304909,
+    "Dynamic Degree": 0.34044749582639117,
+    "Flow Score": 0.2462432857076977,
+    "Image Quality": 0.49573791887436397,
+    "Instruction Following": 0.6950000000000001,
+    "Interaction Quality": 0.7350000000000004,
+    "Motion Smoothness": 0.727571570316868,
+    "Perspectivity": 0.9150000000000003,
+    "Photometric Consistency": 0.22126665026434464
+  },
+  "metric_columns": [
+    "Instruction Following",
+    "Interaction Quality",
+    "Perspectivity",
+    "Image Quality",
+    "Aesthetic Quality",
+    "Photometric Consistency",
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ],
+  "output_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/scoring/seed2/merged40/csv/generated-only-task-aware.csv",
+  "output_csv_sha256": "68a127695d1879efe967c720d97a90e6a0d94668bea4f568a896c79361d4e2b0",
+  "row_count": 40,
+  "sources": {
+    "base_json": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/scoring/seed2/merged40/output/generated_results.json",
+      "sha256": "27a29280e027a2b5a52e40d073ebb34df2a5ff9c02fde23c706dc00d82eece72"
+    },
+    "vlm_json": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/scoring/seed2/merged40/output_VLM/RoutingP0Seed2Fresh40/RoutingP0Seed2Fresh40_summary_val_all_intern.json",
+      "sha256": "37b0a8cb845419f8ec2a2ebcf3833d5140dbcaa5ef1a3e626cb03aa528019538"
+    }
+  }
+}

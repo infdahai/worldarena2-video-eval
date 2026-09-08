@@ -1,0 +1,46 @@
+{
+  "adapter_identical": true,
+  "contract": "wan-action-causality-checkpoint-comparison/1",
+  "decision": "qonly_does_not_repair_cross_arm_routing",
+  "manifest_sha256": "c99a4839f88eaef01f9a0f9e8d1de902739d0915feb63d2e9927e6efa0ef91bc",
+  "paired_episode_count": 8,
+  "qonly_classification": "cross_arm_gradient_routing",
+  "qonly_report": "/data/di/worldarena2_track1_20260815/experiments/action_causality_audit/reports/qonly50.v1.json",
+  "qonly_report_sha256": "a813278c2aae7431deb1562e256723efded3435aaf26215f3c27d193431600e7",
+  "qonly_robot_sensitivity_median": 0.014833120163530111,
+  "qonly_to_s1_robot_sensitivity_ratio": 1.0154020098556262,
+  "robot_margin_comparison": {
+    "random-valid": {
+      "qonly50": 0.00027064979076388274,
+      "qonly_minus_s1": 1.6887982686397685e-05,
+      "qonly_to_s1_ratio": 1.0665505294683313,
+      "s1a125": 0.00025376180807748505
+    },
+    "reverse": {
+      "qonly50": 0.0005088498195012503,
+      "qonly_minus_s1": 8.36203495663268e-06,
+      "qonly_to_s1_ratio": 1.0167077703289824,
+      "s1a125": 0.0005004877845446176
+    },
+    "swap": {
+      "qonly50": 0.000491080184777587,
+      "qonly_minus_s1": 1.392513513567839e-05,
+      "qonly_to_s1_ratio": 1.029183669220579,
+      "s1a125": 0.0004771550496419086
+    }
+  },
+  "routing_comparison": {
+    "left": {
+      "qonly50": 1.0513764023780823,
+      "s1a125": 1.05239599943161
+    },
+    "right": {
+      "qonly50": 0.954351007938385,
+      "s1a125": 0.9538243412971497
+    }
+  },
+  "s1_classification": "cross_arm_gradient_routing",
+  "s1_report": "/data/di/worldarena2_track1_20260815/experiments/action_causality_audit/reports/s1a125.v1.json",
+  "s1_report_sha256": "273f702642ce3f1d510f929c94be2286513d54625560efaed3836507f975e0c6",
+  "s1_robot_sensitivity_median": 0.014608125668019056
+}

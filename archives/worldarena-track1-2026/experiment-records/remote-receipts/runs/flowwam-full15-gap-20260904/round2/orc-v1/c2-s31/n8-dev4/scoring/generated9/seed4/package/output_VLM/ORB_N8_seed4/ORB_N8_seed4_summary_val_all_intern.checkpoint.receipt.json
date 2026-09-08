@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/generated9/seed4/package/output_VLM/ORB_N8_seed4/ORB_N8_seed4_summary_val_all_intern.json",
+  "output_sha256": "9fca9cc0c3f48b4e14ee2ac6b31e793181762d2997e591c10f34401f74c798b6",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/generated9/seed4/package/work/tmp/vlm/ORB_N8_seed4/fixed_scene_task_episode_000000_20260831_111637.json",
+      "sha256": "b67dc598da13d02d797b55a1395c1271687bf433006f167b1a119416d1537b95",
+      "timestamp": "20260831_111637",
+      "video": "fixed_scene_task_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/generated9/seed4/package/work/tmp/vlm/ORB_N8_seed4/fixed_scene_task_episode_000001_20260831_111854.json",
+      "sha256": "1e6ec1744e7b7b50b1243c1fa51f181f9c46808a85824703900df78b6c83daac",
+      "timestamp": "20260831_111854",
+      "video": "fixed_scene_task_episode_000001.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/generated9/seed4/package/work/tmp/vlm/ORB_N8_seed4/fixed_scene_task_episode_000002_20260831_112112.json",
+      "sha256": "0def49af97dca1d0155343c49a61b52c0912549e28fc3c62dbf2148777ffbc38",
+      "timestamp": "20260831_112112",
+      "video": "fixed_scene_task_episode_000002.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/generated9/seed4/package/work/tmp/vlm/ORB_N8_seed4/fixed_scene_task_episode_000003_20260831_112329.json",
+      "sha256": "76b96f8c36b6aae8d6ee970c8073625e3faaf202636f81b0a685f79bc71a3a2a",
+      "timestamp": "20260831_112329",
+      "video": "fixed_scene_task_episode_000003.mp4"
+    }
+  ]
+}

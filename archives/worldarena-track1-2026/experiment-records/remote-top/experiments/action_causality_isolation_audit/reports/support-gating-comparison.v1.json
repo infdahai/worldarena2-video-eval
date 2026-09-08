@@ -1,0 +1,37 @@
+{
+  "adapter_identical": true,
+  "checkpoint_identical": true,
+  "contract": "wan-action-causality-support-gating-comparison/1",
+  "decision": "support_gating_improves_arm_isolation",
+  "gated_report": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/reports/s1a125-support-gated.v2.json",
+  "gated_report_sha256": "b2ca0bf77e787becb7635074ab4e0eb23759b6ccfe24d28a38f8b21549c15aa6",
+  "isolation_comparison": {
+    "left": {
+      "standard": 1.420680881870132,
+      "support_gated": 2.102703327453543
+    },
+    "right": {
+      "standard": 1.253199437411556,
+      "support_gated": 2.1229509553819006
+    }
+  },
+  "manifest_sha256": "4855c6f411160dbf8f03a812eac25c23901fedff1561f52ddda2b52e90951959",
+  "paired_episode_count": 8,
+  "routing_comparison": {
+    "left": {
+      "standard": 1.0524012446403503,
+      "support_gated": 3.13724946975708
+    },
+    "right": {
+      "standard": 0.9539479613304138,
+      "support_gated": 2.846816897392273
+    }
+  },
+  "standard_classification": "cross_arm_output_leakage",
+  "standard_report": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/reports/s1a125-standard.v2.json",
+  "standard_report_sha256": "034c6ad71ff26133cbf55d00d93d0b386716839315165b808670bdab13ccb8b9",
+  "standard_robot_sensitivity_median": 0.014608125668019056,
+  "support_gated_classification": "causal_signal_present",
+  "support_gated_robot_sensitivity_median": 0.04797821305692196,
+  "support_gated_to_standard_robot_sensitivity_ratio": 3.284351062365147
+}

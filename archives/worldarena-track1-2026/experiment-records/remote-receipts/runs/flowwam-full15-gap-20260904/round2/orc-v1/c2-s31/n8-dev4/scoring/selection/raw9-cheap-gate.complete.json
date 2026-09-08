@@ -1,0 +1,135 @@
+{
+  "arm": "c2-s31",
+  "checkpoint": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/bridge-step-000025.pt",
+  "checkpoint_sha256": "7957f27c8bb6777a48ddfbbfb3b9163c86698387cfe6645fe40de866f3dd3c3d",
+  "checks": {
+    "instruction_non_regression": true,
+    "instruction_or_interaction_positive": false,
+    "interaction_non_regression": true,
+    "protect_aesthetic_quality": true,
+    "protect_image_quality": true,
+    "protect_perspectivity": true,
+    "protect_photometric_consistency": true
+  },
+  "completed": true,
+  "contract": "worldarena-track1-orc-n8-raw9-cheap-gate/1",
+  "corrected15_used_for_selection_or_gate": false,
+  "decision": "CLOSE_AT_CHEAP_GATE",
+  "final_gate_distinct": {
+    "corrected15_required": true,
+    "image_jepa_trajectory_protected": true,
+    "mean_instruction_interaction_delta_min": 0.02
+  },
+  "gate_scope": "cheap-only; not promotion evidence beyond selected full15 scoring",
+  "generated9_csvs": {
+    "seed1": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/generated9/seed1/package/csv_results/generated-only.csv",
+      "sha256": "3985e5b6a94a400b94c432357b357effc1c1a2f8372d74b2d05bdb9ba1a4478c"
+    },
+    "seed4": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/generated9/seed4/package/csv_results/generated-only.csv",
+      "sha256": "119e3bd97c6609f60b20bafe13e7245287988be5efd06dc685d0e386977a0ce5"
+    }
+  },
+  "generated9_deltas": {
+    "Aesthetic Quality": -0.0029466450214385986,
+    "Dynamic Degree": -0.0009506859085896546,
+    "Flow Score": -0.000653979640780622,
+    "Image Quality": -0.0005017489562799682,
+    "Instruction Following": 0.0,
+    "Interaction Quality": 0.0,
+    "Motion Smoothness": 0.0037911909384930054,
+    "Perspectivity": 0.0,
+    "Photometric Consistency": -0.009536404982312119
+  },
+  "p0_generated9_means": {
+    "Aesthetic Quality": 0.3976823091506958,
+    "Dynamic Degree": 0.27732146868031543,
+    "Flow Score": 0.17251006447198697,
+    "Image Quality": 0.5203593138117849,
+    "Instruction Following": 0.85,
+    "Interaction Quality": 0.8,
+    "Motion Smoothness": 0.7008294732698589,
+    "Perspectivity": 1.0,
+    "Photometric Consistency": 0.34313541975412687
+  },
+  "p0_selection": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-control-s31/n8-dev4/scoring/selection/selection.complete.json",
+  "p0_selection_sha256": "f18b8a7027db0846066af6f6c869ade56860218a65a422d13eb26e610cac7c4a",
+  "protected_delta_floor": -0.015,
+  "rows": [
+    {
+      "logical_episode_id": 0,
+      "selected_raw9": {
+        "Aesthetic Quality": 0.43669986724853516,
+        "Dynamic Degree": 0.4095304501228133,
+        "Flow Score": 0.39665162979760327,
+        "Image Quality": 0.5098715233508452,
+        "Instruction Following": 0.4,
+        "Interaction Quality": 0.8,
+        "Motion Smoothness": 0.7948605957685186,
+        "Perspectivity": 1.0,
+        "Photometric Consistency": 0.09264083112300914
+      },
+      "selected_seed": 1
+    },
+    {
+      "logical_episode_id": 1,
+      "selected_raw9": {
+        "Aesthetic Quality": 0.43222638964653015,
+        "Dynamic Degree": 0.2036579638531407,
+        "Flow Score": 0.09709683708224506,
+        "Image Quality": 0.5644395074726622,
+        "Instruction Following": 1.0,
+        "Interaction Quality": 0.8,
+        "Motion Smoothness": 0.6952673491265743,
+        "Perspectivity": 1.0,
+        "Photometric Consistency": 0.4344403285971499
+      },
+      "selected_seed": 1
+    },
+    {
+      "logical_episode_id": 2,
+      "selected_raw9": {
+        "Aesthetic Quality": 0.3497360050678253,
+        "Dynamic Degree": 0.21090723631922711,
+        "Flow Score": 0.06648815422789163,
+        "Image Quality": 0.3890964858914599,
+        "Instruction Following": 1.0,
+        "Interaction Quality": 0.8,
+        "Motion Smoothness": 0.6178271489053728,
+        "Perspectivity": 1.0,
+        "Photometric Consistency": 0.5208159716588768
+      },
+      "selected_seed": 4
+    },
+    {
+      "logical_episode_id": 3,
+      "selected_raw9": {
+        "Aesthetic Quality": 0.3602803945541382,
+        "Dynamic Degree": 0.2813874807917219,
+        "Flow Score": 0.12718771821708547,
+        "Image Quality": 0.6160227427070524,
+        "Instruction Following": 1.0,
+        "Interaction Quality": 0.8,
+        "Motion Smoothness": 0.7105275630329417,
+        "Perspectivity": 1.0,
+        "Photometric Consistency": 0.28649892770822316
+      },
+      "selected_seed": 4
+    }
+  ],
+  "selected_generated9_means": {
+    "Aesthetic Quality": 0.3947356641292572,
+    "Dynamic Degree": 0.2763707827717258,
+    "Flow Score": 0.17185608483120635,
+    "Image Quality": 0.5198575648555049,
+    "Instruction Following": 0.85,
+    "Interaction Quality": 0.8,
+    "Motion Smoothness": 0.7046206642083519,
+    "Perspectivity": 1.0,
+    "Photometric Consistency": 0.33359901477181475
+  },
+  "selection": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/selection/selection.complete.json",
+  "selection_sha256": "51f8486399729d70f8a7fb17b0a0bc3bc85b38e28b3f85121e5cd78b4af94573",
+  "terminal_state": "closed"
+}

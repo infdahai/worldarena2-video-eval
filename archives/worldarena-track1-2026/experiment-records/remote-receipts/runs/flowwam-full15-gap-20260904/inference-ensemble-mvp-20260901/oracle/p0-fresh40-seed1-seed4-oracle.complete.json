@@ -1,0 +1,391 @@
+{
+  "baseline_mean": 0.6700214358302617,
+  "completed": true,
+  "contract": "worldarena-inference-ensemble-oracle-mvp/1",
+  "episodes": [
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.6814205986960143,
+        "seed4": 0.6750570147652705
+      },
+      "selected": "champion",
+      "video_id": "click_alarmclock_episode000021"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.7157032397703493,
+        "seed4": 0.7095550808259661
+      },
+      "selected": "champion",
+      "video_id": "click_bell_episode000008"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.6106646335826567,
+        "seed4": 0.6025567372173628
+      },
+      "selected": "champion",
+      "video_id": "dump_bin_bigbin_episode000011"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.6810314758624916,
+        "seed4": 0.6047103188877292
+      },
+      "selected": "champion",
+      "video_id": "handover_mic_episode000047"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.6799154861906572,
+        "seed4": 0.6753894722247548
+      },
+      "selected": "champion",
+      "video_id": "hanging_mug_episode000007"
+    },
+    {
+      "gain_vs_champion": 0.022264650685246967,
+      "scores": {
+        "champion": 0.6417536575912021,
+        "seed4": 0.664018308276449
+      },
+      "selected": "seed4",
+      "video_id": "lift_pot_episode000033"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.7183939311594312,
+        "seed4": 0.6755332321049948
+      },
+      "selected": "champion",
+      "video_id": "move_can_pot_episode000001"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.7023363915958998,
+        "seed4": 0.6852419966817045
+      },
+      "selected": "champion",
+      "video_id": "move_pillbottle_pad_episode000032"
+    },
+    {
+      "gain_vs_champion": 0.012184915572445276,
+      "scores": {
+        "champion": 0.6225441101502793,
+        "seed4": 0.6347290257227246
+      },
+      "selected": "seed4",
+      "video_id": "move_playingcard_away_episode000040"
+    },
+    {
+      "gain_vs_champion": 0.010360063818267151,
+      "scores": {
+        "champion": 0.6328394116680922,
+        "seed4": 0.6431994754863594
+      },
+      "selected": "seed4",
+      "video_id": "move_stapler_pad_episode000013"
+    },
+    {
+      "gain_vs_champion": 0.021217990443347823,
+      "scores": {
+        "champion": 0.6724635800598845,
+        "seed4": 0.6936815705032323
+      },
+      "selected": "seed4",
+      "video_id": "open_laptop_episode000024"
+    },
+    {
+      "gain_vs_champion": 0.0011673827894599365,
+      "scores": {
+        "champion": 0.6710184716445362,
+        "seed4": 0.6721858544339961
+      },
+      "selected": "seed4",
+      "video_id": "pick_diverse_bottles_episode000013"
+    },
+    {
+      "gain_vs_champion": 0.03946276959669104,
+      "scores": {
+        "champion": 0.6467361027360443,
+        "seed4": 0.6861988723327354
+      },
+      "selected": "seed4",
+      "video_id": "pick_dual_bottles_episode000000"
+    },
+    {
+      "gain_vs_champion": 0.038498227561084675,
+      "scores": {
+        "champion": 0.6072845689884113,
+        "seed4": 0.645782796549496
+      },
+      "selected": "seed4",
+      "video_id": "place_a2b_left_episode000034"
+    },
+    {
+      "gain_vs_champion": 0.012374646145683066,
+      "scores": {
+        "champion": 0.6727437326745342,
+        "seed4": 0.6851183788202173
+      },
+      "selected": "seed4",
+      "video_id": "place_bread_basket_episode000013"
+    },
+    {
+      "gain_vs_champion": 0.008836693224720582,
+      "scores": {
+        "champion": 0.6475073705230805,
+        "seed4": 0.6563440637478011
+      },
+      "selected": "seed4",
+      "video_id": "place_bread_skillet_episode000027"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.7370839896573328,
+        "seed4": 0.7366188582947822
+      },
+      "selected": "champion",
+      "video_id": "place_burger_fries_episode000043"
+    },
+    {
+      "gain_vs_champion": 0.0036195511090089116,
+      "scores": {
+        "champion": 0.6722806112433034,
+        "seed4": 0.6759001623523123
+      },
+      "selected": "seed4",
+      "video_id": "place_can_basket_episode000042"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.6931730974472579,
+        "seed4": 0.6846252194088407
+      },
+      "selected": "champion",
+      "video_id": "place_container_plate_episode000017"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.737962418418185,
+        "seed4": 0.6891837005299516
+      },
+      "selected": "champion",
+      "video_id": "place_dual_shoes_episode000037"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.6870471366215717,
+        "seed4": 0.6644797421642274
+      },
+      "selected": "champion",
+      "video_id": "place_empty_cup_episode000029"
+    },
+    {
+      "gain_vs_champion": 0.029300686299315926,
+      "scores": {
+        "champion": 0.6253087224509399,
+        "seed4": 0.6546094087502559
+      },
+      "selected": "seed4",
+      "video_id": "place_fan_episode000009"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.7115134706384493,
+        "seed4": 0.654534488588267
+      },
+      "selected": "champion",
+      "video_id": "place_object_basket_episode000034"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.6527401046832744,
+        "seed4": 0.6237203663997434
+      },
+      "selected": "champion",
+      "video_id": "place_object_scale_episode000014"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.6729459882523534,
+        "seed4": 0.6616018545765673
+      },
+      "selected": "champion",
+      "video_id": "place_object_scale_episode000028"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.70981543267471,
+        "seed4": 0.7080737628888338
+      },
+      "selected": "champion",
+      "video_id": "place_object_stand_episode000018"
+    },
+    {
+      "gain_vs_champion": 9.86508896309024e-05,
+      "scores": {
+        "champion": 0.7048096370006138,
+        "seed4": 0.7049082878902447
+      },
+      "selected": "seed4",
+      "video_id": "place_object_stand_episode000040"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.6801416984228493,
+        "seed4": 0.6045661847509727
+      },
+      "selected": "champion",
+      "video_id": "place_phone_stand_episode000028"
+    },
+    {
+      "gain_vs_champion": 0.0032630318107677025,
+      "scores": {
+        "champion": 0.6249580336284184,
+        "seed4": 0.6282210654391861
+      },
+      "selected": "seed4",
+      "video_id": "place_phone_stand_episode000039"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.7142512043193511,
+        "seed4": 0.7051156973060291
+      },
+      "selected": "champion",
+      "video_id": "place_shoe_episode000043"
+    },
+    {
+      "gain_vs_champion": 0.024019857154000124,
+      "scores": {
+        "champion": 0.7065810865157672,
+        "seed4": 0.7306009436697674
+      },
+      "selected": "seed4",
+      "video_id": "place_shoe_episode000046"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.6844235689591203,
+        "seed4": 0.6638935503077207
+      },
+      "selected": "champion",
+      "video_id": "put_bottles_dustbin_episode000038"
+    },
+    {
+      "gain_vs_champion": 0.006186092652191055,
+      "scores": {
+        "champion": 0.663473885364166,
+        "seed4": 0.669659978016357
+      },
+      "selected": "seed4",
+      "video_id": "scan_object_episode000016"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.6109054395940009,
+        "seed4": 0.5927464329614304
+      },
+      "selected": "champion",
+      "video_id": "shake_bottle_episode000028"
+    },
+    {
+      "gain_vs_champion": 0.027601394027663817,
+      "scores": {
+        "champion": 0.6104142803557682,
+        "seed4": 0.638015674383432
+      },
+      "selected": "seed4",
+      "video_id": "shake_bottle_horizontally_episode000021"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.754279762063345,
+        "seed4": 0.7471092490256215
+      },
+      "selected": "champion",
+      "video_id": "stack_blocks_three_episode000046"
+    },
+    {
+      "gain_vs_champion": 0.005842569481895543,
+      "scores": {
+        "champion": 0.6431370078247151,
+        "seed4": 0.6489795773066106
+      },
+      "selected": "seed4",
+      "video_id": "stack_blocks_two_episode000013"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.698251112861167,
+        "seed4": 0.6931895706137741
+      },
+      "selected": "champion",
+      "video_id": "stack_bowls_two_episode000010"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "champion": 0.6346293354464367,
+        "seed4": 0.6345861178328587
+      },
+      "selected": "champion",
+      "video_id": "stamp_seal_episode000003"
+    },
+    {
+      "gain_vs_champion": 0.029285308881045635,
+      "scores": {
+        "champion": 0.5663736458738088,
+        "seed4": 0.5956589547548544
+      },
+      "selected": "seed4",
+      "video_id": "turn_switch_episode000037"
+    }
+  ],
+  "expert_means": {
+    "champion": 0.6700214358302617,
+    "seed4": 0.6654975261698358
+  },
+  "leave_one_out_contribution": {
+    "seed4": 0.0073896120535617005
+  },
+  "oracle_mean": 0.6774110478838234,
+  "oracle_uplift": 0.0073896120535617005,
+  "row_count": 40,
+  "selection_counts": {
+    "champion": 22,
+    "seed4": 18
+  },
+  "sources": {
+    "champion": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/fresh40_p0_seed1.corrected.csv",
+      "sha256": "3ba5c3854c23a340ed1c105868c44978609d926367224b912482ed09e369cf13"
+    },
+    "seed4": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/fresh40_p0_seed4.corrected.csv",
+      "sha256": "68447148fa0acadc2d67547493c52fc0df22bd5a06b1d2702463b92da59b0f12"
+    }
+  }
+}

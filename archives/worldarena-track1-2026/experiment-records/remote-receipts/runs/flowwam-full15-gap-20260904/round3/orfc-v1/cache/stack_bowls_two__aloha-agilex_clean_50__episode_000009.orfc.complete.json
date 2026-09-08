@@ -1,0 +1,45 @@
+{
+  "completed": true,
+  "contact_definition": "residual-near-fb-consistent-robot-motion",
+  "contact_fraction": 0.1446666717529297,
+  "contract": "flowwam-orfc-episode-cache/1",
+  "episode_id": "stack_bowls_two__aloha-agilex_clean_50__episode_000009",
+  "flow_backend": "RAFTFlowExtractor",
+  "flow_threshold": 0.25,
+  "inconsistency_threshold": 0.5,
+  "manifest_sha256": "15d962245daf2e723421f6190cb5ae992c34ba8614a4cfed2eaf008f1e6dc4d3",
+  "occlusion_fraction": 0.12866666913032532,
+  "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-v1/cache/stack_bowls_two__aloha-agilex_clean_50__episode_000009.orfc.pt",
+  "output_sha256": "faa783a9c3117744442b41f048c0a4811a8c7a0f11adff17725b5e38e8e8a7cc",
+  "residual_definition": "full_scene_flow-minus-robot_flow",
+  "residual_threshold": 0.25,
+  "robot_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/stack_bowls_two/aloha-agilex_clean_50/robot_only/data/episode9.hdf5",
+  "robot_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/stack_bowls_two/aloha-agilex_clean_50/robot_only/data/episode9.hdf5",
+  "robot_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/stack_bowls_two/aloha-agilex_clean_50/robot_only/data/episode9.hdf5",
+  "robot_hdf5_resolved_sha256": "65c7c11300dc484b599f207158dc847053654fa1f6fc40aff72bf52743ae3b5b",
+  "robot_hdf5_sha256": "65c7c11300dc484b599f207158dc847053654fa1f6fc40aff72bf52743ae3b5b",
+  "scene_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/stack_bowls_two/aloha-agilex_clean_50/data/episode9.hdf5",
+  "scene_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/stack_bowls_two/aloha-agilex_clean_50/data/episode9.hdf5",
+  "scene_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/stack_bowls_two/aloha-agilex_clean_50/data/episode9.hdf5",
+  "scene_hdf5_resolved_sha256": "8ad39b53d019d40c243bcffca862a6a622e589636ce8d48fd5869d0064eab2e9",
+  "scene_hdf5_sha256": "8ad39b53d019d40c243bcffca862a6a622e589636ce8d48fd5869d0064eab2e9",
+  "source_frame_count": 338,
+  "source_shape": [
+    240,
+    320
+  ],
+  "split": "round3_train_n8",
+  "target_shape": [
+    5,
+    15,
+    20
+  ],
+  "task": "stack_bowls_two",
+  "temporal_indices": [
+    0,
+    84,
+    168,
+    252,
+    336
+  ]
+}

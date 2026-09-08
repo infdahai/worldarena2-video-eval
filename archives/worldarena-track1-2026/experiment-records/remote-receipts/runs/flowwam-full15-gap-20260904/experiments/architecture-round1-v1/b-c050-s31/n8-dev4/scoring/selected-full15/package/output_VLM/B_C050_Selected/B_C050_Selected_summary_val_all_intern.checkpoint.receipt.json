@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/selected-full15/package/output_VLM/B_C050_Selected/B_C050_Selected_summary_val_all_intern.json",
+  "output_sha256": "b06793c6ed25e4e233d3989948fb48da23ae00e1a704f264b5368134cd246e92",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/B_C050_Selected/click_bell_episode_000008_20260831_034659.json",
+      "sha256": "63890e02a313a2bcf1f1c498bdcbd0dfd3d6532edf8a22d72e1b28ca9ebe9c50",
+      "timestamp": "20260831_034659",
+      "video": "click_bell_episode_000008.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/B_C050_Selected/open_laptop_episode_000024_20260831_034907.json",
+      "sha256": "1b621c6280046d9447313dd575f648778e0269463ff5c593842d9e1bd30f1430",
+      "timestamp": "20260831_034907",
+      "video": "open_laptop_episode_000024.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/B_C050_Selected/pick_dual_bottles_episode_000000_20260831_035115.json",
+      "sha256": "28eb1d35a89bddd1ad4b715afa1d406cf4bb0725ae4b3c1fcf0447ec62743a13",
+      "timestamp": "20260831_035115",
+      "video": "pick_dual_bottles_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/B_C050_Selected/place_container_plate_episode_000017_20260831_035324.json",
+      "sha256": "bf533944abe59fdce4c3961d35fc31c59b8db40ee1b9dc9c987ea15054f777ba",
+      "timestamp": "20260831_035324",
+      "video": "place_container_plate_episode_000017.mp4"
+    }
+  ]
+}

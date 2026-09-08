@@ -1,0 +1,78 @@
+{
+  "artifacts": {
+    "step25": {
+      "lora": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/train25-randomized500-click-bell-teacher-s31-v4/checkpoints/step-25.safetensors",
+      "lora_sha256": "62815f8d34553f00351b08b1ef5e89063c181d9aa88bdfcf46b86330b384928c",
+      "optimizer": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/train25-randomized500-click-bell-teacher-s31-v4/checkpoints/optimizer-step-25.pt",
+      "optimizer_sha256": "ebedd196db08866bb9f9ef1af905e392085fa77a79100068128c1daf180cf7ae"
+    }
+  },
+  "attention_scope": "cross",
+  "checkpoints": [
+    "step-25.safetensors"
+  ],
+  "contract": "flowwam-randomized500-run-receipt/1",
+  "dataset_manifest_sha256": "1899641457a38ec6108fb543af17ee380c848c982bce17d49654991cf74452c6",
+  "dataset_source_repo": "YixiangChen/FlowWAM_RoboTwin",
+  "dataset_source_revision": "506c4e014f7dbd291e7d7683c79fc685dd3e2714",
+  "elapsed_seconds": 1793.7059860229492,
+  "episode_allowlist_sha256": "920a6e4f2b950d1721a4e4da7a89d0cc6741db88e9873408501b9e749fb4746f",
+  "evaluation_evidence_used": false,
+  "flowwam_source_revision": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "frozen_self_checkpoint": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round4/jepa-preserve-v1/as-lr3e7-r2/checkpoints/step-8.safetensors",
+  "frozen_self_cross_key_count": 0,
+  "frozen_self_key_count": 120,
+  "frozen_self_loaded_key_count": 120,
+  "frozen_self_sha256": "d926f92ccfe8c7c28e91a485aecf54deeceeeffc2cb612bae3300e37f5da48c7",
+  "learning_rate": 1e-06,
+  "lora_rank": 8,
+  "losses": [
+    "official_rgb_diffusion",
+    "frozen_self_shared_noise_anchor"
+  ],
+  "mode": "train",
+  "parent_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "passed": true,
+  "peak_allocated_gib": 14.639269828796387,
+  "peak_reserved_gib": 15.22265625,
+  "selected_rows": 8,
+  "selected_rows_sha256": "31e7101d16e7800af799a6ffa08c6a26ba7489ae715b9bbbcdfb61d21fe44086",
+  "steps": 25,
+  "task_allowlist_sha256": "0a75f718f0204b10378f06c96640fc9a3dc22c41d63421fabe5eb586d104f455",
+  "teacher_mode": "frozen_self_cross_adapters_disabled",
+  "trainable_whitelist": {
+    "attention_scope": "cross",
+    "block_range": "late",
+    "passed": true,
+    "targets": "cross_attn.q,cross_attn.v",
+    "trainable_count": 24,
+    "trainable_names": [
+      "pipe.dit.blocks.24.cross_attn.q.lora_A.default.weight",
+      "pipe.dit.blocks.24.cross_attn.q.lora_B.default.weight",
+      "pipe.dit.blocks.24.cross_attn.v.lora_A.default.weight",
+      "pipe.dit.blocks.24.cross_attn.v.lora_B.default.weight",
+      "pipe.dit.blocks.25.cross_attn.q.lora_A.default.weight",
+      "pipe.dit.blocks.25.cross_attn.q.lora_B.default.weight",
+      "pipe.dit.blocks.25.cross_attn.v.lora_A.default.weight",
+      "pipe.dit.blocks.25.cross_attn.v.lora_B.default.weight",
+      "pipe.dit.blocks.26.cross_attn.q.lora_A.default.weight",
+      "pipe.dit.blocks.26.cross_attn.q.lora_B.default.weight",
+      "pipe.dit.blocks.26.cross_attn.v.lora_A.default.weight",
+      "pipe.dit.blocks.26.cross_attn.v.lora_B.default.weight",
+      "pipe.dit.blocks.27.cross_attn.q.lora_A.default.weight",
+      "pipe.dit.blocks.27.cross_attn.q.lora_B.default.weight",
+      "pipe.dit.blocks.27.cross_attn.v.lora_A.default.weight",
+      "pipe.dit.blocks.27.cross_attn.v.lora_B.default.weight",
+      "pipe.dit.blocks.28.cross_attn.q.lora_A.default.weight",
+      "pipe.dit.blocks.28.cross_attn.q.lora_B.default.weight",
+      "pipe.dit.blocks.28.cross_attn.v.lora_A.default.weight",
+      "pipe.dit.blocks.28.cross_attn.v.lora_B.default.weight",
+      "pipe.dit.blocks.29.cross_attn.q.lora_A.default.weight",
+      "pipe.dit.blocks.29.cross_attn.q.lora_B.default.weight",
+      "pipe.dit.blocks.29.cross_attn.v.lora_A.default.weight",
+      "pipe.dit.blocks.29.cross_attn.v.lora_B.default.weight"
+    ]
+  },
+  "trainer_sha256": "7c0b9afe01f4baeaaf32ed41c58273480c68dc087bda778c400dc4d6c1535928",
+  "variant": "aloha-agilex_randomized_500"
+}

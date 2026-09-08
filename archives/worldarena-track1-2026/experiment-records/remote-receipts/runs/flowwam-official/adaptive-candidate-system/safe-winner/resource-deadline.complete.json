@@ -1,0 +1,23 @@
+{
+  "completed": true,
+  "contract": "flowwam-safe-winner-25-terminal/1",
+  "deadline": "2026-08-26T08:30:00+08:00",
+  "decision_time": "2026-08-26T07:12:00+08:00",
+  "evidence": {
+    "expertpool_fresh40_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/fresh40/decision/expertpool-v2.complete.json",
+    "expertpool_fresh40_receipt_sha256": "76df6b8733234eba4e03ea5b5498ad097483a40497f499573ea3f0c634bced29",
+    "p0_clean50_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/clean50/selector-clean50.complete.json",
+    "p0_clean50_receipt_sha256": "1d72aa6b1a6f260c963756309f3c74a57504381b929663b9361a8201248b187e",
+    "reference_training_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/self-training/train-step25.complete.json",
+    "reference_training_elapsed_seconds": 1182.5718448162079,
+    "reference_six_gpu_breadth20_generation_seconds": 900,
+    "reference_full_gate_seconds": 3360,
+    "measured_lower_bound_seconds": 5442.571844816208,
+    "remaining_budget_seconds_at_decision": 4680
+  },
+  "gpu_work_started": false,
+  "passed": false,
+  "reason": "Measured training, six-GPU Breadth20 generation, and full Base/VLM/JEPA/corrected gate lower bound is about 91 minutes before target construction and code validation, exceeding the 78-minute budget remaining at the decision point. Starting would violate the fixed 08:30 terminal-receipt deadline.",
+  "terminal_state": "closed_resource_deadline",
+  "winner_after_closure": "p0_postgen_selector"
+}

@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/late-orb-v2/b2-block24-29-s31-r1/n8-dev4/scoring/selected-full15/package/output_VLM/Late_B2_Selected/Late_B2_Selected_summary_val_all_intern.json",
+  "output_sha256": "177ff53c839369fa406bc2f63a66afc448779e53314c94f02f2f70ea59938dfa",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/late-orb-v2/b2-block24-29-s31-r1/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Late_B2_Selected/click_bell_episode_000008_20260831_103031.json",
+      "sha256": "1787afeeeb2696b4d66271d3d48b439dff78262bba971666cee0ab9ac07e648c",
+      "timestamp": "20260831_103031",
+      "video": "click_bell_episode_000008.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/late-orb-v2/b2-block24-29-s31-r1/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Late_B2_Selected/open_laptop_episode_000024_20260831_103302.json",
+      "sha256": "20daf8f00074faf346696dbe8845ecd418e796cbb420cf5ad8f4cc2db31dfc75",
+      "timestamp": "20260831_103302",
+      "video": "open_laptop_episode_000024.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/late-orb-v2/b2-block24-29-s31-r1/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Late_B2_Selected/pick_dual_bottles_episode_000000_20260831_103535.json",
+      "sha256": "41ea96dbf027a7661ea3bfbeb74d7cc0b852f6038229e9acb028eef30d1796cf",
+      "timestamp": "20260831_103535",
+      "video": "pick_dual_bottles_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/late-orb-v2/b2-block24-29-s31-r1/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Late_B2_Selected/place_container_plate_episode_000017_20260831_103808.json",
+      "sha256": "6f18eca380bd6088944b27e971480aa24d9be9f035fa10b5f301a30ecd8a8d81",
+      "timestamp": "20260831_103808",
+      "video": "place_container_plate_episode_000017.mp4"
+    }
+  ]
+}

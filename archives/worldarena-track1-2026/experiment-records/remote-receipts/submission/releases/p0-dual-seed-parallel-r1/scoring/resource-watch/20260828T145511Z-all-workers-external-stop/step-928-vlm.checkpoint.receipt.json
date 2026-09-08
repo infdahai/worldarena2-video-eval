@@ -1,0 +1,282 @@
+{
+  "completed": false,
+  "completed_count": 29,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 125,
+  "missing_videos": [
+    "fixed_scene_task_episode_000233.mp4",
+    "fixed_scene_task_episode_000241.mp4",
+    "fixed_scene_task_episode_000249.mp4",
+    "fixed_scene_task_episode_000257.mp4",
+    "fixed_scene_task_episode_000265.mp4",
+    "fixed_scene_task_episode_000273.mp4",
+    "fixed_scene_task_episode_000281.mp4",
+    "fixed_scene_task_episode_000289.mp4",
+    "fixed_scene_task_episode_000297.mp4",
+    "fixed_scene_task_episode_000305.mp4",
+    "fixed_scene_task_episode_000313.mp4",
+    "fixed_scene_task_episode_000321.mp4",
+    "fixed_scene_task_episode_000329.mp4",
+    "fixed_scene_task_episode_000337.mp4",
+    "fixed_scene_task_episode_000345.mp4",
+    "fixed_scene_task_episode_000353.mp4",
+    "fixed_scene_task_episode_000361.mp4",
+    "fixed_scene_task_episode_000369.mp4",
+    "fixed_scene_task_episode_000377.mp4",
+    "fixed_scene_task_episode_000385.mp4",
+    "fixed_scene_task_episode_000393.mp4",
+    "fixed_scene_task_episode_000401.mp4",
+    "fixed_scene_task_episode_000409.mp4",
+    "fixed_scene_task_episode_000417.mp4",
+    "fixed_scene_task_episode_000425.mp4",
+    "fixed_scene_task_episode_000433.mp4",
+    "fixed_scene_task_episode_000441.mp4",
+    "fixed_scene_task_episode_000449.mp4",
+    "fixed_scene_task_episode_000457.mp4",
+    "fixed_scene_task_episode_000465.mp4",
+    "fixed_scene_task_episode_000473.mp4",
+    "fixed_scene_task_episode_000481.mp4",
+    "fixed_scene_task_episode_000489.mp4",
+    "fixed_scene_task_episode_000497.mp4",
+    "fixed_scene_task_episode_000505.mp4",
+    "fixed_scene_task_episode_000513.mp4",
+    "fixed_scene_task_episode_000521.mp4",
+    "fixed_scene_task_episode_000529.mp4",
+    "fixed_scene_task_episode_000537.mp4",
+    "fixed_scene_task_episode_000545.mp4",
+    "fixed_scene_task_episode_000553.mp4",
+    "fixed_scene_task_episode_000561.mp4",
+    "fixed_scene_task_episode_000569.mp4",
+    "fixed_scene_task_episode_000577.mp4",
+    "fixed_scene_task_episode_000585.mp4",
+    "fixed_scene_task_episode_000593.mp4",
+    "fixed_scene_task_episode_000601.mp4",
+    "fixed_scene_task_episode_000609.mp4",
+    "fixed_scene_task_episode_000617.mp4",
+    "fixed_scene_task_episode_000625.mp4",
+    "fixed_scene_task_episode_000633.mp4",
+    "fixed_scene_task_episode_000641.mp4",
+    "fixed_scene_task_episode_000649.mp4",
+    "fixed_scene_task_episode_000657.mp4",
+    "fixed_scene_task_episode_000665.mp4",
+    "fixed_scene_task_episode_000673.mp4",
+    "fixed_scene_task_episode_000681.mp4",
+    "fixed_scene_task_episode_000689.mp4",
+    "fixed_scene_task_episode_000697.mp4",
+    "fixed_scene_task_episode_000705.mp4",
+    "fixed_scene_task_episode_000713.mp4",
+    "fixed_scene_task_episode_000721.mp4",
+    "fixed_scene_task_episode_000729.mp4",
+    "fixed_scene_task_episode_000737.mp4",
+    "fixed_scene_task_episode_000745.mp4",
+    "fixed_scene_task_episode_000753.mp4",
+    "fixed_scene_task_episode_000761.mp4",
+    "fixed_scene_task_episode_000769.mp4",
+    "fixed_scene_task_episode_000777.mp4",
+    "fixed_scene_task_episode_000785.mp4",
+    "fixed_scene_task_episode_000793.mp4",
+    "fixed_scene_task_episode_000801.mp4",
+    "fixed_scene_task_episode_000809.mp4",
+    "fixed_scene_task_episode_000817.mp4",
+    "fixed_scene_task_episode_000825.mp4",
+    "fixed_scene_task_episode_000833.mp4",
+    "fixed_scene_task_episode_000841.mp4",
+    "fixed_scene_task_episode_000849.mp4",
+    "fixed_scene_task_episode_000857.mp4",
+    "fixed_scene_task_episode_000865.mp4",
+    "fixed_scene_task_episode_000873.mp4",
+    "fixed_scene_task_episode_000881.mp4",
+    "fixed_scene_task_episode_000889.mp4",
+    "fixed_scene_task_episode_000897.mp4",
+    "fixed_scene_task_episode_000905.mp4",
+    "fixed_scene_task_episode_000913.mp4",
+    "fixed_scene_task_episode_000921.mp4",
+    "fixed_scene_task_episode_000929.mp4",
+    "fixed_scene_task_episode_000937.mp4",
+    "fixed_scene_task_episode_000945.mp4",
+    "fixed_scene_task_episode_000953.mp4",
+    "fixed_scene_task_episode_000961.mp4",
+    "fixed_scene_task_episode_000969.mp4",
+    "fixed_scene_task_episode_000977.mp4",
+    "fixed_scene_task_episode_000985.mp4",
+    "fixed_scene_task_episode_000993.mp4"
+  ],
+  "output_json": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/scoring/checkpoints/step-928-vlm.partial.json",
+  "output_sha256": "fa3f91167d71cf79ce697745d375359fde87dae6fe9954feea81e2a661603165",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000001_20260828_214050.json",
+      "sha256": "eede696d548a8c639bd610453c918c9bd8d80b26ae3814294f5a0e0ad22ac6ed",
+      "timestamp": "20260828_214050",
+      "video": "fixed_scene_task_episode_000001.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000009_20260828_214305.json",
+      "sha256": "1bba0cf4cd0e758f68e49767b5169df16361e12704868421d57e1b2b351b1c3c",
+      "timestamp": "20260828_214305",
+      "video": "fixed_scene_task_episode_000009.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000017_20260828_214520.json",
+      "sha256": "39f0e329352af7a1c7ceff3327c7018fc2e05eb2feae98a224b9413c17c31f0a",
+      "timestamp": "20260828_214520",
+      "video": "fixed_scene_task_episode_000017.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000025_20260828_214735.json",
+      "sha256": "9c6ad28c504e2ab100b97fd4cb1e17c2f4031bb6b5b2827e4cf30ad6b5841892",
+      "timestamp": "20260828_214735",
+      "video": "fixed_scene_task_episode_000025.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000033_20260828_214949.json",
+      "sha256": "58c960d516d702aa48fdc548e90fd3a9cb5edaa6cc84be080785fc6623d3b163",
+      "timestamp": "20260828_214949",
+      "video": "fixed_scene_task_episode_000033.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000041_20260828_215203.json",
+      "sha256": "366a46ec9aeb301c1bd4154033feeca1f9fc183e1c47c2f92af3d32a7914fda5",
+      "timestamp": "20260828_215203",
+      "video": "fixed_scene_task_episode_000041.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000049_20260828_215417.json",
+      "sha256": "db9d5699ce038be68306ce56efaa4c13e512ecee1046cc1c00805d7174a31303",
+      "timestamp": "20260828_215417",
+      "video": "fixed_scene_task_episode_000049.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000057_20260828_215631.json",
+      "sha256": "0079c8c2a007a3548d075f8006834f6eb3091128881a08bb67cfe9f241067fd2",
+      "timestamp": "20260828_215631",
+      "video": "fixed_scene_task_episode_000057.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000065_20260828_215845.json",
+      "sha256": "6b90c8ad7606c136ea4b0f4ce702579f241e391c53d77d0cbd3627f3bb3a7f26",
+      "timestamp": "20260828_215845",
+      "video": "fixed_scene_task_episode_000065.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000073_20260828_220059.json",
+      "sha256": "e2093f3258e7cd01b2040953819d8a56fa18aa65c2ea71245af45a7a0271cfed",
+      "timestamp": "20260828_220059",
+      "video": "fixed_scene_task_episode_000073.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000081_20260828_220312.json",
+      "sha256": "7c0221f5ba20b5a790fc145f01170d09f1efea04f3c7fba7a1c62c057a00fb35",
+      "timestamp": "20260828_220312",
+      "video": "fixed_scene_task_episode_000081.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000089_20260828_220527.json",
+      "sha256": "cf87aa16d87ac1d5d9a1a05add3b7144a09885bc29066e0ffd2243f7551f7b0f",
+      "timestamp": "20260828_220527",
+      "video": "fixed_scene_task_episode_000089.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000097_20260828_220744.json",
+      "sha256": "d160464230404d1a948b4a9fef3e1b11605b6d5b7be3c93975b58a7f7a1ba79e",
+      "timestamp": "20260828_220744",
+      "video": "fixed_scene_task_episode_000097.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000105_20260828_221000.json",
+      "sha256": "7c50e534e59e56bbc6c69ab8d05f5548dd4f9af33b94363dbe2663c4707d642a",
+      "timestamp": "20260828_221000",
+      "video": "fixed_scene_task_episode_000105.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000113_20260828_221215.json",
+      "sha256": "c7801e37650b8228ca7f90b117fe8203d0a03ca31fbf9d98ec15de7f00724c66",
+      "timestamp": "20260828_221215",
+      "video": "fixed_scene_task_episode_000113.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000121_20260828_221430.json",
+      "sha256": "fec2c2a69a9059f1ac44855c8709dd6e810722728b563db5c87ff1da609cf0e6",
+      "timestamp": "20260828_221430",
+      "video": "fixed_scene_task_episode_000121.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000129_20260828_221645.json",
+      "sha256": "c8763c2b58a75fce9b43b56285555198d66e1d5c0d751974ad797c0ce052ada3",
+      "timestamp": "20260828_221645",
+      "video": "fixed_scene_task_episode_000129.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000137_20260828_221901.json",
+      "sha256": "70b180927621e75ced52ad65d488b9016e19ffe0ea310335e2c1ea5b76482523",
+      "timestamp": "20260828_221901",
+      "video": "fixed_scene_task_episode_000137.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000145_20260828_222115.json",
+      "sha256": "5b62076c1311b30f85c6e44962232bbc1b264c0a71f086d223846d8a6c3a14b0",
+      "timestamp": "20260828_222115",
+      "video": "fixed_scene_task_episode_000145.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000153_20260828_222331.json",
+      "sha256": "ad4cefdbef53fc4edeaef4dd747d0e8d55d436d8396c641050cfe5cfe2f870b5",
+      "timestamp": "20260828_222331",
+      "video": "fixed_scene_task_episode_000153.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000161_20260828_222546.json",
+      "sha256": "20de734df5148f1b346eb2a07f8a6cf547246774e263e4c21fbc896c26958669",
+      "timestamp": "20260828_222546",
+      "video": "fixed_scene_task_episode_000161.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000169_20260828_222801.json",
+      "sha256": "c2cd54bb970bd1ca5654b26d91c3a95cdd845e206fe4a34265be504489d28475",
+      "timestamp": "20260828_222801",
+      "video": "fixed_scene_task_episode_000169.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000177_20260828_223018.json",
+      "sha256": "7c238d200dbf5726391bc72b183b9ef937344ec033f55769c5777cf5f2e7258c",
+      "timestamp": "20260828_223018",
+      "video": "fixed_scene_task_episode_000177.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000185_20260828_223233.json",
+      "sha256": "926032dabfa090f7a71f070402215ed9be760eca12efaafd63b2d810aba4e0af",
+      "timestamp": "20260828_223233",
+      "video": "fixed_scene_task_episode_000185.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000193_20260828_223450.json",
+      "sha256": "ea018c27056342c681e2d344e481e1be70d4d4f3859d3a28c8688c014191989a",
+      "timestamp": "20260828_223450",
+      "video": "fixed_scene_task_episode_000193.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000201_20260828_223705.json",
+      "sha256": "674ab01308941c53cd4225bd90530dea117f22509311d5dcfd6506d8d1283fe9",
+      "timestamp": "20260828_223705",
+      "video": "fixed_scene_task_episode_000201.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000209_20260828_223921.json",
+      "sha256": "01984d480448d139fdc3b29bcb1c260f735f7a23caa28d910a82937af814fa78",
+      "timestamp": "20260828_223921",
+      "video": "fixed_scene_task_episode_000209.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000217_20260828_224138.json",
+      "sha256": "786d3a73fe9b6c1a66a8e164799a766140e5b17b19dfd69cb77e3bb127bf30f4",
+      "timestamp": "20260828_224138",
+      "video": "fixed_scene_task_episode_000217.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0928/dev-clean-50/work/tmp/vlm/HZ_World_seed4_shard0/fixed_scene_task_episode_000225_20260828_224352.json",
+      "sha256": "4ed6794148db4c50e45d971994f8524da60e083a04a878426a1c458915b19470",
+      "timestamp": "20260828_224352",
+      "video": "fixed_scene_task_episode_000225.mp4"
+    }
+  ]
+}

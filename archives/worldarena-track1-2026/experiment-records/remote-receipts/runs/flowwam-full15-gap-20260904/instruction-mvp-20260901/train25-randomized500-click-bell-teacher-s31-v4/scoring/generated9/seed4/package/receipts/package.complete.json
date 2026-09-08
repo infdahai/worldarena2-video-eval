@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 4,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "ff59c347808848337cb3626487bed806f26cb04ac0c289836668df754e01c2c0",
+      "source_sha256": "615c86ad7247d1749b99d37fd76ecc920f70004dc3708e3aebb5b6c4d1e5d625",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/train25-randomized500-click-bell-teacher-s31-v4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "deed7c95198f3220bb1f471cbe82df2a14b9f713c68dd2da2b5ad648eaa89498",
+      "source_sha256": "fd3d6089873f75412670d63598d163097c3f39c8bdaf30538a580e53e08cd8a4",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/train25-randomized500-click-bell-teacher-s31-v4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "6661bd14704311bf4da42edd8d3445c931d06950cee6f793ecb51d24a0562d7b",
+      "source_sha256": "53fc62ebcb1f0a239de20b5dfcceed733258908b28ebf08643203f8a1d221075",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/train25-randomized500-click-bell-teacher-s31-v4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "2f9f600e1f5d371fcd5dc2982e1340a51a7d3c9d6cd38033fa21cfb9543be67c",
+      "source_sha256": "8f1ba584aeee4c41d3fbad0ab9341ab0d9ba10159a27f8dddb0e868ef29baeea",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/train25-randomized500-click-bell-teacher-s31-v4/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

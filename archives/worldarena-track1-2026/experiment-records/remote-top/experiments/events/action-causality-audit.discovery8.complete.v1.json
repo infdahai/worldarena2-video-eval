@@ -1,0 +1,17 @@
+{
+  "event_id": "action-causality-audit.discovery8.complete.v1",
+  "experiment_id": "action-causality-audit",
+  "kind": "diagnostic_complete",
+  "payload": {
+    "comparison": "/data/di/worldarena2_track1_20260815/experiments/action_causality_audit/reports/comparison.v1.json",
+    "comparison_sha256": "1ad2f6b7a5cde4592bc95577e9d33d695f2a60674bcf15737b10d781327923d9",
+    "decision": "qonly_does_not_repair_cross_arm_routing",
+    "qonly_classification": "cross_arm_gradient_routing",
+    "report": "/data/di/worldarena2_track1_20260815/experiments/action_causality_audit/reports/action-causality-report.v1.md",
+    "report_sha256": "f349c5e3884788225ed6412487077937b5830b69a4e97d0032f2a099f077c056",
+    "s1_classification": "cross_arm_gradient_routing"
+  },
+  "schema": "wan-action-lite-experiment-event/1",
+  "selection_valid": false,
+  "stage": "action-signal-audit"
+}

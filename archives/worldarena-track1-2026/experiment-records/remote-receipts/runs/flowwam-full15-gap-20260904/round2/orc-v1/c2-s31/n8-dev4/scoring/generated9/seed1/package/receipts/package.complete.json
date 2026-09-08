@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 1,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "c0d56557858ea9238c3d63d010561fc42e4d94f08805cf3ae2eab0c750bb1957",
+      "source_sha256": "039e2f3a3e19c994cf0a3e4809f924a9a99efd493ca6656da0275769bc6de131",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "7d04cda232f923d1eb4bbb52ae8e91044f80e1e31df638121a2f00ae4a9ef016",
+      "source_sha256": "dbb710806b0778b4ab7900a4966675227fe6f48aab29fcb6966871c47db20297",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "aafdb50232957823b9847ce252393a920356abeacf101b3c7e9f370b0446139f",
+      "source_sha256": "956a353c5246470b50315dbdbeb95477618d4fb0ed240e1b66e5b278d8e47dcb",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "53b2707c942051c9bdc3c808ae0d40acee2eb96e69b019c5c335beff85fe87c4",
+      "source_sha256": "fd84630c4b0c9f05d864a03fa320ab43b9de5c89c5a16c3396cea6f385fa4d66",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/orc-v1/c2-s31/n8-dev4/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

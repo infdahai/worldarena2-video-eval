@@ -1,0 +1,15 @@
+{
+  "completed": true,
+  "config_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/action-to-text/latest-scorer/gt-motion-config.yaml",
+  "config_sha256": "0db3af891eac12dce627bc29afe3a6cff142741cd009f834812d78df471670bb",
+  "contract": "worldarena2-latest-gt-reference-motion-eval/1",
+  "episode_count": 20,
+  "metric_episode_counts": {
+    "Dynamic Degree": 20,
+    "Flow Score": 20,
+    "Motion Smoothness": 20
+  },
+  "physical_gpu": 4,
+  "results_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/action-to-text/latest-scorer/gt-motion-output/gt_reference_results.json",
+  "results_json_sha256": "5a725dc10e7297fd1d960e44a9335904cf9765b4fd3bf08354d8753cd7c10afa"
+}

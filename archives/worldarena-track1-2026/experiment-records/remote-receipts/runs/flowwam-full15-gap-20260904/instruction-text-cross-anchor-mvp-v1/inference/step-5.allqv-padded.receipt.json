@@ -1,0 +1,14 @@
+{
+  "all_cross_exact": true,
+  "all_self_zero": true,
+  "contract": "instruction-cross-qv-padded-all-qv-mvp/1",
+  "cross_source": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/train5-late-r8-anchor01-s31/checkpoints/step-5.safetensors",
+  "cross_source_sha256": "dcf7853f9f57937da05cc8ca2da18aebaddef7abd8633974793b2f4a9a0f99c3",
+  "cross_tensor_count": 120,
+  "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/inference/step-5.allqv-padded.safetensors",
+  "output_sha256": "88ad7aef284532584c2ca9cb5e71869cd65c7148d37939b2b7801f350467df34",
+  "self_template": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-sam3-anchor-mvp-v1/train-step4-safe/checkpoints/step-4.stage1-selfqv60.safetensors",
+  "self_template_sha256": "5ac2644f6db4f5220952cd150c2836c6781ee94e2ad713635c3ec892f644a24e",
+  "tensor_count": 240,
+  "zero_self_tensor_count": 120
+}

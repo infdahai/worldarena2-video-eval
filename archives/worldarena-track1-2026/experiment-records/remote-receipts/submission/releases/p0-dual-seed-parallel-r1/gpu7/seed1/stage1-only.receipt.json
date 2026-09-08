@@ -1,0 +1,1294 @@
+{
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "generated_this_run_count": 0,
+  "inference_sweep": {
+    "is_official_default": true,
+    "overrides": {
+      "flow_max_magnitude": 20.0,
+      "seed": 1
+    }
+  },
+  "instruction_variant": 0,
+  "max_episodes": null,
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "physical_gpu": 7,
+  "requested_episode_names": [
+    "episode8",
+    "episode16",
+    "episode24",
+    "episode32",
+    "episode40",
+    "episode48",
+    "episode56",
+    "episode64",
+    "episode72",
+    "episode80",
+    "episode88",
+    "episode96",
+    "episode104",
+    "episode112",
+    "episode120",
+    "episode128",
+    "episode136",
+    "episode144",
+    "episode152",
+    "episode160",
+    "episode168",
+    "episode176",
+    "episode184",
+    "episode192",
+    "episode200",
+    "episode208",
+    "episode216",
+    "episode224",
+    "episode232",
+    "episode240",
+    "episode248",
+    "episode256",
+    "episode264",
+    "episode272",
+    "episode280",
+    "episode288",
+    "episode296",
+    "episode304",
+    "episode312",
+    "episode320",
+    "episode328",
+    "episode336",
+    "episode344",
+    "episode352",
+    "episode360",
+    "episode368",
+    "episode376",
+    "episode384",
+    "episode392",
+    "episode400",
+    "episode408",
+    "episode416",
+    "episode424",
+    "episode432",
+    "episode440",
+    "episode448",
+    "episode456",
+    "episode464",
+    "episode472",
+    "episode480",
+    "episode488",
+    "episode496",
+    "episode504",
+    "episode512",
+    "episode520",
+    "episode528",
+    "episode536",
+    "episode544",
+    "episode552",
+    "episode560",
+    "episode568",
+    "episode576",
+    "episode584",
+    "episode592",
+    "episode600",
+    "episode608",
+    "episode616",
+    "episode624",
+    "episode632",
+    "episode640",
+    "episode648",
+    "episode656",
+    "episode664",
+    "episode672",
+    "episode680",
+    "episode688",
+    "episode696",
+    "episode704",
+    "episode712",
+    "episode720",
+    "episode728",
+    "episode736",
+    "episode744",
+    "episode752",
+    "episode760",
+    "episode768",
+    "episode776",
+    "episode784",
+    "episode792",
+    "episode800",
+    "episode808",
+    "episode816",
+    "episode824",
+    "episode832",
+    "episode840",
+    "episode848",
+    "episode856",
+    "episode864",
+    "episode872",
+    "episode880",
+    "episode888",
+    "episode896",
+    "episode904",
+    "episode912",
+    "episode920",
+    "episode928",
+    "episode936",
+    "episode944",
+    "episode952",
+    "episode960",
+    "episode968",
+    "episode976",
+    "episode984",
+    "episode992",
+    "episode1000"
+  ],
+  "resumed_valid_count": 125,
+  "robot_conditioning": {
+    "embodiment_dir": "/data/di/worldarena2_track1_20260815/sources/RoboTwin/assets",
+    "mode": "sapien"
+  },
+  "sample_manifest": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/manifests/seed1.gpu7.jsonl",
+  "sample_manifest_sha256": "4069a28d26798bcc972200d4776bde10e2d882bacbe4a3844c1e37f272f17bfe",
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 1,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode8.mp4",
+      "sha256": "438563cbb1b7b018f132c5c11f4dc4d7660c1e3911e8834ee85ad1a982b1b5ac",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode16.mp4",
+      "sha256": "9a4148f9dd37ff401810e34368a292c890e57bccc5b380b9231f4ccf19a98b26",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode24.mp4",
+      "sha256": "81464d54e31ef237563f6ed14fedc33d96cb048fd9bd38d86f83dfc934b5cf50",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode32.mp4",
+      "sha256": "11dc1d4327573f609bc2ad9a67e6f1d0a66556443a010d83b663bb142f12cfef",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode40.mp4",
+      "sha256": "8c90c68e4f2f238968c6ad5508c4d595236866cafb6144590d03308d1bcb2789",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode48.mp4",
+      "sha256": "7f58b108fda543f61e396f9e7799321c1226dc96ae477ffb93130c883617f3a3",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode56.mp4",
+      "sha256": "cdd199bbb4fd3a48dc70691be1a2598b5fbf5d45cf4be34882957840f5efb733",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode64.mp4",
+      "sha256": "4bee9f667a9a5660b0dba94c659d8453a58ee72478e9678999789c9fdea8ae2f",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode72.mp4",
+      "sha256": "5d8132fe4066071bb4bd73aef5184e3678749d409144c8b541dcddc2e52255de",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode80.mp4",
+      "sha256": "67c4d78ca0962834efa61bb6fc1745ef135b26627ebb5373aaf1d5b1e12ebba7",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode88.mp4",
+      "sha256": "26a4e417675af289908e3f49e383ffd24c1fa363959edce6a865e8b3b19e24fc",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode96.mp4",
+      "sha256": "f2a35d971503eb246e933b1635fc580a9c71433546561bf1f2674b155b8321b4",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode104.mp4",
+      "sha256": "5f822102e4232d501b31dd6d9665b40b3468dab3a718eb5f1c48a1e67b500b19",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode112.mp4",
+      "sha256": "270e97b4d22f2356299ea94942eee4eae4b498735e615d821b5f21fb919f0363",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode120.mp4",
+      "sha256": "341bedbfae64c367cd62ad9846efa841bfa6ec7736ed637f6f27767d889e3368",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode128.mp4",
+      "sha256": "9d3b71cd7c66dea56739143133fc71c548d96ecbb06cfa6fc23923fdb737000b",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode136.mp4",
+      "sha256": "fb72adbd7ab432c3fa4325826f2a9c557d5448d88ef9d67a42726f76dc136433",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode144.mp4",
+      "sha256": "8f4294ee23df17a95ab09f16f77faa732e72a0f4ca9bd64b73e7e3ec73bdde13",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode152.mp4",
+      "sha256": "ab5164a6f2d8b992763ad27005e74c196343fd37dfee85e8eedebe1544dd8f6f",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode160.mp4",
+      "sha256": "7063b2455097b9a2f2ac8c78a94feacfad87251bbf657f36196146e975e2d535",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode168.mp4",
+      "sha256": "f7bc7a2e7eaa6b0cde44693ecaa7ea18262ad94f3fa47891d4ebf64ad5d5fcb5",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode176.mp4",
+      "sha256": "1813b47054f45e88345dddf920e5e4d22278ac32ca372134ee2259269ef2c691",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode184.mp4",
+      "sha256": "6d7301d3356109fa774ba02ddcd2a32314103f3a54b130336774d87241834728",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode192.mp4",
+      "sha256": "192566d347ccea957068a385ed15aac5ba63665cdc443985129910bebfa7deab",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode200.mp4",
+      "sha256": "72d91f1927fd68ead3fd626f70304c3cf600de0ae94c3655d65b8d53c55d0c60",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode208.mp4",
+      "sha256": "84b5a021ebb90200085256a95e8b3685f4fc6b9e7e84b38d9b8a3fd9051cf215",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode216.mp4",
+      "sha256": "e2c529156b9c46ccb2c2f26d4ea1c2c6d91ca82ac032527a547bb39932b94e12",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode224.mp4",
+      "sha256": "6e4e0ab401486843af1573b7be6f6cfe7ec09df9e289f8143e3225fb0cbb132b",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode232.mp4",
+      "sha256": "501ecfe2c9b4cf9a293f1214134c00afc9488c8c991d43c3f176102210f47bf8",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode240.mp4",
+      "sha256": "b1b7c5203cc6cb4f6a201b0261073db3f818609d198342ff63088906975e703b",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode248.mp4",
+      "sha256": "3d24d8b4046c4ce18e73738f1b96b528d004b2dbdae20dc6fe84405b24258fb0",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode256.mp4",
+      "sha256": "b190a7ddfa9b8d513c93ea4973292db9d881690c502b7d3c29c2e0881cf0150e",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode264.mp4",
+      "sha256": "21dd1c02f49c87a554cdfb84fe71179de08060bfa707168b7d57dd0ee0797722",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode272.mp4",
+      "sha256": "ee3cc35739018511ecb2502284c2dc241f8499461a86a646ce2c32328df5e4c0",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode280.mp4",
+      "sha256": "da973d5296221db1fa316df0a7ca9526a31371e1e849360a09fcbb9d50e6030f",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode288.mp4",
+      "sha256": "6194385cb84fdaba4874bf435a96cc7b9f750906c003ebf94158afaee78bd790",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode296.mp4",
+      "sha256": "afa9a2943a0476371faa501293d14f4a23346935f6f04cd9028cd9dec05ebcab",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode304.mp4",
+      "sha256": "65c8bfb08d956521505772fee7fb071672e25485e069a2346bf80da1906ddf56",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode312.mp4",
+      "sha256": "0f983e610531593d19bd3de41f145839fffe986a9a9efdb398fc59e3a80dff00",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode320.mp4",
+      "sha256": "4908370ab1b69a6fab60a2c255535a4d2612eee9d73d1c9f0d8b4eee06162b36",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode328.mp4",
+      "sha256": "3188cb0f967799f4d2e28d4cd19d0ffa87314e2301b3cca6f7f4dd26524ca2e1",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode336.mp4",
+      "sha256": "6b458c7cd9368983ca655918387ad66dc6e709f5871050d05af50bd13a08b7fe",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode344.mp4",
+      "sha256": "7b3f1a485615058d943bb0832036f37de27db4a99de775142ae14a812a277f8c",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode352.mp4",
+      "sha256": "616b886bc1b26d66f1f8517c19918485e52cd28d813d8170897e94232115a4fa",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode360.mp4",
+      "sha256": "5377fed3bb49a9b718ded61c8c817c953aa6090e891edbc9d5f183b389871c8f",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode368.mp4",
+      "sha256": "e3162a6a8657d66043ebbdd5e8972f46b7af71fc51324137b4008821636f7fe5",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode376.mp4",
+      "sha256": "ff454d75891cce5deea2f654269d603df7013eca5d5b297beefe477ac3e45222",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode384.mp4",
+      "sha256": "b55d1adbb7e181511e79db029e6e8f1092e4b97055e96a19de24f8145ab887f9",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode392.mp4",
+      "sha256": "674eb0dbe815048e5008f166519e4e02d515986d5f43c0082053ef5e3481879a",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode400.mp4",
+      "sha256": "2873d70ee3d861974e8b02bcca254613b80249f7a886528819273d308a993739",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode408.mp4",
+      "sha256": "6af8204b3835757916e3c7ad097d44298cfc6fb8d4b91439e6d8cc84ecfe3877",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode416.mp4",
+      "sha256": "8da8b35cd2fada723ea2354847163304344d4ebf64e59a9df7c1c96e8ba18640",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode424.mp4",
+      "sha256": "4938b75219616b1b1b6d46f7bec204199d7070179149c57652ba23ef33cfc003",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode432.mp4",
+      "sha256": "418e640f4825bad254fe14cc21c6c4d9eb0fb393c15f7412dfc4fd28ac3381dd",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode440.mp4",
+      "sha256": "38279ae00440d7226356050c810cfb96fdd755e35bd6367fdebfb6d45268db98",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode448.mp4",
+      "sha256": "7398a782cba21a16ac0cb2f9edec7299fcae06e534422210f73208e951058dfa",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode456.mp4",
+      "sha256": "8034daf3599104def7cc14462ee0d0afca9a42eb5e89cf31858486ab7a97e2db",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode464.mp4",
+      "sha256": "e1983601f5cec004a6706270f44b2ff8f958939ae31ea62f87943fa90bcf4ef5",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode472.mp4",
+      "sha256": "e18f0b78ac1e912319679bb6e497ab6d5c7e84d400e5cab046b6803514176006",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode480.mp4",
+      "sha256": "3f91052b324882f06ab4c35e240e5ec9701f6e53d6ee76ec574d50ebbc944a91",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode488.mp4",
+      "sha256": "f7169304f57513e3eca969d63ae6081bc1b7e0bf8042b6c5a3d0861eb5bf0662",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode496.mp4",
+      "sha256": "f5d354170a165088e60d39e447cb22594321271bc41f79b6a4867148d4c0c97c",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode504.mp4",
+      "sha256": "435b8a091700dce33f22884687ce3676eb88caaf395ca7e1a1a0d90ef10b5fb8",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode512.mp4",
+      "sha256": "b0c34b0b00f0e382ee3faed394cf016c753ab5cd8bd76fba445197001dc08bdd",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode520.mp4",
+      "sha256": "b521ff08c380004ee9c1c969347160b1b9f0a09b6182df8ae19d050e9622d896",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode528.mp4",
+      "sha256": "fca7dd907099100f517196f973bcbb98fca4b0984e096dd9de95820ac09c1ddf",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode536.mp4",
+      "sha256": "0ae4174f65013517ebacd48dffca5f5558eebffe0355f12d76b9a5a10b1c25fb",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode544.mp4",
+      "sha256": "82c1a409982411ead523352ddf2ccb49298530abfdf5553566c25f8dba4a1078",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode552.mp4",
+      "sha256": "d6a5564f81f6bd42a9a991cdb5aed2be3d0a9cd1e1a5d3d6de3e6054108e016a",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode560.mp4",
+      "sha256": "ac5f196d3cf4922aad13f330a27cd6f82b6423f9c5695b450188cda5c4dab8f7",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode568.mp4",
+      "sha256": "4aefc403ff5bdf9037d527a6d63a66ead321fa00c3dc5c8c2ddbee35e6cee933",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode576.mp4",
+      "sha256": "79e5ce5b09f841618b06742fabfc4c3a1845523530cf6caadf496436762b96cf",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode584.mp4",
+      "sha256": "1c631fbf0cdca7c1b4cc9588bd6815bff833ad8678b8103c330ce4ba46fbf360",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode592.mp4",
+      "sha256": "b9533981fbe7730dd3081ba9b9062a2119af13717e03c3ab140d894f62ff315c",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode600.mp4",
+      "sha256": "79003f7d1e69c0369327f200ab32406fa3bac8c1191f4fdeff474695d5a8861a",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode608.mp4",
+      "sha256": "08cc1a53663b171a8f647d58cf092589bd062160f96a9ee2f77e73727f29beab",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode616.mp4",
+      "sha256": "1afe839d3e5e1649ef17462e480451006a109ffe0754a7570db723f56a2cb321",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode624.mp4",
+      "sha256": "7e7f12f3c84427ebd46a4d372804eec35ef694c62c810b869d465d95eb52451f",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode632.mp4",
+      "sha256": "6a547ed9faf188a6cf87408108d0cd7daee01e6faa54980b21ff517fdb43f142",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode640.mp4",
+      "sha256": "16a4ee9919b9b991b6ebae77af12ab91d0a93c58b7b40fe4448b1adb353c60d8",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode648.mp4",
+      "sha256": "6bd92b207240e4154f973743a4b983aa51adfcea9625e0243ac2b9bf04a74256",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode656.mp4",
+      "sha256": "7e20821e804fd704258105392a3f5d48387c0cef6f9307d03799a4934bb6267b",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode664.mp4",
+      "sha256": "1334d026b5e7296dd11b54dbe62ddc9b3e83d6098316bb116895ab23d93f615f",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode672.mp4",
+      "sha256": "baa5ee90d9ebc643c5ea1985cbf75b8d7964e10a4f72b15593efb69fe6582d00",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode680.mp4",
+      "sha256": "521b019da4c2486a0ea238136ffbaac877c7fe806050fc5bbd04c5063e204436",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode688.mp4",
+      "sha256": "68b63b7b8f08c45d08e8a90590b88a3d626d86e3d2044e52629a9f5bf6ef5672",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode696.mp4",
+      "sha256": "fd201919dfdb773256c27e385f239df93b1d381f87a773a7035f674c27a0486e",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode704.mp4",
+      "sha256": "8a26793a5e0efff494a0f58eb8d1f5a6ebaaae9071c2518356ae93f0c44c7a6e",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode712.mp4",
+      "sha256": "549c639adda4692adfeeb9f98d1ae6a4ddbb5947136af75fad38296f37d73fa6",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode720.mp4",
+      "sha256": "6b841fc960aa7992c966ce87ec25f2c6b037888bb9a82cd01d09b3d3b3a5215a",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode728.mp4",
+      "sha256": "0bcd9e18a15e8f55f98499b08a0d1312e0bc14e928f03af60c673d2d6bddc688",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode736.mp4",
+      "sha256": "11920680d27647cbe00ec9226e91937e0f0c39c4b172984b7741000b31895589",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode744.mp4",
+      "sha256": "3a41ba74bf76aa7f531c51708d59a5904528373f1592814b53a9d846315bd6f0",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode752.mp4",
+      "sha256": "046ccd93b3e3810751101a79bf7ba9d700033d6bf9bbed51713bdc5ffbdf9f36",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode760.mp4",
+      "sha256": "53c429df66fbb47c070c63d740712c7f079b247594d8e5e9c3459811fefebe20",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode768.mp4",
+      "sha256": "df764c401b82c0ec63f6b3288491d154c6478441f4ddaf4aa960dd1656384598",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode776.mp4",
+      "sha256": "f059f89d3bf3d681775e2f1255e8cf65d11702dcc9a5dc6efff23bd2f2a56a2d",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode784.mp4",
+      "sha256": "037e52c988c50458749a139384bfe9f8da3a4418e2f7e7fe20e98b6001cb3d90",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode792.mp4",
+      "sha256": "265f5d4021379ad3f2cd70813f7dad35c21079349200a2787d1c33a92b263565",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode800.mp4",
+      "sha256": "3d26d31996909f0533a1fb3f6d77591ed5d8e68ea86339aeb5faffbc70f6d51f",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode808.mp4",
+      "sha256": "80eddcea908088e29010f3fe9e4d37ba04216609b28a7c6d198965bf4cd4cdcc",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode816.mp4",
+      "sha256": "b4f9935c0ea6d3ab1e069c8638dc036c5c65be360b58fb25324334c9a0154da8",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode824.mp4",
+      "sha256": "631b9690b34b1aa624da22cf47fe77514cb9a1d9ec3445255a031b00fa19e43c",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode832.mp4",
+      "sha256": "4dbefedb08c64742ee38807224fd75f52e5902bf71d2e9d5795c2140bad246de",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode840.mp4",
+      "sha256": "72508e36e8fab2b54dbe7f3180e994e0d46ebcf2a6bdb817be9d136562a4c531",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode848.mp4",
+      "sha256": "60a0428901230901bd8b6612d5d325f5a20c9081742a367101fdb30b1553a4e2",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode856.mp4",
+      "sha256": "3864e7c9664ee93b918dbb1c47ffb61f7de9d6c3f7369c3b30bdac3082266dd9",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode864.mp4",
+      "sha256": "35fafe9e95c65893a4f36fb556ea732d5758a6695c3fc5d503975cc61c302e82",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode872.mp4",
+      "sha256": "c07845839ce1493e2066b2e9f40d1bd41ebd8faeba7294c204a5d9ea15a61cfc",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode880.mp4",
+      "sha256": "9710714ef6ccd5b165ef0a319ad690e8be950423fee6c0189a6f66fc4dc3ba94",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode888.mp4",
+      "sha256": "3dcfe20864a3ee9da0f45fe4fb90c3db445cb12496c4a113edcc4a2b79f7c344",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode896.mp4",
+      "sha256": "e260ef9b6e7737469293ed6ae1ddf34db5a20df6f787a02737313f92ba1bf237",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode904.mp4",
+      "sha256": "7069ba82f44f8a342e6db1e3662db0f1c9e5039b39c8f77bae20356c22d71381",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode912.mp4",
+      "sha256": "ce40e8a74942c5685c3319647d4290e832116f4db3dcc1ce0bfc825804f9861f",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode920.mp4",
+      "sha256": "512c231e72059d92f279c70cd8633d935d14cf428a9b55d92f3875f612384b24",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode928.mp4",
+      "sha256": "88b88cb790fa3b4264dfa9415b9bf63bc801f50f73dc8c03f8a59d34bc431694",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode936.mp4",
+      "sha256": "686a6fe30317be942c35df73d9ef2edf391f221dcff5a9b7ad11a1676865c0fb",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode944.mp4",
+      "sha256": "18e4c559ddaaee4c37eee8ebd745426d0b4aeececdbcc4349994db010b2e0092",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode952.mp4",
+      "sha256": "744c7a852412acaf14186839aefc4464c183fbf9823ca441b89b1d4c3356cff7",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode960.mp4",
+      "sha256": "967d931eb6ef54a77e9c96797e103727ac28d3fa01f6b20cbdf5b67556d00e30",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode968.mp4",
+      "sha256": "0757a4f57e8c0ec7d5d5c9e451053cbdcc8a49c67e7d39b783c9bdcd05b225e5",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode976.mp4",
+      "sha256": "7572b5a64b63b4457c4a97b28099324241941e7b307a0b76dd2cb15c680b2ac2",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode984.mp4",
+      "sha256": "5bdc9f55c47898a1ce771b9a980948d85c0d9284c3bb75cff1f5c2b2d1bddff3",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode992.mp4",
+      "sha256": "53228ac944df4328a0cea650b71930239117ff7338b8e9c93afc902424835d64",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode1000.mp4",
+      "sha256": "f3491d0852a6c25af1149b4b7dbb905f6b04886e3b35bb79e0d3194553db4e63",
+      "width": 640
+    }
+  ]
+}

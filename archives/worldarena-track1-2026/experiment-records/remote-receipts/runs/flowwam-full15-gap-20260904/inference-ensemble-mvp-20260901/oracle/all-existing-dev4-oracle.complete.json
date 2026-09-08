@@ -1,0 +1,166 @@
+{
+  "baseline_mean": 0.6930188547807179,
+  "completed": true,
+  "contract": "worldarena-inference-ensemble-oracle-mvp/1",
+  "episodes": [
+    {
+      "gain_vs_champion": 0.00011200131120447931,
+      "scores": {
+        "action-safe": 0.7098576906429499,
+        "as-lr3e7": 0.7158263528296488,
+        "champion": 0.7157143515184443,
+        "orfc-mid-bottles": 0.7096144647350112,
+        "orfc-mid-move": 0.7062527541300564,
+        "orfc-neg-lift": 0.6763761399777094,
+        "orfc-top-hanging": 0.6804301308151897,
+        "orfc-top-scan": 0.7121739200346603,
+        "orfc-top-stack": 0.7118030071688721,
+        "orfc-weak-place": 0.709854370475819,
+        "static-heavy": 0.7140619302957002
+      },
+      "selected": "as-lr3e7",
+      "video_id": "click_bell_episode000008"
+    },
+    {
+      "gain_vs_champion": 0.02418980785340885,
+      "scores": {
+        "action-safe": 0.6908356051642586,
+        "as-lr3e7": 0.6973404467743788,
+        "champion": 0.6731506389209699,
+        "orfc-mid-bottles": 0.6909325301949581,
+        "orfc-mid-move": 0.6882286568734577,
+        "orfc-neg-lift": 0.6946630461051161,
+        "orfc-top-hanging": 0.6870243443271413,
+        "orfc-top-scan": 0.6876353935344547,
+        "orfc-top-stack": 0.6889061525985698,
+        "orfc-weak-place": 0.691693818203977,
+        "static-heavy": 0.6903517155153415
+      },
+      "selected": "as-lr3e7",
+      "video_id": "open_laptop_episode000024"
+    },
+    {
+      "gain_vs_champion": 0.01191090097001024,
+      "scores": {
+        "action-safe": 0.6858912091573184,
+        "as-lr3e7": 0.684292193013816,
+        "champion": 0.6745314662734058,
+        "orfc-mid-bottles": 0.683212397053868,
+        "orfc-mid-move": 0.6322346014611249,
+        "orfc-neg-lift": 0.686442367243416,
+        "orfc-top-hanging": 0.6361851373035924,
+        "orfc-top-scan": 0.6344604138819644,
+        "orfc-top-stack": 0.6815725971482219,
+        "orfc-weak-place": 0.6849487972520859,
+        "static-heavy": 0.6375333269305623
+      },
+      "selected": "orfc-neg-lift",
+      "video_id": "pick_dual_bottles_episode000000"
+    },
+    {
+      "gain_vs_champion": 0.0,
+      "scores": {
+        "action-safe": 0.6785081330774015,
+        "as-lr3e7": 0.701013147165723,
+        "champion": 0.7086789624100515,
+        "orfc-mid-bottles": 0.6589792416578784,
+        "orfc-mid-move": 0.6830077099398741,
+        "orfc-neg-lift": 0.6475408311384303,
+        "orfc-top-hanging": 0.6768021636604592,
+        "orfc-top-scan": 0.6785759432934004,
+        "orfc-top-stack": 0.6765001126980839,
+        "orfc-weak-place": 0.6732534121958476,
+        "static-heavy": 0.6809593532603244
+      },
+      "selected": "champion",
+      "video_id": "place_container_plate_episode000017"
+    }
+  ],
+  "expert_means": {
+    "action-safe": 0.6912731595104821,
+    "as-lr3e7": 0.6996180349458917,
+    "champion": 0.6930188547807179,
+    "orfc-mid-bottles": 0.6856846584104289,
+    "orfc-mid-move": 0.6774309306011282,
+    "orfc-neg-lift": 0.6762555961161679,
+    "orfc-top-hanging": 0.6701104440265957,
+    "orfc-top-scan": 0.6782114176861199,
+    "orfc-top-stack": 0.6896954674034369,
+    "orfc-weak-place": 0.6899375995319323,
+    "static-heavy": 0.6807265815004822
+  },
+  "leave_one_out_contribution": {
+    "action-safe": 0.0,
+    "as-lr3e7": 0.0006973504951167664,
+    "orfc-mid-bottles": 0.0,
+    "orfc-mid-move": 0.0,
+    "orfc-neg-lift": 0.00013778952152443402,
+    "orfc-top-hanging": 0.0,
+    "orfc-top-scan": 0.0,
+    "orfc-top-stack": 0.0,
+    "orfc-weak-place": 0.0,
+    "static-heavy": 0.0
+  },
+  "oracle_mean": 0.7020720323143738,
+  "oracle_uplift": 0.009053177533655865,
+  "row_count": 4,
+  "selection_counts": {
+    "action-safe": 0,
+    "as-lr3e7": 2,
+    "champion": 1,
+    "orfc-mid-bottles": 0,
+    "orfc-mid-move": 0,
+    "orfc-neg-lift": 1,
+    "orfc-top-hanging": 0,
+    "orfc-top-scan": 0,
+    "orfc-top-stack": 0,
+    "orfc-weak-place": 0,
+    "static-heavy": 0
+  },
+  "sources": {
+    "action-safe": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-action-safe-s3/n8-dev4/scoring/selected-full15/package/csv_results/corrected15.csv",
+      "sha256": "dd165b312f3efd527b46f3db3027f0d00da592fd4fa702472dcf6034c8403ef8"
+    },
+    "as-lr3e7": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round4/jepa-preserve-v1/as-lr3e7-r2/scoring/selected-full15/package/csv_results/corrected15.csv",
+      "sha256": "4c627683f7aa6057d65d169f2b9e613340544e67b493cbec7db78609063d61f0"
+    },
+    "champion": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round5/gain-budget-v1/vae-decoder-head-mvp-v1/baseline-as-lr3e7-r2-seed1-exact-v1/scoring/selected-full15/package/csv_results/corrected15.csv",
+      "sha256": "ca78e88aaba3414217288429a1c804a224c28ab0984e4261d52acca075b4b2e5"
+    },
+    "orfc-mid-bottles": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/mid-bottles-w16-lr1e4/n8-dev4/scoring/selected-full15/package/csv_results/corrected15.csv",
+      "sha256": "28ba131c30310f04c68d04f98b99d1e93c33f8803eed656ae87f106cd2e53854"
+    },
+    "orfc-mid-move": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/mid-move-w16-lr1e4/n8-dev4/scoring/selected-full15/package/csv_results/corrected15.csv",
+      "sha256": "b2c5d9e2bf2d593bc4be2024e6cbf04a13756d2459edab0b0a387156e1eb2afd"
+    },
+    "orfc-neg-lift": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/neg-lift-w16-lr1e4/n8-dev4/scoring/selected-full15/package/csv_results/corrected15.csv",
+      "sha256": "467c7a3f55cd72d2d68e8e0dcca795cc444d55c9ed1a526d417928f41d8e8a6d"
+    },
+    "orfc-top-hanging": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-hanging-w32-lr1e4/n8-dev4/scoring/selected-full15/package/csv_results/corrected15.csv",
+      "sha256": "b1464bd924083f9d70567b3da7ead788793039617799c46a72e8cb76fe93c70c"
+    },
+    "orfc-top-scan": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-scan-w16-lr3e4/n8-dev4/scoring/selected-full15/package/csv_results/corrected15.csv",
+      "sha256": "92fe597db0883e19aeace18475c89e7f5bef62a0f9154e4d5b9aaa5d503e0ad6"
+    },
+    "orfc-top-stack": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-stack-w16-lr1e4/n8-dev4/scoring/selected-full15/package/csv_results/corrected15.csv",
+      "sha256": "b5fe58eff81a628b2f47b51b68aa227d266d742419c3b67cfeb4691d197e70c9"
+    },
+    "orfc-weak-place": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/weak-place-w16-lr1e4/n8-dev4/scoring/selected-full15/package/csv_results/corrected15.csv",
+      "sha256": "7cc5508b447105cd8f807670ec7a13a4e0227f2b595a9813f9f5184691febe66"
+    },
+    "static-heavy": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-static-heavy-s2/n8-dev4/scoring/selected-full15/package/csv_results/corrected15.csv",
+      "sha256": "15cabb048a272c5f3d6a6493b903ad5330f87fe5f7146937facb50e0b1ae9cfc"
+    }
+  }
+}

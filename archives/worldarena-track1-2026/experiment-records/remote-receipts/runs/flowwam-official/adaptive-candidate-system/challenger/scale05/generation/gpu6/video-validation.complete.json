@@ -1,0 +1,55 @@
+{
+  "black_count": 0,
+  "completed": true,
+  "contract": "flowwam-winner-scale05-shard-generation/1",
+  "count": 5,
+  "gpu_uuid": "GPU-b6761c44-aff9-92ed-40e9-fa5731af5cbf",
+  "lora_scale": 0.5,
+  "lora_sha256": "fe9ed6fc61a0da9e85dbc661d07024e8ab7e3f743abb9003c0e35058a1bfbd34",
+  "physical_gpu": 6,
+  "seed": 4,
+  "stage_receipt_sha256": "31b552bf36ea22437bee5bb8126136d12bd4992c9fdb2b86093a81440e357550",
+  "train_receipt_sha256": "0586df9004f4bc977fbeb568847ddb4bd309d7c7c242f23d22ea7762f8fda999",
+  "videos": [
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode__place_container_plate__aloha-agilex_clean_50__episode_000032.mp4",
+      "sha256": "885f76e5624dc0d7ce09f11a13a5cab0152b19b4616b81890e6734bb8206f458",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode__place_dual_shoes__aloha-agilex_clean_50__episode_000029.mp4",
+      "sha256": "7b4124bdc6024abe168e8b2d0014917a25c2d3a9e3acb1f75dded68db701f0ed",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode__place_empty_cup__aloha-agilex_clean_50__episode_000021.mp4",
+      "sha256": "1e8ec6f389ce4a55521493a98fef9d46d5a5e09995ae8e2a16be8f18f8792357",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode__place_fan__aloha-agilex_clean_50__episode_000045.mp4",
+      "sha256": "47ce85639e4f310082019c3ea3a496fd2cf3afb9f49bb8d1764a2e94b82b7536",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode__place_object_basket__aloha-agilex_clean_50__episode_000012.mp4",
+      "sha256": "c149b98d8f58419144752de8c863ef76504581531aa646ee9b52e71f48959286",
+      "width": 640
+    }
+  ]
+}

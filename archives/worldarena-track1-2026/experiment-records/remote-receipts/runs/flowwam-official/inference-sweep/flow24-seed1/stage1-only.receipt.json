@@ -1,0 +1,111 @@
+{
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "inference_sweep": {
+    "is_official_default": false,
+    "overrides": {
+      "flow_max_magnitude": 24.0,
+      "seed": 1
+    }
+  },
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 24.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 1,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "name": "episode__handover_mic__aloha-agilex_clean_50__episode_000044.mp4",
+      "sha256": "b0ef4b10d6ad446a5ed1addf527ad88172d8ddbf5661e35963dd11fe5de211e4"
+    },
+    {
+      "name": "episode__hanging_mug__aloha-agilex_clean_50__episode_000004.mp4",
+      "sha256": "53fffd1a891950e08c29d8b93967788dbcb2010d81f68be2442d64b8aa2ebdbe"
+    },
+    {
+      "name": "episode__lift_pot__aloha-agilex_clean_50__episode_000039.mp4",
+      "sha256": "82a9cde45bb66b36f8f29f426cfd9734e4c2660331fb7c132829eed126bbce90"
+    },
+    {
+      "name": "episode__move_can_pot__aloha-agilex_clean_50__episode_000036.mp4",
+      "sha256": "d17b86dd26b9c8049a5fdfaa244480cb97f43112a642c5e01814aa853d4f12e4"
+    },
+    {
+      "name": "episode__move_pillbottle_pad__aloha-agilex_clean_50__episode_000004.mp4",
+      "sha256": "a70fe9e84886d82bb2b79e638a32dd7da7f3dc47b737108e85fd1c2a3d8825f1"
+    },
+    {
+      "name": "episode__move_playingcard_away__aloha-agilex_clean_50__episode_000001.mp4",
+      "sha256": "819f24561d0fde208dcc4155e52ec9598295c9c4c995d1d91785c87c32de2ae0"
+    },
+    {
+      "name": "episode__move_stapler_pad__aloha-agilex_clean_50__episode_000027.mp4",
+      "sha256": "2ede92ac774a5218c5995afc18875f2f898e2234cf62884c7644b55b8cd8619f"
+    },
+    {
+      "name": "episode__open_laptop__aloha-agilex_clean_50__episode_000024.mp4",
+      "sha256": "d8e67cb5320eb0f35d6c078485995decdba556a24a95c613acb304e484a76b12"
+    },
+    {
+      "name": "episode__pick_diverse_bottles__aloha-agilex_clean_50__episode_000028.mp4",
+      "sha256": "9cd2193d696589f2c7fddde67e2ff19636f0938e6b2a4da8d95900528ee46523"
+    },
+    {
+      "name": "episode__pick_dual_bottles__aloha-agilex_clean_50__episode_000029.mp4",
+      "sha256": "d804a5c1d2e1a4974c76d92f6f928707a043d568272ad3d9b3173b850189fbfd"
+    },
+    {
+      "name": "episode__place_a2b_left__aloha-agilex_clean_50__episode_000042.mp4",
+      "sha256": "de8196d04d862cabe3c718522858fa8cbcf36971cbab802341c4793e384430dd"
+    },
+    {
+      "name": "episode__place_bread_basket__aloha-agilex_clean_50__episode_000049.mp4",
+      "sha256": "ccbbeb03737f6ce15c666157670a192b084b266bf9cda75368c097784c1d4426"
+    },
+    {
+      "name": "episode__place_bread_skillet__aloha-agilex_clean_50__episode_000047.mp4",
+      "sha256": "713c6f12149ebf5cf9bd8f8f6e3647575ee2c2fe5739033b36137aa754bb08f0"
+    },
+    {
+      "name": "episode__place_burger_fries__aloha-agilex_clean_50__episode_000002.mp4",
+      "sha256": "dfb29b5b74c970c69e94fa7732b204e2cd3045cc029d02202a7ef52bafd00691"
+    },
+    {
+      "name": "episode__place_can_basket__aloha-agilex_clean_50__episode_000021.mp4",
+      "sha256": "2a8a568f12f01d8c28c6481be8d6d685bdcced5bb94d9b6f08e87f2d498e2965"
+    },
+    {
+      "name": "episode__place_container_plate__aloha-agilex_clean_50__episode_000032.mp4",
+      "sha256": "3214ed998fb683aa98361fb7bd89e0697e4932b1b8087e5b92fac39022b1009f"
+    },
+    {
+      "name": "episode__place_dual_shoes__aloha-agilex_clean_50__episode_000029.mp4",
+      "sha256": "972fe1326d844d7c204c384f85b5d993d987c5cb6f2b373664ad644bf7bb5bd6"
+    },
+    {
+      "name": "episode__place_empty_cup__aloha-agilex_clean_50__episode_000021.mp4",
+      "sha256": "6cdf93ff9e2e9fcaa5cf7a18ef3f761f5aa21bd57bd04f0255538f828839da85"
+    },
+    {
+      "name": "episode__place_fan__aloha-agilex_clean_50__episode_000045.mp4",
+      "sha256": "b3f13d15b7958067bd49930f87817e5074b9e9747597aa20496376b01e6a00fd"
+    },
+    {
+      "name": "episode__place_object_basket__aloha-agilex_clean_50__episode_000012.mp4",
+      "sha256": "87e7e025ea51382c57d25c48d9d2c3c367fe5130375772ce069ae239b18cbb71"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "event_id": "action-causality-support-gating.discovery8.complete.v1",
+  "experiment_id": "action-causality-isolation-audit",
+  "kind": "architecture_ablation_complete",
+  "payload": {
+    "comparison": "/data/di/worldarena2_track1_20260815/experiments/action_causality_isolation_audit/reports/support-gating-comparison.v1.json",
+    "comparison_sha256": "a14a2677c661c6cade3d171f6f1651c968ee32faaaf0d20a02a663b1a38ba861",
+    "decision": "support_gating_improves_arm_isolation"
+  },
+  "schema": "wan-action-lite-experiment-event/1",
+  "selection_valid": false,
+  "stage": "action-signal-audit"
+}

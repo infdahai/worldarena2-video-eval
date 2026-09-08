@@ -1,0 +1,45 @@
+{
+  "completed": true,
+  "contact_definition": "residual-near-fb-consistent-robot-motion",
+  "contact_fraction": 0.0013333333190530539,
+  "contract": "flowwam-orfc-episode-cache/1",
+  "episode_id": "place_burger_fries__aloha-agilex_clean_50__episode_000005",
+  "flow_backend": "RAFTFlowExtractor",
+  "flow_threshold": 0.25,
+  "inconsistency_threshold": 0.5,
+  "manifest_sha256": "15d962245daf2e723421f6190cb5ae992c34ba8614a4cfed2eaf008f1e6dc4d3",
+  "occlusion_fraction": 0.1326666623353958,
+  "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-v1/cache/place_burger_fries__aloha-agilex_clean_50__episode_000005.orfc.pt",
+  "output_sha256": "52a8452a064c807c6b8c40a6d968e798655ec7a92b33d9a320f3b73920b35b3b",
+  "residual_definition": "full_scene_flow-minus-robot_flow",
+  "residual_threshold": 0.25,
+  "robot_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/place_burger_fries/aloha-agilex_clean_50/robot_only/data/episode5.hdf5",
+  "robot_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/place_burger_fries/aloha-agilex_clean_50/robot_only/data/episode5.hdf5",
+  "robot_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_burger_fries/aloha-agilex_clean_50/robot_only/data/episode5.hdf5",
+  "robot_hdf5_resolved_sha256": "7caf4b2f58a838bc1470ee3964e47841d7c0edd9eef48d573db842acf2b0dcf6",
+  "robot_hdf5_sha256": "7caf4b2f58a838bc1470ee3964e47841d7c0edd9eef48d573db842acf2b0dcf6",
+  "scene_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/place_burger_fries/aloha-agilex_clean_50/data/episode5.hdf5",
+  "scene_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/place_burger_fries/aloha-agilex_clean_50/data/episode5.hdf5",
+  "scene_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_burger_fries/aloha-agilex_clean_50/data/episode5.hdf5",
+  "scene_hdf5_resolved_sha256": "0448449cf66fd61ead1cd7aa5de7bf207cd95d3f07c2e6f7f28375c8d5b00fb1",
+  "scene_hdf5_sha256": "0448449cf66fd61ead1cd7aa5de7bf207cd95d3f07c2e6f7f28375c8d5b00fb1",
+  "source_frame_count": 244,
+  "source_shape": [
+    240,
+    320
+  ],
+  "split": "round3_train_n8",
+  "target_shape": [
+    5,
+    15,
+    20
+  ],
+  "task": "place_burger_fries",
+  "temporal_indices": [
+    0,
+    60,
+    121,
+    182,
+    242
+  ]
+}

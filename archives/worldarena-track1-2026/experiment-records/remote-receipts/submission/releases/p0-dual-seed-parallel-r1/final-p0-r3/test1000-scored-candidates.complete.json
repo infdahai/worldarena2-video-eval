@@ -1,0 +1,19 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-formal-p0-candidates/1",
+  "hidden_ground_truth_used": false,
+  "output": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/final-p0-r3/test1000-scored-candidates.jsonl",
+  "output_sha256": "64aaeb9aede4f41db16c8f9661eadd59cd8a8907996a385c00594eb317459499",
+  "row_count": 1000,
+  "source_metric_columns": [
+    "Instruction Following",
+    "Interaction Quality",
+    "Perspectivity",
+    "Image Quality",
+    "Aesthetic Quality",
+    "Photometric Consistency",
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ]
+}

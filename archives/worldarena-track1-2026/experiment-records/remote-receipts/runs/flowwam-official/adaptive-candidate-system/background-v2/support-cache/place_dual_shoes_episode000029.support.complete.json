@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.11102213541666667,
+    "mean_area_fraction": 0.0580174977494856,
+    "valid_frames": 81
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.271357421875,
+    "mean_area_fraction": 0.16849750032150207,
+    "valid_frames": 74
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.27388346354166665,
+    "mean_area_fraction": 0.1651120836548354,
+    "valid_frames": 73
+  },
+  "source_video_sha256": "edc8a435b12f375b6dd85af37a953db741b8ead22718dbadf569ed433834012b",
+  "support_fraction": 0.7864511799125514,
+  "support_sha256": "4b1c3a2096accd5129d9e2bc6770872191c59404fa38f9e3dd0348549dd07d76",
+  "video_id": "place_dual_shoes_episode000029"
+}

@@ -1,0 +1,28 @@
+{
+  "completed": true,
+  "contract": "vae-ceiling-base-package/1",
+  "model_name": "R5_RGBResidual_Dev4_lr3e4_v1",
+  "rows": 4,
+  "videos": [
+    {
+      "generated_sha256": "8734be759d07dc180c3e198771e165753f1ce72bf078a0bd213a6bb635171bd1",
+      "gt_sha256": "09d47671ee56ee28b0381386ae74a5f83e1eacbabafbfd480532467cea7e2c56",
+      "name": "open_microwave_episode_000000.mp4"
+    },
+    {
+      "generated_sha256": "90c25fcac83881e1e1e69c4fe3e15a9d591225427ef8142202510ca98a1f930c",
+      "gt_sha256": "7e5e1de60e0b080e831e5c58f354869c16c43bf4e43aa0730034a27a9806f960",
+      "name": "press_stapler_episode_000000.mp4"
+    },
+    {
+      "generated_sha256": "4c81a1750bada7787f1766b63e177ff76b6e846a5938dd44ecd84115963d1721",
+      "gt_sha256": "3cca4dccd2e48d75592deec6e0c974739d0288b05ce36cbb994995ab4d529e1f",
+      "name": "put_object_cabinet_episode_000000.mp4"
+    },
+    {
+      "generated_sha256": "528f10854b5eb84003ef2c3283a21af5b407a9828e5e1952131aa92bdca1cc78",
+      "gt_sha256": "468cbb60c86c6839019078ccd43b253eec3d1e6f762d4114b558409ddd7af7a5",
+      "name": "stack_bowls_three_episode_000000.mp4"
+    }
+  ]
+}

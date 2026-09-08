@@ -1,0 +1,44 @@
+{
+  "archive_filename": "submission.tar.gz",
+  "archive_sha256": "b89247139a090e1bc6c817718ece6ed9ac320f5e4eb068c7634b51073d3f1c5c",
+  "authorization_header_used_for_readback": false,
+  "black_or_degenerate_frames": 0,
+  "complete_p0_claimed": false,
+  "completed": true,
+  "contract": "worldarena-track1-vlm-only-final/1",
+  "decoded_frames_per_video": 121,
+  "first_revision_preserved": {
+    "archive_filename": "submission.tar.gz",
+    "archive_sha256": "4c121f3aab4205d4555d26d370067f71cf679ccbaca88508a1b7d6a227fbed4a",
+    "archive_size": 282515764,
+    "authorization_header_used": false,
+    "completed": true,
+    "gated": false,
+    "public": true,
+    "repo_commit": "10dc23529fc9852211ff35de4c235896e24f9df4",
+    "revision": "10dc23529fc9852211ff35de4c235896e24f9df4"
+  },
+  "receipts": {
+    "anonymous": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/vlm-only-r2/anonymous-verify.complete.json",
+    "package": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/vlm-only-r2/package.complete.json",
+    "selection": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/vlm-only-r2/selection/vlm-only-selection.complete.json",
+    "stage": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/vlm-only-r2/staging-v2/submission-staging.complete.json",
+    "upload": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/vlm-only-r2/hf-upload.complete.json"
+  },
+  "release_scope": "vlm_only_staged_release",
+  "repo_id": "clusternlh/worldarena-track1-hz-wam",
+  "repo_type": "dataset",
+  "resolution": [
+    640,
+    480
+  ],
+  "revision": "a2e020000679d66b6ab1fb611e324308351bcd6d",
+  "selection_counts": {
+    "seed1": 150,
+    "seed4": 850,
+    "ties_to_seed4": 701
+  },
+  "terminal_state": "vlm_only_second_revision_anonymous_readback_closed",
+  "version": "VLM-Only-Selector-v1",
+  "video_count": 1000
+}

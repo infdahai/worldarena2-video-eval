@@ -1,0 +1,154 @@
+{
+  "comparisons": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/policy/expertpool-v2.train160-comparisons.jsonl",
+  "comparisons_sha256": "17dc641202ffb5611dea6581a347166718bd0eb9de0186c570a7cd169b1310f3",
+  "completed": true,
+  "contract": "flowwam-expertpool-v2-policy-training/1",
+  "feature_policy": "generated_only_no_hidden_gt",
+  "fresh40_opened": false,
+  "inputs": {
+    "action_corrected": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/train160_action_text.corrected.csv",
+      "sha256": "c2adddf1016a98a885c421c940b0cc5fe85ff3439e918fe4eeea746c0d3e1fd0"
+    },
+    "action_raw": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/train160_action_text.raw.csv",
+      "sha256": "8bde903047bd5149b4361693e9045d0f180fbf79af4eb283786a9b8d4ef6bff3"
+    },
+    "seed1_corrected": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/latest-scorer/seed1-corrected.csv",
+      "sha256": "a1f1d64b9b7446d3f7eb6346c97177abceabab0cf5ce7b566d7fb0b0bfe4d8ae"
+    },
+    "seed1_raw": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0750/dev-clean-50/csv_results/aggregated_results.csv",
+      "sha256": "c0c0f4b579091f2f7a0d5df16d97eafc9344725339909abb65279d38d6c29ab8"
+    },
+    "seed4_corrected": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/latest-scorer/seed4-corrected.csv",
+      "sha256": "4e49a42e8c8f6c3b48930c60ff184fc3137645c038fdd3afe0a8e2f42c5c3d65"
+    },
+    "seed4_raw": {
+      "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0760/dev-clean-50/csv_results/aggregated_results.csv",
+      "sha256": "88da51d621c2250419a026a1f82fe61efd2130e507e0c8cb710599652cbfa7bf"
+    },
+    "winner_corrected": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/train160_winner_scale05.corrected.csv",
+      "sha256": "d1376144385acc746715caea5e71a6f376f6da5d63d67bae3753784e789bf6f2"
+    },
+    "winner_raw": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/train160_winner_scale05.raw.csv",
+      "sha256": "7a9898d3b96983509a01bd071379fdf00c6d95cfa40c7cb3cc5fe071b397922d"
+    }
+  },
+  "model": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/policy/expertpool-v2.model.json",
+  "model_sha256": "c8e689ad5a7ee247a2c7784e642591a8b743c674dc9e2cb24899275fc83c0e1e",
+  "train_rows": 160,
+  "train_summary": {
+    "corrected_uplift": 0.0,
+    "folds": 5,
+    "guardrails_passed": true,
+    "jepa_delta": 0.0,
+    "non_motion_uplift": 0.0,
+    "raw_uplift": 0.0,
+    "rows": 160,
+    "selection_counts": {
+      "action_text": 0,
+      "p0": 160,
+      "winner": 0
+    },
+    "threshold": 1.0,
+    "threshold_candidates": [
+      {
+        "corrected_uplift": 0.0013928043095714493,
+        "guardrails_passed": false,
+        "jepa_delta": -0.011859478056430839,
+        "non_motion_uplift": 0.001709367914622728,
+        "raw_uplift": 0.001254668041946072,
+        "rows": 160,
+        "selection_counts": {
+          "action_text": 38,
+          "p0": 80,
+          "winner": 42
+        },
+        "threshold": 0.55,
+        "trajectory_delta": -0.01272152053654485
+      },
+      {
+        "corrected_uplift": 0.0016290322966231452,
+        "guardrails_passed": false,
+        "jepa_delta": -0.010607682168483734,
+        "non_motion_uplift": 0.0019893716953671703,
+        "raw_uplift": 0.0014990048763457997,
+        "rows": 160,
+        "selection_counts": {
+          "action_text": 33,
+          "p0": 89,
+          "winner": 38
+        },
+        "threshold": 0.6,
+        "trajectory_delta": -0.01162493268712983
+      },
+      {
+        "corrected_uplift": 0.0017260167135368931,
+        "guardrails_passed": false,
+        "jepa_delta": -0.009945958107709818,
+        "non_motion_uplift": 0.002103322133634067,
+        "raw_uplift": 0.0016030292431108428,
+        "rows": 160,
+        "selection_counts": {
+          "action_text": 29,
+          "p0": 94,
+          "winner": 37
+        },
+        "threshold": 0.65,
+        "trajectory_delta": -0.010674291379057177
+      },
+      {
+        "corrected_uplift": 0.0018407675198720552,
+        "guardrails_passed": false,
+        "jepa_delta": -0.008574242144823052,
+        "non_motion_uplift": 0.0022617487930716162,
+        "raw_uplift": 0.0017370251783676016,
+        "rows": 160,
+        "selection_counts": {
+          "action_text": 24,
+          "p0": 103,
+          "winner": 33
+        },
+        "threshold": 0.7,
+        "trajectory_delta": -0.00841931022666087
+      },
+      {
+        "corrected_uplift": 0.001990110508371945,
+        "guardrails_passed": false,
+        "jepa_delta": -0.007637622207403161,
+        "non_motion_uplift": 0.0024604913185112265,
+        "raw_uplift": 0.0018884958606533164,
+        "rows": 160,
+        "selection_counts": {
+          "action_text": 20,
+          "p0": 110,
+          "winner": 30
+        },
+        "threshold": 0.75,
+        "trajectory_delta": -0.006250611935183947
+      },
+      {
+        "corrected_uplift": 0.0018447815964346415,
+        "guardrails_passed": false,
+        "jepa_delta": -0.006851974129676752,
+        "non_motion_uplift": 0.0022736368697596765,
+        "raw_uplift": 0.0017524753113403735,
+        "rows": 160,
+        "selection_counts": {
+          "action_text": 17,
+          "p0": 115,
+          "winner": 28
+        },
+        "threshold": 0.8,
+        "trajectory_delta": -0.007183660106721557
+      }
+    ],
+    "trajectory_delta": 0.0
+  },
+  "train_summary_sha256": "8bb1dd0d2efebd78fb247ac1b59f9cb0a9b7b98c74989b319192d6937b0f3633"
+}

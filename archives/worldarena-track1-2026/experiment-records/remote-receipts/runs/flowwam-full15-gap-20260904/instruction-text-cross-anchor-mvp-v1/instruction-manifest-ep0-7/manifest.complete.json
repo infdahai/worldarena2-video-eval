@@ -1,0 +1,144 @@
+{
+  "artifacts": {
+    "dataset_manifest": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/instruction-manifest-ep0-7/dataset-manifest.json",
+      "sha256": "dfdfa6843f26ae13232db77ac0a76f8e64b599f9f252e3583150582666a3a200"
+    },
+    "episodes": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/instruction-manifest-ep0-7/episodes.json",
+      "sha256": "0c060892a084d74002f99291930a34a605b7e8cf594492a4eaf02834371f18eb"
+    },
+    "tasks": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/instruction-manifest-ep0-7/tasks.json",
+      "sha256": "c23a1e991ba385240f7d0595beb3549000e00448a5bad6cb488058369fa22970"
+    }
+  },
+  "contract": "flowwam-native640-instruction-manifest/1",
+  "episode_count": 8,
+  "episode_end": 7,
+  "episode_start": 0,
+  "inputs": [
+    {
+      "episode_index": 0,
+      "paths": {
+        "high_robot_only": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/robot_only/data/episode0.hdf5",
+        "high_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/data/episode0.hdf5",
+        "instruction": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/instructions/episode0.json",
+        "low_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/320/beat_block_hammer/aloha-agilex_clean_50/data/episode0.hdf5"
+      },
+      "sha256": {
+        "high_robot_only": "3c88004e679eb496cd8c4513c2260340e8e9bae984d9a39678f3ee9db4615dc4",
+        "high_scene": "40c5ab4f54bcd9426828016b38e428bae35d1291f7ca3c119182708c09e178fc",
+        "instruction": "4369f00ca47bbeef7e5268b5ef08b852937e477c4545b12fbf3c2391b23272a4",
+        "low_scene": "f1e25d3b29b3fb06ad86f3d16b3ca1ce30d488db4011de89a6b673bff2c96a6c"
+      }
+    },
+    {
+      "episode_index": 1,
+      "paths": {
+        "high_robot_only": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/robot_only/data/episode1.hdf5",
+        "high_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/data/episode1.hdf5",
+        "instruction": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/instructions/episode1.json",
+        "low_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/320/beat_block_hammer/aloha-agilex_clean_50/data/episode1.hdf5"
+      },
+      "sha256": {
+        "high_robot_only": "34a9b363cac977dc417fa8a5b7a80d04baad7ab786bb2544af7c88c731976609",
+        "high_scene": "11816f3ea940b49bd9bd43fa732b0070ad5475309ce8042c3569137f6358e310",
+        "instruction": "a229f6e915328a41738fd9fcc0a1d80f5c335f8626e2f1dd106e27ca6629c7cc",
+        "low_scene": "09bd3ecf863bd9a5d69b3f53e6673a0e6a65b911920df2e91e54768b969847ef"
+      }
+    },
+    {
+      "episode_index": 2,
+      "paths": {
+        "high_robot_only": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/robot_only/data/episode2.hdf5",
+        "high_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/data/episode2.hdf5",
+        "instruction": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/instructions/episode2.json",
+        "low_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/320/beat_block_hammer/aloha-agilex_clean_50/data/episode2.hdf5"
+      },
+      "sha256": {
+        "high_robot_only": "6f2e5991dfc14a765d56002a7ca57f4fc952d7a3af6f9894a9c336b0a59ae227",
+        "high_scene": "49ac3e0f0ea6e6e71d5e6d167af629182c452d2aacdd054d56f2ed5fa708fc37",
+        "instruction": "c6609bc305fd0b5e0103ae2681380a41fe58e600098cbb473708da16005b27ba",
+        "low_scene": "72ee04202034f4fefa7e743a0ef10458dbb588e19eb3b3f0862288f080a17822"
+      }
+    },
+    {
+      "episode_index": 3,
+      "paths": {
+        "high_robot_only": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/robot_only/data/episode3.hdf5",
+        "high_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/data/episode3.hdf5",
+        "instruction": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/instructions/episode3.json",
+        "low_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/320/beat_block_hammer/aloha-agilex_clean_50/data/episode3.hdf5"
+      },
+      "sha256": {
+        "high_robot_only": "36994902c641c61f648d9e16527ed79ce88d2ab952837f035308a96b2c4c3973",
+        "high_scene": "58410623a48610c26ea4a01160573e2b49d361cce75f2b0ba6ae3046c0e4b43e",
+        "instruction": "c38b16dbd2736152844d3617fded393de0a8323734e04f3cfc16a6030b283869",
+        "low_scene": "1daa432fdc12fd59b544c1fb878e8f5630f070db56e56d72c8ec9e3c460d903b"
+      }
+    },
+    {
+      "episode_index": 4,
+      "paths": {
+        "high_robot_only": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/robot_only/data/episode4.hdf5",
+        "high_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/data/episode4.hdf5",
+        "instruction": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/instructions/episode4.json",
+        "low_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/320/beat_block_hammer/aloha-agilex_clean_50/data/episode4.hdf5"
+      },
+      "sha256": {
+        "high_robot_only": "8089502a1248a43c8b189e4337ccc3d2ae92844d5095f431ad392700507859b2",
+        "high_scene": "14f0e02583145a6c78d0322b4d6c4c6bd4401648e623e7c417e8b8dad1f97af2",
+        "instruction": "983c23c8877ca010f621b77e445fb29c7ab94cba2eff59a1e6e263b853e60bbc",
+        "low_scene": "2c7b700067804db4c956322bca4c3ef0dc2c8d45f1d20841c29e6f9e9d8d0b02"
+      }
+    },
+    {
+      "episode_index": 5,
+      "paths": {
+        "high_robot_only": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/robot_only/data/episode5.hdf5",
+        "high_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/data/episode5.hdf5",
+        "instruction": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/instructions/episode5.json",
+        "low_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/320/beat_block_hammer/aloha-agilex_clean_50/data/episode5.hdf5"
+      },
+      "sha256": {
+        "high_robot_only": "72fb04158fdd9c49ab382a273f17c0aab126625b076814f902ab8e009e8dedb7",
+        "high_scene": "cb48704450c1bc5130f5534ba32044a0529917324f8b8d6eda2c1c9f2518cf47",
+        "instruction": "f11a34cbe60dd09a2554346d4511c4583ce756f1d143c492ef476e638f3897dd",
+        "low_scene": "1fe20769f5ef23f05f36d7aae62e3636165225143e46fcc2a2e341de6348d69c"
+      }
+    },
+    {
+      "episode_index": 6,
+      "paths": {
+        "high_robot_only": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/robot_only/data/episode6.hdf5",
+        "high_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/data/episode6.hdf5",
+        "instruction": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/instructions/episode6.json",
+        "low_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/320/beat_block_hammer/aloha-agilex_clean_50/data/episode6.hdf5"
+      },
+      "sha256": {
+        "high_robot_only": "c68acb070c1f6fd59bf33b8462f5d3332b7561c1a82191366a683ded5b343bd5",
+        "high_scene": "0dc25052846eabe4e4cc657a01ed00ed3ed0ee8b2db720a105961aac2fba5a9d",
+        "instruction": "d215200c0a89993955eee471675e51778dd1d203d12fab805507ec335f4f6be7",
+        "low_scene": "edf1c947219af7b3129a0e43070b01820ffe75f1909877d95fd94623b523eece"
+      }
+    },
+    {
+      "episode_index": 7,
+      "paths": {
+        "high_robot_only": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/robot_only/data/episode7.hdf5",
+        "high_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/data/episode7.hdf5",
+        "instruction": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640/beat_block_hammer/aloha-agilex_clean_50/instructions/episode7.json",
+        "low_scene": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/320/beat_block_hammer/aloha-agilex_clean_50/data/episode7.hdf5"
+      },
+      "sha256": {
+        "high_robot_only": "419272e680918b6e79882570fdb14725c5772d199ba212d0b0c52aa39c62e2ab",
+        "high_scene": "cbfdd531b83107517b6115601b82809884f5b14f27015ae4a410c1b796b37d2a",
+        "instruction": "ddf088f2365863137f5ee0fd32238826908900e05014da403b4e137473970911",
+        "low_scene": "e408984c4b427d77a40528a68eb63d2bf65573f97539e70ae3c117cace57a13f"
+      }
+    }
+  ],
+  "task": "beat_block_hammer",
+  "variant": "aloha-agilex_clean_50"
+}

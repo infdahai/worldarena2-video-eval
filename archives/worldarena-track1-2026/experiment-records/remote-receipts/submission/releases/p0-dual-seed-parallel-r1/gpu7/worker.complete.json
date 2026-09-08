@@ -1,0 +1,18 @@
+{
+  "completed": true,
+  "completion_physical_gpu": 6,
+  "contract": "worldarena-track1-p0-parallel-worker/1",
+  "gpu": 7,
+  "logical_shard": 7,
+  "migrated": true,
+  "receipts": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/gpu7/seed1/stage1-only.receipt.json",
+      "sha256": "a17d8f2f295d4804ca89cae6c6e928c0b77c56d6af2dcbb7df47edb8f2e62afa"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/gpu7/seed4/stage1-only.receipt.json",
+      "sha256": "2e7773b070f10dda35dea4bfa24016146df6f127fd0de3886cf24f01cbf4f91d"
+    }
+  ]
+}

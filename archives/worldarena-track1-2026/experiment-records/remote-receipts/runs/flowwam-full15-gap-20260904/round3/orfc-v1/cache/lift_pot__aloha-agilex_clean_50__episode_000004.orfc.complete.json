@@ -1,0 +1,45 @@
+{
+  "completed": true,
+  "contact_definition": "residual-near-fb-consistent-robot-motion",
+  "contact_fraction": 0.0,
+  "contract": "flowwam-orfc-episode-cache/1",
+  "episode_id": "lift_pot__aloha-agilex_clean_50__episode_000004",
+  "flow_backend": "RAFTFlowExtractor",
+  "flow_threshold": 0.25,
+  "inconsistency_threshold": 0.5,
+  "manifest_sha256": "15d962245daf2e723421f6190cb5ae992c34ba8614a4cfed2eaf008f1e6dc4d3",
+  "occlusion_fraction": 0.1133333370089531,
+  "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-v1/cache/lift_pot__aloha-agilex_clean_50__episode_000004.orfc.pt",
+  "output_sha256": "3db93c6c9b6070d68f2c68589a8a9fd6a56e5d5b152d67da6bfe46549a404bf6",
+  "residual_definition": "full_scene_flow-minus-robot_flow",
+  "residual_threshold": 0.25,
+  "robot_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/lift_pot/aloha-agilex_clean_50/robot_only/data/episode4.hdf5",
+  "robot_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/lift_pot/aloha-agilex_clean_50/robot_only/data/episode4.hdf5",
+  "robot_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/lift_pot/aloha-agilex_clean_50/robot_only/data/episode4.hdf5",
+  "robot_hdf5_resolved_sha256": "cc9c24795ad4856917fa7d5ba7e79c812d527951aa33cf114de449917d430d85",
+  "robot_hdf5_sha256": "cc9c24795ad4856917fa7d5ba7e79c812d527951aa33cf114de449917d430d85",
+  "scene_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/lift_pot/aloha-agilex_clean_50/data/episode4.hdf5",
+  "scene_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/lift_pot/aloha-agilex_clean_50/data/episode4.hdf5",
+  "scene_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/lift_pot/aloha-agilex_clean_50/data/episode4.hdf5",
+  "scene_hdf5_resolved_sha256": "ec2fa6cd3691ddf1fb196e64bf18a445c65bc01091a7214eecf04f88baad7cb9",
+  "scene_hdf5_sha256": "ec2fa6cd3691ddf1fb196e64bf18a445c65bc01091a7214eecf04f88baad7cb9",
+  "source_frame_count": 109,
+  "source_shape": [
+    240,
+    320
+  ],
+  "split": "round3_train_n8",
+  "target_shape": [
+    5,
+    15,
+    20
+  ],
+  "task": "lift_pot",
+  "temporal_indices": [
+    0,
+    27,
+    54,
+    80,
+    107
+  ]
+}

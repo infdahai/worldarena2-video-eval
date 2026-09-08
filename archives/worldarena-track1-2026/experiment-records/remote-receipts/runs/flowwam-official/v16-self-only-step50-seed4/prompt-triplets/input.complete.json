@@ -1,0 +1,268 @@
+{
+  "completed": true,
+  "contract": "worldarena-official-val10-prompt-triplets/1",
+  "derived_archive_sha256": "fa5f459d5ff00c08d73edc38eb3bc8c8de857ce49591a94a68b089f779f63b89",
+  "episodes": 10,
+  "file_count": 50,
+  "files": [
+    {
+      "bytes": 221216,
+      "path": "data/fixed_scene_task/episode__wa2val__episode_000001.hdf5",
+      "sha256": "17c968aed0c98040e1dc08a358ac5ea297b8f06b9ab04732316bcb589bedd17f"
+    },
+    {
+      "bytes": 49920,
+      "path": "data/fixed_scene_task/episode__wa2val__episode_000002.hdf5",
+      "sha256": "55804b09cc2bef7ae48202e5ce3a584367032517f7c7c38760db828cb05604d0"
+    },
+    {
+      "bytes": 118432,
+      "path": "data/fixed_scene_task/episode__wa2val__episode_000003.hdf5",
+      "sha256": "fb7b3474f4a62c4cdf964b920b8fbe610e525452d0f97cdbc157bff9d7caabf7"
+    },
+    {
+      "bytes": 168416,
+      "path": "data/fixed_scene_task/episode__wa2val__episode_000004.hdf5",
+      "sha256": "035aa0c572d6ca99d96a3b8fb09665bda7d59ca77930aa345a993ae70d634c75"
+    },
+    {
+      "bytes": 48960,
+      "path": "data/fixed_scene_task/episode__wa2val__episode_000005.hdf5",
+      "sha256": "4c9b6c401199793cd976c53a1294a1057a7998ad0684da9042ab053fce1576a4"
+    },
+    {
+      "bytes": 200096,
+      "path": "data/fixed_scene_task/episode__wa2val__episode_000006.hdf5",
+      "sha256": "97dcc046eb700d164c943af19b30065e1d6411fdaeec386a395fa97f0931269b"
+    },
+    {
+      "bytes": 48960,
+      "path": "data/fixed_scene_task/episode__wa2val__episode_000007.hdf5",
+      "sha256": "f426db4c0887844b181c02cd493e43614bb57ae114a56c6493670464307c2705"
+    },
+    {
+      "bytes": 90752,
+      "path": "data/fixed_scene_task/episode__wa2val__episode_000008.hdf5",
+      "sha256": "f73d840eee6b84154c42b4111fdca45670b4b98c656502b9391c1da935647c05"
+    },
+    {
+      "bytes": 71144,
+      "path": "data/fixed_scene_task/episode__wa2val__episode_000009.hdf5",
+      "sha256": "71cb727145915edc3d243fdb5e901f1144afffa6aafa4ef7c7e5bb2017a29357"
+    },
+    {
+      "bytes": 87656,
+      "path": "data/fixed_scene_task/episode__wa2val__episode_000010.hdf5",
+      "sha256": "d03449e36f5552c7b6a4a898f0dd3fb63a93eb239d4e8817072d4a9a25f84786"
+    },
+    {
+      "bytes": 36553,
+      "path": "first_frame/fixed_scene_task/episode__wa2val__episode_000001.png",
+      "sha256": "fd869ee995496f6f7528d9f8a7eaecb2211bdb8db6bbd9d10d6747c86bc1edde"
+    },
+    {
+      "bytes": 24079,
+      "path": "first_frame/fixed_scene_task/episode__wa2val__episode_000002.png",
+      "sha256": "afc8c37619ae56bf8201cec30bcd9000a187db9555104fe64b43ed5b918d6632"
+    },
+    {
+      "bytes": 28505,
+      "path": "first_frame/fixed_scene_task/episode__wa2val__episode_000003.png",
+      "sha256": "772ff52b524552b2256685b83a376c2e19eeb7f7faa07794508c9477f576e6c2"
+    },
+    {
+      "bytes": 38641,
+      "path": "first_frame/fixed_scene_task/episode__wa2val__episode_000004.png",
+      "sha256": "e49cb839192b82b0041882d852fc881d2cab647c12a0684089ba03e8f6e51c1d"
+    },
+    {
+      "bytes": 29433,
+      "path": "first_frame/fixed_scene_task/episode__wa2val__episode_000005.png",
+      "sha256": "286b587d2e1d43444af96f0d4c5c91342fe113593f94277558ca336b2a634e2e"
+    },
+    {
+      "bytes": 38641,
+      "path": "first_frame/fixed_scene_task/episode__wa2val__episode_000006.png",
+      "sha256": "e49cb839192b82b0041882d852fc881d2cab647c12a0684089ba03e8f6e51c1d"
+    },
+    {
+      "bytes": 43399,
+      "path": "first_frame/fixed_scene_task/episode__wa2val__episode_000007.png",
+      "sha256": "1489e7daafdffb010de544d758488401595da98a1aeed77a28aa208378074ba2"
+    },
+    {
+      "bytes": 41701,
+      "path": "first_frame/fixed_scene_task/episode__wa2val__episode_000008.png",
+      "sha256": "0cd3e6e6483ed9376a967e2fa9a2e7a76173cb5bc81cfeeb2e485c620d0fb9a5"
+    },
+    {
+      "bytes": 29550,
+      "path": "first_frame/fixed_scene_task/episode__wa2val__episode_000009.png",
+      "sha256": "d683b31990c6924902ddc5a21c5e91085e462eab183864fb830758baa7d99f2b"
+    },
+    {
+      "bytes": 28524,
+      "path": "first_frame/fixed_scene_task/episode__wa2val__episode_000010.png",
+      "sha256": "1554e9cf0f4acd80e58f477f420587f71901305ddacc5a014e777bfcf3ca870a"
+    },
+    {
+      "bytes": 271,
+      "path": "instructions/fixed_scene_task/episode__wa2val__episode_000001.json",
+      "sha256": "d2ba667e1a2f169b7f7d4f39688a728c2f283219efea9ca3423217e505e98d1a"
+    },
+    {
+      "bytes": 247,
+      "path": "instructions/fixed_scene_task/episode__wa2val__episode_000002.json",
+      "sha256": "af9ff10b0c66d63311813daf8258fed63ca9c7a0f1a9b29be9799e871c506877"
+    },
+    {
+      "bytes": 278,
+      "path": "instructions/fixed_scene_task/episode__wa2val__episode_000003.json",
+      "sha256": "ce3372af12517ee437c885aaaf9e9ba4439634bc6c3da949031e8ddd561bbc92"
+    },
+    {
+      "bytes": 261,
+      "path": "instructions/fixed_scene_task/episode__wa2val__episode_000004.json",
+      "sha256": "1c7d5a361d9bb0e10f1d0a7cc8c869d11bb1719d7ac27ae13ae9a4873e4f695c"
+    },
+    {
+      "bytes": 271,
+      "path": "instructions/fixed_scene_task/episode__wa2val__episode_000005.json",
+      "sha256": "d111f4686f311c7b93fe95ec0b7f8c9a2c8d8f50e0636938ca55313921b17015"
+    },
+    {
+      "bytes": 262,
+      "path": "instructions/fixed_scene_task/episode__wa2val__episode_000006.json",
+      "sha256": "c10a889b5f66e75a385a788b3732e2fed3c41b75c12e75dea8773df88e48d774"
+    },
+    {
+      "bytes": 285,
+      "path": "instructions/fixed_scene_task/episode__wa2val__episode_000007.json",
+      "sha256": "187d31525d6cc496eb3b9d54938e5945717fbf3ef97d836819f103920f632c8e"
+    },
+    {
+      "bytes": 347,
+      "path": "instructions/fixed_scene_task/episode__wa2val__episode_000008.json",
+      "sha256": "63616aa22f11f674346e6c540a4b37aa30de6bf26acc6e840893c065dfab513b"
+    },
+    {
+      "bytes": 228,
+      "path": "instructions/fixed_scene_task/episode__wa2val__episode_000009.json",
+      "sha256": "8902b865ff0baf07fb063dd026bcc041d47a3a4944a4adcc9861f6a67fa30379"
+    },
+    {
+      "bytes": 241,
+      "path": "instructions/fixed_scene_task/episode__wa2val__episode_000010.json",
+      "sha256": "065b9dcb911eaef437e6fe36524f29d906f38b1ae490cfc5ed35f1e40147e709"
+    },
+    {
+      "bytes": 274,
+      "path": "instructions_1/fixed_scene_task/episode__wa2val__episode_000001.json",
+      "sha256": "8a40299c4ab3762eca4ee81b3f85871fe34a18da689a865c78417d774ff9ba91"
+    },
+    {
+      "bytes": 302,
+      "path": "instructions_1/fixed_scene_task/episode__wa2val__episode_000002.json",
+      "sha256": "f95146cdb079e7a7577221436ef7de3b6a4ae734a252aebf90876fd99843cf4d"
+    },
+    {
+      "bytes": 308,
+      "path": "instructions_1/fixed_scene_task/episode__wa2val__episode_000003.json",
+      "sha256": "dde97b981ffb01344ce9cb267035f4b423ca0f5827f63a691b99486b0588034f"
+    },
+    {
+      "bytes": 337,
+      "path": "instructions_1/fixed_scene_task/episode__wa2val__episode_000004.json",
+      "sha256": "c84ec5f235ca86962ec34c7bcf6d2981222afbbc8e9d5eed698ffbdef070dad9"
+    },
+    {
+      "bytes": 318,
+      "path": "instructions_1/fixed_scene_task/episode__wa2val__episode_000005.json",
+      "sha256": "87fc4210a2408bbbdead7dbc88b8014f59132dbd2ee55b6a22c7b4e724cafdd3"
+    },
+    {
+      "bytes": 329,
+      "path": "instructions_1/fixed_scene_task/episode__wa2val__episode_000006.json",
+      "sha256": "b9157b169aa0bb6414f6838896116164c99e413a903d7cf2b9073558d0647126"
+    },
+    {
+      "bytes": 365,
+      "path": "instructions_1/fixed_scene_task/episode__wa2val__episode_000007.json",
+      "sha256": "41e4fe8307175d35846821146d566c8e9a7075a5486b7878fe3bb1adc3bc7c41"
+    },
+    {
+      "bytes": 408,
+      "path": "instructions_1/fixed_scene_task/episode__wa2val__episode_000008.json",
+      "sha256": "abde287c6d87e7c51e450398a703f4f0f2dda72f44b283cbcc63ef088bf67fc8"
+    },
+    {
+      "bytes": 288,
+      "path": "instructions_1/fixed_scene_task/episode__wa2val__episode_000009.json",
+      "sha256": "9e22f00a0a472ba812daaeb63811e6d89319444d9b3a7baab4883936c33657af"
+    },
+    {
+      "bytes": 275,
+      "path": "instructions_1/fixed_scene_task/episode__wa2val__episode_000010.json",
+      "sha256": "9c5b30926900a28b25232fe0e69d5389c82cec7456eb8725d385c264e60470c0"
+    },
+    {
+      "bytes": 304,
+      "path": "instructions_2/fixed_scene_task/episode__wa2val__episode_000001.json",
+      "sha256": "02f8efa6844d96bf9a9a9e7348ae1fc502778f0130fd2a7c5b54c4197a1eb65b"
+    },
+    {
+      "bytes": 309,
+      "path": "instructions_2/fixed_scene_task/episode__wa2val__episode_000002.json",
+      "sha256": "855c37c4533c302231859bcc69461a10fa0568d0ee8c0dc2402f7ccd3bc850fb"
+    },
+    {
+      "bytes": 319,
+      "path": "instructions_2/fixed_scene_task/episode__wa2val__episode_000003.json",
+      "sha256": "2ed6cc949ac7dbc46f3c919afaa96f7263b06e15265590bf74c8e7bf8efc0f13"
+    },
+    {
+      "bytes": 334,
+      "path": "instructions_2/fixed_scene_task/episode__wa2val__episode_000004.json",
+      "sha256": "58088e081d34b6945065804bc669a282444c643030d1e3fccb8e0d66425b8d59"
+    },
+    {
+      "bytes": 313,
+      "path": "instructions_2/fixed_scene_task/episode__wa2val__episode_000005.json",
+      "sha256": "3fac9b537b4718017ef6536b8b1d6aa5d094e4725f83185c80543c27d59d3efb"
+    },
+    {
+      "bytes": 338,
+      "path": "instructions_2/fixed_scene_task/episode__wa2val__episode_000006.json",
+      "sha256": "42d987d1ce03de4415c3affbb935fc886a3c6775f1d7ec074603cc825d53efcc"
+    },
+    {
+      "bytes": 396,
+      "path": "instructions_2/fixed_scene_task/episode__wa2val__episode_000007.json",
+      "sha256": "57da92e7ff40e147c9d6ef467aea99d645fde5b80227c47a471447f6282c4b69"
+    },
+    {
+      "bytes": 420,
+      "path": "instructions_2/fixed_scene_task/episode__wa2val__episode_000008.json",
+      "sha256": "1dc863140f69ee91176ba13de1227ca9233fedb2128125298704d9a0a165b9fa"
+    },
+    {
+      "bytes": 330,
+      "path": "instructions_2/fixed_scene_task/episode__wa2val__episode_000009.json",
+      "sha256": "4b92b53b0fa0432b5e6cddd2d300c78ebf2b7bf0a7d10df538b647de5dc4f9b0"
+    },
+    {
+      "bytes": 307,
+      "path": "instructions_2/fixed_scene_task/episode__wa2val__episode_000010.json",
+      "sha256": "8da0d51efb87bd3d2bc8fe27928ed9c662565b797fefc46d7d585e40d4d0aa7f"
+    }
+  ],
+  "manifest_sha256": "61ad607f70f237dc81848f56458c0f1929fd5427ed9dd36f2f1a54756a14164b",
+  "source_file": "val_dataset.tar.gz",
+  "source_repo": "WorldArena/WorldArena_Robotwin2.0",
+  "source_sha256": "a813c3c4e5e70e9aa002e08056b65806fc756c6f7046a888d12652a80f854b9e",
+  "variants": [
+    0,
+    1,
+    2
+  ]
+}

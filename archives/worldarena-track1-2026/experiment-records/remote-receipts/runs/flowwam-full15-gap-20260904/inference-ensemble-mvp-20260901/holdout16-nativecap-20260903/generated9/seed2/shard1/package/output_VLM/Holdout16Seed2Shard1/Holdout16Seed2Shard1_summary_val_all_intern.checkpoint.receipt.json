@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed2/shard1/package/output_VLM/Holdout16Seed2Shard1/Holdout16Seed2Shard1_summary_val_all_intern.json",
+  "output_sha256": "352a0c623cc90fdbf64bec399f5710d3a73655bfc7b4664850bc778eb349d2e0",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed2/shard1/package/work/tmp/vlm/Holdout16Seed2Shard1/fixed_scene_task_episode_000005_20260903_151611.json",
+      "sha256": "78f39ad59a2ee7817d59145b4aaa900f261bb3d12f5a6b88324848e0005067a2",
+      "timestamp": "20260903_151611",
+      "video": "fixed_scene_task_episode_000005.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed2/shard1/package/work/tmp/vlm/Holdout16Seed2Shard1/fixed_scene_task_episode_000006_20260903_151825.json",
+      "sha256": "67d4e6da1e4cd6939c3c3017fa654cf290323f4d6462168c11362202f67b7b3f",
+      "timestamp": "20260903_151825",
+      "video": "fixed_scene_task_episode_000006.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed2/shard1/package/work/tmp/vlm/Holdout16Seed2Shard1/fixed_scene_task_episode_000007_20260903_152038.json",
+      "sha256": "cd85836a4eadffc67a0e241af320e8797d2ffcb1456f00af8c0cb6840846a0f9",
+      "timestamp": "20260903_152038",
+      "video": "fixed_scene_task_episode_000007.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed2/shard1/package/work/tmp/vlm/Holdout16Seed2Shard1/fixed_scene_task_episode_000008_20260903_152252.json",
+      "sha256": "11f73fd7b2d9ca6fbff45605444950d38ed382d21be4d81a59c7f03ce539d3b2",
+      "timestamp": "20260903_152252",
+      "video": "fixed_scene_task_episode_000008.mp4"
+    }
+  ]
+}

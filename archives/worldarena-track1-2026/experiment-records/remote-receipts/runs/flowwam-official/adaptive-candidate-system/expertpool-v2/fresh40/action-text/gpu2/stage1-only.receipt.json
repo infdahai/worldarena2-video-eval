@@ -1,0 +1,66 @@
+{
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "inference_sweep": {
+    "is_official_default": false,
+    "overrides": {
+      "flow_max_magnitude": 20.0,
+      "seed": 4
+    }
+  },
+  "instruction_variant": 0,
+  "max_episodes": null,
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "physical_gpu": 2,
+  "robot_conditioning": {
+    "mode": "pre-generated",
+    "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu2/robot_only"
+  },
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 4,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "name": "episode000000.mp4",
+      "sha256": "e10f874cfd29b5a8bdfe738c6f4d21950c326bf22390913076b0656f12373170"
+    },
+    {
+      "name": "episode000001.mp4",
+      "sha256": "d61525cc7a4bb85dd6a0997368af90f8396ba6d7a0d7fe0c91c9b1e86d1bc71a"
+    },
+    {
+      "name": "episode000002.mp4",
+      "sha256": "81e4815b84eb716dec0d98fd0480922a8e9b35a8799da052ca71b66dc4ef5de6"
+    },
+    {
+      "name": "episode000003.mp4",
+      "sha256": "36c737349b7af63963fa5e78749728c0fcc93d9d765fa6eb2cb7fcfc7429e983"
+    },
+    {
+      "name": "episode000004.mp4",
+      "sha256": "79f272dfd8d93e6798787e0b8bf35ff5a63591a6883b433e867879fff94b4d1e"
+    },
+    {
+      "name": "episode000005.mp4",
+      "sha256": "01076069ec6171ca7f79b709e4cc0a55dcb2a082702177b2c20aa0deb8cbc065"
+    },
+    {
+      "name": "episode000006.mp4",
+      "sha256": "f3a6dba04c74e977dd97b9ddf4004bd13c9aec3426c04f8a8374e8e26b73af8f"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-p0-resume-attempt/1",
+  "status": "aborted_resource_conflict",
+  "started_at": "2026-08-27T20:16:09+08:00",
+  "stopped_at": "2026-08-27T20:18:43+08:00",
+  "requested_physical_gpus": [0, 1, 2, 3, 4, 5, 6, 7],
+  "started_physical_gpus": [0, 1, 2, 3, 4, 5, 6],
+  "launcher_pids": {
+    "0": 3505122,
+    "1": 3505124,
+    "2": 3505128,
+    "3": 3505134,
+    "4": 3505138,
+    "5": 3505144,
+    "6": 3505150
+  },
+  "launcher_terminal_state": "sigterm_stopped_before_gpu_model_load",
+  "gpu7_launch_state": "refused_by_live_compute_pid_gate",
+  "resource_conflict": {
+    "project_root": "/data/fjy/worldarena",
+    "workload": "track2_ray_cluster",
+    "raylet_pid": 3504457,
+    "gpu_scope": [0, 1, 2, 3, 4, 5, 6, 7],
+    "action_taken_on_conflicting_workload": "none"
+  },
+  "preserved_progress": {
+    "seed1_unique_videos": 748,
+    "seed4_unique_videos": 763,
+    "total_unique_seed_videos": 1511
+  },
+  "resume_contract": {
+    "flag": "--resume-valid-existing",
+    "valid_existing_videos_are_skipped": true,
+    "validation": {
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "width": 640,
+      "height": 480,
+      "black_frames": 0,
+      "sha256": true
+    },
+    "expected_loss_on_external_stop": "at_most_in_flight_unvalidated_videos"
+  },
+  "remaining_worldarena_track1_project_processes": 0,
+  "notes": "The resume attempt was stopped immediately when an unrelated Track 2 Ray workload claimed all eight GPUs. Existing videos, logs, manifests, and receipts were preserved."
+}

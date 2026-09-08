@@ -1,0 +1,145 @@
+{
+  "comparison": {
+    "baseline_corrected15": 0.6930188547807179,
+    "baseline_video_ids": [
+      "click_bell_episode000008",
+      "open_laptop_episode000024",
+      "pick_dual_bottles_episode000000",
+      "place_container_plate_episode000017"
+    ],
+    "candidate_corrected15": 0.6815925239100038,
+    "candidate_video_ids": [
+      "click_bell_episode000008",
+      "open_laptop_episode000024",
+      "pick_dual_bottles_episode000000",
+      "place_container_plate_episode000017"
+    ],
+    "capped_episode_counts": {
+      "Dynamic Degree": 0,
+      "Flow Score": 1,
+      "Motion Smoothness": 4
+    },
+    "delta": -0.011426330870714096,
+    "metrics": {
+      "Aesthetic Quality": {
+        "baseline": 0.4037957042455673,
+        "candidate": 0.4009881019592285,
+        "delta": -0.002807602286338806
+      },
+      "Background Consistency": {
+        "baseline": 0.914447021484375,
+        "candidate": 0.9155166625976563,
+        "delta": 0.0010696411132813388
+      },
+      "Depth Accuracy": {
+        "baseline": 0.996890751463702,
+        "candidate": 0.99594910066699,
+        "delta": -0.0009416507967119347
+      },
+      "Dynamic Degree": {
+        "baseline": 0.2248816069096628,
+        "candidate": 0.27642840802074375,
+        "delta": 0.05154680111108095
+      },
+      "Flow Score": {
+        "baseline": 0.11590311430131078,
+        "candidate": 0.17045045351506505,
+        "delta": 0.054547339213754265
+      },
+      "Image Quality": {
+        "baseline": 0.5270622911137983,
+        "candidate": 0.5108783324559529,
+        "delta": -0.016183958657845388
+      },
+      "Instruction Following": {
+        "baseline": 0.85,
+        "candidate": 0.85,
+        "delta": 0.0
+      },
+      "Interaction Quality": {
+        "baseline": 0.8,
+        "candidate": 0.8,
+        "delta": 0.0
+      },
+      "JEPA Similarity": {
+        "baseline": 0.7569450736045837,
+        "candidate": 0.7884440422058105,
+        "delta": 0.03149896860122681
+      },
+      "Motion Smoothness": {
+        "baseline": 0.6405875381509896,
+        "candidate": 0.6641465651806153,
+        "delta": 0.023559027029625756
+      },
+      "Perspectivity": {
+        "baseline": 1.0,
+        "candidate": 1.0,
+        "delta": 0.0
+      },
+      "Photometric Consistency": {
+        "baseline": 0.5284840641501166,
+        "candidate": 0.3469769921111817,
+        "delta": -0.1815070720389349
+      },
+      "Semantic Alignment": {
+        "baseline": 0.9124755,
+        "candidate": 0.91186525,
+        "delta": -0.0006102500000000344
+      },
+      "Subject Consistency": {
+        "baseline": 0.8619912401462595,
+        "candidate": 0.8611037923023106,
+        "delta": -0.0008874478439488964
+      },
+      "Trajectory Accuracy": {
+        "baseline": 0.8618189161404024,
+        "candidate": 0.7311401576345035,
+        "delta": -0.13067875850589894
+      }
+    }
+  },
+  "completed": true,
+  "contract": "worldarena-track1-instruction-cross-anchor-mvp-terminal-decision/1",
+  "created_at": "2026-09-01T06:33:54+08:00",
+  "decision": {
+    "action": "CLOSE",
+    "expand_steps": false,
+    "positive_signals_not_sufficient": {
+      "Dynamic Degree delta": 0.05154680111108095,
+      "Flow Score delta": 0.054547339213754265,
+      "JEPA Similarity delta": 0.03149896860122681
+    },
+    "reasons": [
+      "Instruction Following delta is 0.0 on all four episodes",
+      "corrected15 delta is -0.011426330871",
+      "Trajectory Accuracy delta is -0.130678758506 and violates the hard gate",
+      "Photometric Consistency delta is -0.181507072039",
+      "Image Quality delta is -0.016183958658"
+    ],
+    "result": "FAIL"
+  },
+  "lineage": {
+    "aggregate_receipt_sha256": "89fc19f13e27dcdf31f675960780cd2a4748378756c8aa181b3a40e6410a28ea",
+    "base_receipt_sha256": "e4c1b802ad2fb4bbb01c90662aba5e8119be3055bae307f5cd9f74eb3209ff9e",
+    "baseline_corrected15_receipt_sha256": "20c88e3c0854ff03e9b5dd0b0f20bed531ea106d269d042b8a39a7784994bcdb",
+    "baseline_corrected_csv_sha256": "ca78e88aaba3414217288429a1c804a224c28ab0984e4261d52acca075b4b2e5",
+    "candidate_corrected_csv_sha256": "a7f8d0b9ddaee2a46b93500d18463b7b101d678193d4f99164a874ee7c39f7e7",
+    "checkpoint_sha256": "dcf7853f9f57937da05cc8ca2da18aebaddef7abd8633974793b2f4a9a0f99c3",
+    "corrected15_receipt_sha256": "1210f18d1c32246e8c944f06449145a0cacb23bb953fbf381bde9cf38da51f84",
+    "gt_results_sha256": "79c73e40198125f52d4c010a524892f8483459cde027c50d55fe0da411320548",
+    "jepa_receipt_sha256": "e62568a4d02a5a4e4fe12fbe24582255785f08d7ee130bd4d7406a46579fe7bb",
+    "package_receipt_sha256": "a8fa556f6c1ffba78abe95e19f0ce3847e49ff38f599e98d0caa767fd6f91c0c",
+    "selection_receipt_sha256": "871b694de36c3c02caf1c5fd466388a6627f2230a6e21f1385fefc4723b6f6e4",
+    "train_receipt_sha256": "896abf7d9ed5bc4fe0799f70f4aba95e45208105894d22cb577d816532839d3d",
+    "vlm_receipt_sha256": "96311e2d9db21732be0979b6521083649b5534a10b34ed1946a0fe5b65f1a81d"
+  },
+  "selection": {
+    "corrected15_used_for_selection": false,
+    "selected_seed_counts": {
+      "seed1": 0,
+      "seed4": 4
+    }
+  },
+  "terminal_state": "closed_fail_no_expand",
+  "work_key": "instruction-text-cross-anchor-mvp-v1/late-blocks24-29/rank8/lr1e-6/anchor0.1/step5/dev4/seed1+seed4/generated9-selector/corrected15"
+}

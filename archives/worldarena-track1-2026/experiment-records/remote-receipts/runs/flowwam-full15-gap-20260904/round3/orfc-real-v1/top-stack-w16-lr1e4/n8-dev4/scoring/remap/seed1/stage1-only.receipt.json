@@ -1,0 +1,108 @@
+{
+  "checkpoint_lineage": null,
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "generated_this_run_count": 4,
+  "inference_sweep": {
+    "is_official_default": true,
+    "overrides": {
+      "flow_max_magnitude": 20.0,
+      "seed": 1
+    }
+  },
+  "instruction_variant": 0,
+  "max_episodes": null,
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "orfc_adapter": {
+    "adapter_loaded": true,
+    "cache_map": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-dev4-cache-v1/cache-map.v1.json",
+    "cache_map_sha256": "d2e3d66497c2e3e31501ebbfc98038420c663863d783c24cafca078cb85dd4c1",
+    "checkpoint": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-stack-w16-lr1e4/orfc-step-1.safetensors",
+    "checkpoint_sha256": "1718380ed17290a2047f993a7828792e2c66c0f2a4db55fee4bbb1f5d9530de8",
+    "denoise_calls": 200,
+    "episode_names": [
+      "episode000000",
+      "episode000001",
+      "episode000002",
+      "episode000003"
+    ],
+    "frame0": "immutable",
+    "last_active_episode": "episode000003",
+    "model_fn": "model_fn_wan_video_dual_stream_orfc",
+    "parent_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+    "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-stack-w16-lr1e4/smoke.complete.json",
+    "receipt_sha256": "741f4e406e5a374a674e4eed72bbd0910e08691d21b1c97344051539b2b28375"
+  },
+  "physical_gpu": 2,
+  "remap_contract": "round2-lram-dev4-score-remap/1",
+  "requested_episode_names": [
+    "episode000000",
+    "episode000001",
+    "episode000002",
+    "episode000003"
+  ],
+  "resumed_valid_count": 0,
+  "robot_conditioning": {
+    "mode": "pre-generated",
+    "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/robot_only"
+  },
+  "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-dev4-cache-v1/manifests/stage1-dev4.v1.jsonl",
+  "sample_manifest_sha256": "1e9197a9670c7e1fb4436966292bcd6440b42f8e428f53fcfe1023eac5505d26",
+  "source_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-stack-w16-lr1e4/dev4-seed1-v4/stage1-only.receipt.json",
+  "source_receipt_sha256": "d950a5461bd13134334db59e26cf497c6cf238a11ad623f62cefa3e4a982b020",
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 1,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode0.mp4",
+      "sha256": "783fb647dd758e03bf54b1b716485972e82a435d948ca2bf79cc4cb509ab78ec",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode1.mp4",
+      "sha256": "f86ea5ea0ce3a6e9aa34becf1f783ed31225e6f795e5d9761cc929dec74ff652",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode2.mp4",
+      "sha256": "fe68309446368dad8c76d5f25ceb63e03c53ffbf0d74f8701044c16b1300dd26",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode3.mp4",
+      "sha256": "b171d64e0d01a44d7d4c7f5090f6eb1da95afc77b69e351f69127c37f202e66e",
+      "width": 640
+    }
+  ]
+}

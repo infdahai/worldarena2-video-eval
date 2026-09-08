@@ -1,0 +1,65 @@
+{
+  "allowed_usage": "mechanism-dev-only",
+  "contract": "flowwam-instruction-mvp-data-receipt/1",
+  "episode_count": 8,
+  "episode_range": [
+    0,
+    7
+  ],
+  "evaluation_evidence_used": false,
+  "forbidden_inputs_used": [],
+  "input_validation": {
+    "all_paths_absolute_regular_non_symlink": true,
+    "all_row_hashes_verified": true,
+    "native320_matches_original_scene": true,
+    "native_instruction_matches_original_instruction": true
+  },
+  "promotion_evidence": false,
+  "prompt_provenance": {
+    "artifact": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/data/prompt-provenance.train8.jsonl",
+      "sha256": "0f6edffce7d246bbf41bba080f6c0bd6c9a7c524cb708fa4021034a8e2201806"
+    },
+    "passed_to_trainer": false,
+    "prefix": "In a fixed robotic workspace, generate a rigid, physically consistent embodied robotic arm. The arm maintains high stability with no deformation and enters the frame to ",
+    "selection": "deterministic seen[0]"
+  },
+  "source": {
+    "clean50_archive": {
+      "path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/aloha-agilex_clean_50/beat_block_hammer.tar.gz",
+      "sha256": "b506678414fe5aff2db49b80686d66225b3799b00c1f28fa2a5668c45f0fb2fa",
+      "size_bytes": 320311449
+    },
+    "clean50_repo": "YixiangChen/FlowWAM_RoboTwin",
+    "clean50_revision": "506c4e014f7dbd291e7d7683c79fc685dd3e2714",
+    "flowwam_source_revision": "f06fa46042e97738c6619c868f1097be6749d48d",
+    "native640_repo": "YixiangChen/FlowWAM_WorldArena",
+    "native640_revision": "a3c1c335f90958258a68e26f674e90ade24ce0ae",
+    "original_root": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted",
+    "task": "beat_block_hammer",
+    "variant": "aloha-agilex_clean_50"
+  },
+  "trainer_binding": {
+    "artifacts": {
+      "dataset-manifest.json": {
+        "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/data/dataset-manifest.json",
+        "sha256": "dfdfa6843f26ae13232db77ac0a76f8e64b599f9f252e3583150582666a3a200",
+        "source_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/instruction-manifest-ep0-7/dataset-manifest.json"
+      },
+      "episodes.json": {
+        "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/data/episodes.json",
+        "sha256": "0c060892a084d74002f99291930a34a605b7e8cf594492a4eaf02834371f18eb",
+        "source_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/instruction-manifest-ep0-7/episodes.json"
+      },
+      "tasks.json": {
+        "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-mvp-20260901/data/tasks.json",
+        "sha256": "c23a1e991ba385240f7d0595beb3549000e00448a5bad6cb488058369fa22970",
+        "source_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/instruction-manifest-ep0-7/tasks.json"
+      }
+    },
+    "dataset_high_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/640",
+    "dataset_low_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-download-v1/native640-validation-extracted-v1/320",
+    "manifest_contract": "flowwam-released-dataset-manifest/1",
+    "note": "The prompt-provenance JSONL is evidence only. The unchanged trainer loads prompt text from the original instruction JSON at runtime."
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "baseline_package_step": 751,
+  "branch": "winner-sft",
+  "checkpoint_step": 25,
+  "comparison": {
+    "baseline_common_mean_dtw": 0.05514851103112524,
+    "baseline_valid": 19,
+    "candidate_common_mean_dtw": 0.05042870340900445,
+    "candidate_step": 770,
+    "candidate_valid": 19,
+    "common_dtw_delta": -0.004719807622120792,
+    "common_dtw_within_0_01": true,
+    "common_valid": 19,
+    "coverage_delta": -0.0012345679012345512,
+    "coverage_not_obviously_lower": true,
+    "episodes": 20,
+    "flow_scale": 1.0,
+    "gt_hashes_exact": true,
+    "gt_set_sha256": "bd2039395c7c9d4bfb8c0aeef7f137863263758301b414b3a40f24190a39601d",
+    "paired_losses": 8,
+    "paired_ties": 1,
+    "paired_wins": 11,
+    "passed": true,
+    "valid_preserved": true
+  },
+  "completed": true,
+  "contract": "flowwam-adaptive-checkpoint-action-gate/1",
+  "decision": {
+    "failure_reasons": [],
+    "passed": true,
+    "thresholds": {
+      "maximum_common_dtw_delta": 0.01,
+      "minimum_coverage_delta": -0.01
+    }
+  },
+  "lineage": {
+    "baseline_base_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0751/dev-clean-50/receipts/base.complete.json",
+    "baseline_base_sha256": "83bde0774a3e42fb993be4c0277dbe97316025e5548821c7249b2b58a85ebb1e",
+    "candidate_base_receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0770/dev-clean-50/receipts/base.complete.json",
+    "candidate_base_sha256": "e7c2ffe2682ca999d34b9087f6704ab499dc3d790c6fdb365f39d2541b9f9236",
+    "video_validation_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/self-training/checkpoint-gate/seed1/video-validation.complete.json",
+    "video_validation_sha256": "5a73e7f40c7b123375307eebc0edb9a8081cda348d10a8fc6fb31061aea45a8e"
+  },
+  "official_package_step": 770,
+  "seed": 1,
+  "terminal_state": "pass"
+}

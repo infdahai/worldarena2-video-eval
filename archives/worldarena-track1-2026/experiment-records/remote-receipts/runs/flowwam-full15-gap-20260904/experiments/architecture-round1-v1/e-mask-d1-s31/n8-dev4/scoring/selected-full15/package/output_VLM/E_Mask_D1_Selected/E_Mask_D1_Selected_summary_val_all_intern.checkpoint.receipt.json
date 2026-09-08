@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/e-mask-d1-s31/n8-dev4/scoring/selected-full15/package/output_VLM/E_Mask_D1_Selected/E_Mask_D1_Selected_summary_val_all_intern.json",
+  "output_sha256": "d18d15c3daddfa220e785dd90fad27bb51a3bcd68a13337172ab5811c855c83d",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/e-mask-d1-s31/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/E_Mask_D1_Selected/click_bell_episode_000008_20260831_041621.json",
+      "sha256": "1e6ec1744e7b7b50b1243c1fa51f181f9c46808a85824703900df78b6c83daac",
+      "timestamp": "20260831_041621",
+      "video": "click_bell_episode_000008.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/e-mask-d1-s31/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/E_Mask_D1_Selected/open_laptop_episode_000024_20260831_041838.json",
+      "sha256": "f0e5c276a51f317f0f5bd7c96a2cf2c9b263e472f7364d6a50707778b29f33e2",
+      "timestamp": "20260831_041838",
+      "video": "open_laptop_episode_000024.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/e-mask-d1-s31/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/E_Mask_D1_Selected/pick_dual_bottles_episode_000000_20260831_042057.json",
+      "sha256": "fa93a5f739e0c14aa7ae898a90e1590b676dd1421c0cbf6d96b8c528a2e8004c",
+      "timestamp": "20260831_042057",
+      "video": "pick_dual_bottles_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/e-mask-d1-s31/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/E_Mask_D1_Selected/place_container_plate_episode_000017_20260831_042316.json",
+      "sha256": "6f18eca380bd6088944b27e971480aa24d9be9f035fa10b5f301a30ecd8a8d81",
+      "timestamp": "20260831_042316",
+      "video": "place_container_plate_episode_000017.mp4"
+    }
+  ]
+}

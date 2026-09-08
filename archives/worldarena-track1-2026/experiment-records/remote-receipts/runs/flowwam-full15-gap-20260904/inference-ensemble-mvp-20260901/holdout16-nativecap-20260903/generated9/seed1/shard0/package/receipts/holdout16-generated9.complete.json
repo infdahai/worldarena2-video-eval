@@ -1,0 +1,63 @@
+{
+  "completed": true,
+  "contract": "worldarena-holdout16-generated9-shard-mvp/1",
+  "generated9_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed1/shard0/package/csv_results/generated-only.csv",
+  "generated9_csv_sha256": "136972a0b92484a5a5033b7672f142ba33dfe86a9bd8d165df1652f00c584434",
+  "hidden_ground_truth_used": false,
+  "inputs": [
+    "candidate_video",
+    "released_first_frame",
+    "released_instruction"
+  ],
+  "manifest_sha256": "b4c46410dea61ad9207596b95f0c895fa67f718a9ca24d88afe7bfbd4e964858",
+  "mapping": [
+    {
+      "episode_id": "open_microwave__aloha-agilex_clean_50__episode_000023",
+      "score_video_id": "fixed_scene_task_episode_000001",
+      "score_video_sha256": "7f6368590a3473328b39040fcebff6e953508518bf013d0c5925e939cb72530c",
+      "scoring_frames": 81,
+      "source_frames": 121,
+      "source_sha256": "6c5d2a4a2a93e8c04254bf1efadf8692dd15bfc7db2e732d0e3961f4d20ba0b5",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/open_microwave/FlowWAMOfficialStage1_test/episode000000.mp4",
+      "stage1_episode_name": "episode000000"
+    },
+    {
+      "episode_id": "open_microwave__aloha-agilex_clean_50__episode_000021",
+      "score_video_id": "fixed_scene_task_episode_000002",
+      "score_video_sha256": "f1eee8e180591e6878aa0d054c6f224330a2e4c6144f120e3453fd926c9e4d98",
+      "scoring_frames": 81,
+      "source_frames": 121,
+      "source_sha256": "c8b78d23c8471a177fced825914988345b2bd94b6385490f1f2b7c27204c696a",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/open_microwave/FlowWAMOfficialStage1_test/episode000001.mp4",
+      "stage1_episode_name": "episode000001"
+    },
+    {
+      "episode_id": "open_microwave__aloha-agilex_clean_50__episode_000033",
+      "score_video_id": "fixed_scene_task_episode_000003",
+      "score_video_sha256": "9090d22e0af5288f5dadb4c0bb9c64b06156be15ca6326f679e7bb61a948c738",
+      "scoring_frames": 81,
+      "source_frames": 121,
+      "source_sha256": "d54f031ff842d4932972184d68af53d36e3d679c339a3c0a0aed5b41deb07b9d",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/open_microwave/FlowWAMOfficialStage1_test/episode000002.mp4",
+      "stage1_episode_name": "episode000002"
+    },
+    {
+      "episode_id": "open_microwave__aloha-agilex_clean_50__episode_000038",
+      "score_video_id": "fixed_scene_task_episode_000004",
+      "score_video_sha256": "22d1e06cfad0dd4e77a0ef29f0179dff0f21b5e9ea0be1ab69ec07a9fc2f74ad",
+      "scoring_frames": 81,
+      "source_frames": 121,
+      "source_sha256": "277205c65e53365b1b11a0b90c0a52c2f12b3f2985e180059556474085a7e834",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/open_microwave/FlowWAMOfficialStage1_test/episode000003.mp4",
+      "stage1_episode_name": "episode000003"
+    }
+  ],
+  "rows": 4,
+  "scoring_frames": 81,
+  "seed": 1,
+  "shard": 0,
+  "source_frames": 121,
+  "source_stage1_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/open_microwave/stage1-only.receipt.json",
+  "source_stage1_receipt_sha256": "8a0754d3c9d17eb2f44e331fcad5e3ba43f7e729846b658235d3188f6dc26c1c",
+  "wrapper_sha256": "a6dfdc89e2062c2ebf781e34ad2ad73eb0b48ffb6c4c451ee1b87b836d91f929"
+}

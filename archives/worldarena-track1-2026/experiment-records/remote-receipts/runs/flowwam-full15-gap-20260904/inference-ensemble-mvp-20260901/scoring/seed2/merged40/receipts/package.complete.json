@@ -1,0 +1,256 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-generated-only-package/1",
+  "frames": 81,
+  "ground_truth_alias_semantics": "generated-video-self-alias-only",
+  "hidden_ground_truth_used": false,
+  "model_name": "RoutingP0Seed2Fresh40",
+  "rows": 40,
+  "seed": 2,
+  "source_packages": [
+    {
+      "model_name": "RoutingP0Seed2_gpu0",
+      "receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1100/dev-clean-50/receipts/package.complete.json",
+      "receipt_sha256": "1eef79a88afb1d1c828049e422d3d5a30e3aae06d64e8377142b288ef82d6204",
+      "rows": 7,
+      "step": 1100
+    },
+    {
+      "model_name": "RoutingP0Seed2_gpu2",
+      "receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1101/dev-clean-50/receipts/package.complete.json",
+      "receipt_sha256": "adbed7e037319c5ecd029bb4d7756165477e1c96018cf6b7fd8ca54527be476d",
+      "rows": 7,
+      "step": 1101
+    },
+    {
+      "model_name": "RoutingP0Seed2_gpu3",
+      "receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1102/dev-clean-50/receipts/package.complete.json",
+      "receipt_sha256": "c04b267aaa8d69a3c8d7e992e171d09a8306799854e528fff53ca6927b661d00",
+      "rows": 7,
+      "step": 1102
+    },
+    {
+      "model_name": "RoutingP0Seed2_gpu4",
+      "receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1103/dev-clean-50/receipts/package.complete.json",
+      "receipt_sha256": "afacd18e4134fed06d98b3adae9a48b4d21b81edd251144912feed02851dc18b",
+      "rows": 7,
+      "step": 1103
+    },
+    {
+      "model_name": "RoutingP0Seed2_gpu5",
+      "receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1104/dev-clean-50/receipts/package.complete.json",
+      "receipt_sha256": "1625841bf4956acf700bdb91684c655bea6c3ef10dd84ffe1befb5178028818c",
+      "rows": 6,
+      "step": 1104
+    },
+    {
+      "model_name": "RoutingP0Seed2_gpu6",
+      "receipt": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1105/dev-clean-50/receipts/package.complete.json",
+      "receipt_sha256": "c8be9cae56d52ff9d3fba630981492ae66a2c385d0aa732571a4c9dcfc3009e3",
+      "rows": 6,
+      "step": 1105
+    }
+  ],
+  "videos": [
+    {
+      "name": "pick_dual_bottles_episode_000000.mp4",
+      "source_sha256": "b655ab86cf81de7364bad0808f1d72d40c9d22304849bd20fad0b628be4dd1bf",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1100/dev-clean-50/videos/RoutingP0Seed2_gpu0_test/pick_dual_bottles_episode_000000.mp4"
+    },
+    {
+      "name": "click_bell_episode_000008.mp4",
+      "source_sha256": "580393499c38142821993822f25c6385c5f12d0c7e2fce05a3b59fabad8f0984",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1100/dev-clean-50/videos/RoutingP0Seed2_gpu0_test/click_bell_episode_000008.mp4"
+    },
+    {
+      "name": "place_container_plate_episode_000017.mp4",
+      "source_sha256": "3944456682a626fa112b3921d5a368a793ffa40d151d3b51e0a6673f51d00fda",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1100/dev-clean-50/videos/RoutingP0Seed2_gpu0_test/place_container_plate_episode_000017.mp4"
+    },
+    {
+      "name": "open_laptop_episode_000024.mp4",
+      "source_sha256": "0c7416c85331c4f16fb55e6055ac915b4ea5de4c39ee32d557f1f118bbaefca7",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1100/dev-clean-50/videos/RoutingP0Seed2_gpu0_test/open_laptop_episode_000024.mp4"
+    },
+    {
+      "name": "put_bottles_dustbin_episode_000038.mp4",
+      "source_sha256": "ba2f462ff9ea562fb9f6c56eb4b1c19eb7f582626ecd3368792f842cc35ceb29",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1100/dev-clean-50/videos/RoutingP0Seed2_gpu0_test/put_bottles_dustbin_episode_000038.mp4"
+    },
+    {
+      "name": "move_can_pot_episode_000001.mp4",
+      "source_sha256": "393537259f5f3809000b38226bcd29d2797a0d8c705855d540f84a0f164279ac",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1100/dev-clean-50/videos/RoutingP0Seed2_gpu0_test/move_can_pot_episode_000001.mp4"
+    },
+    {
+      "name": "place_burger_fries_episode_000043.mp4",
+      "source_sha256": "76e0894f025a59f6d1ecae3e1e543b51c0fe307d96ebb114d0829f7dd69cda51",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1100/dev-clean-50/videos/RoutingP0Seed2_gpu0_test/place_burger_fries_episode_000043.mp4"
+    },
+    {
+      "name": "move_stapler_pad_episode_000013.mp4",
+      "source_sha256": "61b1e1de1970ac3c5fb7a6c8400479754bb18faf243bd75729b10d2b79d7d6f0",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1101/dev-clean-50/videos/RoutingP0Seed2_gpu2_test/move_stapler_pad_episode_000013.mp4"
+    },
+    {
+      "name": "move_pillbottle_pad_episode_000032.mp4",
+      "source_sha256": "bdbe873d388ba8b4ba8417d7a88b34b93199ded01b4fa5fe0f0fe38a50d5dfa0",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1101/dev-clean-50/videos/RoutingP0Seed2_gpu2_test/move_pillbottle_pad_episode_000032.mp4"
+    },
+    {
+      "name": "stack_blocks_three_episode_000046.mp4",
+      "source_sha256": "bc576938e1e4049fe257988a0e1a20f0038e8cff9c2be2ac39bc7e0803bab415",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1101/dev-clean-50/videos/RoutingP0Seed2_gpu2_test/stack_blocks_three_episode_000046.mp4"
+    },
+    {
+      "name": "hanging_mug_episode_000007.mp4",
+      "source_sha256": "18cf165dcf5e21a7339ebd0d4cd52d311da9db00ed1f1dea36f218b55b1edf4c",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1101/dev-clean-50/videos/RoutingP0Seed2_gpu2_test/hanging_mug_episode_000007.mp4"
+    },
+    {
+      "name": "place_bread_basket_episode_000013.mp4",
+      "source_sha256": "6cc540b1f65802fe4af11374cb60452cf9c54198bcf2ea9d455d6d7a3c56dd46",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1101/dev-clean-50/videos/RoutingP0Seed2_gpu2_test/place_bread_basket_episode_000013.mp4"
+    },
+    {
+      "name": "place_can_basket_episode_000042.mp4",
+      "source_sha256": "77b9f433780c06d53e1df6e5ebdd96a545dbbea42a5c06a07c66d3cb8b95fbc8",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1101/dev-clean-50/videos/RoutingP0Seed2_gpu2_test/place_can_basket_episode_000042.mp4"
+    },
+    {
+      "name": "stamp_seal_episode_000003.mp4",
+      "source_sha256": "332afa7d8535b66302f1e3352338b2bc0ef90d0d94f70dd7c53109ab26afb1f9",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1101/dev-clean-50/videos/RoutingP0Seed2_gpu2_test/stamp_seal_episode_000003.mp4"
+    },
+    {
+      "name": "turn_switch_episode_000037.mp4",
+      "source_sha256": "d31ef6b6b67e97740ce1fe89844ec8f9e1dfb9c74bfb9dd9285501a14fd5e54f",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1102/dev-clean-50/videos/RoutingP0Seed2_gpu3_test/turn_switch_episode_000037.mp4"
+    },
+    {
+      "name": "place_dual_shoes_episode_000037.mp4",
+      "source_sha256": "31648025cf2289273beb7bc61c799bc6b5b302c496f6e4f65b44d50c4a3c2a08",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1102/dev-clean-50/videos/RoutingP0Seed2_gpu3_test/place_dual_shoes_episode_000037.mp4"
+    },
+    {
+      "name": "place_shoe_episode_000043.mp4",
+      "source_sha256": "7aeed59326fce66c2876902abd91447060b1ff7185c83dbac7b96a59b7d97320",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1102/dev-clean-50/videos/RoutingP0Seed2_gpu3_test/place_shoe_episode_000043.mp4"
+    },
+    {
+      "name": "move_playingcard_away_episode_000040.mp4",
+      "source_sha256": "07867ad67159c2b8a2b2f46884724f65592d113005c19f1d651347d203e135bd",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1102/dev-clean-50/videos/RoutingP0Seed2_gpu3_test/move_playingcard_away_episode_000040.mp4"
+    },
+    {
+      "name": "place_bread_skillet_episode_000027.mp4",
+      "source_sha256": "5e34fed839ffb8284b5787fef82557e1016047f356ba3847f7f6d076865c694d",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1102/dev-clean-50/videos/RoutingP0Seed2_gpu3_test/place_bread_skillet_episode_000027.mp4"
+    },
+    {
+      "name": "shake_bottle_episode_000028.mp4",
+      "source_sha256": "54f26eb5c1da6c714ef7726969a587431f2689a76e26357d922d0cbc46f62053",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1102/dev-clean-50/videos/RoutingP0Seed2_gpu3_test/shake_bottle_episode_000028.mp4"
+    },
+    {
+      "name": "click_alarmclock_episode_000021.mp4",
+      "source_sha256": "43ab008fd313e76dc432fff50b19912e19fd5eda71743599a5fab3e3b40496a2",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1102/dev-clean-50/videos/RoutingP0Seed2_gpu3_test/click_alarmclock_episode_000021.mp4"
+    },
+    {
+      "name": "place_a2b_left_episode_000034.mp4",
+      "source_sha256": "e28009edccbcd4ec62dca9d96455da568ac8de50681547ffbeeb94f0ccc72d89",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1103/dev-clean-50/videos/RoutingP0Seed2_gpu4_test/place_a2b_left_episode_000034.mp4"
+    },
+    {
+      "name": "place_fan_episode_000009.mp4",
+      "source_sha256": "288226999421413329606fee175a85ba67705d20b50fd5c3de034b969b8c18a6",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1103/dev-clean-50/videos/RoutingP0Seed2_gpu4_test/place_fan_episode_000009.mp4"
+    },
+    {
+      "name": "handover_mic_episode_000047.mp4",
+      "source_sha256": "cabcb738bf85629214cc04bea23eb26c4f2f9af2aff46377e763fa206a8fe520",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1103/dev-clean-50/videos/RoutingP0Seed2_gpu4_test/handover_mic_episode_000047.mp4"
+    },
+    {
+      "name": "place_object_scale_episode_000028.mp4",
+      "source_sha256": "dec60cb89552430c8405f768ab2e9851f58c021e8389c48b53e76b765795e287",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1103/dev-clean-50/videos/RoutingP0Seed2_gpu4_test/place_object_scale_episode_000028.mp4"
+    },
+    {
+      "name": "place_empty_cup_episode_000029.mp4",
+      "source_sha256": "b4db3c4aa535599e85e5a7e2e0805d0dcac839abb3f2801f98f6ed9b582b1902",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1103/dev-clean-50/videos/RoutingP0Seed2_gpu4_test/place_empty_cup_episode_000029.mp4"
+    },
+    {
+      "name": "scan_object_episode_000016.mp4",
+      "source_sha256": "0b43e58eabd6c58375103dcca55561133a7f97c8219b8e83fb776ea788ce151d",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1103/dev-clean-50/videos/RoutingP0Seed2_gpu4_test/scan_object_episode_000016.mp4"
+    },
+    {
+      "name": "place_object_scale_episode_000014.mp4",
+      "source_sha256": "e8b515cb45efbb4aa5f2ac3037225af05892ae3fb69af8dad96b6399af5f9fa0",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1103/dev-clean-50/videos/RoutingP0Seed2_gpu4_test/place_object_scale_episode_000014.mp4"
+    },
+    {
+      "name": "place_phone_stand_episode_000039.mp4",
+      "source_sha256": "f67aba5be4bfaed1014b43e8267977621d9da26c14537d41164ce68f51c7f76a",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1104/dev-clean-50/videos/RoutingP0Seed2_gpu5_test/place_phone_stand_episode_000039.mp4"
+    },
+    {
+      "name": "place_object_stand_episode_000018.mp4",
+      "source_sha256": "a13dd056efb412dce379c1fc3ecf8aa3689237a8db3605747aa5618dee5766ca",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1104/dev-clean-50/videos/RoutingP0Seed2_gpu5_test/place_object_stand_episode_000018.mp4"
+    },
+    {
+      "name": "place_shoe_episode_000046.mp4",
+      "source_sha256": "65da279f62e58044df1f462e491ab4c3e53bb47ca8aa3979c164fc86f8f86ad1",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1104/dev-clean-50/videos/RoutingP0Seed2_gpu5_test/place_shoe_episode_000046.mp4"
+    },
+    {
+      "name": "dump_bin_bigbin_episode_000011.mp4",
+      "source_sha256": "0a425ef8555e5ad84bf164397911c25ec8e1c26e8149b459c63f9244583607a8",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1104/dev-clean-50/videos/RoutingP0Seed2_gpu5_test/dump_bin_bigbin_episode_000011.mp4"
+    },
+    {
+      "name": "stack_blocks_two_episode_000013.mp4",
+      "source_sha256": "80603292e91e40e4916410e2145887aed977784278ca9becd9c264fdcfd3c570",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1104/dev-clean-50/videos/RoutingP0Seed2_gpu5_test/stack_blocks_two_episode_000013.mp4"
+    },
+    {
+      "name": "lift_pot_episode_000033.mp4",
+      "source_sha256": "0e6eb486c7405cc8658068c1fadaa0213d2165d92aa0053cdbce66db37657f0d",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1104/dev-clean-50/videos/RoutingP0Seed2_gpu5_test/lift_pot_episode_000033.mp4"
+    },
+    {
+      "name": "place_phone_stand_episode_000028.mp4",
+      "source_sha256": "fbce48c43a50de3d0761914aebdd1bf9d35ff26afd1563b6d2d2bf9e29e2d62e",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1105/dev-clean-50/videos/RoutingP0Seed2_gpu6_test/place_phone_stand_episode_000028.mp4"
+    },
+    {
+      "name": "place_object_basket_episode_000034.mp4",
+      "source_sha256": "7b52cf2c1f7a52931a3195362777ae2c45c0e7986d208df9ae0c25871db13f98",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1105/dev-clean-50/videos/RoutingP0Seed2_gpu6_test/place_object_basket_episode_000034.mp4"
+    },
+    {
+      "name": "pick_diverse_bottles_episode_000013.mp4",
+      "source_sha256": "d1650a6cf263e5a972a5e5dcdde04bba1b69d32c03fcdd728466b80cf6c6a954",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1105/dev-clean-50/videos/RoutingP0Seed2_gpu6_test/pick_diverse_bottles_episode_000013.mp4"
+    },
+    {
+      "name": "place_object_stand_episode_000040.mp4",
+      "source_sha256": "10b47eb39589f551d61a2aa452148243e7df8b35750cb6a2f635486411c096b1",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1105/dev-clean-50/videos/RoutingP0Seed2_gpu6_test/place_object_stand_episode_000040.mp4"
+    },
+    {
+      "name": "stack_bowls_two_episode_000010.mp4",
+      "source_sha256": "f4ef5d3f6dfd9c09fa5658fb295ff09f4ce64dd0e1c9e62b69d4c7cf91138ad1",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1105/dev-clean-50/videos/RoutingP0Seed2_gpu6_test/stack_bowls_two_episode_000010.mp4"
+    },
+    {
+      "name": "shake_bottle_horizontally_episode_000021.mp4",
+      "source_sha256": "d822d511a0de8e110fc0d4398800658ac236cec1e151101b25a748f3a3dc0ff1",
+      "source_video": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1105/dev-clean-50/videos/RoutingP0Seed2_gpu6_test/shake_bottle_horizontally_episode_000021.mp4"
+    }
+  ]
+}

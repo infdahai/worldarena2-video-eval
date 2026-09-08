@@ -1,0 +1,224 @@
+{
+  "event_id": "v2-1k-qonly-lora2e6-step50.complete.v1",
+  "experiment_id": "v2-1k-qonly-lora2e6",
+  "kind": "training-generation-proxy-official-sam3",
+  "payload": {
+    "checkpoints": {
+      "10": {
+        "path": "/data/di/worldarena2_track1_20260815/runs/ablation-v2-1k-qonly-lora2e6-ws7/step-000010.pt",
+        "sha256": "9c938e47ae81678af77b76b38c06f594c4324bd138f2ab5e818f0e33c5bde7b1"
+      },
+      "25": {
+        "path": "/data/di/worldarena2_track1_20260815/runs/ablation-v2-1k-qonly-lora2e6-ws7/step-000025.pt",
+        "sha256": "236eaafd2e3cf56da688f4b334b81d38831c2281272cc35ae3f35bf38a63954a"
+      },
+      "50": {
+        "path": "/data/di/worldarena2_track1_20260815/runs/ablation-v2-1k-qonly-lora2e6-ws7/step-000050.pt",
+        "sha256": "1eba95be711692222d5975e56867c45ee05d3fa28494ce84f6d952a1410be872"
+      }
+    },
+    "decision": "stop_adapter_lora_hyperparameter_search_audit_action_signal",
+    "decision_reason": "proxy step50 improved, but pinned official SAM3 strict gate failed with paired win rate 0, worse raw DTW and worse action adherence; all20 inverse mean is outlier dominated",
+    "generation": {
+      "done": 60,
+      "failed": 0,
+      "jobs": 60,
+      "videos_root": "/data/di/worldarena2_track1_20260815/eval/ablation-v2-1k-qonly-lora2e6-fast20/videos"
+    },
+    "official_inverse_outliers": [
+      {
+        "episode_index": 0,
+        "inverse_mean_dtw": 568.0824453145224
+      },
+      {
+        "episode_index": 10,
+        "inverse_mean_dtw": 9.756968903069668
+      },
+      {
+        "episode_index": 15,
+        "inverse_mean_dtw": 7.9409511532208015
+      }
+    ],
+    "official_sam3_vs_s1a125": {
+      "array_sha256": {
+        "baseline": "aca60a56acb2d1ad456a0380de4dc084e2751f52847f7a7ea124e7b98df36b7d",
+        "candidate": "ed8cd6471c98392b8a3b07c7fdd995cd394564b4e22a3cb9b06a091cd1f27f38",
+        "commanded": "1a74e0c5f4d7f360270f710eeed6ec699ec6e6232ba23e242f4a600e6c426a65",
+        "ground_truth": "e0e9dc9d1049f14112eb30a16b6b4d1da0f28b343360ac7381b21267b8ba32a8"
+      },
+      "baseline": "formal-s1A125",
+      "baseline_mean_inverse_all20": 1.9090536642892608,
+      "baseline_valid_episodes": 6,
+      "candidate": "v2-1k-qonly-step50-lr2e-6",
+      "candidate_mean_inverse_all20": 29.989688491691123,
+      "candidate_valid_episodes": 8,
+      "compare_exit_code": 3,
+      "contract": "wan-action-lite-official-sam3-dev-fast20/1",
+      "decision": "do_not_promote_on_official_gate",
+      "official_evaluator_commit": "7b3feee108427bee3380064bb5154970ed7468b5",
+      "paired_win_rate_all20": 0.2,
+      "relative_gain_all20": 14.70919092149055,
+      "scope": "dev-fast20-official-evaluator-not-test1000",
+      "strict_gate": {
+        "detection_coverage": 0.13148148148148148,
+        "episode_count": 20,
+        "failure_reasons": [
+          "invalid episodes present",
+          "official mean inverse gain is below 5%",
+          "raw mean distance is not strictly lower",
+          "paired win rate is not strictly above 55%",
+          "action-adherence distance did not improve by 5%"
+        ],
+        "invalid_episode_count": 16,
+        "minimum_relative_gain": 0.05,
+        "official_commit": "7b3feee108427bee3380064bb5154970ed7468b5",
+        "paired_finite_episode_count": 4,
+        "paired_win_rate": 0.0,
+        "passed": false,
+        "raster_only_action_adherence_mean": 0.18380703248141123,
+        "raster_only_mean": 7.023304626026288,
+        "raster_only_raw_mean": 0.1709563475739276,
+        "raster_only_raw_median": 0.14277798730977076,
+        "raster_pose_action_adherence_mean": 0.2522008684308845,
+        "raster_pose_mean": 5.167265513852697,
+        "raster_pose_raw_mean": 0.23790304377901011,
+        "raster_pose_raw_median": 0.2629293711010594,
+        "relative_gain": -0.2642686329303815,
+        "sample_count": 4
+      },
+      "strict_gate_passed": false
+    },
+    "parent": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/s1A_branch_0125_ws7/step-000125.pt",
+      "sha256": "59b0de933abc5229cd81ad8507b3f7ab550f996d29038496ae8a58e373fb6df3"
+    },
+    "policy": {
+      "adapter": "frozen-exact",
+      "alpha": 16,
+      "blocks": [
+        8,
+        29
+      ],
+      "evaluation_steps": [
+        10,
+        25,
+        50
+      ],
+      "gpus": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "lora_lr": 2e-06,
+      "lora_targets": [
+        "self_attn.q"
+      ],
+      "rank": 16,
+      "total_steps": 50,
+      "warmup_steps": 10,
+      "world_size": 7
+    },
+    "proxy_vs_qv75": {
+      "10": {
+        "guardrail": {
+          "arm_swap_failure_rates": {
+            "qonly10": 0.15,
+            "qv75": 0.15
+          },
+          "baseline": "qv75",
+          "black_video_rates": {
+            "qonly10": 0.0,
+            "qv75": 0.0
+          },
+          "detector_failure_rates": {
+            "qonly10": 0.4,
+            "qv75": 0.4
+          },
+          "failure_reasons": [],
+          "maximum_black_video_rate": 0.01,
+          "maximum_regression": 0.05,
+          "passed": true
+        },
+        "ranking": {
+          "catastrophic_rate": 0.55,
+          "mean_coverage": 0.657782309275624,
+          "mean_dtw_distance": 27.47960761755263,
+          "paired_win_rate": 0.35,
+          "trajectory_delta": -0.021913563861578018,
+          "trajectory_score": 0.05486310899563429
+        },
+        "report": "/data/di/worldarena2_track1_20260815/eval/ablation-v2-1k-qonly-lora2e6-fast20/qv75-vs-qonly-step10.json",
+        "report_sha256": "9c52950b568909815061d59c51cd81ecbd188675a5c462bbb6de5fd262eb38d4"
+      },
+      "25": {
+        "guardrail": {
+          "arm_swap_failure_rates": {
+            "qonly25": 0.15,
+            "qv75": 0.15
+          },
+          "baseline": "qv75",
+          "black_video_rates": {
+            "qonly25": 0.0,
+            "qv75": 0.0
+          },
+          "detector_failure_rates": {
+            "qonly25": 0.35,
+            "qv75": 0.4
+          },
+          "failure_reasons": [],
+          "maximum_black_video_rate": 0.01,
+          "maximum_regression": 0.05,
+          "passed": true
+        },
+        "ranking": {
+          "catastrophic_rate": 0.5,
+          "mean_coverage": 0.6817165900538101,
+          "mean_dtw_distance": 27.6913330094634,
+          "paired_win_rate": 0.4,
+          "trajectory_delta": -0.031167988511909304,
+          "trajectory_score": 0.05434400711514246
+        },
+        "report": "/data/di/worldarena2_track1_20260815/eval/ablation-v2-1k-qonly-lora2e6-fast20/qv75-vs-qonly-step25.json",
+        "report_sha256": "2870013d2474ae393daad586ef6b0716df6d54dcd8b1914a8f2a5b51901a99b5"
+      },
+      "50": {
+        "guardrail": {
+          "arm_swap_failure_rates": {
+            "qonly50": 0.2,
+            "qv75": 0.15
+          },
+          "baseline": "qv75",
+          "black_video_rates": {
+            "qonly50": 0.0,
+            "qv75": 0.0
+          },
+          "detector_failure_rates": {
+            "qonly50": 0.35,
+            "qv75": 0.4
+          },
+          "failure_reasons": [],
+          "maximum_black_video_rate": 0.01,
+          "maximum_regression": 0.05,
+          "passed": true
+        },
+        "ranking": {
+          "catastrophic_rate": 0.5,
+          "mean_coverage": 0.7030311164328577,
+          "mean_dtw_distance": 25.414067328219847,
+          "paired_win_rate": 0.65,
+          "trajectory_delta": 0.06395794492387341,
+          "trajectory_score": 0.059679838654738825
+        },
+        "report": "/data/di/worldarena2_track1_20260815/eval/ablation-v2-1k-qonly-lora2e6-fast20/qv75-vs-qonly-step50.json",
+        "report_sha256": "f776f4170008851ab11b047fdfad42347f5bae03e210aef38df4fdc87a23d794"
+      }
+    }
+  },
+  "schema": "wan-action-lite-experiment-event/1",
+  "selection_valid": false,
+  "stage": "bounded-ablation"
+}

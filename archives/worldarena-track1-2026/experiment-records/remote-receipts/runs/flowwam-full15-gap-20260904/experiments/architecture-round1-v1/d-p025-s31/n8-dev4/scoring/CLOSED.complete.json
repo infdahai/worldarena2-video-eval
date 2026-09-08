@@ -1,0 +1,37 @@
+{
+  "arm": "D-p025",
+  "completed": true,
+  "contract": "worldarena-track1-d-p025-n8-cheap-gate-closed/1",
+  "frozen_selector_receipt_sha256": "b7ca2aaaadde6fc90a09ecd0ba81c078c4a5ba58e53317b7e86c924d740108cb",
+  "full15_spent": false,
+  "generated9_csv_sha256": {
+    "seed1": "6fc7cb9a6133c383d46282d85f80d45fae25b32b3d224d0b0562da0fc846d530",
+    "seed4": "ed4c9fe89ee82dada55cbe09787b66099fab29af08337a04e96742e47fa309d0"
+  },
+  "generated9_metric_delta_vs_p0": {
+    "Aesthetic Quality": -0.006753802299499512,
+    "Dynamic Degree": 0.003906029267766342,
+    "Flow Score": 0.0013647335551671136,
+    "Image Quality": -0.004033575941015166,
+    "Instruction Following": 0.0,
+    "Interaction Quality": 0.0,
+    "Motion Smoothness": -0.0005506795228439332,
+    "Perspectivity": 0.0,
+    "Photometric Consistency": -0.004934667662419567
+  },
+  "primary_target_delta": {
+    "Aesthetic Quality": -0.006753802299499512,
+    "Image Quality": -0.004033575941015166,
+    "Photometric Consistency": -0.004934667662419567
+  },
+  "promotion_allowed": false,
+  "reason": "all_primary_visual_targets_negative_after_frozen_generated9_selection",
+  "selected_seed_counts": {
+    "seed1": 0,
+    "seed4": 4
+  },
+  "selection_before_full15": true,
+  "selection_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/d-p025-s31/n8-dev4/scoring/selection/selection.complete.json",
+  "selection_receipt_sha256": "de4eff8056ac0131258b55d46ca93667b6ec5a8efae7f6b56212cf90f72c7abe",
+  "terminal_state": "closed_generated9_cheap_gate"
+}

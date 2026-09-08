@@ -1,0 +1,427 @@
+{
+  "contract": "flowwam-native-merged-checkpoint/1",
+  "merged_checkpoint": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b29-lr3e8-b1-train8-r2/native-step-8.full.safetensors",
+  "merged_sha256": "fdc1f34f19fa16eed0f7d01b9b209d4a53c5b074a7ee58dda32351a33feef53d",
+  "merged_size": 10137267208,
+  "overwritten_parent_keys": [
+    "blocks.29.cross_attn.k.bias",
+    "blocks.29.cross_attn.k.weight",
+    "blocks.29.cross_attn.norm_k.weight",
+    "blocks.29.cross_attn.norm_q.weight",
+    "blocks.29.cross_attn.o.bias",
+    "blocks.29.cross_attn.o.weight",
+    "blocks.29.cross_attn.q.bias",
+    "blocks.29.cross_attn.q.weight",
+    "blocks.29.cross_attn.v.bias",
+    "blocks.29.cross_attn.v.weight",
+    "blocks.29.ffn.0.bias",
+    "blocks.29.ffn.0.weight",
+    "blocks.29.ffn.2.bias",
+    "blocks.29.ffn.2.weight",
+    "blocks.29.modulation",
+    "blocks.29.norm3.bias",
+    "blocks.29.norm3.weight",
+    "blocks.29.self_attn.k.bias",
+    "blocks.29.self_attn.k.weight",
+    "blocks.29.self_attn.norm_k.weight",
+    "blocks.29.self_attn.norm_q.weight",
+    "blocks.29.self_attn.o.bias",
+    "blocks.29.self_attn.o.weight",
+    "blocks.29.self_attn.q.bias",
+    "blocks.29.self_attn.q.weight",
+    "blocks.29.self_attn.v.bias",
+    "blocks.29.self_attn.v.weight",
+    "head.head.bias",
+    "head.head.weight",
+    "head.modulation"
+  ],
+  "overwritten_tensor_count": 30,
+  "parent_checkpoint": "/data/di/worldarena2_track1_20260815/models/FlowWAM/flowwam_worldarena_stage1.safetensors",
+  "parent_header_sha256": "fd71e2b8f32274947e36341e2430a34278d6106720b89adad52d5b29d7049116",
+  "parent_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "parent_size": 10137267208,
+  "parent_tensor_count": 830,
+  "partial_checkpoint": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b29-lr3e8-b1-train8-r2/native-step-8.safetensors",
+  "partial_sha256": "e050210b7bb08111a4d0bc6ad211912624e84aeeb1cbeda72c836eda0746317a",
+  "partial_size": 328508960,
+  "source_contract": "flowwam-gt-rpo-real-train8-receipt/1",
+  "source_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b29-lr3e8-b1-train8-r2/train-step8.complete.json",
+  "source_receipt_sha256": "c98c75f4fdcbf9b5f9fa19030e1825e89777da3192feb81f30f106f66628dcd1",
+  "tensor_mappings": [
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 6144,
+      "parent_key": "blocks.29.cross_attn.k.bias",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.cross_attn.k.bias",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 18874368,
+      "parent_key": "blocks.29.cross_attn.k.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.cross_attn.k.weight",
+      "partial_nbytes": 18874368,
+      "shape": [
+        3072,
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 6144,
+      "parent_key": "blocks.29.cross_attn.norm_k.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.cross_attn.norm_k.weight",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 6144,
+      "parent_key": "blocks.29.cross_attn.norm_q.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.cross_attn.norm_q.weight",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 6144,
+      "parent_key": "blocks.29.cross_attn.o.bias",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.cross_attn.o.bias",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 18874368,
+      "parent_key": "blocks.29.cross_attn.o.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.cross_attn.o.weight",
+      "partial_nbytes": 18874368,
+      "shape": [
+        3072,
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 6144,
+      "parent_key": "blocks.29.cross_attn.q.bias",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.cross_attn.q.bias",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 18874368,
+      "parent_key": "blocks.29.cross_attn.q.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.cross_attn.q.weight",
+      "partial_nbytes": 18874368,
+      "shape": [
+        3072,
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 6144,
+      "parent_key": "blocks.29.cross_attn.v.bias",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.cross_attn.v.bias",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 18874368,
+      "parent_key": "blocks.29.cross_attn.v.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.cross_attn.v.weight",
+      "partial_nbytes": 18874368,
+      "shape": [
+        3072,
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 28672,
+      "parent_key": "blocks.29.ffn.0.bias",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.ffn.0.bias",
+      "partial_nbytes": 28672,
+      "shape": [
+        14336
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 88080384,
+      "parent_key": "blocks.29.ffn.0.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.ffn.0.weight",
+      "partial_nbytes": 88080384,
+      "shape": [
+        14336,
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 6144,
+      "parent_key": "blocks.29.ffn.2.bias",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.ffn.2.bias",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 88080384,
+      "parent_key": "blocks.29.ffn.2.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.ffn.2.weight",
+      "partial_nbytes": 88080384,
+      "shape": [
+        3072,
+        14336
+      ]
+    },
+    {
+      "conversion": "BF16_TO_F32",
+      "dtype": "F32",
+      "nbytes": 73728,
+      "parent_key": "blocks.29.modulation",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.modulation",
+      "partial_nbytes": 36864,
+      "shape": [
+        1,
+        6,
+        3072
+      ]
+    },
+    {
+      "conversion": "BF16_TO_F32",
+      "dtype": "F32",
+      "nbytes": 12288,
+      "parent_key": "blocks.29.norm3.bias",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.norm3.bias",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "BF16_TO_F32",
+      "dtype": "F32",
+      "nbytes": 12288,
+      "parent_key": "blocks.29.norm3.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.norm3.weight",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 6144,
+      "parent_key": "blocks.29.self_attn.k.bias",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.self_attn.k.bias",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 18874368,
+      "parent_key": "blocks.29.self_attn.k.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.self_attn.k.weight",
+      "partial_nbytes": 18874368,
+      "shape": [
+        3072,
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 6144,
+      "parent_key": "blocks.29.self_attn.norm_k.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.self_attn.norm_k.weight",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 6144,
+      "parent_key": "blocks.29.self_attn.norm_q.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.self_attn.norm_q.weight",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 6144,
+      "parent_key": "blocks.29.self_attn.o.bias",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.self_attn.o.bias",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 18874368,
+      "parent_key": "blocks.29.self_attn.o.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.self_attn.o.weight",
+      "partial_nbytes": 18874368,
+      "shape": [
+        3072,
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 6144,
+      "parent_key": "blocks.29.self_attn.q.bias",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.self_attn.q.bias",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 18874368,
+      "parent_key": "blocks.29.self_attn.q.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.self_attn.q.weight",
+      "partial_nbytes": 18874368,
+      "shape": [
+        3072,
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 6144,
+      "parent_key": "blocks.29.self_attn.v.bias",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.self_attn.v.bias",
+      "partial_nbytes": 6144,
+      "shape": [
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 18874368,
+      "parent_key": "blocks.29.self_attn.v.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.blocks.29.self_attn.v.weight",
+      "partial_nbytes": 18874368,
+      "shape": [
+        3072,
+        3072
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 384,
+      "parent_key": "head.head.bias",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.head.head.bias",
+      "partial_nbytes": 384,
+      "shape": [
+        192
+      ]
+    },
+    {
+      "conversion": "NONE",
+      "dtype": "BF16",
+      "nbytes": 1179648,
+      "parent_key": "head.head.weight",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.head.head.weight",
+      "partial_nbytes": 1179648,
+      "shape": [
+        192,
+        3072
+      ]
+    },
+    {
+      "conversion": "BF16_TO_F32",
+      "dtype": "F32",
+      "nbytes": 24576,
+      "parent_key": "head.modulation",
+      "partial_dtype": "BF16",
+      "partial_key": "pipe.dit.head.modulation",
+      "partial_nbytes": 12288,
+      "shape": [
+        1,
+        2,
+        3072
+      ]
+    }
+  ]
+}

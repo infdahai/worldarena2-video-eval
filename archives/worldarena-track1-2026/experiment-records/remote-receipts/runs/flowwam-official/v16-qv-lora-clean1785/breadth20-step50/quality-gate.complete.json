@@ -1,0 +1,139 @@
+{
+  "candidate": {
+    "image": 0.5220057018421314,
+    "instruction": 0.7,
+    "interaction": 0.72,
+    "jepa": 0.9460845589637756
+  },
+  "completed": true,
+  "contract": "flowwam-v16-step50-breadth20-quality-gate/1",
+  "decision": "allow_step100",
+  "delta": {
+    "image": 0.0011379668271099819,
+    "instruction": -0.010000000000000009,
+    "interaction": 0.009999999999999898,
+    "jepa": 0.0005513429641723633
+  },
+  "improved_primary_metrics": [
+    "interaction",
+    "image"
+  ],
+  "incumbent": {
+    "image": 0.5208677350150214,
+    "instruction": 0.71,
+    "interaction": 0.7100000000000001,
+    "jepa": 0.9455332159996033
+  },
+  "jepa_pass": true,
+  "passed": true,
+  "trajectory": {
+    "baseline_common_mean_dtw": 0.06769682477453202,
+    "baseline_valid": 19,
+    "black_gate": {
+      "candidate_max": 0.0,
+      "candidate_mean": 0.0,
+      "contract": "wan-action-lite-video-black-gate/1",
+      "failure_reasons": [],
+      "max_limit": 0.25,
+      "mean_limit": 0.05,
+      "paired_regression_rate": 0.0,
+      "pairs": 20,
+      "passed": true,
+      "per_video": {
+        "handover_mic__aloha-agilex_clean_50__episode_000044.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "hanging_mug__aloha-agilex_clean_50__episode_000004.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "lift_pot__aloha-agilex_clean_50__episode_000039.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "move_can_pot__aloha-agilex_clean_50__episode_000036.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "move_pillbottle_pad__aloha-agilex_clean_50__episode_000004.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "move_playingcard_away__aloha-agilex_clean_50__episode_000001.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "move_stapler_pad__aloha-agilex_clean_50__episode_000027.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "open_laptop__aloha-agilex_clean_50__episode_000024.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "pick_diverse_bottles__aloha-agilex_clean_50__episode_000028.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "pick_dual_bottles__aloha-agilex_clean_50__episode_000029.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "place_a2b_left__aloha-agilex_clean_50__episode_000042.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "place_bread_basket__aloha-agilex_clean_50__episode_000049.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "place_bread_skillet__aloha-agilex_clean_50__episode_000047.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "place_burger_fries__aloha-agilex_clean_50__episode_000002.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "place_can_basket__aloha-agilex_clean_50__episode_000021.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "place_container_plate__aloha-agilex_clean_50__episode_000032.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "place_dual_shoes__aloha-agilex_clean_50__episode_000029.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "place_empty_cup__aloha-agilex_clean_50__episode_000021.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "place_fan__aloha-agilex_clean_50__episode_000045.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        },
+        "place_object_basket__aloha-agilex_clean_50__episode_000012.mp4": {
+          "candidate": 0.0,
+          "reference": 0.0
+        }
+      },
+      "reference_max": 0.0,
+      "reference_mean": 0.0
+    },
+    "candidate_common_mean_dtw": 0.05755898860336067,
+    "candidate_valid": 20,
+    "common_dtw_delta": -0.010137836171171352,
+    "common_valid": 19,
+    "coverage_delta": 0.014197530864197394,
+    "episodes": 20,
+    "flow_scale": 20.0,
+    "paired_losses": 9,
+    "paired_ties": 0,
+    "paired_wins": 11
+  },
+  "trajectory_pass": true
+}

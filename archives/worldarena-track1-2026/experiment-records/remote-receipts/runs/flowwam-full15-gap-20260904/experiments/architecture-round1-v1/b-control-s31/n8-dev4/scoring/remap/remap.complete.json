@@ -1,0 +1,48 @@
+{
+  "completed": true,
+  "contract": "b-control-dev4-score-remap/1",
+  "hidden_ground_truth_used": false,
+  "mapping": [
+    {
+      "first_frame_sha256": "362842aa0f9d5d2b702b02be373393a5b1c917351773429737d245ceac4e1283",
+      "instruction_sha256": "b26ec001e5a4088dde15f89087c2fd37e7c933c051fce690e2d5bdf877a2d04a",
+      "logical_episode_id": 0,
+      "seed1_source_sha256": "1d188933c4ef2da7ca76f5b11e0ba0eaf49b2f574657012dc790797d5953b592",
+      "seed1_source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-control-s31/n8-dev4/seed1/FlowWAMOfficialStage1_test/episode000000.mp4",
+      "seed4_source_sha256": "32496cc49b7f792a254239f6e02d1dabc72de62ffdaac06d4add589dc4ffc02b",
+      "seed4_source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-control-s31/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000000.mp4",
+      "source_episode_name": "episode000000"
+    },
+    {
+      "first_frame_sha256": "9403b660ce138f8ee70e49c774bd25df2b88a30933f44079eecc8b45687e6d9e",
+      "instruction_sha256": "5b7a8cf9d332c3abdddd54927fd8ff8eb3b1c4e741e5cff9bdb3a83ff34f0e7b",
+      "logical_episode_id": 1,
+      "seed1_source_sha256": "ceb7e347d0b99284719499b7850ac4e008fd9d852896a0027ed47f195b246393",
+      "seed1_source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-control-s31/n8-dev4/seed1/FlowWAMOfficialStage1_test/episode000001.mp4",
+      "seed4_source_sha256": "1557376cbacbe223d6dd9db5fc367124e23b7eab7a213cf949f55709cc7c6d1e",
+      "seed4_source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-control-s31/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000001.mp4",
+      "source_episode_name": "episode000001"
+    },
+    {
+      "first_frame_sha256": "2587be22cff6716ef130dc1d44f0ed7b5ed78a16f175943bcd31da7fd7d5e9f4",
+      "instruction_sha256": "2f664a2cd84891acf1b20a1d7fb60d8460b731fafc798b13e87088b602de4c96",
+      "logical_episode_id": 2,
+      "seed1_source_sha256": "beadd35a0b9dc1512152ec27d995cea7b445e5bf60bbd7b83d932413c913a898",
+      "seed1_source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-control-s31/n8-dev4/seed1/FlowWAMOfficialStage1_test/episode000002.mp4",
+      "seed4_source_sha256": "e9bddd529ffd6c7170ba88e481448a5fa79c3c8ada323a98665125031ff4ddb1",
+      "seed4_source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-control-s31/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000002.mp4",
+      "source_episode_name": "episode000002"
+    },
+    {
+      "first_frame_sha256": "c4d236a6d5652bc7de9f1d87a3fa0dfd43c9fd5f7ddeec57cd3420b3d0ba9042",
+      "instruction_sha256": "9b803a8c812bbb4b44187f4b090edc95400f08fbf41f58b1fb9e7174bd541c7e",
+      "logical_episode_id": 3,
+      "seed1_source_sha256": "36b1942ff989444721b91197671aa5c28d29f97200cd3ec2379786446a425038",
+      "seed1_source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-control-s31/n8-dev4/seed1/FlowWAMOfficialStage1_test/episode000003.mp4",
+      "seed4_source_sha256": "2029e4a046b476f704e49467cb15680938ef5425fa74c2aac1a1e677cfe40eb7",
+      "seed4_source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-control-s31/n8-dev4/seed4/FlowWAMOfficialStage1_test/episode000003.mp4",
+      "source_episode_name": "episode000003"
+    }
+  ],
+  "rows": 4
+}

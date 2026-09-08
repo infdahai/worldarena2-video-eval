@@ -1,0 +1,34 @@
+{
+  "completed": true,
+  "contract": "flowwam-adaptive-shard-input/1",
+  "episodes": [
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/open_microwave/aloha-agilex_clean_50/data/episode0.hdf5",
+      "action_sha256": "f665aed3cfc5dbf2d78766e87b35367143f12e848bf448440c2d132feb640741",
+      "episode_name": "episode000000",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/open_microwave/aloha-agilex_clean_50/instructions/episode0.json",
+      "instruction_sha256": "51d4b1884b94b6832eef30388b4991ccb8625582f40c9b50a3a8acbd273391ee",
+      "prompt_sha256": "340feb139273193eca4c71f2f4cbcd29bb09209ad8f6d7ecfe2310ace382228c",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/open_microwave/aloha-agilex_clean_50/robot_only/data/episode0.hdf5",
+      "robot_only_sha256": "cb96db042c41cb2c62ebad1bf03ea7812c7831153fa79f3b7e453f9885bf0b07",
+      "sample": "open_microwave__aloha-agilex_clean_50__episode_000000",
+      "split": "mechanism-smoke-only"
+    },
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/open_microwave/aloha-agilex_clean_50/data/episode1.hdf5",
+      "action_sha256": "34cc4de981913107d5eaebc227f4db5c37c1bc39617e7510edc265997d465df6",
+      "episode_name": "episode000001",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/open_microwave/aloha-agilex_clean_50/instructions/episode1.json",
+      "instruction_sha256": "6ece28618a3f1dc938a1dba8b7de2c1718dcf6648ade5da0a7094623959cd6f6",
+      "prompt_sha256": "cb05368994615d2a3110ca884924780bac7ffa4383bd3057d61f405134869cd1",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/open_microwave/aloha-agilex_clean_50/robot_only/data/episode1.hdf5",
+      "robot_only_sha256": "c32db3d537ae3e9e663b35a8131a62ddbb0077fc1f6534ee9f905cfdd84061a8",
+      "sample": "open_microwave__aloha-agilex_clean_50__episode_000001",
+      "split": "mechanism-smoke-only"
+    }
+  ],
+  "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/manifests/gpu2-open_microwave.jsonl",
+  "manifest_sha256": "5c7af072d5ac7d6b9f4844113b565fa8fa6f22a9efcd3f31b3988d0641a061ec",
+  "physical_gpu": 2,
+  "rows": 2
+}

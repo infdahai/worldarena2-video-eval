@@ -1,0 +1,172 @@
+{
+  "best_of_n": {
+    "1": {
+      "mean9_oracle": 0.5324770656884321,
+      "seeds": [
+        1
+      ],
+      "tie_episodes": 0,
+      "winner_counts": {
+        "1": 40
+      }
+    },
+    "2": {
+      "mean9_oracle": 0.5400395288054083,
+      "seeds": [
+        1,
+        4
+      ],
+      "tie_episodes": 0,
+      "winner_counts": {
+        "1": 22,
+        "4": 18
+      }
+    },
+    "3": {
+      "mean9_oracle": 0.5410087941232935,
+      "seeds": [
+        1,
+        4,
+        2
+      ],
+      "tie_episodes": 0,
+      "winner_counts": {
+        "1": 15,
+        "2": 9,
+        "4": 16
+      }
+    },
+    "4": {
+      "mean9_oracle": 0.5442336201051038,
+      "seeds": [
+        1,
+        4,
+        2,
+        3
+      ],
+      "tie_episodes": 0,
+      "winner_counts": {
+        "1": 8,
+        "2": 7,
+        "3": 14,
+        "4": 11
+      }
+    }
+  },
+  "completed": true,
+  "contract": "worldarena-four-seed-generated9-routing-mvp/2",
+  "feature_policy": "generated_only_no_hidden_gt",
+  "inputs": {
+    "replay": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/audits/p0-selector9-fresh40-replay-v1/p0-selector9-fresh40-replay.rows.jsonl",
+      "sha256": "b46965bc126305842d3b73dc26f0b925a411bd50edb4727fb6ab1cb0ee829387"
+    },
+    "seed2": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/scoring/seed2/merged40/csv/generated-only-task-aware.csv",
+      "sha256": "68a127695d1879efe967c720d97a90e6a0d94668bea4f568a896c79361d4e2b0"
+    },
+    "seed3": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/scoring/seed3/merged40/csv/generated-only-task-aware.csv",
+      "sha256": "f9a253b7c5b5a1199454f7b43b8c5e5a798999591964006bcd852c9d7c9d7e8d"
+    }
+  },
+  "outputs": {
+    "route40_csv": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/router/seed1-4-2-3-generated9-mvp/seed1-4-2-3-route40.generated9.csv",
+      "sha256": "a6cc4d657afc19e8498e9f297d479f60a9b909213e9f5c4fdee3e8b0093789a1"
+    },
+    "seed3_new_winners_csv": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/router/seed1-4-2-3-generated9-mvp/seed3-new-winners.generated9.csv",
+      "sha256": "7df6e75957115a82f92dafe17dc3f5f86cf3aa24716f66659686f8d25fa1cf39"
+    }
+  },
+  "per_seed": {
+    "1": {
+      "mean9": 0.5324770656884321,
+      "metric_means": {
+        "Aesthetic Quality": 0.39833670631051066,
+        "Dynamic Degree": 0.3423576215752884,
+        "Flow Score": 0.24677201106573837,
+        "Image Quality": 0.49584776922802876,
+        "Instruction Following": 0.7000000000000002,
+        "Interaction Quality": 0.7350000000000003,
+        "Motion Smoothness": 0.7275182991026022,
+        "Perspectivity": 0.925,
+        "Photometric Consistency": 0.2214611839137221
+      },
+      "rows": 40
+    },
+    "2": {
+      "mean9": 0.5303072401689062,
+      "metric_means": {
+        "Aesthetic Quality": 0.3964982405304909,
+        "Dynamic Degree": 0.34044749582639117,
+        "Flow Score": 0.2462432857076977,
+        "Image Quality": 0.49573791887436397,
+        "Instruction Following": 0.6950000000000001,
+        "Interaction Quality": 0.7350000000000004,
+        "Motion Smoothness": 0.727571570316868,
+        "Perspectivity": 0.9150000000000003,
+        "Photometric Consistency": 0.22126665026434464
+      },
+      "rows": 40
+    },
+    "3": {
+      "mean9": 0.5349399257435483,
+      "metric_means": {
+        "Aesthetic Quality": 0.3971103221178055,
+        "Dynamic Degree": 0.34117596098133524,
+        "Flow Score": 0.24166282313291093,
+        "Image Quality": 0.4985957306049487,
+        "Instruction Following": 0.7150000000000001,
+        "Interaction Quality": 0.7400000000000004,
+        "Motion Smoothness": 0.728222109683218,
+        "Perspectivity": 0.9349999999999999,
+        "Photometric Consistency": 0.21769238517171635
+      },
+      "rows": 40
+    },
+    "4": {
+      "mean9": 0.5344968152652012,
+      "metric_means": {
+        "Aesthetic Quality": 0.39899678379297254,
+        "Dynamic Degree": 0.34325545772810123,
+        "Flow Score": 0.2448124932953843,
+        "Image Quality": 0.4941925017333326,
+        "Instruction Following": 0.7200000000000002,
+        "Interaction Quality": 0.7400000000000004,
+        "Motion Smoothness": 0.7289424436503971,
+        "Perspectivity": 0.9199999999999999,
+        "Photometric Consistency": 0.22027165718662306
+      },
+      "rows": 40
+    }
+  },
+  "row_count": 40,
+  "seed3_increment": {
+    "mean9_oracle_delta_vs_seed1_4_2": 0.0032248259818102865,
+    "new_winner_count": 14,
+    "winner_keys": [
+      "click_alarmclock::episode000021",
+      "lift_pot::episode000033",
+      "move_pillbottle_pad::episode000032",
+      "move_stapler_pad::episode000013",
+      "open_laptop::episode000024",
+      "pick_dual_bottles::episode000000",
+      "place_bread_basket::episode000013",
+      "place_can_basket::episode000042",
+      "place_dual_shoes::episode000037",
+      "place_empty_cup::episode000029",
+      "scan_object::episode000016",
+      "shake_bottle::episode000028",
+      "stack_blocks_two::episode000013",
+      "stack_bowls_two::episode000010"
+    ]
+  },
+  "seed_order": [
+    1,
+    4,
+    2,
+    3
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "champion": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round4/jepa-preserve-v1/as-lr3e7-r2/checkpoints/step-8.safetensors",
+  "champion_sha256": "d926f92ccfe8c7c28e91a485aecf54deeceeeffc2cb612bae3300e37f5da48c7",
+  "checkpoint": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/checkpoints/step-4.safetensors",
+  "checkpoint_sha256": "00bcf6c1d4e9815ea51d622d57fa00f598103887f522449d211e0ff68ea01488",
+  "completed_steps": 4,
+  "contract": "flowwam-interaction-sam3-mvp-receipt/1",
+  "elapsed_seconds": 173.6469271183014,
+  "episode_ids": [
+    "beat_block_hammer__episode_000028",
+    "beat_block_hammer__episode_000030",
+    "beat_block_hammer__episode_000037",
+    "beat_block_hammer__episode_000028"
+  ],
+  "expected_lora_pairs": 12,
+  "flow_frozen_after": true,
+  "flow_frozen_before": true,
+  "full_champion_checkpoint": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/checkpoints/step-4.champion-selfqv60.safetensors",
+  "full_champion_checkpoint_sha256": "e0c59816a68d6751971260218c1d66869d5a06aa00aeb7c61adfa533c2b9debb",
+  "full_inference_layout": {
+    "attention_scope": "self",
+    "filtered_cross_attention_pairs": 0,
+    "loaded_pairs": 60,
+    "source_layout": "self-qv-only",
+    "source_pairs": 60,
+    "target_modules": [
+      "self_attn.q",
+      "self_attn.v"
+    ]
+  },
+  "gradient_norm": 0.04638671875,
+  "inference_layout": {
+    "attention_scope": "self",
+    "filtered_cross_attention_pairs": 0,
+    "loaded_pairs": 12,
+    "source_layout": "self-qv-only",
+    "source_pairs": 12,
+    "target_modules": [
+      "self_attn.q",
+      "self_attn.v"
+    ]
+  },
+  "loss": 0.5308032035827637,
+  "metrics_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/interaction-step4.metrics.jsonl",
+  "metrics_sha256": "5a70ae1921523b9962e6aa9d6af5d1e9959d0bef977494f84c522c8ac9295709",
+  "mode": "train",
+  "parent_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "passed": true,
+  "peak_allocated_gib": 15.91606616973877,
+  "peak_reserved_gib": 16.4921875,
+  "source_layout": "late-rgb-self-qv-blocks-24-29",
+  "steps": 4,
+  "trainable_names": [
+    "pipe.dit.blocks.24.self_attn.q.lora_A.default.weight",
+    "pipe.dit.blocks.24.self_attn.q.lora_B.default.weight",
+    "pipe.dit.blocks.24.self_attn.v.lora_A.default.weight",
+    "pipe.dit.blocks.24.self_attn.v.lora_B.default.weight",
+    "pipe.dit.blocks.25.self_attn.q.lora_A.default.weight",
+    "pipe.dit.blocks.25.self_attn.q.lora_B.default.weight",
+    "pipe.dit.blocks.25.self_attn.v.lora_A.default.weight",
+    "pipe.dit.blocks.25.self_attn.v.lora_B.default.weight",
+    "pipe.dit.blocks.26.self_attn.q.lora_A.default.weight",
+    "pipe.dit.blocks.26.self_attn.q.lora_B.default.weight",
+    "pipe.dit.blocks.26.self_attn.v.lora_A.default.weight",
+    "pipe.dit.blocks.26.self_attn.v.lora_B.default.weight",
+    "pipe.dit.blocks.27.self_attn.q.lora_A.default.weight",
+    "pipe.dit.blocks.27.self_attn.q.lora_B.default.weight",
+    "pipe.dit.blocks.27.self_attn.v.lora_A.default.weight",
+    "pipe.dit.blocks.27.self_attn.v.lora_B.default.weight",
+    "pipe.dit.blocks.28.self_attn.q.lora_A.default.weight",
+    "pipe.dit.blocks.28.self_attn.q.lora_B.default.weight",
+    "pipe.dit.blocks.28.self_attn.v.lora_A.default.weight",
+    "pipe.dit.blocks.28.self_attn.v.lora_B.default.weight",
+    "pipe.dit.blocks.29.self_attn.q.lora_A.default.weight",
+    "pipe.dit.blocks.29.self_attn.q.lora_B.default.weight",
+    "pipe.dit.blocks.29.self_attn.v.lora_A.default.weight",
+    "pipe.dit.blocks.29.self_attn.v.lora_B.default.weight"
+  ],
+  "unique_episode_count": 3,
+  "validation_receipt_sha256": "818f60787a7da31f1fd695e15f1ace432a88d1a84df6fdf37767752c4e78c284"
+}

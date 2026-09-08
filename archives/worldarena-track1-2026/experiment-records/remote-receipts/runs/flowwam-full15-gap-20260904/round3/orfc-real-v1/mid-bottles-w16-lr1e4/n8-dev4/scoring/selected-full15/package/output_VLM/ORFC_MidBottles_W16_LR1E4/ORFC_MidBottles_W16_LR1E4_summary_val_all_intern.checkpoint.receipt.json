@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/mid-bottles-w16-lr1e4/n8-dev4/scoring/selected-full15/package/output_VLM/ORFC_MidBottles_W16_LR1E4/ORFC_MidBottles_W16_LR1E4_summary_val_all_intern.json",
+  "output_sha256": "1f1dd10d534cebfa19394462c5825bc14735fa538351f7c9ae8de8225b075672",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/mid-bottles-w16-lr1e4/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/ORFC_MidBottles_W16_LR1E4/click_bell_episode_000008_20260831_181716.json",
+      "sha256": "a0058b0e62165bd1c1e659de78c8b9a162980585f2c170643ca3d289def671da",
+      "timestamp": "20260831_181716",
+      "video": "click_bell_episode_000008.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/mid-bottles-w16-lr1e4/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/ORFC_MidBottles_W16_LR1E4/open_laptop_episode_000024_20260831_181931.json",
+      "sha256": "9fd374c1a44553fadf8973a718a16a1b51f39626704bcd80aac1acea950a10f7",
+      "timestamp": "20260831_181931",
+      "video": "open_laptop_episode_000024.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/mid-bottles-w16-lr1e4/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/ORFC_MidBottles_W16_LR1E4/pick_dual_bottles_episode_000000_20260831_182146.json",
+      "sha256": "312ea2f58cee65dabaaaf08021cbdf9775949e3419a4a89783a8ae7e4c329f16",
+      "timestamp": "20260831_182146",
+      "video": "pick_dual_bottles_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/mid-bottles-w16-lr1e4/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/ORFC_MidBottles_W16_LR1E4/place_container_plate_episode_000017_20260831_182401.json",
+      "sha256": "2ca91978fbc11bd49d7d6d7501eba21ee135b9eb17b6d63ad6f33948b9ab720c",
+      "timestamp": "20260831_182401",
+      "video": "place_container_plate_episode_000017.mp4"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "completed": true,
+  "contact_definition": "residual-near-fb-consistent-robot-motion",
+  "contact_fraction": 0.0,
+  "contract": "flowwam-orfc-episode-cache/1",
+  "episode_id": "turn_switch__aloha-agilex_clean_50__episode_000018",
+  "flow_backend": "RAFTFlowExtractor",
+  "flow_threshold": 0.25,
+  "inconsistency_threshold": 0.5,
+  "manifest_sha256": "15d962245daf2e723421f6190cb5ae992c34ba8614a4cfed2eaf008f1e6dc4d3",
+  "occlusion_fraction": 0.06733333319425583,
+  "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-v1/cache/turn_switch__aloha-agilex_clean_50__episode_000018.orfc.pt",
+  "output_sha256": "8b8425824b12c475117bfd357e249b255da53231ea7df226eb064bea09822013",
+  "residual_definition": "full_scene_flow-minus-robot_flow",
+  "residual_threshold": 0.25,
+  "robot_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/turn_switch/aloha-agilex_clean_50/robot_only/data/episode18.hdf5",
+  "robot_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/turn_switch/aloha-agilex_clean_50/robot_only/data/episode18.hdf5",
+  "robot_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/turn_switch/aloha-agilex_clean_50/robot_only/data/episode18.hdf5",
+  "robot_hdf5_resolved_sha256": "195da663c8516c3b98ffc58392cc7a33e5effac0eb3ccc662a271205bbbcf46d",
+  "robot_hdf5_sha256": "195da663c8516c3b98ffc58392cc7a33e5effac0eb3ccc662a271205bbbcf46d",
+  "scene_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/turn_switch/aloha-agilex_clean_50/data/episode18.hdf5",
+  "scene_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/turn_switch/aloha-agilex_clean_50/data/episode18.hdf5",
+  "scene_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/turn_switch/aloha-agilex_clean_50/data/episode18.hdf5",
+  "scene_hdf5_resolved_sha256": "3ba6aa7aa73032ae5abd66a6a2ea6f524336bb8fd71dacff4c86a05e9711f5fb",
+  "scene_hdf5_sha256": "3ba6aa7aa73032ae5abd66a6a2ea6f524336bb8fd71dacff4c86a05e9711f5fb",
+  "source_frame_count": 94,
+  "source_shape": [
+    240,
+    320
+  ],
+  "split": "round3_train_n8",
+  "target_shape": [
+    5,
+    15,
+    20
+  ],
+  "task": "turn_switch",
+  "temporal_indices": [
+    0,
+    23,
+    46,
+    69,
+    92
+  ]
+}

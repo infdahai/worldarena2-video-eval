@@ -1,0 +1,15 @@
+{
+  "champion_self": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round4/jepa-preserve-v1/as-lr3e7-r2/checkpoints/step-8.safetensors",
+  "champion_self_sha256": "d926f92ccfe8c7c28e91a485aecf54deeceeeffc2cb612bae3300e37f5da48c7",
+  "completed": true,
+  "contract": "flowwam-instruction-mvp-adapter-compose/1",
+  "created_at": "2026-09-01T06:50:30+08:00",
+  "cross_exact_from_instruction": true,
+  "cross_padded": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/inference/step-5.allqv-padded.safetensors",
+  "cross_padded_sha256": "88ad7aef284532584c2ca9cb5e71869cd65c7148d37939b2b7801f350467df34",
+  "cross_tensor_count": 120,
+  "merged": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/inference/step-5.aslr3e7-self-plus-cross.safetensors",
+  "merged_sha256": "5ce5cb58e851f93951adebd35a1ab90bc777281968195d7d6d56a58819aecb17",
+  "self_exact_from_champion": true,
+  "self_tensor_count": 120
+}

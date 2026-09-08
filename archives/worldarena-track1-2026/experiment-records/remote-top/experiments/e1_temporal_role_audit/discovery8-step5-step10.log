@@ -1,0 +1,56 @@
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+[W816 22:52:45.692571759 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 22:52:45.774818097 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 22:52:45.964273888 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 22:52:45.237442222 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 22:52:45.257567272 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 22:52:45.282599919 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 22:52:45.291020942 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 22:53:02.424320229 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.06s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.15s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.26s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.26s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.26s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.27s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.27s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.86s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.86s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.62s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.63s/it]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.08s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.09s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.09s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.09s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.12s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.77s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.77s/it]
+
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.77s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.77s/it]
+
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.79s/it]
+{"checkpoint_label": "e1-temporal-role-step5", "completed": 1, "event": "action_causality_episode_audited", "sample": "place_bread_basket__aloha-agilex_clean_50__episode_000000", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step5", "completed": 2, "event": "action_causality_episode_audited", "sample": "place_bread_basket__aloha-agilex_clean_50__episode_000019", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step5", "completed": 3, "event": "action_causality_episode_audited", "sample": "pick_dual_bottles__aloha-agilex_clean_50__episode_000021", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step5", "completed": 4, "event": "action_causality_episode_audited", "sample": "pick_dual_bottles__aloha-agilex_clean_50__episode_000001", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step5", "completed": 5, "event": "action_causality_episode_audited", "sample": "scan_object__aloha-agilex_clean_50__episode_000012", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step5", "completed": 6, "event": "action_causality_episode_audited", "sample": "scan_object__aloha-agilex_clean_50__episode_000027", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step5", "completed": 7, "event": "action_causality_episode_audited", "sample": "place_bread_skillet__aloha-agilex_clean_50__episode_000031", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step5", "completed": 8, "event": "action_causality_episode_audited", "sample": "place_bread_skillet__aloha-agilex_clean_50__episode_000006", "total": 8}
+{"classification": "causal_signal_present", "event": "action_causality_checkpoint_audited", "label": "e1-temporal-role-step5", "report": "/data/di/worldarena2_track1_20260815/experiments/e1_temporal_role_audit/reports/step5.v1.json"}
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+[W816 23:01:08.922811102 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 23:01:08.230517191 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 23:01:09.454760735 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 23:01:09.562623619 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 23:01:09.614593857 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 23:01:09.614648768 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 23:01:09.624060603 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+[W816 23:01:25.774703620 socket.cpp:200] [c10d] The hostname of the client socket cannot be retrieved. err=-3
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.26s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.26s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.27s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.27s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.27s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.27s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.27s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.22s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.23s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.23s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.23s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.25s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.25s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.25s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.85s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.85s/it]
+
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.85s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.85s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.86s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.86s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.86s/it]
+{"checkpoint_label": "e1-temporal-role-step10", "completed": 1, "event": "action_causality_episode_audited", "sample": "place_bread_basket__aloha-agilex_clean_50__episode_000000", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step10", "completed": 2, "event": "action_causality_episode_audited", "sample": "place_bread_basket__aloha-agilex_clean_50__episode_000019", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step10", "completed": 3, "event": "action_causality_episode_audited", "sample": "pick_dual_bottles__aloha-agilex_clean_50__episode_000021", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step10", "completed": 4, "event": "action_causality_episode_audited", "sample": "pick_dual_bottles__aloha-agilex_clean_50__episode_000001", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step10", "completed": 5, "event": "action_causality_episode_audited", "sample": "scan_object__aloha-agilex_clean_50__episode_000012", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step10", "completed": 6, "event": "action_causality_episode_audited", "sample": "scan_object__aloha-agilex_clean_50__episode_000027", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step10", "completed": 7, "event": "action_causality_episode_audited", "sample": "place_bread_skillet__aloha-agilex_clean_50__episode_000031", "total": 8}
+{"checkpoint_label": "e1-temporal-role-step10", "completed": 8, "event": "action_causality_episode_audited", "sample": "place_bread_skillet__aloha-agilex_clean_50__episode_000006", "total": 8}
+{"classification": "causal_signal_present", "event": "action_causality_checkpoint_audited", "label": "e1-temporal-role-step10", "report": "/data/di/worldarena2_track1_20260815/experiments/e1_temporal_role_audit/reports/step10.v1.json"}

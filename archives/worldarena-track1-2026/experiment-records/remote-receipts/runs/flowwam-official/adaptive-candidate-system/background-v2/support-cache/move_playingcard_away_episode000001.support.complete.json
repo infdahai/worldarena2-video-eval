@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.022317708333333332,
+    "mean_area_fraction": 0.00785353170010288,
+    "valid_frames": 49
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.20178385416666667,
+    "mean_area_fraction": 0.09356296617798353,
+    "valid_frames": 68
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.201953125,
+    "mean_area_fraction": 0.08969618055555555,
+    "valid_frames": 68
+  },
+  "source_video_sha256": "03179867fe32d42bbda38f45d5af3771b672bb3c730a0c4ce1bf47bee23baf2d",
+  "support_fraction": 0.6288364840534979,
+  "support_sha256": "6094bd4bfef1e5c735a509b7c89e1baf586b08b2d91567583905996ed3ac1be4",
+  "video_id": "move_playingcard_away_episode000001"
+}

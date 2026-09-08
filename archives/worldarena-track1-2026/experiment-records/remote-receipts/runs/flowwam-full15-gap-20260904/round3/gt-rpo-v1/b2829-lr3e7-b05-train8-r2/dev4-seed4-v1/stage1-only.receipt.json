@@ -1,0 +1,153 @@
+{
+  "checkpoint_lineage": {
+    "checkpoint_sha256": "247633b79f82f28106fc37cb55aafccb2b28cb138194d2b76fbf82f5690bcb2c",
+    "overwritten_parent_keys": [
+      "blocks.28.cross_attn.k.bias",
+      "blocks.28.cross_attn.k.weight",
+      "blocks.28.cross_attn.norm_k.weight",
+      "blocks.28.cross_attn.norm_q.weight",
+      "blocks.28.cross_attn.o.bias",
+      "blocks.28.cross_attn.o.weight",
+      "blocks.28.cross_attn.q.bias",
+      "blocks.28.cross_attn.q.weight",
+      "blocks.28.cross_attn.v.bias",
+      "blocks.28.cross_attn.v.weight",
+      "blocks.28.ffn.0.bias",
+      "blocks.28.ffn.0.weight",
+      "blocks.28.ffn.2.bias",
+      "blocks.28.ffn.2.weight",
+      "blocks.28.modulation",
+      "blocks.28.norm3.bias",
+      "blocks.28.norm3.weight",
+      "blocks.28.self_attn.k.bias",
+      "blocks.28.self_attn.k.weight",
+      "blocks.28.self_attn.norm_k.weight",
+      "blocks.28.self_attn.norm_q.weight",
+      "blocks.28.self_attn.o.bias",
+      "blocks.28.self_attn.o.weight",
+      "blocks.28.self_attn.q.bias",
+      "blocks.28.self_attn.q.weight",
+      "blocks.28.self_attn.v.bias",
+      "blocks.28.self_attn.v.weight",
+      "blocks.29.cross_attn.k.bias",
+      "blocks.29.cross_attn.k.weight",
+      "blocks.29.cross_attn.norm_k.weight",
+      "blocks.29.cross_attn.norm_q.weight",
+      "blocks.29.cross_attn.o.bias",
+      "blocks.29.cross_attn.o.weight",
+      "blocks.29.cross_attn.q.bias",
+      "blocks.29.cross_attn.q.weight",
+      "blocks.29.cross_attn.v.bias",
+      "blocks.29.cross_attn.v.weight",
+      "blocks.29.ffn.0.bias",
+      "blocks.29.ffn.0.weight",
+      "blocks.29.ffn.2.bias",
+      "blocks.29.ffn.2.weight",
+      "blocks.29.modulation",
+      "blocks.29.norm3.bias",
+      "blocks.29.norm3.weight",
+      "blocks.29.self_attn.k.bias",
+      "blocks.29.self_attn.k.weight",
+      "blocks.29.self_attn.norm_k.weight",
+      "blocks.29.self_attn.norm_q.weight",
+      "blocks.29.self_attn.o.bias",
+      "blocks.29.self_attn.o.weight",
+      "blocks.29.self_attn.q.bias",
+      "blocks.29.self_attn.q.weight",
+      "blocks.29.self_attn.v.bias",
+      "blocks.29.self_attn.v.weight",
+      "head.head.bias",
+      "head.head.weight",
+      "head.modulation"
+    ],
+    "overwritten_tensor_count": 57,
+    "parent_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+    "receipt_sha256": "bc3a51dfcf172164eeb589977d336a35b2566db6a69de658c5c9ab02d4bf71ae"
+  },
+  "checkpoint_sha256": "247633b79f82f28106fc37cb55aafccb2b28cb138194d2b76fbf82f5690bcb2c",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "generated_this_run_count": 4,
+  "inference_sweep": {
+    "is_official_default": false,
+    "overrides": {
+      "flow_max_magnitude": 20.0,
+      "seed": 4
+    }
+  },
+  "instruction_variant": 0,
+  "max_episodes": 4,
+  "native_merged_checkpoint": {
+    "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b2829-lr3e7-b05-train8-r2/native-step-8.full.receipt.json",
+    "validation": "strict-before-gpu"
+  },
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "physical_gpu": 4,
+  "requested_episode_names": [
+    "episode000000",
+    "episode000001",
+    "episode000002",
+    "episode000003"
+  ],
+  "resumed_valid_count": 0,
+  "robot_conditioning": {
+    "mode": "pre-generated",
+    "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/robot_only"
+  },
+  "sample_manifest": null,
+  "sample_manifest_sha256": null,
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 4,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000000.mp4",
+      "sha256": "5c47e6afa1bfeccc1db04657adf0b3cd864fd2483c3c03cc494e53dcf306e9c4",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000001.mp4",
+      "sha256": "dbcc5b46214e50d142b699ee30eb029aa0c637f51afbe2a261aca26c2e4338bf",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000002.mp4",
+      "sha256": "6983f321331278a6ab6aaefa58e012faa77d1f1db5d73ec3fc060322e587060c",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode000003.mp4",
+      "sha256": "b0ea92c276d7d4e1537434dbc8f5c9a483b3343c58bac23ae9178675da619f89",
+      "width": 640
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "archived_failures": [
+    801,
+    802,
+    803,
+    804
+  ],
+  "completed": true,
+  "repair": "MASTER_PORT=29500+physical_gpu",
+  "root_cause": "concurrent WorldArena evaluators shared MASTER_PORT=29500",
+  "tests": "50 passed local and remote"
+}

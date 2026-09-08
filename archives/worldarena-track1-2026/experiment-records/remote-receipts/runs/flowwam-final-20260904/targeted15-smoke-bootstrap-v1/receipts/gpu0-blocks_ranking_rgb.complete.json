@@ -1,0 +1,41 @@
+{
+  "allowed_usage": "mechanism-smoke-only",
+  "canonical_manifest_sha256": "9010aafe927af5fe73a013b37482b3580d88d63030f019966f9de2c56416400b",
+  "completed": true,
+  "contract": "flowwam-targeted15-smoke-task-bootstrap/1",
+  "episodes": [
+    {
+      "action_sha256": "3b4751516679e370be0424eece0c7cea13108e2a2bc6ba5e093ddf9d6a36baa7",
+      "episode_index": 0,
+      "episode_name": "episode000000",
+      "first_frame_sha256": "932ec75dbe9cd71c74f4347f51e4f2d52e3032d085e97dc7221fedb306286c3d",
+      "instruction_file_sha256": "b9f31f42bcd2422d05cbd7d13d354b48594aad544d5c03efc170eff0895a983c",
+      "robot_only_sha256": "ca86f693ab48bfe501b756ad4514317381b10fcfcf12256ed17c521b40ba64ce",
+      "sample": "blocks_ranking_rgb__aloha-agilex_clean_50__episode_000000"
+    },
+    {
+      "action_sha256": "6b4c6a4bb23ef2c313ae4c2440ae047b66165141389807be580fda0740aea829",
+      "episode_index": 1,
+      "episode_name": "episode000001",
+      "first_frame_sha256": "72e1d18cf9e4f3801086b808db1df4a30e5a3b92405e756a55a4adbcaf9b4e8c",
+      "instruction_file_sha256": "48b55b5f8cc3c3914d63fef2760a6073c2a2b8a4e87755f9406b7957afc769b5",
+      "robot_only_sha256": "82f4cdea116942fe924c9ed9599847b19de7a098c24d9994243ca75bd38ac31a",
+      "sample": "blocks_ranking_rgb__aloha-agilex_clean_50__episode_000001"
+    }
+  ],
+  "extraction_receipt": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/blocks_ranking_rgb/.worldarena_extracted.json",
+  "extraction_receipt_sha256": "4555261c2dab3efb545f09ab3aa6dca4b67cbee04c7c48bd2b7af4e7036b9425",
+  "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/manifests/gpu0-blocks_ranking_rgb.jsonl",
+  "physical_gpu": 0,
+  "promotion_evidence": false,
+  "shard_input_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu0-blocks_ranking_rgb/shard-input.complete.json",
+  "shard_input_receipt_sha256": "11966f52da62cf8a80784b81e01f48e15401a0da5b6fe470481c1d40e2a27770",
+  "shard_root": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/targeted15-smoke-bootstrap-v1/shards/gpu0-blocks_ranking_rgb",
+  "source_archive": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/aloha-agilex_clean_50/blocks_ranking_rgb.tar.gz",
+  "source_archive_sha256": "e83b5b19a359269e737f30b7532b9b866d18b4c2dc73c576c37f6c5fbd06f031",
+  "source_manifest": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_clean50/.worldarena_manifest.json",
+  "source_manifest_sha256": "c75870c5d9dad05170d1f9a54f5d95983b322d57bb496e11d3b3e6815b4b7634",
+  "source_repo": "YixiangChen/FlowWAM_RoboTwin",
+  "source_revision": "506c4e014f7dbd291e7d7683c79fc685dd3e2714",
+  "task": "blocks_ranking_rgb"
+}

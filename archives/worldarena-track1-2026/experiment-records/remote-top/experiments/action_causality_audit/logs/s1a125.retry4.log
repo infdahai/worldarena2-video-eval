@@ -1,0 +1,486 @@
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.06s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.09s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.11s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.11s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.11s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.11s/it]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.11s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.85s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.62s/it]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.07s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.09s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.09s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.09s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.09s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.09s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.74s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.75s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.75s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.75s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.75s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:08<00:00,  2.75s/it]
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 542, in <module>
+[rank3]:     main()
+[rank3]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 447, in main
+[rank3]:     gradient_routing = _gradient_routing(
+[rank3]:                        ^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 260, in _gradient_routing
+[rank3]:     wrapped(
+[rank3]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_action_adapter.py", line 516, in forward
+[rank3]:     return self.backbone(x, t, context, seq_len, y=y)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank3]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank3]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 490, in forward
+[rank3]:     x = block(x, **kwargs)
+[rank3]:         ^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank3]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank3]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 258, in forward
+[rank3]:     x = cross_attn_ffn(x, context, context_lens, e)
+[rank3]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 253, in cross_attn_ffn
+[rank3]:     self.norm2(x).float() * (1 + e[4].squeeze(2)) + e[3].squeeze(2))
+[rank3]:     ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+[rank3]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 74.00 MiB. GPU 3 has a total capacity of 23.52 GiB of which 86.56 MiB is free. Including non-PyTorch memory, this process has 23.42 GiB memory in use. Of the allocated memory 22.38 GiB is allocated by PyTorch, and 461.82 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 542, in <module>
+[rank1]:     main()
+[rank1]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 447, in main
+[rank1]:     gradient_routing = _gradient_routing(
+[rank1]:                        ^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 260, in _gradient_routing
+[rank1]:     wrapped(
+[rank1]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_action_adapter.py", line 516, in forward
+[rank1]:     return self.backbone(x, t, context, seq_len, y=y)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank1]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank1]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 490, in forward
+[rank1]:     x = block(x, **kwargs)
+[rank1]:         ^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank1]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank1]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 258, in forward
+[rank1]:     x = cross_attn_ffn(x, context, context_lens, e)
+[rank1]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 253, in cross_attn_ffn
+[rank1]:     self.norm2(x).float() * (1 + e[4].squeeze(2)) + e[3].squeeze(2))
+[rank1]:     ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+[rank1]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 74.00 MiB. GPU 1 has a total capacity of 23.52 GiB of which 83.62 MiB is free. Including non-PyTorch memory, this process has 23.42 GiB memory in use. Of the allocated memory 22.38 GiB is allocated by PyTorch, and 461.82 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank4]: Traceback (most recent call last):
+[rank4]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 542, in <module>
+[rank4]:     main()
+[rank4]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 447, in main
+[rank4]:     gradient_routing = _gradient_routing(
+[rank4]:                        ^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 260, in _gradient_routing
+[rank4]:     wrapped(
+[rank4]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank4]:     return self._call_impl(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank4]:     return forward_call(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_action_adapter.py", line 516, in forward
+[rank4]:     return self.backbone(x, t, context, seq_len, y=y)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank4]:     return self._call_impl(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank4]:     return forward_call(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank4]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank4]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank4]:     return self._call_impl(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank4]:     return forward_call(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 490, in forward
+[rank4]:     x = block(x, **kwargs)
+[rank4]:         ^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank4]:     return self._call_impl(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank4]:     return forward_call(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank4]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank4]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank4]:     return self._call_impl(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank4]:     return forward_call(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 258, in forward
+[rank4]:     x = cross_attn_ffn(x, context, context_lens, e)
+[rank4]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 253, in cross_attn_ffn
+[rank4]:     self.norm2(x).float() * (1 + e[4].squeeze(2)) + e[3].squeeze(2))
+[rank4]:     ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+[rank4]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 74.00 MiB. GPU 4 has a total capacity of 23.52 GiB of which 86.31 MiB is free. Including non-PyTorch memory, this process has 23.42 GiB memory in use. Of the allocated memory 22.38 GiB is allocated by PyTorch, and 461.82 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank5]: Traceback (most recent call last):
+[rank5]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 542, in <module>
+[rank5]:     main()
+[rank5]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 447, in main
+[rank5]:     gradient_routing = _gradient_routing(
+[rank5]:                        ^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 260, in _gradient_routing
+[rank5]:     wrapped(
+[rank5]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank5]:     return self._call_impl(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank5]:     return forward_call(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_action_adapter.py", line 516, in forward
+[rank5]:     return self.backbone(x, t, context, seq_len, y=y)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank5]:     return self._call_impl(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank5]:     return forward_call(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank5]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank5]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank5]:     return self._call_impl(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank5]:     return forward_call(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 490, in forward
+[rank5]:     x = block(x, **kwargs)
+[rank5]:         ^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank5]:     return self._call_impl(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank5]:     return forward_call(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank5]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank5]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank5]:     return self._call_impl(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank5]:     return forward_call(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 258, in forward
+[rank5]:     x = cross_attn_ffn(x, context, context_lens, e)
+[rank5]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 253, in cross_attn_ffn
+[rank5]:     self.norm2(x).float() * (1 + e[4].squeeze(2)) + e[3].squeeze(2))
+[rank5]:     ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+[rank5]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 74.00 MiB. GPU 5 has a total capacity of 23.52 GiB of which 86.75 MiB is free. Including non-PyTorch memory, this process has 23.42 GiB memory in use. Of the allocated memory 22.38 GiB is allocated by PyTorch, and 461.82 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 542, in <module>
+[rank0]:     main()
+[rank0]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 447, in main
+[rank0]:     gradient_routing = _gradient_routing(
+[rank0]:                        ^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 260, in _gradient_routing
+[rank0]:     wrapped(
+[rank0]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_action_adapter.py", line 516, in forward
+[rank0]:     return self.backbone(x, t, context, seq_len, y=y)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank0]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 490, in forward
+[rank0]:     x = block(x, **kwargs)
+[rank0]:         ^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank0]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 258, in forward
+[rank0]:     x = cross_attn_ffn(x, context, context_lens, e)
+[rank0]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 253, in cross_attn_ffn
+[rank0]:     self.norm2(x).float() * (1 + e[4].squeeze(2)) + e[3].squeeze(2))
+[rank0]:     ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 74.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 85.06 MiB is free. Including non-PyTorch memory, this process has 23.42 GiB memory in use. Of the allocated memory 22.38 GiB is allocated by PyTorch, and 461.82 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 542, in <module>
+[rank2]:     main()
+[rank2]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 447, in main
+[rank2]:     gradient_routing = _gradient_routing(
+[rank2]:                        ^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 260, in _gradient_routing
+[rank2]:     wrapped(
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_action_adapter.py", line 516, in forward
+[rank2]:     return self.backbone(x, t, context, seq_len, y=y)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank2]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank2]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 490, in forward
+[rank2]:     x = block(x, **kwargs)
+[rank2]:         ^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank2]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank2]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 258, in forward
+[rank2]:     x = cross_attn_ffn(x, context, context_lens, e)
+[rank2]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 252, in cross_attn_ffn
+[rank2]:     y = self.ffn(
+[rank2]:         ^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/container.py", line 244, in forward
+[rank2]:     input = module(input)
+[rank2]:             ^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 125, in forward
+[rank2]:     return F.linear(input, self.weight, self.bias)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 174.00 MiB. GPU 2 has a total capacity of 23.52 GiB of which 86.25 MiB is free. Including non-PyTorch memory, this process has 23.42 GiB memory in use. Of the allocated memory 22.42 GiB is allocated by PyTorch, and 424.91 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank6]: Traceback (most recent call last):
+[rank6]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 542, in <module>
+[rank6]:     main()
+[rank6]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 447, in main
+[rank6]:     gradient_routing = _gradient_routing(
+[rank6]:                        ^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/huazhi/nlh/baseline/scripts/audit_wan_action_causality_fsdp.py", line 260, in _gradient_routing
+[rank6]:     wrapped(
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank6]:     return self._call_impl(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank6]:     return forward_call(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/huazhi/nlh/baseline/src/worldarena_baseline/wan_action_adapter.py", line 516, in forward
+[rank6]:     return self.backbone(x, t, context, seq_len, y=y)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank6]:     return self._call_impl(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank6]:     return forward_call(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank6]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank6]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank6]:     return self._call_impl(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank6]:     return forward_call(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 490, in forward
+[rank6]:     x = block(x, **kwargs)
+[rank6]:         ^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank6]:     return self._call_impl(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank6]:     return forward_call(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 854, in forward
+[rank6]:     output = self._fsdp_wrapped_module(*args, **kwargs)
+[rank6]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank6]:     return self._call_impl(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank6]:     return forward_call(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 258, in forward
+[rank6]:     x = cross_attn_ffn(x, context, context_lens, e)
+[rank6]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/di/worldarena2_track1_20260815/sources/Wan2.2/wan/modules/model.py", line 252, in cross_attn_ffn
+[rank6]:     y = self.ffn(
+[rank6]:         ^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank6]:     return self._call_impl(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank6]:     return forward_call(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/container.py", line 244, in forward
+[rank6]:     input = module(input)
+[rank6]:             ^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+[rank6]:     return self._call_impl(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+[rank6]:     return forward_call(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/nn/modules/activation.py", line 738, in forward
+[rank6]:     return F.gelu(input, approximate=self.approximate)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 174.00 MiB. GPU 6 has a total capacity of 23.52 GiB of which 20.50 MiB is free. Including non-PyTorch memory, this process has 23.49 GiB memory in use. Of the allocated memory 22.55 GiB is allocated by PyTorch, and 356.86 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+W0816 18:06:39.693000 38760 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 38829 closing signal SIGTERM
+W0816 18:06:39.695000 38760 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 38830 closing signal SIGTERM
+W0816 18:06:39.695000 38760 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 38831 closing signal SIGTERM
+W0816 18:06:39.696000 38760 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 38833 closing signal SIGTERM
+W0816 18:06:39.696000 38760 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 38834 closing signal SIGTERM
+W0816 18:06:39.696000 38760 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 38835 closing signal SIGTERM
+E0816 18:06:40.575000 38760 site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 3 (pid: 38832) of binary: /data/di/worldarena2_track1_20260815/venv_reuse/bin/python
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/run.py", line 905, in <module>
+    main()
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 143, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/yichenwang/miniconda3/envs/lingbotvla/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 277, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts/audit_wan_action_causality_fsdp.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-08-16_18:06:39
+  host      : bm-heo4ph
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 38832)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

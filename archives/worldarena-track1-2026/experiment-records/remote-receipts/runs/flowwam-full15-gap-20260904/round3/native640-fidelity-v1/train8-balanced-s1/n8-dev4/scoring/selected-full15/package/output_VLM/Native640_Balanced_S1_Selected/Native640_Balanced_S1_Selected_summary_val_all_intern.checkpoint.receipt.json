@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-balanced-s1/n8-dev4/scoring/selected-full15/package/output_VLM/Native640_Balanced_S1_Selected/Native640_Balanced_S1_Selected_summary_val_all_intern.json",
+  "output_sha256": "017abcff6fcc667d4711e607e59db9cdd069367d955f79f93e676c657050b9cc",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-balanced-s1/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Native640_Balanced_S1_Selected/click_bell_episode_000008_20260831_165923.json",
+      "sha256": "31ca8a58ee8258db90272232009f0b1ee871ffa05072a5326936c5d7c73215f9",
+      "timestamp": "20260831_165923",
+      "video": "click_bell_episode_000008.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-balanced-s1/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Native640_Balanced_S1_Selected/open_laptop_episode_000024_20260831_170142.json",
+      "sha256": "1332d88d848e545df499a08baf31b397c12f6c5e9f41605547e312894666fbfb",
+      "timestamp": "20260831_170142",
+      "video": "open_laptop_episode_000024.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-balanced-s1/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Native640_Balanced_S1_Selected/pick_dual_bottles_episode_000000_20260831_170402.json",
+      "sha256": "b67dc598da13d02d797b55a1395c1271687bf433006f167b1a119416d1537b95",
+      "timestamp": "20260831_170402",
+      "video": "pick_dual_bottles_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-balanced-s1/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Native640_Balanced_S1_Selected/place_container_plate_episode_000017_20260831_170621.json",
+      "sha256": "cb61cd8452ddf04a42cfe2ba61c7c19fb2ef620aabab441735a9c4e88a4f939c",
+      "timestamp": "20260831_170621",
+      "video": "place_container_plate_episode_000017.mp4"
+    }
+  ]
+}

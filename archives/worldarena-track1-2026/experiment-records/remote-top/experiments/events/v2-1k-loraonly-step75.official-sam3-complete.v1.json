@@ -1,0 +1,55 @@
+{
+  "array_sha256": {
+    "baseline": "aca60a56acb2d1ad456a0380de4dc084e2751f52847f7a7ea124e7b98df36b7d",
+    "candidate": "833fe163d66f5a4c28c28463ee299b733a26463929a68a835cabfcc5899f6d2d",
+    "commanded": "1a74e0c5f4d7f360270f710eeed6ec699ec6e6232ba23e242f4a600e6c426a65",
+    "ground_truth": "e0e9dc9d1049f14112eb30a16b6b4d1da0f28b343360ac7381b21267b8ba32a8"
+  },
+  "baseline": "formal-s1A125",
+  "baseline_mean_inverse_all20": 1.9090536642892613,
+  "baseline_valid_episodes": 6,
+  "candidate": "v2-1k-loraonly-step75-lr2e-6",
+  "candidate_mean_inverse_all20": 1.8592540203642003,
+  "candidate_valid_episodes": 8,
+  "contract": "wan-action-lite-official-sam3-dev-fast20/1",
+  "created_at": "2026-08-16T07:29:06.869322+00:00",
+  "decision": "reject_candidate_retain_s1a125",
+  "event": "official_sam3_dev_fast20_complete",
+  "official_evaluator_commit": "7b3feee108427bee3380064bb5154970ed7468b5",
+  "paired_win_rate_all20": 0.2,
+  "preprocessing_parity": {
+    "evidence": "/data/di/worldarena2_track1_20260815/eval/official-sam3-lr2e5-fast20/diagnostics/preprocess-parity/preprocess-parity.json",
+    "official_default_vs_staging_byte_equal": true
+  },
+  "relative_gain_all20": -0.026086036687502645,
+  "scope": "dev-fast20-official-evaluator-not-test1000",
+  "strict_gate": {
+    "detection_coverage": 0.13364197530864197,
+    "episode_count": 20,
+    "failure_reasons": [
+      "invalid episodes present",
+      "official mean inverse gain is below 5%",
+      "raw mean distance is not strictly lower",
+      "paired win rate is not strictly above 55%",
+      "action-adherence distance did not improve by 5%"
+    ],
+    "invalid_episode_count": 15,
+    "minimum_relative_gain": 0.05,
+    "official_commit": "7b3feee108427bee3380064bb5154970ed7468b5",
+    "paired_finite_episode_count": 5,
+    "paired_win_rate": 0.2,
+    "passed": false,
+    "raster_only_action_adherence_mean": 0.204592961715912,
+    "raster_only_mean": 6.5984454146731295,
+    "raster_only_raw_mean": 0.17758966474284937,
+    "raster_only_raw_median": 0.17498205563710684,
+    "raster_pose_action_adherence_mean": 0.21654711404997773,
+    "raster_pose_mean": 4.787118793627193,
+    "raster_pose_raw_mean": 0.26738696007312024,
+    "raster_pose_raw_median": 0.301274546074405,
+    "relative_gain": -0.2745080859527979,
+    "sample_count": 5
+  },
+  "strict_gate_passed": false,
+  "summary_path": "/data/di/worldarena2_track1_20260815/eval/official-sam3-lr2e5-fast20/pair-loraonly75/summary.json"
+}

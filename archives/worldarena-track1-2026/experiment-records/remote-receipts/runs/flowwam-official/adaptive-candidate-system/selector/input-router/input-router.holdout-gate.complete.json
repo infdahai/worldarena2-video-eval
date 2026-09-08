@@ -1,0 +1,24 @@
+{
+  "accuracy": 0.5,
+  "accuracy_is_diagnostic_only": true,
+  "bootstrap_one_sided_90_lower": -0.001076968117437105,
+  "bootstrap_random_seed": 20260824,
+  "bootstrap_replicates": 10000,
+  "completed": true,
+  "contract": "flowwam-adaptive-selector-holdout-gate/1",
+  "corrected_uplift": -0.00038138157,
+  "failure_reasons": [
+    "corrected_uplift",
+    "bootstrap_lower_bound",
+    "raw_regression",
+    "non_motion_regression"
+  ],
+  "non_motion_uplift": -0.0004609649731539656,
+  "passed": false,
+  "raw_uplift": -0.0002972567823874034,
+  "rows": 40,
+  "selected_seed_counts": {
+    "1": 23,
+    "4": 17
+  }
+}

@@ -1,0 +1,276 @@
+{
+  "contract": "track1-holdout16-cpu-input/1",
+  "selection_salt": "wa2-frozen-route-holdout16-20260903:",
+  "selection_rule": "For each task, sort episode indices 10..49 by ascending SHA256(salt + task + ':' + str(index)); take first four. No scores or difficulty used.",
+  "split": "episode-disjoint-holdout16",
+  "task_disjoint": false,
+  "official_parent_pretraining_exposure": "unknown",
+  "source_repo": "YixiangChen/FlowWAM_RoboTwin",
+  "source_revision": "506c4e014f7dbd291e7d7683c79fc685dd3e2714",
+  "source_root": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted",
+  "staging_physical_gpu_field": 0,
+  "staging_gpu_execution": false,
+  "prompt_rule": "First non-empty stripped string from source instructions JSON seen array; equivalent to existing adaptive_manifest._prompt and robotwin_manifest._prompt_list.",
+  "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/manifest.jsonl",
+  "input_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/shard-input.complete.json",
+  "selected": [
+    {
+      "task": "open_microwave",
+      "episode_index": 23,
+      "sample": "open_microwave__aloha-agilex_clean_50__episode_000023",
+      "stage1_episode_name": "episode000000",
+      "gt_frame_count": 467
+    },
+    {
+      "task": "open_microwave",
+      "episode_index": 21,
+      "sample": "open_microwave__aloha-agilex_clean_50__episode_000021",
+      "stage1_episode_name": "episode000001",
+      "gt_frame_count": 433
+    },
+    {
+      "task": "open_microwave",
+      "episode_index": 33,
+      "sample": "open_microwave__aloha-agilex_clean_50__episode_000033",
+      "stage1_episode_name": "episode000002",
+      "gt_frame_count": 457
+    },
+    {
+      "task": "open_microwave",
+      "episode_index": 38,
+      "sample": "open_microwave__aloha-agilex_clean_50__episode_000038",
+      "stage1_episode_name": "episode000003",
+      "gt_frame_count": 425
+    },
+    {
+      "task": "press_stapler",
+      "episode_index": 26,
+      "sample": "press_stapler__aloha-agilex_clean_50__episode_000026",
+      "stage1_episode_name": "episode000004",
+      "gt_frame_count": 124
+    },
+    {
+      "task": "press_stapler",
+      "episode_index": 21,
+      "sample": "press_stapler__aloha-agilex_clean_50__episode_000021",
+      "stage1_episode_name": "episode000005",
+      "gt_frame_count": 116
+    },
+    {
+      "task": "press_stapler",
+      "episode_index": 33,
+      "sample": "press_stapler__aloha-agilex_clean_50__episode_000033",
+      "stage1_episode_name": "episode000006",
+      "gt_frame_count": 119
+    },
+    {
+      "task": "press_stapler",
+      "episode_index": 12,
+      "sample": "press_stapler__aloha-agilex_clean_50__episode_000012",
+      "stage1_episode_name": "episode000007",
+      "gt_frame_count": 116
+    },
+    {
+      "task": "put_object_cabinet",
+      "episode_index": 41,
+      "sample": "put_object_cabinet__aloha-agilex_clean_50__episode_000041",
+      "stage1_episode_name": "episode000008",
+      "gt_frame_count": 266
+    },
+    {
+      "task": "put_object_cabinet",
+      "episode_index": 20,
+      "sample": "put_object_cabinet__aloha-agilex_clean_50__episode_000020",
+      "stage1_episode_name": "episode000009",
+      "gt_frame_count": 272
+    },
+    {
+      "task": "put_object_cabinet",
+      "episode_index": 32,
+      "sample": "put_object_cabinet__aloha-agilex_clean_50__episode_000032",
+      "stage1_episode_name": "episode000010",
+      "gt_frame_count": 261
+    },
+    {
+      "task": "put_object_cabinet",
+      "episode_index": 21,
+      "sample": "put_object_cabinet__aloha-agilex_clean_50__episode_000021",
+      "stage1_episode_name": "episode000011",
+      "gt_frame_count": 266
+    },
+    {
+      "task": "stack_bowls_three",
+      "episode_index": 16,
+      "sample": "stack_bowls_three__aloha-agilex_clean_50__episode_000016",
+      "stage1_episode_name": "episode000012",
+      "gt_frame_count": 439
+    },
+    {
+      "task": "stack_bowls_three",
+      "episode_index": 28,
+      "sample": "stack_bowls_three__aloha-agilex_clean_50__episode_000028",
+      "stage1_episode_name": "episode000013",
+      "gt_frame_count": 490
+    },
+    {
+      "task": "stack_bowls_three",
+      "episode_index": 17,
+      "sample": "stack_bowls_three__aloha-agilex_clean_50__episode_000017",
+      "stage1_episode_name": "episode000014",
+      "gt_frame_count": 446
+    },
+    {
+      "task": "stack_bowls_three",
+      "episode_index": 36,
+      "sample": "stack_bowls_three__aloha-agilex_clean_50__episode_000036",
+      "stage1_episode_name": "episode000015",
+      "gt_frame_count": 480
+    }
+  ],
+  "jobs": [
+    {
+      "task": "open_microwave",
+      "seed": 1,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/open_microwave.seed1.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/open_microwave"
+    },
+    {
+      "task": "open_microwave",
+      "seed": 4,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/open_microwave.seed4.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed4/open_microwave"
+    },
+    {
+      "task": "open_microwave",
+      "seed": 2,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/open_microwave.seed2.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed2/open_microwave"
+    },
+    {
+      "task": "open_microwave",
+      "seed": 3,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/open_microwave.seed3.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed3/open_microwave"
+    },
+    {
+      "task": "press_stapler",
+      "seed": 1,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/press_stapler.seed1.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/press_stapler"
+    },
+    {
+      "task": "press_stapler",
+      "seed": 4,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/press_stapler.seed4.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed4/press_stapler"
+    },
+    {
+      "task": "press_stapler",
+      "seed": 2,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/press_stapler.seed2.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed2/press_stapler"
+    },
+    {
+      "task": "press_stapler",
+      "seed": 3,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/press_stapler.seed3.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed3/press_stapler"
+    },
+    {
+      "task": "put_object_cabinet",
+      "seed": 1,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/put_object_cabinet.seed1.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/put_object_cabinet"
+    },
+    {
+      "task": "put_object_cabinet",
+      "seed": 4,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/put_object_cabinet.seed4.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed4/put_object_cabinet"
+    },
+    {
+      "task": "put_object_cabinet",
+      "seed": 2,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/put_object_cabinet.seed2.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed2/put_object_cabinet"
+    },
+    {
+      "task": "put_object_cabinet",
+      "seed": 3,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/put_object_cabinet.seed3.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed3/put_object_cabinet"
+    },
+    {
+      "task": "stack_bowls_three",
+      "seed": 1,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/stack_bowls_three.seed1.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed1/stack_bowls_three"
+    },
+    {
+      "task": "stack_bowls_three",
+      "seed": 4,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/stack_bowls_three.seed4.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed4/stack_bowls_three"
+    },
+    {
+      "task": "stack_bowls_three",
+      "seed": 2,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/stack_bowls_three.seed2.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed2/stack_bowls_three"
+    },
+    {
+      "task": "stack_bowls_three",
+      "seed": 3,
+      "sample_manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/jobs/stack_bowls_three.seed3.jsonl",
+      "expected_count": 4,
+      "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/input",
+      "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/input-staging/robot_only",
+      "output_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generation/seed3/stack_bowls_three"
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "checkpoint_lineage": {
+    "checkpoint_sha256": "946c2a0a31182e11f6d0e8f479a3c8162951573add8c428f1e1dbd65ff73d0e8",
+    "overwritten_parent_keys": [
+      "blocks.29.cross_attn.k.bias",
+      "blocks.29.cross_attn.k.weight",
+      "blocks.29.cross_attn.norm_k.weight",
+      "blocks.29.cross_attn.norm_q.weight",
+      "blocks.29.cross_attn.o.bias",
+      "blocks.29.cross_attn.o.weight",
+      "blocks.29.cross_attn.q.bias",
+      "blocks.29.cross_attn.q.weight",
+      "blocks.29.cross_attn.v.bias",
+      "blocks.29.cross_attn.v.weight",
+      "blocks.29.ffn.0.bias",
+      "blocks.29.ffn.0.weight",
+      "blocks.29.ffn.2.bias",
+      "blocks.29.ffn.2.weight",
+      "blocks.29.modulation",
+      "blocks.29.norm3.bias",
+      "blocks.29.norm3.weight",
+      "blocks.29.self_attn.k.bias",
+      "blocks.29.self_attn.k.weight",
+      "blocks.29.self_attn.norm_k.weight",
+      "blocks.29.self_attn.norm_q.weight",
+      "blocks.29.self_attn.o.bias",
+      "blocks.29.self_attn.o.weight",
+      "blocks.29.self_attn.q.bias",
+      "blocks.29.self_attn.q.weight",
+      "blocks.29.self_attn.v.bias",
+      "blocks.29.self_attn.v.weight",
+      "head.head.bias",
+      "head.head.weight",
+      "head.modulation"
+    ],
+    "overwritten_tensor_count": 30,
+    "parent_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+    "receipt_sha256": "5eeb2ab1d70327d449a7b3e6e52debfdabe710c0c8693ea3cb46889902a992ee"
+  },
+  "checkpoint_sha256": "946c2a0a31182e11f6d0e8f479a3c8162951573add8c428f1e1dbd65ff73d0e8",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "generated_this_run_count": 4,
+  "inference_sweep": {
+    "is_official_default": true,
+    "overrides": {
+      "flow_max_magnitude": 20.0,
+      "seed": 1
+    }
+  },
+  "instruction_variant": 0,
+  "max_episodes": 4,
+  "native_merged_checkpoint": {
+    "receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b29-lr1e7-b05-train8-r2/native-step-8.full.receipt.json",
+    "validation": "strict-before-gpu"
+  },
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "physical_gpu": 4,
+  "remap_contract": "round2-lram-dev4-score-remap/1",
+  "requested_episode_names": [
+    "episode000000",
+    "episode000001",
+    "episode000002",
+    "episode000003"
+  ],
+  "resumed_valid_count": 0,
+  "robot_conditioning": {
+    "mode": "pre-generated",
+    "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/robot_only"
+  },
+  "sample_manifest": null,
+  "sample_manifest_sha256": null,
+  "source_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/gt-rpo-v1/b29-lr1e7-b05-train8-r2/dev4-seed1-v1/stage1-only.receipt.json",
+  "source_receipt_sha256": "600863c8cd12cf301a07606404071b22afecd8a6b4d7576b8a564d332f65c389",
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 1,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode0.mp4",
+      "sha256": "bf1a1e24ffb55f505a91b6fb353f00a6efd342d6ef0c2040f54fa8a490bf38ae",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode1.mp4",
+      "sha256": "3bb75548ab8867fd471c4bddb09114c84530d6715892da44663c18f392974e01",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode2.mp4",
+      "sha256": "2b4d22d8cd137166dc49891e726df1bd56ee5269af80d286a8ec31f7d827ee4c",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "declared_frames": 121,
+      "decoded_frames": 121,
+      "height": 480,
+      "name": "episode3.mp4",
+      "sha256": "36a11ccc9317c0da1de5ad6648bc7b769ee7a2b3a3a709e3d6f8f1669cf32e38",
+      "width": 640
+    }
+  ]
+}

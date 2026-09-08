@@ -1,0 +1,66 @@
+2026-08-29T15:25:11,262432547+08:00
+GPU
+0, GPU-66b5e202-9179-0f61-c0dd-34d5599ffde2, 7447, 0
+1, GPU-a3ba221d-3832-3906-cef7-f8aae054c149, 7624, 100
+2, GPU-af789443-b4a8-6d90-1dcd-4404cb382fea, 7624, 100
+3, GPU-e44cdeba-8dbe-cad4-248c-af5713781eff, 7621, 100
+4, GPU-651bd630-9a1d-c4c2-1089-8501d6ef1051, 7622, 100
+5, GPU-1770b48c-3b2b-6d7a-30c7-7a9b8b4e53a4, 7621, 100
+6, GPU-b6761c44-aff9-92ed-40e9-fa5731af5cbf, 7621, 100
+7, GPU-c4f01096-8831-924c-df5c-7eb23ebecfc1, 7622, 100
+COMPUTE
+GPU-66b5e202-9179-0f61-c0dd-34d5599ffde2, 519099, 688
+GPU-66b5e202-9179-0f61-c0dd-34d5599ffde2, 518773, 6278
+GPU-66b5e202-9179-0f61-c0dd-34d5599ffde2, 519549, 454
+GPU-a3ba221d-3832-3906-cef7-f8aae054c149, 519100, 862
+GPU-a3ba221d-3832-3906-cef7-f8aae054c149, 518774, 6280
+GPU-a3ba221d-3832-3906-cef7-f8aae054c149, 519676, 454
+GPU-af789443-b4a8-6d90-1dcd-4404cb382fea, 519227, 862
+GPU-af789443-b4a8-6d90-1dcd-4404cb382fea, 518776, 6280
+GPU-af789443-b4a8-6d90-1dcd-4404cb382fea, 519740, 454
+GPU-e44cdeba-8dbe-cad4-248c-af5713781eff, 519291, 862
+GPU-e44cdeba-8dbe-cad4-248c-af5713781eff, 518778, 6280
+GPU-e44cdeba-8dbe-cad4-248c-af5713781eff, 519837, 454
+GPU-651bd630-9a1d-c4c2-1089-8501d6ef1051, 519418, 862
+GPU-651bd630-9a1d-c4c2-1089-8501d6ef1051, 518779, 6280
+GPU-651bd630-9a1d-c4c2-1089-8501d6ef1051, 519994, 454
+GPU-1770b48c-3b2b-6d7a-30c7-7a9b8b4e53a4, 519482, 862
+GPU-1770b48c-3b2b-6d7a-30c7-7a9b8b4e53a4, 518780, 6280
+GPU-1770b48c-3b2b-6d7a-30c7-7a9b8b4e53a4, 519995, 454
+GPU-b6761c44-aff9-92ed-40e9-fa5731af5cbf, 519546, 862
+GPU-b6761c44-aff9-92ed-40e9-fa5731af5cbf, 518781, 6280
+GPU-b6761c44-aff9-92ed-40e9-fa5731af5cbf, 520061, 454
+GPU-c4f01096-8831-924c-df5c-7eb23ebecfc1, 519548, 862
+GPU-c4f01096-8831-924c-df5c-7eb23ebecfc1, 518783, 6280
+GPU-c4f01096-8831-924c-df5c-7eb23ebecfc1, 520191, 454
+COMPUTE_PROC
+huazhi    502897       1  501047     216 /data/fjy/worldarena/.conda/envs/worldarena-track2/lib/python3.11/site-packages/ray/core/src/ray/raylet/raylet --raylet_socket_name=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/sockets/raylet --store_socket_name=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/sockets/plasma_store --object_manager_port=0 --min_worker_port=10002 --max_worker_port=19999 --node_manager_port=0 --node_id=a2dd22e582954594ad896771e1b37566a4c17318d69ad27c4720fcc9 --node_ip_address=172.16.0.2 --maximum_startup_concurrency=128 --static_resource_list=node:172.16.0.2,1.0,node:__internal_head__,1.0,accelerator_type:GeForce-RTX-4090,1,CPU,128,GPU,8,memory,332242981684,object_store_memory,142389849292 --python_worker_command=/data/fjy/worldarena/.conda/envs/worldarena-track2/bin/python3 /data/fjy/worldarena/.conda/envs/worldarena-track2/lib/python3.11/site-packages/ray/_private/workers/setup_worker.py /data/fjy/worldarena/.conda/envs/worldarena-track2/lib/python3.11/site-packages/ray/_private/workers/default_worker.py --node-ip-address=172.16.0.2 --node-manager-port=RAY_NODE_MANAGER_PORT_PLACEHOLDER --object-store-name=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/sockets/plasma_store --raylet-name=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/sockets/raylet --redis-address=None --metrics-agent-port=0 --logging-rotate-bytes=536870912 --logging-rotate-backup-count=5 --runtime-env-agent-port=0 --gcs-address=172.16.0.2:6379 --session-name=session_2026-08-29_15-21-26_299507_502099 --temp-dir=/tmp/wa-sse20-p2-shadow-30263030 --webui= --cluster-id=30a12875a8376766cb9d7e72328a6abf39538207de61fb9cdc96ade6 RAY_WORKER_DYNAMIC_OPTION_PLACEHOLDER --java_worker_command= --cpp_worker_command= --native_library_path=/data/fjy/worldarena/.conda/envs/worldarena-track2/lib/python3.11/site-packages/ray/cpp/lib --temp_dir=/tmp/wa-sse20-p2-shadow-30263030 --session_dir=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099 --log_dir=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/logs --resource_dir=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/runtime_resources --metrics-agent-port=0 --metrics_export_port=0 --runtime_env_agent_port=0 --object_store_memory=142389849292 --plasma_directory=/dev/shm --fallback_directory=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099 --ray-debugger-external=0 --gcs-address=172.16.0.2:6379 --session-name=session_2026-08-29_15-21-26_299507_502099 --labels={"ray.io/accelerator-type": "GeForce-RTX-4090"} --cluster-id=30a12875a8376766cb9d7e72328a6abf39538207de61fb9cdc96ade6 --stdout_filepath=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/logs/raylet.out --stderr_filepath=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/logs/raylet.err --head --num_prestart_python_workers=128 --dashboard_agent_command=/data/fjy/worldarena/.conda/envs/worldarena-track2/bin/python3 -u /data/fjy/worldarena/.conda/envs/worldarena-track2/lib/python3.11/site-packages/ray/dashboard/agent.py --node-id=a2dd22e582954594ad896771e1b37566a4c17318d69ad27c4720fcc9 --node-ip-address=172.16.0.2 --metrics-export-port=0 --grpc-port=0 --listen-port=52365 --node-manager-port=RAY_NODE_MANAGER_PORT_PLACEHOLDER --object-store-name=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/sockets/plasma_store --raylet-name=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/sockets/raylet --temp-dir=/tmp/wa-sse20-p2-shadow-30263030 --session-dir=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099 --log-dir=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/logs --logging-rotate-bytes=536870912 --logging-rotate-backup-count=5 --session-name=session_2026-08-29_15-21-26_299507_502099 --gcs-address=172.16.0.2:6379 --cluster-id-hex=30a12875a8376766cb9d7e72328a6abf39538207de61fb9cdc96ade6 --stdout-filepath=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/logs/dashboard_agent.out --stderr-filepath=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/logs/dashboard_agent.err --logging-filename=dashboard_agent.log --head --runtime_env_agent_command=/data/fjy/worldarena/.conda/envs/worldarena-track2/bin/python3 -u /data/fjy/worldarena/.conda/envs/worldarena-track2/lib/python3.11/site-packages/ray/_private/runtime_env/agent/main.py --node-id=a2dd22e582954594ad896771e1b37566a4c17318d69ad27c4720fcc9 --node-ip-address=172.16.0.2 --runtime-env-agent-port=0 --session-dir=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099 --gcs-address=172.16.0.2:6379 --cluster-id-hex=30a12875a8376766cb9d7e72328a6abf39538207de61fb9cdc96ade6 --runtime-env-dir=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/runtime_resources --logging-rotate-bytes=536870912 --logging-rotate-backup-count=5 --log-dir=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/logs --temp-dir=/tmp/wa-sse20-p2-shadow-30263030 --stdout-filepath=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/logs/runtime_env_agent.out --stderr-filepath=/tmp/wa-sse20-p2-shadow-30263030/session_2026-08-29_15-21-26_299507_502099/logs/runtime_env_agent.err --logging-filename=runtime_env_agent.log
+huazhi    519099  502897  501047     197 ray::MultiStepRolloutWorker
+huazhi    519100  502897  501047     197 ray::MultiStepRolloutWorker
+huazhi    519227  502897  501047     197 ray::MultiStepRolloutWorker
+huazhi    519291  502897  501047     197 ray::MultiStepRolloutWorker
+huazhi    519418  502897  501047     197 ray::MultiStepRolloutWorker
+huazhi    519482  502897  501047     197 ray::MultiStepRolloutWorker
+huazhi    519546  502897  501047     197 ray::MultiStepRolloutWorker
+huazhi    519548  502897  501047     196 ray::MultiStepRolloutWorker
+huazhi    519549  502897  501047     196 ray::EnvWorker
+huazhi    519676  502897  501047     196 ray::EnvWorker
+huazhi    519740  502897  501047     196 ray::EnvWorker
+huazhi    519837  502897  501047     196 ray::EnvWorker
+huazhi    519994  502897  501047     196 ray::EnvWorker
+huazhi    519995  502897  501047     196 ray::EnvWorker
+huazhi    520061  502897  501047     196 ray::EnvWorker
+huazhi    520191  502897  501047     196 ray::EnvWorker
+CLAIMS
+step=920 complete
+step=921 complete
+step=922 complete
+step=923 complete
+step=924 incomplete
+step=925 incomplete
+step=926 incomplete
+step=927 incomplete
+step=928 incomplete
+step=929 incomplete
+step=930 incomplete
+step=931 incomplete

@@ -1,0 +1,122 @@
+{
+  "aggregate_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/selected-full15/package/receipts/aggregate.complete.json",
+  "aggregate_receipt_sha256": "7d86e171d6e8aa3a61401c35c5db15ee54bda095aadbac3de81ac1bb4d00403b",
+  "b_corrected15_mean": 0.6811378848516486,
+  "b_ewmscore_p": 68.11378848516486,
+  "b_nonmotion12_mean": 0.758596944686608,
+  "cap_counts": {
+    "Dynamic Degree": 1,
+    "Flow Score": 2,
+    "Motion Smoothness": 4
+  },
+  "completed": true,
+  "contract": "worldarena-track1-b-c050-selected-corrected15-comparison/1",
+  "corrected15_delta": -0.008609843041303966,
+  "corrected15_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/selected-full15/package/receipts/corrected15.complete.json",
+  "corrected15_receipt_sha256": "c311bad339b2709a249bf7ffa8e24960b4f65cb2866ecefaf8fbf8e39257050a",
+  "corrected15_used_for_selection": false,
+  "corrected_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/selected-full15/package/csv_results/corrected15.csv",
+  "corrected_csv_sha256": "48480a45eeacc7a820d76047dc2e2fa4ec54ab6c8781b0bf78e17e78717609a0",
+  "gt_cap_reused_exact_identity": true,
+  "gt_cap_source": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/fresh40/latest-scorer/gt-motion-output/gt_reference_results.json",
+  "gt_cap_source_sha256": "79c73e40198125f52d4c010a524892f8483459cde027c50d55fe0da411320548",
+  "hidden_gt_used_for_selection": false,
+  "identity_set": [
+    "click_bell_episode000008",
+    "open_laptop_episode000024",
+    "pick_dual_bottles_episode000000",
+    "place_container_plate_episode000017"
+  ],
+  "model": "B-c050",
+  "nonmotion12_delta": -0.010968209148189079,
+  "p0_corrected15_mean": 0.6897477278929526,
+  "p0_ewmscore_p": 68.97477278929526,
+  "p0_nonmotion12_mean": 0.7695651538347971,
+  "p0_per_metric_means": {
+    "Aesthetic Quality": 0.3976823091506958,
+    "Background Consistency": 0.9191177368164063,
+    "Depth Accuracy": 1.0,
+    "Dynamic Degree": 0.27576672169676414,
+    "Flow Score": 0.17152078549934205,
+    "Image Quality": 0.5203593138117849,
+    "Instruction Following": 0.85,
+    "Interaction Quality": 0.8,
+    "JEPA Similarity": 0.8770261704921722,
+    "Motion Smoothness": 0.6641465651806153,
+    "Perspectivity": 1.0,
+    "Photometric Consistency": 0.34313541975412687,
+    "Semantic Alignment": 0.89086925,
+    "Subject Consistency": 0.8607496231794358,
+    "Trajectory Accuracy": 0.7758420228129437
+  },
+  "p0_replay": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/audits/p0-selector9-fresh40-replay-v1/p0-selector9-fresh40-replay.rows.jsonl",
+  "p0_replay_sha256": "b46965bc126305842d3b73dc26f0b925a411bd50edb4727fb6ab1cb0ee829387",
+  "paired": [
+    {
+      "b_corrected15_mean": 0.697850795772147,
+      "delta": -0.017852443998202294,
+      "p0_corrected15_mean": 0.7157032397703493,
+      "video_id": "click_bell_episode000008",
+      "win": false
+    },
+    {
+      "b_corrected15_mean": 0.6632675711483007,
+      "delta": -0.009196008911583786,
+      "p0_corrected15_mean": 0.6724635800598845,
+      "video_id": "open_laptop_episode000024",
+      "win": false
+    },
+    {
+      "b_corrected15_mean": 0.6852043263086698,
+      "delta": -0.000994546024065568,
+      "p0_corrected15_mean": 0.6861988723327354,
+      "video_id": "pick_dual_bottles_episode000000",
+      "win": false
+    },
+    {
+      "b_corrected15_mean": 0.6782288461774771,
+      "delta": -0.00639637323136355,
+      "p0_corrected15_mean": 0.6846252194088407,
+      "video_id": "place_container_plate_episode000017",
+      "win": false
+    }
+  ],
+  "per_metric_delta": {
+    "Aesthetic Quality": -0.0024998337030410767,
+    "Background Consistency": 0.0022155761718748446,
+    "Depth Accuracy": -0.0005197088453402499,
+    "Dynamic Degree": 0.0009343192113365206,
+    "Flow Score": 0.0015365449473744575,
+    "Image Quality": -0.0031904663274316958,
+    "Instruction Following": 0.0,
+    "Interaction Quality": 0.0,
+    "JEPA Similarity": -0.1149851381778717,
+    "Motion Smoothness": 0.0,
+    "Perspectivity": 0.0,
+    "Photometric Consistency": -0.006384041734380175,
+    "Semantic Alignment": 0.04248050000000003,
+    "Subject Consistency": 0.0031322290189563784,
+    "Trajectory Accuracy": -0.05186762618103491
+  },
+  "per_metric_means": {
+    "Aesthetic Quality": 0.3951824754476547,
+    "Background Consistency": 0.9213333129882811,
+    "Depth Accuracy": 0.9994802911546598,
+    "Dynamic Degree": 0.27670104090810066,
+    "Flow Score": 0.1730573304467165,
+    "Image Quality": 0.5171688474843532,
+    "Instruction Following": 0.85,
+    "Interaction Quality": 0.8,
+    "JEPA Similarity": 0.7620410323143005,
+    "Motion Smoothness": 0.6641465651806153,
+    "Perspectivity": 1.0,
+    "Photometric Consistency": 0.3367513780197467,
+    "Semantic Alignment": 0.93334975,
+    "Subject Consistency": 0.8638818521983922,
+    "Trajectory Accuracy": 0.7239743966319088
+  },
+  "row_count": 4,
+  "selection_before_full15": true,
+  "selection_receipt_sha256": "0506e1c49b49a040a8b034c73a0f3f7bda72fee15b2b0b0bdb57871d70378df9",
+  "wins": 0
+}

@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 4,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "5aa4d650a147aba6f78f64091086407415814cada4e18b0c0a27694d25d5947f",
+      "source_sha256": "b6374c9b01fefc4046309a427e48feee6b1033bda6bc2b8ee186337acc426ccd",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-static-heavy-s2/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "868836314a956fa65c312eeae0a9dcd9b480e412f9a9940bd96a116d753f3f4a",
+      "source_sha256": "ff483788e03a9261cff9875fbb2e937c6949b360cfd31d5d8402fbf12ea9f269",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-static-heavy-s2/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "c5c212316d6a69aaa5fa73983274dc49b6ae27355675acfb3c39b70689326349",
+      "source_sha256": "29dae18488a7c684e4ebcae882bbc6c8d8f6ec9de66bcf3ac779969a1859003e",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-static-heavy-s2/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "d54c48ef08d0adf284a73503a73f1f0944a46251b24c95968573c0f16b3b16bf",
+      "source_sha256": "f7c387396b0aa5343a9abf3588880d36dcb637f416bb5190956f31180330a47f",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-static-heavy-s2/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

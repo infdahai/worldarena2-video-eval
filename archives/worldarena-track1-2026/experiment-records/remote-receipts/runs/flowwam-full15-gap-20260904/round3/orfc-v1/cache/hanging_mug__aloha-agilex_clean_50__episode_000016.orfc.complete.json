@@ -1,0 +1,45 @@
+{
+  "completed": true,
+  "contact_definition": "residual-near-fb-consistent-robot-motion",
+  "contact_fraction": 0.1420000046491623,
+  "contract": "flowwam-orfc-episode-cache/1",
+  "episode_id": "hanging_mug__aloha-agilex_clean_50__episode_000016",
+  "flow_backend": "RAFTFlowExtractor",
+  "flow_threshold": 0.25,
+  "inconsistency_threshold": 0.5,
+  "manifest_sha256": "15d962245daf2e723421f6190cb5ae992c34ba8614a4cfed2eaf008f1e6dc4d3",
+  "occlusion_fraction": 0.11999999731779099,
+  "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-v1/cache/hanging_mug__aloha-agilex_clean_50__episode_000016.orfc.pt",
+  "output_sha256": "55b68b73f7dabcba91b5620ffd58bbc2c38f602793fe72718b86c212b413ba1a",
+  "residual_definition": "full_scene_flow-minus-robot_flow",
+  "residual_threshold": 0.25,
+  "robot_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/hanging_mug/aloha-agilex_clean_50/robot_only/data/episode16.hdf5",
+  "robot_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/hanging_mug/aloha-agilex_clean_50/robot_only/data/episode16.hdf5",
+  "robot_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/hanging_mug/aloha-agilex_clean_50/robot_only/data/episode16.hdf5",
+  "robot_hdf5_resolved_sha256": "843c1b924eae499a215767698a0fb5373eb4d6905e988b94177a0c038c40aaa4",
+  "robot_hdf5_sha256": "843c1b924eae499a215767698a0fb5373eb4d6905e988b94177a0c038c40aaa4",
+  "scene_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/hanging_mug/aloha-agilex_clean_50/data/episode16.hdf5",
+  "scene_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/hanging_mug/aloha-agilex_clean_50/data/episode16.hdf5",
+  "scene_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/hanging_mug/aloha-agilex_clean_50/data/episode16.hdf5",
+  "scene_hdf5_resolved_sha256": "778ea17b76176ced51cdf048e9510c44742efaa38fb236114dcb115b20b6dbaa",
+  "scene_hdf5_sha256": "778ea17b76176ced51cdf048e9510c44742efaa38fb236114dcb115b20b6dbaa",
+  "source_frame_count": 335,
+  "source_shape": [
+    240,
+    320
+  ],
+  "split": "round3_train_n8",
+  "target_shape": [
+    5,
+    15,
+    20
+  ],
+  "task": "hanging_mug",
+  "temporal_indices": [
+    0,
+    83,
+    166,
+    250,
+    333
+  ]
+}

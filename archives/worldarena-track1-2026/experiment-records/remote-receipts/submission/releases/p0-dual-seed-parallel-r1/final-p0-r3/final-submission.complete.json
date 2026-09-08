@@ -1,0 +1,69 @@
+{
+  "archive_filename": "submission.tar.gz",
+  "archive_sha256": "b3a4a35ca1e4bffabc96f0f0a5b62437ec3936b67dabcb1c587e43704b89a677",
+  "authorization_header_used_for_readback": false,
+  "completed": true,
+  "contract": "worldarena-track1-p0-final/1",
+  "feature_policy": "generated_only_no_hidden_gt",
+  "model_name": "HZ-World",
+  "prior_revisions_preserved": {
+    "10dc23529fc9852211ff35de4c235896e24f9df4": {
+      "archive_filename": "submission.tar.gz",
+      "archive_sha256": "4c121f3aab4205d4555d26d370067f71cf679ccbaca88508a1b7d6a227fbed4a",
+      "archive_size": 282515764,
+      "authorization_header_used": false,
+      "completed": true,
+      "gated": false,
+      "public": true,
+      "repo_commit": "10dc23529fc9852211ff35de4c235896e24f9df4",
+      "revision": "10dc23529fc9852211ff35de4c235896e24f9df4"
+    },
+    "a2e020000679d66b6ab1fb611e324308351bcd6d": {
+      "archive_filename": "submission.tar.gz",
+      "archive_sha256": "b89247139a090e1bc6c817718ece6ed9ac320f5e4eb068c7634b51073d3f1c5c",
+      "archive_size": 283266257,
+      "authorization_header_used": false,
+      "completed": true,
+      "gated": false,
+      "public": true,
+      "repo_commit": "a2e020000679d66b6ab1fb611e324308351bcd6d",
+      "revision": "a2e020000679d66b6ab1fb611e324308351bcd6d"
+    }
+  },
+  "receipts": {
+    "anonymous": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/final-p0-r3/anonymous-verify.complete.json",
+      "sha256": "53dbe1a0aa8389cfa3cd7118ebfe5950819a64d599a04e99586d59e9366dc294"
+    },
+    "candidates": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/final-p0-r3/test1000-scored-candidates.complete.json",
+      "sha256": "4029e26b1f859fda34863fce495e02bb1ee2cef5d32c1d5a4dbd29b1890a9865"
+    },
+    "package": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/final-p0-r3/submission.package.complete.json",
+      "sha256": "1c8d968c2849b67a63219d75c624e7eb051986cb660d4640ad8024b631a2e956"
+    },
+    "selection": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/final-p0-r3/test1000-selection.complete.json",
+      "sha256": "a86252239b18abd702dd48ad4af7ce13bd968289a00a5ed35d50ff31ee13c5a0"
+    },
+    "stage": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/final-p0-r3/staging/submission-staging.complete.json",
+      "sha256": "8f03b27b03457500485f7ed39c6f137d4c7a4ca656ae229af18eb36447a18b60"
+    },
+    "upload": {
+      "path": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/final-p0-r3/hf-upload.complete.json",
+      "sha256": "1be153131d37ced37f5176cddfe154af7f5fd26a2885c7c154b4530f154fe880"
+    }
+  },
+  "repo_id": "clusternlh/worldarena-track1-hz-wam",
+  "repo_type": "dataset",
+  "revision": "f818e47e394967df050ee28ff090c5476d0b1600",
+  "selection_counts": {
+    "seed1": 504,
+    "seed4": 496
+  },
+  "terminal_state": "full_p0_third_revision_anonymous_readback_closed",
+  "version": "P0-DualSeed-Selector-v1",
+  "video_count": 1000
+}

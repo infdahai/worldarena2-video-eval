@@ -1,0 +1,106 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-task-aware-generated9-sharded-mvp/1",
+  "generated9_mean": 0.5349399257435483,
+  "hidden_ground_truth_used": false,
+  "identity": "full-task-name+episode-index",
+  "means": {
+    "Aesthetic Quality": 0.3971103221178055,
+    "Dynamic Degree": 0.34117596098133524,
+    "Flow Score": 0.24166282313291093,
+    "Image Quality": 0.4985957306049487,
+    "Instruction Following": 0.7150000000000001,
+    "Interaction Quality": 0.7400000000000004,
+    "Motion Smoothness": 0.728222109683218,
+    "Perspectivity": 0.9349999999999999,
+    "Photometric Consistency": 0.21769238517171635
+  },
+  "metric_columns": [
+    "Instruction Following",
+    "Interaction Quality",
+    "Perspectivity",
+    "Image Quality",
+    "Aesthetic Quality",
+    "Photometric Consistency",
+    "Dynamic Degree",
+    "Flow Score",
+    "Motion Smoothness"
+  ],
+  "output_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/scoring/seed3/merged40/csv/generated-only-task-aware.csv",
+  "output_csv_sha256": "f9a253b7c5b5a1199454f7b43b8c5e5a798999591964006bcd852c9d7c9d7e8d",
+  "row_count": 40,
+  "sources": {
+    "base_json": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/scoring/seed3/merged40/output/generated_results.json",
+      "sha256": "cd85b1f398bf276ad347c249a326cf14c68f63ecf2ce4c3b42f8a6ec54329068"
+    },
+    "base_receipt": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/scoring/seed3/merged40/receipts/generated-only-base.complete.json",
+      "sha256": "2dde50c356421fffd2bd977b7e3c086aa385303e754fd42f72a6ff75bb71b034"
+    },
+    "vlm_jsons": [
+      {
+        "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1106/dev-clean-50/output_VLM/RoutingP0Seed3_gpu0/RoutingP0Seed3_gpu0_summary_val_all_intern.json",
+        "rows": 7,
+        "sha256": "31d9bfcceb57842bd83c9cfc68e594c18b114bdf31642f9a34e31175bd652814"
+      },
+      {
+        "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1107/dev-clean-50/output_VLM/RoutingP0Seed3_gpu2/RoutingP0Seed3_gpu2_summary_val_all_intern.json",
+        "rows": 7,
+        "sha256": "3f3f0906a3f0ccf21c3db10562e4f5b7014dc56dc66889c3b44be5f1f70b01f1"
+      },
+      {
+        "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1108/dev-clean-50/output_VLM/RoutingP0Seed3_gpu3/RoutingP0Seed3_gpu3_summary_val_all_intern.json",
+        "rows": 7,
+        "sha256": "9a2de50316719654db97f0c8367b6fa8db9d365e9069677e945556a1eb029345"
+      },
+      {
+        "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1109/dev-clean-50/output_VLM/RoutingP0Seed3_gpu4/RoutingP0Seed3_gpu4_summary_val_all_intern.json",
+        "rows": 7,
+        "sha256": "3af78a96e35c9e3a5b141787c8e2af57377b5e5bdd7c6d9840871456848f707f"
+      },
+      {
+        "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1110/dev-clean-50/output_VLM/RoutingP0Seed3_gpu5/RoutingP0Seed3_gpu5_summary_val_all_intern.json",
+        "rows": 6,
+        "sha256": "8d640e7ec7d3222fe643234124190d5bd7837ae386e738f42c25b9a2131b1b5a"
+      },
+      {
+        "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1111/dev-clean-50/output_VLM/RoutingP0Seed3_gpu6/RoutingP0Seed3_gpu6_summary_val_all_intern.json",
+        "rows": 6,
+        "sha256": "1fe7b9eddea3fd110d561d6b7a856fe8a712e958cbf162622a7c06c576dc9162"
+      }
+    ],
+    "vlm_receipts": [
+      {
+        "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1106/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "rows": 7,
+        "sha256": "68f7c612a2af024fdbda85479bd657414725a4513030ce7f169a8c4fa755a956"
+      },
+      {
+        "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1107/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "rows": 7,
+        "sha256": "9515a0daf73f5e69ecdae5f6ef54d57c3e0f3e1074563b05ff15f71169d1de69"
+      },
+      {
+        "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1108/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "rows": 7,
+        "sha256": "3df2404f8ab38461b13de0657481b70af0d4483fca050cd00709c8d9ef6dd6d2"
+      },
+      {
+        "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1109/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "rows": 7,
+        "sha256": "ad23c9ab54fff7cef9fb546fb99ceab1232dec140a45c3672607f357bdd3d9a7"
+      },
+      {
+        "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1110/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "rows": 6,
+        "sha256": "c0379c6b90fe7294d034be072c21d59211b5afb5f7cf163254143b7a17b97dfa"
+      },
+      {
+        "path": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1111/dev-clean-50/receipts/generated-only-vlm.complete.json",
+        "rows": 6,
+        "sha256": "9e86d4d9e8e3e3e955ca9ced9af5007974082b3091a32f5448ab9aa03e4d4243"
+      }
+    ]
+  }
+}

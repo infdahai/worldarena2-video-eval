@@ -1,0 +1,25 @@
+{
+  "close_reason": "missing_matched_corrected_15_metric_scores_no_new_generation_allowed",
+  "completed": true,
+  "contract": "flowwam-flow16-20-24-oracle/1",
+  "decision": "close_missing_prerequisites_no_new_generation",
+  "evidence": {
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/automation/flow-selection.json": {
+      "sha256": "77aa7748b01956e45c25e2c7b692c3c27293dade6bf32048be49caed2c51c5bf",
+      "size": 859
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/inference-sweep/flow16-seed1/stage1-only.receipt.json": {
+      "sha256": "94dcc0a0543e8add18d0d731a55e57b29ca0255cee27a4ca38e25146240b96ca",
+      "size": 4424
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/inference-sweep/flow24-seed1/stage1-only.receipt.json": {
+      "sha256": "c6c373bd376c6eeaf42f19b26da84ed3e99924a11b2bd4cb1e335e8e44e9064b",
+      "size": 4424
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/stage1-breadth20/output/stage1-only.receipt.json": {
+      "sha256": "fbe28b898225ce6f178c7d15f77b247717e423454f3a77e803862a73d6cf2b7f",
+      "size": 4287
+    }
+  },
+  "passed": false
+}

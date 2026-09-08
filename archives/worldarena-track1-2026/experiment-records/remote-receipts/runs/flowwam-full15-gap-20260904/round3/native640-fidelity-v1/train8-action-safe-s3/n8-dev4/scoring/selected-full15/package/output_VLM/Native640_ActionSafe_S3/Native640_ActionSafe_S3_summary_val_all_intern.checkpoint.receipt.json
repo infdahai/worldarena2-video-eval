@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-action-safe-s3/n8-dev4/scoring/selected-full15/package/output_VLM/Native640_ActionSafe_S3/Native640_ActionSafe_S3_summary_val_all_intern.json",
+  "output_sha256": "9cfed7d4c066e08d472065d955c7c0c9ef0041b035bf85ab954f54d8bcb9701d",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-action-safe-s3/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Native640_ActionSafe_S3/click_bell_episode_000008_20260831_181719.json",
+      "sha256": "1d5fc083732574a38c8f25d5cd11ed9aedf329ac17f3c591a0b4f729f3ab2d61",
+      "timestamp": "20260831_181719",
+      "video": "click_bell_episode_000008.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-action-safe-s3/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Native640_ActionSafe_S3/open_laptop_episode_000024_20260831_181940.json",
+      "sha256": "7bcc1b534a7e2b64445216feb4a73f261d72a49b4e82dcc6ad79a9086b700b21",
+      "timestamp": "20260831_181940",
+      "video": "open_laptop_episode_000024.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-action-safe-s3/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Native640_ActionSafe_S3/pick_dual_bottles_episode_000000_20260831_182202.json",
+      "sha256": "e60f6fe78a2f7ce81e113aae31164e0fc938283a70935a03bc6cf0f0e57022ce",
+      "timestamp": "20260831_182202",
+      "video": "pick_dual_bottles_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/native640-fidelity-v1/train8-action-safe-s3/n8-dev4/scoring/selected-full15/package/work/tmp/vlm/Native640_ActionSafe_S3/place_container_plate_episode_000017_20260831_182424.json",
+      "sha256": "3428a3af09cb12f4c7d27f4df2c09bfb05fc778fe9d714ec39faa5d44ecd9df1",
+      "timestamp": "20260831_182424",
+      "video": "place_container_plate_episode_000017.mp4"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "completed": true,
+  "contract": "worldarena-dev4-input-normalization-mvp/1",
+  "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/full15-input/dev4-manifest.jsonl",
+  "manifest_sha256": "dcf1b56739b661e0b0bef87cc9eeafe4bd32f8959fb6ae83fae9dcac9a72c7d1",
+  "rows": [
+    {
+      "normalized_instruction": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/scoring/selected-full15/normalized-input-v1/instructions/fixed_scene_task/episode__pick_dual_bottles__aloha-agilex_clean_50__episode_000000.json",
+      "normalized_instruction_sha256": "b26ec001e5a4088dde15f89087c2fd37e7c933c051fce690e2d5bdf877a2d04a",
+      "prompt": "Grab the brown bottle with red label with an arm, grab the bottle with ridges near base next.",
+      "sample": "pick_dual_bottles__aloha-agilex_clean_50__episode_000000",
+      "source_instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/pick_dual_bottles/aloha-agilex_clean_50/instructions/episode0.json",
+      "source_instruction_sha256": "a3c11582bc9b670529dea29e4884537161e0d807c3d6a4bae1b86fe8324a9eec"
+    },
+    {
+      "normalized_instruction": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/scoring/selected-full15/normalized-input-v1/instructions/fixed_scene_task/episode__click_bell__aloha-agilex_clean_50__episode_000008.json",
+      "normalized_instruction_sha256": "5b7a8cf9d332c3abdddd54927fd8ff8eb3b1c4e741e5cff9bdb3a83ff34f0e7b",
+      "prompt": "Activate the blue bell by pressing its top center.",
+      "sample": "click_bell__aloha-agilex_clean_50__episode_000008",
+      "source_instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/click_bell/aloha-agilex_clean_50/instructions/episode8.json",
+      "source_instruction_sha256": "352d5ace17a5c6b73404de2dad2ab8725325974d66396b43d2cf518aa0a062e4"
+    },
+    {
+      "normalized_instruction": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/scoring/selected-full15/normalized-input-v1/instructions/fixed_scene_task/episode__place_container_plate__aloha-agilex_clean_50__episode_000017.json",
+      "normalized_instruction_sha256": "2f664a2cd84891acf1b20a1d7fb60d8460b731fafc798b13e87088b602de4c96",
+      "prompt": "Stick the container onto the food plate using the curved bowl light blue shade.",
+      "sample": "place_container_plate__aloha-agilex_clean_50__episode_000017",
+      "source_instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_container_plate/aloha-agilex_clean_50/instructions/episode17.json",
+      "source_instruction_sha256": "7fc1786d70faba9f91bf4687e62bcff52378422f9eda89e6dc975e357b797542"
+    },
+    {
+      "normalized_instruction": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/interaction-mvp-20260901/safe-lowLR-true-champion-anchor/scoring/selected-full15/normalized-input-v1/instructions/fixed_scene_task/episode__open_laptop__aloha-agilex_clean_50__episode_000024.json",
+      "normalized_instruction_sha256": "9b803a8c812bbb4b44187f4b090edc95400f08fbf41f58b1fb9e7174bd541c7e",
+      "prompt": "Lift the black laptop with smooth body slightly.",
+      "sample": "open_laptop__aloha-agilex_clean_50__episode_000024",
+      "source_instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/open_laptop/aloha-agilex_clean_50/instructions/episode24.json",
+      "source_instruction_sha256": "9f8a805ffde9eeff31c3fe3ec06288a0ec12317e500cbabcdf98dcd6066e0adf"
+    }
+  ]
+}

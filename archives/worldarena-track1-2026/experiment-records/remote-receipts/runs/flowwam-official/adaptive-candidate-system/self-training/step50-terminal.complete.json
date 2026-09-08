@@ -1,0 +1,17 @@
+{
+  "completed": true,
+  "contract": "flowwam-winner-sft-step50-terminal/1",
+  "evidence_sha256s": {
+    "action_text": "67ccea4098b8093e80d164a248a586224a999f0a68e9b6e79a5f16181c9bc342",
+    "input_router_gate": "a106dc97ce04daf2bdec2c63d637cd67173ac18798f551aef2f3fc31c9853e03",
+    "p0_clean50": "1d72aa6b1a6f260c963756309f3c74a57504381b929663b9361a8201248b187e",
+    "policy": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7",
+    "postgen_model": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+    "preference_seed1": "1ddb517a32a2fa4b91930efa9fc5cb8ee19572390d9450ba7dbfa156b4037ce7",
+    "preference_seed4": "df69c382687a6c71e2980d59276c263146071611a9468cea13b5303c674eccc3",
+    "winner_seed1": "82926dd1505911a060542bdf12c869a74187b19bbd58d2191937aee31d6323e7",
+    "winner_seed4": "a0121745f54a8a7630bfe0f5bafddbaf6a269ab4fb50bdc5f4f1c35b83480b62"
+  },
+  "reason": "Winner-SFT step25 did not pass the P0-relative gate and step50_eligible is false.",
+  "terminal_state": "contractually_skipped_step25_gate_failed"
+}

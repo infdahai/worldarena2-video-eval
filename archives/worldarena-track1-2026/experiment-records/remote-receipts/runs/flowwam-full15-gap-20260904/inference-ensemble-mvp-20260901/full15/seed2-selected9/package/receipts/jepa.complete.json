@@ -1,0 +1,63 @@
+{
+  "artifact_root": "/data/di/worldarena2_track1_20260815",
+  "commands": [
+    {
+      "argv": [
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/envs/WorldArena_JEPA/bin/python",
+        "/home/huazhi/nlh/baseline/scripts/run_official_track1_jedi_local.py",
+        "--real_dir",
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1198/dev-clean-50/videos/gt_test",
+        "--gen_dir",
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1198/dev-clean-50/videos/RoutingP0Seed2Selected9_test",
+        "--model_dir",
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/weights/jepa",
+        "--config_path",
+        "/home/huazhi/nlh/WorldArena-2.0/video_quality_ood/JEDi/configs/vith16_ssv2_16x2x3.yaml",
+        "--save_intersection",
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1198/dev-clean-50/output_JEDi/intersection_names.json",
+        "--output_root",
+        "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1198/dev-clean-50/output_JEDi"
+      ],
+      "cwd": "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1198/dev-clean-50/work/jedi_runtime",
+      "env": {
+        "CUDA_CACHE_PATH": "/data/di/worldarena2_track1_20260815/official_track1_eval/cache/cuda",
+        "HF_HOME": "/data/di/worldarena2_track1_20260815/official_track1_eval/cache/huggingface",
+        "MPLCONFIGDIR": "/data/di/worldarena2_track1_20260815/official_track1_eval/cache/matplotlib",
+        "PIP_CACHE_DIR": "/data/di/worldarena2_track1_20260815/official_track1_eval/cache/pip",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONPATH": "/home/huazhi/nlh/baseline/src:/home/huazhi/nlh/WorldArena-2.0/video_quality_ood",
+        "TMPDIR": "/tmp",
+        "TORCH_EXTENSIONS_DIR": "/data/di/worldarena2_track1_20260815/official_track1_eval/cache/torch_extensions",
+        "TORCH_HOME": "/data/di/worldarena2_track1_20260815/official_track1_eval/cache/torch",
+        "XDG_CACHE_HOME": "/data/di/worldarena2_track1_20260815/official_track1_eval/cache/xdg"
+      },
+      "kind": "jepa-similarity",
+      "phase": "jepa"
+    }
+  ],
+  "completed": true,
+  "completion_semantics": {
+    "fast_trajectory_metric": "selection_only_not_official",
+    "test_1000_run_policy": "single_frozen_checkpoint_only",
+    "this_phase_alone_is_full_official_eval": false
+  },
+  "dataset_split": "dev-clean-50",
+  "disk": {
+    "estimated_additional_bytes": 1073741824,
+    "free_after_estimate_bytes": 171969589248,
+    "free_bytes": 173043331072,
+    "reserve_bytes": 161061273600
+  },
+  "frozen_test_contract": "not_applicable",
+  "missing_phase_inputs": [],
+  "model_name": "RoutingP0Seed2Selected9",
+  "package_validation": {
+    "status": "passed",
+    "video_count": 9
+  },
+  "phase": "jepa",
+  "schema": "official-track1-phase-run-v1",
+  "source_commit": "7b3feee108427bee3380064bb5154970ed7468b5",
+  "source_root": "/home/huazhi/nlh/WorldArena-2.0",
+  "step": 1198
+}

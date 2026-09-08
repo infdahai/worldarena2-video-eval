@@ -1,0 +1,9 @@
+event=all_workers_external_stop
+observed_utc=2026-08-28T16:37:48Z
+action=checkpoint_only_no_restart
+cooldown_not_before_utc=2026-08-28T16:57:48Z
+parents=891183,907083,891193,907088,907093,907098,907103,907108
+compute_children=891241,907126,891240,907131,907128,907129,907130,907127
+steps=935,926,934,931,928,929,930,927
+checkpoint_total=1173
+signal_evidence=CalledProcessError_-15

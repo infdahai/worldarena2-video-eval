@@ -1,0 +1,19 @@
+{
+  "accuracy": 0.625,
+  "accuracy_is_diagnostic_only": true,
+  "bootstrap_one_sided_90_lower": 0.0028273658672715294,
+  "bootstrap_random_seed": 20260824,
+  "bootstrap_replicates": 10000,
+  "completed": true,
+  "contract": "flowwam-adaptive-selector-holdout-gate/1",
+  "corrected_uplift": 0.003067329787,
+  "failure_reasons": [],
+  "non_motion_uplift": 0.003942522790525055,
+  "passed": true,
+  "raw_uplift": 0.0030790212375193136,
+  "rows": 40,
+  "selected_seed_counts": {
+    "1": 16,
+    "4": 24
+  }
+}

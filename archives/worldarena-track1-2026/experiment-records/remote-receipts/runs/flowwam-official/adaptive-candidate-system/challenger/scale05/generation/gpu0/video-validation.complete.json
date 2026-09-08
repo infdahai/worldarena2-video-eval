@@ -1,0 +1,55 @@
+{
+  "black_count": 0,
+  "completed": true,
+  "contract": "flowwam-winner-scale05-shard-generation/1",
+  "count": 5,
+  "gpu_uuid": "GPU-66b5e202-9179-0f61-c0dd-34d5599ffde2",
+  "lora_scale": 0.5,
+  "lora_sha256": "fe9ed6fc61a0da9e85dbc661d07024e8ab7e3f743abb9003c0e35058a1bfbd34",
+  "physical_gpu": 0,
+  "seed": 4,
+  "stage_receipt_sha256": "9dcc1dec6335875b4b09ddd4b0be6371be82c70c387d0bfff9b94d229df1fbea",
+  "train_receipt_sha256": "0586df9004f4bc977fbeb568847ddb4bd309d7c7c242f23d22ea7762f8fda999",
+  "videos": [
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode__handover_mic__aloha-agilex_clean_50__episode_000044.mp4",
+      "sha256": "abb7c6f1bbe0a671446f3e0b10ba9271f4f4d204e077ee00f87ac7b50cd17a62",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode__hanging_mug__aloha-agilex_clean_50__episode_000004.mp4",
+      "sha256": "bc5070c952180173378f6e4aa47b1349abfd348f1c154989a186f64efa527bd4",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode__lift_pot__aloha-agilex_clean_50__episode_000039.mp4",
+      "sha256": "2c5b6f9c393363eb22bc3bb8a3987a4dac442357fb2f38e75c5ad28ee113dac4",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode__move_can_pot__aloha-agilex_clean_50__episode_000036.mp4",
+      "sha256": "ab9312be2bb8fe71dddc481a39c926411cd028a3f3f9e57623e59d183e8f49a4",
+      "width": 640
+    },
+    {
+      "black_frames": 0,
+      "frames": 121,
+      "height": 480,
+      "name": "episode__move_pillbottle_pad__aloha-agilex_clean_50__episode_000004.mp4",
+      "sha256": "c31347107058a7353a21052a62676f7b808fa8badcb541e8f795a930c6e3f452",
+      "width": 640
+    }
+  ]
+}

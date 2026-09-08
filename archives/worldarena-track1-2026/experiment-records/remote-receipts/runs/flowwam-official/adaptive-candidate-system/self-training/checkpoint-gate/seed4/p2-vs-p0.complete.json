@@ -1,0 +1,67 @@
+{
+  "baseline": "p0_postgen_selector_breadth20",
+  "baseline_receipt_sha256": "5ca235eaab7cbd9d8f51a18799e55b26df3bea082e81ef69eb96ed9e1ba7f107",
+  "candidate": "winner-sft-step25-seed4",
+  "candidate_corrected_sha256": "2259dc2eea8ac2ade261d006ba40279e5000a2dad8fb6f2d57f193b4388949f1",
+  "candidate_raw_sha256": "7d9ba42c910af697689e98dd75d9f8642083201086b81f6b39e49727d4ec4008",
+  "completed": true,
+  "contract": "flowwam-p2-vs-p0-breadth20-terminal/1",
+  "decision": {
+    "black_count": 0,
+    "candidate": {
+      "corrected_mean": 0.6801319441173469,
+      "image_mean": 0.5184138617633302,
+      "instruction_mean": 0.7300000000000001,
+      "interaction_mean": 0.7500000000000001,
+      "jepa_mean": 0.9441499710083008,
+      "non_motion_mean": 0.7417736510068612,
+      "raw_mean": 0.6824085030192495,
+      "trajectory_mean": 0.6961864199344007
+    },
+    "checks": {
+      "all_rows_finite": true,
+      "black_zero": true,
+      "corrected_ge_p0_plus_0_003": true,
+      "jepa_ge_p0_minus_0_005": true,
+      "non_motion_ge_p0_plus_0_002": true,
+      "paired_wins_ge_12_of_20": false,
+      "raw_ge_p0": true,
+      "trajectory_ge_p0_minus_0_005": true
+    },
+    "contract": "flowwam-p2-vs-p0-breadth20-gate/1",
+    "deltas": {
+      "corrected_mean": 0.007141970419266119,
+      "image_mean": 0.0015636043136503242,
+      "instruction_mean": -0.009999999999999898,
+      "interaction_mean": 0.010000000000000009,
+      "jepa_mean": -0.001073020696640059,
+      "non_motion_mean": 0.009169713699184179,
+      "raw_mean": 0.006990517686253805,
+      "trajectory_mean": 0.08882973515445247
+    },
+    "p0": {
+      "corrected_mean": 0.6729899736980808,
+      "image_mean": 0.5168502574496798,
+      "instruction_mean": 0.74,
+      "interaction_mean": 0.7400000000000001,
+      "jepa_mean": 0.9452229917049408,
+      "non_motion_mean": 0.732603937307677,
+      "raw_mean": 0.6754179853329957,
+      "trajectory_mean": 0.6073566847799482
+    },
+    "paired_losses_or_ties": 9,
+    "paired_wins": 11,
+    "passed": false,
+    "row_count": 20,
+    "step50_checks": {
+      "corrected_ge_p0_plus_0_006": true,
+      "image_ge_p0": true,
+      "instruction_ge_p0": false,
+      "interaction_ge_p0": true
+    },
+    "step50_eligible": false
+  },
+  "eligible_for_unique_clean50": false,
+  "terminal_state": "closed_quality_gate_failed",
+  "video_validation_sha256": "70df37c92db61d744f95c367d764e3c7fae10f6c45874690954e568b96b31a71"
+}

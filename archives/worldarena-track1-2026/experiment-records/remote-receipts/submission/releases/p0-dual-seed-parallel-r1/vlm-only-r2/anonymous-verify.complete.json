@@ -1,0 +1,39 @@
+{
+  "anonymous_download": {
+    "attempts": 2,
+    "bytes": 283266257,
+    "resumed": true
+  },
+  "archive_validation": {
+    "archive": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/vlm-only-r2/anonymous-submission.tar.gz",
+    "archive_sha256": "b89247139a090e1bc6c817718ece6ed9ac320f5e4eb068c7634b51073d3f1c5c",
+    "completed": true,
+    "contract": "worldarena-track1-submission-validation/1",
+    "metadata": {
+      "control_type": "hybrid",
+      "model_name": "HZ-World-VLM-Only-Selector",
+      "organization": "Huazhi AI",
+      "release_year": 2026,
+      "source_type": "closed_source",
+      "version": "VLM-Only-Selector-v1"
+    },
+    "video_count": 1000
+  },
+  "authorization_header_used": false,
+  "black_or_degenerate_frames": 0,
+  "completed": true,
+  "contract": "worldarena-track1-vlm-only-hf-anonymous/1",
+  "decoded_frames_per_video": 121,
+  "download": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/vlm-only-r2/anonymous-submission.tar.gz",
+  "download_sha256": "b89247139a090e1bc6c817718ece6ed9ac320f5e4eb068c7634b51073d3f1c5c",
+  "filename": "submission.tar.gz",
+  "repo_id": "clusternlh/worldarena-track1-hz-wam",
+  "resolution": [
+    640,
+    480
+  ],
+  "revision": "a2e020000679d66b6ab1fb611e324308351bcd6d",
+  "terminal_state": "vlm_only_hf_submission_anonymously_verified",
+  "video_count": 1000,
+  "video_sha256_bound_to_staging_receipt": true
+}

@@ -1,0 +1,35 @@
+{
+  "completed": true,
+  "completed_count": 4,
+  "contract": "worldarena-track1-vlm-raw-checkpoint/1",
+  "expected_count": 4,
+  "missing_videos": [],
+  "output_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/generated9/seed4/package/output_VLM/ORB_N8_seed4/ORB_N8_seed4_summary_val_all_intern.json",
+  "output_sha256": "10c4ce05f0da5ba304d6129fccd64ab8f12a358e0c565e7da11c8de53e0d3cb5",
+  "raw_results": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/generated9/seed4/package/work/tmp/vlm/ORB_N8_seed4/fixed_scene_task_episode_000000_20260831_032325.json",
+      "sha256": "8863319e167acae030c2760c8e842c73b8e01175e20ef9849902c0e1495f180a",
+      "timestamp": "20260831_032325",
+      "video": "fixed_scene_task_episode_000000.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/generated9/seed4/package/work/tmp/vlm/ORB_N8_seed4/fixed_scene_task_episode_000001_20260831_032542.json",
+      "sha256": "63890e02a313a2bcf1f1c498bdcbd0dfd3d6532edf8a22d72e1b28ca9ebe9c50",
+      "timestamp": "20260831_032542",
+      "video": "fixed_scene_task_episode_000001.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/generated9/seed4/package/work/tmp/vlm/ORB_N8_seed4/fixed_scene_task_episode_000002_20260831_032759.json",
+      "sha256": "bf533944abe59fdce4c3961d35fc31c59b8db40ee1b9dc9c987ea15054f777ba",
+      "timestamp": "20260831_032759",
+      "video": "fixed_scene_task_episode_000002.mp4"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/experiments/architecture-round1-v1/b-c050-s31/n8-dev4/scoring/generated9/seed4/package/work/tmp/vlm/ORB_N8_seed4/fixed_scene_task_episode_000003_20260831_033016.json",
+      "sha256": "5526665028c6bc2f18b49d34f692cae1c4d374bc93ce84613ad7a196c565a30a",
+      "timestamp": "20260831_033016",
+      "video": "fixed_scene_task_episode_000003.mp4"
+    }
+  ]
+}

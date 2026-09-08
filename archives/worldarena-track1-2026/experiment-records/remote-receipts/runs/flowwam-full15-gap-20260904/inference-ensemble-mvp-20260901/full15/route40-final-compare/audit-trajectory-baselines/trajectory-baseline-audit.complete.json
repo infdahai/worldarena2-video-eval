@@ -1,0 +1,40 @@
+{
+  "completed": true,
+  "contract": "seed2-route40-trajectory-baseline-mismatch-audit/1",
+  "difference_csv": {
+    "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/route40-final-compare/audit-trajectory-baselines/trajectory-baseline-differences.csv",
+    "sha256": "c035af83e93e3cae9f64b23669f21bc1918cb50d75d901e8ae720c1548ec38e2"
+  },
+  "final_receipt_status": "VALID_NO_CHANGE",
+  "full40_frozen_selector_incumbent_trajectory_mean9": 0.6899718781786633,
+  "inputs": {
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1199/dev-clean-50/receipts/package.complete.json": "e5f01663b83ff008d05ea45aa24d93aff6561bed3cab5ad6329943c606538c3e",
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-1200/dev-clean-50/receipts/package.complete.json": "b8f7c33b7e32e15e6285929cbea62dfd1eccce8e9729d86a7839db7b4a31bcfb",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/audits/p0-selector9-fresh40-replay-v1/p0-selector9-fresh40-replay.rows.jsonl": "b46965bc126305842d3b73dc26f0b925a411bd50edb4727fb6ab1cb0ee829387",
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/seed2-selected9/merged-corrected15-v2/seed2-selected9.rows.jsonl": "1553799dde6daf4672023641356848f00882ed6f592f474dab76022f74caee06"
+  },
+  "mismatch_keys": [
+    {
+      "episode": 37,
+      "task": "place_dual_shoes"
+    },
+    {
+      "episode": 46,
+      "task": "stack_blocks_three"
+    }
+  ],
+  "mismatched_incumbent_seed_count": 2,
+  "normalization": {
+    "corrected15": "equal arithmetic mean of 15 metric means",
+    "full40_metric_mean": "arithmetic mean over 40 episodes",
+    "trajectory_gt_cap": false,
+    "trajectory_scale": "raw scorer value in [0,1]; no additional normalization"
+  },
+  "root_cause": "selected9 v2 compares seed2 against the per-episode max generated9-mean seed1/4 diagnostic incumbent, while route40 compares the deployed route against the frozen seed1/4 selector incumbent. Two of nine keys choose different incumbents; the values are therefore different baselines, not a Trajectory normalization error.",
+  "row_count": 9,
+  "seed2_candidate_trajectory_mean9": 0.7417089581871488,
+  "selected9_mean9_oracle_incumbent_trajectory_mean9": 0.7745576388548925,
+  "trajectory_delta_folded_over_full40": 0.011640843001909245,
+  "trajectory_delta_same9_vs_frozen_selector": 0.051737080008485425,
+  "trajectory_delta_selected9_summary": -0.03284868066774371
+}

@@ -1,0 +1,83 @@
+{
+  "checkpoint_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+  "contract": "flowwam-worldarena-official-stage1-only/1",
+  "inference_sweep": {
+    "is_official_default": false,
+    "overrides": {
+      "flow_max_magnitude": 20.0,
+      "seed": 4
+    }
+  },
+  "instruction_variant": 0,
+  "lora_adapter": {
+    "alpha": 8.0,
+    "attention_scope": "self",
+    "checkpoint": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/self-training/checkpoints/step-25.safetensors",
+    "checkpoint_sha256": "fe9ed6fc61a0da9e85dbc661d07024e8ab7e3f743abb9003c0e35058a1bfbd34",
+    "filtered_cross_attention_pairs": 0,
+    "hotload": true,
+    "loaded_pairs": 60,
+    "rank": 8,
+    "scale": 0.5,
+    "source_layout": "self-qv",
+    "source_pairs": 60,
+    "target_modules": [
+      "self_attn.q",
+      "self_attn.v"
+    ]
+  },
+  "max_episodes": null,
+  "official_commit": "f06fa46042e97738c6619c868f1097be6749d48d",
+  "physical_gpu": 4,
+  "robot_conditioning": {
+    "mode": "pre-generated",
+    "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu3/robot_only"
+  },
+  "stage1": {
+    "contract": "flowwam-worldarena-official-stage1/1",
+    "flow_height": 240,
+    "flow_max_magnitude": 20.0,
+    "flow_width": 320,
+    "height": 480,
+    "max_rollouts": 2,
+    "max_stride": 3,
+    "num_inference_steps": 50,
+    "num_output_frames": 121,
+    "seed": 4,
+    "sigma_shift": 5.0,
+    "text_cfg": null,
+    "width": 640
+  },
+  "stage2_refiner": "identity-disabled",
+  "starts_gpu": true,
+  "videos": [
+    {
+      "name": "episode000000.mp4",
+      "sha256": "3d7577c0fcbae0bae95de9f5515fec88b311580ae51f76e30e3baad699e35681"
+    },
+    {
+      "name": "episode000001.mp4",
+      "sha256": "e7eb9a2b2355b57b452c48ef6dcf18aa55a7897fd0258ef497c3d0db5b62f6f8"
+    },
+    {
+      "name": "episode000002.mp4",
+      "sha256": "89dc848c7d77dac7f311cd2d9cb4520a75fa1a8e9f78a633f38b24960401fcb0"
+    },
+    {
+      "name": "episode000003.mp4",
+      "sha256": "c240904e82116a1ccb5666c2d1eab9a7b121e9df40aa87f73f64f5b2efa0821b"
+    },
+    {
+      "name": "episode000004.mp4",
+      "sha256": "c0474730b9f0e3231ee7e14a13f8c865bb8bb20a262b5ec30fe58bbb9456b493"
+    },
+    {
+      "name": "episode000005.mp4",
+      "sha256": "226dfff28ed360eda0a528ec6231e7f47788dfa00970065f9ced57fc6b7a23ef"
+    },
+    {
+      "name": "episode000006.mp4",
+      "sha256": "3fe80c7d69b826f397af985c4d6fc116ed9a6275e58407a45849325be6935d1d"
+    }
+  ]
+}

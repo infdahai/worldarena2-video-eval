@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 4,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "850ca736fffa3174d064cbaa035b81b1fd282876194c7cbf9b992b8caf51529b",
+      "source_sha256": "66db28ff9a14d18453912f18bdb1b928bc30a688bdf1df827c6c718fece598c0",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "2b3e6fa4db695f254249582a1426f0658818c48d59252912d68f9b5e17477aa3",
+      "source_sha256": "6c45951499b4da1fbea2c29b05d85bcf1a8bed6166b1010f6d74a8ffa2df5fde",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "311f2ae77b82422e5859cf5e0c48b8fd147a8a0a6c827f41e6fdbcd72b5f4ea6",
+      "source_sha256": "cd5cc721365f8187980190831d68817935e27309edf1b3724c4af101884529e6",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "baad1d9dfb0dacc1e3da14d42e29b37c592798299a2b9e5592d030428eee4270",
+      "source_sha256": "6945a95930bc7ad5f6eacac4b3f400cf49b3b5eb1272047b5b7d1eb339e7fa15",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

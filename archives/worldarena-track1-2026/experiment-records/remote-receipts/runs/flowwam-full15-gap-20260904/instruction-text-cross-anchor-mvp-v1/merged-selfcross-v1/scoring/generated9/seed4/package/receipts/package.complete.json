@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 4,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "5d817ff1aee5abd804fa2d06604328a78207340e1f1d30b447c35518de721d8c",
+      "source_sha256": "b96790fafe56c69a4e320b96e5397f74ad0830c50595cb1e7be157d066463c28",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/merged-selfcross-v1/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "8ed88589160eb66f096315dd8edd03a1b6252e74433219d0a107dab5df3685bb",
+      "source_sha256": "30690ee63a5d492e6652f51df5de9dc0ab057a7e298a69d2c6937538ac0287cd",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/merged-selfcross-v1/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "8339b28a586895c0e43036ba79b67e78448a9ecf3dca0ff262609293f2fb6795",
+      "source_sha256": "353ceb913560577ef03de360469df5446f30af6bd38b389510891af87c56d18a",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/merged-selfcross-v1/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "fd3f950895ab69b58ac847361612ae8dde5e95354790b505615c2fe7a60f2bd1",
+      "source_sha256": "09c6deb823830d0eba223a06778ef41edbccfa8e8e497d107c9c2bae029ff932",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/instruction-text-cross-anchor-mvp-v1/merged-selfcross-v1/scoring/remap/seed4/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

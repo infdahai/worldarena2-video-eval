@@ -1,0 +1,148 @@
+{
+  "contract": "worldarena-track1-round2-late-orb-step25-terminal-decision/1",
+  "completed": true,
+  "created_at": "2026-08-31T10:48:41+08:00",
+  "terminal_state": "closed_fail_no_resume",
+  "work_key": "round2/late-orb-v2/b2-block24-29-s31-r1/step25/dev4/seed1+seed4/frozen-generated9-selector/corrected15",
+  "arm": {
+    "name": "B2",
+    "architecture": "flowwam-orb-late/1",
+    "blocks": [24, 29],
+    "direction": "flow_to_rgb_only",
+    "objective": "plain_fm",
+    "mask_support": "robot_or_contact_only",
+    "static_rgb": "exact_parent_zero_residual",
+    "training_steps": 25,
+    "training_seed": 31,
+    "frames_per_training_sample": 17,
+    "resolution": [640, 480],
+    "learning_rate": 0.0001
+  },
+  "lineage": {
+    "source_commit": "8f6fbdff0f3a11d2b91002c352e44f2d0c2b9514",
+    "official_parent_sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4",
+    "trainer_sha256": "8ef12077170277172819c7575a7154dd9b63087c9817d0f7c4eecf53de9bc70a",
+    "late_module_sha256": "7a862fe8834d54755474b524d0a5587b6de6fa431cc11a85065ba353ed0653db",
+    "checkpoint_step25_sha256": "7bf5e7cc1e664ca002377542f95df17b31f3fe7ab33dad87f771036b9d3df46d",
+    "metrics_jsonl_sha256": "bc3831cdf0eba84bf2cd5f054f3df7bf1748dc58c049d7bbbb6080919cec94e6",
+    "train_log_sha256": "48bf775e0e75a2a5c749bb7f85f9d8959316d9b595f22242abb7564d00e2878c",
+    "n8_scoring_helper_sha256": "eee3559ab65234917daca7c0a0c4826c611ed58aeb0e8fa6fa3022234d66e585",
+    "selector_once_sha256": "7cf92bed1310f3499a7c2295cef9dcd9328f00c6e7243d6f25b7324f69bcdda6",
+    "full15_phase_runner_sha256": "92b6a4c0f35b5c1b7c717be24128f8b8656ce457d6e8aca6f2fcb7006a221d66",
+    "dev4_manifest_sha256": "dcf1b56739b661e0b0bef87cc9eeafe4bd32f8959fb6ae83fae9dcac9a72c7d1",
+    "p0_reference_rows_sha256": "b46965bc126305842d3b73dc26f0b925a411bd50edb4727fb6ab1cb0ee829387"
+  },
+  "n8_structure": {
+    "seed1_stage1_receipt_sha256": "db1f7f7007879b5f6c484df1e4f4104598d87b41afdf99b122765c582ad2b76d",
+    "seed4_stage1_receipt_sha256": "ad49d70c91f5b519dc13ab36ad853f5c037d0d7d040b452f69704231051c8704",
+    "videos_per_seed": 4,
+    "declared_frames": 121,
+    "decoded_frames": 121,
+    "resolution": [640, 480],
+    "black_frame_0": true,
+    "video_sha256_verified": true
+  },
+  "generated9_selection": {
+    "corrected15_used_for_selection": false,
+    "selector_model_sha256": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+    "selector_policy_sha256": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7",
+    "selection_receipt_sha256": "8241be8ea025370e1559b327d2089ab8874f46ef9cf0d62cbd7e0e4c9e12d1d9",
+    "selected_seeds": [4, 1, 4, 4],
+    "selected_seed_counts": {"seed1": 1, "seed4": 3},
+    "metrics": {
+      "Instruction Following": {"candidate": 0.85, "p0": 0.85, "delta": 0.0},
+      "Interaction Quality": {"candidate": 0.8, "p0": 0.8, "delta": 0.0},
+      "Perspectivity": {"candidate": 1.0, "p0": 1.0, "delta": 0.0},
+      "Image Quality": {"candidate": 0.518876697, "p0": 0.520359314, "delta": -0.001482616},
+      "Aesthetic Quality": {"candidate": 0.398626745, "p0": 0.397682309, "delta": 0.000944436},
+      "Photometric Consistency": {"candidate": 0.348536369, "p0": 0.34313542, "delta": 0.00540095},
+      "Dynamic Degree": {"candidate": 0.277489318, "p0": 0.277321469, "delta": 0.000167849},
+      "Flow Score": {"candidate": 0.171874863, "p0": 0.172510064, "delta": -0.000635202},
+      "Motion Smoothness": {"candidate": 0.705852935, "p0": 0.700829473, "delta": 0.005023461}
+    },
+    "visual3_mean_delta": 0.001620923,
+    "generated9_mean_delta": 0.001046542,
+    "min_metric_delta": -0.001482616,
+    "cheap_gate": "pass_to_selected_full15"
+  },
+  "selected_full15": {
+    "selected_stage1_receipt_sha256": "7059f0b2ef282bdf7bc77d3cabc94c38a5d60e375d793d6cca0785a0fa3b822d",
+    "package_receipt_sha256": "fd714018d2486af36c394828b9b6c19d144c6a2ffe82c35cfcd79e3ca3d36f12",
+    "base_receipt_sha256": "8b63da15797b59b5deb5f64e5145e335455b92111b6754d00a84525c2ee06bdc",
+    "vlm_receipt_sha256": "f362b2558cba30a3641b5bbbb8be019669440e15e680fe5580c824ac8247887d",
+    "jepa_receipt_sha256": "c10b60565427887fe6bab220513ee71cc63035ded4b841add84751d683500c98",
+    "aggregate_receipt_sha256": "f2f18e67ec03ccd1944ad4514e4844f9da795adb54772c70c4c4f74281cef32c",
+    "corrected15_receipt_sha256": "324220983dc60a3332887a84a08b13d9eb7f22529bdf0f5ebd7fd19fc28d9fc8",
+    "corrected15_csv_sha256": "e1057d073a5bb1c79d08362f3593d46e1057030817190e31b46bbef1433ddb95",
+    "raw15_csv_sha256": "5421a2835e45e7771a5e3e34dd2a3dc6b8864b5839481a1fd6e14d06deaaa528",
+    "matched_gt_motion_sha256": "79c73e40198125f52d4c010a524892f8483459cde027c50d55fe0da411320548",
+    "metrics": {
+      "Subject Consistency": {"candidate": 0.860902356, "p0": 0.860749623, "delta": 0.000152732},
+      "Aesthetic Quality": {"candidate": 0.398626745, "p0": 0.397682309, "delta": 0.000944436},
+      "Image Quality": {"candidate": 0.518876697, "p0": 0.520359314, "delta": -0.001482616},
+      "Background Consistency": {"candidate": 0.918697357, "p0": 0.919117737, "delta": -0.00042038},
+      "Dynamic Degree": {"candidate": 0.273118027, "p0": 0.275766722, "delta": -0.002648695},
+      "Interaction Quality": {"candidate": 0.8, "p0": 0.8, "delta": 0.0},
+      "Perspectivity": {"candidate": 1.0, "p0": 1.0, "delta": 0.0},
+      "Instruction Following": {"candidate": 0.85, "p0": 0.85, "delta": 0.0},
+      "Semantic Alignment": {"candidate": 0.9069825, "p0": 0.89086925, "delta": 0.01611325},
+      "Flow Score": {"candidate": 0.171874863, "p0": 0.171520785, "delta": 0.000354077},
+      "Depth Accuracy": {"candidate": 0.993388988, "p0": 1.0, "delta": -0.006611012},
+      "Trajectory Accuracy": {"candidate": 0.77379204, "p0": 0.775842023, "delta": -0.002049983},
+      "Photometric Consistency": {"candidate": 0.348536369, "p0": 0.34313542, "delta": 0.00540095},
+      "Motion Smoothness": {"candidate": 0.664146565, "p0": 0.664146565, "delta": 0.0},
+      "JEPA Similarity": {"candidate": 0.792544186, "p0": 0.87702617, "delta": -0.084481984}
+    },
+    "corrected15_mean": {"candidate": 0.68476578, "p0": 0.689747728, "delta": -0.004981948},
+    "ewmscore_p": 68.476578,
+    "nonmotion12_mean": {"candidate": 0.763528937, "p0": 0.769565154, "delta": -0.006036217},
+    "paired_wins": 2,
+    "paired_total": 4,
+    "episode_mean_deltas": [0.000625023, -0.018713643, -0.015704729, 0.013865555],
+    "motion_cap_counts": {"Dynamic Degree": 1, "Flow Score": 0, "Motion Smoothness": 4}
+  },
+  "execution": {
+    "training": {"launcher_pid": 3460770, "pgid": null, "gpu_index": 4, "gpu_uuid": "GPU-651bd630-9a1d-c4c2-1089-8501d6ef1051", "pgid_note": "not_retained_after_clean_exit"},
+    "n8_generation": [
+      {"seed": 1, "launcher_pid": 3484708, "pgid": null, "gpu_index": 3, "gpu_uuid": "GPU-e44cdeba-8dbe-cad4-248c-af5713781eff"},
+      {"seed": 4, "launcher_pid": 3484710, "pgid": null, "gpu_index": 4, "gpu_uuid": "GPU-651bd630-9a1d-c4c2-1089-8501d6ef1051"}
+    ],
+    "generated9": [
+      {"seed": 1, "launcher_pid": 3535057, "base_compute_pid": 3535653, "vlm_compute_pid": 3554136, "gpu_index": 3, "gpu_uuid": "GPU-e44cdeba-8dbe-cad4-248c-af5713781eff"},
+      {"seed": 4, "launcher_pid": 3535060, "base_compute_pid": 3535654, "vlm_compute_pid": 3554263, "gpu_index": 4, "gpu_uuid": "GPU-651bd630-9a1d-c4c2-1089-8501d6ef1051"}
+    ],
+    "full15": [
+      {"phase": "base_initial_failed", "launcher_pid": 3584764, "pgid": 3584746, "compute_pid": 3584962, "gpu_index": 3, "gpu_uuid": "GPU-e44cdeba-8dbe-cad4-248c-af5713781eff"},
+      {"phase": "vlm_initial_failed_before_compute", "launcher_pid": 3584765, "pgid": 3584746, "compute_pid": null, "gpu_index": 4, "gpu_uuid": "GPU-651bd630-9a1d-c4c2-1089-8501d6ef1051"},
+      {"phase": "vlm_retry_complete", "launcher_pid": 3587353, "pgid": 3587343, "compute_pid": 3587356, "gpu_index": 4, "gpu_uuid": "GPU-651bd630-9a1d-c4c2-1089-8501d6ef1051"},
+      {"phase": "base_retry_complete", "launcher_pid": 3594074, "pgid": 3594058, "compute_pid": 3594406, "gpu_index": 3, "gpu_uuid": "GPU-e44cdeba-8dbe-cad4-248c-af5713781eff"},
+      {"phase": "jepa_complete", "launcher_pid": 3601965, "pgid": 3601953, "compute_pid": null, "gpu_index": 4, "gpu_uuid": "GPU-651bd630-9a1d-c4c2-1089-8501d6ef1051"}
+    ]
+  },
+  "failures_and_recovery": [
+    {
+      "failure": "staged full15 package retained eight absolute gt_path/image paths into an atomically-renamed package.<pid>.partial directory; initial VLM exited before compute",
+      "recovery": "repaired only the eight stale derived paths, verified every target exists, then retried VLM without changing videos, frozen selection, or model"
+    },
+    {
+      "failure": "initial base preprocessing used the stale summary and omitted GT trajectory data, then failed on missing click_bell episode_000008 traj.npy",
+      "recovery": "after exact process-exit verification, moved only incomplete derived work/data and output into recoverable .failed-stale-summary-20260831T103255 quarantine and retried base"
+    }
+  ],
+  "decision": {
+    "result": "FAIL",
+    "action": "CLOSE",
+    "resume_to_200_steps": false,
+    "reasons": [
+      "corrected15 delta is -0.004981948",
+      "nonmotion12 delta is -0.006036217",
+      "JEPA Similarity delta is -0.084481984 and violates the visual protection gate",
+      "paired wins are only 2 of 4"
+    ],
+    "positive_signals_not_sufficient_for_promotion": {
+      "Semantic Alignment delta": 0.01611325,
+      "Photometric Consistency delta": 0.00540095,
+      "visual3 mean delta": 0.001620923
+    }
+  }
+}

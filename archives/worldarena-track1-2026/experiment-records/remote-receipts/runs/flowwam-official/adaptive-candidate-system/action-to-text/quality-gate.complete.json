@@ -1,0 +1,69 @@
+{
+  "baseline": {
+    "Instruction Following": 0.71,
+    "Interaction Quality": 0.7100000000000001,
+    "JEPA Similarity": 0.9455332159996033,
+    "Trajectory Accuracy": 0.5570164488177413,
+    "corrected_15_metric_mean": 0.6652987549716861,
+    "corrected_motion_mean": 0.4341657856142514,
+    "raw_15_metric_mean": 0.6679561367545683,
+    "valid_count": 20
+  },
+  "black_count": 0,
+  "candidate": {
+    "Instruction Following": 0.71,
+    "Interaction Quality": 0.74,
+    "JEPA Similarity": 0.9433413743972778,
+    "Trajectory Accuracy": 0.648732070299114,
+    "corrected_15_metric_mean": 0.672961934894051,
+    "corrected_motion_mean": 0.43375249163452645,
+    "raw_15_metric_mean": 0.6753692200281407,
+    "valid_count": 20
+  },
+  "checks": {
+    "black_zero": true,
+    "corrected_mean_improved": true,
+    "corrected_motion_preserved": false,
+    "instruction_improved": false,
+    "interaction_improved": true,
+    "jepa_preserved": true,
+    "raw_mean_improved": true,
+    "trajectory_preserved": true,
+    "valid_count_preserved": true
+  },
+  "completed": true,
+  "contract": "flowwam-action-to-text-quality-gate/1",
+  "decision": "close_action_to_text_failed_gate",
+  "delta": {
+    "Instruction Following": 0.0,
+    "Interaction Quality": 0.029999999999999916,
+    "JEPA Similarity": -0.0021918416023254395,
+    "Trajectory Accuracy": 0.09171562148137269,
+    "corrected_15_metric_mean": 0.007663179922364871,
+    "corrected_motion_mean": -0.0004132939797249491,
+    "raw_15_metric_mean": 0.007413083273572374
+  },
+  "evidence": {
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0751/dev-clean-50/csv_results/aggregated_results.csv": {
+      "sha256": "7c0a108007e7c5839a447d0b51d9052f147bb86a5359b21dc51982e28c5dc2b3",
+      "size": 5930
+    },
+    "/data/di/worldarena2_track1_20260815/official_track1_eval/checkpoints/step-0752/dev-clean-50/csv_results/aggregated_results.csv": {
+      "sha256": "d08b12d5d5ba231b1568683c4d8019f6d2c55d68c972ffda894be84fe05d2fdf",
+      "size": 5904
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/action-to-text/latest-scorer/candidate-corrected.csv": {
+      "sha256": "f4256bb8b9e14cb04533c664c54ef05b85ef847e773806b5c00b612d2ed0e374",
+      "size": 5903
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/action-to-text/latest-scorer/incumbent-corrected.csv": {
+      "sha256": "0c79818a299f7362918ed0cbbd803b0a27b3c00c410216fb85850a53d04636f4",
+      "size": 5929
+    },
+    "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/action-to-text/video-validation.complete.json": {
+      "sha256": "20ed7a9a2650254abecc0b9ae4cb551ba1773f8dce7e28626c7a7503773cefff",
+      "size": 5803
+    }
+  },
+  "passed": false
+}

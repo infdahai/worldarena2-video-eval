@@ -1,0 +1,20 @@
+{
+  "candidates": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/final-p0-r3/test1000-scored-candidates.jsonl",
+  "candidates_sha256": "64aaeb9aede4f41db16c8f9661eadd59cd8a8907996a385c00594eb317459499",
+  "completed": true,
+  "contract": "worldarena-track1-p0-selection/1",
+  "deployment_sha_gate": true,
+  "feature_policy": "generated_only_no_hidden_gt",
+  "model": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/postgen/postgen-selector.model.json",
+  "model_sha256": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+  "policy": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/selector/policy-selection.complete.json",
+  "policy_sha256": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7",
+  "predictions": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/final-p0-r3/test1000-predictions.jsonl",
+  "predictions_sha256": "ae70bc87505ee10aad0138651283efe2cb07dcab35b2c65c83e29acc90671101",
+  "row_count": 1000,
+  "selection_counts": {
+    "seed1": 504,
+    "seed4": 496
+  },
+  "terminal_state": "frozen_p0_candidates_selected"
+}

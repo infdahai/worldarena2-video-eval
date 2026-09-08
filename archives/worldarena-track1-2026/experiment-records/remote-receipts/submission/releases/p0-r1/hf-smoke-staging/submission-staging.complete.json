@@ -1,0 +1,28 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-submission-staging/1",
+  "deployment_sha_gate": true,
+  "metadata": {
+    "control_type": "hybrid",
+    "model_name": "FlowWAM-P0-PostGen-Selector-Smoke",
+    "organization": "Huazhi AI",
+    "release_year": 2026,
+    "source_type": "closed_source",
+    "version": "smoke-2026-08-26-r1"
+  },
+  "predictions": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/worldarena-track1-smoke-prediction.jsonl",
+  "predictions_sha256": "a4ddf383e572af68695482c1b7990ae9cb4e46d543f8d5e11bd197adadadbf54",
+  "staging_dir": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/hf-smoke-staging",
+  "terminal_state": "submission_staged",
+  "video_count": 1,
+  "videos": [
+    {
+      "episode_id": 1,
+      "selected_seed": 4,
+      "source": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/stage1-dev-clean50-seed4/output/FlowWAMOfficialStage1_test/episode__grab_roller__aloha-agilex_clean_50__episode_000000.mp4",
+      "source_sha256": "9476a5aeb82f94061f12cedebdb5af71d2ad774cdc045a4e8005a9c52c04bba0",
+      "staged": "/data/di/worldarena2_track1_20260815/submission/releases/p0-r1/hf-smoke-staging/videos/episode_000001.mp4",
+      "staged_sha256": "9476a5aeb82f94061f12cedebdb5af71d2ad774cdc045a4e8005a9c52c04bba0"
+    }
+  ]
+}

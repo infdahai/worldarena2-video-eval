@@ -1,0 +1,45 @@
+{
+  "completed": true,
+  "contact_definition": "residual-near-fb-consistent-robot-motion",
+  "contact_fraction": 0.019333332777023315,
+  "contract": "flowwam-orfc-episode-cache/1",
+  "episode_id": "move_stapler_pad__aloha-agilex_clean_50__episode_000019",
+  "flow_backend": "RAFTFlowExtractor",
+  "flow_threshold": 0.25,
+  "inconsistency_threshold": 0.5,
+  "manifest_sha256": "15d962245daf2e723421f6190cb5ae992c34ba8614a4cfed2eaf008f1e6dc4d3",
+  "occlusion_fraction": 0.11533333361148834,
+  "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-v1/cache/move_stapler_pad__aloha-agilex_clean_50__episode_000019.orfc.pt",
+  "output_sha256": "1ba91e0e34beb187c85740029de9d2ace8f6a5ef546ed0798faa33802a189686",
+  "residual_definition": "full_scene_flow-minus-robot_flow",
+  "residual_threshold": 0.25,
+  "robot_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/move_stapler_pad/aloha-agilex_clean_50/robot_only/data/episode19.hdf5",
+  "robot_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/move_stapler_pad/aloha-agilex_clean_50/robot_only/data/episode19.hdf5",
+  "robot_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/move_stapler_pad/aloha-agilex_clean_50/robot_only/data/episode19.hdf5",
+  "robot_hdf5_resolved_sha256": "000d1993ad9f0a49967cc92e950b0af5f5668d22436284e2ac173e3cbe4738f4",
+  "robot_hdf5_sha256": "000d1993ad9f0a49967cc92e950b0af5f5668d22436284e2ac173e3cbe4738f4",
+  "scene_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/move_stapler_pad/aloha-agilex_clean_50/data/episode19.hdf5",
+  "scene_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/move_stapler_pad/aloha-agilex_clean_50/data/episode19.hdf5",
+  "scene_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/move_stapler_pad/aloha-agilex_clean_50/data/episode19.hdf5",
+  "scene_hdf5_resolved_sha256": "8ef6d02d77e182fcd8e56a635c619b7d2aa4d92ebaf99ebe189c0e5347c1762f",
+  "scene_hdf5_sha256": "8ef6d02d77e182fcd8e56a635c619b7d2aa4d92ebaf99ebe189c0e5347c1762f",
+  "source_frame_count": 165,
+  "source_shape": [
+    240,
+    320
+  ],
+  "split": "round3_train_n8",
+  "target_shape": [
+    5,
+    15,
+    20
+  ],
+  "task": "move_stapler_pad",
+  "temporal_indices": [
+    0,
+    41,
+    82,
+    122,
+    163
+  ]
+}

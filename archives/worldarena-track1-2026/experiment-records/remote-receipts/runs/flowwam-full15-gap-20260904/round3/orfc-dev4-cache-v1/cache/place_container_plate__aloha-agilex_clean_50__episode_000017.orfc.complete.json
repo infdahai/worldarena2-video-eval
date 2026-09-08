@@ -1,0 +1,46 @@
+{
+  "completed": true,
+  "contact_definition": "residual-near-fb-consistent-robot-motion",
+  "contact_fraction": 0.006666666828095913,
+  "contract": "flowwam-orfc-episode-cache/1",
+  "episode_id": "place_container_plate__aloha-agilex_clean_50__episode_000017",
+  "flow_backend": "RAFTFlowExtractor",
+  "flow_threshold": 0.25,
+  "inconsistency_threshold": 0.5,
+  "manifest_sha256": "54ef7d937bb303699084b235d30146541a2d5f15f94a3564325bebdd636e0773",
+  "occlusion_fraction": 0.09733333438634872,
+  "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-dev4-cache-v1/cache/place_container_plate__aloha-agilex_clean_50__episode_000017.orfc.pt",
+  "output_sha256": "638205a32ac85f78de5e0df4ccbdfcd8317fed66d8b9cb8e34be084348365503",
+  "residual_definition": "full_scene_flow-minus-robot_flow",
+  "residual_threshold": 0.25,
+  "robot_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/robot_only/episode000002.hdf5",
+  "robot_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/robot_only/episode000002.hdf5",
+  "robot_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_container_plate/aloha-agilex_clean_50/robot_only/data/episode17.hdf5",
+  "robot_hdf5_resolved_sha256": "2259d2ea518ad144eb26d5bcc7bfe2676b7ba587a9cd17647c5751af29ba14cc",
+  "robot_hdf5_sha256": "2259d2ea518ad144eb26d5bcc7bfe2676b7ba587a9cd17647c5751af29ba14cc",
+  "sample": "place_container_plate__aloha-agilex_clean_50__episode_000017",
+  "scene_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/input/data/fixed_scene_task/episode000002.hdf5",
+  "scene_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/fresh40/shards/gpu0/input/data/fixed_scene_task/episode000002.hdf5",
+  "scene_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_container_plate/aloha-agilex_clean_50/data/episode17.hdf5",
+  "scene_hdf5_resolved_sha256": "947528ada717e28f245a4f21a773e4093fffe3bf4a271efaef50b3dc2cc00e0b",
+  "scene_hdf5_sha256": "947528ada717e28f245a4f21a773e4093fffe3bf4a271efaef50b3dc2cc00e0b",
+  "source_frame_count": 160,
+  "source_shape": [
+    240,
+    320
+  ],
+  "split": "round3_dev4_orfc",
+  "target_shape": [
+    5,
+    15,
+    20
+  ],
+  "task": "place_container_plate",
+  "temporal_indices": [
+    0,
+    40,
+    79,
+    118,
+    158
+  ]
+}

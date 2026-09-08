@@ -1,0 +1,102 @@
+{
+  "action": "CLOSE",
+  "candidate_selection_receipt": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round2/late-orb-v2/b1-block29-s31-r1/n8-dev4/scoring/selection/b1-frozen-selection.complete.json",
+  "candidate_selection_receipt_sha256": "33f319a86976eed303851aa560d0884dd41a7b73aa629012dddd0786c2a19ef9",
+  "completed": true,
+  "contract": "worldarena-track1-late-b1-n8-generated9-cheap-gate/1",
+  "created_at": "2026-08-31T11:25:27+08:00",
+  "execution": {
+    "seed1": {
+      "base_compute_pid": 3649574,
+      "gpu_index": 3,
+      "gpu_uuid": "GPU-e44cdeba-8dbe-cad4-248c-af5713781eff",
+      "last_observed_vlm_compute_pid": 3663535,
+      "launcher_pgid": 3649049,
+      "launcher_pid": 3649049
+    },
+    "seed4": {
+      "base_compute_pid": 3649638,
+      "gpu_index": 4,
+      "gpu_uuid": "GPU-651bd630-9a1d-c4c2-1089-8501d6ef1051",
+      "last_observed_vlm_compute_pid": 3663470,
+      "launcher_pgid": 3649051,
+      "launcher_pid": 3649051
+    },
+    "selector_watcher": {
+      "launcher_pgid": 3645278,
+      "launcher_pid": 3645278
+    }
+  },
+  "full15_used": false,
+  "generated9_mean_delta": 0.000990980241811937,
+  "matched_gt_used": false,
+  "metrics": {
+    "Aesthetic Quality": {
+      "candidate": 0.39489466696977615,
+      "delta": -0.002787642180919647,
+      "p0": 0.3976823091506958
+    },
+    "Dynamic Degree": {
+      "candidate": 0.27483514220442,
+      "delta": -0.0024863264758954173,
+      "p0": 0.27732146868031543
+    },
+    "Flow Score": {
+      "candidate": 0.1717436672721466,
+      "delta": -0.0007663971998403685,
+      "p0": 0.17251006447198697
+    },
+    "Image Quality": {
+      "candidate": 0.5188988032753086,
+      "delta": -0.0014605105364763338,
+      "p0": 0.5203593138117849
+    },
+    "Instruction Following": {
+      "candidate": 0.85,
+      "delta": 0.0,
+      "p0": 0.85
+    },
+    "Interaction Quality": {
+      "candidate": 0.8,
+      "delta": 0.0,
+      "p0": 0.8
+    },
+    "Motion Smoothness": {
+      "candidate": 0.7134720945676908,
+      "delta": 0.01264262129783189,
+      "p0": 0.7008294732698589
+    },
+    "Perspectivity": {
+      "candidate": 1.0,
+      "delta": 0.0,
+      "p0": 1.0
+    },
+    "Photometric Consistency": {
+      "candidate": 0.3469124970257342,
+      "delta": 0.0037770772716073098,
+      "p0": 0.34313541975412687
+    }
+  },
+  "minimum_metric": "Aesthetic Quality",
+  "minimum_metric_delta": -0.002787642180919647,
+  "p0_reference_rows": "/data/di/worldarena2_track1_20260815/runs/flowwam-final-20260904/audits/p0-selector9-fresh40-replay-v1/p0-selector9-fresh40-replay.rows.jsonl",
+  "p0_reference_rows_sha256": "b46965bc126305842d3b73dc26f0b925a411bd50edb4727fb6ab1cb0ee829387",
+  "passed": false,
+  "reasons": [
+    "visual3 mean delta is -0.000157025, not > 0"
+  ],
+  "reference_scope": "first_four_dev4_rows_selected_seed_raw9_only",
+  "result": "FAIL",
+  "thresholds": {
+    "generated9_mean_delta_strictly_greater_than": 0.0,
+    "minimum_individual_metric_delta_at_least": -0.02,
+    "visual3_mean_delta_strictly_greater_than": 0.0
+  },
+  "visual3_mean_delta": -0.00015702514859622374,
+  "visual3_metrics": [
+    "Image Quality",
+    "Aesthetic Quality",
+    "Photometric Consistency"
+  ],
+  "work_key": "round2/late-orb-v2/b1-block29-s31-r1/step25/dev4/seed1+seed4/frozen-generated9-selector/raw9-cheap-gate"
+}

@@ -1,0 +1,11 @@
+{
+  "replaced_pid": 1575418,
+  "new_pid": 1595610,
+  "script": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/analysis/cpu-finish-20260903-1700/checkpoint-fix-v2/finish_native16.py",
+  "script_sha256": "26e9dbb158b3308d29b968a8abc6cff5a4e5fe5c41f55037234c4ea8a5860c55",
+  "reason": "native checkpoint path allowlist missing",
+  "gpu_tasks_untouched": true,
+  "old_claim_preserved": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/claims/analysis-full15-cpu.superseded-1575418.json",
+  "at": "2026-09-03T09:24:11.879096+00:00",
+  "maximum_runtime_seconds": 21600
+}

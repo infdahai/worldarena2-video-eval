@@ -1,0 +1,50 @@
+{
+  "completed": true,
+  "contract": "seed2-selected9-corrected15-merge/1",
+  "formula": "motion=min(seed2_generated9,matched_gt); other12=seed2; JEPA=official selected9 aggregate",
+  "full15_used_for_selection": false,
+  "inputs": {
+    "generated9_csv": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/scoring/seed2/merged40/csv/generated-only-task-aware.csv",
+      "sha256": "68a127695d1879efe967c720d97a90e6a0d94668bea4f568a896c79361d4e2b0"
+    },
+    "gt_results_json": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/fresh40/latest-scorer/gt-motion-output/gt_reference_results.json",
+      "sha256": "79c73e40198125f52d4c010a524892f8483459cde027c50d55fe0da411320548"
+    },
+    "jepa_json": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/seed2-selected9/package/output_JEDi/results.json",
+      "sha256": "a81facb30e01862481e08828145cf2707a6b7227a0d8e75bd85655e407b53f12"
+    },
+    "missing5_json": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/seed2-selected9/package/output/generated_results.json",
+      "sha256": "fdb8a559036e6e26ceb1dc3f5a0dabbb6c24d99bb1b55d6e62316d72023a0324"
+    },
+    "package_receipt": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/seed2-selected9/package/receipts/package.complete.json",
+      "sha256": "95131995ff9c77fa164e2f4fb9eb405bab5a00365e67cff5f459d4532040514f"
+    },
+    "seed1_corrected_csv": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/fresh40_p0_seed1.corrected.csv",
+      "sha256": "3ba5c3854c23a340ed1c105868c44978609d926367224b912482ed09e369cf13"
+    },
+    "seed4_corrected_csv": {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/expertpool-v2/evaluation/merged/fresh40_p0_seed4.corrected.csv",
+      "sha256": "68447148fa0acadc2d67547493c52fc0df22bd5a06b1d2702463b92da59b0f12"
+    }
+  },
+  "output_sha256": {
+    "corrected_csv": "c24785b36e604ebd7d768e32a263efa0c72084ee6ef39dccc0c289f02993cc1c",
+    "raw_csv": "ac594cba7a715f57c7af9cde6b5974bc2008eee4fc4f5db981fde86e138f15e0",
+    "rows_jsonl": "1553799dde6daf4672023641356848f00882ed6f592f474dab76022f74caee06",
+    "summary_json": "dde8af97f1859d842c83256a9b70f5f7dd616bb206b8bd3deaa3f2cc94f88776"
+  },
+  "outputs": {
+    "corrected_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/seed2-selected9/merged-corrected15-v2/seed2-selected9.corrected15.csv",
+    "raw_csv": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/seed2-selected9/merged-corrected15-v2/seed2-selected9.raw15.csv",
+    "rows_jsonl": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/seed2-selected9/merged-corrected15-v2/seed2-selected9.rows.jsonl",
+    "summary_json": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/full15/seed2-selected9/merged-corrected15-v2/seed2-selected9.summary.json"
+  },
+  "row_count": 9,
+  "selected_keys_source": "frozen_generated9_package_receipt"
+}

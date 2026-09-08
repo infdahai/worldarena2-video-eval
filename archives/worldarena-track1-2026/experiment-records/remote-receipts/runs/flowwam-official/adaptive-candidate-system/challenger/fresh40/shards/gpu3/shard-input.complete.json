@@ -1,0 +1,94 @@
+{
+  "completed": true,
+  "contract": "flowwam-adaptive-shard-input/1",
+  "episodes": [
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/turn_switch/aloha-agilex_clean_50/data/episode37.hdf5",
+      "action_sha256": "c7354e18287cf64bac26800c736bb8861952370418a19da8a097fb85f40312ee",
+      "episode_name": "episode000000",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/turn_switch/aloha-agilex_clean_50/instructions/episode37.json",
+      "instruction_sha256": "a849ece02e6f60b677c7a3c23b58d5bb2d2a247b5926e51aae0cf75717c9d2db",
+      "prompt_sha256": "2c0d31543935b4a7c386e2a2665466f327da1af661f62f18764b635bca52f14c",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/turn_switch/aloha-agilex_clean_50/robot_only/data/episode37.hdf5",
+      "robot_only_sha256": "03154a30485979ab6fff72ec21180917c1692677ca1c1e2751e862e4fb56e458",
+      "sample": "turn_switch__aloha-agilex_clean_50__episode_000037",
+      "split": "fresh_holdout"
+    },
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_dual_shoes/aloha-agilex_clean_50/data/episode37.hdf5",
+      "action_sha256": "05e49354cc50c19a42790c6438306eabb7906f69523d4961371ffa7350de099d",
+      "episode_name": "episode000001",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_dual_shoes/aloha-agilex_clean_50/instructions/episode37.json",
+      "instruction_sha256": "79adace6f9a0f08326f90bff8da112233f1ec27a51d12ff53808255cea2ef527",
+      "prompt_sha256": "aa36c68c2be3bc4081a7198e137fe3f509bc34a21785087af1fbf49a05466f70",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_dual_shoes/aloha-agilex_clean_50/robot_only/data/episode37.hdf5",
+      "robot_only_sha256": "05edeadd1ad9cc1e5657a236bd98a56b024e599ea37cd097e03b853d6e8286ff",
+      "sample": "place_dual_shoes__aloha-agilex_clean_50__episode_000037",
+      "split": "fresh_holdout"
+    },
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_shoe/aloha-agilex_clean_50/data/episode43.hdf5",
+      "action_sha256": "8753a5e9bbd6a85ad23ffc3a6966be8cc1e3e3bf16cb5c5d8165c50064bdff40",
+      "episode_name": "episode000002",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_shoe/aloha-agilex_clean_50/instructions/episode43.json",
+      "instruction_sha256": "61d08156afa2ce7b3ee16f1847842d93903aa0863c5991283c1223d4d0c404f1",
+      "prompt_sha256": "a11244c6bedcf48af739ba521d980d972698b60e9d48afa8be98b16f0bc043ae",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_shoe/aloha-agilex_clean_50/robot_only/data/episode43.hdf5",
+      "robot_only_sha256": "b97925c18a7c75abfacd28435ba85123b8343ccd9024dcd441f76ec01c1e1297",
+      "sample": "place_shoe__aloha-agilex_clean_50__episode_000043",
+      "split": "fresh_holdout"
+    },
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/move_playingcard_away/aloha-agilex_clean_50/data/episode40.hdf5",
+      "action_sha256": "5c873cadcd18ca064fb07a4f5979f0be90c1fc7540415ce133195e209c4ba171",
+      "episode_name": "episode000003",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/move_playingcard_away/aloha-agilex_clean_50/instructions/episode40.json",
+      "instruction_sha256": "f9586c9b6a4c508fd36326cd08ff8ec46b38d7018f6d52ea941a372ff68ebe1f",
+      "prompt_sha256": "fd17c350cb53977191cf372a9d8e9bd2907844d8dd1bab5fbbda413fbc3ce097",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/move_playingcard_away/aloha-agilex_clean_50/robot_only/data/episode40.hdf5",
+      "robot_only_sha256": "ce9df6e12f52b1b1c0a4891c2781966cb3176529e571c57ecfc9ce16977b474b",
+      "sample": "move_playingcard_away__aloha-agilex_clean_50__episode_000040",
+      "split": "fresh_holdout"
+    },
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_bread_skillet/aloha-agilex_clean_50/data/episode27.hdf5",
+      "action_sha256": "9558e18c8d68e13352bcf8b4f731faa9172c54bfadd355c5e563e34a325443e2",
+      "episode_name": "episode000004",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_bread_skillet/aloha-agilex_clean_50/instructions/episode27.json",
+      "instruction_sha256": "5364639350901d49fbd5baa848627e13090be995b460f5816cdabbfd05ae75fc",
+      "prompt_sha256": "c67adeeffda9452daaa58eed6bd85cb72b071eb5036e2e195df132dcec5f732d",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/place_bread_skillet/aloha-agilex_clean_50/robot_only/data/episode27.hdf5",
+      "robot_only_sha256": "fc0d80fe266bffcc99fcb16c14bd05d35f456609bf3e410571b896ac1bf5824f",
+      "sample": "place_bread_skillet__aloha-agilex_clean_50__episode_000027",
+      "split": "fresh_holdout"
+    },
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/shake_bottle/aloha-agilex_clean_50/data/episode28.hdf5",
+      "action_sha256": "1b0fa1b9e7547e80666c1be4e053f25a65ab94de2aa01cbe99a596c67ff1c429",
+      "episode_name": "episode000005",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/shake_bottle/aloha-agilex_clean_50/instructions/episode28.json",
+      "instruction_sha256": "9dbab3a3fb9eaee8b1c345391590aa3a15cdcfa9fdddf0ed90dac01f20e7032b",
+      "prompt_sha256": "5bd048b915a4b1021b73d6e5d6a4847306175f9b9de4df3393551472667f8e97",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/shake_bottle/aloha-agilex_clean_50/robot_only/data/episode28.hdf5",
+      "robot_only_sha256": "d2fbc1f6c91941d0f0547f5df202a45b6d5aff9c813a47b38e8243dea990311a",
+      "sample": "shake_bottle__aloha-agilex_clean_50__episode_000028",
+      "split": "fresh_holdout"
+    },
+    {
+      "action": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/click_alarmclock/aloha-agilex_clean_50/data/episode21.hdf5",
+      "action_sha256": "f21d28b4903110b5ce9683aef9786eecb71fac757f8814b0fe7cd77c844f8261",
+      "episode_name": "episode000006",
+      "instruction": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/click_alarmclock/aloha-agilex_clean_50/instructions/episode21.json",
+      "instruction_sha256": "5530cdec4151707e7ade5c3f4b49b01e468ddc6803eb4f3e28478609fabbef63",
+      "prompt_sha256": "03b50fef0cdeb12fe4d317f374bd0911f87f9887778b25d82404242d7c2835c1",
+      "robot_only": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/click_alarmclock/aloha-agilex_clean_50/robot_only/data/episode21.hdf5",
+      "robot_only_sha256": "d12d226a0b998df310fa8930e56e53729bb08c06f6170d5cd39ec41ccf1f9284",
+      "sample": "click_alarmclock__aloha-agilex_clean_50__episode_000021",
+      "split": "fresh_holdout"
+    }
+  ],
+  "manifest": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/adaptive-candidate-system/challenger/manifests/fresh40/fresh40.jsonl",
+  "manifest_sha256": "49d89ac6c3450aff8e1705819f455b8fbab7eaff444f67bd0f55b92ede586908",
+  "physical_gpu": 3,
+  "rows": 7
+}

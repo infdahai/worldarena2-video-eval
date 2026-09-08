@@ -1,0 +1,73 @@
+{
+  "baseline": {
+    "black_rate": 0.0,
+    "candidate": "formal-s1A125",
+    "mean_inverse": 1.9090536642892613,
+    "valid": 6
+  },
+  "contract": "wan-action-lite-official-sam3-dev-fast20-scoreboard/1",
+  "created_at": "2026-08-16T07:41:44.851294+00:00",
+  "decision": {
+    "incumbent": "formal-s1A125",
+    "next_experiment": "q-only LoRA low-impact ablation; do not update adapter",
+    "rationale": "all adapter-updating candidates harmed detectability or black rate; q/v LoRA-only was closest and black-free, so reduce trainable surface before any joint retry",
+    "rejected": [
+      "adapter-only lr2e-5 step25",
+      "adapter-only lr2e-5 step50",
+      "adapter-only lr1e-4 recovery75",
+      "q/v LoRA-only lr2e-6 step75",
+      "joint adapter1e-4 lora2e-5 step100"
+    ]
+  },
+  "official_evaluator_commit": "7b3feee108427bee3380064bb5154970ed7468b5",
+  "preprocess_byte_equal": true,
+  "rows": [
+    {
+      "black_rate": 0.1,
+      "candidate": "adapter-only lr2e-5 step25",
+      "mean_inverse": 1.207590903863973,
+      "relative_gain": -0.36744004296308885,
+      "strict_pass": false,
+      "valid": 7,
+      "win_rate": 0.25
+    },
+    {
+      "black_rate": 0.05,
+      "candidate": "adapter-only lr2e-5 step50",
+      "mean_inverse": 0.0,
+      "relative_gain": -1.0,
+      "strict_pass": false,
+      "valid": 0,
+      "win_rate": 0.0
+    },
+    {
+      "black_rate": 0.0,
+      "candidate": "adapter-only lr1e-4 recovery75",
+      "mean_inverse": 1.6344400631060207,
+      "relative_gain": -0.14384802602470526,
+      "strict_pass": false,
+      "valid": 7,
+      "win_rate": 0.25
+    },
+    {
+      "black_rate": 0.0,
+      "candidate": "q/v LoRA-only lr2e-6 step75",
+      "mean_inverse": 1.8592540203642003,
+      "relative_gain": -0.026086036687502645,
+      "strict_pass": false,
+      "valid": 8,
+      "win_rate": 0.2
+    },
+    {
+      "black_rate": 0.1,
+      "candidate": "joint adapter1e-4 lora2e-5 step100",
+      "mean_inverse": 26.351168339083756,
+      "relative_gain": 12.803262229872553,
+      "strict_pass": false,
+      "valid": 1,
+      "win_rate": 0.05
+    }
+  ],
+  "sam3_sha256": "9999e2341ceef5e136daa386eecb55cb414446a00ac2b55eb2dfd2f7c3cf8c9e",
+  "scope": "dev-fast20-official-evaluator-not-test1000"
+}

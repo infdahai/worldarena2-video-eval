@@ -1,0 +1,56 @@
+{
+  "archives": {
+    "click_bell": {
+      "file_count": 1500,
+      "sha256": "8339560880089a3952ffd13fb445433c6b698158d253e4967f3b6b4c1c072360",
+      "size": 3386677089,
+      "task": "click_bell",
+      "uncompressed_bytes": 4701720907
+    }
+  },
+  "canonical_sha256": "5a41e21c406662ab8f0e4ee31423664420e2aeedcfdfbec30edf1bb86d9fcdf3",
+  "contract": "flowwam-randomized500-stage/1",
+  "expected_episodes_per_task": 500,
+  "hdf5_contract": {
+    "action_vector_width": 14,
+    "robot_required_fields": [
+      "observation/head_camera/rgb",
+      "observation/left_camera/rgb",
+      "observation/right_camera/rgb"
+    ],
+    "scene_required_fields": [
+      "joint_action/vector",
+      "observation/head_camera/rgb",
+      "observation/left_camera/rgb",
+      "observation/right_camera/rgb"
+    ]
+  },
+  "holdout_claim": {
+    "parent_pretraining_unseen": false,
+    "scope": "campaign-finetune-only",
+    "task_disjoint_from": "first12.train"
+  },
+  "manifest_sha256": {
+    "preflight": "d306152792a827d9dbf80a4415a22637bb8d8cb721b233f04fbc80d2718324f4"
+  },
+  "mode": "preflight",
+  "schema_version": 1,
+  "source": {
+    "plan_sha256": "bd5f6728ef6782ede20fdfe4dad2ceb075a829a76983ac87e88d64d8e8a66271",
+    "repo_id": "YixiangChen/FlowWAM_RoboTwin",
+    "revision": "506c4e014f7dbd291e7d7683c79fc685dd3e2714",
+    "variant": "aloha-agilex_randomized_500"
+  },
+  "split_task_counts": {
+    "train": 1
+  },
+  "split_tasks": {
+    "train": [
+      "click_bell"
+    ]
+  },
+  "status": "complete",
+  "tasks": [
+    "click_bell"
+  ]
+}

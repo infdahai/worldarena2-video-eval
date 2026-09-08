@@ -1,0 +1,82 @@
+{
+  "completed": true,
+  "contract": "worldarena-holdout16-frozen-route-mvp/1",
+  "final_predictions": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/route/final1423-selected16.jsonl",
+  "final_predictions_sha256": "43206cb003fad7ebc3dfe5e980d45dc9ef59bbc1bf7f481fda10574391a60bdb",
+  "hidden_gt_used_for_selection": false,
+  "manifest_sha256": "b4c46410dea61ad9207596b95f0c895fa67f718a9ca24d88afe7bfbd4e964858",
+  "model_sha256": "4e97e87fa645793f885675fc98d6ae460c216395069c0c35a720264886cbf5fa",
+  "p0_predictions": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/route/p0-selected16.jsonl",
+  "p0_predictions_sha256": "5c924be177a7579f8dab9cf8a84b1cda40a971a757096350486c34ae1e4f3165",
+  "policy_sha256": "aa551c7b849b03158864c9cb5d2a85f15ddfde4ee0d5c6527f8caf73c86e0af7",
+  "rows": 16,
+  "score_receipts": [
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed1/shard0/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "a8526190d5bdbe8843568980471642fae065af601d26578a256d4709ef67e930"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed1/shard1/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "9b51b4653609bc832277909b03ccd7d177884da09fe07d34e191abe66063aad6"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed1/shard2/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "f6708a0a1c2bca411f41ddd59fd5af49afc68edcbf79b31759a53f7cbe7b446b"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed1/shard3/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "ae966a98cef3fcfd44afda4b35d65e14733109fe01728802e037e2f82754dd37"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed2/shard0/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "25f6ea1754a4863b6b0c87917c1febf50994fcb03e807b6372a7a20d4e4a77f7"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed2/shard1/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "492c83cf74d549475cec389323733e50bb6fa663164eaa5081bf6ab94df8894e"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed2/shard2/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "3ed713d42f6f8fda5242c61391ccb23c9fad0216aa2467f9fd2c23e1dccf2f7f"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed2/shard3/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "965ae4d2ed0d938c4cb2fe751993be8928f33e9664514faba8abae2af1b68a72"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed3/shard0/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "309a5b5031981e3473363ec7782f51540cdbe3fd39d8bace13fd224d0252f3ff"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed3/shard1/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "5b305be3e3cd93c7f67e38d6a167848ac557a80b134e2ffc4353db542adecf7a"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed3/shard2/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "63b6c09a61e7d4fcc3f6b1f2acfb9d4882461dec4a52cef5e9713f18140c60b1"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed3/shard3/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "762cadb683ac8cf5b0fac6e0a2260b2dd1c5165df716e559d35c22d3a621f18f"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed4/shard0/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "2c6c6a924b5dcb08e435a31a06a41f29427efa9a542324a399f9a9247e67c824"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed4/shard1/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "23895f4346364d6b3070af42819205e0e2881cbc8650ec97c8ef2fa9feb4a55a"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed4/shard2/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "6c38e054039e626f8a0e3f9b462c9e339e772cf6043601220e7e0b93ad4039b6"
+    },
+    {
+      "path": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/inference-ensemble-mvp-20260901/holdout16-nativecap-20260903/generated9/seed4/shard3/package/receipts/holdout16-generated9.complete.json",
+      "sha256": "57fd8582bd3061899e5ca9c1496ac89621eb2a23587c007129e89d772af82c19"
+    }
+  ],
+  "scoring_frames": 81,
+  "source_frames": 121,
+  "wrapper_sha256": "c6984420cefffa481cb601095171fbcb7ef7ea52df9e9f74a86a160059ba9bf5"
+}

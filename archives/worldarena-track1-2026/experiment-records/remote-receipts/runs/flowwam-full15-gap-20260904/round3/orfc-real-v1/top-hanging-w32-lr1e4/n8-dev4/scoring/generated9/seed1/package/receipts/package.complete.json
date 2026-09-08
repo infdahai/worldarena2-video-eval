@@ -1,0 +1,38 @@
+{
+  "completed": true,
+  "contract": "worldarena-track1-orb-n8-generated-only-package/1",
+  "frames": 81,
+  "hidden_ground_truth_used": false,
+  "rows": 4,
+  "seed": 1,
+  "videos": [
+    {
+      "episode_id": 0,
+      "score_video": "fixed_scene_task_episode_000000.mp4",
+      "score_video_sha256": "9663dbf7959ce46534ca42f06da59748aad3ebd87d691fd36ce820780e24a116",
+      "source_sha256": "49e639251d14545f948556e9a8709ecf4f742e60a17a1dede6b5626d94b95ee4",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-hanging-w32-lr1e4/n8-dev4/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode0.mp4"
+    },
+    {
+      "episode_id": 1,
+      "score_video": "fixed_scene_task_episode_000001.mp4",
+      "score_video_sha256": "ed6ade5dabaaa54321fd37711e8d50e9e81b8b0a0a56d1f27cfa83d912ab8382",
+      "source_sha256": "f22c688c38e0c6c4f216f7d7b15272a10c6d54223abfaeee41b7d81883069204",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-hanging-w32-lr1e4/n8-dev4/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode1.mp4"
+    },
+    {
+      "episode_id": 2,
+      "score_video": "fixed_scene_task_episode_000002.mp4",
+      "score_video_sha256": "583c2e2b70595be6cf72604bed9be0ee5c784f0f23259de3339d4cb8f68ccc7f",
+      "source_sha256": "25ec3afe2286b379eb70b7414793a442b7c8ff852ac2262b9ddb7d97cbe619ce",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-hanging-w32-lr1e4/n8-dev4/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode2.mp4"
+    },
+    {
+      "episode_id": 3,
+      "score_video": "fixed_scene_task_episode_000003.mp4",
+      "score_video_sha256": "8f2c1de99e2d813005023835511c5ab046e2b88de1e5c02d39aa274c3489f20b",
+      "source_sha256": "95ea1a7f84547e343b9123b6c65707234ffcb478a43bcb77a43b5dfd69a04451",
+      "source_video": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-real-v1/top-hanging-w32-lr1e4/n8-dev4/scoring/remap/seed1/FlowWAMOfficialStage1_test/episode3.mp4"
+    }
+  ]
+}

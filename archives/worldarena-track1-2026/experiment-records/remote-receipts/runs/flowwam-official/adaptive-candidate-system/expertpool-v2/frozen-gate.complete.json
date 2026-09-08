@@ -1,0 +1,29 @@
+{
+  "background_v2": {
+    "black_count": 0,
+    "corrected_uplift_minimum": 0.005,
+    "protected_metric_regression_maximum": 0.0,
+    "seam_required": true,
+    "visual_five_metric_uplift_minimum": 0.005
+  },
+  "completed": true,
+  "contract": "flowwam-expertpool-v2-frozen-gate/1",
+  "expertpool_fresh40": {
+    "bootstrap_one_sided_lower_strictly_positive": true,
+    "close_below": 0.004,
+    "clean50_eligible_minimum": 0.006,
+    "immediate_freeze_above": 0.012,
+    "non_motion_regression_maximum": 0.0,
+    "raw_regression_maximum": 0.0,
+    "strong_mainline_minimum": 0.008,
+    "trajectory_jepa_structural_regression_forbidden": true
+  },
+  "experts": [
+    "p0_post_generation_selector",
+    "winner_sft_step25_seed4_lora_scale_0_5",
+    "fixed_action_text"
+  ],
+  "fresh40_partial_results_may_change_policy": false,
+  "new_architecture_or_seed_or_prompt_allowed": false,
+  "research_freeze_deadline": "2026-08-26T20:00:00+08:00"
+}

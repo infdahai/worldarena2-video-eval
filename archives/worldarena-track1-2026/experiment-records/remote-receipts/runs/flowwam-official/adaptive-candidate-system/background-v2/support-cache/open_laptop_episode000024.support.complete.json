@@ -1,0 +1,30 @@
+{
+  "completed": true,
+  "contract": "flowwam-background-v2-support/1",
+  "expected_flow_threshold": 0.5,
+  "flow_backend": "torchvision-raft-large-default",
+  "frame_count": 81,
+  "generated_flow_threshold": 1.0,
+  "generated_object_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.107939453125,
+    "mean_area_fraction": 0.07214052051183129,
+    "valid_frames": 81
+  },
+  "generated_robot_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.20614908854166666,
+    "mean_area_fraction": 0.12181403517232509,
+    "valid_frames": 73
+  },
+  "renderer_sam3": {
+    "included": true,
+    "maximum_area_fraction": 0.20484375,
+    "mean_area_fraction": 0.12000313464506174,
+    "valid_frames": 74
+  },
+  "source_video_sha256": "4f489841b5bfb944e511583794efb1d44222b03aee87b8e89ae030dcf6b67f61",
+  "support_fraction": 0.6307441165123456,
+  "support_sha256": "dd3feea3437b98e49ab176c37f0d9d370ab168a12b00e632b38fe930d038f5b5",
+  "video_id": "open_laptop_episode000024"
+}

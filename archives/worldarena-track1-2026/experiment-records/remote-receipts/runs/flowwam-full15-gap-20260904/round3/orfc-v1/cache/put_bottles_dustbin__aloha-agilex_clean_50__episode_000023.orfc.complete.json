@@ -1,0 +1,45 @@
+{
+  "completed": true,
+  "contact_definition": "residual-near-fb-consistent-robot-motion",
+  "contact_fraction": 0.015333333052694798,
+  "contract": "flowwam-orfc-episode-cache/1",
+  "episode_id": "put_bottles_dustbin__aloha-agilex_clean_50__episode_000023",
+  "flow_backend": "RAFTFlowExtractor",
+  "flow_threshold": 0.25,
+  "inconsistency_threshold": 0.5,
+  "manifest_sha256": "15d962245daf2e723421f6190cb5ae992c34ba8614a4cfed2eaf008f1e6dc4d3",
+  "occlusion_fraction": 0.0846666693687439,
+  "output": "/data/di/worldarena2_track1_20260815/runs/flowwam-full15-gap-20260904/round3/orfc-v1/cache/put_bottles_dustbin__aloha-agilex_clean_50__episode_000023.orfc.pt",
+  "output_sha256": "8963e953ebed63839cf755e6fdf6f5a742e700a91be9e83a6d73b191180a04fe",
+  "residual_definition": "full_scene_flow-minus-robot_flow",
+  "residual_threshold": 0.25,
+  "robot_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/put_bottles_dustbin/aloha-agilex_clean_50/robot_only/data/episode23.hdf5",
+  "robot_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/put_bottles_dustbin/aloha-agilex_clean_50/robot_only/data/episode23.hdf5",
+  "robot_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/put_bottles_dustbin/aloha-agilex_clean_50/robot_only/data/episode23.hdf5",
+  "robot_hdf5_resolved_sha256": "ffc9ef27cc52fcb9269439b5684609ed062276a0fc0ffcc44bfb6b297d3a6beb",
+  "robot_hdf5_sha256": "ffc9ef27cc52fcb9269439b5684609ed062276a0fc0ffcc44bfb6b297d3a6beb",
+  "scene_hdf5": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/put_bottles_dustbin/aloha-agilex_clean_50/data/episode23.hdf5",
+  "scene_hdf5_link_path": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/v16-qv-lora-clean1785/dataset/640/put_bottles_dustbin/aloha-agilex_clean_50/data/episode23.hdf5",
+  "scene_hdf5_resolved_path": "/data/di/worldarena2_track1_20260815/datasets/FlowWAM_RoboTwin_extracted/put_bottles_dustbin/aloha-agilex_clean_50/data/episode23.hdf5",
+  "scene_hdf5_resolved_sha256": "5830e607058ff9028831546c84d9f26ae5b88e3e20c6bcb83124d69fbb7635b3",
+  "scene_hdf5_sha256": "5830e607058ff9028831546c84d9f26ae5b88e3e20c6bcb83124d69fbb7635b3",
+  "source_frame_count": 653,
+  "source_shape": [
+    240,
+    320
+  ],
+  "split": "round3_train_n8",
+  "target_shape": [
+    5,
+    15,
+    20
+  ],
+  "task": "put_bottles_dustbin",
+  "temporal_indices": [
+    0,
+    163,
+    326,
+    488,
+    651
+  ]
+}

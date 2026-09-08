@@ -1,0 +1,32 @@
+{
+  "archive": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/final-p0-r3/submission.tar.gz",
+  "archive_filename": "submission.tar.gz",
+  "archive_sha256": "b3a4a35ca1e4bffabc96f0f0a5b62437ec3936b67dabcb1c587e43704b89a677",
+  "archive_validation": {
+    "archive": "/data/di/worldarena2_track1_20260815/submission/releases/p0-dual-seed-parallel-r1/final-p0-r3/submission.tar.gz",
+    "archive_sha256": "b3a4a35ca1e4bffabc96f0f0a5b62437ec3936b67dabcb1c587e43704b89a677",
+    "completed": true,
+    "contract": "worldarena-track1-submission-validation/1",
+    "metadata": {
+      "control_type": "hybrid",
+      "model_name": "HZ-World",
+      "organization": "Huazhi AI",
+      "release_year": 2026,
+      "source_type": "closed_source",
+      "version": "P0-DualSeed-Selector-v1"
+    },
+    "video_count": 1000
+  },
+  "commit_sha": "f818e47e394967df050ee28ff090c5476d0b1600",
+  "completed": true,
+  "contract": "worldarena-track1-hf-formal-upload/1",
+  "repo_gated": false,
+  "repo_id": "clusternlh/worldarena-track1-hz-wam",
+  "repo_public": true,
+  "repo_type": "dataset",
+  "revision": "f818e47e394967df050ee28ff090c5476d0b1600",
+  "root_archives": [
+    "submission.tar.gz"
+  ],
+  "terminal_state": "formal_hf_submission_uploaded"
+}

@@ -1,0 +1,41 @@
+{
+  "contract": "flowwam-worldarena-official-rgb4-input/1",
+  "manifest_sha256": "6819acb0deb88c111e2832f4627a9caa8f0898695efca3c04d07c7c5afdba2e9",
+  "robot_only_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/stage1-rgb4/robot_only",
+  "rows": [
+    {
+      "action_sha256": "bdaa299851878a83fefcc9d9ef5200d3d893194b99e2009a3be545dadc8d7776",
+      "episode": "episode__handover_mic__aloha-agilex_clean_50__episode_000044",
+      "first_frame_sha256": "276ff7b1803d686a487211068d6c3cc0de9933e50c213b98d7709827a421bc49",
+      "instruction_sha256": "254b753874ea77e941914a9ad7f802791734f6b5e91b66d69d8860bb037ef378",
+      "robot_only_sha256": "f67c1ff9fb9f953c9fbfa6368304d4442539c6d5c08fd13a10569a2c1eefc727",
+      "sample": "handover_mic__aloha-agilex_clean_50__episode_000044"
+    },
+    {
+      "action_sha256": "f87445d98fc9732ef4e08508159684995ec7836f9654b4dfb070ac0bfd6de05c",
+      "episode": "episode__hanging_mug__aloha-agilex_clean_50__episode_000004",
+      "first_frame_sha256": "f2e05bdc021e93d79cbbbc5a39eebd2f40a6d71db2b3830ea6f8fd989616bf60",
+      "instruction_sha256": "e36f3ebf755e8026bac486f3ef9407de605dc7a95d798d860bdcc87c83b00530",
+      "robot_only_sha256": "5e7bcf5d49dc5d9d61389cb188a9b19eb3fcc587ab00f47e23377bb74693cb06",
+      "sample": "hanging_mug__aloha-agilex_clean_50__episode_000004"
+    },
+    {
+      "action_sha256": "0fff1ed8dc53c28544b7bb1acb4170cf83a2599b97dc14b8fcc870a53f8704fc",
+      "episode": "episode__lift_pot__aloha-agilex_clean_50__episode_000039",
+      "first_frame_sha256": "ff1b9c861251679aff8b2a2ca48b1f1378ff1d2ef91c37b95a047867532bb8d0",
+      "instruction_sha256": "fe43c528271fbb1604cb1a50fa5f8d940db28d8fdbff461ee2e2e1f135c3edd7",
+      "robot_only_sha256": "979bc5b54252b359a1d3902e9efef4d8dcbba8039c1c1b0a080f9681808dcd82",
+      "sample": "lift_pot__aloha-agilex_clean_50__episode_000039"
+    },
+    {
+      "action_sha256": "03ba5e8cac665cf1e804302fc0500001f91846b14bb13996ddd97410182c2ab6",
+      "episode": "episode__move_can_pot__aloha-agilex_clean_50__episode_000036",
+      "first_frame_sha256": "57893d10580a73f79a401329239e97e450c9fba92296379d8f0e23fd7cffa6b4",
+      "instruction_sha256": "29430313cbb5dcafedc36fb8779ee003fe98bc036aaa026b9a82c9edb933a333",
+      "robot_only_sha256": "8b89bc7abe0c7fcfe9de94d6ab8c185738fc24a02ea01ba2b6fb5958b3aeeb84",
+      "sample": "move_can_pot__aloha-agilex_clean_50__episode_000036"
+    }
+  ],
+  "selection": "first-4-frozen-breadth20",
+  "test_dataset_dir": "/data/di/worldarena2_track1_20260815/runs/flowwam-official/stage1-rgb4/input"
+}
