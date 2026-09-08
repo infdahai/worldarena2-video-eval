@@ -1,0 +1,23 @@
+{
+  "completed": true,
+  "completed_at": "2026-09-08T11:10:41+08:00",
+  "target": "/data/di/worldarena2_track1_20260815",
+  "target_exists_after": false,
+  "pre_delete_apparent_bytes": 442919399873,
+  "first_pass_residual_bytes": 162239070,
+  "first_pass_note": "Most content was removed; 53 owner-read-only directories remained.",
+  "residual_owner": "huazhi",
+  "residual_non_owner_files": 0,
+  "residual_immutable_files_found": 0,
+  "residual_remediation": "Added owner write permission to directories only, then repeated exact-root deletion.",
+  "filesystem_free_bytes_after": 1035769221120,
+  "github_archive_branch": "archive/worldarena-track1-final-20260908",
+  "github_reproduction_commit": "283f7e7b668e5a269566908590db1676b359b875",
+  "hf_submission_revision": "fd9e024c8ed467b7deb27453337e44f18f22f59c",
+  "protected_paths_verified_after": [
+    "/data/fjy",
+    "/data/whn",
+    "/home/huazhi/nlh/baseline"
+  ],
+  "other_data_di_directories_deleted": false
+}
