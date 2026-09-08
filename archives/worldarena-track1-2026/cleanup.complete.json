@@ -11,6 +11,20 @@
   "residual_immutable_files_found": 0,
   "residual_remediation": "Added owner write permission to directories only, then repeated exact-root deletion.",
   "filesystem_free_bytes_after": 1035769221120,
+  "data_di_cleanup_completed_at": "2026-09-08T11:21:48+08:00",
+  "additional_deleted_paths": [
+    {
+      "path": "/data/di/robotwin_lora_train_v1",
+      "pre_delete_apparent_bytes": 188794970
+    },
+    {
+      "path": "/data/di/worldarena2_track1_baseline",
+      "pre_delete_apparent_bytes": 29183702897
+    }
+  ],
+  "additional_pre_delete_apparent_bytes": 29372497867,
+  "data_di_empty_after": true,
+  "filesystem_free_bytes_after_data_di_cleanup": 1065297862656,
   "github_archive_branch": "archive/worldarena-track1-final-20260908",
   "github_reproduction_commit": "283f7e7b668e5a269566908590db1676b359b875",
   "hf_submission_revision": "fd9e024c8ed467b7deb27453337e44f18f22f59c",
@@ -19,5 +33,11 @@
     "/data/whn",
     "/home/huazhi/nlh/baseline"
   ],
-  "other_data_di_directories_deleted": false
+  "other_data_di_directories_deleted": true,
+  "external_gpu_process_preserved": {
+    "gpu_uuid": "GPU-c4f01096-8831-924c-df5c-7eb23ebecfc1",
+    "pid": 2659785,
+    "command": "/data/fjy/worldarena/.conda/envs/worldarena-track2/bin/python",
+    "gpu_memory_mib": 12736
+  }
 }
