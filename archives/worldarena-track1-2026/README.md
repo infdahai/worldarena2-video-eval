@@ -32,6 +32,7 @@
 ## 目录
 
 - `EXPERIMENT_INDEX.md`：从 Wan v1-v15、FlowWAM、ORB、refiner、四 seed 路由到最终提交的实验索引。
+- `REPRODUCTION.md`：唯一 FlowWAM 权重、四个随机种子、固定参数、排序器权重和最终 ZIP 的完整复现链路。
 - `experiment-records/local-reports/`：人工整理的实验报告和总账。
 - `experiment-records/plans-and-specs/`：实验计划与冻结设计文档。
 - `experiment-records/deliverables/`：本地交付记录；已排除 ZIP 和视频。
@@ -43,4 +44,4 @@
 
 ## 复现边界
 
-最终排序器输入是正式测试时可计算的 9 项生成侧特征，输出预测的 corrected14 均值；集合级 JEPA 和需要匹配 GT 的指标不被伪造成逐例输入。是否晋级由独立留出集的真实完整 15 项门禁决定。由于数据集、基础模型和 4000 个候选视频按清理要求不在 GitHub 中，仓库保留的是算法、参数、输入摘要、选择结果、哈希和执行证据，而不是可离线重新生成全部视频的完整物料。
+最终排序器输入是正式测试时可计算的 9 项生成侧特征，输出预测的 corrected14 均值；集合级 JEPA 和需要匹配 GT 的指标不被伪造成逐例输入。是否晋级由独立留出集的真实完整 15 项门禁决定。四个 seed 共用同一个公开可下载的 Official FlowWAM 权重；排序器权重完整保存在 `model.json`。由于数据集、基础模型和 4000 个候选视频按清理要求不在 GitHub 中，仓库通过 `REPRODUCTION.md` 固定公开来源、revision、参数、清单、哈希和执行代码，而不是直接保存这些大文件。

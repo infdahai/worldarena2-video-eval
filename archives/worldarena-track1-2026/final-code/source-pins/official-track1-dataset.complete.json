@@ -1,0 +1,41 @@
+{
+  "archive": "/data/di/worldarena2_track1_20260815/datasets/WorldArena2.0-official-track1/downloads/dataset_track1.tar.gz",
+  "archive_bytes": 85474554,
+  "archive_file_count": 3000,
+  "archive_sha256": "7973bf1e9222086279aa12eb593b4c7adb88f781a5811b05ae5134d52c96bb41",
+  "archive_uncompressed_bytes": 156497293,
+  "completed": true,
+  "completed_at": "2026-08-25T10:13:25.348158+00:00",
+  "contract": "worldarena2-official-track1-dataset/1",
+  "dataset_root": "/data/di/worldarena2_track1_20260815/datasets/WorldArena2.0-official-track1/extracted/dataset_track1",
+  "episode_count": 1000,
+  "episode_ids": {
+    "contiguous": true,
+    "first": 1,
+    "last": 1000
+  },
+  "episode_manifest": "/data/di/worldarena2_track1_20260815/datasets/WorldArena2.0-official-track1/episode-manifest.jsonl",
+  "episode_manifest_sha256": "97ef493062d9e21b4042a9987dd550c12f34763cfa345de786f40eca27f8e825",
+  "modality_counts": {
+    "data": 1000,
+    "first_frame": 1000,
+    "instructions": 1000
+  },
+  "repo_id": "WorldArena/WorldArena2.0",
+  "revision": "af1ac34d3881f84096345542c631fbb1b9540d50",
+  "source_manifest": "/data/di/worldarena2_track1_20260815/datasets/WorldArena2.0-official-track1/.worldarena_manifest.json",
+  "source_manifest_sha256": "70a6d9459faabb28a4904643b5eed830f5b909ebbec04c4dc4b7b40408f67bb0",
+  "terminal_state": "downloaded_verified_extracted_read_only",
+  "usage_contract": {
+    "final_inference_and_submission_only": true,
+    "model_selection_allowed": false,
+    "selector_fit_allowed": false,
+    "threshold_tuning_allowed": false,
+    "training_allowed": false
+  },
+  "zero_contamination": {
+    "asset_downloaded_after_adaptive_campaign_final_decision": true,
+    "audit_receipt": "/data/di/worldarena2_track1_20260815/datasets/WorldArena2.0-official-track1/zero-contamination-audit.complete.json",
+    "no_episode_content_used_for_training_or_model_selection": true
+  }
+}

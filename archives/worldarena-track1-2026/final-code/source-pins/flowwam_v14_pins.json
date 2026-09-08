@@ -1,0 +1,35 @@
+{
+  "contract": "v14-flowwam-wa2-source-pins/2",
+  "official_source": {
+    "repository": "https://github.com/YixiangChen515/FlowWAM.git",
+    "commit": "68abaa2b4c609febcc7b230cf06407880e85f5b8",
+    "files": {
+      "diffsynth/models/wan_video_dit_dual_stream.py": "d78692838a270fbc308497e5364fe11aaf1782c1f53c18ca04aaa9b47f0feeb2",
+      "diffsynth/pipelines/wan_video_dual_stream.py": "4f0f4ddbcb9224b9fa33b5b07c34cd3b0d76a034e5b4fe73228e439d1c0e893b",
+      "data_generation/envs/utils/robot_only_renderer.py": "c0a960770c1ed3bf10b022aced12b38fc027d369df52b6c0d4e6b4cecf56a98a",
+      "inference/flow_prefix_utils.py": "5ddf075a2a51289f5466e0c9a23ba730b6b96983565bd368df26529189d9028f",
+      "inference/reversible_flow_codec.py": "0fd6fcb0ecc5de3154d73e1aef5d156b486638ad337fb3a69e0c40a4c6af38c8",
+      "training/raft_flow_extractor.py": "e2c16c4d7f65d98fa6b3aedac03c1a4b9fb21b4d924b49d1e419514efd796515"
+    }
+  },
+  "renderer_upstream": {
+    "repository": "https://github.com/RoboTwin-Platform/RoboTwin.git",
+    "commit": "266f3aadf505a4f7fe9af0faa41a20f5f47cd123",
+    "embodiments_archive_size": 219859313,
+    "embodiments_archive_sha256": "6b87d7d55e106d8ff25917e0538eb1e177fc549280e8a742a8cec3cb9f953fc6"
+  },
+  "checkpoint": {
+    "repository": "YixiangChen/FlowWAM",
+    "revision": "1e68f76cecfb2caa973abfb24fca92cbc5312a6e",
+    "filename": "flowwam_worldarena_stage1.safetensors",
+    "size": 10137267208,
+    "sha256": "e211e32b6b79b293f7dec1a70794a69c3c1bf922483c06aef3c5f6d5c3be96c4"
+  },
+  "flow": {
+    "mode": "robot_only",
+    "backend": "torchvision-raft-large-default",
+    "max_magnitude": 25.0,
+    "frames": 81,
+    "frame0": "exact-white"
+  }
+}
